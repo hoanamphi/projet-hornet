@@ -1,0 +1,22 @@
+import * as Sequelize from "sequelize";
+import { HornetSequelizeAttributes } from "hornet-js-database/src/sequelize/hornet-sequelize-attributes";
+
+export interface ValiseAttributes extends HornetSequelizeAttributes {
+  numValise: number;
+  dateValise: Date;
+}
+
+export let ValiseModel: Sequelize.DefineAttributes = {
+  "numValise": {
+    type: Sequelize.INTEGER,
+    field: "NUM_VALISE",
+    primaryKey: true,
+    allowNull: false,
+    unique: "valise_ pkey"
+  },
+  "dateValise": {
+    type: Sequelize.DATE,
+    field: "DATE_VALISE",
+    allowNull: false
+  }
+};
