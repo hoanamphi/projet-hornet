@@ -46,4 +46,5 @@ require("src/injector-context-services-page");
         logger.error("Erreur lors du chargement de l'appli côté client (Exception)", exc);
     }
 })();
+
 //# sourceMappingURL=client.js.map

@@ -54,4 +54,5 @@ var AccessibleComponent = /** @class */ (function (_super) {
     return AccessibleComponent;
 }(hornet_component_1.HornetComponent));
 exports.AccessibleComponent = AccessibleComponent;
+
 //# sourceMappingURL=gen-acs-cmp.js.map

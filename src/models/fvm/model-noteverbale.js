@@ -20,4 +20,5 @@ exports.NoteVerbaleFVMModel = {
         allowNull: false
     }
 };
+
 //# sourceMappingURL=model-noteverbale.js.map

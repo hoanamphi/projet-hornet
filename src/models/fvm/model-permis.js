@@ -52,4 +52,5 @@ exports.PermisFVMModel = {
         }
     }
 };
+
 //# sourceMappingURL=model-permis.js.map

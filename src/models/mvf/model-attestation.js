@@ -42,4 +42,5 @@ exports.AttestationMVFModel = {
         }
     }
 };
+
 //# sourceMappingURL=model-attestation.js.map

@@ -38,4 +38,5 @@ exports.PermisMVFModel = {
         }
     }
 };
+
 //# sourceMappingURL=model-permis.js.map

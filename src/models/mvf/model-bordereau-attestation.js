@@ -28,4 +28,5 @@ exports.BordereauAttestationMVFModel = {
         }
     }
 };
+
 //# sourceMappingURL=model-bordereau-attestation.js.map

@@ -216,10 +216,202 @@ exports.NoteVerbaleReleveFVMMetier = NoteVerbaleReleveFVMMetier;
 var NoteVerbaleFVMMetier = /** @class */ (function () {
     function NoteVerbaleFVMMetier() {
     }
+    tslib_1.__decorate([
+        Map_1.default(),
+        Alias_1.default("idNoteVerbale"),
+        tslib_1.__metadata("design:type", Number)
+    ], NoteVerbaleFVMMetier.prototype, "id_note_verbale_fvm", void 0);
+    tslib_1.__decorate([
+        Map_1.default(),
+        Alias_1.default("numNoteVerbale"),
+        tslib_1.__metadata("design:type", Number)
+    ], NoteVerbaleFVMMetier.prototype, "num_note_verbale", void 0);
+    tslib_1.__decorate([
+        Map_1.default(),
+        Alias_1.default("dateEnvoiDeLaReponseAuMAECI"),
+        tslib_1.__metadata("design:type", Date)
+    ], NoteVerbaleFVMMetier.prototype, "date_envoi_de_la_reponse_au_maeci", void 0);
     NoteVerbaleFVMMetier = tslib_1.__decorate([
         Bean_1.default
     ], NoteVerbaleFVMMetier);
     return NoteVerbaleFVMMetier;
 }());
 exports.NoteVerbaleFVMMetier = NoteVerbaleFVMMetier;
+var CopiePermisFVMMetier = /** @class */ (function () {
+    function CopiePermisFVMMetier() {
+    }
+    tslib_1.__decorate([
+        Map_1.default(),
+        Alias_1.default("idCopiePermis"),
+        tslib_1.__metadata("design:type", Number)
+    ], CopiePermisFVMMetier.prototype, "id_copie_permis_fvm", void 0);
+    tslib_1.__decorate([
+        Map_1.default(),
+        Alias_1.default("nom"),
+        tslib_1.__metadata("design:type", String)
+    ], CopiePermisFVMMetier.prototype, "nom", void 0);
+    tslib_1.__decorate([
+        Map_1.default(),
+        Alias_1.default("mimetype"),
+        tslib_1.__metadata("design:type", String)
+    ], CopiePermisFVMMetier.prototype, "mimetype", void 0);
+    tslib_1.__decorate([
+        Map_1.default(),
+        Alias_1.default("encoding"),
+        tslib_1.__metadata("design:type", String)
+    ], CopiePermisFVMMetier.prototype, "encoding", void 0);
+    tslib_1.__decorate([
+        Map_1.default(),
+        Alias_1.default("size"),
+        tslib_1.__metadata("design:type", Number)
+    ], CopiePermisFVMMetier.prototype, "size", void 0);
+    tslib_1.__decorate([
+        Map_1.default(),
+        Alias_1.default("data"),
+        tslib_1.__metadata("design:type", Buffer)
+    ], CopiePermisFVMMetier.prototype, "data", void 0);
+    tslib_1.__decorate([
+        Map_1.default(),
+        Alias_1.default("idPermis"),
+        tslib_1.__metadata("design:type", Number)
+    ], CopiePermisFVMMetier.prototype, "id_permis_fvm", void 0);
+    CopiePermisFVMMetier = tslib_1.__decorate([
+        Bean_1.default
+    ], CopiePermisFVMMetier);
+    return CopiePermisFVMMetier;
+}());
+exports.CopiePermisFVMMetier = CopiePermisFVMMetier;
+var CopieNoteVerbaleMAECIFVMMetier = /** @class */ (function () {
+    function CopieNoteVerbaleMAECIFVMMetier() {
+    }
+    tslib_1.__decorate([
+        Map_1.default(),
+        Alias_1.default("idCopieNoteVerbaleMAECI"),
+        tslib_1.__metadata("design:type", Number)
+    ], CopieNoteVerbaleMAECIFVMMetier.prototype, "id_copie_note_verbale_maeci_fvm", void 0);
+    tslib_1.__decorate([
+        Map_1.default(),
+        Alias_1.default("nom"),
+        tslib_1.__metadata("design:type", String)
+    ], CopieNoteVerbaleMAECIFVMMetier.prototype, "nom", void 0);
+    tslib_1.__decorate([
+        Map_1.default(),
+        Alias_1.default("mimetype"),
+        tslib_1.__metadata("design:type", String)
+    ], CopieNoteVerbaleMAECIFVMMetier.prototype, "mimetype", void 0);
+    tslib_1.__decorate([
+        Map_1.default(),
+        Alias_1.default("encoding"),
+        tslib_1.__metadata("design:type", String)
+    ], CopieNoteVerbaleMAECIFVMMetier.prototype, "encoding", void 0);
+    tslib_1.__decorate([
+        Map_1.default(),
+        Alias_1.default("size"),
+        tslib_1.__metadata("design:type", Number)
+    ], CopieNoteVerbaleMAECIFVMMetier.prototype, "size", void 0);
+    tslib_1.__decorate([
+        Map_1.default(),
+        Alias_1.default("data"),
+        tslib_1.__metadata("design:type", Buffer)
+    ], CopieNoteVerbaleMAECIFVMMetier.prototype, "data", void 0);
+    tslib_1.__decorate([
+        Map_1.default(),
+        Alias_1.default("idDossier"),
+        tslib_1.__metadata("design:type", Number)
+    ], CopieNoteVerbaleMAECIFVMMetier.prototype, "id_dossier_fvm", void 0);
+    CopieNoteVerbaleMAECIFVMMetier = tslib_1.__decorate([
+        Bean_1.default
+    ], CopieNoteVerbaleMAECIFVMMetier);
+    return CopieNoteVerbaleMAECIFVMMetier;
+}());
+exports.CopieNoteVerbaleMAECIFVMMetier = CopieNoteVerbaleMAECIFVMMetier;
+var CopieReleveFVMMetier = /** @class */ (function () {
+    function CopieReleveFVMMetier() {
+    }
+    tslib_1.__decorate([
+        Map_1.default(),
+        Alias_1.default("idCopieReleve"),
+        tslib_1.__metadata("design:type", Number)
+    ], CopieReleveFVMMetier.prototype, "id_copie_releve_fvm", void 0);
+    tslib_1.__decorate([
+        Map_1.default(),
+        Alias_1.default("nom"),
+        tslib_1.__metadata("design:type", String)
+    ], CopieReleveFVMMetier.prototype, "nom", void 0);
+    tslib_1.__decorate([
+        Map_1.default(),
+        Alias_1.default("mimetype"),
+        tslib_1.__metadata("design:type", String)
+    ], CopieReleveFVMMetier.prototype, "mimetype", void 0);
+    tslib_1.__decorate([
+        Map_1.default(),
+        Alias_1.default("encoding"),
+        tslib_1.__metadata("design:type", String)
+    ], CopieReleveFVMMetier.prototype, "encoding", void 0);
+    tslib_1.__decorate([
+        Map_1.default(),
+        Alias_1.default("size"),
+        tslib_1.__metadata("design:type", Number)
+    ], CopieReleveFVMMetier.prototype, "size", void 0);
+    tslib_1.__decorate([
+        Map_1.default(),
+        Alias_1.default("data"),
+        tslib_1.__metadata("design:type", Buffer)
+    ], CopieReleveFVMMetier.prototype, "data", void 0);
+    tslib_1.__decorate([
+        Map_1.default(),
+        Alias_1.default("idReleve"),
+        tslib_1.__metadata("design:type", Number)
+    ], CopieReleveFVMMetier.prototype, "id_releve_fvm", void 0);
+    CopieReleveFVMMetier = tslib_1.__decorate([
+        Bean_1.default
+    ], CopieReleveFVMMetier);
+    return CopieReleveFVMMetier;
+}());
+exports.CopieReleveFVMMetier = CopieReleveFVMMetier;
+var CopieCourrierPrefectureFVMMetier = /** @class */ (function () {
+    function CopieCourrierPrefectureFVMMetier() {
+    }
+    tslib_1.__decorate([
+        Map_1.default(),
+        Alias_1.default("idCopieCourrierPrefecture"),
+        tslib_1.__metadata("design:type", Number)
+    ], CopieCourrierPrefectureFVMMetier.prototype, "id_copie_courrier_prefecture_fvm", void 0);
+    tslib_1.__decorate([
+        Map_1.default(),
+        Alias_1.default("nom"),
+        tslib_1.__metadata("design:type", String)
+    ], CopieCourrierPrefectureFVMMetier.prototype, "nom", void 0);
+    tslib_1.__decorate([
+        Map_1.default(),
+        Alias_1.default("mimetype"),
+        tslib_1.__metadata("design:type", String)
+    ], CopieCourrierPrefectureFVMMetier.prototype, "mimetype", void 0);
+    tslib_1.__decorate([
+        Map_1.default(),
+        Alias_1.default("encoding"),
+        tslib_1.__metadata("design:type", String)
+    ], CopieCourrierPrefectureFVMMetier.prototype, "encoding", void 0);
+    tslib_1.__decorate([
+        Map_1.default(),
+        Alias_1.default("size"),
+        tslib_1.__metadata("design:type", Number)
+    ], CopieCourrierPrefectureFVMMetier.prototype, "size", void 0);
+    tslib_1.__decorate([
+        Map_1.default(),
+        Alias_1.default("data"),
+        tslib_1.__metadata("design:type", Buffer)
+    ], CopieCourrierPrefectureFVMMetier.prototype, "data", void 0);
+    tslib_1.__decorate([
+        Map_1.default(),
+        Alias_1.default("idReleve"),
+        tslib_1.__metadata("design:type", Number)
+    ], CopieCourrierPrefectureFVMMetier.prototype, "id_releve_fvm", void 0);
+    CopieCourrierPrefectureFVMMetier = tslib_1.__decorate([
+        Bean_1.default
+    ], CopieCourrierPrefectureFVMMetier);
+    return CopieCourrierPrefectureFVMMetier;
+}());
+exports.CopieCourrierPrefectureFVMMetier = CopieCourrierPrefectureFVMMetier;
+
 //# sourceMappingURL=fvm-mod.js.map

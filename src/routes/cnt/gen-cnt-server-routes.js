@@ -16,4 +16,5 @@ var ContactRoutesServer = /** @class */ (function (_super) {
     return ContactRoutesServer;
 }(gen_cnt_client_routes_1.default));
 exports.default = ContactRoutesServer;
+
 //# sourceMappingURL=gen-cnt-server-routes.js.map

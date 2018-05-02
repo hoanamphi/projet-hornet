@@ -12,60 +12,10 @@ var PermisDAO = /** @class */ (function (_super) {
         return _super.call(this) || this;
     }
     PermisDAO.prototype.listerPermis = function (data) {
-        return this.modelDAO.permisEntity.findAll();
-    };
-    PermisDAO.prototype.insererPermis = function (data) {
-        var promise;
-        this.modelDAO.permisEntity.create({
-            numPermis: data['permis'],
-            idPersonne: 1,
-            numDossier: 1
-        }).then(function (result) {
-            promise = true;
-        }).catch(function (err) {
-            promise = false;
-        });
-        return new Promise(function (resolve, reject) {
-            resolve(promise);
-        });
-    };
-    PermisDAO.prototype.insererPersonne = function (data) {
-        var promise;
-        this.modelDAO.personneEntity.create({
-            idPersonne: 1,
-            nomPersonne: data['nom'],
-            prenomPersonne: data['prenom'],
-            dateDeNaissance: data['date_de_naissance'],
-            numPermis: data['permis']
-        }).then(function (result) {
-            promise = true;
-        }).catch(function (err) {
-            promise = false;
-        });
-        return new Promise(function (resolve, reject) {
-            resolve(promise);
-        });
-    };
-    PermisDAO.prototype.insererDossier = function (data) {
-        var promise;
-        this.modelDAO.dossierEntity.create({
-            numDossier: 1,
-            demandePrefecture: "demande prefecture",
-            copiePermis: "copiePermis",
-            dateReceptionDossier: data['date_de_naissance'],
-            numPermis: data['permis'],
-            codePrefecture: 2
-        }).then(function (result) {
-            promise = true;
-        }).catch(function (err) {
-            promise = false;
-        });
-        return new Promise(function (resolve, reject) {
-            resolve(promise);
-        });
+        return this.modelDAO.permisFVMEntity.findAll();
     };
     tslib_1.__decorate([
-        Map_1.default(fvm_mod_1.PermisMetier),
+        Map_1.default(fvm_mod_1.PermisFVMMetier),
         tslib_1.__metadata("design:type", Function),
         tslib_1.__metadata("design:paramtypes", [Object]),
         tslib_1.__metadata("design:returntype", Promise)
@@ -73,4 +23,5 @@ var PermisDAO = /** @class */ (function (_super) {
     return PermisDAO;
 }(entity_dao_1.EntityDAO));
 exports.PermisDAO = PermisDAO;
+
 //# sourceMappingURL=permis-dao.js.map

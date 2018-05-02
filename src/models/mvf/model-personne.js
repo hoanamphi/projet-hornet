@@ -34,4 +34,5 @@ exports.PersonneMVFModel = {
         }
     }
 };
+
 //# sourceMappingURL=model-personne.js.map

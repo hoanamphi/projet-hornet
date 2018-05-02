@@ -29,4 +29,5 @@ var NotFoundPage = /** @class */ (function (_super) {
     return NotFoundPage;
 }(hornet_page_1.HornetPage));
 exports.NotFoundPage = NotFoundPage;
+
 //# sourceMappingURL=gen-nfe-page.js.map

@@ -28,4 +28,5 @@ exports.NoteVerbalePermisMVFModel = {
         }
     }
 };
+
 //# sourceMappingURL=model-noteverbale-permis.js.map

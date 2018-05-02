@@ -18,4 +18,5 @@ var EntityDAO = /** @class */ (function (_super) {
     return EntityDAO;
 }(hornet_sequelize_entity_1.HornetSequelizeEntity));
 exports.EntityDAO = EntityDAO;
+
 //# sourceMappingURL=entity-dao.js.map

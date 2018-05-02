@@ -42,4 +42,5 @@ exports.DossierMVFModel = {
         }
     }
 };
+
 //# sourceMappingURL=model-dossier.js.map

@@ -44,4 +44,5 @@ exports.CopieAttestationMVFModel = {
         }
     }
 };
+
 //# sourceMappingURL=model-copieattestation.js.map

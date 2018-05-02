@@ -148,4 +148,5 @@ app_shared_props_1.AppSharedProps.set("notifSessionTimeout", hornet_js_utils_1.U
 // lancement de l'application
 var server_1 = require("src/server");
 server_1.Server.startApplication();
+
 //# sourceMappingURL=index.js.map

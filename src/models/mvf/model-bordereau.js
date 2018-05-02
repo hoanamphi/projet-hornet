@@ -14,9 +14,9 @@ exports.BordereauMVFModel = {
         field: "NUM_BORDEREAU",
         allowNull: false
     },
-    "dateEnvoiDeLaReponseAuMAECI": {
+    "dateEnvoiDeLaReponsePrefecture": {
         type: Sequelize.DATE,
-        field: "DATE_ENVOI_DE_LA_REPONSE_AU_MAECI",
+        field: "DATE_ENVOI_DE_LA_REPONSE_PREFECTURE",
         allowNull: false
     },
     "numValise": {
@@ -29,4 +29,5 @@ exports.BordereauMVFModel = {
         }
     }
 };
+
 //# sourceMappingURL=model-bordereau.js.map

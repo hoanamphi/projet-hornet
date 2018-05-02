@@ -69,4 +69,5 @@ var ContactPage = /** @class */ (function (_super) {
     return ContactPage;
 }(hornet_page_1.HornetPage));
 exports.ContactPage = ContactPage;
+
 //# sourceMappingURL=gen-cnt-page.js.map

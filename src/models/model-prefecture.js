@@ -40,4 +40,5 @@ exports.PrefectureModel = {
         allowNull: false
     }
 };
+
 //# sourceMappingURL=model-prefecture.js.map

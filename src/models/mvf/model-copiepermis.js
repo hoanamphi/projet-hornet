@@ -44,4 +44,5 @@ exports.CopiePermisMVFModel = {
         }
     }
 };
+
 //# sourceMappingURL=model-copiepermis.js.map

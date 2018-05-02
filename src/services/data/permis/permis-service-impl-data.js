@@ -33,4 +33,5 @@ var PermisServiceImpl = /** @class */ (function (_super) {
     return PermisServiceImpl;
 }(service_request_1.ServiceRequest));
 exports.PermisServiceImpl = PermisServiceImpl;
+
 //# sourceMappingURL=permis-service-impl-data.js.map

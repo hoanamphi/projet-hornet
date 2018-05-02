@@ -68,4 +68,5 @@ var ConnexionPage = /** @class */ (function (_super) {
     return ConnexionPage;
 }(hornet_component_1.HornetComponent));
 exports.ConnexionPage = ConnexionPage;
+
 //# sourceMappingURL=gen-cnx-page.js.map

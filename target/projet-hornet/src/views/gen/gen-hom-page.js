@@ -26,4 +26,5 @@ var HomePage = /** @class */ (function (_super) {
     return HomePage;
 }(hornet_page_1.HornetPage));
 exports.HomePage = HomePage;
+
 //# sourceMappingURL=gen-hom-page.js.map

@@ -31,4 +31,5 @@ var ContactServiceImpl = /** @class */ (function (_super) {
     return ContactServiceImpl;
 }(service_page_1.ServicePage));
 exports.ContactServiceImpl = ContactServiceImpl;
+
 //# sourceMappingURL=contact-service-page-impl.js.map
