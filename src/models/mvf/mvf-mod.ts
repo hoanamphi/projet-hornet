@@ -3,126 +3,162 @@ import Map from "hornet-js-bean/src/decorators/Map";
 import Alias from "hornet-js-bean/src/decorators/Alias";
 
 @Bean
-export class RoleMetier {
-    @Map()
-    @Alias("idRole")
-    id: number;
-    @Map()
-    @Alias("rolNom")
-    name: string;
+export class PermisFVMMetier {
+  @Map()
+  @Alias("idPermis")
+  id_permis_fvm: number;
+
+  @Map()
+  @Alias("numPermis")
+  num_permis: string;
+
+  @Map()
+  @Alias("idCopiePermis")
+  id_copie_permis_fvm: number;
+
+  @Map()
+  @Alias("dateDeDelivrance")
+  date_de_delivrance: Date;
+
+  @Map()
+  @Alias("idPersonne")
+  id_personne_fvm: number;
+
+  @Map()
+  @Alias("idDossier")
+  id_dossier_fvm: number;
+
+  @Map()
+  @Alias("idPrefecturedelivrance")
+  id_prefecture_delivrance: number;
 }
 
 @Bean
-export class UtilisateurMetier {
-    @Map()
-    id: number;
+export class PersonneFVMMetier {
+  @Map()
+  @Alias("idPersonne")
+  id_personne_fvm: number;
 
-    @Map()
-    login: string;
+  @Map()
+  @Alias("nom")
+  nom: string;
 
-    @Map()
-    password: string;
+  @Map()
+  @Alias("prenom")
+  prenom: string;
 
-    @Map()
-    enabled: boolean;
+  @Map()
+  @Alias("dateDeNaissance")
+  date_de_naissance: Date;
 
-    @Map(RoleMetier)
-    @Alias("listeRole")
-    roles: Array<RoleMetier>;
+  @Map()
+  @Alias("villeDeNaissance")
+  ville_de_naissance: string;
+
+  @Map()
+  @Alias("paysDeNaissance")
+  pays_de_naissance: string;
+
+  @Map()
+  @Alias("idPermis")
+  id_permis_fvm: number;
 }
 
 @Bean
-export class PermisMetier {
-    @Map()
-    @Alias("numPermis")
-    num_permis: string;
+export class DossierFVMMetier {
+  @Map()
+  @Alias("idDossier")
+  id_dossier_fvm: number;
 
-    @Map()
-    @Alias("idPersonne")
-    id_personne: number;
+  @Map()
+  @Alias("idCopieNoteVerbaleMAECI")
+  id_copie_note_verbale_maeci_fvm: number;
 
-    @Map()
-    @Alias("numDossier")
-    num_dossier: number;
+  @Map()
+  @Alias("dateReceptionDossier")
+  date_reception_dossier: Date;
+
+  @Map()
+  @Alias("idPermis")
+  id_permis_fvm: number;
 }
 
 @Bean
-export class PersonneMetier {
-    @Map()
-    @Alias("idPersonne")
-    id_personne: number;
+export class DemandeAuthentificationFVMMetier {
+  @Map()
+  @Alias("idDemandeAuthentification")
+  id_demande_authentification_fvm: number;
 
-    @Map()
-    @Alias("nomPersonne")
-    nom: string;
+  @Map()
+  @Alias("numDemandeAuthentification")
+  num_demande_authentification: string;
 
-    @Map()
-    @Alias("prenomPersonne")
-    prenom: string;
+  @Map()
+  @Alias("dateDuTraitement")
+  date_du_traitement: Date;
 
-    @Map()
-    @Alias("dateDeNaissance")
-    date_de_naissance: Date;
+  @Map()
+  @Alias("idPermis")
+  id_permis_fvm: number;
 
-    @Map()
-    @Alias("numPermis")
-    num_permis: string;
+  @Map()
+  @Alias("numValise")
+  num_valise: number;
 }
 
 @Bean
-export class DossierMetier {
-    @Map()
-    @Alias("numDossier")
-    num_dossier: number;
+export class ReleveFVMMetier {
+  @Map()
+  @Alias("idReleve")
+  id_releve_fvm: number;
 
-    @Map()
-    @Alias("demandePrefecture")
-    demande_prefecture: string;
+  @Map()
+  @Alias("idCopieReleve")
+  id_copie_releve_fvm: number;
 
-    @Map()
-    @Alias("copiePermis")
-    copie_permis: string;
+  @Map()
+  @Alias("idCopieCourrierPrefecture")
+  id_copie_courrier_prefecture_fvm: number;
 
-    @Map()
-    @Alias("dateReceptionDossier")
-    date_reception_dossier: Date;
+  @Map()
+  @Alias("dateReceptionReleve")
+  date_reception_releve: Date;
 
-    @Map()
-    @Alias("numPermis")
-    num_permis: string;
-
-    @Map()
-    @Alias("codePrefecture")
-    code_prefecture: number;
+  @Map()
+  @Alias("idPermis")
+  id_permis_fvm: number;
 }
 
 @Bean
-export class PrefectureMetier {
-    @Map()
-    @Alias("codePrefecture")
-    code_prefecture: number;
+export class NoteVerbaleReleveFVMMetier {
+  @Map()
+  @Alias("idNoteVerbaleReleve")
+  id_note_verbale_releve_fvm: number;
 
-    @Map()
-    @Alias("Region")
-    region: string;
+  @Map()
+  @Alias("idReleve")
+  id_releve_fvm: number;
 
-    @Map()
-    @Alias("Departement")
-    departement: string;
+  @Map()
+  @Alias("idNoteVerbale")
+  id_note_verbale_fvm: number;
+}
 
-    @Map()
-    @Alias("Prefecture")
-    prefecture: string;
+@Bean
+export class NoteVerbaleFVMMetier {
+  @Map()
+  @Alias("idNoteVerbale")
+  id_note_verbale_fvm: number;
 
-    @Map()
-    @Alias("Adresse")
-    adresse: string;
+  @Map()
+  @Alias("numNoteVerbale")
+  num_note_verbale: number;
 
-    @Map()
-    @Alias("codePostal")
-    code_postal: number;
+  @Map()
+  @Alias("idCopieNoteVerbale")
+  id_copie_note_verbale_fvm: number;
 
-    @Map()
-    @Alias("Ville")
-    ville: string;
+  @Map()
+  @Alias("dateEnvoiDeLaReponseAuMAECI")
+  date_envoi_de_la_reponse_au_maeci: Date;
 }

@@ -146,5 +146,50 @@ export class NoteVerbaleReleveFVMMetier {
 
 @Bean
 export class NoteVerbaleFVMMetier {
+  @Map()
+  @Alias("idNoteVerbale")
+  id_note_verbale_fvm: number;
 
+  @Map()
+  @Alias("numNoteVerbale")
+  num_note_verbale: number;
+
+  @Map()
+  @Alias("idCopieNoteVerbale")
+  id_copie_note_verbale_fvm: number;
+
+  @Map()
+  @Alias("dateEnvoiDeLaReponseAuMAECI")
+  date_envoi_de_la_reponse_au_maeci: Date;
+}
+
+@Bean
+export class CopiePermisFVMMetier {
+  @Map()
+  @Alias("idCopiePermis")
+  id_copie_permis_fvm: number;
+
+  @Map()
+  @Alias("nom")
+  nom: string;
+
+  @Map()
+  @Alias("mimetype")
+  mimetype: string;
+
+  @Map()
+  @Alias("encoding")
+  encoding: string;
+
+  @Map()
+  @Alias("size")
+  size: number;
+
+  @Map()
+  @Alias("data")
+  data: Buffer;
+
+  @Map()
+  @Alias("idPermis")
+  id_permis_fvm: number;
 }
