@@ -1,7 +1,7 @@
 import { Utils } from "hornet-js-utils";
 import { Logger } from "hornet-js-utils/src/logger";
 import { UtilisateursDAO } from "src/dao/utilisateurs-dao";
-import { UtilisateurMetier } from "src/models/user-mod";
+import { UtilisateurMetier } from "src/models/fvm/fvm-mod";
 import { AuthService } from "src/services/data/auth/auth-service";
 import { Response } from "superagent";
 

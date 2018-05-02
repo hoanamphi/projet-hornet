@@ -51,5 +51,4 @@ var AuthServiceDataMockImpl = /** @class */ (function (_super) {
     return AuthServiceDataMockImpl;
 }(auth_service_1.AuthService));
 exports.AuthServiceDataMockImpl = AuthServiceDataMockImpl;
-
 //# sourceMappingURL=auth-service-impl-mock.js.map

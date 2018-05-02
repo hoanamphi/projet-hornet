@@ -4,7 +4,7 @@ var tslib_1 = require("tslib");
 var hornet_js_utils_1 = require("hornet-js-utils");
 var entity_dao_1 = require("src/dao/entity-dao");
 var Map_1 = require("hornet-js-bean/src/decorators/Map");
-var user_mod_1 = require("src/models/user-mod");
+var user_mod_1 = require("src/models/fvm/fvm-mod");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.src.dao.utilisateurs-dao");
 var PermisDAO = /** @class */ (function (_super) {
     tslib_1.__extends(PermisDAO, _super);

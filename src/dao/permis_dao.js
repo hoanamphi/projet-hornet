@@ -4,7 +4,7 @@ var tslib_1 = require("tslib");
 var hornet_js_utils_1 = require("hornet-js-utils");
 var entity_dao_1 = require("src/dao/entity-dao");
 var Map_1 = require("hornet-js-bean/src/decorators/Map");
-var user_mod_1 = require("src/models/user-mod");
+var fvm_mod_1 = require("src/models/fvm/fvm-mod");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.src.dao.utilisateurs-dao");
 var PermisDAO = /** @class */ (function (_super) {
     tslib_1.__extends(PermisDAO, _super);
@@ -65,7 +65,7 @@ var PermisDAO = /** @class */ (function (_super) {
         });
     };
     tslib_1.__decorate([
-        Map_1.default(user_mod_1.PermisMetier),
+        Map_1.default(fvm_mod_1.PermisMetier),
         tslib_1.__metadata("design:type", Function),
         tslib_1.__metadata("design:paramtypes", [Object]),
         tslib_1.__metadata("design:returntype", Promise)
@@ -73,5 +73,4 @@ var PermisDAO = /** @class */ (function (_super) {
     return PermisDAO;
 }(entity_dao_1.EntityDAO));
 exports.PermisDAO = PermisDAO;
-
 //# sourceMappingURL=permis_dao.js.map

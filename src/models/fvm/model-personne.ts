@@ -1,7 +1,7 @@
 import * as Sequelize from "sequelize";
 import { HornetSequelizeAttributes } from "hornet-js-database/src/sequelize/hornet-sequelize-attributes";
 
-export interface PersonneFMVAttributes extends HornetSequelizeAttributes {
+export interface PersonneFVMAttributes extends HornetSequelizeAttributes {
   idPersonne: number;
   nom: string;
   prenom: string;
@@ -30,7 +30,7 @@ export let PersonneFVMModel: Sequelize.DefineAttributes = {
     allowNull: false
   },
   "dateDeNaissance": {
-    type: Sequalize.DATE,
+    type: Sequelize.DATE,
     field: "DATE_DE_NAISSANCE",
     allowNull: false
   },

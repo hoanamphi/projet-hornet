@@ -21,5 +21,4 @@ else {
         injector_1.Injector.register(auth_service_1.AuthService, AuthServiceImpl.AuthServiceImpl, injectable_1.Scope.SINGLETON);
     });
 }
-
 //# sourceMappingURL=injector-context-services-data.js.map

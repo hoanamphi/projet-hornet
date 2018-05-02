@@ -105,5 +105,4 @@ var AuthenticationMiddleware = /** @class */ (function (_super) {
     return AuthenticationMiddleware;
 }(middlewares_1.AbstractHornetMiddleware));
 exports.AuthenticationMiddleware = AuthenticationMiddleware;
-
 //# sourceMappingURL=authentication.js.map

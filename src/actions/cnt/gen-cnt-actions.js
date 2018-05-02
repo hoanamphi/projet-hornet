@@ -21,5 +21,4 @@ var Send = /** @class */ (function (_super) {
     return Send;
 }(abstract_routes_1.RouteActionService));
 exports.Send = Send;
-
 //# sourceMappingURL=gen-cnt-actions.js.map

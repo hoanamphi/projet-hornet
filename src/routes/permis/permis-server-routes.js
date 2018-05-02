@@ -15,5 +15,4 @@ var PermisRoutesServer = /** @class */ (function (_super) {
     return PermisRoutesServer;
 }(permis_client_routes_1.default));
 exports.default = PermisRoutesServer;
-
 //# sourceMappingURL=permis-server-routes.js.map

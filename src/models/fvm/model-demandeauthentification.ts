@@ -26,7 +26,7 @@ export let DemandeAuthentificationFVMModel: Sequelize.DefineAttributes = {
     type: Sequelize.DATE,
     field: "DATE_DU_TRAITEMENT",
     allowNull: false
-  }
+  },
   "idPermis": {
     type: Sequelize.INTEGER,
     field: "ID_PERMIS_FVM",
@@ -35,7 +35,7 @@ export let DemandeAuthentificationFVMModel: Sequelize.DefineAttributes = {
       model: "PermisFVMModel",
       key: "idPermis"
     }
-  }
+  },
   "numValise": {
     type: Sequelize.INTEGER,
     field: "NUM_VALISE",

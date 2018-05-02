@@ -2,43 +2,42 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var Sequelize = require("sequelize");
 exports.PrefectureModel = {
-    "codePrefecture": {
+    "idPrefecture": {
         type: Sequelize.INTEGER,
-        field: "code_prefecture",
+        field: "ID_PREFECTURE",
         primaryKey: true,
         allowNull: false,
-        unique: "role_pkey"
+        unique: "prefecture_pkey"
     },
-    "Region": {
+    "region": {
         type: Sequelize.STRING,
-        field: "region",
+        field: "REGION",
         allowNull: false
     },
-    "Departement": {
+    "departement": {
         type: Sequelize.STRING,
-        field: "departement",
+        field: "DEPARTEMENT",
         allowNull: false
     },
-    "Prefecture": {
+    "prefecture": {
         type: Sequelize.STRING,
-        field: "prefecture",
+        field: "PREFECTURE",
         allowNull: false
     },
-    "Adresse": {
+    "adresse": {
         type: Sequelize.STRING,
-        field: "adresse",
+        field: "ADRESSE",
         allowNull: false
     },
     "codePostal": {
         type: Sequelize.INTEGER,
-        field: "code_postal",
+        field: "CODE_POSTAL",
         allowNull: false
     },
-    "Ville": {
+    "ville": {
         type: Sequelize.STRING,
-        field: "ville",
+        field: "VILLE",
         allowNull: false
     }
 };
-
 //# sourceMappingURL=model-prefecture.js.map

@@ -113,5 +113,4 @@ var HornetLayout = /** @class */ (function (_super) {
     return HornetLayout;
 }(hornet_page_1.HornetPage));
 exports.HornetLayout = HornetLayout;
-
 //# sourceMappingURL=hornet-layout.js.map

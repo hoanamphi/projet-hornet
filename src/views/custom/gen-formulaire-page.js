@@ -64,5 +64,4 @@ var FormulairePage = /** @class */ (function (_super) {
     return FormulairePage;
 }(hornet_page_1.HornetPage));
 exports.FormulairePage = FormulairePage;
-
 //# sourceMappingURL=gen-formulaire-page.js.map

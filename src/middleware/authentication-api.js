@@ -14,5 +14,4 @@ var AuthenticationAPIMiddleware = /** @class */ (function (_super) {
     return AuthenticationAPIMiddleware;
 }(authentication_1.AuthenticationMiddleware));
 exports.AuthenticationAPIMiddleware = AuthenticationAPIMiddleware;
-
 //# sourceMappingURL=authentication-api.js.map

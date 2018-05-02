@@ -35,5 +35,4 @@ var Inser = /** @class */ (function (_super) {
     return Inser;
 }(abstract_routes_1.RouteActionService));
 exports.Inser = Inser;
-
 //# sourceMappingURL=permis-action.js.map

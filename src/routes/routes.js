@@ -42,5 +42,4 @@ var Routes = /** @class */ (function (_super) {
     return Routes;
 }(abstract_routes_1.AbstractRoutes));
 exports.Routes = Routes;
-
 //# sourceMappingURL=routes.js.map

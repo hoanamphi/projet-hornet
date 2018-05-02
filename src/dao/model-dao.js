@@ -68,5 +68,4 @@ var ModelDAO = /** @class */ (function (_super) {
     var ModelDAO_1;
 }(hornet_sequelize_model_1.HornetSequelizeModel));
 exports.ModelDAO = ModelDAO;
-
 //# sourceMappingURL=model-dao.js.map

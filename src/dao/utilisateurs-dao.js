@@ -4,7 +4,7 @@ var tslib_1 = require("tslib");
 var hornet_js_utils_1 = require("hornet-js-utils");
 var entity_dao_1 = require("src/dao/entity-dao");
 var Map_1 = require("hornet-js-bean/src/decorators/Map");
-var user_mod_1 = require("src/models/user-mod");
+var fvm_mod_1 = require("src/models/fvm/fvm-mod");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.src.dao.utilisateurs-dao");
 var UtilisateursDAO = /** @class */ (function (_super) {
     tslib_1.__extends(UtilisateursDAO, _super);
@@ -39,19 +39,19 @@ var UtilisateursDAO = /** @class */ (function (_super) {
         });
     };
     tslib_1.__decorate([
-        Map_1.default(user_mod_1.UtilisateurMetier),
+        Map_1.default(fvm_mod_1.UtilisateurMetier),
         tslib_1.__metadata("design:type", Function),
         tslib_1.__metadata("design:paramtypes", [Object]),
         tslib_1.__metadata("design:returntype", Promise)
     ], UtilisateursDAO.prototype, "findOne", null);
     tslib_1.__decorate([
-        Map_1.default(user_mod_1.UtilisateurMetier),
+        Map_1.default(fvm_mod_1.UtilisateurMetier),
         tslib_1.__metadata("design:type", Function),
         tslib_1.__metadata("design:paramtypes", []),
         tslib_1.__metadata("design:returntype", Promise)
     ], UtilisateursDAO.prototype, "listerUtilisateurs", null);
     tslib_1.__decorate([
-        Map_1.default(user_mod_1.UtilisateurMetier),
+        Map_1.default(fvm_mod_1.UtilisateurMetier),
         tslib_1.__metadata("design:type", Function),
         tslib_1.__metadata("design:paramtypes", [Object]),
         tslib_1.__metadata("design:returntype", Promise)
@@ -59,5 +59,4 @@ var UtilisateursDAO = /** @class */ (function (_super) {
     return UtilisateursDAO;
 }(entity_dao_1.EntityDAO));
 exports.UtilisateursDAO = UtilisateursDAO;
-
 //# sourceMappingURL=utilisateurs-dao.js.map

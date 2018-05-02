@@ -10,5 +10,4 @@ exports.URL_UTILISATEURS_AUTH = "/auth";
  */
 exports.URL_CONTACT = "/contact";
 exports.URL_CONTACT_ENVOYER = "/email";
-
 //# sourceMappingURL=urls.js.map

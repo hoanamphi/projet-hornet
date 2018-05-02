@@ -1,7 +1,7 @@
 import * as Sequelize from "sequelize";
 import { HornetSequelizeAttributes } from "hornet-js-database/src/sequelize/hornet-sequelize-attributes";
 
-export interface DossierFMVAttributes extends HornetSequelizeAttributes {
+export interface DossierFVMAttributes extends HornetSequelizeAttributes {
   idDossier: number;
   idCopieNoteVerbaleMAECI: number;
   dateReceptionDossier: Date;

@@ -50,5 +50,4 @@ var ContactServiceImpl = /** @class */ (function (_super) {
     return ContactServiceImpl;
 }(service_request_1.ServiceRequest));
 exports.ContactServiceImpl = ContactServiceImpl;
-
 //# sourceMappingURL=contact-service-data-impl.js.map

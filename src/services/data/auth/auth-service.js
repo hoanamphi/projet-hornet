@@ -14,5 +14,4 @@ var AuthService = /** @class */ (function (_super) {
     return AuthService;
 }(service_secure_1.ServiceSecure));
 exports.AuthService = AuthService;
-
 //# sourceMappingURL=auth-service.js.map

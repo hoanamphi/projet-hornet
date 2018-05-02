@@ -11,5 +11,4 @@ var AppliI18nLoader = /** @class */ (function (_super) {
     return AppliI18nLoader;
 }(i18n_loader_1.I18nLoader));
 exports.AppliI18nLoader = AppliI18nLoader;
-
 //# sourceMappingURL=app-i18n-loader.js.map

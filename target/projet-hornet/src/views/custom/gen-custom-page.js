@@ -37,5 +37,4 @@ var CustomPage = /** @class */ (function (_super) {
     return CustomPage;
 }(hornet_page_1.HornetPage));
 exports.CustomPage = CustomPage;
-
 //# sourceMappingURL=gen-custom-page.js.map
