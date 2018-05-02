@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
 var hornet_js_utils_1 = require("hornet-js-utils");
-var permis_dao_1 = require("src/dao/permis_dao");
+var permis_dao_1 = require("src/dao/admin/fvm/permis-dao");
 var service_request_1 = require("hornet-js-core/src/services/service-request");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.src.services.data.auth.auth-service-data-impl");
 var PermisServiceImpl = /** @class */ (function (_super) {

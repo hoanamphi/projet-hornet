@@ -1,14 +1,27 @@
 import { Utils } from "hornet-js-utils";
 import { Logger } from "hornet-js-utils/src/logger";
-import { UtilisateurAttributes, UtilisateurModel } from "src/models/seq-user-mod";
-import { RoleAttributes, RoleModel } from "src/models/model-role";
-import { RoleUtilisateurAttributes, RoleUtilisateurModel } from "src/models/model-role_utilisateur";
-import { PermisAttributes, PermisModel } from "src/models/model-permis";
-import { PersonneAttributes, PersonneModel } from "src/models/model-personne";
-import { DossierAttributes, DossierModel } from "src/models/model-dossier";
+
 import { PrefectureAttributes, PrefectureModel } from "src/models/model-prefecture";
+import { ValiseAttributes, ValiseModel } from "src/models/model-valise";
+
+import { PermisFVMAttributes, PermisFVMModel } from "src/models/fvm/model-permis";
+import { PersonneFVMAttributes, PersonneFVMModel } from "src/models/fvm/model-personne";
+import { DossierFVMAttributes, DossierFVMModel } from "src/models/fvm/model-dossier";
+import { DemandeAuthentificationFVMAttributes, DemandeAuthentificationFVMModel } from "src/models/fvm/model-demandeauthentification";
+import { ReleveFVMAttributes, ReleveFVMModel } from "src/models/fvm/model-releve";
+import { NoteVerbaleReleveFVMAttributes, NoteVerbaleReleveFVMModel } from "src/models/fvm/model-noteverbale-releve";
+import { NoteVerbaleFVMAttributes, NoteVerbaleFVMModel } from "src/models/fvm/model-noteverbale";
+
+import { PermisMVFAttributes, PermisMVFModel } from "src/models/mvf/model-permis";
+import { PersonneMVFAttributes, PersonneMVFModel } from "src/models/mvf/model-personne";
+import { DossierMVFAttributes, DossierMVFModel } from "src/models/mvf/model-dossier";
+import { NoteVerbalePermisMVFAttributes, NoteVerbalePermisMVFModel } from "src/models/mvf/model-noteverbale-permis";
+import { NoteVerbaleMVFAttributes, NoteVerbaleMVFModel } from "src/models/mvf/model-noteverbale";
+import { AttestationMVFAttributes, AttestationMVFModel } from "src/models/mvf/model-attestation";
+import { BordereauAttestationMVFAttributes, BordereauAttestationMVFModel } from "src/models/mvf/model-bordereau-attestation";
+import { BordereauMVFAttributes, BordereauMVFModel } from "src/models/mvf/model-bordereau";
+
 import { Entity } from "hornet-js-database/src/decorators/dec-seq-entity";
-import { SequelizeUtils } from "hornet-js-database/src/sequelize/sequelize-utils";
 import { injectable, Scope, Side } from "hornet-js-core/src/inject/injectable";
 import { HornetSequelizeModel } from "hornet-js-database/src/sequelize/hornet-sequelize-model";
 import { inject } from "hornet-js-core/src/inject/inject";
@@ -19,39 +32,58 @@ const logger: Logger = Utils.getLogger("projet-hornet.src.dao.model-dao");
 @injectable(ModelDAO, Scope.SINGLETON, Side.SERVER)
 export class ModelDAO extends HornetSequelizeModel {
 
-    @Entity("utilisateur", UtilisateurModel)
-    public utilisateurEntity: HornetSequelizeInstanceModel<UtilisateurAttributes>;
+  @Entity("prefecture", PrefectureModel)
+  public prefectureEntity: HornetSequelizeInstanceModel<PrefectureAttributes>;
 
-    @Entity("role", RoleModel)
-    public roleEntity: HornetSequelizeInstanceModel<RoleAttributes>;
+  @Entity("valise", ValiseModel)
+  public valiseEntity: HornetSequelizeInstanceModel<ValiseAttributes>;
 
-    @Entity("role_utilisateur", RoleUtilisateurModel)
-    public roleUtilisateurEntity: HornetSequelizeInstanceModel<RoleUtilisateurAttributes>;
+  @Entity("permisFVM", PermisFVMModel)
+  public permisFVMEntity: HornetSequelizeInstanceModel<PermisFVMAttributes>;
 
-    @Entity("permis", PermisModel)
-    public permisEntity: HornetSequelizeInstanceModel<PermisAttributes>;
+  @Entity("permisMVF", PermisMVFModel)
+  public permisMVFEntity: HornetSequelizeInstanceModel<PermisMVFAttributes>;
 
-    @Entity("personne", PersonneModel)
-    public personneEntity: HornetSequelizeInstanceModel<PersonneAttributes>;
+  @Entity("personneFVM", PersonneFVMModel)
+  public personneFVMEntity: HornetSequelizeInstanceModel<PersonneFVMAttributes>;
 
-    @Entity("dossier", DossierModel)
-    public dossierEntity: HornetSequelizeInstanceModel<DossierAttributes>;
+  @Entity("personneMVF", PersonneMVFModel)
+  public personneMVFEntity: HornetSequelizeInstanceModel<PersonneMVFAttributes>;
 
-    @Entity("prefecture", PrefectureModel)
-    public prefectureEntity: HornetSequelizeInstanceModel<PrefectureAttributes>;
+  @Entity("dossierFVM", DossierFVMModel)
+  public dossierFVMEntity: HornetSequelizeInstanceModel<DossierFVMAttributes>;
 
-    constructor(@inject("databaseConfigName")conf?: string) {
-        super(conf);
-        this.initUtilisateurEntity();
-        this.initRoleEntity();
-    }
+  @Entity("dossierMVF", DossierMVFModel)
+  public dossierMVFEntity: HornetSequelizeInstanceModel<DossierMVFAttributes>;
 
-    /** METHODS */
-    private initUtilisateurEntity(): void {
-        SequelizeUtils.initRelationBelongsToMany({fromEntity: this.utilisateurEntity, toEntity: this.roleEntity, alias: "listeRole", foreignKey: "id_utilisateur", throughTable: "role_utilisateur"});
-    }
+  @Entity("demandeAuthentificationFVM", DemandeAuthentificationFVMModel)
+  public demandeAuthenthificationFVMEntity: HornetSequelizeInstanceModel<DemandeAuthentificationFVMAttributes>;
 
-    private initRoleEntity(): void {
-        SequelizeUtils.initRelationBelongsToMany({fromEntity: this.roleEntity, toEntity: this.utilisateurEntity, alias: "listeUser", foreignKey: "id_role", throughTable: "role_utilisateur"});
-    }
+  @Entity("releveFVM", ReleveFVMModel)
+  public releveFVMEntity: HornetSequelizeInstanceModel<ReleveFVMAttributes>;
+
+  @Entity("noteVerbaleReleveFVM", NoteVerbaleReleveFVMModel)
+  public noteVerbaleReleveFVMEntity: HornetSequelizeInstanceModel<NoteVerbaleReleveFVMAttributes>;
+
+  @Entity("noteVerbaleFVM", NoteVerbaleFVMModel)
+  public noteVerbaleFVMEntity: HornetSequelizeInstanceModel<NoteVerbaleFVMAttributes>;
+
+  @Entity("noteVerbalePermisMVF", NoteVerbalePermisMVFModel)
+  public noteVerbalePermisMVFEntity: HornetSequelizeInstanceModel<NoteVerbalePermisMVFAttributes>;
+
+  @Entity("noteVerbaleMVF", NoteVerbaleMVFModel)
+  public MVFEntity: HornetSequelizeInstanceModel<NoteVerbaleMVFAttributes>;
+
+  @Entity("attestationMVF", AttestationMVFModel)
+  public attestationMVFEntity: HornetSequelizeInstanceModel<AttestationMVFAttributes>;
+
+  @Entity("bordereauAttestationMVF", BordereauAttestationMVFModel)
+  public bordereauAttestationMVFEntity: HornetSequelizeInstanceModel<BordereauAttestationMVFAttributes>;
+
+  @Entity("bordereauMVF", BordereauMVFModel)
+  public bordereauMVFEntity: HornetSequelizeInstanceModel<BordereauMVFAttributes>;
+
+  constructor(@inject("databaseConfigName")conf?: string) {
+    super(conf);
+  }
 }

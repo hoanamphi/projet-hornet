@@ -1,7 +1,7 @@
 import { Utils } from "hornet-js-utils";
 import { Logger } from "hornet-js-utils/src/logger";
 import { ServiceRequest } from "hornet-js-core/src/services/service-request";
-import { PermisDAO } from "src/dao/permis_dao";
+import { PermisDAO } from "src/dao/admin/fvm/permis-dao";
 import { PermisService } from "src/services/page/permis/permis-service";
 import { Template } from "hornet-js-utils/src/template";
 import { HornetComponent } from "hornet-js-react-components/src/widget/component/hornet-component";
