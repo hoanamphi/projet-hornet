@@ -3,10 +3,10 @@ import Map from "hornet-js-bean/src/decorators/Map";
 import Alias from "hornet-js-bean/src/decorators/Alias";
 
 @Bean
-export class PermisFVMMetier {
+export class PermisMVFMetier {
   @Map()
   @Alias("idPermis")
-  id_permis_fvm: number;
+  id_permis_mvf: number;
 
   @Map()
   @Alias("numPermis")
@@ -14,30 +14,22 @@ export class PermisFVMMetier {
 
   @Map()
   @Alias("idCopiePermis")
-  id_copie_permis_fvm: number;
-
-  @Map()
-  @Alias("dateDeDelivrance")
-  date_de_delivrance: Date;
+  id_copie_permis_mvf: number;
 
   @Map()
   @Alias("idPersonne")
-  id_personne_fvm: number;
+  id_personne_mvf: number;
 
   @Map()
   @Alias("idDossier")
-  id_dossier_fvm: number;
-
-  @Map()
-  @Alias("idPrefecturedelivrance")
-  id_prefecture_delivrance: number;
+  id_dossier_mvf: number;
 }
 
 @Bean
-export class PersonneFVMMetier {
+export class PersonneMVFMetier {
   @Map()
   @Alias("idPersonne")
-  id_personne_fvm: number;
+  id_personne_mvf: number;
 
   @Map()
   @Alias("nom")
@@ -52,27 +44,19 @@ export class PersonneFVMMetier {
   date_de_naissance: Date;
 
   @Map()
-  @Alias("villeDeNaissance")
-  ville_de_naissance: string;
-
-  @Map()
-  @Alias("paysDeNaissance")
-  pays_de_naissance: string;
-
-  @Map()
   @Alias("idPermis")
-  id_permis_fvm: number;
+  id_permis_mvf: number;
 }
 
 @Bean
-export class DossierFVMMetier {
+export class DossierMVFMetier {
   @Map()
   @Alias("idDossier")
-  id_dossier_fvm: number;
+  id_dossier_mvf: number;
 
   @Map()
-  @Alias("idCopieNoteVerbaleMAECI")
-  id_copie_note_verbale_maeci_fvm: number;
+  @Alias("idCopieDemandePrefecture")
+  id_copie_demande_prefecture_mvf: number;
 
   @Map()
   @Alias("dateReceptionDossier")
@@ -80,26 +64,94 @@ export class DossierFVMMetier {
 
   @Map()
   @Alias("idPermis")
-  id_permis_fvm: number;
+  id_permis_mvf: number;
+
+  @Map()
+  @Alias("idPrefectureEnvoi")
+  id_prefecture_envoi: number;
 }
 
 @Bean
-export class DemandeAuthentificationFVMMetier {
+export class NoteVerbalePermisMVFMetier {
   @Map()
-  @Alias("idDemandeAuthentification")
-  id_demande_authentification_fvm: number;
+  @Alias("idNoteVerbalePermis")
+  id_note_verbale_permis_mvf: number;
 
   @Map()
-  @Alias("numDemandeAuthentification")
-  num_demande_authentification: string;
+  @Alias("idPermis")
+  id_permis_mvf: number;
+
+  @Map()
+  @Alias("idNoteVerbale")
+  id_note_verbale_mvf: number;
+}
+
+@Bean
+export class NoteVerbaleMVFMetier {
+  @Map()
+  @Alias("idNoteVerbale")
+  id_note_verbale_mvf: number;
+
+  @Map()
+  @Alias("numNoteVerbale")
+  num_note_verbale: number;
 
   @Map()
   @Alias("dateDuTraitement")
   date_du_traitement: Date;
+}
+
+@Bean
+export class AttestationMVFMetier {
+  @Map()
+  @Alias("idAttestation")
+  id_attestation_mvf: number;
+
+  @Map()
+  @Alias("idCopieAttestation")
+  id_copie_attestation_mvf: number;
+
+  @Map()
+  @Alias("idCopieNoteVerbaleMAECI")
+  id_copie_note_verbale_maeci_mvf: number;
+
+  @Map()
+  @Alias("dateReceptionAttestation")
+  date_reception_attestation: Date;
 
   @Map()
   @Alias("idPermis")
-  id_permis_fvm: number;
+  id_permis_mvf: number;
+}
+
+@Bean
+export class BordereauAttestationMVFMetier {
+  @Map()
+  @Alias("idBordereauAttestation")
+  id_bordereau_attestation_mvf: number;
+
+  @Map()
+  @Alias("idAttestation")
+  id_attestation_mvf: number;
+
+  @Map()
+  @Alias("idBordereau")
+  id_bordereau_mvf: number;
+}
+
+@Bean
+export class BordereauMVFMetier {
+  @Map()
+  @Alias("idBordereau")
+  id_bordereau_mvf: number;
+
+  @Map()
+  @Alias("numBordereau")
+  num_bordereau: string;
+
+  @Map()
+  @Alias("dateEnvoiDeLaReponsePrefecture")
+  date_envoi_de_la_reponse_prefecture: Date;
 
   @Map()
   @Alias("numValise")
@@ -107,58 +159,125 @@ export class DemandeAuthentificationFVMMetier {
 }
 
 @Bean
-export class ReleveFVMMetier {
+export class CopiePermisMVFMetier {
   @Map()
-  @Alias("idReleve")
-  id_releve_fvm: number;
+  @Alias("idCopiePermis")
+  id_copie_permis_mvf: number;
 
   @Map()
-  @Alias("idCopieReleve")
-  id_copie_releve_fvm: number;
+  @Alias("nom")
+  nom: string;
 
   @Map()
-  @Alias("idCopieCourrierPrefecture")
-  id_copie_courrier_prefecture_fvm: number;
+  @Alias("mimetype")
+  mimetype: string;
 
   @Map()
-  @Alias("dateReceptionReleve")
-  date_reception_releve: Date;
+  @Alias("encoding")
+  encoding: string;
+
+  @Map()
+  @Alias("size")
+  size: number;
+
+  @Map()
+  @Alias("data")
+  data: Buffer;
 
   @Map()
   @Alias("idPermis")
-  id_permis_fvm: number;
+  id_permis_mvf: number;
 }
 
 @Bean
-export class NoteVerbaleReleveFVMMetier {
+export class CopieDemandePrefectureMVFMetier {
   @Map()
-  @Alias("idNoteVerbaleReleve")
-  id_note_verbale_releve_fvm: number;
+  @Alias("idCopieDemandePrefecture")
+  id_copie_demande_prefecture_mvf: number;
 
   @Map()
-  @Alias("idReleve")
-  id_releve_fvm: number;
+  @Alias("nom")
+  nom: string;
 
   @Map()
-  @Alias("idNoteVerbale")
-  id_note_verbale_fvm: number;
+  @Alias("mimetype")
+  mimetype: string;
+
+  @Map()
+  @Alias("encoding")
+  encoding: string;
+
+  @Map()
+  @Alias("size")
+  size: number;
+
+  @Map()
+  @Alias("data")
+  data: Buffer;
+
+  @Map()
+  @Alias("idDossier")
+  id_dossier_mvf: number;
 }
 
 @Bean
-export class NoteVerbaleFVMMetier {
+export class CopieAttestationMVFMetier {
   @Map()
-  @Alias("idNoteVerbale")
-  id_note_verbale_fvm: number;
+  @Alias("idCopieAttestation")
+  id_copie_attestation_mvf: number;
 
   @Map()
-  @Alias("numNoteVerbale")
-  num_note_verbale: number;
+  @Alias("nom")
+  nom: string;
 
   @Map()
-  @Alias("idCopieNoteVerbale")
-  id_copie_note_verbale_fvm: number;
+  @Alias("mimetype")
+  mimetype: string;
 
   @Map()
-  @Alias("dateEnvoiDeLaReponseAuMAECI")
-  date_envoi_de_la_reponse_au_maeci: Date;
+  @Alias("encoding")
+  encoding: string;
+
+  @Map()
+  @Alias("size")
+  size: number;
+
+  @Map()
+  @Alias("data")
+  data: Buffer;
+
+  @Map()
+  @Alias("idAttestation")
+  id_attestation_mvf: number;
+}
+
+@Bean
+export class CopieNoteVerbaleMAECIMVFMetier {
+  @Map()
+  @Alias("idCopieNoteVerbaleMAECI")
+  id_copie_note_verbale_maeci_mvf: number;
+
+  @Map()
+  @Alias("nom")
+  nom: string;
+
+  @Map()
+  @Alias("mimetype")
+  mimetype: string;
+
+  @Map()
+  @Alias("encoding")
+  encoding: string;
+
+  @Map()
+  @Alias("size")
+  size: number;
+
+  @Map()
+  @Alias("data")
+  data: Buffer;
+
+  @Map()
+  @Alias("idAttestation")
+  id_attestation_mvf: number;
 }

@@ -155,10 +155,6 @@ export class NoteVerbaleFVMMetier {
   num_note_verbale: number;
 
   @Map()
-  @Alias("idCopieNoteVerbale")
-  id_copie_note_verbale_fvm: number;
-
-  @Map()
   @Alias("dateEnvoiDeLaReponseAuMAECI")
   date_envoi_de_la_reponse_au_maeci: Date;
 }
@@ -192,4 +188,97 @@ export class CopiePermisFVMMetier {
   @Map()
   @Alias("idPermis")
   id_permis_fvm: number;
+}
+
+@Bean
+export class CopieNoteVerbaleMAECIFVMMetier {
+  @Map()
+  @Alias("idCopieNoteVerbaleMAECI")
+  id_copie_note_verbale_maeci_fvm: number;
+
+  @Map()
+  @Alias("nom")
+  nom: string;
+
+  @Map()
+  @Alias("mimetype")
+  mimetype: string;
+
+  @Map()
+  @Alias("encoding")
+  encoding: string;
+
+  @Map()
+  @Alias("size")
+  size: number;
+
+  @Map()
+  @Alias("data")
+  data: Buffer;
+
+  @Map()
+  @Alias("idDossier")
+  id_dossier_fvm: number;
+}
+
+@Bean
+export class CopieReleveFVMMetier {
+  @Map()
+  @Alias("idCopieReleve")
+  id_copie_releve_fvm: number;
+
+  @Map()
+  @Alias("nom")
+  nom: string;
+
+  @Map()
+  @Alias("mimetype")
+  mimetype: string;
+
+  @Map()
+  @Alias("encoding")
+  encoding: string;
+
+  @Map()
+  @Alias("size")
+  size: number;
+
+  @Map()
+  @Alias("data")
+  data: Buffer;
+
+  @Map()
+  @Alias("idReleve")
+  id_releve_fvm: number;
+}
+
+@Bean
+export class CopieCourrierPrefectureFVMMetier {
+  @Map()
+  @Alias("idCopieCourrierPrefecture")
+  id_copie_courrier_prefecture_fvm: number;
+
+  @Map()
+  @Alias("nom")
+  nom: string;
+
+  @Map()
+  @Alias("mimetype")
+  mimetype: string;
+
+  @Map()
+  @Alias("encoding")
+  encoding: string;
+
+  @Map()
+  @Alias("size")
+  size: number;
+
+  @Map()
+  @Alias("data")
+  data: Buffer;
+
+  @Map()
+  @Alias("idReleve")
+  id_releve_fvm: number;
 }
