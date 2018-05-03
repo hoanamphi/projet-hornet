@@ -112,7 +112,7 @@ declare module "log4js" {
     dummyLayout: Layout,
 
     /**
-     * Register your custom layout generator
+     * Register your admin layout generator
      */
     addLayout: (name: string, serializerGenerator: (config?: LayoutConfig) => Layout) => void,
 

@@ -80,13 +80,13 @@ declare module "hornet-js-utils/src/app-shared-props" {
 	export class AppSharedProps {
 	    static appSharedPropsObject: {};
 	    /**
-	     * Method to set a custom key/value shared between the server and the browser
+	     * Method to set a admin key/value shared between the server and the browser
 	     * @param key
 	     * @param value
 	     */
 	    static set(key: string, value: any): void;
 	    /**
-	     * Method to get a custom shared value setted before
+	     * Method to get a admin shared value setted before
 	     * @param key
 	     * @returns {any}
 	     */

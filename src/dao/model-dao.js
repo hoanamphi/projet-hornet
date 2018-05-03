@@ -19,6 +19,9 @@ var model_noteverbale_2 = require("src/models/mvf/model-noteverbale");
 var model_attestation_1 = require("src/models/mvf/model-attestation");
 var model_bordereau_attestation_1 = require("src/models/mvf/model-bordereau-attestation");
 var model_bordereau_1 = require("src/models/mvf/model-bordereau");
+var model_role_1 = require("../models/auth/model-role");
+var seq_user_mod_1 = require("../models/auth/seq-user-mod");
+var model_role_utilisateur_1 = require("../models/auth/model-role_utilisateur");
 var dec_seq_entity_1 = require("hornet-js-database/src/decorators/dec-seq-entity");
 var injectable_1 = require("hornet-js-core/src/inject/injectable");
 var hornet_sequelize_model_1 = require("hornet-js-database/src/sequelize/hornet-sequelize-model");
@@ -98,6 +101,18 @@ var ModelDAO = /** @class */ (function (_super) {
         dec_seq_entity_1.Entity("bordereauMVF", model_bordereau_1.BordereauMVFModel),
         tslib_1.__metadata("design:type", Object)
     ], ModelDAO.prototype, "bordereauMVFEntity", void 0);
+    tslib_1.__decorate([
+        dec_seq_entity_1.Entity("utilisateur", seq_user_mod_1.UtilisateurModel),
+        tslib_1.__metadata("design:type", Object)
+    ], ModelDAO.prototype, "utilisateurEntity", void 0);
+    tslib_1.__decorate([
+        dec_seq_entity_1.Entity("role", model_role_1.RoleModel),
+        tslib_1.__metadata("design:type", Object)
+    ], ModelDAO.prototype, "roleEntity", void 0);
+    tslib_1.__decorate([
+        dec_seq_entity_1.Entity("role_utilisateur", model_role_utilisateur_1.RoleUtilisateurModel),
+        tslib_1.__metadata("design:type", Object)
+    ], ModelDAO.prototype, "roleUtilisateurEntity", void 0);
     ModelDAO = ModelDAO_1 = tslib_1.__decorate([
         injectable_1.injectable(ModelDAO_1, injectable_1.Scope.SINGLETON, injectable_1.Side.SERVER),
         tslib_1.__param(0, inject_1.inject("databaseConfigName")),

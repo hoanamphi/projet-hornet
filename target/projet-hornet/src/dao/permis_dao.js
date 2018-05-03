@@ -24,4 +24,4 @@ var PermisDAO = /** @class */ (function (_super) {
 }(entity_dao_1.EntityDAO));
 exports.PermisDAO = PermisDAO;
 
-//# sourceMappingURL=permis-dao.js.map
+//# sourceMappingURL=admin-dao.js.map

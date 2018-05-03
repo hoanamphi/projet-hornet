@@ -7,43 +7,44 @@ import {where} from "sequelize";
 
 const logger: Logger = Utils.getLogger("projet-hornet.src.dao.utilisateurs-dao");
 
-export class PermisDAO extends EntityDAO {
+export class PermisFVMDAO extends EntityDAO {
 
-    constructor() {
-        super();
-    }
+  constructor() {
+    super();
+  }
 
-    @Map(PermisFVMMetier)
-    listerPermis(): Promise<Array<PermisFVMMetier>> {
-        return this.modelDAO.permisFVMEntity.findAll();
-    }
+  insererPermis(numPermis, idCopiePermis, dateDeDelivrance, idPersonne, idDossier, idPrefectureDelivrance): Promise<any> {
+    var id;
+    this.getIdPermis().then(result=>{
+      id = result;
+    });
 
-    insererPermis(numPermis, idCopiePermis, dateDeDelivrance, idPersonne, idDossier, idPrefectureDelivrance): Promise<any> {
-        var promise;
-        var id;
+    return this.modelDAO.permisFVMEntity.create({
+      idPermis: id,
+      numPermis: numPermis,
+      //TOCHANGE
+      idCopiePermis: id,
+      dateDeDelivrance: dateDeDelivrance,
+      idPersonne: idPersonne,
+      idDossier: idDossier,
+      idPrefectureDelivrance: idPrefectureDelivrance
+    }).then(result=>{
+      return new Promise(function(resolve){
+        resolve(id);
+      });
+    }).catch(reason=>{
+      return new Promise(function(reject){
+        reject(new Error(reason));
+      });
+    });
+  }
 
-        this.getIdPermis().then(result=>{
-           id = result;
-        });
-
-        return this.modelDAO.permisFVMEntity.create({
-          idPermis: id,
-          numPermis: numPermis,
-          idCopiePermis: idCopiePermis,
-          dateDeDelivrance: dateDeDelivrance,
-          idPersonne: idPersonne,
-          idDossier: idDossier,
-          idPrefectureDelivrance: idPrefectureDelivrance
-        }).then(function(result){
-          return new Promise(function(resolve, reject){
-              resolve(result)
-          });
-        });
-    }
-
-    getIdPermis(): Promise<number> {
-        return this.modelDAO.permisFVMEntity.max("permisId").then(max => {
-            return max + 1;
-        });
-    }
+  getIdPermis(): Promise<number> {
+    return this.modelDAO.permisFVMEntity.max("idPermis").then(max => {
+      if(max == (null || NaN)){
+        max = 0;
+      }
+      return max + 1;
+    });
+  }
 }

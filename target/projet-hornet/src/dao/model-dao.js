@@ -44,7 +44,7 @@ var ModelDAO = /** @class */ (function (_super) {
         tslib_1.__metadata("design:type", Object)
     ], ModelDAO.prototype, "roleUtilisateurEntity", void 0);
     tslib_1.__decorate([
-        dec_seq_entity_1.Entity("permis", model_permis_1.PermisModel),
+        dec_seq_entity_1.Entity("admin", model_permis_1.PermisModel),
         tslib_1.__metadata("design:type", Object)
     ], ModelDAO.prototype, "permisEntity", void 0);
     ModelDAO = ModelDAO_1 = tslib_1.__decorate([

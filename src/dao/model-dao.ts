@@ -21,6 +21,10 @@ import { AttestationMVFAttributes, AttestationMVFModel } from "src/models/mvf/mo
 import { BordereauAttestationMVFAttributes, BordereauAttestationMVFModel } from "src/models/mvf/model-bordereau-attestation";
 import { BordereauMVFAttributes, BordereauMVFModel } from "src/models/mvf/model-bordereau";
 
+import { RoleAttributes, RoleModel } from "../models/auth/model-role";
+import { UtilisateurAttributes, UtilisateurModel } from "../models/auth/seq-user-mod";
+import { RoleUtilisateurAttributes, RoleUtilisateurModel } from "../models/auth/model-role_utilisateur";
+
 import { Entity } from "hornet-js-database/src/decorators/dec-seq-entity";
 import { injectable, Scope, Side } from "hornet-js-core/src/inject/injectable";
 import { HornetSequelizeModel } from "hornet-js-database/src/sequelize/hornet-sequelize-model";
@@ -82,6 +86,15 @@ export class ModelDAO extends HornetSequelizeModel {
 
   @Entity("bordereauMVF", BordereauMVFModel)
   public bordereauMVFEntity: HornetSequelizeInstanceModel<BordereauMVFAttributes>;
+
+  @Entity("utilisateur", UtilisateurModel)
+  public utilisateurEntity: HornetSequelizeInstanceModel<UtilisateurAttributes>;
+
+  @Entity("role", RoleModel)
+  public roleEntity: HornetSequelizeInstanceModel<RoleAttributes>;
+
+  @Entity("role_utilisateur", RoleUtilisateurModel)
+  public roleUtilisateurEntity: HornetSequelizeInstanceModel<RoleUtilisateurAttributes>;
 
   constructor(@inject("databaseConfigName")conf?: string) {
     super(conf);

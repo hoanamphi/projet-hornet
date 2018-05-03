@@ -15,7 +15,7 @@ import { UploadFileField } from "hornet-js-react-components/src/widget/form/uplo
 
 import { PermisService } from "src/services/data/permis/permis_service";
 
-const logger: Logger = Utils.getLogger("projet-hornet.views.custom.gen-custom-page");
+const logger: Logger = Utils.getLogger("projet-hornet.views.admin.gen-admin-page");
 
 export class CustomPage extends HornetPage<any, HornetComponentProps, any> {
 

@@ -6359,7 +6359,7 @@ declare module "hornet-js-react-components/src/widget/table/column" {
 	    /** Texte alternatif */
 	    alt?: string;
 	    headers?: string | string[];
-	    /** Méthode de comparaison custom pour le tri de la colonne */
+	    /** Méthode de comparaison admin pour le tri de la colonne */
 	    compareMethod?: (sortData: SortData, a, b) => void;
 	}
 	/**

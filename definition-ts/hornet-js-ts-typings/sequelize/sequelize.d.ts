@@ -1540,7 +1540,7 @@ declare module "sequelize" {
              * ```
              * By default, the name of the join table will be source+target, so in this case projectsusers. This can be
              * overridden by providing either a string or a Model as `through` in the options. If you use a through
-             * model with custom attributes, these attributes can be set when adding / setting new associations in two
+             * model with admin attributes, these attributes can be set when adding / setting new associations in two
              * ways. Consider users and projects from before with a join table that stores whether the project has been
              * started yet:
              * ```js
@@ -1566,7 +1566,7 @@ declare module "sequelize" {
              * user.setProjects([p1, p2], {started: false}) // The default value is false, but p1 overrides that.
              * ```
              *
-             * Similarily, when fetching through a join table with custom attributes, these attributes will be
+             * Similarily, when fetching through a join table with admin attributes, these attributes will be
              * available as an object with the name of the through model.
              * ```js
              * user.getProjects().then(function (projects) {
@@ -1590,7 +1590,7 @@ declare module "sequelize" {
              * By default, the name of the join table will be source+target, so in this case projectsusers. This can be
              * overridden by providing either a string or a Model as `through` in the options.
              *
-             * If you use a through model with custom attributes, these attributes can be set when adding / setting new
+             * If you use a through model with admin attributes, these attributes can be set when adding / setting new
              * associations in two ways. Consider users and projects from before with a join table that stores whether
              * the project has been started yet:
              * ```js
@@ -1615,7 +1615,7 @@ declare module "sequelize" {
              * user.setProjects([p1, p2], {started: false}) // The default value is false, but p1 overrides that.
              * ```
              *
-             * Similarily, when fetching through a join table with custom attributes, these attributes will be
+             * Similarily, when fetching through a join table with admin attributes, these attributes will be
              * available as an object with the name of the through model.
              * ```js
              * user.getProjects().then(function (projects) {
@@ -2227,7 +2227,7 @@ declare module "sequelize" {
         }
 
         /**
-         * Sequelize provides a host of custom error classes, to allow you to do easier debugging. All of these errors
+         * Sequelize provides a host of admin error classes, to allow you to do easier debugging. All of these errors
          * are exposed on the sequelize object and the sequelize constructor. All sequelize errors inherit from the
          * base JS error object.
          */
@@ -2757,7 +2757,7 @@ declare module "sequelize" {
          * ```
          * However, if getters and/or setters are defined for `field` they will be invoked, instead of returning the
          * value from `dataValues`. Accessing properties directly or using `get` is preferred for regular use,
-         * `getDataValue` should only be used for custom getters.
+         * `getDataValue` should only be used for admin getters.
          *
          * @see Sequelize.define for more information about getters and setters
          */
@@ -2809,7 +2809,7 @@ declare module "sequelize" {
             /**
              * Set is used to update values on the instance (the sequelize representation of the instance that is,
              * remember that nothing will be persisted before you actually call `save`). In its most basic form `set`
-             * will update a value stored in the underlying `dataValues` object. However, if a custom setter function
+             * will update a value stored in the underlying `dataValues` object. However, if a admin setter function
              * is defined for the key, that function will be called instead. To bypass the setter, you can pass `raw:
              * true` in the options object.
              *
@@ -2955,7 +2955,7 @@ declare module "sequelize" {
 
             /**
              * Convert the instance to a JSON representation. Proxies to calling `get` with no keys. This means get all
-             * values gotten from the DB, and apply all custom getters.
+             * values gotten from the DB, and apply all admin getters.
              */
             toJSON(): TAttributes;
 
@@ -3699,7 +3699,7 @@ declare module "sequelize" {
              * if the model has no schema, or an object with `tableName`, `schema` and `delimiter` properties.
              *
              * @param options The hash of options from any query. You can use one model to access tables with matching
-             *     schemas by overriding `getTableName` and using custom key/values to alter the name of the table.
+             *     schemas by overriding `getTableName` and using admin key/values to alter the name of the table.
              *     (eg.
              *     subscribers_1, subscribers_2)
              * @param options.logging=false A function that gets executed while running the query to log the sql.
@@ -4574,13 +4574,13 @@ declare module "sequelize" {
             onDelete?: string;
 
             /**
-             * Provide a custom getter for this column. Use `this.getDataValue(String)` to manipulate the underlying
+             * Provide a admin getter for this column. Use `this.getDataValue(String)` to manipulate the underlying
              * values.
              */
             get?: () => any;
 
             /**
-             * Provide a custom setter for this column. Use `this.setDataValue(String, Value)` to manipulate the
+             * Provide a admin setter for this column. Use `this.setDataValue(String, Value)` to manipulate the
              * underlying values.
              */
             set?: (val: any) => void;
@@ -4589,7 +4589,7 @@ declare module "sequelize" {
              * An object of validations to execute for this column every time the model is saved. Can be either the
              * name of a validation provided by validator.js, a validation function provided by extending validator.js
              * (see the
-             * `DAOValidator` property for more details), or a custom validation function. Custom validation functions
+             * `DAOValidator` property for more details), or a admin validation function. Custom validation functions
              * are called with the value of the field, and can possibly take a second callback argument, to signal that
              * they are asynchronous. If the validator is sync, it should throw in the case of a failed validation, it
              * it is async, the callback should be called with the error text.
@@ -4898,7 +4898,7 @@ declare module "sequelize" {
             isCreditCard?: boolean | { msg: string, args: boolean };
 
             /**
-             * custom validations are also possible
+             * admin validations are also possible
              *
              * Implementation notes :
              *
@@ -5562,7 +5562,7 @@ declare module "sequelize" {
             QueryTypes: QueryTypes;
 
             /**
-             * Exposes the validator.js object, so you can extend it with custom validation functions.
+             * Exposes the validator.js object, so you can extend it with admin validation functions.
              * The validator is exposed both on the instance, and on the constructor.
              */
             Validator: Validator;
@@ -5829,7 +5829,7 @@ declare module "sequelize" {
              *
              * As shown above, column definitions can be either strings, a reference to one of the datatypes that are
              * predefined on the Sequelize constructor, or an object that allows you to specify both the type of the
-             * column, and other attributes such as default values, foreign key constraints and custom setters and
+             * column, and other attributes such as default values, foreign key constraints and admin setters and
              * getters.
              *
              * For a list of possible data types, see

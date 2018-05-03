@@ -51,7 +51,7 @@ declare namespace __React {
 
     type ClassicElement<P> = CElement<P, ClassicComponent<P, ComponentState>>;
 
-    // string fallback for custom web-components
+    // string fallback for admin web-components
     interface DOMElement<P extends HTMLAttributes<T> | SVGAttributes<T>, T extends Element> extends ReactElement<P> {
         type: string;
         ref: Ref<T>;

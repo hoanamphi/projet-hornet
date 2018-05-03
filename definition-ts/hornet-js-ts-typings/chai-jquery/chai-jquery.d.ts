@@ -47,14 +47,14 @@ interface ChaiJQueryStatic {
     ajax(url: string, settings?: JQueryAjaxSettings): JQueryXHR;
 
     /**
-     * Handle custom Ajax options or modify existing options before each request is sent and before they are processed by $.ajax().
+     * Handle admin Ajax options or modify existing options before each request is sent and before they are processed by $.ajax().
      *
      * @param dataTypes An optional string containing one or more space-separated dataTypes
      * @param handler A handler to set default values for future Ajax requests.
      */
     ajaxPrefilter(dataTypes: string, handler: (opts: any, originalOpts: JQueryAjaxSettings, jqXHR: JQueryXHR) => any): void;
     /**
-     * Handle custom Ajax options or modify existing options before each request is sent and before they are processed by $.ajax().
+     * Handle admin Ajax options or modify existing options before each request is sent and before they are processed by $.ajax().
      *
      * @param handler A handler to set default values for future Ajax requests.
      */
@@ -219,7 +219,7 @@ interface ChaiJQueryStatic {
     when<T>(...deferreds: Array<T|JQueryPromise<T>/* as JQueryDeferred<T> */>): JQueryPromise<T>;
 
     /**
-     * Hook directly into jQuery to override how particular CSS properties are retrieved or set, normalize CSS property naming, or create custom properties.
+     * Hook directly into jQuery to override how particular CSS properties are retrieved or set, normalize CSS property naming, or create admin properties.
      */
     cssHooks: { [key: string]: any; };
     cssNumber: any;
@@ -1005,7 +1005,7 @@ interface ChaiJQuery {
     promise(type?: string, target?: Object): JQueryPromise<any>;
 
     /**
-     * Perform a custom animation of a set of CSS properties.
+     * Perform a admin animation of a set of CSS properties.
      *
      * @param properties An object of CSS properties and values that the animation will move toward.
      * @param duration A string or number determining how long the animation will run.
@@ -1013,7 +1013,7 @@ interface ChaiJQuery {
      */
     animate(properties: Object, duration?: string|number, complete?: Function): ChaiJQuery;
     /**
-     * Perform a custom animation of a set of CSS properties.
+     * Perform a admin animation of a set of CSS properties.
      *
      * @param properties An object of CSS properties and values that the animation will move toward.
      * @param duration A string or number determining how long the animation will run.
@@ -1022,7 +1022,7 @@ interface ChaiJQuery {
      */
     animate(properties: Object, duration?: string|number, easing?: string, complete?: Function): ChaiJQuery;
     /**
-     * Perform a custom animation of a set of CSS properties.
+     * Perform a admin animation of a set of CSS properties.
      *
      * @param properties An object of CSS properties and values that the animation will move toward.
      * @param options A map of additional options to pass to the method.
@@ -1285,7 +1285,7 @@ interface ChaiJQuery {
     /**
      * Attach a handler to an event for the elements.
      *
-     * @param eventType A string containing one or more DOM event types, such as "click" or "submit," or custom event names.
+     * @param eventType A string containing one or more DOM event types, such as "click" or "submit," or admin event names.
      * @param eventData An object containing data that will be passed to the event handler.
      * @param handler A function to execute each time the event is triggered.
      */
@@ -1293,14 +1293,14 @@ interface ChaiJQuery {
     /**
      * Attach a handler to an event for the elements.
      *
-     * @param eventType A string containing one or more DOM event types, such as "click" or "submit," or custom event names.
+     * @param eventType A string containing one or more DOM event types, such as "click" or "submit," or admin event names.
      * @param handler A function to execute each time the event is triggered.
      */
     bind(eventType: string, handler: (eventObject: JQueryEventObject) => any): ChaiJQuery;
     /**
      * Attach a handler to an event for the elements.
      *
-     * @param eventType A string containing one or more DOM event types, such as "click" or "submit," or custom event names.
+     * @param eventType A string containing one or more DOM event types, such as "click" or "submit," or admin event names.
      * @param eventData An object containing data that will be passed to the event handler.
      * @param preventBubble Setting the third argument to false will attach a function that prevents the default action from occurring and stops the event from bubbling. The default is true.
      */
@@ -1308,7 +1308,7 @@ interface ChaiJQuery {
     /**
      * Attach a handler to an event for the elements.
      *
-     * @param eventType A string containing one or more DOM event types, such as "click" or "submit," or custom event names.
+     * @param eventType A string containing one or more DOM event types, such as "click" or "submit," or admin event names.
      * @param preventBubble Setting the third argument to false will attach a function that prevents the default action from occurring and stops the event from bubbling. The default is true.
      */
     bind(eventType: string, preventBubble: boolean): ChaiJQuery;
@@ -1726,14 +1726,14 @@ interface ChaiJQuery {
     /**
      * Attach a handler to an event for the elements. The handler is executed at most once per element per event type.
      *
-     * @param events A string containing one or more JavaScript event types, such as "click" or "submit," or custom event names.
+     * @param events A string containing one or more JavaScript event types, such as "click" or "submit," or admin event names.
      * @param handler A function to execute at the time the event is triggered.
      */
     one(events: string, handler: (eventObject: JQueryEventObject) => any): ChaiJQuery;
     /**
      * Attach a handler to an event for the elements. The handler is executed at most once per element per event type.
      *
-     * @param events A string containing one or more JavaScript event types, such as "click" or "submit," or custom event names.
+     * @param events A string containing one or more JavaScript event types, such as "click" or "submit," or admin event names.
      * @param data An object containing data that will be passed to the event handler.
      * @param handler A function to execute at the time the event is triggered.
      */

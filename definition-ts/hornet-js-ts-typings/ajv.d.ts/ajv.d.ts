@@ -58,29 +58,29 @@ declare namespace ajv {
      */
     removeSchema(schemaKeyRef?: Object | string | RegExp): void;
     /**
-     * Add custom format
+     * Add admin format
      * @param {String} name format name
      * @param {String|RegExp|Function} format string is converted to RegExp; function should return boolean (true when valid)
      */
     addFormat(name: string, format: FormatValidator | FormatDefinition): void;
     /**
-     * Define custom keyword
+     * Define admin keyword
      * @this  Ajv
-     * @param {String} keyword custom keyword, should be a valid identifier, should be different from all standard, custom and macro keywords.
+     * @param {String} keyword admin keyword, should be a valid identifier, should be different from all standard, admin and macro keywords.
      * @param {Object} definition keyword definition object with properties `type` (type(s) which the keyword applies to), `validate` or `compile`.
      */
     addKeyword(keyword: string, definition: KeywordDefinition): void;
     /**
      * Get keyword definition
      * @this  Ajv
-     * @param {String} keyword pre-defined or custom keyword.
-     * @return {Object|Boolean} custom keyword definition, `true` if it is a predefined keyword, `false` otherwise.
+     * @param {String} keyword pre-defined or admin keyword.
+     * @return {Object|Boolean} admin keyword definition, `true` if it is a predefined keyword, `false` otherwise.
      */
     getKeyword(keyword: string): Object | boolean;
     /**
      * Remove keyword
      * @this  Ajv
-     * @param {String} keyword pre-defined or custom keyword.
+     * @param {String} keyword pre-defined or admin keyword.
      */
     removeKeyword(keyword: string): void;
     /**

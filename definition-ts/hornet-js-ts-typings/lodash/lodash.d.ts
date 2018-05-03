@@ -16810,7 +16810,7 @@ declare module _ {
          *
          * @param object The object to iterate over.
          * @param iteratee The function invoked per iteration.
-         * @param accumulator The custom accumulator value.
+         * @param accumulator The admin accumulator value.
          * @param thisArg The this binding of iteratee.
          * @return Returns the accumulated value.
          */
@@ -17721,7 +17721,7 @@ declare module _ {
          * debugging.
          *
          * For more information on precompiling templates see
-         * [lodash's custom builds documentation](https://lodash.com/custom-builds).
+         * [lodash's admin builds documentation](https://lodash.com/custom-builds).
          *
          * For more information on Chrome extension sandboxes see
          * [Chrome's extensions documentation](https://developer.chrome.com/extensions/sandboxingEval).
@@ -18168,7 +18168,7 @@ declare module _ {
          *   { 'user': 'fred',   'age': 40 }
          * ];
          *
-         * // create custom iteratee shorthands
+         * // create admin iteratee shorthands
          * _.iteratee = _.wrap(_.iteratee, function(callback, func) {
          *   var p = /^(\S+)\s*([<>])\s*(\S+)$/.exec(func);
          *   return !p ? callback(func) : function(object) {

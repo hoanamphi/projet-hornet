@@ -10,7 +10,7 @@ var buttons_area_1 = require("hornet-js-react-components/src/widget/form/buttons
 var input_field_1 = require("hornet-js-react-components/src/widget/form/input-field");
 var notification_1 = require("hornet-js-react-components/src/widget/notification/notification");
 var upload_file_field_1 = require("hornet-js-react-components/src/widget/form/upload-file-field");
-var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.custom.gen-custom-page");
+var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.admin.gen-admin-page");
 var CustomPage = /** @class */ (function (_super) {
     tslib_1.__extends(CustomPage, _super);
     function CustomPage(props, context) {

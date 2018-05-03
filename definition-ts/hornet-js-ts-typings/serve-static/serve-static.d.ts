@@ -67,7 +67,7 @@ declare module "serve-static" {
         redirect?: boolean;
 
         /**
-         * Function to set custom headers on response. Alterations to the headers need to occur synchronously.
+         * Function to set admin headers on response. Alterations to the headers need to occur synchronously.
          * The function is called as fn(res, path, stat), where the arguments are:
          * res the response object
          * path the file path that is being sent

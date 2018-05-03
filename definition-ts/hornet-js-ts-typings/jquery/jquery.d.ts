@@ -32,7 +32,7 @@ interface JQueryAjaxSettings {
      */
     async?: boolean;
     /**
-     * A pre-request callback function that can be used to modify the jqXHR (in jQuery 1.4.x, XMLHTTPRequest) object before it is sent. Use this to set custom headers, etc. The jqXHR and settings objects are passed as arguments. This is an Ajax Event. Returning false in the beforeSend function will cancel the request. As of jQuery 1.5, the beforeSend option will be called regardless of the type of request.
+     * A pre-request callback function that can be used to modify the jqXHR (in jQuery 1.4.x, XMLHTTPRequest) object before it is sent. Use this to set admin headers, etc. The jqXHR and settings objects are passed as arguments. This is an Ajax Event. Returning false in the beforeSend function will cancel the request. As of jQuery 1.5, the beforeSend option will be called regardless of the type of request.
      */
     beforeSend? (jqXHR: JQueryXHR, settings: JQueryAjaxSettings): any;
     /**
@@ -599,7 +599,7 @@ interface JQueryAnimationOptions {
      */
     always?: (animation: JQueryPromise<any>, jumpedToEnd: boolean) => any; 
     /**
-     * A Boolean indicating whether to place the animation in the effects queue. If false, the animation will begin immediately. As of jQuery 1.7, the queue option can also accept a string, in which case the animation is added to the queue represented by that string. When a custom queue name is used the animation does not automatically start; you must call .dequeue("queuename") to start it.
+     * A Boolean indicating whether to place the animation in the effects queue. If false, the animation will begin immediately. As of jQuery 1.7, the queue option can also accept a string, in which case the animation is added to the queue represented by that string. When a admin queue name is used the animation does not automatically start; you must call .dequeue("queuename") to start it.
      */
     queue?: any; 
     /**
@@ -638,14 +638,14 @@ interface JQueryStatic {
     ajax(url: string, settings?: JQueryAjaxSettings): JQueryXHR;
 
     /**
-     * Handle custom Ajax options or modify existing options before each request is sent and before they are processed by $.ajax().
+     * Handle admin Ajax options or modify existing options before each request is sent and before they are processed by $.ajax().
      *
      * @param dataTypes An optional string containing one or more space-separated dataTypes
      * @param handler A handler to set default values for future Ajax requests.
      */
     ajaxPrefilter(dataTypes: string, handler: (opts: any, originalOpts: JQueryAjaxSettings, jqXHR: JQueryXHR) => any): void;
     /**
-     * Handle custom Ajax options or modify existing options before each request is sent and before they are processed by $.ajax().
+     * Handle admin Ajax options or modify existing options before each request is sent and before they are processed by $.ajax().
      *
      * @param handler A handler to set default values for future Ajax requests.
      */
@@ -827,7 +827,7 @@ interface JQueryStatic {
     when<T>(...deferreds: Array<T|JQueryPromise<T>/* as JQueryDeferred<T> */>): JQueryPromise<T>;
 
     /**
-     * Hook directly into jQuery to override how particular CSS properties are retrieved or set, normalize CSS property naming, or create custom properties.
+     * Hook directly into jQuery to override how particular CSS properties are retrieved or set, normalize CSS property naming, or create admin properties.
      */
     cssHooks: { [key: string]: any; };
     cssNumber: any;
@@ -1620,7 +1620,7 @@ interface JQuery {
     promise(type?: string, target?: Object): JQueryPromise<any>;
 
     /**
-     * Perform a custom animation of a set of CSS properties.
+     * Perform a admin animation of a set of CSS properties.
      *
      * @param properties An object of CSS properties and values that the animation will move toward.
      * @param duration A string or number determining how long the animation will run.
@@ -1628,7 +1628,7 @@ interface JQuery {
      */
     animate(properties: Object, duration?: string|number, complete?: Function): JQuery;
     /**
-     * Perform a custom animation of a set of CSS properties.
+     * Perform a admin animation of a set of CSS properties.
      *
      * @param properties An object of CSS properties and values that the animation will move toward.
      * @param duration A string or number determining how long the animation will run.
@@ -1637,7 +1637,7 @@ interface JQuery {
      */
     animate(properties: Object, duration?: string|number, easing?: string, complete?: Function): JQuery;
     /**
-     * Perform a custom animation of a set of CSS properties.
+     * Perform a admin animation of a set of CSS properties.
      *
      * @param properties An object of CSS properties and values that the animation will move toward.
      * @param options A map of additional options to pass to the method.
@@ -1900,7 +1900,7 @@ interface JQuery {
     /**
      * Attach a handler to an event for the elements.
      * 
-     * @param eventType A string containing one or more DOM event types, such as "click" or "submit," or custom event names.
+     * @param eventType A string containing one or more DOM event types, such as "click" or "submit," or admin event names.
      * @param eventData An object containing data that will be passed to the event handler.
      * @param handler A function to execute each time the event is triggered.
      */
@@ -1908,14 +1908,14 @@ interface JQuery {
     /**
      * Attach a handler to an event for the elements.
      * 
-     * @param eventType A string containing one or more DOM event types, such as "click" or "submit," or custom event names.
+     * @param eventType A string containing one or more DOM event types, such as "click" or "submit," or admin event names.
      * @param handler A function to execute each time the event is triggered.
      */
     bind(eventType: string, handler: (eventObject: JQueryEventObject) => any): JQuery;
     /**
      * Attach a handler to an event for the elements.
      * 
-     * @param eventType A string containing one or more DOM event types, such as "click" or "submit," or custom event names.
+     * @param eventType A string containing one or more DOM event types, such as "click" or "submit," or admin event names.
      * @param eventData An object containing data that will be passed to the event handler.
      * @param preventBubble Setting the third argument to false will attach a function that prevents the default action from occurring and stops the event from bubbling. The default is true.
      */
@@ -1923,7 +1923,7 @@ interface JQuery {
     /**
      * Attach a handler to an event for the elements.
      * 
-     * @param eventType A string containing one or more DOM event types, such as "click" or "submit," or custom event names.
+     * @param eventType A string containing one or more DOM event types, such as "click" or "submit," or admin event names.
      * @param preventBubble Setting the third argument to false will attach a function that prevents the default action from occurring and stops the event from bubbling. The default is true.
      */
     bind(eventType: string, preventBubble: boolean): JQuery;
@@ -2374,14 +2374,14 @@ interface JQuery {
     /**
      * Attach a handler to an event for the elements. The handler is executed at most once per element per event type.
      *
-     * @param events A string containing one or more JavaScript event types, such as "click" or "submit," or custom event names.
+     * @param events A string containing one or more JavaScript event types, such as "click" or "submit," or admin event names.
      * @param handler A function to execute at the time the event is triggered.
      */
     one(events: string, handler: (eventObject: JQueryEventObject) => any): JQuery;
     /**
      * Attach a handler to an event for the elements. The handler is executed at most once per element per event type.
      *
-     * @param events A string containing one or more JavaScript event types, such as "click" or "submit," or custom event names.
+     * @param events A string containing one or more JavaScript event types, such as "click" or "submit," or admin event names.
      * @param data An object containing data that will be passed to the event handler.
      * @param handler A function to execute at the time the event is triggered.
      */

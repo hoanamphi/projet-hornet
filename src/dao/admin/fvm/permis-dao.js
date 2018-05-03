@@ -3,25 +3,46 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
 var hornet_js_utils_1 = require("hornet-js-utils");
 var entity_dao_1 = require("src/dao/entity-dao");
-var Map_1 = require("hornet-js-bean/src/decorators/Map");
-var fvm_mod_1 = require("src/models/fvm/fvm-mod");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.src.dao.utilisateurs-dao");
-var PermisDAO = /** @class */ (function (_super) {
-    tslib_1.__extends(PermisDAO, _super);
-    function PermisDAO() {
+var PermisFVMDAO = /** @class */ (function (_super) {
+    tslib_1.__extends(PermisFVMDAO, _super);
+    function PermisFVMDAO() {
         return _super.call(this) || this;
     }
-    PermisDAO.prototype.listerPermis = function (data) {
-        return this.modelDAO.permisFVMEntity.findAll();
+    PermisFVMDAO.prototype.insererPermis = function (numPermis, idCopiePermis, dateDeDelivrance, idPersonne, idDossier, idPrefectureDelivrance) {
+        var id;
+        this.getIdPermis().then(function (result) {
+            id = result;
+        });
+        return this.modelDAO.permisFVMEntity.create({
+            idPermis: id,
+            numPermis: numPermis,
+            //TOCHANGE
+            idCopiePermis: id,
+            dateDeDelivrance: dateDeDelivrance,
+            idPersonne: idPersonne,
+            idDossier: idDossier,
+            idPrefectureDelivrance: idPrefectureDelivrance
+        }).then(function (result) {
+            return new Promise(function (resolve) {
+                resolve(id);
+            });
+        }).catch(function (reason) {
+            return new Promise(function (reject) {
+                reject(new Error(reason));
+            });
+        });
     };
-    tslib_1.__decorate([
-        Map_1.default(fvm_mod_1.PermisFVMMetier),
-        tslib_1.__metadata("design:type", Function),
-        tslib_1.__metadata("design:paramtypes", [Object]),
-        tslib_1.__metadata("design:returntype", Promise)
-    ], PermisDAO.prototype, "listerPermis", null);
-    return PermisDAO;
+    PermisFVMDAO.prototype.getIdPermis = function () {
+        return this.modelDAO.permisFVMEntity.max("idPermis").then(function (max) {
+            if (max == (null || NaN)) {
+                max = 0;
+            }
+            return max + 1;
+        });
+    };
+    return PermisFVMDAO;
 }(entity_dao_1.EntityDAO));
-exports.PermisDAO = PermisDAO;
+exports.PermisFVMDAO = PermisFVMDAO;
 
 //# sourceMappingURL=permis-dao.js.map
