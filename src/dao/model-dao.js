@@ -11,6 +11,10 @@ var model_demandeauthentification_1 = require("src/models/fvm/model-demandeauthe
 var model_releve_1 = require("src/models/fvm/model-releve");
 var model_noteverbale_releve_1 = require("src/models/fvm/model-noteverbale-releve");
 var model_noteverbale_1 = require("src/models/fvm/model-noteverbale");
+var model_copiepermis_1 = require("../models/fvm/model-copiepermis");
+var model_copienoteverbaleMAECI_1 = require("../models/fvm/model-copienoteverbaleMAECI");
+var model_copiereleve_1 = require("../models/fvm/model-copiereleve");
+var model_copiecourrierprefecture_1 = require("../models/fvm/model-copiecourrierprefecture");
 var model_permis_2 = require("src/models/mvf/model-permis");
 var model_personne_2 = require("src/models/mvf/model-personne");
 var model_dossier_2 = require("src/models/mvf/model-dossier");
@@ -19,6 +23,10 @@ var model_noteverbale_2 = require("src/models/mvf/model-noteverbale");
 var model_attestation_1 = require("src/models/mvf/model-attestation");
 var model_bordereau_attestation_1 = require("src/models/mvf/model-bordereau-attestation");
 var model_bordereau_1 = require("src/models/mvf/model-bordereau");
+var model_copiepermis_2 = require("../models/mvf/model-copiepermis");
+var model_copiedemandeprefecture_1 = require("../models/mvf/model-copiedemandeprefecture");
+var model_copieattestation_1 = require("../models/mvf/model-copieattestation");
+var model_copienoteverbaleMAECI_2 = require("../models/mvf/model-copienoteverbaleMAECI");
 var model_role_1 = require("../models/auth/model-role");
 var seq_user_mod_1 = require("../models/auth/seq-user-mod");
 var model_role_utilisateur_1 = require("../models/auth/model-role_utilisateur");
@@ -101,6 +109,38 @@ var ModelDAO = /** @class */ (function (_super) {
         dec_seq_entity_1.Entity("bordereau_mvf", model_bordereau_1.BordereauMVFModel),
         tslib_1.__metadata("design:type", Object)
     ], ModelDAO.prototype, "bordereauMVFEntity", void 0);
+    tslib_1.__decorate([
+        dec_seq_entity_1.Entity("copie_permis_fvm", model_copiepermis_1.CopiePermisFVMModel),
+        tslib_1.__metadata("design:type", Object)
+    ], ModelDAO.prototype, "copiePermisFVMEntity", void 0);
+    tslib_1.__decorate([
+        dec_seq_entity_1.Entity("copie_note_verbale_maeci_fvm", model_copienoteverbaleMAECI_1.CopieNoteVerbaleMAECIFVMModel),
+        tslib_1.__metadata("design:type", Object)
+    ], ModelDAO.prototype, "copieNoteVerbaleMAECIFVMEntity", void 0);
+    tslib_1.__decorate([
+        dec_seq_entity_1.Entity("copie_releve_fvm", model_copiereleve_1.CopieReleveFVMModel),
+        tslib_1.__metadata("design:type", Object)
+    ], ModelDAO.prototype, "copieReleveFVMEntity", void 0);
+    tslib_1.__decorate([
+        dec_seq_entity_1.Entity("copie_courrier_prefecture_fvm", model_copiecourrierprefecture_1.CopieCourrierPrefectureFVMModel),
+        tslib_1.__metadata("design:type", Object)
+    ], ModelDAO.prototype, "copieCourrierPrefectureFVMEntity", void 0);
+    tslib_1.__decorate([
+        dec_seq_entity_1.Entity("copie_permis_mvf", model_copiepermis_2.CopiePermisMVFModel),
+        tslib_1.__metadata("design:type", Object)
+    ], ModelDAO.prototype, "copiePermisMVFEntity", void 0);
+    tslib_1.__decorate([
+        dec_seq_entity_1.Entity("copie_attestation_mvf", model_copieattestation_1.CopieAttestationMVFModel),
+        tslib_1.__metadata("design:type", Object)
+    ], ModelDAO.prototype, "copieAttestationMVFEntity", void 0);
+    tslib_1.__decorate([
+        dec_seq_entity_1.Entity("copie_note_verbale_maeci_mvf", model_copienoteverbaleMAECI_2.CopieNoteVerbaleMAECIMVFModel),
+        tslib_1.__metadata("design:type", Object)
+    ], ModelDAO.prototype, "copieNoteVerbaleMAECIMVFEntity", void 0);
+    tslib_1.__decorate([
+        dec_seq_entity_1.Entity("copie_demande_prefecture_mvf", model_copiedemandeprefecture_1.CopieDemandePrefectureMVFModel),
+        tslib_1.__metadata("design:type", Object)
+    ], ModelDAO.prototype, "copieDemandePrefectureMVFEntity", void 0);
     tslib_1.__decorate([
         dec_seq_entity_1.Entity("utilisateur", seq_user_mod_1.UtilisateurModel),
         tslib_1.__metadata("design:type", Object)

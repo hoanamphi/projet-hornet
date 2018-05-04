@@ -21967,13 +21967,13 @@ var Form1ServiceImpl = /** @class */ (function (_super) {
         logger.trace("SERVICES - list : ", data);
         var request = {
             method: "post",
-            url: this.buildUrl("/inser")
+            url: this.buildUrl("/inser"),
+            data: data
         };
-        request.data = data;
-        // if(data["copie_permis"] instanceof File){
-        //     request.attach = [];
-        //     request.attach.push({field: "copie_permis", file: data["copie_permis"], fileName: data["copie_permis"].name});
-        // }
+        if (data["copie_permis"] instanceof File) {
+            request.attach = [];
+            request.attach.push({ field: "copie_permis", file: data["copie_permis"], fileName: data["copie_permis"].name });
+        }
         return this.fetch(request);
     };
     return Form1ServiceImpl;

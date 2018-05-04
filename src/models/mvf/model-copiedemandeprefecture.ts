@@ -1,7 +1,7 @@
 import * as Sequelize from "sequelize";
 import { HornetSequelizeAttributes } from "hornet-js-database/src/sequelize/hornet-sequelize-attributes";
 
-export interface CopieCourrierPrefectureMVFAttributes extends HornetSequelizeAttributes {
+export interface CopieDemandePrefectureMVFAttributes extends HornetSequelizeAttributes {
     idCopieDemandePrefecture: number;
     nom: string;
     mimetype: string;

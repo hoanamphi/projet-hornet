@@ -14,15 +14,14 @@ export class Form1ServiceImpl extends ServicePage implements Form1Service {
 
         let request: HornetRequest = {
           method: "post",
-          url: this.buildUrl("/inser")
+          url: this.buildUrl("/inser"),
+          data: data
         };
 
-        request.data = data;
-
-        // if(data["copie_permis"] instanceof File){
-        //     request.attach = [];
-        //     request.attach.push({field: "copie_permis", file: data["copie_permis"], fileName: data["copie_permis"].name});
-        // }
+        if(data["copie_permis"] instanceof File){
+            request.attach = [];
+            request.attach.push({field: "copie_permis", file: data["copie_permis"], fileName: data["copie_permis"].name});
+        }
 
         return this.fetch(request);
     }

@@ -12,6 +12,11 @@ import { ReleveFVMAttributes, ReleveFVMModel } from "src/models/fvm/model-releve
 import { NoteVerbaleReleveFVMAttributes, NoteVerbaleReleveFVMModel } from "src/models/fvm/model-noteverbale-releve";
 import { NoteVerbaleFVMAttributes, NoteVerbaleFVMModel } from "src/models/fvm/model-noteverbale";
 
+import { CopiePermisFVMAttributes, CopiePermisFVMModel } from "../models/fvm/model-copiepermis";
+import { CopieNoteVerbaleMAECIFVMAttributes, CopieNoteVerbaleMAECIFVMModel } from "../models/fvm/model-copienoteverbaleMAECI";
+import { CopieReleveFVMAttributes, CopieReleveFVMModel } from "../models/fvm/model-copiereleve";
+import { CopieCourrierPrefectureFVMAttributes, CopieCourrierPrefectureFVMModel } from "../models/fvm/model-copiecourrierprefecture";
+
 import { PermisMVFAttributes, PermisMVFModel } from "src/models/mvf/model-permis";
 import { PersonneMVFAttributes, PersonneMVFModel } from "src/models/mvf/model-personne";
 import { DossierMVFAttributes, DossierMVFModel } from "src/models/mvf/model-dossier";
@@ -20,6 +25,11 @@ import { NoteVerbaleMVFAttributes, NoteVerbaleMVFModel } from "src/models/mvf/mo
 import { AttestationMVFAttributes, AttestationMVFModel } from "src/models/mvf/model-attestation";
 import { BordereauAttestationMVFAttributes, BordereauAttestationMVFModel } from "src/models/mvf/model-bordereau-attestation";
 import { BordereauMVFAttributes, BordereauMVFModel } from "src/models/mvf/model-bordereau";
+
+import { CopiePermisMVFAttributes, CopiePermisMVFModel } from "../models/mvf/model-copiepermis";
+import { CopieDemandePrefectureMVFAttributes, CopieDemandePrefectureMVFModel } from "../models/mvf/model-copiedemandeprefecture";
+import { CopieAttestationMVFAttributes, CopieAttestationMVFModel } from "../models/mvf/model-copieattestation";
+import { CopieNoteVerbaleMAECIMVFAttributes, CopieNoteVerbaleMAECIMVFModel } from "../models/mvf/model-copienoteverbaleMAECI";
 
 import { RoleAttributes, RoleModel } from "../models/auth/model-role";
 import { UtilisateurAttributes, UtilisateurModel } from "../models/auth/seq-user-mod";
@@ -86,6 +96,30 @@ export class ModelDAO extends HornetSequelizeModel {
 
   @Entity("bordereau_mvf", BordereauMVFModel)
   public bordereauMVFEntity: HornetSequelizeInstanceModel<BordereauMVFAttributes>;
+
+  @Entity("copie_permis_fvm", CopiePermisFVMModel)
+  public copiePermisFVMEntity: HornetSequelizeInstanceModel<CopiePermisFVMAttributes>;
+
+  @Entity("copie_note_verbale_maeci_fvm", CopieNoteVerbaleMAECIFVMModel)
+  public copieNoteVerbaleMAECIFVMEntity: HornetSequelizeInstanceModel<CopieNoteVerbaleMAECIFVMAttributes>;
+
+  @Entity("copie_releve_fvm", CopieReleveFVMModel)
+  public copieReleveFVMEntity: HornetSequelizeInstanceModel<CopieReleveFVMAttributes>;
+
+  @Entity("copie_courrier_prefecture_fvm", CopieCourrierPrefectureFVMModel)
+  public copieCourrierPrefectureFVMEntity: HornetSequelizeInstanceModel<CopieCourrierPrefectureFVMAttributes>;
+
+  @Entity("copie_permis_mvf", CopiePermisMVFModel)
+  public copiePermisMVFEntity: HornetSequelizeInstanceModel<CopiePermisMVFAttributes>;
+
+  @Entity("copie_attestation_mvf", CopieAttestationMVFModel)
+  public copieAttestationMVFEntity: HornetSequelizeInstanceModel<CopieAttestationMVFAttributes>;
+
+  @Entity("copie_note_verbale_maeci_mvf", CopieNoteVerbaleMAECIMVFModel)
+  public copieNoteVerbaleMAECIMVFEntity: HornetSequelizeInstanceModel<CopieNoteVerbaleMAECIMVFAttributes>;
+
+  @Entity("copie_demande_prefecture_mvf", CopieDemandePrefectureMVFModel)
+  public copieDemandePrefectureMVFEntity: HornetSequelizeInstanceModel<CopieDemandePrefectureMVFAttributes>;
 
   @Entity("utilisateur", UtilisateurModel)
   public utilisateurEntity: HornetSequelizeInstanceModel<UtilisateurAttributes>;

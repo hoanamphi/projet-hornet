@@ -21991,13 +21991,13 @@ var Form1ServiceImpl = /** @class */ (function (_super) {
         logger.trace("SERVICES - list : ", data);
         var request = {
             method: "post",
-            url: this.buildUrl("/inser")
+            url: this.buildUrl("/inser"),
+            data: data
         };
-        request.data = data;
-        // if(data["copie_permis"] instanceof File){
-        //     request.attach = [];
-        //     request.attach.push({field: "copie_permis", file: data["copie_permis"], fileName: data["copie_permis"].name});
-        // }
+        if (data["copie_permis"] instanceof File) {
+            request.attach = [];
+            request.attach.push({ field: "copie_permis", file: data["copie_permis"], fileName: data["copie_permis"].name });
+        }
         return this.fetch(request);
     };
     return Form1ServiceImpl;
@@ -22180,14 +22180,14 @@ var Inser = /** @class */ (function (_super) {
     Inser.prototype.execute = function () {
         logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
         var data = this.req.body;
-        // if(this.req.files[0] != null){
-        //     data["copie_permis"] = {};
-        //     data["copie_permis"].nom = this.req.files[0].originalname;
-        //     data["copie_permis"].mimetype = this.req.files[0].mimetype;
-        //     data["copie_permis"].encoding = this.req.files[0].encoding;
-        //     data["copie_permis"].size = this.req.files[0].size;
-        //     data["copie_permis"].contenu = this.req.files[0].buffer;
-        // }
+        if (this.req.files[0] != null) {
+            data["copie_permis"] = {};
+            data["copie_permis"].nom = this.req.files[0].originalname;
+            data["copie_permis"].mimetype = this.req.files[0].mimetype;
+            data["copie_permis"].encoding = this.req.files[0].encoding;
+            data["copie_permis"].size = this.req.files[0].size;
+            data["copie_permis"].contenu = this.req.files[0].buffer;
+        }
         return this.getService().insererDonnee(data);
     };
     return Inser;
