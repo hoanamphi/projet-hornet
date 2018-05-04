@@ -11,24 +11,24 @@ export interface BordereauMVFAttributes extends HornetSequelizeAttributes {
 export let BordereauMVFModel: Sequelize.DefineAttributes = {
   "idBordereau": {
     type: Sequelize.INTEGER,
-    field: "ID_BORDEREAU_MVF",
+    field: "id_bordereau_mvf",
     primaryKey: true,
     allowNull: false,
     unique: "bordereau_pkey"
   },
   "numBordereau": {
     type: Sequelize.STRING,
-    field: "NUM_BORDEREAU",
+    field: "num_bordereau",
     allowNull: false
   },
   "dateEnvoiDeLaReponsePrefecture": {
     type: Sequelize.DATE,
-    field: "DATE_ENVOI_DE_LA_REPONSE_PREFECTURE",
+    field: "date_envoi_de_la_reponse_prefecture",
     allowNull: false
   },
   "numValise": {
     type: Sequelize.INTEGER,
-    field: "NUM_VALISE",
+    field: "num_valise",
     allowNull: false,
     references: {
       model: "ValiseModel",

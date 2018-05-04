@@ -4,7 +4,7 @@ var Sequelize = require("sequelize");
 exports.PermisMVFModel = {
     "idPermis": {
         type: Sequelize.INTEGER,
-        field: "ID_PERMIS_MVF",
+        field: "id_permis_mvf",
         primaryKey: true,
         allowNull: false,
         unique: "permis_pkey"
@@ -16,25 +16,25 @@ exports.PermisMVFModel = {
     },
     "idCopiePermis": {
         type: Sequelize.INTEGER,
-        field: "ID_COPIE_PERMIS_MVF",
+        field: "id_copie_permis_mvf",
         allowNull: false
     },
     "idPersonne": {
         type: Sequelize.INTEGER,
-        field: "ID_PERSONNE_MVF",
+        field: "id_personne_mvf",
         allowNull: false,
         references: {
             model: "PersonneModelMVF",
-            key: "ID_PERSONNE_MVF"
+            key: "idPersonne"
         }
     },
     "idDossier": {
         type: Sequelize.INTEGER,
-        field: "ID_DOSSIER_MVF",
+        field: "id_dossier_mvf",
         allowNull: false,
         references: {
             model: "DossierModelMVF",
-            key: "ID_DOSSIER_MVF"
+            key: "idDossier"
         }
     }
 };

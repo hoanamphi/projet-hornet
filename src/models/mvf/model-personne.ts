@@ -12,29 +12,29 @@ export interface PersonneMVFAttributes extends HornetSequelizeAttributes {
 export let PersonneMVFModel: Sequelize.DefineAttributes = {
   "idPersonne": {
     type: Sequelize.INTEGER,
-    field: "ID_PERSONNE_MVF",
+    field: "id_personne_mvf",
     primaryKey: true,
     allowNull: false,
     unique: "personne_pkey"
   },
   "nom": {
     type: Sequelize.STRING,
-    field: "NOM",
+    field: "nom",
     allowNull: false
   },
   "prenom": {
     type: Sequelize.STRING,
-    field: "PRENOM",
+    field: "prenom",
     allowNull: false
   },
   "dateDeNaissance": {
     type: Sequelize.DATE,
-    field: "DATE_DE_NAISSANCE",
+    field: "date_de_naissance",
     allowNull: false
   },
   "idPermis": {
     type: Sequelize.INTEGER,
-    field: "ID_PERMIS_MVF",
+    field: "id_permis_mvf",
     allowNull: false,
     references: {
       model: "PermisMVFModel",

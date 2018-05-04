@@ -4,14 +4,14 @@ var Sequelize = require("sequelize");
 exports.NoteVerbalePermisMVFModel = {
     "idNoteVerbalePermis": {
         type: Sequelize.INTEGER,
-        field: "ID_NOTE_VERBALE_PERMIS_MVF",
+        field: "id_note_verbale_permis_mvf",
         primaryKey: true,
         allowNull: false,
         unique: "noteverbale_permis_pkey"
     },
     "idPermis": {
         type: Sequelize.INTEGER,
-        field: "ID_PERMIS_MVF",
+        field: "id_permis_mvf",
         allowNull: false,
         references: {
             model: "PermisMVFModel",
@@ -20,7 +20,7 @@ exports.NoteVerbalePermisMVFModel = {
     },
     "idNoteVerbale": {
         type: Sequelize.INTEGER,
-        field: "ID_NOTE_VERBALE_MVF",
+        field: "id_note_verbale_mvf",
         allowNull: false,
         references: {
             model: "NoteVerbaleMVFModel",

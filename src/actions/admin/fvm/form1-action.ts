@@ -9,8 +9,17 @@ export class Inser extends RouteActionService<any, Form1Service> {
     execute(): Promise<any> {
         logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
 
-        if (this.req.body) {
-            return this.getService().insererDonnee(this.req.body);
-        }
+        let data = this.req.body;
+
+        // if(this.req.files[0] != null){
+        //     data["copie_permis"] = {};
+        //     data["copie_permis"].nom = this.req.files[0].originalname;
+        //     data["copie_permis"].mimetype = this.req.files[0].mimetype;
+        //     data["copie_permis"].encoding = this.req.files[0].encoding;
+        //     data["copie_permis"].size = this.req.files[0].size;
+        //     data["copie_permis"].contenu = this.req.files[0].buffer;
+        // }
+
+        return this.getService().insererDonnee(data);
     }
 }

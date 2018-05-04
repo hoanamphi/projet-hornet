@@ -4,19 +4,19 @@ var Sequelize = require("sequelize");
 exports.NoteVerbaleMVFModel = {
     "idNoteVerbale": {
         type: Sequelize.INTEGER,
-        field: "ID_NOTE_VERBALE_MVF",
+        field: "id_note_verbale_mvf",
         primaryKey: true,
         allowNull: false,
         unique: "noteverbale_pkey"
     },
     "numNoteVerbale": {
         type: Sequelize.INTEGER,
-        field: "NUM_NOTE_VERBALE",
+        field: "num_note_verbale",
         allowNull: false
     },
     "dateDuTraitement": {
         type: Sequelize.DATE,
-        field: "DATE_DU_TRAITEMENT",
+        field: "date_du_traitement",
         allowNull: false
     }
 };

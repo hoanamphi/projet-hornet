@@ -4,7 +4,7 @@ var Sequelize = require("sequelize");
 exports.PermisFVMModel = {
     "idPermis": {
         type: Sequelize.INTEGER,
-        field: "ID_PERMIS_FVM",
+        field: "id_permis_fvm",
         primaryKey: true,
         allowNull: false,
         unique: "permis_pkey"
@@ -16,35 +16,35 @@ exports.PermisFVMModel = {
     },
     "idCopiePermis": {
         type: Sequelize.INTEGER,
-        field: "ID_COPIE_PERMIS_FVM",
+        field: "id_copie_permis_fvm",
         allowNull: false
     },
     "dateDeDelivrance": {
         type: Sequelize.DATE,
-        field: "DATE_DE_DELIVRANCE",
+        field: "date_de_delivrance",
         allowNull: false
     },
     "idPersonne": {
         type: Sequelize.INTEGER,
-        field: "ID_PERSONNE_FVM",
+        field: "id_personne_fvm",
         allowNull: false,
         references: {
             model: "PersonneModelFVM",
-            key: "ID_PERSONNE_FVM"
+            key: "idPersonne"
         }
     },
     "idDossier": {
         type: Sequelize.INTEGER,
-        field: "ID_DOSSIER_FVM",
+        field: "id_dossier_fvm",
         allowNull: false,
         references: {
             model: "DossierModelFVM",
-            key: "ID_DOSSIER_FVM"
+            key: "idDossier"
         }
     },
     "idPrefectureDelivrance": {
         type: Sequelize.INTEGER,
-        field: "ID_PREFECTURE_DELIVRANCE",
+        field: "id_prefecture_delivrance",
         allowNull: false,
         references: {
             model: "PrefectureModel",

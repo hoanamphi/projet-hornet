@@ -11,14 +11,14 @@ export interface DossierFVMAttributes extends HornetSequelizeAttributes {
 export let DossierFVMModel: Sequelize.DefineAttributes = {
   "idDossier": {
     type: Sequelize.INTEGER,
-    field: "ID_DOSSIER_FVM",
+    field: "id_dossier_fvm",
     primaryKey: true,
     allowNull: false,
     unique: "dossier_pkey"
   },
   "idCopieNoteVerbaleMAECI": {
     type: Sequelize.INTEGER,
-    field: "ID_COPIE_NOTE_VERBALE_MAECI_FVM",
+    field: "id_copie_note_verbale_maeci_fvm",
     allowNull: false,
     references: {
       model: "CopieNoteVerbaleMAECIFVMModel",
@@ -27,12 +27,12 @@ export let DossierFVMModel: Sequelize.DefineAttributes = {
   },
   "dateReceptionDossier": {
     type: Sequelize.DATE,
-    field: "DATE_RECEPTION_DOSSIER",
+    field: "date_reception_dossier",
     allowNull: false
   },
   "idPermis": {
     type: Sequelize.INTEGER,
-    field: "ID_PERMIS_FVM",
+    field: "id_permis_fvm",
     allowNull: false,
     references: {
       model: "PermisFVMModel",

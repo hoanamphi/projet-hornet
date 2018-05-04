@@ -10,19 +10,19 @@ export interface NoteVerbaleFVMAttributes extends HornetSequelizeAttributes {
 export let NoteVerbaleFVMModel: Sequelize.DefineAttributes = {
   "idNoteVerbale": {
     type: Sequelize.INTEGER,
-    field: "ID_NOTE_VERBALE_FVM",
+    field: "id_note_verbale_fvm",
     primaryKey: true,
     allowNull: false,
     unique: "noteverbale_pkey"
   },
   "numNoteVerbale": {
     type: Sequelize.INTEGER,
-    field: "NUM_NOTE_VERBALE",
+    field: "num_note_verbale",
     allowNull: false
   },
   "dateEnvoiDeLaReponseAuMAECI": {
     type: Sequelize.DATE,
-    field: "DATE_ENVOI_DE_LA_REPONSE_AU_MAECI",
+    field: "date_envoi_de_la_reponse_au_maeci",
     allowNull: false
   }
 };

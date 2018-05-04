@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
 var form1_action_1 = require("src/actions/admin/fvm/form1-action");
 var abstract_routes_1 = require("hornet-js-core/src/routes/abstract-routes");
-var form1_service_impl_data_1 = require("src/services/data/permis/form1-service-impl-data");
+var form1_service_impl_data_1 = require("src/services/data/admin/fvm/form1-service-impl-data");
 var form1_client_routes_1 = require("src/routes/admin/fvm/form1-client-routes");
 var PermisRoutesServer = /** @class */ (function (_super) {
     tslib_1.__extends(PermisRoutesServer, _super);

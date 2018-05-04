@@ -10,32 +10,34 @@ var DossierFVMDAO = /** @class */ (function (_super) {
         return _super.call(this) || this;
     }
     DossierFVMDAO.prototype.insererDossier = function (idCopieNoteVerbaleMAECI, dateReceptionDossier, idPermis) {
-        var id;
-        this.getIdDossier().then(function (result) {
-            id = result;
-        });
-        return this.modelDAO.dossierFVMEntity.create({
-            idDossier: id,
-            //TOCHANGE
-            idCopieNoteVerbaleMAECI: id,
-            dateReceptionDossier: dateReceptionDossier,
-            idPermis: idPermis
-        }).then(function (result) {
-            return new Promise(function (resolve, reject) {
-                resolve(id);
+        var _this = this;
+        return this.getIdDossier().then(function (result) {
+            _this.modelDAO.dossierFVMEntity.create({
+                idDossier: result,
+                idCopieNoteVerbaleMAECI: idCopieNoteVerbaleMAECI,
+                dateReceptionDossier: dateReceptionDossier,
+                idPermis: idPermis
+            }).catch(function (reason) {
+                return Promise.reject("Problème de création de Dossier : " + reason);
             });
-        }).catch(function (reason) {
-            return new Promise(function (resolve, reject) {
-                reject(new Error(reason));
-            });
+            return Promise.resolve(result);
         });
     };
     DossierFVMDAO.prototype.getIdDossier = function () {
-        return this.modelDAO.dossierFVMEntity.max("idDossier").then(function (max) {
-            if (max == (null || NaN)) {
-                max = 0;
+        var _this = this;
+        return this.modelDAO.dossierFVMEntity.count().then(function (count) {
+            if (count > 0) {
+                return _this.modelDAO.dossierFVMEntity.max("idDossier").then(function (max) {
+                    return Promise.resolve(max + 1);
+                }).catch(function (reason) {
+                    return Promise.reject("Problème de calcul de l'id : " + reason);
+                });
             }
-            return max + 1;
+            else {
+                return Promise.resolve(0);
+            }
+        }).catch(function (reason) {
+            return Promise.reject("Problème de comptage : " + reason);
         });
     };
     return DossierFVMDAO;

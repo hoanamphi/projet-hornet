@@ -4,39 +4,39 @@ var Sequelize = require("sequelize");
 exports.PersonneFVMModel = {
     "idPersonne": {
         type: Sequelize.INTEGER,
-        field: "ID_PERSONNE_FVM",
+        field: "id_personne_fvm",
         primaryKey: true,
         allowNull: false,
         unique: "personne_pkey"
     },
     "nom": {
         type: Sequelize.STRING,
-        field: "NOM",
+        field: "nom",
         allowNull: false
     },
     "prenom": {
         type: Sequelize.STRING,
-        field: "PRENOM",
+        field: "prenom",
         allowNull: false
     },
     "dateDeNaissance": {
         type: Sequelize.DATE,
-        field: "DATE_DE_NAISSANCE",
+        field: "date_de_naissance",
         allowNull: false
     },
     "villeDeNaissance": {
         type: Sequelize.STRING,
-        field: "VILLE_DE_NAISSANCE",
+        field: "ville_de_naissance",
         allowNull: false
     },
     "paysDeNaissance": {
         type: Sequelize.STRING,
-        field: "PAYS_DE_NAISSANCE",
+        field: "pays_de_naissance",
         allowNull: false
     },
     "idPermis": {
         type: Sequelize.INTEGER,
-        field: "ID_PERMIS_FVM",
+        field: "id_permis_fvm",
         allowNull: false,
         references: {
             model: "PermisFVMModel",

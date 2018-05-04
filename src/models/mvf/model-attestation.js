@@ -4,14 +4,14 @@ var Sequelize = require("sequelize");
 exports.AttestationMVFModel = {
     "idAttestation": {
         type: Sequelize.INTEGER,
-        field: "ID_ATTESTATION_MVF",
+        field: "id_attestation_mvf",
         primaryKey: true,
         allowNull: false,
         unique: "attestation_pkey"
     },
     "idCopieAttestation": {
         type: Sequelize.INTEGER,
-        field: "ID_COPIE_ATTESTATION_MVF",
+        field: "id_copie_attestation_mvf",
         allowNull: false,
         references: {
             model: "CopieAttestationMVFModel",
@@ -20,7 +20,7 @@ exports.AttestationMVFModel = {
     },
     "idCopieNoteVerbaleMAECI": {
         type: Sequelize.INTEGER,
-        field: "ID_COPIE_NOTE_VERBALE_MAECI_MVF",
+        field: "id_copie_note_verbale_maeci_mvf",
         allowNull: false,
         references: {
             model: "CopieNoteVerbaleMAECIMVFModel",
@@ -29,12 +29,12 @@ exports.AttestationMVFModel = {
     },
     "dateReceptionAttestation": {
         type: Sequelize.DATE,
-        field: "DATE_RECEPTION_ATTESTATION",
+        field: "date_reception_attestation",
         allowNull: false
     },
     "idPermis": {
         type: Sequelize.INTEGER,
-        field: "ID_PERMIS_MVF",
+        field: "id_permis_mvf",
         allowNull: false,
         references: {
             model: "PermisMVFModel",

@@ -4851,11 +4851,10 @@ var FormulairePage = /** @class */ (function (_super) {
     FormulairePage.prototype.prepareClient = function () {
     };
     FormulairePage.prototype.onSubmit = function (data) {
-        var result = this.getService().insererDonnee(data);
-        result.then(function (result) {
+        this.getService().insererDonnee(data).then(function (result) {
             console.log(result);
-        }).catch(function (error) {
-            console.log(error);
+        }).catch(function (reason) {
+            console.log("Problème d'insertion de donnée" + reason);
         });
         // this.getService().insererPermis(data).then((result) => {
         //   if (!result.errors) {
@@ -21990,10 +21989,16 @@ var Form1ServiceImpl = /** @class */ (function (_super) {
     }
     Form1ServiceImpl.prototype.insererDonnee = function (data) {
         logger.trace("SERVICES - list : ", data);
-        return this.fetch({
+        var request = {
             method: "post",
             url: this.buildUrl("/inser")
-        });
+        };
+        request.data = data;
+        // if(data["copie_permis"] instanceof File){
+        //     request.attach = [];
+        //     request.attach.push({field: "copie_permis", file: data["copie_permis"], fileName: data["copie_permis"].name});
+        // }
+        return this.fetch(request);
     };
     return Form1ServiceImpl;
 }(service_page_1.ServicePage));
@@ -22174,9 +22179,16 @@ var Inser = /** @class */ (function (_super) {
     }
     Inser.prototype.execute = function () {
         logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
-        if (this.req.body) {
-            return this.getService().insererDonnee(this.req.body);
-        }
+        var data = this.req.body;
+        // if(this.req.files[0] != null){
+        //     data["copie_permis"] = {};
+        //     data["copie_permis"].nom = this.req.files[0].originalname;
+        //     data["copie_permis"].mimetype = this.req.files[0].mimetype;
+        //     data["copie_permis"].encoding = this.req.files[0].encoding;
+        //     data["copie_permis"].size = this.req.files[0].size;
+        //     data["copie_permis"].contenu = this.req.files[0].buffer;
+        // }
+        return this.getService().insererDonnee(data);
     };
     return Inser;
 }(abstract_routes_1.RouteActionService));

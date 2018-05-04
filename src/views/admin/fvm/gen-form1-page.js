@@ -20,11 +20,10 @@ var FormulairePage = /** @class */ (function (_super) {
     FormulairePage.prototype.prepareClient = function () {
     };
     FormulairePage.prototype.onSubmit = function (data) {
-        var result = this.getService().insererDonnee(data);
-        result.then(function (result) {
+        this.getService().insererDonnee(data).then(function (result) {
             console.log(result);
-        }).catch(function (error) {
-            console.log(error);
+        }).catch(function (reason) {
+            console.log("Problème d'insertion de donnée" + reason);
         });
         // this.getService().insererPermis(data).then((result) => {
         //   if (!result.errors) {

@@ -4,14 +4,14 @@ var Sequelize = require("sequelize");
 exports.NoteVerbaleReleveFVMModel = {
     "idNoteVerbaleReleve": {
         type: Sequelize.INTEGER,
-        field: "ID_NOTE_VERBALE_RELEVE_FVM",
+        field: "id_note_verbale_releve_fvm",
         primaryKey: true,
         allowNull: false,
         unique: "noteverbale_releve_pkey"
     },
     "idReleve": {
         type: Sequelize.INTEGER,
-        field: "ID_RELEVE_FVM",
+        field: "id_releve_fvm",
         allowNull: false,
         references: {
             model: "ReleveFVMModel",
@@ -20,7 +20,7 @@ exports.NoteVerbaleReleveFVMModel = {
     },
     "idNoteVerbale": {
         type: Sequelize.INTEGER,
-        field: "ID_NOTE_VERBALE_FVM",
+        field: "id_note_verbale_fvm",
         allowNull: false,
         references: {
             model: "NoteVerbaleFVMModel",

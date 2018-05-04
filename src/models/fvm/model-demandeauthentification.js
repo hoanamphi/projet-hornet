@@ -4,24 +4,24 @@ var Sequelize = require("sequelize");
 exports.DemandeAuthentificationFVMModel = {
     "idDemandeAuthentification": {
         type: Sequelize.INTEGER,
-        field: "ID_DEMANDE_AUTHENTIFICATION_FVM",
+        field: "id_demande_authentification_fvm",
         primaryKey: true,
         allowNull: false,
         unique: "demandeauthentification_pkey"
     },
     "numDemandeAuthentification": {
         type: Sequelize.STRING,
-        field: "NUM_DEMANDE_AUTHENTIFICATION",
+        field: "num_demande_authentification",
         allowNull: false
     },
     "dateDuTraitement": {
         type: Sequelize.DATE,
-        field: "DATE_DU_TRAITEMENT",
+        field: "date_du_traitement",
         allowNull: false
     },
     "idPermis": {
         type: Sequelize.INTEGER,
-        field: "ID_PERMIS_FVM",
+        field: "id_permis_fvm",
         allowNull: false,
         references: {
             model: "PermisFVMModel",
@@ -30,7 +30,7 @@ exports.DemandeAuthentificationFVMModel = {
     },
     "numValise": {
         type: Sequelize.INTEGER,
-        field: "NUM_VALISE",
+        field: "num_valise",
         allowNull: false,
         references: {
             model: "ValiseModel",

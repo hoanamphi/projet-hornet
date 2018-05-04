@@ -42,63 +42,63 @@ var ModelDAO = /** @class */ (function (_super) {
         tslib_1.__metadata("design:type", Object)
     ], ModelDAO.prototype, "valiseEntity", void 0);
     tslib_1.__decorate([
-        dec_seq_entity_1.Entity("permisFVM", model_permis_1.PermisFVMModel),
+        dec_seq_entity_1.Entity("permis_fvm", model_permis_1.PermisFVMModel),
         tslib_1.__metadata("design:type", Object)
     ], ModelDAO.prototype, "permisFVMEntity", void 0);
     tslib_1.__decorate([
-        dec_seq_entity_1.Entity("permisMVF", model_permis_2.PermisMVFModel),
+        dec_seq_entity_1.Entity("permis_mvf", model_permis_2.PermisMVFModel),
         tslib_1.__metadata("design:type", Object)
     ], ModelDAO.prototype, "permisMVFEntity", void 0);
     tslib_1.__decorate([
-        dec_seq_entity_1.Entity("personneFVM", model_personne_1.PersonneFVMModel),
+        dec_seq_entity_1.Entity("personne_fvm", model_personne_1.PersonneFVMModel),
         tslib_1.__metadata("design:type", Object)
     ], ModelDAO.prototype, "personneFVMEntity", void 0);
     tslib_1.__decorate([
-        dec_seq_entity_1.Entity("personneMVF", model_personne_2.PersonneMVFModel),
+        dec_seq_entity_1.Entity("personne_mvf", model_personne_2.PersonneMVFModel),
         tslib_1.__metadata("design:type", Object)
     ], ModelDAO.prototype, "personneMVFEntity", void 0);
     tslib_1.__decorate([
-        dec_seq_entity_1.Entity("dossierFVM", model_dossier_1.DossierFVMModel),
+        dec_seq_entity_1.Entity("dossier_fvm", model_dossier_1.DossierFVMModel),
         tslib_1.__metadata("design:type", Object)
     ], ModelDAO.prototype, "dossierFVMEntity", void 0);
     tslib_1.__decorate([
-        dec_seq_entity_1.Entity("dossierMVF", model_dossier_2.DossierMVFModel),
+        dec_seq_entity_1.Entity("dossier_mvf", model_dossier_2.DossierMVFModel),
         tslib_1.__metadata("design:type", Object)
     ], ModelDAO.prototype, "dossierMVFEntity", void 0);
     tslib_1.__decorate([
-        dec_seq_entity_1.Entity("demandeAuthentificationFVM", model_demandeauthentification_1.DemandeAuthentificationFVMModel),
+        dec_seq_entity_1.Entity("demande_authentification_fvm", model_demandeauthentification_1.DemandeAuthentificationFVMModel),
         tslib_1.__metadata("design:type", Object)
     ], ModelDAO.prototype, "demandeAuthenthificationFVMEntity", void 0);
     tslib_1.__decorate([
-        dec_seq_entity_1.Entity("releveFVM", model_releve_1.ReleveFVMModel),
+        dec_seq_entity_1.Entity("releve_fvm", model_releve_1.ReleveFVMModel),
         tslib_1.__metadata("design:type", Object)
     ], ModelDAO.prototype, "releveFVMEntity", void 0);
     tslib_1.__decorate([
-        dec_seq_entity_1.Entity("noteVerbaleReleveFVM", model_noteverbale_releve_1.NoteVerbaleReleveFVMModel),
+        dec_seq_entity_1.Entity("note_verbale_releve_fvm", model_noteverbale_releve_1.NoteVerbaleReleveFVMModel),
         tslib_1.__metadata("design:type", Object)
     ], ModelDAO.prototype, "noteVerbaleReleveFVMEntity", void 0);
     tslib_1.__decorate([
-        dec_seq_entity_1.Entity("noteVerbaleFVM", model_noteverbale_1.NoteVerbaleFVMModel),
+        dec_seq_entity_1.Entity("note_verbale_fvm", model_noteverbale_1.NoteVerbaleFVMModel),
         tslib_1.__metadata("design:type", Object)
     ], ModelDAO.prototype, "noteVerbaleFVMEntity", void 0);
     tslib_1.__decorate([
-        dec_seq_entity_1.Entity("noteVerbalePermisMVF", model_noteverbale_permis_1.NoteVerbalePermisMVFModel),
+        dec_seq_entity_1.Entity("note_verbale_permismvf", model_noteverbale_permis_1.NoteVerbalePermisMVFModel),
         tslib_1.__metadata("design:type", Object)
     ], ModelDAO.prototype, "noteVerbalePermisMVFEntity", void 0);
     tslib_1.__decorate([
-        dec_seq_entity_1.Entity("noteVerbaleMVF", model_noteverbale_2.NoteVerbaleMVFModel),
+        dec_seq_entity_1.Entity("note_verbale_mvf", model_noteverbale_2.NoteVerbaleMVFModel),
         tslib_1.__metadata("design:type", Object)
     ], ModelDAO.prototype, "MVFEntity", void 0);
     tslib_1.__decorate([
-        dec_seq_entity_1.Entity("attestationMVF", model_attestation_1.AttestationMVFModel),
+        dec_seq_entity_1.Entity("attestation_mvf", model_attestation_1.AttestationMVFModel),
         tslib_1.__metadata("design:type", Object)
     ], ModelDAO.prototype, "attestationMVFEntity", void 0);
     tslib_1.__decorate([
-        dec_seq_entity_1.Entity("bordereauAttestationMVF", model_bordereau_attestation_1.BordereauAttestationMVFModel),
+        dec_seq_entity_1.Entity("bordereau_attestation_mvf", model_bordereau_attestation_1.BordereauAttestationMVFModel),
         tslib_1.__metadata("design:type", Object)
     ], ModelDAO.prototype, "bordereauAttestationMVFEntity", void 0);
     tslib_1.__decorate([
-        dec_seq_entity_1.Entity("bordereauMVF", model_bordereau_1.BordereauMVFModel),
+        dec_seq_entity_1.Entity("bordereau_mvf", model_bordereau_1.BordereauMVFModel),
         tslib_1.__metadata("design:type", Object)
     ], ModelDAO.prototype, "bordereauMVFEntity", void 0);
     tslib_1.__decorate([

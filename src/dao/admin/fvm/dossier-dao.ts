@@ -14,34 +14,33 @@ export class DossierFVMDAO extends EntityDAO {
   }
 
   insererDossier(idCopieNoteVerbaleMAECI, dateReceptionDossier, idPermis): Promise<any> {
-    var id;
-    this.getIdDossier().then(result=>{
-      id = result;
-    });
+    return this.getIdDossier().then(result=> {
+      this.modelDAO.dossierFVMEntity.create({
+        idDossier: result,
+        idCopieNoteVerbaleMAECI: idCopieNoteVerbaleMAECI,
+        dateReceptionDossier: dateReceptionDossier,
+        idPermis: idPermis
+      }).catch(reason => {
+        return Promise.reject("Problème de création de Dossier : " + reason);
+      });
 
-    return this.modelDAO.dossierFVMEntity.create({
-      idDossier: id,
-      //TOCHANGE
-      idCopieNoteVerbaleMAECI: id,
-      dateReceptionDossier: dateReceptionDossier,
-      idPermis: idPermis
-    }).then(result=>{
-      return new Promise(function(resolve, reject){
-        resolve(id);
-      });
-    }).catch(reason=>{
-      return new Promise(function(resolve, reject){
-        reject(new Error(reason));
-      });
+      return Promise.resolve(result)
     });
   }
 
-  getIdDossier(): Promise<number> {
-    return this.modelDAO.dossierFVMEntity.max("idDossier").then(max => {
-      if(max == (null || NaN)){
-        max = 0;
+  getIdDossier(): Promise<any> {
+    return this.modelDAO.dossierFVMEntity.count().then(count=>{
+      if(count > 0) {
+        return this.modelDAO.dossierFVMEntity.max("idDossier").then(max=>{
+          return Promise.resolve(max+1);
+        }).catch(reason => {
+          return Promise.reject("Problème de calcul de l'id : " + reason);
+        });
+      } else {
+        return Promise.resolve(0);
       }
-      return max + 1;
+    }).catch(reason=>{
+      return Promise.reject("Problème de comptage : "+ reason)
     });
   }
 }

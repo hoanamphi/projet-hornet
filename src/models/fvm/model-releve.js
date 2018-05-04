@@ -4,14 +4,14 @@ var Sequelize = require("sequelize");
 exports.ReleveFVMModel = {
     "idReleve": {
         type: Sequelize.INTEGER,
-        field: "ID_RELEVE_FVM",
+        field: "id_releve_fvm",
         primaryKey: true,
         allowNull: false,
         unique: "releve_pkey"
     },
     "idCopieReleve": {
         type: Sequelize.INTEGER,
-        field: "ID_COPIE_RELEVE_FVM",
+        field: "id_copie_releve_fvm",
         allowNull: false,
         references: {
             model: "CopieReleveFVMModel",
@@ -20,7 +20,7 @@ exports.ReleveFVMModel = {
     },
     "idCopieCourrierPrefecture": {
         type: Sequelize.INTEGER,
-        field: "ID_COPIE_COURRIER_PREFECTURE_FVM",
+        field: "id_copie_courrier_prefecture_fvm",
         allowNull: false,
         references: {
             model: "CopieCourrierPrefectureFVMModel",
@@ -29,12 +29,12 @@ exports.ReleveFVMModel = {
     },
     "dateReceptionReleve": {
         type: Sequelize.DATE,
-        field: "DATE_RECEPTION_RELEVE",
+        field: "date_reception_releve",
         allowNull: false
     },
     "idPermis": {
         type: Sequelize.INTEGER,
-        field: "ID_PERMIS_FVM",
+        field: "id_permis_fvm",
         allowNull: false,
         references: {
             model: "PermisFVMModel",

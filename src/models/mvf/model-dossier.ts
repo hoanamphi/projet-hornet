@@ -12,14 +12,14 @@ export interface DossierMVFAttributes extends HornetSequelizeAttributes {
 export let DossierMVFModel: Sequelize.DefineAttributes = {
   "idDossier": {
     type: Sequelize.INTEGER,
-    field: "ID_DOSSIER_MVF",
+    field: "id_dossier_mvf",
     primaryKey: true,
     allowNull: false,
     unique: "dossier_pkey"
   },
   "idCopieDemandePrefecture": {
     type: Sequelize.INTEGER,
-    field: "ID_COPIE_DEMANDE_PREFECTURE_MVF",
+    field: "id_copie_demande_prefecture_mvf",
     allowNull: false,
     references: {
       model: "CopieDemandePrefectureMVFModel",
@@ -28,12 +28,12 @@ export let DossierMVFModel: Sequelize.DefineAttributes = {
   },
   "dateReceptionDossier": {
     type: Sequelize.DATE,
-    field: "DATE_RECEPTION_DOSSIER",
+    field: "date_reception_dossier",
     allowNull: false
   },
   "idPermis": {
     type: Sequelize.INTEGER,
-    field: "ID_PERMIS_MVF",
+    field: "id_permis_mvf",
     allowNull: false,
     references: {
       model: "PermisMVFModel",
@@ -42,7 +42,7 @@ export let DossierMVFModel: Sequelize.DefineAttributes = {
   },
   "idPrefectureEnvoi": {
     type: Sequelize.INTEGER,
-    field: "ID_PREFECTURE_ENVOI",
+    field: "id_prefecture_envoi",
     allowNull: false,
     references: {
       model: "PrefectureModel",

@@ -14,37 +14,35 @@ export class PermisFVMDAO extends EntityDAO {
   }
 
   insererPermis(numPermis, idCopiePermis, dateDeDelivrance, idPersonne, idDossier, idPrefectureDelivrance): Promise<any> {
-    var id;
-    this.getIdPermis().then(result=>{
-      id = result;
-    });
-
-    return this.modelDAO.permisFVMEntity.create({
-      idPermis: id,
-      numPermis: numPermis,
-      //TOCHANGE
-      idCopiePermis: id,
-      dateDeDelivrance: dateDeDelivrance,
-      idPersonne: idPersonne,
-      idDossier: idDossier,
-      idPrefectureDelivrance: idPrefectureDelivrance
-    }).then(result=>{
-      return new Promise(function(resolve){
-        resolve(id);
+    return this.getIdPermis().then(result=>{
+      this.modelDAO.permisFVMEntity.create({
+        idPermis: result,
+        numPermis: numPermis,
+        idCopiePermis: idCopiePermis,
+        dateDeDelivrance: dateDeDelivrance,
+        idPersonne: idPersonne,
+        idDossier: idDossier,
+        idPrefectureDelivrance: idPrefectureDelivrance
+      }).catch(reason=>{
+        return Promise.reject("Problème de création de Permis : " + reason);
       });
-    }).catch(reason=>{
-      return new Promise(function(reject){
-        reject(new Error(reason));
-      });
+      return Promise.resolve(result);
     });
   }
 
-  getIdPermis(): Promise<number> {
-    return this.modelDAO.permisFVMEntity.max("idPermis").then(max => {
-      if(max == (null || NaN)){
-        max = 0;
+  getIdPermis(): Promise<any> {
+    return this.modelDAO.permisFVMEntity.count().then(count=>{
+      if(count > 0) {
+        return this.modelDAO.permisFVMEntity.max("idPermis").then(max=>{
+          return Promise.resolve(max+1);
+        }).catch(reason => {
+          return Promise.reject("Problème de calcul de l'id : " + reason);
+        });
+      } else {
+        return Promise.resolve(0);
       }
-      return max + 1;
+    }).catch(reason=>{
+      return Promise.reject("Problème de comptage : "+ reason)
     });
   }
 }

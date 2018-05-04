@@ -10,34 +10,37 @@ var PersonneFVMDAO = /** @class */ (function (_super) {
         return _super.call(this) || this;
     }
     PersonneFVMDAO.prototype.insererPersonne = function (nom, prenom, dateDeNaissance, villeDeNaissance, paysDeNaissance, idPermis) {
-        var id;
-        this.getIdPersonne().then(function (result) {
-            id = result;
-        });
-        return this.modelDAO.personneFVMEntity.create({
-            idPersonne: id,
-            nom: nom,
-            prenom: prenom,
-            dateDeNaissance: dateDeNaissance,
-            villeDeNaissance: villeDeNaissance,
-            paysDeNaissance: paysDeNaissance,
-            idPermis: idPermis
-        }).then(function (result) {
-            return new Promise(function (resolve, reject) {
-                resolve(id);
+        var _this = this;
+        return this.getIdPersonne().then(function (result) {
+            _this.modelDAO.personneFVMEntity.create({
+                idPersonne: result,
+                nom: nom,
+                prenom: prenom,
+                dateDeNaissance: dateDeNaissance,
+                villeDeNaissance: villeDeNaissance,
+                paysDeNaissance: paysDeNaissance,
+                idPermis: idPermis
+            }).catch(function (reason) {
+                return Promise.reject("Problème de création de personne : " + reason);
             });
-        }).catch(function (reason) {
-            return new Promise(function (resolve, reject) {
-                reject(new Error(reason));
-            });
+            return Promise.resolve(result);
         });
     };
     PersonneFVMDAO.prototype.getIdPersonne = function () {
-        return this.modelDAO.personneFVMEntity.max("idPersonne").then(function (max) {
-            if (max == (null || NaN)) {
-                max = 0;
+        var _this = this;
+        return this.modelDAO.personneFVMEntity.count().then(function (count) {
+            if (count > 0) {
+                return _this.modelDAO.personneFVMEntity.max("idPersonne").then(function (max) {
+                    return Promise.resolve(max + 1);
+                }).catch(function (reason) {
+                    return Promise.reject("Problème de calcul de l'id : " + reason);
+                });
             }
-            return max + 1;
+            else {
+                return Promise.resolve(0);
+            }
+        }).catch(function (reason) {
+            return Promise.reject("Problème de comptage : " + reason);
         });
     };
     return PersonneFVMDAO;

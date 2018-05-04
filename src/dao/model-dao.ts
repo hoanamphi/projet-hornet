@@ -42,49 +42,49 @@ export class ModelDAO extends HornetSequelizeModel {
   @Entity("valise", ValiseModel)
   public valiseEntity: HornetSequelizeInstanceModel<ValiseAttributes>;
 
-  @Entity("permisFVM", PermisFVMModel)
+  @Entity("permis_fvm", PermisFVMModel)
   public permisFVMEntity: HornetSequelizeInstanceModel<PermisFVMAttributes>;
 
-  @Entity("permisMVF", PermisMVFModel)
+  @Entity("permis_mvf", PermisMVFModel)
   public permisMVFEntity: HornetSequelizeInstanceModel<PermisMVFAttributes>;
 
-  @Entity("personneFVM", PersonneFVMModel)
+  @Entity("personne_fvm", PersonneFVMModel)
   public personneFVMEntity: HornetSequelizeInstanceModel<PersonneFVMAttributes>;
 
-  @Entity("personneMVF", PersonneMVFModel)
+  @Entity("personne_mvf", PersonneMVFModel)
   public personneMVFEntity: HornetSequelizeInstanceModel<PersonneMVFAttributes>;
 
-  @Entity("dossierFVM", DossierFVMModel)
+  @Entity("dossier_fvm", DossierFVMModel)
   public dossierFVMEntity: HornetSequelizeInstanceModel<DossierFVMAttributes>;
 
-  @Entity("dossierMVF", DossierMVFModel)
+  @Entity("dossier_mvf", DossierMVFModel)
   public dossierMVFEntity: HornetSequelizeInstanceModel<DossierMVFAttributes>;
 
-  @Entity("demandeAuthentificationFVM", DemandeAuthentificationFVMModel)
+  @Entity("demande_authentification_fvm", DemandeAuthentificationFVMModel)
   public demandeAuthenthificationFVMEntity: HornetSequelizeInstanceModel<DemandeAuthentificationFVMAttributes>;
 
-  @Entity("releveFVM", ReleveFVMModel)
+  @Entity("releve_fvm", ReleveFVMModel)
   public releveFVMEntity: HornetSequelizeInstanceModel<ReleveFVMAttributes>;
 
-  @Entity("noteVerbaleReleveFVM", NoteVerbaleReleveFVMModel)
+  @Entity("note_verbale_releve_fvm", NoteVerbaleReleveFVMModel)
   public noteVerbaleReleveFVMEntity: HornetSequelizeInstanceModel<NoteVerbaleReleveFVMAttributes>;
 
-  @Entity("noteVerbaleFVM", NoteVerbaleFVMModel)
+  @Entity("note_verbale_fvm", NoteVerbaleFVMModel)
   public noteVerbaleFVMEntity: HornetSequelizeInstanceModel<NoteVerbaleFVMAttributes>;
 
-  @Entity("noteVerbalePermisMVF", NoteVerbalePermisMVFModel)
+  @Entity("note_verbale_permismvf", NoteVerbalePermisMVFModel)
   public noteVerbalePermisMVFEntity: HornetSequelizeInstanceModel<NoteVerbalePermisMVFAttributes>;
 
-  @Entity("noteVerbaleMVF", NoteVerbaleMVFModel)
+  @Entity("note_verbale_mvf", NoteVerbaleMVFModel)
   public MVFEntity: HornetSequelizeInstanceModel<NoteVerbaleMVFAttributes>;
 
-  @Entity("attestationMVF", AttestationMVFModel)
+  @Entity("attestation_mvf", AttestationMVFModel)
   public attestationMVFEntity: HornetSequelizeInstanceModel<AttestationMVFAttributes>;
 
-  @Entity("bordereauAttestationMVF", BordereauAttestationMVFModel)
+  @Entity("bordereau_attestation_mvf", BordereauAttestationMVFModel)
   public bordereauAttestationMVFEntity: HornetSequelizeInstanceModel<BordereauAttestationMVFAttributes>;
 
-  @Entity("bordereauMVF", BordereauMVFModel)
+  @Entity("bordereau_mvf", BordereauMVFModel)
   public bordereauMVFEntity: HornetSequelizeInstanceModel<BordereauMVFAttributes>;
 
   @Entity("utilisateur", UtilisateurModel)

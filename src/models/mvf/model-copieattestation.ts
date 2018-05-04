@@ -14,39 +14,39 @@ export interface CopieAttestationMVFAttributes extends HornetSequelizeAttributes
 export let CopieAttestationMVFModel: Sequelize.DefineAttributes = {
     "idCopieAttestation": {
         type: Sequelize.INTEGER,
-        field: "ID_COPIE_ATTESTATION_MVF",
+        field: "id_copie_attestation_mvf",
         primaryKey: true,
         allowNull: false,
         unique: "copieattestation_pkey"
     },
     "nom": {
         type: Sequelize.STRING,
-        field: "NOM",
+        field: "nom",
         allowNull: false
     },
     "mimetype": {
         type: Sequelize.STRING,
-        field: "MIMETYPE",
+        field: "mimetype",
         allowNull: false
     },
     "encoding": {
         type: Sequelize.STRING,
-        field: "ENCODING",
+        field: "encoding",
         allowNull: false
     },
     "size": {
         type: Sequelize.INTEGER,
-        field: "SIZE",
+        field: "size",
         allowNull: false
     },
     "data": {
         type: Sequelize.BLOB,
-        field: "DATA",
+        field: "data",
         allowNull: false
     },
     "idAttestation": {
         type: Sequelize.INTEGER,
-        field: "ID_ATTESTATION_MVF",
+        field: "id_attestation_mvf",
         allowNull: false,
         references: {
             model: "AttestationMVFModel",

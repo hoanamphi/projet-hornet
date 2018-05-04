@@ -14,39 +14,39 @@ export interface CopieCourrierPrefectureMVFAttributes extends HornetSequelizeAtt
 export let CopieDemandePrefectureMVFModel: Sequelize.DefineAttributes = {
     "idCopieDemandePrefecture": {
         type: Sequelize.INTEGER,
-        field: "ID_COPIE_DEMANDE_PREFECTURE_MVF",
+        field: "id_copie_demande_prefecture_mvf",
         primaryKey: true,
         allowNull: false,
         unique: "copiedemande_pkey"
     },
     "nom": {
         type: Sequelize.STRING,
-        field: "NOM",
+        field: "nom",
         allowNull: false
     },
     "mimetype": {
         type: Sequelize.STRING,
-        field: "MIMETYPE",
+        field: "mimetype",
         allowNull: false
     },
     "encoding": {
         type: Sequelize.STRING,
-        field: "ENCODING",
+        field: "encoding",
         allowNull: false
     },
     "size": {
         type: Sequelize.INTEGER,
-        field: "SIZE",
+        field: "size",
         allowNull: false
     },
     "data": {
         type: Sequelize.BLOB,
-        field: "DATA",
+        field: "data",
         allowNull: false
     },
     "idDossier": {
         type: Sequelize.INTEGER,
-        field: "ID_DOSSIER_MVF",
+        field: "id_dossier_mvf",
         allowNull: false,
         references: {
             model: "DossierMVFModel",

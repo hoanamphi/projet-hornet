@@ -25,11 +25,11 @@ export class FormulairePage extends HornetPage<Form1Service, HornetComponentProp
   }
 
   onSubmit(data: any) {
-    var result = this.getService().insererDonnee(data);
-    result.then(result=>{
+
+    this.getService().insererDonnee(data).then(result=>{
       console.log(result);
-    }).catch(error=>{
-      console.log(error);
+    }).catch(reason=>{
+      console.log("Problème d'insertion de donnée" + reason);
     });
     // this.getService().insererPermis(data).then((result) => {
     //   if (!result.errors) {

@@ -4,39 +4,39 @@ var Sequelize = require("sequelize");
 exports.CopieCourrierPrefectureFVMModel = {
     "idCopieCourrierPrefecture": {
         type: Sequelize.INTEGER,
-        field: "ID_COPIE_COURRIER_PREFECTURE_FVM",
+        field: "id_copie_courrier_prefecture_fvm",
         primaryKey: true,
         allowNull: false,
         unique: "copiecourrier_pkey"
     },
     "nom": {
         type: Sequelize.STRING,
-        field: "NOM",
+        field: "nom",
         allowNull: false
     },
     "mimetype": {
         type: Sequelize.STRING,
-        field: "MIMETYPE",
+        field: "mimetype",
         allowNull: false
     },
     "encoding": {
         type: Sequelize.STRING,
-        field: "ENCODING",
+        field: "encoding",
         allowNull: false
     },
     "size": {
         type: Sequelize.INTEGER,
-        field: "SIZE",
+        field: "size",
         allowNull: false
     },
     "data": {
         type: Sequelize.BLOB,
-        field: "DATA",
+        field: "data",
         allowNull: false
     },
     "idReleve": {
         type: Sequelize.INTEGER,
-        field: "ID_RELEVE_FVM",
+        field: "id_releve_fvm",
         allowNull: false,
         references: {
             model: "ReleveFVMModel",

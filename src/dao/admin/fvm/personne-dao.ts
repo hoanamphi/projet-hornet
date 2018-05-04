@@ -14,36 +14,35 @@ export class PersonneFVMDAO extends EntityDAO {
   }
 
   insererPersonne(nom, prenom, dateDeNaissance, villeDeNaissance, paysDeNaissance, idPermis): Promise<any> {
-    var id;
-    this.getIdPersonne().then(result=>{
-      id = result;
-    });
-
-    return this.modelDAO.personneFVMEntity.create({
-      idPersonne: id,
-      nom: nom,
-      prenom: prenom,
-      dateDeNaissance: dateDeNaissance,
-      villeDeNaissance: villeDeNaissance,
-      paysDeNaissance: paysDeNaissance,
-      idPermis: idPermis
-    }).then(result=>{
-      return new Promise(function(resolve, reject){
-        resolve(id);
+    return this.getIdPersonne().then(result=>{
+      this.modelDAO.personneFVMEntity.create({
+        idPersonne: result,
+        nom: nom,
+        prenom: prenom,
+        dateDeNaissance: dateDeNaissance,
+        villeDeNaissance: villeDeNaissance,
+        paysDeNaissance: paysDeNaissance,
+        idPermis: idPermis
+      }).catch(reason=>{
+        return Promise.reject("Problème de création de personne : " + reason);
       });
-    }).catch(reason=>{
-      return new Promise(function(resolve, reject){
-        reject(new Error(reason));
-      });
+      return Promise.resolve(result);
     });
   }
 
-  getIdPersonne(): Promise<number> {
-    return this.modelDAO.personneFVMEntity.max("idPersonne").then(max => {
-      if(max == (null || NaN)){
-        max = 0;
+  getIdPersonne(): Promise<any> {
+    return this.modelDAO.personneFVMEntity.count().then(count=>{
+      if(count > 0) {
+        return this.modelDAO.personneFVMEntity.max("idPersonne").then(max=>{
+          return Promise.resolve(max+1);
+        }).catch(reason => {
+          return Promise.reject("Problème de calcul de l'id : " + reason);
+        });
+      } else {
+        return Promise.resolve(0);
       }
-      return max + 1;
+    }).catch(reason=>{
+      return Promise.reject("Problème de comptage : "+ reason)
     });
   }
 }

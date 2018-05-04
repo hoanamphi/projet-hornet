@@ -11,10 +11,16 @@ var Form1ServiceImpl = /** @class */ (function (_super) {
     }
     Form1ServiceImpl.prototype.insererDonnee = function (data) {
         logger.trace("SERVICES - list : ", data);
-        return this.fetch({
+        var request = {
             method: "post",
             url: this.buildUrl("/inser")
-        });
+        };
+        request.data = data;
+        // if(data["copie_permis"] instanceof File){
+        //     request.attach = [];
+        //     request.attach.push({field: "copie_permis", file: data["copie_permis"], fileName: data["copie_permis"].name});
+        // }
+        return this.fetch(request);
     };
     return Form1ServiceImpl;
 }(service_page_1.ServicePage));

@@ -17,20 +17,18 @@ var Form1FVMDAO = /** @class */ (function (_super) {
         return _this;
     }
     Form1FVMDAO.prototype.insererDonnee = function (data) {
-        var idPersonne;
-        this.personneDAO.insererPersonne(data["nom"], data["prenom"], data["date_de_naissance"], data["ville_de_naissance"], data["pays_de_naissance"], this.permisDAO.getIdPermis()).then(function (result) {
-            idPersonne = result;
-        });
-        var idDossier;
-        this.dossierDAO.insererDossier(1, new Date(), this.permisDAO.getIdPermis()).then(function (result) {
-            idDossier = result;
-        });
-        var idPermis;
-        this.permisDAO.insererPermis(data["permis"], 2, data["date_de_delivrance"], idPersonne, idDossier, data["id_prefecture"]).then(function (result) {
-            idPermis = result;
-        });
-        return new Promise(function (resolve) {
-            resolve(idPermis);
+        var _this = this;
+        return this.permisDAO.getIdPermis().then(function (result) {
+            var idPermis = result;
+            return _this.personneDAO.insererPersonne(data["nom"], data["prenom"], data["date_de_naissance"], data["ville_de_naissance"], data["pays_de_naissance"], idPermis).then(function (result) {
+                var idPersonne = result;
+                return _this.dossierDAO.insererDossier(1, new Date(), idPermis).then(function (result) {
+                    var idDossier = result;
+                    return _this.permisDAO.insererPermis(data["admin"], 2, data["date_de_delivrance"], idPersonne, idDossier, parseInt(data["id_prefecture"])).then(function (result) {
+                        return Promise.resolve([idPermis, idPersonne, idDossier, data["copie_permis"]]);
+                    });
+                });
+            });
         });
     };
     return Form1FVMDAO;

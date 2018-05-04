@@ -4,39 +4,39 @@ var Sequelize = require("sequelize");
 exports.CopiePermisFVMModel = {
     "idCopiePermis": {
         type: Sequelize.INTEGER,
-        field: "ID_COPIE_PERMIS_FVM",
+        field: "id_copie_permis_fvm",
         primaryKey: true,
         allowNull: false,
         unique: "copiepermis_pkey"
     },
     "nom": {
         type: Sequelize.STRING,
-        field: "NOM",
+        field: "nom",
         allowNull: false
     },
     "mimetype": {
         type: Sequelize.STRING,
-        field: "MIMETYPE",
+        field: "mimetype",
         allowNull: false
     },
     "encoding": {
         type: Sequelize.STRING,
-        field: "ENCODING",
+        field: "encoding",
         allowNull: false
     },
     "size": {
         type: Sequelize.INTEGER,
-        field: "SIZE",
+        field: "size",
         allowNull: false
     },
     "data": {
         type: Sequelize.BLOB,
-        field: "DATA",
+        field: "data",
         allowNull: false
     },
     "idPermis": {
         type: Sequelize.INTEGER,
-        field: "ID_PERMIS_FVM",
+        field: "id_permis_fvm",
         allowNull: false,
         references: {
             model: "PermisFVMModel",

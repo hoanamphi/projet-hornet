@@ -10,35 +10,37 @@ var PermisFVMDAO = /** @class */ (function (_super) {
         return _super.call(this) || this;
     }
     PermisFVMDAO.prototype.insererPermis = function (numPermis, idCopiePermis, dateDeDelivrance, idPersonne, idDossier, idPrefectureDelivrance) {
-        var id;
-        this.getIdPermis().then(function (result) {
-            id = result;
-        });
-        return this.modelDAO.permisFVMEntity.create({
-            idPermis: id,
-            numPermis: numPermis,
-            //TOCHANGE
-            idCopiePermis: id,
-            dateDeDelivrance: dateDeDelivrance,
-            idPersonne: idPersonne,
-            idDossier: idDossier,
-            idPrefectureDelivrance: idPrefectureDelivrance
-        }).then(function (result) {
-            return new Promise(function (resolve) {
-                resolve(id);
+        var _this = this;
+        return this.getIdPermis().then(function (result) {
+            _this.modelDAO.permisFVMEntity.create({
+                idPermis: result,
+                numPermis: numPermis,
+                idCopiePermis: idCopiePermis,
+                dateDeDelivrance: dateDeDelivrance,
+                idPersonne: idPersonne,
+                idDossier: idDossier,
+                idPrefectureDelivrance: idPrefectureDelivrance
+            }).catch(function (reason) {
+                return Promise.reject("Problème de création de Permis : " + reason);
             });
-        }).catch(function (reason) {
-            return new Promise(function (reject) {
-                reject(new Error(reason));
-            });
+            return Promise.resolve(result);
         });
     };
     PermisFVMDAO.prototype.getIdPermis = function () {
-        return this.modelDAO.permisFVMEntity.max("idPermis").then(function (max) {
-            if (max == (null || NaN)) {
-                max = 0;
+        var _this = this;
+        return this.modelDAO.permisFVMEntity.count().then(function (count) {
+            if (count > 0) {
+                return _this.modelDAO.permisFVMEntity.max("idPermis").then(function (max) {
+                    return Promise.resolve(max + 1);
+                }).catch(function (reason) {
+                    return Promise.reject("Problème de calcul de l'id : " + reason);
+                });
             }
-            return max + 1;
+            else {
+                return Promise.resolve(0);
+            }
+        }).catch(function (reason) {
+            return Promise.reject("Problème de comptage : " + reason);
         });
     };
     return PermisFVMDAO;

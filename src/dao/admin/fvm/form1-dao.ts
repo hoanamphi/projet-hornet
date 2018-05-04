@@ -21,20 +21,17 @@ export class Form1FVMDAO extends EntityDAO {
   }
 
   insererDonnee(data): Promise<any> {
-    var idPersonne;
-    this.personneDAO.insererPersonne(data["nom"], data["prenom"], data["date_de_naissance"], data["ville_de_naissance"], data["pays_de_naissance"], this.permisDAO.getIdPermis()).then(result=>{
-      idPersonne = result;
-    });
-    var idDossier;
-    this.dossierDAO.insererDossier(1, new Date(), this.permisDAO.getIdPermis()).then(result=>{
-      idDossier = result;
-    });
-    var idPermis;
-    this.permisDAO.insererPermis(data["permis"], 2, data["date_de_delivrance"], idPersonne, idDossier, data["id_prefecture"]).then(result=>{
-      idPermis = result;
-    });
-    return new Promise(function(resolve){
-      resolve(idPermis);
+    return this.permisDAO.getIdPermis().then(result=>{
+      var idPermis = result;
+      return this.personneDAO.insererPersonne(data["nom"], data["prenom"], data["date_de_naissance"], data["ville_de_naissance"], data["pays_de_naissance"], idPermis).then(result=>{
+        var idPersonne = result;
+        return this.dossierDAO.insererDossier(1, new Date(), idPermis).then(result=>{
+          var idDossier = result;
+          return this.permisDAO.insererPermis(data["admin"], 2, data["date_de_delivrance"], idPersonne, idDossier, parseInt(data["id_prefecture"])).then(result=>{
+            return Promise.resolve([idPermis, idPersonne, idDossier, data["copie_permis"]]);
+          });
+        });
+      });
     });
   }
 }
