@@ -16,10 +16,9 @@ var Form1ServiceImpl = /** @class */ (function (_super) {
             url: this.buildUrl("/inser"),
             data: data
         };
-        if (data["copie_permis"] instanceof File) {
-            request.attach = [];
-            request.attach.push({ field: "copie_permis", file: data["copie_permis"], fileName: data["copie_permis"].name });
-        }
+        request.attach = [];
+        request.attach.push({ field: "copie_permis", file: data["copie_permis"], fileName: data["copie_permis"].name });
+        request.attach.push({ field: "copie_note_verbale_maeci", file: data["copie_note_verbale_maeci"], fileName: data["copie_note_verbale_maeci"].name });
         return this.fetch(request);
     };
     return Form1ServiceImpl;

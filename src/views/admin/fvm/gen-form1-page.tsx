@@ -31,23 +31,6 @@ export class FormulairePage extends HornetPage<Form1Service, HornetComponentProp
     }).catch(reason=>{
       console.log("Problème d'insertion de donnée" + reason);
     });
-    // this.getService().insererPermis(data).then((result) => {
-    //   if (!result.errors) {
-    //     console.log("test");
-    //     console.log(result);
-    //     this.getService().listerPermis(data).then((result) => {
-    //       if (!result.errors) {
-    //         result.forEach(function(elem){
-    //         console.log(elem);
-    //         });
-    //       } else {
-    //         console.log("errors");
-    //       }
-    //     });
-    //   } else {
-    //     console.log("errors");
-    //   }
-    // });
   }
 
   render(): JSX.Element {
@@ -108,14 +91,14 @@ export class FormulairePage extends HornetPage<Form1Service, HornetComponentProp
                         required={true}/>
           </Row>
           <Row>
-            <UploadFileField name="copie_note_verbale"
+            <UploadFileField name="copie_note_verbale_maeci"
                              label="Photocopie de la note verbale du MAECI"
                              buttonLabel={"Choisir un fichier"}
                              fileSelectedLabel={"Fichier choisi"}
             />
           </Row>
           <ButtonsArea>
-            <Button type="submit" id="test" name="action:test"
+            <Button type="submit"
                 value="Valider" className="hornet-button" label="valider"
                 title="valider"/>
           </ButtonsArea>

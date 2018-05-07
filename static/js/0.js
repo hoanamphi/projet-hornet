@@ -4856,23 +4856,6 @@ var FormulairePage = /** @class */ (function (_super) {
         }).catch(function (reason) {
             console.log("Problème d'insertion de donnée" + reason);
         });
-        // this.getService().insererPermis(data).then((result) => {
-        //   if (!result.errors) {
-        //     console.log("test");
-        //     console.log(result);
-        //     this.getService().listerPermis(data).then((result) => {
-        //       if (!result.errors) {
-        //         result.forEach(function(elem){
-        //         console.log(elem);
-        //         });
-        //       } else {
-        //         console.log("errors");
-        //       }
-        //     });
-        //   } else {
-        //     console.log("errors");
-        //   }
-        // });
     };
     FormulairePage.prototype.render = function () {
         return (React.createElement("div", null,
@@ -4897,9 +4880,9 @@ var FormulairePage = /** @class */ (function (_super) {
                 React.createElement(row_1.Row, null,
                     React.createElement(input_field_1.InputField, { name: "id_prefecture", label: "Id de la prefecture de delivrance", required: true })),
                 React.createElement(row_1.Row, null,
-                    React.createElement(upload_file_field_1.UploadFileField, { name: "copie_note_verbale", label: "Photocopie de la note verbale du MAECI", buttonLabel: "Choisir un fichier", fileSelectedLabel: "Fichier choisi" })),
+                    React.createElement(upload_file_field_1.UploadFileField, { name: "copie_note_verbale_maeci", label: "Photocopie de la note verbale du MAECI", buttonLabel: "Choisir un fichier", fileSelectedLabel: "Fichier choisi" })),
                 React.createElement(buttons_area_1.ButtonsArea, null,
-                    React.createElement(button_1.Button, { type: "submit", id: "test", name: "action:test", value: "Valider", className: "hornet-button", label: "valider", title: "valider" })))));
+                    React.createElement(button_1.Button, { type: "submit", value: "Valider", className: "hornet-button", label: "valider", title: "valider" })))));
     };
     return FormulairePage;
 }(hornet_page_1.HornetPage));
@@ -21994,10 +21977,9 @@ var Form1ServiceImpl = /** @class */ (function (_super) {
             url: this.buildUrl("/inser"),
             data: data
         };
-        if (data["copie_permis"] instanceof File) {
-            request.attach = [];
-            request.attach.push({ field: "copie_permis", file: data["copie_permis"], fileName: data["copie_permis"].name });
-        }
+        request.attach = [];
+        request.attach.push({ field: "copie_permis", file: data["copie_permis"], fileName: data["copie_permis"].name });
+        request.attach.push({ field: "copie_note_verbale_maeci", file: data["copie_note_verbale_maeci"], fileName: data["copie_note_verbale_maeci"].name });
         return this.fetch(request);
     };
     return Form1ServiceImpl;
@@ -22187,6 +22169,14 @@ var Inser = /** @class */ (function (_super) {
             data["copie_permis"].encoding = this.req.files[0].encoding;
             data["copie_permis"].size = this.req.files[0].size;
             data["copie_permis"].contenu = this.req.files[0].buffer;
+        }
+        if (this.req.files[1] != null) {
+            data["copie_note_verbale_maeci"] = {};
+            data["copie_note_verbale_maeci"].nom = this.req.files[1].originalname;
+            data["copie_note_verbale_maeci"].mimetype = this.req.files[1].mimetype;
+            data["copie_note_verbale_maeci"].encoding = this.req.files[1].encoding;
+            data["copie_note_verbale_maeci"].size = this.req.files[1].size;
+            data["copie_note_verbale_maeci"].contenu = this.req.files[1].buffer;
         }
         return this.getService().insererDonnee(data);
     };

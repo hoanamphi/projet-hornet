@@ -21,23 +21,60 @@ var Form1FVMDAO = /** @class */ (function (_super) {
         return _this;
     }
     Form1FVMDAO.prototype.insererDonnee = function (data) {
+        var _this = this;
         var content = JSON.parse(data["content"]);
         var copie_permis = data["copie_permis"];
-        // let copie_note_verbale_maeci = data["copie_note_verbale_maeci"];
-        var idPermis = this.permisDAO.getIdPermis();
-        var idPersonne = this.personneDAO.getIdPersonne();
-        var idDossier = this.dossierDAO.getIdDossier();
+        var copie_note_verbale_maeci = data["copie_note_verbale_maeci"];
         var idCopieNoteVerbaleMAECI = this.copieNoteVerbaleMAECIDAO.getIdCopieNoteVerbaleMAECI();
+        var idDossier = this.dossierDAO.getIdDossier();
+        var idPersonne = this.personneDAO.getIdPersonne();
         var idCopiePermis = this.copiePermisDAO.getIdCopiePermis();
-        // return this.personneDAO.insererPersonne(content.nom, content.prenom, content.date_de_naissance, content.ville_de_naissance, content.pays_de_naissance, idPermis).then(result=>{
-        //   let idPersonne = result;
-        //   return this.dossierDAO.insererDossier(1, new Date(), idPermis).then(result=>{
-        //     let idDossier = result;
-        //     return this.permisDAO.insererPermis(content.permis, 2, content.date_de_delivrance, idPersonne, idDossier, parseInt(content.id_prefecture)).then(result=>{
-        //       return Promise.resolve([idPermis, idPersonne, idDossier, data["copie_permis"]]);
-        //     });
-        //   });
-        // });
+        var idPermis = this.permisDAO.getIdPermis();
+        var insertCopieNoteVerbaleMAECI = idDossier.then(function (idDossier) {
+            return _this.copieNoteVerbaleMAECIDAO.insererCopieNoteVerbaleMAECI(copie_note_verbale_maeci.nom, copie_note_verbale_maeci.mimetype, copie_note_verbale_maeci.encoding, copie_note_verbale_maeci.size, copie_note_verbale_maeci.data, idDossier);
+        });
+        if (insertCopieNoteVerbaleMAECI.isRejected()) {
+            return insertCopieNoteVerbaleMAECI;
+        }
+        var insertDossier = idCopieNoteVerbaleMAECI.then(function (idCopieNoteVerbaleMAECI) {
+            return idPermis.then(function (idPermis) {
+                return _this.dossierDAO.insererDossier(idCopieNoteVerbaleMAECI, new Date(), idPermis);
+            });
+        });
+        if (insertDossier.isRejected()) {
+            return insertDossier;
+        }
+        var insertPersonne = idPermis.then(function (idPermis) {
+            return _this.personneDAO.insererPersonne(content.nom, content.prenom, content.date_de_naissance, content.ville_de_naissance, content.pays_de_naissance, idPermis);
+        });
+        if (insertPersonne.isRejected()) {
+            return insertPersonne;
+        }
+        var insertCopiePermis = idPermis.then(function (idPermis) {
+            return _this.copiePermisDAO.insererCopiePermis(copie_permis.nom, copie_permis.mimetype, copie_permis.encoding, copie_permis.size, copie_permis.data, idPermis);
+        });
+        if (insertCopiePermis.isRejected()) {
+            return insertCopiePermis;
+        }
+        var insertPermis = idCopiePermis.then(function (idCopiePermis) {
+            return idPersonne.then(function (idPersonne) {
+                return idDossier.then(function (idDossier) {
+                    return _this.permisDAO.insererPermis(content.num_permis, idCopiePermis, content.date_de_delivrance, idPersonne, idDossier, content.id_prefecture);
+                });
+            });
+        });
+        if (insertPermis.isRejected()) {
+            return insertPermis;
+        }
+        else {
+            return Promise.resolve({
+                "copie_note_verbale_maeci": insertCopieNoteVerbaleMAECI.isResolved(),
+                "dossier": insertDossier.isResolved(),
+                "personne": insertPersonne.isResolved(),
+                "copie_permis": insertCopiePermis.isResolved(),
+                "permis": insertPermis.isResolved()
+            });
+        }
     };
     return Form1FVMDAO;
 }(entity_dao_1.EntityDAO));

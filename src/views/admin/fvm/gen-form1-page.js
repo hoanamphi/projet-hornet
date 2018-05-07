@@ -25,23 +25,6 @@ var FormulairePage = /** @class */ (function (_super) {
         }).catch(function (reason) {
             console.log("Problème d'insertion de donnée" + reason);
         });
-        // this.getService().insererPermis(data).then((result) => {
-        //   if (!result.errors) {
-        //     console.log("test");
-        //     console.log(result);
-        //     this.getService().listerPermis(data).then((result) => {
-        //       if (!result.errors) {
-        //         result.forEach(function(elem){
-        //         console.log(elem);
-        //         });
-        //       } else {
-        //         console.log("errors");
-        //       }
-        //     });
-        //   } else {
-        //     console.log("errors");
-        //   }
-        // });
     };
     FormulairePage.prototype.render = function () {
         return (React.createElement("div", null,
@@ -66,9 +49,9 @@ var FormulairePage = /** @class */ (function (_super) {
                 React.createElement(row_1.Row, null,
                     React.createElement(input_field_1.InputField, { name: "id_prefecture", label: "Id de la prefecture de delivrance", required: true })),
                 React.createElement(row_1.Row, null,
-                    React.createElement(upload_file_field_1.UploadFileField, { name: "copie_note_verbale", label: "Photocopie de la note verbale du MAECI", buttonLabel: "Choisir un fichier", fileSelectedLabel: "Fichier choisi" })),
+                    React.createElement(upload_file_field_1.UploadFileField, { name: "copie_note_verbale_maeci", label: "Photocopie de la note verbale du MAECI", buttonLabel: "Choisir un fichier", fileSelectedLabel: "Fichier choisi" })),
                 React.createElement(buttons_area_1.ButtonsArea, null,
-                    React.createElement(button_1.Button, { type: "submit", id: "test", name: "action:test", value: "Valider", className: "hornet-button", label: "valider", title: "valider" })))));
+                    React.createElement(button_1.Button, { type: "submit", value: "Valider", className: "hornet-button", label: "valider", title: "valider" })))));
     };
     return FormulairePage;
 }(hornet_page_1.HornetPage));
