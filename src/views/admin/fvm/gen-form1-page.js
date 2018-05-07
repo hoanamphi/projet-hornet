@@ -22,8 +22,8 @@ var FormulairePage = /** @class */ (function (_super) {
     FormulairePage.prototype.onSubmit = function (data) {
         this.getService().insererDonnee(data).then(function (result) {
             console.log(result);
-        }).catch(function (reason) {
-            console.log("Problème d'insertion de donnée" + reason);
+        }).catch(function (error) {
+            console.log("test");
         });
     };
     FormulairePage.prototype.render = function () {
@@ -41,7 +41,7 @@ var FormulairePage = /** @class */ (function (_super) {
                 React.createElement(row_1.Row, null,
                     React.createElement(input_field_1.InputField, { name: "ville_de_naissance", label: "Ville de Naissance", required: true })),
                 React.createElement(row_1.Row, null,
-                    React.createElement(input_field_1.InputField, { name: "permis", label: "Numero de permis", required: true })),
+                    React.createElement(input_field_1.InputField, { name: "num_permis", label: "Numero de permis", required: true })),
                 React.createElement(row_1.Row, null,
                     React.createElement(upload_file_field_1.UploadFileField, { name: "copie_permis", label: "Photocopie du permis de conduire", buttonLabel: "Choisir un fichier", fileSelectedLabel: "Fichier choisi" })),
                 React.createElement(row_1.Row, null,

@@ -15,7 +15,7 @@ export class CopieNoteVerbaleMAECIFVMDao extends EntityDAO {
 
   insererCopieNoteVerbaleMAECI(nom, mimetype, encoding, size, data, idDossier): Promise<any> {
     return this.getIdCopieNoteVerbaleMAECI().then(result=> {
-      this.modelDAO.copieNoteVerbaleMAECIFVMEntity.create({
+      return this.modelDAO.copieNoteVerbaleMAECIFVMEntity.create({
         idCopieNoteVerbaleMAECI: result,
         nom: nom,
         mimetype: mimetype,
@@ -24,11 +24,9 @@ export class CopieNoteVerbaleMAECIFVMDao extends EntityDAO {
         data: data,
         idDossier: idDossier
       }).catch(reason => {
-        return Promise.reject("Problème de stockage de la copie de la note verbale du MAECI : " + reason);
+        return Promise.reject(new Error("Problème de stockage de la copie de la note verbale du MAECI : " + reason));
       });
-
-      return Promise.resolve(result)
-    });
+    })
   }
 
   getIdCopieNoteVerbaleMAECI(): Promise<any> {

@@ -12,7 +12,7 @@ var CopiePermisFVMDao = /** @class */ (function (_super) {
     CopiePermisFVMDao.prototype.insererCopiePermis = function (nom, mimetype, encoding, size, data, idPermis) {
         var _this = this;
         return this.getIdCopiePermis().then(function (result) {
-            _this.modelDAO.copiePermisFVMEntity.create({
+            return _this.modelDAO.copiePermisFVMEntity.create({
                 idCopiePermis: result,
                 nom: nom,
                 mimetype: mimetype,
@@ -23,7 +23,6 @@ var CopiePermisFVMDao = /** @class */ (function (_super) {
             }).catch(function (reason) {
                 return Promise.reject("Problème de stockage de la copie du permis : " + reason);
             });
-            return Promise.resolve(result);
         });
     };
     CopiePermisFVMDao.prototype.getIdCopiePermis = function () {

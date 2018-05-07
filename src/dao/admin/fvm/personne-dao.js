@@ -32,15 +32,15 @@ var PersonneFVMDAO = /** @class */ (function (_super) {
             if (count > 0) {
                 return _this.modelDAO.personneFVMEntity.max("idPersonne").then(function (max) {
                     return Promise.resolve(max + 1);
-                }).catch(function (reason) {
-                    return Promise.reject("Problème de calcul de l'id : " + reason);
+                }).catch(function (error) {
+                    return Promise.reject("Problème de calcul de l'id : " + error);
                 });
             }
             else {
                 return Promise.resolve(0);
             }
-        }).catch(function (reason) {
-            return Promise.reject("Problème de comptage : " + reason);
+        }).catch(function (error) {
+            return Promise.reject("Problème de comptage : " + error);
         });
     };
     return PersonneFVMDAO;

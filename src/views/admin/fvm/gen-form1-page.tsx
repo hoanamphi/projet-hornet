@@ -25,12 +25,12 @@ export class FormulairePage extends HornetPage<Form1Service, HornetComponentProp
   }
 
   onSubmit(data: any) {
-
     this.getService().insererDonnee(data).then(result=>{
       console.log(result);
-    }).catch(reason=>{
-      console.log("Problème d'insertion de donnée" + reason);
+    }).catch(error=>{
+      console.log("test");
     });
+
   }
 
   render(): JSX.Element {
@@ -68,7 +68,7 @@ export class FormulairePage extends HornetPage<Form1Service, HornetComponentProp
                   required={true}/>
           </Row>
           <Row>
-            <InputField name="permis"
+            <InputField name="num_permis"
                         label="Numero de permis"
                         required={true}/>
           </Row>

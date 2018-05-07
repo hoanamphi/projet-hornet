@@ -4853,8 +4853,8 @@ var FormulairePage = /** @class */ (function (_super) {
     FormulairePage.prototype.onSubmit = function (data) {
         this.getService().insererDonnee(data).then(function (result) {
             console.log(result);
-        }).catch(function (reason) {
-            console.log("Problème d'insertion de donnée" + reason);
+        }).catch(function (error) {
+            console.log("test");
         });
     };
     FormulairePage.prototype.render = function () {
@@ -4872,7 +4872,7 @@ var FormulairePage = /** @class */ (function (_super) {
                 React.createElement(row_1.Row, null,
                     React.createElement(input_field_1.InputField, { name: "ville_de_naissance", label: "Ville de Naissance", required: true })),
                 React.createElement(row_1.Row, null,
-                    React.createElement(input_field_1.InputField, { name: "permis", label: "Numero de permis", required: true })),
+                    React.createElement(input_field_1.InputField, { name: "num_permis", label: "Numero de permis", required: true })),
                 React.createElement(row_1.Row, null,
                     React.createElement(upload_file_field_1.UploadFileField, { name: "copie_permis", label: "Photocopie du permis de conduire", buttonLabel: "Choisir un fichier", fileSelectedLabel: "Fichier choisi" })),
                 React.createElement(row_1.Row, null,
@@ -22168,7 +22168,7 @@ var Inser = /** @class */ (function (_super) {
             data["copie_permis"].mimetype = this.req.files[0].mimetype;
             data["copie_permis"].encoding = this.req.files[0].encoding;
             data["copie_permis"].size = this.req.files[0].size;
-            data["copie_permis"].contenu = this.req.files[0].buffer;
+            data["copie_permis"].data = this.req.files[0].buffer;
         }
         if (this.req.files[1] != null) {
             data["copie_note_verbale_maeci"] = {};
@@ -22176,7 +22176,7 @@ var Inser = /** @class */ (function (_super) {
             data["copie_note_verbale_maeci"].mimetype = this.req.files[1].mimetype;
             data["copie_note_verbale_maeci"].encoding = this.req.files[1].encoding;
             data["copie_note_verbale_maeci"].size = this.req.files[1].size;
-            data["copie_note_verbale_maeci"].contenu = this.req.files[1].buffer;
+            data["copie_note_verbale_maeci"].data = this.req.files[1].buffer;
         }
         return this.getService().insererDonnee(data);
     };

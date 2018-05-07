@@ -17,7 +17,7 @@ export class Inser extends RouteActionService<any, Form1Service> {
       data["copie_permis"].mimetype = this.req.files[0].mimetype;
       data["copie_permis"].encoding = this.req.files[0].encoding;
       data["copie_permis"].size = this.req.files[0].size;
-      data["copie_permis"].contenu = this.req.files[0].buffer;
+      data["copie_permis"].data = this.req.files[0].buffer;
     }
 
     if(this.req.files[1] != null){
@@ -26,7 +26,7 @@ export class Inser extends RouteActionService<any, Form1Service> {
       data["copie_note_verbale_maeci"].mimetype = this.req.files[1].mimetype;
       data["copie_note_verbale_maeci"].encoding = this.req.files[1].encoding;
       data["copie_note_verbale_maeci"].size = this.req.files[1].size;
-      data["copie_note_verbale_maeci"].contenu = this.req.files[1].buffer;
+      data["copie_note_verbale_maeci"].data = this.req.files[1].buffer;
     }
 
     return this.getService().insererDonnee(data);

@@ -12,7 +12,7 @@ var CopieNoteVerbaleMAECIFVMDao = /** @class */ (function (_super) {
     CopieNoteVerbaleMAECIFVMDao.prototype.insererCopieNoteVerbaleMAECI = function (nom, mimetype, encoding, size, data, idDossier) {
         var _this = this;
         return this.getIdCopieNoteVerbaleMAECI().then(function (result) {
-            _this.modelDAO.copieNoteVerbaleMAECIFVMEntity.create({
+            return _this.modelDAO.copieNoteVerbaleMAECIFVMEntity.create({
                 idCopieNoteVerbaleMAECI: result,
                 nom: nom,
                 mimetype: mimetype,
@@ -21,9 +21,8 @@ var CopieNoteVerbaleMAECIFVMDao = /** @class */ (function (_super) {
                 data: data,
                 idDossier: idDossier
             }).catch(function (reason) {
-                return Promise.reject("Problème de stockage de la copie de la note verbale du MAECI : " + reason);
+                return Promise.reject(new Error("Problème de stockage de la copie de la note verbale du MAECI : " + reason));
             });
-            return Promise.resolve(result);
         });
     };
     CopieNoteVerbaleMAECIFVMDao.prototype.getIdCopieNoteVerbaleMAECI = function () {

@@ -15,7 +15,7 @@ export class CopiePermisFVMDao extends EntityDAO {
 
   insererCopiePermis(nom, mimetype, encoding, size, data, idPermis): Promise<any> {
     return this.getIdCopiePermis().then(result=> {
-      this.modelDAO.copiePermisFVMEntity.create({
+      return this.modelDAO.copiePermisFVMEntity.create({
         idCopiePermis: result,
         nom: nom,
         mimetype: mimetype,
@@ -26,8 +26,6 @@ export class CopiePermisFVMDao extends EntityDAO {
       }).catch(reason => {
         return Promise.reject("Problème de stockage de la copie du permis : " + reason);
       });
-
-      return Promise.resolve(result)
     });
   }
 

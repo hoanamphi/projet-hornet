@@ -1,7 +1,7 @@
 import { Utils } from "hornet-js-utils";
 import { Logger } from "hornet-js-utils/src/logger";
 import { ServiceRequest } from "hornet-js-core/src/services/service-request";
-import { Form1FVMDAO } from "src/dao/admin/fvm/form1-dao";
+import { Form1FVMDAO } from "src/dao/admin/fvm/form1-dao-service";
 import { Form1Service } from "src/services/page/admin/fvm/form1-service";
 import { Template } from "hornet-js-utils/src/template";
 import { HornetComponent } from "hornet-js-react-components/src/widget/component/hornet-component";
