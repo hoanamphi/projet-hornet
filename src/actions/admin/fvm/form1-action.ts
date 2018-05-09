@@ -32,3 +32,11 @@ export class Inser extends RouteActionService<any, Form1Service> {
     return this.getService().insererDonnee(data);
   }
 }
+
+export class ListePrefecture extends RouteActionService<any, Form1Service> {
+  execute(): Promise<any> {
+    logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
+
+    return this.getService().getListePrefectures();
+  }
+}

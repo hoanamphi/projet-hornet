@@ -24,4 +24,13 @@ export class Form1ServiceImpl extends ServicePage implements Form1Service {
 
     return this.fetch(request);
   }
+
+  getListePrefectures(): Promise<any> {
+    let request: HornetRequest = {
+      method: "post",
+      url: this.buildUrl("/listPrefectures")
+    };
+
+    return this.fetch(request);
+  }
 }

@@ -54,6 +54,7 @@ export class Routes extends AbstractRoutes {
 
   public addServerRoutes(){
     this.addLazyRoutes("/inser", "admin/fvm/form1-server-routes");
+    this.addLazyRoutes("/listPrefectures", "admin/fvm/listPrefectures-server-routes");
   }
   //   this.addLazyRoutes("/admin", "admin/admin-server-routes");
   //   this.addLazyRoutes("/inser", "admin/admin-inser-routes");

@@ -11,33 +11,30 @@ var DossierFVMDAO = /** @class */ (function (_super) {
     }
     DossierFVMDAO.prototype.insererDossier = function (idCopieNoteVerbaleMAECI, dateReceptionDossier, idPermis) {
         var _this = this;
-        return this.getIdDossier().then(function (result) {
-            _this.modelDAO.dossierFVMEntity.create({
-                idDossier: result,
+        return this.getIdDossier().then(function (idDossier) {
+            return _this.modelDAO.dossierFVMEntity.create({
+                idDossier: idDossier,
                 idCopieNoteVerbaleMAECI: idCopieNoteVerbaleMAECI,
                 dateReceptionDossier: dateReceptionDossier,
                 idPermis: idPermis
-            }).catch(function (reason) {
-                return Promise.reject("Problème de création de Dossier : " + reason);
+            }).then(function (result) {
+                return Promise.resolve(idDossier);
+            }).catch(function (error) {
+                throw new Error(error);
             });
-            return Promise.resolve(result);
         });
     };
     DossierFVMDAO.prototype.getIdDossier = function () {
         var _this = this;
         return this.modelDAO.dossierFVMEntity.count().then(function (count) {
             if (count > 0) {
-                return _this.modelDAO.dossierFVMEntity.max("idDossier").then(function (max) {
-                    return Promise.resolve(max + 1);
-                }).catch(function (reason) {
-                    return Promise.reject("Problème de calcul de l'id : " + reason);
-                });
+                return _this.modelDAO.dossierFVMEntity.max("idDossier");
             }
             else {
                 return Promise.resolve(0);
             }
-        }).catch(function (reason) {
-            return Promise.reject("Problème de comptage : " + reason);
+        }).then(function (max) {
+            return Promise.resolve(max + 1);
         });
     };
     return DossierFVMDAO;

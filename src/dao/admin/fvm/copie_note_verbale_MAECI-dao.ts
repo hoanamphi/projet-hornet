@@ -14,34 +14,29 @@ export class CopieNoteVerbaleMAECIFVMDao extends EntityDAO {
   }
 
   insererCopieNoteVerbaleMAECI(nom, mimetype, encoding, size, data, idDossier): Promise<any> {
-    return this.getIdCopieNoteVerbaleMAECI().then(result=> {
+    return this.getIdCopieNoteVerbaleMAECI().then(idCopieNoteVerbaleMAECI=> {
+
       return this.modelDAO.copieNoteVerbaleMAECIFVMEntity.create({
-        idCopieNoteVerbaleMAECI: result,
+        idCopieNoteVerbaleMAECI: idCopieNoteVerbaleMAECI,
         nom: nom,
         mimetype: mimetype,
         encoding: encoding,
         size: size,
         data: data,
         idDossier: idDossier
-      }).catch(reason => {
-        return Promise.reject(new Error("Problème de stockage de la copie de la note verbale du MAECI : " + reason));
       });
-    })
+    });
   }
 
   getIdCopieNoteVerbaleMAECI(): Promise<any> {
     return this.modelDAO.copieNoteVerbaleMAECIFVMEntity.count().then(count=>{
       if(count > 0) {
-        return this.modelDAO.copieNoteVerbaleMAECIFVMEntity.max("idCopieNoteVerbaleMAECI").then(max=>{
-          return Promise.resolve(max+1);
-        }).catch(reason => {
-          return Promise.reject("Problème de calcul de l'id : " + reason);
-        });
+        return this.modelDAO.copieNoteVerbaleMAECIFVMEntity.max("idCopieNoteVerbaleMAECI");
       } else {
-        return Promise.resolve(0);
+        return Promise.resolve(-1);
       }
-    }).catch(reason=>{
-      return Promise.reject("Problème de comptage : "+ reason)
+    }).then(max=>{
+      return Promise.resolve(max+1);
     });
   }
 }

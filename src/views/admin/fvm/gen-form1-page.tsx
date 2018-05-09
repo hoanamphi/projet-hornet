@@ -11,29 +11,40 @@ import { Button } from "hornet-js-react-components/src/widget/button/button";
 import { Form1Service } from "src/services/page/admin/fvm/form1-service";
 import { ButtonsArea } from "hornet-js-react-components/src/widget/form/buttons-area";
 import { UploadFileField } from "hornet-js-react-components/src/widget/form/upload-file-field";
+import {AutoCompleteField} from "hornet-js-react-components/src/widget/form/auto-complete-field";
+import {DataSource} from "hornet-js-core/src/component/datasource/datasource";
 
 const logger: Logger = Utils.getLogger("projet-hornet.views.admin.gen-formulaire-page");
 
 export class FormulairePage extends HornetPage<Form1Service, HornetComponentProps, any> {
+
+  private prefectures = new DataSource<any>([]);
 
   constructor(props?: HornetComponentProps, context?: any) {
     super(props, context);
   }
 
   prepareClient(): void {
+    this.getService().getListePrefectures().then(list=>{
 
+      this.prefectures = new DataSource<any>(list, {"value":"id", "text": "libelle"});
+
+    });
   }
 
   onSubmit(data: any) {
-    this.getService().insererDonnee(data).then(result=>{
-      console.log(result);
-    }).catch(error=>{
-      console.log("test");
-    });
 
+    this.getService().insererDonnee(data).then(result=> {
+      if(result.hasError != null){
+        console.log(result.hasError);
+      }
+    }).catch(reason=>{
+      throw new Error(reason);
+    });
   }
 
   render(): JSX.Element {
+
     return (
       <div>
         <h2>Formulaire 1</h2>
@@ -86,7 +97,8 @@ export class FormulairePage extends HornetPage<Form1Service, HornetComponentProp
                            required={true}/>
           </Row>
           <Row>
-            <InputField name="id_prefecture"
+            <AutoCompleteField dataSource={this.prefectures}
+                        name="id_prefecture"
                         label="Id de la prefecture de delivrance"
                         required={true}/>
           </Row>

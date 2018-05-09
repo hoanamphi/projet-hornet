@@ -14,34 +14,29 @@ export class CopiePermisFVMDao extends EntityDAO {
   }
 
   insererCopiePermis(nom, mimetype, encoding, size, data, idPermis): Promise<any> {
-    return this.getIdCopiePermis().then(result=> {
+    return this.getIdCopiePermis().then(idCopiePermis=> {
+
       return this.modelDAO.copiePermisFVMEntity.create({
-        idCopiePermis: result,
+        idCopiePermis: idCopiePermis,
         nom: nom,
         mimetype: mimetype,
         encoding: encoding,
         size: size,
         data: data,
         idPermis: idPermis
-      }).catch(reason => {
-        return Promise.reject("Problème de stockage de la copie du permis : " + reason);
-      });
+      })
     });
   }
 
   getIdCopiePermis(): Promise<any> {
     return this.modelDAO.copiePermisFVMEntity.count().then(count=>{
       if(count > 0) {
-        return this.modelDAO.copiePermisFVMEntity.max("idCopiePermis").then(max=>{
-          return Promise.resolve(max+1);
-        }).catch(reason => {
-          return Promise.reject("Problème de calcul de l'id : " + reason);
-        });
+        return this.modelDAO.copiePermisFVMEntity.max("idCopiePermis");
       } else {
         return Promise.resolve(0);
       }
-    }).catch(reason=>{
-      return Promise.reject("Problème de comptage : "+ reason)
+    }).then(max=>{
+      return Promise.resolve(max+1);
     });
   }
 }

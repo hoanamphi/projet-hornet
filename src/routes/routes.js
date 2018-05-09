@@ -50,6 +50,7 @@ var Routes = /** @class */ (function (_super) {
     };
     Routes.prototype.addServerRoutes = function () {
         this.addLazyRoutes("/inser", "admin/fvm/form1-server-routes");
+        this.addLazyRoutes("/listPrefectures", "admin/fvm/listPrefectures-server-routes");
     };
     return Routes;
 }(abstract_routes_1.AbstractRoutes));

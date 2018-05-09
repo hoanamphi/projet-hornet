@@ -14,33 +14,30 @@ export class DossierFVMDAO extends EntityDAO {
   }
 
   insererDossier(idCopieNoteVerbaleMAECI, dateReceptionDossier, idPermis): Promise<any> {
-    return this.getIdDossier().then(result=> {
-      this.modelDAO.dossierFVMEntity.create({
-        idDossier: result,
+    return this.getIdDossier().then(idDossier=> {
+
+      return this.modelDAO.dossierFVMEntity.create({
+        idDossier: idDossier,
         idCopieNoteVerbaleMAECI: idCopieNoteVerbaleMAECI,
         dateReceptionDossier: dateReceptionDossier,
         idPermis: idPermis
-      }).catch(reason => {
-        return Promise.reject("Problème de création de Dossier : " + reason);
+      }).then(result=>{
+        return Promise.resolve(idDossier)
+      }).catch(error=>{
+        throw new Error(error);
       });
-
-      return Promise.resolve(result)
     });
   }
 
   getIdDossier(): Promise<any> {
     return this.modelDAO.dossierFVMEntity.count().then(count=>{
       if(count > 0) {
-        return this.modelDAO.dossierFVMEntity.max("idDossier").then(max=>{
-          return Promise.resolve(max+1);
-        }).catch(reason => {
-          return Promise.reject("Problème de calcul de l'id : " + reason);
-        });
+        return this.modelDAO.dossierFVMEntity.max("idDossier");
       } else {
         return Promise.resolve(0);
       }
-    }).catch(reason=>{
-      return Promise.reject("Problème de comptage : "+ reason)
+    }).then(max=>{
+      return Promise.resolve(max+1);
     });
   }
 }

@@ -5,4 +5,5 @@
  */
 export interface Form1Service {
      insererDonnee(data) :Promise<any>;
+     getListePrefectures() :Promise<any>;
 }

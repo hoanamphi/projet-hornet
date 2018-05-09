@@ -11,36 +11,29 @@ var PermisFVMDAO = /** @class */ (function (_super) {
     }
     PermisFVMDAO.prototype.insererPermis = function (numPermis, idCopiePermis, dateDeDelivrance, idPersonne, idDossier, idPrefectureDelivrance) {
         var _this = this;
-        return this.getIdPermis().then(function (result) {
-            _this.modelDAO.permisFVMEntity.create({
-                idPermis: result,
+        return this.getIdPermis().then(function (idPermis) {
+            return _this.modelDAO.permisFVMEntity.create({
+                idPermis: idPermis,
                 numPermis: numPermis,
                 idCopiePermis: idCopiePermis,
                 dateDeDelivrance: dateDeDelivrance,
                 idPersonne: idPersonne,
                 idDossier: idDossier,
                 idPrefectureDelivrance: idPrefectureDelivrance
-            }).catch(function (reason) {
-                return Promise.reject("Problème de création de Permis : " + reason);
             });
-            return Promise.resolve(result);
         });
     };
     PermisFVMDAO.prototype.getIdPermis = function () {
         var _this = this;
         return this.modelDAO.permisFVMEntity.count().then(function (count) {
             if (count > 0) {
-                return _this.modelDAO.permisFVMEntity.max("idPermis").then(function (max) {
-                    return Promise.resolve(max + 1);
-                }).catch(function (reason) {
-                    return Promise.reject("Problème de calcul de l'id : " + reason);
-                });
+                return _this.modelDAO.permisFVMEntity.max("idPermis");
             }
             else {
                 return Promise.resolve(0);
             }
-        }).catch(function (reason) {
-            return Promise.reject("Problème de comptage : " + reason);
+        }).then(function (max) {
+            return Promise.resolve(max + 1);
         });
     };
     return PermisFVMDAO;

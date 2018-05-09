@@ -11,36 +11,29 @@ var PersonneFVMDAO = /** @class */ (function (_super) {
     }
     PersonneFVMDAO.prototype.insererPersonne = function (nom, prenom, dateDeNaissance, villeDeNaissance, paysDeNaissance, idPermis) {
         var _this = this;
-        return this.getIdPersonne().then(function (result) {
-            _this.modelDAO.personneFVMEntity.create({
-                idPersonne: result,
+        return this.getIdPersonne().then(function (idPersonne) {
+            return _this.modelDAO.personneFVMEntity.create({
+                idPersonne: idPersonne,
                 nom: nom,
                 prenom: prenom,
                 dateDeNaissance: dateDeNaissance,
                 villeDeNaissance: villeDeNaissance,
                 paysDeNaissance: paysDeNaissance,
                 idPermis: idPermis
-            }).catch(function (reason) {
-                return Promise.reject("Problème de création de personne : " + reason);
             });
-            return Promise.resolve(result);
         });
     };
     PersonneFVMDAO.prototype.getIdPersonne = function () {
         var _this = this;
         return this.modelDAO.personneFVMEntity.count().then(function (count) {
             if (count > 0) {
-                return _this.modelDAO.personneFVMEntity.max("idPersonne").then(function (max) {
-                    return Promise.resolve(max + 1);
-                }).catch(function (error) {
-                    return Promise.reject("Problème de calcul de l'id : " + error);
-                });
+                return _this.modelDAO.personneFVMEntity.max("idPersonne");
             }
             else {
                 return Promise.resolve(0);
             }
-        }).catch(function (error) {
-            return Promise.reject("Problème de comptage : " + error);
+        }).then(function (max) {
+            return Promise.resolve(max + 1);
         });
     };
     return PersonneFVMDAO;

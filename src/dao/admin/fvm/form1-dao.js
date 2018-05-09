@@ -2,19 +2,17 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
 var hornet_js_utils_1 = require("hornet-js-utils");
-var service_request_1 = require("hornet-js-core/src/services/service-request");
-var dec_transactional_1 = require("hornet-js-database/src/decorators/dec-transactional");
-var injector_1 = require("hornet-js-core/src/inject/injector");
-var personne_dao_1 = require("../../../../dao/admin/fvm/personne-dao");
-var copie_note_verbale_MAECI_dao_1 = require("../../../../dao/admin/fvm/copie_note_verbale_MAECI-dao");
-var dossier_dao_1 = require("../../../../dao/admin/fvm/dossier-dao");
-var permis_dao_1 = require("../../../../dao/admin/fvm/permis-dao");
-var copie_permis_dao_1 = require("../../../../dao/admin/fvm/copie_permis-dao");
-var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.services.data.admin.admin-service-impl-data");
-var Form1ServiceImpl = /** @class */ (function (_super) {
-    tslib_1.__extends(Form1ServiceImpl, _super);
-    function Form1ServiceImpl() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
+var permis_dao_1 = require("./permis-dao");
+var dossier_dao_1 = require("./dossier-dao");
+var personne_dao_1 = require("./personne-dao");
+var copie_note_verbale_MAECI_dao_1 = require("./copie_note_verbale_MAECI-dao");
+var copie_permis_dao_1 = require("./copie_permis-dao");
+var entity_dao_1 = require("../../entity-dao");
+var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.src.dao.utilisateurs-dao");
+var Form1FVMDAO = /** @class */ (function (_super) {
+    tslib_1.__extends(Form1FVMDAO, _super);
+    function Form1FVMDAO() {
+        var _this = _super.call(this) || this;
         _this.personneDAO = new personne_dao_1.PersonneFVMDAO();
         _this.dossierDAO = new dossier_dao_1.DossierFVMDAO();
         _this.permisDAO = new permis_dao_1.PermisFVMDAO();
@@ -22,7 +20,7 @@ var Form1ServiceImpl = /** @class */ (function (_super) {
         _this.copiePermisDAO = new copie_permis_dao_1.CopiePermisFVMDao();
         return _this;
     }
-    Form1ServiceImpl.prototype.insererDonnee = function (data) {
+    Form1FVMDAO.prototype.insererDonnee = function (data) {
         var _this = this;
         var content = JSON.parse(data["content"]);
         var copie_permis = data["copie_permis"];
@@ -39,21 +37,32 @@ var Form1ServiceImpl = /** @class */ (function (_super) {
             var insertCopiePermis = _this.copiePermisDAO.insererCopiePermis(copie_permis.nom, copie_permis.mimetype, copie_permis.encoding, copie_permis.size, copie_permis.data, values[4]);
             var insertPermis = _this.permisDAO.insererPermis(content.num_permis, values[3], content.date_de_delivrance, values[2], values[1], content.id_prefecture);
             return Promise.all([insertCopieNoteVerbaleMAECI, insertDossier, insertPersonne, insertCopiePermis, insertPermis]);
-        }).catch(function (error) {
-            return { "hasError": error };
         });
+        // return idDossier.then(idDossier=>{
+        //
+        //   return this.copieNoteVerbaleMAECIDAO.insererCopieNoteVerbaleMAECI(copie_note_verbale_maeci.nom, copie_note_verbale_maeci.mimetype, copie_note_verbale_maeci.encoding, copie_note_verbale_maeci.size, copie_note_verbale_maeci.data, idDossier).then(insertCopieNoteVerbaleMAECI=>{
+        //
+        //     return idCopieNoteVerbaleMAECI.then(idCopieNoteVerbaleMAECI=>{
+        //
+        //       return idPermis.then(idPermis=>{
+        //
+        //         return this.dossierDAO.insererDossier(idCopieNoteVerbaleMAECI, new Date(), idPermis).then(insertDossier=>{
+        //
+        //           return this.personneDAO.insererPersonne(content.nom, content.prenom, content.date_de_naissance, content.ville_de_naissance, content.pays_de_naissance, idPermis).then(insertPersonne=>{
+        //
+        //             return this.copiePermisDAO.insererCopiePermis(copie_permis.nom, copie_permis.mimetype, copie_permis.encoding, copie_permis.size, copie_permis.data, idPermis).then(insertCopiePermis=> {
+        //
+        //               return this.permisDAO.insererPermis(content.num_permis, idCopiePermis, content.date_de_delivrance, idPersonne, idDossier, content.id_prefecture);
+        //             });
+        //           });
+        //         });
+        //       });
+        //     });
+        //   });
+        // });
     };
-    Form1ServiceImpl.prototype.getListePrefectures = function () {
-        return Promise.resolve([{ "id": 1, "libelle": "test" }]);
-    };
-    tslib_1.__decorate([
-        dec_transactional_1.Transactional({ configDatabase: injector_1.Injector.getRegistered("databaseConfigName") }),
-        tslib_1.__metadata("design:type", Function),
-        tslib_1.__metadata("design:paramtypes", [Object]),
-        tslib_1.__metadata("design:returntype", Promise)
-    ], Form1ServiceImpl.prototype, "insererDonnee", null);
-    return Form1ServiceImpl;
-}(service_request_1.ServiceRequest));
-exports.Form1ServiceImpl = Form1ServiceImpl;
+    return Form1FVMDAO;
+}(entity_dao_1.EntityDAO));
+exports.Form1FVMDAO = Form1FVMDAO;
 
-//# sourceMappingURL=form1-service-impl-data.js.map
+//# sourceMappingURL=form1-dao.js.map

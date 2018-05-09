@@ -33,5 +33,17 @@ var Inser = /** @class */ (function (_super) {
     return Inser;
 }(abstract_routes_1.RouteActionService));
 exports.Inser = Inser;
+var ListePrefecture = /** @class */ (function (_super) {
+    tslib_1.__extends(ListePrefecture, _super);
+    function ListePrefecture() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    ListePrefecture.prototype.execute = function () {
+        logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
+        return this.getService().getListePrefectures();
+    };
+    return ListePrefecture;
+}(abstract_routes_1.RouteActionService));
+exports.ListePrefecture = ListePrefecture;
 
 //# sourceMappingURL=form1-action.js.map

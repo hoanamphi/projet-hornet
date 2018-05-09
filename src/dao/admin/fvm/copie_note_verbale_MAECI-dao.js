@@ -11,17 +11,15 @@ var CopieNoteVerbaleMAECIFVMDao = /** @class */ (function (_super) {
     }
     CopieNoteVerbaleMAECIFVMDao.prototype.insererCopieNoteVerbaleMAECI = function (nom, mimetype, encoding, size, data, idDossier) {
         var _this = this;
-        return this.getIdCopieNoteVerbaleMAECI().then(function (result) {
+        return this.getIdCopieNoteVerbaleMAECI().then(function (idCopieNoteVerbaleMAECI) {
             return _this.modelDAO.copieNoteVerbaleMAECIFVMEntity.create({
-                idCopieNoteVerbaleMAECI: result,
+                idCopieNoteVerbaleMAECI: idCopieNoteVerbaleMAECI,
                 nom: nom,
                 mimetype: mimetype,
                 encoding: encoding,
                 size: size,
                 data: data,
                 idDossier: idDossier
-            }).catch(function (reason) {
-                return Promise.reject(new Error("Problème de stockage de la copie de la note verbale du MAECI : " + reason));
             });
         });
     };
@@ -29,17 +27,13 @@ var CopieNoteVerbaleMAECIFVMDao = /** @class */ (function (_super) {
         var _this = this;
         return this.modelDAO.copieNoteVerbaleMAECIFVMEntity.count().then(function (count) {
             if (count > 0) {
-                return _this.modelDAO.copieNoteVerbaleMAECIFVMEntity.max("idCopieNoteVerbaleMAECI").then(function (max) {
-                    return Promise.resolve(max + 1);
-                }).catch(function (reason) {
-                    return Promise.reject("Problème de calcul de l'id : " + reason);
-                });
+                return _this.modelDAO.copieNoteVerbaleMAECIFVMEntity.max("idCopieNoteVerbaleMAECI");
             }
             else {
-                return Promise.resolve(0);
+                return Promise.resolve(-1);
             }
-        }).catch(function (reason) {
-            return Promise.reject("Problème de comptage : " + reason);
+        }).then(function (max) {
+            return Promise.resolve(max + 1);
         });
     };
     return CopieNoteVerbaleMAECIFVMDao;

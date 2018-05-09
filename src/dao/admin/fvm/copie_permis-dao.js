@@ -11,17 +11,15 @@ var CopiePermisFVMDao = /** @class */ (function (_super) {
     }
     CopiePermisFVMDao.prototype.insererCopiePermis = function (nom, mimetype, encoding, size, data, idPermis) {
         var _this = this;
-        return this.getIdCopiePermis().then(function (result) {
+        return this.getIdCopiePermis().then(function (idCopiePermis) {
             return _this.modelDAO.copiePermisFVMEntity.create({
-                idCopiePermis: result,
+                idCopiePermis: idCopiePermis,
                 nom: nom,
                 mimetype: mimetype,
                 encoding: encoding,
                 size: size,
                 data: data,
                 idPermis: idPermis
-            }).catch(function (reason) {
-                return Promise.reject("Problème de stockage de la copie du permis : " + reason);
             });
         });
     };
@@ -29,17 +27,13 @@ var CopiePermisFVMDao = /** @class */ (function (_super) {
         var _this = this;
         return this.modelDAO.copiePermisFVMEntity.count().then(function (count) {
             if (count > 0) {
-                return _this.modelDAO.copiePermisFVMEntity.max("idCopiePermis").then(function (max) {
-                    return Promise.resolve(max + 1);
-                }).catch(function (reason) {
-                    return Promise.reject("Problème de calcul de l'id : " + reason);
-                });
+                return _this.modelDAO.copiePermisFVMEntity.max("idCopiePermis");
             }
             else {
                 return Promise.resolve(0);
             }
-        }).catch(function (reason) {
-            return Promise.reject("Problème de comptage : " + reason);
+        }).then(function (max) {
+            return Promise.resolve(max + 1);
         });
     };
     return CopiePermisFVMDao;

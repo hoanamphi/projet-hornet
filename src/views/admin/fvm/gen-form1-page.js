@@ -11,19 +11,29 @@ var calendar_field_1 = require("hornet-js-react-components/src/widget/form/calen
 var button_1 = require("hornet-js-react-components/src/widget/button/button");
 var buttons_area_1 = require("hornet-js-react-components/src/widget/form/buttons-area");
 var upload_file_field_1 = require("hornet-js-react-components/src/widget/form/upload-file-field");
+var auto_complete_field_1 = require("hornet-js-react-components/src/widget/form/auto-complete-field");
+var datasource_1 = require("hornet-js-core/src/component/datasource/datasource");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.admin.gen-formulaire-page");
 var FormulairePage = /** @class */ (function (_super) {
     tslib_1.__extends(FormulairePage, _super);
     function FormulairePage(props, context) {
-        return _super.call(this, props, context) || this;
+        var _this = _super.call(this, props, context) || this;
+        _this.prefectures = new datasource_1.DataSource([]);
+        return _this;
     }
     FormulairePage.prototype.prepareClient = function () {
+        var _this = this;
+        this.getService().getListePrefectures().then(function (list) {
+            _this.prefectures = new datasource_1.DataSource(list, { "value": "id", "text": "libelle" });
+        });
     };
     FormulairePage.prototype.onSubmit = function (data) {
         this.getService().insererDonnee(data).then(function (result) {
-            console.log(result);
-        }).catch(function (error) {
-            console.log("test");
+            if (result.hasError != null) {
+                console.log(result.hasError);
+            }
+        }).catch(function (reason) {
+            throw new Error(reason);
         });
     };
     FormulairePage.prototype.render = function () {
@@ -47,7 +57,7 @@ var FormulairePage = /** @class */ (function (_super) {
                 React.createElement(row_1.Row, null,
                     React.createElement(calendar_field_1.CalendarField, { name: "date_de_delivrance", label: "Date de d\u00E9livrance", title: "Calendrier", required: true })),
                 React.createElement(row_1.Row, null,
-                    React.createElement(input_field_1.InputField, { name: "id_prefecture", label: "Id de la prefecture de delivrance", required: true })),
+                    React.createElement(auto_complete_field_1.AutoCompleteField, { dataSource: this.prefectures, name: "id_prefecture", label: "Id de la prefecture de delivrance", required: true })),
                 React.createElement(row_1.Row, null,
                     React.createElement(upload_file_field_1.UploadFileField, { name: "copie_note_verbale_maeci", label: "Photocopie de la note verbale du MAECI", buttonLabel: "Choisir un fichier", fileSelectedLabel: "Fichier choisi" })),
                 React.createElement(buttons_area_1.ButtonsArea, null,

@@ -14,35 +14,29 @@ export class PermisFVMDAO extends EntityDAO {
   }
 
   insererPermis(numPermis, idCopiePermis, dateDeDelivrance, idPersonne, idDossier, idPrefectureDelivrance): Promise<any> {
-    return this.getIdPermis().then(result=>{
-      this.modelDAO.permisFVMEntity.create({
-        idPermis: result,
+    return this.getIdPermis().then(idPermis=>{
+
+      return this.modelDAO.permisFVMEntity.create({
+        idPermis: idPermis,
         numPermis: numPermis,
         idCopiePermis: idCopiePermis,
         dateDeDelivrance: dateDeDelivrance,
         idPersonne: idPersonne,
         idDossier: idDossier,
         idPrefectureDelivrance: idPrefectureDelivrance
-      }).catch(reason=>{
-        return Promise.reject("Problème de création de Permis : " + reason);
       });
-      return Promise.resolve(result);
     });
   }
 
   getIdPermis(): Promise<any> {
     return this.modelDAO.permisFVMEntity.count().then(count=>{
       if(count > 0) {
-        return this.modelDAO.permisFVMEntity.max("idPermis").then(max=>{
-          return Promise.resolve(max+1);
-        }).catch(reason => {
-          return Promise.reject("Problème de calcul de l'id : " + reason);
-        });
+        return this.modelDAO.permisFVMEntity.max("idPermis");
       } else {
         return Promise.resolve(0);
       }
-    }).catch(reason=>{
-      return Promise.reject("Problème de comptage : "+ reason)
+    }).then(max=>{
+      return Promise.resolve(max+1);
     });
   }
 }

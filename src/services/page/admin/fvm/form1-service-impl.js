@@ -21,6 +21,13 @@ var Form1ServiceImpl = /** @class */ (function (_super) {
         request.attach.push({ field: "copie_note_verbale_maeci", file: data["copie_note_verbale_maeci"], fileName: data["copie_note_verbale_maeci"].name });
         return this.fetch(request);
     };
+    Form1ServiceImpl.prototype.getListePrefectures = function () {
+        var request = {
+            method: "post",
+            url: this.buildUrl("/listPrefectures")
+        };
+        return this.fetch(request);
+    };
     return Form1ServiceImpl;
 }(service_page_1.ServicePage));
 exports.Form1ServiceImpl = Form1ServiceImpl;
