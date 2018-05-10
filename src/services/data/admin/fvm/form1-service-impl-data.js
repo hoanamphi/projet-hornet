@@ -16,6 +16,7 @@ var Form1ServiceImpl = /** @class */ (function (_super) {
     tslib_1.__extends(Form1ServiceImpl, _super);
     function Form1ServiceImpl() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.Error = { "hasError": null, "hasReason": null };
         _this.personneDAO = new personne_dao_1.PersonneFVMDAO();
         _this.dossierDAO = new dossier_dao_1.DossierFVMDAO();
         _this.permisDAO = new permis_dao_1.PermisFVMDAO();
@@ -42,7 +43,11 @@ var Form1ServiceImpl = /** @class */ (function (_super) {
             var insertPermis = _this.permisDAO.insererPermis(content.num_permis, values[3], content.date_de_delivrance, values[2], values[1], content.id_prefecture["value"]);
             return Promise.all([insertCopieNoteVerbaleMAECI, insertDossier, insertPersonne, insertCopiePermis, insertPermis]);
         }).catch(function (error) {
-            return { "hasError": error };
+            _this.Error.hasError = error;
+            return error;
+        }).catch(function (reason) {
+            _this.Error.hasReason = reason;
+            return _this.Error;
         });
     };
     Form1ServiceImpl.prototype.getListePrefectures = function () {

@@ -8,7 +8,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var gen_form1_page_1 = __webpack_require__(327);
 var abstract_routes_1 = __webpack_require__(95);
-var form1_service_impl_1 = __webpack_require__(459);
+var form1_service_impl_1 = __webpack_require__(460);
 var PermisRoutesClient = /** @class */ (function (_super) {
     tslib_1.__extends(PermisRoutesClient, _super);
     function PermisRoutesClient() {
@@ -32,7 +32,7 @@ exports.default = PermisRoutesClient;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
-var form1_action_1 = __webpack_require__(461);
+var form1_action_1 = __webpack_require__(462);
 var abstract_routes_1 = __webpack_require__(95);
 var form1_service_impl_data_1 = __webpack_require__(52);
 var form1_client_routes_1 = __webpack_require__(247);
@@ -587,7 +587,7 @@ module.exports = {
   getProperty: getProperty,
   escapeQuotes: escapeQuotes,
   equal: __webpack_require__(277),
-  ucs2length: __webpack_require__(346),
+  ucs2length: __webpack_require__(347),
   varOccurences: varOccurences,
   varReplace: varReplace,
   cleanUpCode: cleanUpCode,
@@ -1310,8 +1310,8 @@ exports.f = {}.propertyIsEnumerable;
 var url = __webpack_require__(40)
   , equal = __webpack_require__(277)
   , util = __webpack_require__(256)
-  , SchemaObject = __webpack_require__(302)
-  , traverse = __webpack_require__(347);
+  , SchemaObject = __webpack_require__(301)
+  , traverse = __webpack_require__(348);
 
 module.exports = resolve;
 
@@ -2782,955 +2782,6 @@ var tslib_1 = __webpack_require__(1);
  * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
  * @license CECILL-2.1
  */
-var hornet_js_utils_1 = __webpack_require__(0);
-var React = __webpack_require__(2);
-var abstract_field_1 = __webpack_require__(253);
-var auto_complete_selector_1 = __webpack_require__(334);
-var _ = __webpack_require__(6);
-var key_codes_1 = __webpack_require__(10);
-var auto_complete_state_1 = __webpack_require__(298);
-var datasource_master_1 = __webpack_require__(336);
-var abstract_field_datasource_1 = __webpack_require__(301);
-var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.form.auto-complete-field");
-var FilterTextType;
-(function (FilterTextType) {
-    FilterTextType[FilterTextType["beginWith"] = 1] = "beginWith";
-    FilterTextType[FilterTextType["indexOf"] = 2] = "indexOf";
-})(FilterTextType = exports.FilterTextType || (exports.FilterTextType = {}));
-/**
- * Composant d'auto-complétion.
- * Les fonctions getCurrentValue et setCurrentValue s'appuient sur le champ caché contenant la valeur sélectionnée.
- */
-var AutoCompleteField = /** @class */ (function (_super) {
-    tslib_1.__extends(AutoCompleteField, _super);
-    function AutoCompleteField(props, context) {
-        var _this = _super.call(this, props, context) || this;
-        var ariaSelectorId = props.name + "_select";
-        //liste des choix possibles
-        _this.state.choices = [];
-        //item sélectionné
-        _this.state.selectedIndex = null;
-        //indique si la liste des choix est visible ou non
-        _this.state.shouldShowChoices = false;
-        //identifiant du selector
-        _this.state.ariaSelectorId = ariaSelectorId;
-        //loader
-        _this.state.isApiLoading = false;
-        if (_this.props.dataSource.results) {
-            //liste de tous les choix (non filtré par le texte)
-            _this.state.allChoices = _this.props.dataSource.results;
-        }
-        _this.autoCompleteState = new auto_complete_state_1.AutoCompleteState();
-        return _this;
-    }
-    /**
-     * Setter indiquant que l'API est en cours d'exécution
-     * @param value valeur à utiliser
-     * @param callback fonction de callback éventuelle
-     * @returns {AutoComplete}
-     */
-    AutoCompleteField.prototype.setIsApiLoading = function (value, callback) {
-        this.setState({ isApiLoading: value }, callback);
-        return this;
-    };
-    /**
-     * Setter des choix du composant
-     * @param value tableau de choix
-     * @param callback fonction de callback éventuelle
-     * @returns {AutoComplete}
-     */
-    AutoCompleteField.prototype.setChoices = function (value, callback) {
-        this.setState({ choices: value }, callback);
-        return this;
-    };
-    /**
-     * @inheritDoc
-     */
-    AutoCompleteField.prototype.componentDidMount = function () {
-        if (!hornet_js_utils_1.Utils.isServer) {
-            if (!_.isUndefined(this.props["var"])) {
-                logger.warn("The var props is only available in DEV");
-            }
-        }
-        this.mounted = true;
-        logger.trace("auto-complete componentDidMount");
-        this._throttledTriggerAction = _.throttle(this.triggerAction, this.state.delay);
-        this.props.dataSource.on("fetch", this.fetchEventCallback);
-        this.props.dataSource.on("add", this.addEventCallback);
-        this.props.dataSource.on("delete", this.setResultCallback);
-        this.props.dataSource.on("sort", this.setResultCallback);
-        this.props.dataSource.on("filter", this.filterEventCallback);
-        this.props.dataSource.on("init", this.initEventCallback);
-        this.props.dataSource.on("loadingData", this.displaySpinner);
-    };
-    /**
-     * @inheritDoc
-     */
-    AutoCompleteField.prototype.componentWillUnmount = function () {
-        _super.prototype.componentWillUnmount.call(this);
-        this.mounted = false;
-        this.props.dataSource.removeListener("fetch", this.fetchEventCallback);
-        this.props.dataSource.removeListener("add", this.addEventCallback);
-        this.props.dataSource.removeListener("filter", this.filterEventCallback);
-        this.props.dataSource.removeListener("init", this.initEventCallback);
-        this.props.dataSource.removeListener("delete", this.setResultCallback);
-        this.props.dataSource.removeListener("sort", this.setResultCallback);
-        this.props.dataSource.removeListener("loadingData", this.displaySpinner);
-    };
-    /**
-     * @inheritDoc
-     */
-    AutoCompleteField.prototype.componentWillUpdate = function (nextProps, nextState, nextContext) {
-        _super.prototype.componentWillUpdate.call(this, nextProps, nextState, nextContext);
-        if (this.state.delay != nextState.delay) {
-            /* Le délai d'appel de l'action a changé : on doit donc refaire ici l'encaspulation avec _.throttle */
-            this._throttledTriggerAction = _.throttle(this.triggerAction, nextState.delay);
-        }
-    };
-    /**
-     * @inheritDoc
-     */
-    AutoCompleteField.prototype.shouldComponentUpdate = function (nextProps, nextState, nextContext) {
-        if (this.state.shouldShowChoices != nextState.shouldShowChoices
-            || this.state.listDefaultValue !== nextState.listDefaultValue
-            || ((nextState.choices && !this.state.choices)
-                || (!nextState.choices && this.state.choices)
-                || (nextState.choices && this.state.choices.length != nextState.choices.length))
-            || !_.isEqual(nextState.choices, this.state.choices)
-            || (this.state.errors != nextState.errors)
-            || (this.state.readOnly != nextState.readOnly)
-            || (this.state.disabled != nextState.disabled)) {
-            return true;
-        }
-        return false;
-    };
-    /**
-     * Génère le rendu spécifique du champ
-     * @returns {any}
-     */
-    AutoCompleteField.prototype.renderWidget = function () {
-        logger.trace("auto-complete  render");
-        var shouldShow = this.shouldShowChoices();
-        var hasError = this.hasErrors() ? " has-error" : "";
-        var className = " autocomplete-content" + hasError;
-        if (this.state.className) {
-            className += " " + this.state.className;
-        }
-        var htmlProps = this.getHtmlProps();
-        htmlProps = _.assign(htmlProps, {
-            "onKeyDown": this.handleOnKeyDown,
-            "onFocus": this.handleOnFocus,
-            "onBlur": this.handleOnBlur,
-            "onDoubleClick": this.handleOnFocus,
-            "onClick": this.handleOnFocus,
-            "onChange": this.handleChangeTextInput,
-            "autoComplete": "off",
-            "aria-autocomplete": "list",
-            "aria-expanded": shouldShow,
-            "aria-owns": this.state.ariaSelectorId,
-            "aria-activedescendant": shouldShow ? this.state.ariaSelectorId + "_" + this.state.selectedIndex : undefined,
-            "id": this.state.id ? this.state.id : this.getFreeTypingFieldName(),
-            "type": "text",
-            "name": this.getFreeTypingFieldName(),
-            "className": className
-        });
-        /* Le champ caché contient l'identifiant de l'élément sélectionné. C'est cet identifiant qui est ensuite
-         utilisé par les actions. */
-        return (React.createElement("div", { className: "autocomplete-container" },
-            React.createElement("input", { type: "hidden", name: this.getValueFieldName(), ref: this.registerHiddenInput }),
-            React.createElement("input", tslib_1.__assign({}, htmlProps, { ref: this.registerTextInput, readOnly: !this.props.writable, "data-writable": this.props.writable })),
-            React.createElement(auto_complete_selector_1.AutoCompleteSelector, { ref: "selector", choices: this.state.choices, onOptionSelected: this.onListWidgetSelected, selectorId: this.state.ariaSelectorId, maxHeight: this.props.maxHeight, showComponent: shouldShow, choicesSelected: this.state.listDefaultValue, autoCompleteState: this.autoCompleteState, disabled: this.state.disabled || this.state.readOnly, noResultLabel: this.state.noResultLabel })));
-    };
-    /**
-     *
-     * @param result
-     */
-    AutoCompleteField.prototype.fetchEventCallback = function (result) {
-        this.choicesLoaderCallback(result);
-        //dans le cas writable, le composant n'a pas besoin de recharger la liste des choix
-        // elle est disponible directement
-        if (this.props.writable) {
-            if (!this.state.onListWidgetSelected) {
-                this.prepareChoices(true);
-            }
-            else {
-                this.prepareChoices(false);
-            }
-        }
-        this.state.onListWidgetSelected = false;
-    };
-    /**
-     * récupération des choix dans le datasource
-     * @param result
-     */
-    AutoCompleteField.prototype.addEventCallback = function (result) {
-        this.setResultCallback(result);
-    };
-    /**
-     * récupération des choix dans le datasource
-     * @param result
-     */
-    AutoCompleteField.prototype.setResultCallback = function (result) {
-        this.state.allChoices = this.props.dataSource.results;
-    };
-    /**
-     * récupération des choix possibles dans le datasource
-     * @param filtered
-     */
-    AutoCompleteField.prototype.filterEventCallback = function (filtered) {
-        this.state.allChoices = filtered;
-        this.choicesLoaderCallback(filtered);
-    };
-    /**
-     * récupération des choix à l'initialisation
-     * @param result
-     */
-    AutoCompleteField.prototype.initEventCallback = function (result) {
-        this.state.allChoices = result;
-    };
-    /**
-     * retourne le texte saisi
-     * @return {any} le texte actuellement saisi dans le champ de saisie libre
-     */
-    AutoCompleteField.prototype.getCurrentText = function () {
-        var text = "";
-        if (this.textInput) {
-            text = this.textInput.value;
-        }
-        return text;
-    };
-    /**
-     * Modifie la valeur du texte présent dans l'input
-     * @param value texte à mettre dans l'input
-     */
-    AutoCompleteField.prototype.setCurrentText = function (value) {
-        this.textInput.value = value;
-    };
-    /**
-     * Réinitialise le champs autocomplete
-     */
-    AutoCompleteField.prototype.resetField = function () {
-        this.resetSelectedValue();
-        this.resetSelectedText();
-        this.state.selectedIndex = -1;
-        return this;
-    };
-    /**
-     * Réinitialise la valeur de l'élément sélectionné contenu dans le champ caché
-     */
-    AutoCompleteField.prototype.resetSelectedValue = function () {
-        if (this.hiddenInput) {
-            this.hiddenInput.value = "";
-        }
-        this.autoCompleteState.choiceFocused = null;
-        this.state.selectedIndex = -1;
-    };
-    /**
-     * Réinitialise la valeur de l'élément sélectionné contenu dans le champ caché
-     */
-    AutoCompleteField.prototype.resetSelectedText = function () {
-        if (this.textInput) {
-            this.textInput.value = "";
-        }
-        if (this.refs.selector) {
-            this.refs.selector.setCurrentTypedText("");
-        }
-    };
-    /**
-     * Fonction appelée lors d'un appui de touche sur le champ de saisie libre
-     * @param e évènement
-     * @protected
-     */
-    AutoCompleteField.prototype.handleOnKeyDown = function (e) {
-        /* L'attribut DOM onKeyDown est éventuellement aussi renseigné sur le composant auto-complete */
-        if (this.state.onKeyDown) {
-            this.state.onKeyDown(event);
-        }
-        var key = e.keyCode;
-        var shouldShow = this.state.shouldShowChoices === true;
-        if (key == key_codes_1.KeyCodes.DOWN_ARROW) {
-            if (e.altKey) {
-                this.autoCompleteState.setFocusOn(this.state.selectedIndex, this.hiddenInput.value, null);
-                this.showChoices();
-            }
-            else {
-                this.navigateInChoices(1);
-                this.isUpdated = true;
-            }
-            e.preventDefault();
-        }
-        else if (key == key_codes_1.KeyCodes.UP_ARROW) {
-            if (e.altKey) {
-                this.hideChoices();
-            }
-            else {
-                this.navigateInChoices(-1);
-                this.isUpdated = true;
-            }
-            e.preventDefault();
-        }
-        else if (key == key_codes_1.KeyCodes.ESCAPE) {
-            //test si une valeur existait
-            if (this.hiddenInput.value) {
-                this.selectedChoice(this.hiddenInput.value);
-                this.selectCurrentIndex();
-            }
-            // On demande le masquage des choix
-            this.hideChoices();
-            e.preventDefault();
-        }
-        else if (key == key_codes_1.KeyCodes.ENTER) {
-            //valide un choix si on est sur un autocomplete simple et writable
-            //ne fait rien sinon (valide le formulaire)
-            if (this.state.shouldShowChoices && this.state.writable) {
-                e.preventDefault();
-                this.validateSelectedValue(shouldShow);
-            }
-        }
-        else if (key == key_codes_1.KeyCodes.SPACEBAR && !this.state.writable) {
-            //valide un choix si on est sur un autocomplete et non writable
-            if (this.state.shouldShowChoices) {
-                e.preventDefault();
-                this.validateSelectedValue(shouldShow);
-            }
-        }
-        else if (key == key_codes_1.KeyCodes.TAB && !e.shiftKey && this.state.shouldShowChoices) {
-            this.tabHandlerForValueChange(e, shouldShow);
-        }
-        else if (key == key_codes_1.KeyCodes.TAB && e.shiftKey) {
-            this.tabHandlerForValueChange(e, shouldShow);
-        }
-        else if (key == key_codes_1.KeyCodes.HOME) {
-            if (shouldShow) {
-                this.state.selectedIndex = null;
-                this.navigateInChoices(1);
-            }
-            else {
-                this.state.selectedIndex = 0;
-                this.selectCurrentIndex();
-                this.hideChoices();
-            }
-            this.isUpdated = true;
-            e.preventDefault();
-        }
-        else if (key == key_codes_1.KeyCodes.END) {
-            if (shouldShow) {
-                this.state.selectedIndex = null;
-                this.navigateInChoices(-1);
-            }
-            else {
-                this.state.selectedIndex = this.state.choices.length - 1;
-                this.selectCurrentIndex();
-                this.hideChoices();
-            }
-            this.isUpdated = true;
-            e.preventDefault();
-        }
-    };
-    /**
-     * gère la tabulation
-     * @param {__React.KeyboardEvent<HTMLElement>} e
-     * @param {boolean} shouldShow
-     * @param {boolean} preventDefault
-     */
-    AutoCompleteField.prototype.tabHandlerForValueChange = function (e, shouldShow) {
-        if (this.isUpdated) {
-            this.validateSelectedValue(shouldShow);
-            this.isUpdated = false;
-        }
-        else {
-            this.selectCurrentIndex();
-            this.hideChoices();
-        }
-    };
-    /**
-     * valide le choix sélectionné
-     * @param shouldShow indique si les résultats doivent être affichés
-     */
-    AutoCompleteField.prototype.validateSelectedValue = function (shouldShow) {
-        var _this = this;
-        if (shouldShow) {
-            // place le selectedIndex sur le choix
-            if (!this.state.selectedIndex) {
-                this.state.choices.map(function (element, index) {
-                    if (element.text == _this.getCurrentText()) {
-                        _this.state.selectedIndex = index;
-                    }
-                });
-            }
-            //choix sélectionné
-            var selection = (this.state.choices[this.state.selectedIndex] || this.state.allChoices[this.state.selectedIndex]);
-            if (selection != null) {
-                this.setCurrentValue(selection.value);
-                this.props.dataSource.select(selection);
-            }
-            else {
-                this.setCurrentValue(undefined);
-                this.props.dataSource.select(undefined);
-            }
-            this.selectCurrentIndex();
-            this.hideChoices();
-        }
-        else {
-            this.showChoices();
-        }
-    };
-    /**
-     * Gestion de l'évènement onFocus pour le champ de saisie libre.
-     * @param event
-     */
-    AutoCompleteField.prototype.handleOnFocus = function (event) {
-        var _this = this;
-        this.typedValueOnFocus = this.getCurrentText();
-        this.state.focused = true;
-        this.showChoices();
-        /* L'attribut DOM onBlur est éventuellement aussi renseigné sur le composant auto-complete */
-        if (this.state.onFocus) {
-            this.state.onFocus(event);
-        }
-        if (this.state.allChoices) {
-            if (this.isValidText(this.typedValueOnFocus) || !this.props.writable) {
-                logger.trace("auto-complete : prise en compte du texte présent au focus : ", this.typedValueOnFocus);
-                if (!this.props.dataSource.status) {
-                    this.props.dataSource.init();
-                }
-                else {
-                    if ((!this.props.writable) || this.state.choices.length == 0 && this.hiddenInput.value) {
-                        this.setChoices(this.state.allChoices, function () {
-                            if (_this.state.allChoices.length > 0) {
-                                var index = _.findIndex(_this.state.allChoices, { text: _this.typedValueOnFocus });
-                                _this.state.selectedIndex = index === undefined ? -1 : index;
-                                _this.showChoices();
-                                _this.changeSelectedChoiceWhenOneChoice(_this.typedValueOnFocus);
-                            }
-                        });
-                    }
-                }
-                //this._throttledTriggerAction(this.typedValueOnFocus);
-                this.changeSelectedChoiceWhenOneChoice(this.typedValueOnFocus);
-            }
-            else {
-                this.setChoices(this.state.allChoices, function () {
-                    if (_this.state.allChoices.length > 0) {
-                        _this.showChoices();
-                        _this.state.selectedIndex = -1;
-                        _this.autoCompleteState.setFocusOn(_this.state.selectedIndex, "", null);
-                    }
-                });
-            }
-        }
-        else {
-            this.showChoices();
-        }
-        if (!this.hiddenInput || this.hiddenInput.value.length == 0 || !this.textInput || this.textInput.value.length == 0) {
-            this.clearFilterData();
-            this.state.selectedIndex = -1;
-            this.autoCompleteState.setFocusOn(this.state.selectedIndex, "", null);
-        }
-        else {
-            this.state.selectedIndex = _.findIndex(this.state.allChoices, { text: this.typedValueOnFocus });
-            this.autoCompleteState.setFocusOn(this.state.selectedIndex, this.hiddenInput.value, null);
-        }
-    };
-    /**
-     * Fonction déclenchée lorsque le champ de saisie libre perd le focus
-     * @param event
-     */
-    AutoCompleteField.prototype.handleOnBlur = function (event) {
-        this.state.focused = false;
-        /* L'attribut DOM onBlur est éventuellement aussi renseigné sur ce composant auto-complete */
-        if (this.state.onBlur) {
-            this.state.onBlur(event);
-        }
-        var currentText = this.getCurrentText();
-        if (this.state.allChoices) {
-            this.state.allChoices.filter(function (choice) {
-                var res = false;
-                if (!choice.text) {
-                    res = choice.text.toLowerCase() === currentText.toLowerCase();
-                }
-                return res;
-            });
-        }
-        if (!this.props.dataSource.selected || (this.props.dataSource.selected &&
-            this.props.dataSource.selected.value &&
-            this.props.dataSource.selected.value.toString() !== this.hiddenInput.value)) {
-            if (!this.hiddenInput || !this.hiddenInput.value || this.hiddenInput.value.length == 0) {
-                this.clearFilterData();
-                if (!this.state.isShiftTab)
-                    this.props.dataSource.select(undefined);
-            }
-            else {
-                this.props.dataSource.select(_.find(this.state.allChoices, { value: this.hiddenInput.value }));
-            }
-        }
-        this.hideChoices();
-        this.isUpdated = false;
-    };
-    /**
-     * indique aux élément esclave qu'un filter a été fait sur le maitre si le datasource en est un
-     */
-    AutoCompleteField.prototype.clearFilterData = function () {
-        if (this.props.dataSource instanceof datasource_master_1.DataSourceMaster) {
-            this.props.dataSource.getSlaves().forEach(function (item) {
-                item.emit("filter", []);
-            });
-        }
-    };
-    /**
-     * Fonction déclenchée sur une modification du champ de saisie libre
-     * @param event
-     */
-    AutoCompleteField.prototype.handleChangeTextInput = function (event) {
-        var _this = this;
-        logger.trace("auto-complete handleChangeTextInput");
-        /* Le texte a changé donc on réinitialise la valeur */
-        this.resetSelectedValue();
-        this.state.selectedIndex = null;
-        /* L'attribut DOM onChange est éventuellement aussi renseigné sur le composant auto-complete */
-        if (this.state.onChange) {
-            this.state.onChange(event);
-        }
-        var newText = this.getCurrentText();
-        this.clearFilterData();
-        this.isUpdated = true;
-        if (this.refs.selector) {
-            this.refs.selector.setCurrentTypedText(newText);
-        }
-        if (this.isValidText(newText)) {
-            logger.trace("auto-complete : prise en compte du texte saisi : ", newText);
-            this._throttledTriggerAction(newText);
-        }
-        else {
-            this.hideChoices();
-        }
-        if (newText.length == 0) {
-            this.setChoices(this.state.allChoices, function () {
-                if (_this.state.allChoices.length > 0) {
-                    _this.showChoices();
-                }
-                else {
-                    _this.props.dataSource.select(null);
-                }
-            });
-        }
-    };
-    /**
-     * si il n'y a plus qu'un choix écrit dans sa totalité,
-     * valid ele choix
-     * @param {string} newText
-     */
-    AutoCompleteField.prototype.changeSelectedChoiceWhenOneChoice = function (newText) {
-        if (this.state.choices && this.state.choices[0] && this.state.choices.length === 1
-            && _.deburr(newText).toLowerCase() == _.deburr(this.state.choices[0].text).toLowerCase()) {
-            this.changeSelectedChoice(this.state.choices[0]);
-            this.props.dataSource.select(this.state.choices[0]);
-            this.autoCompleteState.setFocusOn(0, this.state.choices[0].value, 0);
-        }
-    };
-    /**
-     * change la valeur courrante
-     * @param value
-     * @returns {this}
-     */
-    AutoCompleteField.prototype.setCurrentValue = function (value) {
-        _super.prototype.setCurrentValue.call(this, value);
-        this.setState({ listDefaultValue: value });
-        return this;
-    };
-    /**
-     * Déclenche le chargement des éléments correspondant au texte saisi
-     * @param newText texte saisi
-     */
-    AutoCompleteField.prototype.triggerAction = function (newText) {
-        this.setIsApiLoading(true);
-        this.props.dataSource.fetch(true, newText, true);
-    };
-    /**
-     * Controle la longeur du text saisie avant de déclancher la recherche
-     * @param cnt : boolean
-     */
-    AutoCompleteField.prototype.isMaxElementNumberReached = function (cnt) {
-        return this.state.maxElements && cnt >= this.state.maxElements;
-    };
-    /**
-     * Charge la liste de choix dans le composant
-     */
-    AutoCompleteField.prototype.prepareChoices = function (display) {
-        var _this = this;
-        if (display === void 0) { display = true; }
-        var newChoices = [];
-        var cnt = 0;
-        if (this.state.choices) {
-            this.state.choices.map(function (choice) {
-                if (_this.findText(choice, _this.getCurrentText().toLowerCase()) && !_this.isMaxElementNumberReached(cnt)) {
-                    newChoices.push(choice);
-                    cnt++;
-                }
-            });
-        }
-        // mets a jour la liste des choix
-        this.setChoices(newChoices, function () {
-            if (newChoices.length > 0 && display) {
-                //si il n'y a plus qu'un choix on le valide
-                _this.changeSelectedChoiceWhenOneChoice(_this.getCurrentText());
-                _this.showChoices();
-            }
-            else {
-                _this.hiddenInput.value = "";
-                _this.props.dataSource.select(null);
-                _this.showChoices();
-            }
-        });
-    };
-    /**
-     * Fonction déclenchée une fois les éléments de choix obtenus par la fonction choicesLoader
-     * @param resultItems éléments obtenus. ceux-ci doivent contenir une propr
-     */
-    AutoCompleteField.prototype.choicesLoaderCallback = function (resultItems) {
-        this.setIsApiLoading(false);
-        this.setChoices(resultItems);
-    };
-    /**
-     * test si le choix choice commence par current
-     * @param choice
-     * @param current
-     * @returns {boolean}
-     */
-    AutoCompleteField.prototype.startsWithText = function (choice, current) {
-        var choiceText = choice ? choice["text"] ? choice["text"].toLowerCase() : null : null;
-        return _.startsWith(choiceText, current);
-    };
-    /**
-     * teste si le texte current est contenu dans le choix choice
-     * @param choice
-     * @param current
-     * @returns {boolean}
-     */
-    AutoCompleteField.prototype.indexOfText = function (choice, current) {
-        var choiceText = choice ? choice["text"] ? choice["text"].toLowerCase() : null : null;
-        if (choiceText && (choiceText.indexOf(current) >= 0)) {
-            return true;
-        }
-        return false;
-    };
-    /**
-     * indique si le texte current se trouve dans le choix
-     * @param choice
-     * @param current
-     * @returns {boolean}
-     */
-    AutoCompleteField.prototype.findText = function (choice, current) {
-        if (typeof this.props.filterText == "function") {
-            return this.props.filterText(choice, current);
-        }
-        else if (this.props.filterText == FilterTextType.beginWith) {
-            return this.startsWithText(choice, current);
-        }
-        else if (this.props.filterText == FilterTextType.indexOf) {
-            return this.indexOfText(choice, current);
-        }
-        return false;
-    };
-    /**
-     * Fonction appelée lorsque l'utilisateur a choisi un élément de la liste de choix.
-     * @param choice élément sélectionné
-     */
-    AutoCompleteField.prototype.changeSelectedChoice = function (choice) {
-        if (this.refs.selector) {
-            this.refs.selector.setCurrentTypedText("");
-        }
-        this.textInput.value = choice ? choice.text : "";
-        this.hiddenInput.value = choice ? choice.value : "";
-    };
-    /**
-     * Recupere l'index de l'element selectionné
-     * @param choice
-     */
-    AutoCompleteField.prototype.selectedChoice = function (choice) {
-        var indexSelected = null;
-        if (this.state.choices) {
-            this.state.choices.map(function (item, index) {
-                if (item.value == choice) {
-                    indexSelected = index;
-                }
-            });
-            this.setCurrentValue(choice);
-        }
-    };
-    /**
-     * Fonction appelée lorsque l'utilisateur clique sur un item de la liste des valeurs possibles
-     * @param event
-     */
-    AutoCompleteField.prototype.onListWidgetSelected = function (event, choice) {
-        if (choice) {
-            logger.trace("Selection click [", choice.value, "]:", choice.text);
-            var index = _.findIndex(this.state.choices, choice);
-            this.state.selectedIndex = index;
-            this.autoCompleteState.choiceFocused = index;
-            this.changeSelectedChoice(choice);
-            this.hiddenInput.value = choice.value;
-            this.selectedChoice(choice.value);
-            this.props.dataSource.select(choice);
-        }
-        this.state.onListWidgetSelected = true;
-        this.hideChoices();
-    };
-    /**
-     * Retourne true si le texte indiqué correspond aux critères de taille minimale
-     * @param text
-     * @returns {boolean}
-     * @protected
-     */
-    AutoCompleteField.prototype.isValidText = function (text) {
-        return (text != null && text.length >= this.state.minValueLength);
-    };
-    /**
-     * Navigue au sein de la liste de choix
-     * @param delta {number} indique de combien d'éléments on doit se déplacer par rapport à l'élément actuellement sélectionné
-     * @protected
-     */
-    AutoCompleteField.prototype.navigateInChoices = function (delta) {
-        var _this = this;
-        var newIndex = this.state.selectedIndex === null ? (delta === 1 ? 0 : delta) : this.state.selectedIndex + delta;
-        var choicesLength = this.state.choices ? this.state.choices.length : 0;
-        if (newIndex < 0) {
-            //On va à la fin
-            newIndex = choicesLength - 1;
-        }
-        else if (newIndex >= choicesLength) {
-            //On retourne au début
-            newIndex = 0;
-        }
-        // on valide le choix sur lequel on est
-        this.setState({ selectedIndex: newIndex }, function () {
-            _this.selectCurrentIndex();
-            if (!_this.state.shouldShowChoices) {
-                var selection = (_this.state.choices[_this.state.selectedIndex]);
-                if (selection != null) {
-                    _this.changeSelectedChoice(selection);
-                    _this.setCurrentValue(selection.value);
-                }
-            }
-            _this.autoCompleteState.setFocusOn(_this.state.selectedIndex, _this.hiddenInput.value, newIndex);
-        });
-        // On s'assure de l'affichage de la liste déroulante
-        if (this.state.shouldShowChoices) {
-            this.showChoices();
-        }
-    };
-    /**
-     * Selectionne l'élement actuellement en surbrillance dans la liste de choix
-     * @return boolean si une sélection a effectivement eu lieu
-     * @protected
-     */
-    AutoCompleteField.prototype.selectCurrentIndex = function () {
-        var selection = (this.state.choices || [])[this.state.selectedIndex];
-        if (selection != null) {
-            this.changeSelectedChoice(selection);
-            return true;
-        }
-        return false;
-    };
-    /**
-     * Demande l'affichage du composant de choix
-     * @public
-     */
-    AutoCompleteField.prototype.showChoices = function () {
-        if (this.state.shouldShowChoices !== true && this.state.focused) {
-            if (this.isValidText(this.textInput.value) || this.textInput.value.length == 0 || !this.props.writable) {
-                this.setState({ shouldShowChoices: true });
-            }
-        }
-    };
-    /**
-     * Demande le masquage du composant de choix
-     * @public
-     */
-    AutoCompleteField.prototype.hideChoices = function () {
-        if (this.state.shouldShowChoices !== false) {
-            this.setState({ shouldShowChoices: false });
-        }
-    };
-    /**
-     * @return {boolean} true si le composant de liste doit s'afficher
-     * @protected
-     */
-    AutoCompleteField.prototype.shouldShowChoices = function () {
-        return this.state.shouldShowChoices === true;
-    };
-    /**
-     * @return {string} le nom du champ caché contenant la valeur
-     */
-    AutoCompleteField.prototype.getValueFieldName = function () {
-        return this.state.name + "." + this.state.valueKey;
-    };
-    /**
-     * @return {string} le nom du champ de saisie libre
-     */
-    AutoCompleteField.prototype.getFreeTypingFieldName = function () {
-        return this.state.name + "." + this.state.labelKey;
-    };
-    /**
-     * Surcharge le rendu des erreurs de validation : le nom du champ à mettre en évidence est le champ de saisie libre
-     * @override
-     */
-    AutoCompleteField.prototype.renderErrors = function () {
-        var fieldErrorProps = {
-            errors: this.state.errors,
-            fieldName: this.getFreeTypingFieldName()
-        };
-        var basicFieldErrorProps = {
-            errors: this.state.errors,
-            fieldName: this.state.name
-        };
-        var Error = this.state.errorComponent;
-        return (React.createElement("div", null,
-            React.createElement(Error, tslib_1.__assign({}, fieldErrorProps)),
-            React.createElement(Error, tslib_1.__assign({}, basicFieldErrorProps))));
-    };
-    /**
-     * On enregistre également le champ contenant la valeur dans la classe parente DomAdapter, ce qui fait les liens
-     entre le formulaire, le champ HTML et le composant React.
-     * @param hiddenInput
-     */
-    AutoCompleteField.prototype.registerHiddenInput = function (hiddenInput) {
-        this.hiddenInput = hiddenInput;
-        this.registerHtmlElement(hiddenInput);
-    };
-    /**
-     *  Conserve la valeur du champs saisie
-     * @param textInput
-     */
-    AutoCompleteField.prototype.registerTextInput = function (textInput) {
-        this.textInput = textInput;
-    };
-    /** on mets le focus sur l'input */
-    AutoCompleteField.prototype.setFocus = function () {
-        this.state.focused = true;
-        this.textInput.focus();
-        return this;
-    };
-    /**
-     * teste si le composant a des erreurs
-     * @override
-     */
-    AutoCompleteField.prototype.hasErrors = function () {
-        var fieldErrors = null;
-        if (this.state.errors) {
-            fieldErrors = this.state.errors.filter(function (error) {
-                var name = this.state.name + "." + this.state.labelKey;
-                return (error.field == name || error.field == this.state.name);
-            }, this);
-        }
-        if (fieldErrors && (fieldErrors.length > 0)) {
-            return true;
-        }
-        return false;
-    };
-    AutoCompleteField.defaultProps = _.assign({
-        minValueLength: 1,
-        readOnly: false,
-        disabled: false,
-        delay: 1000,
-        valueKey: "value",
-        labelKey: "text",
-        maxHeight: null,
-        writable: true,
-        filterText: FilterTextType.indexOf
-    }, abstract_field_1.AbstractField.defaultProps);
-    return AutoCompleteField;
-}(abstract_field_datasource_1.AbstractFieldDatasource));
-exports.AutoCompleteField = AutoCompleteField;
-
-
-
-/***/ }),
-/* 298 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * Ce logiciel est un programme informatique servant à faciliter la création
- * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
- * <p/>
- * Ce logiciel est régi par la licence CeCILL soumise au droit français et
- * respectant les principes de diffusion des logiciels libres. Vous pouvez
- * utiliser, modifier et/ou redistribuer ce programme sous les conditions
- * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
- * sur le site "http://www.cecill.info".
- * <p/>
- * En contrepartie de l'accessibilité au code source et des droits de copie,
- * de modification et de redistribution accordés par cette licence, il n'est
- * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
- * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
- * titulaire des droits patrimoniaux et les concédants successifs.
- * <p/>
- * A cet égard  l'attention de l'utilisateur est attirée sur les risques
- * associés au chargement,  à l'utilisation,  à la modification et/ou au
- * développement et à la reproduction du logiciel par l'utilisateur étant
- * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
- * manipuler et qui le réserve donc à des développeurs et des professionnels
- * avertis possédant  des  connaissances  informatiques approfondies.  Les
- * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
- * logiciel à leurs besoins dans des conditions permettant d'assurer la
- * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
- * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
- * <p/>
- * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
- * pris connaissance de la licence CeCILL, et que vous en avez accepté les
- * termes.
- * <p/>
- * <p/>
- * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * This software is a computer program whose purpose is to facilitate creation of
- * web application in accordance with french general repositories : RGI, RGS and RGAA.
- * <p/>
- * This software is governed by the CeCILL license under French law and
- * abiding by the rules of distribution of free software.  You can  use,
- * modify and/ or redistribute the software under the terms of the CeCILL
- * license as circulated by CEA, CNRS and INRIA at the following URL
- * "http://www.cecill.info".
- * <p/>
- * As a counterpart to the access to the source code and  rights to copy,
- * modify and redistribute granted by the license, users are provided only
- * with a limited warranty  and the software's author,  the holder of the
- * economic rights,  and the successive licensors  have only  limited
- * liability.
- * <p/>
- * In this respect, the user's attention is drawn to the risks associated
- * with loading,  using,  modifying and/or developing or reproducing the
- * software by the user in light of its specific status of free software,
- * that may mean  that it is complicated to manipulate,  and  that  also
- * therefore means  that it is reserved for developers  and  experienced
- * professionals having in-depth computer knowledge. Users are therefore
- * encouraged to load and test the software's suitability as regards their
- * requirements in conditions enabling the security of their systems and/or
- * data to be ensured and,  more generally, to use and operate it in the
- * same conditions as regards security.
- * <p/>
- * The fact that you are presently reading this means that you have had
- * knowledge of the CeCILL license and that you accept its terms.
- *
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(1);
-/**
- * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
- *
- * @author MEAE - Ministère de l'Europe et des Affaires étrangères
- * @version v5.1.1
- * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
- * @license CECILL-2.1
- */
 var events = __webpack_require__(27);
 var AutoCompleteState = /** @class */ (function (_super) {
     tslib_1.__extends(AutoCompleteState, _super);
@@ -3757,7 +2808,7 @@ exports.AutoCompleteState = AutoCompleteState;
 
 
 /***/ }),
-/* 299 */
+/* 298 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3844,13 +2895,13 @@ var tslib_1 = __webpack_require__(1);
  */
 var events = __webpack_require__(27);
 var _ = __webpack_require__(6);
-var promise_api_1 = __webpack_require__(48);
+var promise_api_1 = __webpack_require__(49);
 var technical_error_1 = __webpack_require__(13);
 var codes_error_1 = __webpack_require__(97);
-var object_utils_1 = __webpack_require__(300);
-var datasource_option_1 = __webpack_require__(337);
-var datasource_config_1 = __webpack_require__(339);
-var datasource_config_page_1 = __webpack_require__(340);
+var object_utils_1 = __webpack_require__(299);
+var datasource_option_1 = __webpack_require__(338);
+var datasource_config_1 = __webpack_require__(340);
+var datasource_config_page_1 = __webpack_require__(341);
 var DataSourceStatus;
 (function (DataSourceStatus) {
     DataSourceStatus[DataSourceStatus["Dummy"] = 0] = "Dummy";
@@ -4552,7 +3603,7 @@ exports.DataSource = DataSource;
 
 
 /***/ }),
-/* 300 */
+/* 299 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4677,7 +3728,7 @@ exports.ObjectUtils = ObjectUtils;
 
 
 /***/ }),
-/* 301 */
+/* 300 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4765,7 +3816,7 @@ var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var abstract_field_1 = __webpack_require__(253);
-var spinner_component_input_1 = __webpack_require__(341);
+var spinner_component_input_1 = __webpack_require__(342);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.form.abstract-field-datasource");
 /**
  * Représente un champ de formulaire qui possède un datasource
@@ -4876,7 +3927,7 @@ exports.AbstractFieldDatasource = AbstractFieldDatasource;
 
 
 /***/ }),
-/* 302 */
+/* 301 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4892,7 +3943,7 @@ function SchemaObject(obj) {
 
 
 /***/ }),
-/* 303 */
+/* 302 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4958,7 +4009,7 @@ module.exports = function (data, opts) {
 
 
 /***/ }),
-/* 304 */
+/* 303 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5410,7 +4461,7 @@ module.exports = function generate_validate(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 305 */
+/* 304 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5566,7 +4617,7 @@ module.exports = function generate__limit(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 306 */
+/* 305 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5649,7 +4700,7 @@ module.exports = function generate__limitItems(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 307 */
+/* 306 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5737,7 +4788,7 @@ module.exports = function generate__limitLength(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 308 */
+/* 307 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5820,7 +4871,7 @@ module.exports = function generate__limitProperties(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 309 */
+/* 308 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5840,7 +4891,7 @@ module.exports = function (minMax) {
   return function defFunc(ajv) {
     defFunc.definition = {
       type: 'string',
-      inline: __webpack_require__(389),
+      inline: __webpack_require__(390),
       statements: true,
       errors: 'full',
       metaSchema: {
@@ -5914,6 +4965,220 @@ function compareDateTime(dt1, dt2) {
   if (res === undefined) return;
   return res || compareTime(dt1[1], dt2[1]);
 }
+
+
+/***/ }),
+/* 309 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * Ce logiciel est un programme informatique servant à faciliter la création
+ * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
+ * <p/>
+ * Ce logiciel est régi par la licence CeCILL soumise au droit français et
+ * respectant les principes de diffusion des logiciels libres. Vous pouvez
+ * utiliser, modifier et/ou redistribuer ce programme sous les conditions
+ * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
+ * sur le site "http://www.cecill.info".
+ * <p/>
+ * En contrepartie de l'accessibilité au code source et des droits de copie,
+ * de modification et de redistribution accordés par cette licence, il n'est
+ * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
+ * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
+ * titulaire des droits patrimoniaux et les concédants successifs.
+ * <p/>
+ * A cet égard  l'attention de l'utilisateur est attirée sur les risques
+ * associés au chargement,  à l'utilisation,  à la modification et/ou au
+ * développement et à la reproduction du logiciel par l'utilisateur étant
+ * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
+ * manipuler et qui le réserve donc à des développeurs et des professionnels
+ * avertis possédant  des  connaissances  informatiques approfondies.  Les
+ * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
+ * logiciel à leurs besoins dans des conditions permettant d'assurer la
+ * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
+ * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
+ * <p/>
+ * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
+ * pris connaissance de la licence CeCILL, et que vous en avez accepté les
+ * termes.
+ * <p/>
+ * <p/>
+ * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * This software is a computer program whose purpose is to facilitate creation of
+ * web application in accordance with french general repositories : RGI, RGS and RGAA.
+ * <p/>
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software.  You can  use,
+ * modify and/ or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ * <p/>
+ * As a counterpart to the access to the source code and  rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty  and the software's author,  the holder of the
+ * economic rights,  and the successive licensors  have only  limited
+ * liability.
+ * <p/>
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading,  using,  modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean  that it is complicated to manipulate,  and  that  also
+ * therefore means  that it is reserved for developers  and  experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and,  more generally, to use and operate it in the
+ * same conditions as regards security.
+ * <p/>
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(1);
+/**
+ * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
+ *
+ * @author MEAE - Ministère de l'Europe et des Affaires étrangères
+ * @version v5.1.1
+ * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
+ * @license CECILL-2.1
+ */
+var React = __webpack_require__(2);
+var abstract_field_datasource_1 = __webpack_require__(300);
+var _ = __webpack_require__(6);
+var object_utils_1 = __webpack_require__(299);
+/**
+ * Composant liste déroulante
+ */
+var SelectField = /** @class */ (function (_super) {
+    tslib_1.__extends(SelectField, _super);
+    function SelectField(props, context) {
+        var _this = _super.call(this, props, context) || this;
+        if (_this.state.dataSource && _this.state.data) {
+            throw new Error("Le SelectField " + _this.state.name + " possède une props dataSource et une props data");
+        }
+        return _this;
+    }
+    /**
+     * Génère le rendu spécifique du champ : une liste déroulante dont les éléments correspondent au tableau dataSource
+     * @returns {any}
+     */
+    SelectField.prototype.renderWidget = function () {
+        var _this = this;
+        var hasError = this.hasErrors() ? " has-error" : "";
+        var htmlProps = this.getHtmlProps();
+        _.assign(htmlProps, { "className": htmlProps["className"] ? htmlProps["className"] + " selectfield" + hasError : " selectfield" + hasError, value: this.state.currentValue });
+        var hasData = this.state.data && this.state.data.length > 0;
+        var hasDataSource = this.state.dataSource && this.state.dataSource.results && this.state.dataSource.results.length > 0;
+        if (this.state.currentValue == undefined) {
+            if (hasDataSource && this.state.items && Array.isArray(this.state.items)) {
+                htmlProps.value = this.state.items[0][this.state.valueKey];
+            }
+            else if (hasData) {
+                htmlProps.value = this.state.data[0][this.state.valueKey];
+            }
+        }
+        return (React.createElement("select", tslib_1.__assign({ onChange: function (e) { _this.handleChange(e); }, ref: function (elt) { return _this.registerHtmlElement(elt); } }, htmlProps),
+            hasDataSource ? this.renderOptionsDataSource() : null,
+            hasData ? this.state.data.map(this.renderOption) : null));
+    };
+    // Setters
+    SelectField.prototype.setData = function (data, cb) {
+        this.setState({ data: data }, cb);
+        return this;
+    };
+    SelectField.prototype.setValueKey = function (key, cb) {
+        this.setState({ valueKey: key }, cb);
+        return this;
+    };
+    SelectField.prototype.setLabelKey = function (key, cb) {
+        this.setState({ labelKey: key }, cb);
+        return this;
+    };
+    /**
+     * Override
+     * @param state
+     */
+    SelectField.prototype.processHtmlProps = function (state) {
+        _super.prototype.processHtmlProps.call(this, state);
+        if (state.readOnly === true) {
+            state.disabled = true;
+        }
+    };
+    /**
+     * Génère le rendu du selectField à partir d'un dataSource
+     * @returns {any}
+     */
+    SelectField.prototype.renderOptionsDataSource = function () {
+        if (this.state.items && this.state.items.length > 0) {
+            return this.state.items.map(this.renderOption);
+        }
+    };
+    /**
+     * Génère le rendu d'un radio bouton et son libellé
+     * @param choice choix sélectionnable
+     * @returns {any}
+     */
+    SelectField.prototype.renderOption = function (choice) {
+        var _value = object_utils_1.ObjectUtils.getSubObject(choice, this.state.valueKey);
+        var _label = object_utils_1.ObjectUtils.getSubObject(choice, this.state.labelKey);
+        var value = (_value != null && _value.toString) ? _value.toString() : "";
+        var label = (_label != null && _label.toString) ? _label.toString() : value;
+        var optionsProps = {
+            key: this.state.name + "-" + label + "-" + value,
+            value: value
+        };
+        return React.createElement("option", tslib_1.__assign({}, optionsProps), label);
+    };
+    /**
+     *
+     * @param value
+     */
+    SelectField.prototype.selectItemByValue = function (value) {
+        var hasDataSource = this.state.dataSource && this.state.dataSource.results && this.state.dataSource.results.length > 0;
+        if (hasDataSource) {
+            for (var index = 0; index < this.state.dataSource.results.length; index++) {
+                var element = this.state.dataSource.results[index];
+                if (element[this.state.valueKey] == value) {
+                    this.state.dataSource.select(element);
+                    break;
+                }
+            }
+        }
+    };
+    /**
+     * @override
+     */
+    SelectField.prototype.setCurrentValue = function (value) {
+        _super.prototype.setCurrentValue.call(this, value);
+        this.selectItemByValue(value);
+        return this;
+    };
+    /**
+     * @override
+     */
+    SelectField.prototype.handleChange = function (e) {
+        this.setCurrentValue(e.target.value);
+    };
+    SelectField.defaultProps = _.assign(_.cloneDeep(abstract_field_datasource_1.AbstractFieldDatasource.defaultProps), {
+        labelClass: "blocLabelUp",
+        valueKey: "value",
+        labelKey: "label"
+    });
+    return SelectField;
+}(abstract_field_datasource_1.AbstractFieldDatasource));
+exports.SelectField = SelectField;
+
 
 
 /***/ }),
@@ -6579,7 +5844,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
-var hornet_page_1 = __webpack_require__(50);
+var hornet_page_1 = __webpack_require__(51);
 var form_1 = __webpack_require__(328);
 var row_1 = __webpack_require__(397);
 var input_field_1 = __webpack_require__(312);
@@ -6587,14 +5852,16 @@ var calendar_field_1 = __webpack_require__(398);
 var button_1 = __webpack_require__(458);
 var buttons_area_1 = __webpack_require__(310);
 var upload_file_field_1 = __webpack_require__(296);
-var auto_complete_field_1 = __webpack_require__(297);
-var datasource_1 = __webpack_require__(299);
+var datasource_1 = __webpack_require__(298);
+var notification_1 = __webpack_require__(48);
+var schema = __webpack_require__(459);
+var select_field_1 = __webpack_require__(309);
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.admin.gen-formulaire-page");
 var FormulairePage = /** @class */ (function (_super) {
     tslib_1.__extends(FormulairePage, _super);
     function FormulairePage(props, context) {
         var _this = _super.call(this, props, context) || this;
-        _this.prefectures = new datasource_1.DataSource(null, { "value": "idPrefecture", "text": "prefecture" });
+        _this.prefectures = new datasource_1.DataSource(null, { "value": "idPrefecture", "label": "prefecture" });
         return _this;
     }
     FormulairePage.prototype.prepareClient = function () {
@@ -6605,37 +5872,43 @@ var FormulairePage = /** @class */ (function (_super) {
     };
     FormulairePage.prototype.onSubmit = function (data) {
         this.getService().insererDonnee(data).then(function (result) {
-            if (result.hasError != null) {
-                console.log(result.hasError);
+            if (result.hasError != null || result.hasReason != null) {
+                console.log(result["hasError"]);
+                console.log(result["hasReason"]);
+            }
+            else {
+                console.log(result);
             }
         }).catch(function (reason) {
             throw new Error(reason);
         });
     };
     FormulairePage.prototype.render = function () {
+        var format = this.i18n("form1");
         return (React.createElement("div", null,
-            React.createElement("h2", null, "Formulaire 1"),
-            React.createElement(form_1.Form, { id: "form1", onSubmit: this.onSubmit },
+            React.createElement("h2", null, "Formulaire d'entr\u00E9e d'une demande d'authentification"),
+            React.createElement(notification_1.Notification, { id: "notif" }),
+            React.createElement(form_1.Form, { id: "form1", schema: schema, onSubmit: this.onSubmit, formMessages: format },
                 React.createElement(row_1.Row, null,
-                    React.createElement(input_field_1.InputField, { name: "nom", label: "Nom", required: true })),
+                    React.createElement(input_field_1.InputField, { name: "nom", label: format.fields.nom.label, required: true })),
                 React.createElement(row_1.Row, null,
-                    React.createElement(input_field_1.InputField, { name: "prenom", label: "Prenom", required: true })),
+                    React.createElement(input_field_1.InputField, { name: "prenom", label: format.fields.prenom.label, required: true })),
                 React.createElement(row_1.Row, null,
-                    React.createElement(calendar_field_1.CalendarField, { name: "date_de_naissance", label: "Date de naissance", title: "Calendrier", required: true })),
+                    React.createElement(calendar_field_1.CalendarField, { name: "date_de_naissance", label: format.fields.date_de_naissance.label, title: format.fields.date_de_naissance.title, required: true })),
                 React.createElement(row_1.Row, null,
-                    React.createElement(input_field_1.InputField, { name: "pays_de_naissance", label: "Pays de Naissance", required: true })),
+                    React.createElement(input_field_1.InputField, { name: "pays_de_naissance", label: format.fields.pays_de_naissance.label, required: true })),
                 React.createElement(row_1.Row, null,
-                    React.createElement(input_field_1.InputField, { name: "ville_de_naissance", label: "Ville de Naissance", required: true })),
+                    React.createElement(input_field_1.InputField, { name: "ville_de_naissance", label: format.fields.ville_de_naissance.label, required: true })),
                 React.createElement(row_1.Row, null,
-                    React.createElement(input_field_1.InputField, { name: "num_permis", label: "Numero de permis", required: true })),
+                    React.createElement(input_field_1.InputField, { name: "num_permis", label: format.fields.num_permis.label, required: true })),
                 React.createElement(row_1.Row, null,
-                    React.createElement(upload_file_field_1.UploadFileField, { name: "copie_permis", label: "Photocopie du permis de conduire", buttonLabel: "Choisir un fichier", fileSelectedLabel: "Fichier choisi" })),
+                    React.createElement(upload_file_field_1.UploadFileField, { name: "copie_permis", label: format.fields.copie_permis.label, buttonLabel: format.fields.copie_permis.buttonLabel, fileSelectedLabel: format.fields.copie_permis.fileSelectedLabel, required: true })),
                 React.createElement(row_1.Row, null,
-                    React.createElement(calendar_field_1.CalendarField, { name: "date_de_delivrance", label: "Date de d\u00E9livrance", title: "Calendrier", required: true })),
+                    React.createElement(calendar_field_1.CalendarField, { name: "date_de_delivrance", label: format.fields.date_de_delivrance.label, title: format.fields.date_de_delivrance.title, required: true })),
                 React.createElement(row_1.Row, null,
-                    React.createElement(auto_complete_field_1.AutoCompleteField, { dataSource: this.prefectures, name: "id_prefecture", label: "Prefecture de delivrance", required: true })),
+                    React.createElement(select_field_1.SelectField, { dataSource: this.prefectures, label: format.fields.id_prefecture.label, name: "id_prefecture", required: true })),
                 React.createElement(row_1.Row, null,
-                    React.createElement(upload_file_field_1.UploadFileField, { name: "copie_note_verbale_maeci", label: "Photocopie de la note verbale du MAECI", buttonLabel: "Choisir un fichier", fileSelectedLabel: "Fichier choisi" })),
+                    React.createElement(upload_file_field_1.UploadFileField, { name: "copie_note_verbale_maeci", label: format.fields.copie_note_verbale_maeci.label, buttonLabel: format.fields.copie_note_verbale_maeci.buttonLabel, fileSelectedLabel: format.fields.copie_note_verbale_maeci.fileSelectedLabel, required: true })),
                 React.createElement(buttons_area_1.ButtonsArea, null,
                     React.createElement(button_1.Button, { type: "submit", value: "Valider", className: "hornet-button", label: "valider", title: "valider" })))));
     };
@@ -6733,19 +6006,19 @@ var tslib_1 = __webpack_require__(1);
  */
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
-var notification_1 = __webpack_require__(51);
+var notification_1 = __webpack_require__(48);
 var abstract_field_1 = __webpack_require__(253);
 var abstract_form_1 = __webpack_require__(333);
 var upload_file_field_1 = __webpack_require__(296);
 var form_utils_1 = __webpack_require__(295);
 var dom_adapter_1 = __webpack_require__(294);
-var auto_complete_field_1 = __webpack_require__(297);
+var auto_complete_field_1 = __webpack_require__(334);
 var notification_manager_1 = __webpack_require__(96);
-var checkbox_field_1 = __webpack_require__(342);
-var data_validator_1 = __webpack_require__(343);
+var checkbox_field_1 = __webpack_require__(343);
+var data_validator_1 = __webpack_require__(344);
 var classNames = __webpack_require__(9);
 var _ = __webpack_require__(6);
-var select_field_1 = __webpack_require__(396);
+var select_field_1 = __webpack_require__(309);
 var buttons_area_1 = __webpack_require__(310);
 var event_1 = __webpack_require__(311);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.form.form");
@@ -8330,11 +7603,960 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var hornet_js_utils_1 = __webpack_require__(0);
+var React = __webpack_require__(2);
+var abstract_field_1 = __webpack_require__(253);
+var auto_complete_selector_1 = __webpack_require__(335);
+var _ = __webpack_require__(6);
+var key_codes_1 = __webpack_require__(10);
+var auto_complete_state_1 = __webpack_require__(297);
+var datasource_master_1 = __webpack_require__(337);
+var abstract_field_datasource_1 = __webpack_require__(300);
+var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.form.auto-complete-field");
+var FilterTextType;
+(function (FilterTextType) {
+    FilterTextType[FilterTextType["beginWith"] = 1] = "beginWith";
+    FilterTextType[FilterTextType["indexOf"] = 2] = "indexOf";
+})(FilterTextType = exports.FilterTextType || (exports.FilterTextType = {}));
+/**
+ * Composant d'auto-complétion.
+ * Les fonctions getCurrentValue et setCurrentValue s'appuient sur le champ caché contenant la valeur sélectionnée.
+ */
+var AutoCompleteField = /** @class */ (function (_super) {
+    tslib_1.__extends(AutoCompleteField, _super);
+    function AutoCompleteField(props, context) {
+        var _this = _super.call(this, props, context) || this;
+        var ariaSelectorId = props.name + "_select";
+        //liste des choix possibles
+        _this.state.choices = [];
+        //item sélectionné
+        _this.state.selectedIndex = null;
+        //indique si la liste des choix est visible ou non
+        _this.state.shouldShowChoices = false;
+        //identifiant du selector
+        _this.state.ariaSelectorId = ariaSelectorId;
+        //loader
+        _this.state.isApiLoading = false;
+        if (_this.props.dataSource.results) {
+            //liste de tous les choix (non filtré par le texte)
+            _this.state.allChoices = _this.props.dataSource.results;
+        }
+        _this.autoCompleteState = new auto_complete_state_1.AutoCompleteState();
+        return _this;
+    }
+    /**
+     * Setter indiquant que l'API est en cours d'exécution
+     * @param value valeur à utiliser
+     * @param callback fonction de callback éventuelle
+     * @returns {AutoComplete}
+     */
+    AutoCompleteField.prototype.setIsApiLoading = function (value, callback) {
+        this.setState({ isApiLoading: value }, callback);
+        return this;
+    };
+    /**
+     * Setter des choix du composant
+     * @param value tableau de choix
+     * @param callback fonction de callback éventuelle
+     * @returns {AutoComplete}
+     */
+    AutoCompleteField.prototype.setChoices = function (value, callback) {
+        this.setState({ choices: value }, callback);
+        return this;
+    };
+    /**
+     * @inheritDoc
+     */
+    AutoCompleteField.prototype.componentDidMount = function () {
+        if (!hornet_js_utils_1.Utils.isServer) {
+            if (!_.isUndefined(this.props["var"])) {
+                logger.warn("The var props is only available in DEV");
+            }
+        }
+        this.mounted = true;
+        logger.trace("auto-complete componentDidMount");
+        this._throttledTriggerAction = _.throttle(this.triggerAction, this.state.delay);
+        this.props.dataSource.on("fetch", this.fetchEventCallback);
+        this.props.dataSource.on("add", this.addEventCallback);
+        this.props.dataSource.on("delete", this.setResultCallback);
+        this.props.dataSource.on("sort", this.setResultCallback);
+        this.props.dataSource.on("filter", this.filterEventCallback);
+        this.props.dataSource.on("init", this.initEventCallback);
+        this.props.dataSource.on("loadingData", this.displaySpinner);
+    };
+    /**
+     * @inheritDoc
+     */
+    AutoCompleteField.prototype.componentWillUnmount = function () {
+        _super.prototype.componentWillUnmount.call(this);
+        this.mounted = false;
+        this.props.dataSource.removeListener("fetch", this.fetchEventCallback);
+        this.props.dataSource.removeListener("add", this.addEventCallback);
+        this.props.dataSource.removeListener("filter", this.filterEventCallback);
+        this.props.dataSource.removeListener("init", this.initEventCallback);
+        this.props.dataSource.removeListener("delete", this.setResultCallback);
+        this.props.dataSource.removeListener("sort", this.setResultCallback);
+        this.props.dataSource.removeListener("loadingData", this.displaySpinner);
+    };
+    /**
+     * @inheritDoc
+     */
+    AutoCompleteField.prototype.componentWillUpdate = function (nextProps, nextState, nextContext) {
+        _super.prototype.componentWillUpdate.call(this, nextProps, nextState, nextContext);
+        if (this.state.delay != nextState.delay) {
+            /* Le délai d'appel de l'action a changé : on doit donc refaire ici l'encaspulation avec _.throttle */
+            this._throttledTriggerAction = _.throttle(this.triggerAction, nextState.delay);
+        }
+    };
+    /**
+     * @inheritDoc
+     */
+    AutoCompleteField.prototype.shouldComponentUpdate = function (nextProps, nextState, nextContext) {
+        if (this.state.shouldShowChoices != nextState.shouldShowChoices
+            || this.state.listDefaultValue !== nextState.listDefaultValue
+            || ((nextState.choices && !this.state.choices)
+                || (!nextState.choices && this.state.choices)
+                || (nextState.choices && this.state.choices.length != nextState.choices.length))
+            || !_.isEqual(nextState.choices, this.state.choices)
+            || (this.state.errors != nextState.errors)
+            || (this.state.readOnly != nextState.readOnly)
+            || (this.state.disabled != nextState.disabled)) {
+            return true;
+        }
+        return false;
+    };
+    /**
+     * Génère le rendu spécifique du champ
+     * @returns {any}
+     */
+    AutoCompleteField.prototype.renderWidget = function () {
+        logger.trace("auto-complete  render");
+        var shouldShow = this.shouldShowChoices();
+        var hasError = this.hasErrors() ? " has-error" : "";
+        var className = " autocomplete-content" + hasError;
+        if (this.state.className) {
+            className += " " + this.state.className;
+        }
+        var htmlProps = this.getHtmlProps();
+        htmlProps = _.assign(htmlProps, {
+            "onKeyDown": this.handleOnKeyDown,
+            "onFocus": this.handleOnFocus,
+            "onBlur": this.handleOnBlur,
+            "onDoubleClick": this.handleOnFocus,
+            "onClick": this.handleOnFocus,
+            "onChange": this.handleChangeTextInput,
+            "autoComplete": "off",
+            "aria-autocomplete": "list",
+            "aria-expanded": shouldShow,
+            "aria-owns": this.state.ariaSelectorId,
+            "aria-activedescendant": shouldShow ? this.state.ariaSelectorId + "_" + this.state.selectedIndex : undefined,
+            "id": this.state.id ? this.state.id : this.getFreeTypingFieldName(),
+            "type": "text",
+            "name": this.getFreeTypingFieldName(),
+            "className": className
+        });
+        /* Le champ caché contient l'identifiant de l'élément sélectionné. C'est cet identifiant qui est ensuite
+         utilisé par les actions. */
+        return (React.createElement("div", { className: "autocomplete-container" },
+            React.createElement("input", { type: "hidden", name: this.getValueFieldName(), ref: this.registerHiddenInput }),
+            React.createElement("input", tslib_1.__assign({}, htmlProps, { ref: this.registerTextInput, readOnly: !this.props.writable, "data-writable": this.props.writable })),
+            React.createElement(auto_complete_selector_1.AutoCompleteSelector, { ref: "selector", choices: this.state.choices, onOptionSelected: this.onListWidgetSelected, selectorId: this.state.ariaSelectorId, maxHeight: this.props.maxHeight, showComponent: shouldShow, choicesSelected: this.state.listDefaultValue, autoCompleteState: this.autoCompleteState, disabled: this.state.disabled || this.state.readOnly, noResultLabel: this.state.noResultLabel })));
+    };
+    /**
+     *
+     * @param result
+     */
+    AutoCompleteField.prototype.fetchEventCallback = function (result) {
+        this.choicesLoaderCallback(result);
+        //dans le cas writable, le composant n'a pas besoin de recharger la liste des choix
+        // elle est disponible directement
+        if (this.props.writable) {
+            if (!this.state.onListWidgetSelected) {
+                this.prepareChoices(true);
+            }
+            else {
+                this.prepareChoices(false);
+            }
+        }
+        this.state.onListWidgetSelected = false;
+    };
+    /**
+     * récupération des choix dans le datasource
+     * @param result
+     */
+    AutoCompleteField.prototype.addEventCallback = function (result) {
+        this.setResultCallback(result);
+    };
+    /**
+     * récupération des choix dans le datasource
+     * @param result
+     */
+    AutoCompleteField.prototype.setResultCallback = function (result) {
+        this.state.allChoices = this.props.dataSource.results;
+    };
+    /**
+     * récupération des choix possibles dans le datasource
+     * @param filtered
+     */
+    AutoCompleteField.prototype.filterEventCallback = function (filtered) {
+        this.state.allChoices = filtered;
+        this.choicesLoaderCallback(filtered);
+    };
+    /**
+     * récupération des choix à l'initialisation
+     * @param result
+     */
+    AutoCompleteField.prototype.initEventCallback = function (result) {
+        this.state.allChoices = result;
+    };
+    /**
+     * retourne le texte saisi
+     * @return {any} le texte actuellement saisi dans le champ de saisie libre
+     */
+    AutoCompleteField.prototype.getCurrentText = function () {
+        var text = "";
+        if (this.textInput) {
+            text = this.textInput.value;
+        }
+        return text;
+    };
+    /**
+     * Modifie la valeur du texte présent dans l'input
+     * @param value texte à mettre dans l'input
+     */
+    AutoCompleteField.prototype.setCurrentText = function (value) {
+        this.textInput.value = value;
+    };
+    /**
+     * Réinitialise le champs autocomplete
+     */
+    AutoCompleteField.prototype.resetField = function () {
+        this.resetSelectedValue();
+        this.resetSelectedText();
+        this.state.selectedIndex = -1;
+        return this;
+    };
+    /**
+     * Réinitialise la valeur de l'élément sélectionné contenu dans le champ caché
+     */
+    AutoCompleteField.prototype.resetSelectedValue = function () {
+        if (this.hiddenInput) {
+            this.hiddenInput.value = "";
+        }
+        this.autoCompleteState.choiceFocused = null;
+        this.state.selectedIndex = -1;
+    };
+    /**
+     * Réinitialise la valeur de l'élément sélectionné contenu dans le champ caché
+     */
+    AutoCompleteField.prototype.resetSelectedText = function () {
+        if (this.textInput) {
+            this.textInput.value = "";
+        }
+        if (this.refs.selector) {
+            this.refs.selector.setCurrentTypedText("");
+        }
+    };
+    /**
+     * Fonction appelée lors d'un appui de touche sur le champ de saisie libre
+     * @param e évènement
+     * @protected
+     */
+    AutoCompleteField.prototype.handleOnKeyDown = function (e) {
+        /* L'attribut DOM onKeyDown est éventuellement aussi renseigné sur le composant auto-complete */
+        if (this.state.onKeyDown) {
+            this.state.onKeyDown(event);
+        }
+        var key = e.keyCode;
+        var shouldShow = this.state.shouldShowChoices === true;
+        if (key == key_codes_1.KeyCodes.DOWN_ARROW) {
+            if (e.altKey) {
+                this.autoCompleteState.setFocusOn(this.state.selectedIndex, this.hiddenInput.value, null);
+                this.showChoices();
+            }
+            else {
+                this.navigateInChoices(1);
+                this.isUpdated = true;
+            }
+            e.preventDefault();
+        }
+        else if (key == key_codes_1.KeyCodes.UP_ARROW) {
+            if (e.altKey) {
+                this.hideChoices();
+            }
+            else {
+                this.navigateInChoices(-1);
+                this.isUpdated = true;
+            }
+            e.preventDefault();
+        }
+        else if (key == key_codes_1.KeyCodes.ESCAPE) {
+            //test si une valeur existait
+            if (this.hiddenInput.value) {
+                this.selectedChoice(this.hiddenInput.value);
+                this.selectCurrentIndex();
+            }
+            // On demande le masquage des choix
+            this.hideChoices();
+            e.preventDefault();
+        }
+        else if (key == key_codes_1.KeyCodes.ENTER) {
+            //valide un choix si on est sur un autocomplete simple et writable
+            //ne fait rien sinon (valide le formulaire)
+            if (this.state.shouldShowChoices && this.state.writable) {
+                e.preventDefault();
+                this.validateSelectedValue(shouldShow);
+            }
+        }
+        else if (key == key_codes_1.KeyCodes.SPACEBAR && !this.state.writable) {
+            //valide un choix si on est sur un autocomplete et non writable
+            if (this.state.shouldShowChoices) {
+                e.preventDefault();
+                this.validateSelectedValue(shouldShow);
+            }
+        }
+        else if (key == key_codes_1.KeyCodes.TAB && !e.shiftKey && this.state.shouldShowChoices) {
+            this.tabHandlerForValueChange(e, shouldShow);
+        }
+        else if (key == key_codes_1.KeyCodes.TAB && e.shiftKey) {
+            this.tabHandlerForValueChange(e, shouldShow);
+        }
+        else if (key == key_codes_1.KeyCodes.HOME) {
+            if (shouldShow) {
+                this.state.selectedIndex = null;
+                this.navigateInChoices(1);
+            }
+            else {
+                this.state.selectedIndex = 0;
+                this.selectCurrentIndex();
+                this.hideChoices();
+            }
+            this.isUpdated = true;
+            e.preventDefault();
+        }
+        else if (key == key_codes_1.KeyCodes.END) {
+            if (shouldShow) {
+                this.state.selectedIndex = null;
+                this.navigateInChoices(-1);
+            }
+            else {
+                this.state.selectedIndex = this.state.choices.length - 1;
+                this.selectCurrentIndex();
+                this.hideChoices();
+            }
+            this.isUpdated = true;
+            e.preventDefault();
+        }
+    };
+    /**
+     * gère la tabulation
+     * @param {__React.KeyboardEvent<HTMLElement>} e
+     * @param {boolean} shouldShow
+     * @param {boolean} preventDefault
+     */
+    AutoCompleteField.prototype.tabHandlerForValueChange = function (e, shouldShow) {
+        if (this.isUpdated) {
+            this.validateSelectedValue(shouldShow);
+            this.isUpdated = false;
+        }
+        else {
+            this.selectCurrentIndex();
+            this.hideChoices();
+        }
+    };
+    /**
+     * valide le choix sélectionné
+     * @param shouldShow indique si les résultats doivent être affichés
+     */
+    AutoCompleteField.prototype.validateSelectedValue = function (shouldShow) {
+        var _this = this;
+        if (shouldShow) {
+            // place le selectedIndex sur le choix
+            if (!this.state.selectedIndex) {
+                this.state.choices.map(function (element, index) {
+                    if (element.text == _this.getCurrentText()) {
+                        _this.state.selectedIndex = index;
+                    }
+                });
+            }
+            //choix sélectionné
+            var selection = (this.state.choices[this.state.selectedIndex] || this.state.allChoices[this.state.selectedIndex]);
+            if (selection != null) {
+                this.setCurrentValue(selection.value);
+                this.props.dataSource.select(selection);
+            }
+            else {
+                this.setCurrentValue(undefined);
+                this.props.dataSource.select(undefined);
+            }
+            this.selectCurrentIndex();
+            this.hideChoices();
+        }
+        else {
+            this.showChoices();
+        }
+    };
+    /**
+     * Gestion de l'évènement onFocus pour le champ de saisie libre.
+     * @param event
+     */
+    AutoCompleteField.prototype.handleOnFocus = function (event) {
+        var _this = this;
+        this.typedValueOnFocus = this.getCurrentText();
+        this.state.focused = true;
+        this.showChoices();
+        /* L'attribut DOM onBlur est éventuellement aussi renseigné sur le composant auto-complete */
+        if (this.state.onFocus) {
+            this.state.onFocus(event);
+        }
+        if (this.state.allChoices) {
+            if (this.isValidText(this.typedValueOnFocus) || !this.props.writable) {
+                logger.trace("auto-complete : prise en compte du texte présent au focus : ", this.typedValueOnFocus);
+                if (!this.props.dataSource.status) {
+                    this.props.dataSource.init();
+                }
+                else {
+                    if ((!this.props.writable) || this.state.choices.length == 0 && this.hiddenInput.value) {
+                        this.setChoices(this.state.allChoices, function () {
+                            if (_this.state.allChoices.length > 0) {
+                                var index = _.findIndex(_this.state.allChoices, { text: _this.typedValueOnFocus });
+                                _this.state.selectedIndex = index === undefined ? -1 : index;
+                                _this.showChoices();
+                                _this.changeSelectedChoiceWhenOneChoice(_this.typedValueOnFocus);
+                            }
+                        });
+                    }
+                }
+                //this._throttledTriggerAction(this.typedValueOnFocus);
+                this.changeSelectedChoiceWhenOneChoice(this.typedValueOnFocus);
+            }
+            else {
+                this.setChoices(this.state.allChoices, function () {
+                    if (_this.state.allChoices.length > 0) {
+                        _this.showChoices();
+                        _this.state.selectedIndex = -1;
+                        _this.autoCompleteState.setFocusOn(_this.state.selectedIndex, "", null);
+                    }
+                });
+            }
+        }
+        else {
+            this.showChoices();
+        }
+        if (!this.hiddenInput || this.hiddenInput.value.length == 0 || !this.textInput || this.textInput.value.length == 0) {
+            this.clearFilterData();
+            this.state.selectedIndex = -1;
+            this.autoCompleteState.setFocusOn(this.state.selectedIndex, "", null);
+        }
+        else {
+            this.state.selectedIndex = _.findIndex(this.state.allChoices, { text: this.typedValueOnFocus });
+            this.autoCompleteState.setFocusOn(this.state.selectedIndex, this.hiddenInput.value, null);
+        }
+    };
+    /**
+     * Fonction déclenchée lorsque le champ de saisie libre perd le focus
+     * @param event
+     */
+    AutoCompleteField.prototype.handleOnBlur = function (event) {
+        this.state.focused = false;
+        /* L'attribut DOM onBlur est éventuellement aussi renseigné sur ce composant auto-complete */
+        if (this.state.onBlur) {
+            this.state.onBlur(event);
+        }
+        var currentText = this.getCurrentText();
+        if (this.state.allChoices) {
+            this.state.allChoices.filter(function (choice) {
+                var res = false;
+                if (!choice.text) {
+                    res = choice.text.toLowerCase() === currentText.toLowerCase();
+                }
+                return res;
+            });
+        }
+        if (!this.props.dataSource.selected || (this.props.dataSource.selected &&
+            this.props.dataSource.selected.value &&
+            this.props.dataSource.selected.value.toString() !== this.hiddenInput.value)) {
+            if (!this.hiddenInput || !this.hiddenInput.value || this.hiddenInput.value.length == 0) {
+                this.clearFilterData();
+                if (!this.state.isShiftTab)
+                    this.props.dataSource.select(undefined);
+            }
+            else {
+                this.props.dataSource.select(_.find(this.state.allChoices, { value: this.hiddenInput.value }));
+            }
+        }
+        this.hideChoices();
+        this.isUpdated = false;
+    };
+    /**
+     * indique aux élément esclave qu'un filter a été fait sur le maitre si le datasource en est un
+     */
+    AutoCompleteField.prototype.clearFilterData = function () {
+        if (this.props.dataSource instanceof datasource_master_1.DataSourceMaster) {
+            this.props.dataSource.getSlaves().forEach(function (item) {
+                item.emit("filter", []);
+            });
+        }
+    };
+    /**
+     * Fonction déclenchée sur une modification du champ de saisie libre
+     * @param event
+     */
+    AutoCompleteField.prototype.handleChangeTextInput = function (event) {
+        var _this = this;
+        logger.trace("auto-complete handleChangeTextInput");
+        /* Le texte a changé donc on réinitialise la valeur */
+        this.resetSelectedValue();
+        this.state.selectedIndex = null;
+        /* L'attribut DOM onChange est éventuellement aussi renseigné sur le composant auto-complete */
+        if (this.state.onChange) {
+            this.state.onChange(event);
+        }
+        var newText = this.getCurrentText();
+        this.clearFilterData();
+        this.isUpdated = true;
+        if (this.refs.selector) {
+            this.refs.selector.setCurrentTypedText(newText);
+        }
+        if (this.isValidText(newText)) {
+            logger.trace("auto-complete : prise en compte du texte saisi : ", newText);
+            this._throttledTriggerAction(newText);
+        }
+        else {
+            this.hideChoices();
+        }
+        if (newText.length == 0) {
+            this.setChoices(this.state.allChoices, function () {
+                if (_this.state.allChoices.length > 0) {
+                    _this.showChoices();
+                }
+                else {
+                    _this.props.dataSource.select(null);
+                }
+            });
+        }
+    };
+    /**
+     * si il n'y a plus qu'un choix écrit dans sa totalité,
+     * valid ele choix
+     * @param {string} newText
+     */
+    AutoCompleteField.prototype.changeSelectedChoiceWhenOneChoice = function (newText) {
+        if (this.state.choices && this.state.choices[0] && this.state.choices.length === 1
+            && _.deburr(newText).toLowerCase() == _.deburr(this.state.choices[0].text).toLowerCase()) {
+            this.changeSelectedChoice(this.state.choices[0]);
+            this.props.dataSource.select(this.state.choices[0]);
+            this.autoCompleteState.setFocusOn(0, this.state.choices[0].value, 0);
+        }
+    };
+    /**
+     * change la valeur courrante
+     * @param value
+     * @returns {this}
+     */
+    AutoCompleteField.prototype.setCurrentValue = function (value) {
+        _super.prototype.setCurrentValue.call(this, value);
+        this.setState({ listDefaultValue: value });
+        return this;
+    };
+    /**
+     * Déclenche le chargement des éléments correspondant au texte saisi
+     * @param newText texte saisi
+     */
+    AutoCompleteField.prototype.triggerAction = function (newText) {
+        this.setIsApiLoading(true);
+        this.props.dataSource.fetch(true, newText, true);
+    };
+    /**
+     * Controle la longeur du text saisie avant de déclancher la recherche
+     * @param cnt : boolean
+     */
+    AutoCompleteField.prototype.isMaxElementNumberReached = function (cnt) {
+        return this.state.maxElements && cnt >= this.state.maxElements;
+    };
+    /**
+     * Charge la liste de choix dans le composant
+     */
+    AutoCompleteField.prototype.prepareChoices = function (display) {
+        var _this = this;
+        if (display === void 0) { display = true; }
+        var newChoices = [];
+        var cnt = 0;
+        if (this.state.choices) {
+            this.state.choices.map(function (choice) {
+                if (_this.findText(choice, _this.getCurrentText().toLowerCase()) && !_this.isMaxElementNumberReached(cnt)) {
+                    newChoices.push(choice);
+                    cnt++;
+                }
+            });
+        }
+        // mets a jour la liste des choix
+        this.setChoices(newChoices, function () {
+            if (newChoices.length > 0 && display) {
+                //si il n'y a plus qu'un choix on le valide
+                _this.changeSelectedChoiceWhenOneChoice(_this.getCurrentText());
+                _this.showChoices();
+            }
+            else {
+                _this.hiddenInput.value = "";
+                _this.props.dataSource.select(null);
+                _this.showChoices();
+            }
+        });
+    };
+    /**
+     * Fonction déclenchée une fois les éléments de choix obtenus par la fonction choicesLoader
+     * @param resultItems éléments obtenus. ceux-ci doivent contenir une propr
+     */
+    AutoCompleteField.prototype.choicesLoaderCallback = function (resultItems) {
+        this.setIsApiLoading(false);
+        this.setChoices(resultItems);
+    };
+    /**
+     * test si le choix choice commence par current
+     * @param choice
+     * @param current
+     * @returns {boolean}
+     */
+    AutoCompleteField.prototype.startsWithText = function (choice, current) {
+        var choiceText = choice ? choice["text"] ? choice["text"].toLowerCase() : null : null;
+        return _.startsWith(choiceText, current);
+    };
+    /**
+     * teste si le texte current est contenu dans le choix choice
+     * @param choice
+     * @param current
+     * @returns {boolean}
+     */
+    AutoCompleteField.prototype.indexOfText = function (choice, current) {
+        var choiceText = choice ? choice["text"] ? choice["text"].toLowerCase() : null : null;
+        if (choiceText && (choiceText.indexOf(current) >= 0)) {
+            return true;
+        }
+        return false;
+    };
+    /**
+     * indique si le texte current se trouve dans le choix
+     * @param choice
+     * @param current
+     * @returns {boolean}
+     */
+    AutoCompleteField.prototype.findText = function (choice, current) {
+        if (typeof this.props.filterText == "function") {
+            return this.props.filterText(choice, current);
+        }
+        else if (this.props.filterText == FilterTextType.beginWith) {
+            return this.startsWithText(choice, current);
+        }
+        else if (this.props.filterText == FilterTextType.indexOf) {
+            return this.indexOfText(choice, current);
+        }
+        return false;
+    };
+    /**
+     * Fonction appelée lorsque l'utilisateur a choisi un élément de la liste de choix.
+     * @param choice élément sélectionné
+     */
+    AutoCompleteField.prototype.changeSelectedChoice = function (choice) {
+        if (this.refs.selector) {
+            this.refs.selector.setCurrentTypedText("");
+        }
+        this.textInput.value = choice ? choice.text : "";
+        this.hiddenInput.value = choice ? choice.value : "";
+    };
+    /**
+     * Recupere l'index de l'element selectionné
+     * @param choice
+     */
+    AutoCompleteField.prototype.selectedChoice = function (choice) {
+        var indexSelected = null;
+        if (this.state.choices) {
+            this.state.choices.map(function (item, index) {
+                if (item.value == choice) {
+                    indexSelected = index;
+                }
+            });
+            this.setCurrentValue(choice);
+        }
+    };
+    /**
+     * Fonction appelée lorsque l'utilisateur clique sur un item de la liste des valeurs possibles
+     * @param event
+     */
+    AutoCompleteField.prototype.onListWidgetSelected = function (event, choice) {
+        if (choice) {
+            logger.trace("Selection click [", choice.value, "]:", choice.text);
+            var index = _.findIndex(this.state.choices, choice);
+            this.state.selectedIndex = index;
+            this.autoCompleteState.choiceFocused = index;
+            this.changeSelectedChoice(choice);
+            this.hiddenInput.value = choice.value;
+            this.selectedChoice(choice.value);
+            this.props.dataSource.select(choice);
+        }
+        this.state.onListWidgetSelected = true;
+        this.hideChoices();
+    };
+    /**
+     * Retourne true si le texte indiqué correspond aux critères de taille minimale
+     * @param text
+     * @returns {boolean}
+     * @protected
+     */
+    AutoCompleteField.prototype.isValidText = function (text) {
+        return (text != null && text.length >= this.state.minValueLength);
+    };
+    /**
+     * Navigue au sein de la liste de choix
+     * @param delta {number} indique de combien d'éléments on doit se déplacer par rapport à l'élément actuellement sélectionné
+     * @protected
+     */
+    AutoCompleteField.prototype.navigateInChoices = function (delta) {
+        var _this = this;
+        var newIndex = this.state.selectedIndex === null ? (delta === 1 ? 0 : delta) : this.state.selectedIndex + delta;
+        var choicesLength = this.state.choices ? this.state.choices.length : 0;
+        if (newIndex < 0) {
+            //On va à la fin
+            newIndex = choicesLength - 1;
+        }
+        else if (newIndex >= choicesLength) {
+            //On retourne au début
+            newIndex = 0;
+        }
+        // on valide le choix sur lequel on est
+        this.setState({ selectedIndex: newIndex }, function () {
+            _this.selectCurrentIndex();
+            if (!_this.state.shouldShowChoices) {
+                var selection = (_this.state.choices[_this.state.selectedIndex]);
+                if (selection != null) {
+                    _this.changeSelectedChoice(selection);
+                    _this.setCurrentValue(selection.value);
+                }
+            }
+            _this.autoCompleteState.setFocusOn(_this.state.selectedIndex, _this.hiddenInput.value, newIndex);
+        });
+        // On s'assure de l'affichage de la liste déroulante
+        if (this.state.shouldShowChoices) {
+            this.showChoices();
+        }
+    };
+    /**
+     * Selectionne l'élement actuellement en surbrillance dans la liste de choix
+     * @return boolean si une sélection a effectivement eu lieu
+     * @protected
+     */
+    AutoCompleteField.prototype.selectCurrentIndex = function () {
+        var selection = (this.state.choices || [])[this.state.selectedIndex];
+        if (selection != null) {
+            this.changeSelectedChoice(selection);
+            return true;
+        }
+        return false;
+    };
+    /**
+     * Demande l'affichage du composant de choix
+     * @public
+     */
+    AutoCompleteField.prototype.showChoices = function () {
+        if (this.state.shouldShowChoices !== true && this.state.focused) {
+            if (this.isValidText(this.textInput.value) || this.textInput.value.length == 0 || !this.props.writable) {
+                this.setState({ shouldShowChoices: true });
+            }
+        }
+    };
+    /**
+     * Demande le masquage du composant de choix
+     * @public
+     */
+    AutoCompleteField.prototype.hideChoices = function () {
+        if (this.state.shouldShowChoices !== false) {
+            this.setState({ shouldShowChoices: false });
+        }
+    };
+    /**
+     * @return {boolean} true si le composant de liste doit s'afficher
+     * @protected
+     */
+    AutoCompleteField.prototype.shouldShowChoices = function () {
+        return this.state.shouldShowChoices === true;
+    };
+    /**
+     * @return {string} le nom du champ caché contenant la valeur
+     */
+    AutoCompleteField.prototype.getValueFieldName = function () {
+        return this.state.name + "." + this.state.valueKey;
+    };
+    /**
+     * @return {string} le nom du champ de saisie libre
+     */
+    AutoCompleteField.prototype.getFreeTypingFieldName = function () {
+        return this.state.name + "." + this.state.labelKey;
+    };
+    /**
+     * Surcharge le rendu des erreurs de validation : le nom du champ à mettre en évidence est le champ de saisie libre
+     * @override
+     */
+    AutoCompleteField.prototype.renderErrors = function () {
+        var fieldErrorProps = {
+            errors: this.state.errors,
+            fieldName: this.getFreeTypingFieldName()
+        };
+        var basicFieldErrorProps = {
+            errors: this.state.errors,
+            fieldName: this.state.name
+        };
+        var Error = this.state.errorComponent;
+        return (React.createElement("div", null,
+            React.createElement(Error, tslib_1.__assign({}, fieldErrorProps)),
+            React.createElement(Error, tslib_1.__assign({}, basicFieldErrorProps))));
+    };
+    /**
+     * On enregistre également le champ contenant la valeur dans la classe parente DomAdapter, ce qui fait les liens
+     entre le formulaire, le champ HTML et le composant React.
+     * @param hiddenInput
+     */
+    AutoCompleteField.prototype.registerHiddenInput = function (hiddenInput) {
+        this.hiddenInput = hiddenInput;
+        this.registerHtmlElement(hiddenInput);
+    };
+    /**
+     *  Conserve la valeur du champs saisie
+     * @param textInput
+     */
+    AutoCompleteField.prototype.registerTextInput = function (textInput) {
+        this.textInput = textInput;
+    };
+    /** on mets le focus sur l'input */
+    AutoCompleteField.prototype.setFocus = function () {
+        this.state.focused = true;
+        this.textInput.focus();
+        return this;
+    };
+    /**
+     * teste si le composant a des erreurs
+     * @override
+     */
+    AutoCompleteField.prototype.hasErrors = function () {
+        var fieldErrors = null;
+        if (this.state.errors) {
+            fieldErrors = this.state.errors.filter(function (error) {
+                var name = this.state.name + "." + this.state.labelKey;
+                return (error.field == name || error.field == this.state.name);
+            }, this);
+        }
+        if (fieldErrors && (fieldErrors.length > 0)) {
+            return true;
+        }
+        return false;
+    };
+    AutoCompleteField.defaultProps = _.assign({
+        minValueLength: 1,
+        readOnly: false,
+        disabled: false,
+        delay: 1000,
+        valueKey: "value",
+        labelKey: "text",
+        maxHeight: null,
+        writable: true,
+        filterText: FilterTextType.indexOf
+    }, abstract_field_1.AbstractField.defaultProps);
+    return AutoCompleteField;
+}(abstract_field_datasource_1.AbstractFieldDatasource));
+exports.AutoCompleteField = AutoCompleteField;
+
+
+
+/***/ }),
+/* 335 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * Ce logiciel est un programme informatique servant à faciliter la création
+ * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
+ * <p/>
+ * Ce logiciel est régi par la licence CeCILL soumise au droit français et
+ * respectant les principes de diffusion des logiciels libres. Vous pouvez
+ * utiliser, modifier et/ou redistribuer ce programme sous les conditions
+ * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
+ * sur le site "http://www.cecill.info".
+ * <p/>
+ * En contrepartie de l'accessibilité au code source et des droits de copie,
+ * de modification et de redistribution accordés par cette licence, il n'est
+ * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
+ * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
+ * titulaire des droits patrimoniaux et les concédants successifs.
+ * <p/>
+ * A cet égard  l'attention de l'utilisateur est attirée sur les risques
+ * associés au chargement,  à l'utilisation,  à la modification et/ou au
+ * développement et à la reproduction du logiciel par l'utilisateur étant
+ * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
+ * manipuler et qui le réserve donc à des développeurs et des professionnels
+ * avertis possédant  des  connaissances  informatiques approfondies.  Les
+ * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
+ * logiciel à leurs besoins dans des conditions permettant d'assurer la
+ * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
+ * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
+ * <p/>
+ * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
+ * pris connaissance de la licence CeCILL, et que vous en avez accepté les
+ * termes.
+ * <p/>
+ * <p/>
+ * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * This software is a computer program whose purpose is to facilitate creation of
+ * web application in accordance with french general repositories : RGI, RGS and RGAA.
+ * <p/>
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software.  You can  use,
+ * modify and/ or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ * <p/>
+ * As a counterpart to the access to the source code and  rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty  and the software's author,  the holder of the
+ * economic rights,  and the successive licensors  have only  limited
+ * liability.
+ * <p/>
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading,  using,  modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean  that it is complicated to manipulate,  and  that  also
+ * therefore means  that it is reserved for developers  and  experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and,  more generally, to use and operate it in the
+ * same conditions as regards security.
+ * <p/>
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(1);
+/**
+ * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
+ *
+ * @author MEAE - Ministère de l'Europe et des Affaires étrangères
+ * @version v5.1.1
+ * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
+ * @license CECILL-2.1
+ */
+var hornet_js_utils_1 = __webpack_require__(0);
 var classNames = __webpack_require__(9);
 var _ = __webpack_require__(6);
 var hornet_component_1 = __webpack_require__(3);
-var checkbox_1 = __webpack_require__(335);
-var auto_complete_state_1 = __webpack_require__(298);
+var checkbox_1 = __webpack_require__(336);
+var auto_complete_state_1 = __webpack_require__(297);
 var React = __webpack_require__(2);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.form.auto-complete-selector");
 /**
@@ -8704,7 +8926,7 @@ exports.AutoCompleteSelector = AutoCompleteSelector;
 
 
 /***/ }),
-/* 335 */
+/* 336 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8866,7 +9088,7 @@ exports.CheckBox = CheckBox;
 
 
 /***/ }),
-/* 336 */
+/* 337 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8951,7 +9173,7 @@ var tslib_1 = __webpack_require__(1);
  * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
  * @license CECILL-2.1
  */
-var datasource_1 = __webpack_require__(299);
+var datasource_1 = __webpack_require__(298);
 var _ = __webpack_require__(6);
 /*
 * @classdesc Classe représentant les datasources de type MASTER-SLAVE
@@ -9010,7 +9232,7 @@ exports.DataSourceMaster = DataSourceMaster;
 
 
 /***/ }),
-/* 337 */
+/* 338 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9094,7 +9316,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
  * @license CECILL-2.1
  */
-var sort_data_1 = __webpack_require__(338);
+var sort_data_1 = __webpack_require__(339);
 var technical_error_1 = __webpack_require__(13);
 var codes_error_1 = __webpack_require__(97);
 var hornet_js_utils_1 = __webpack_require__(0);
@@ -9271,7 +9493,7 @@ exports.InitAsync = InitAsync;
 
 
 /***/ }),
-/* 338 */
+/* 339 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9385,7 +9607,7 @@ exports.SortData = SortData;
 
 
 /***/ }),
-/* 339 */
+/* 340 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9478,7 +9700,7 @@ exports.DataSourceConfig = DataSourceConfig;
 
 
 /***/ }),
-/* 340 */
+/* 341 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9571,7 +9793,7 @@ exports.DataSourceConfigPage = DataSourceConfigPage;
 
 
 /***/ }),
-/* 341 */
+/* 342 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9681,7 +9903,7 @@ exports.SpinnerComponentInput = SpinnerComponentInput;
 
 
 /***/ }),
-/* 342 */
+/* 343 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9870,7 +10092,7 @@ exports.CheckBoxField = CheckBoxField;
 
 
 /***/ }),
-/* 343 */
+/* 344 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9954,7 +10176,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
  * @license CECILL-2.1
  */
-var Ajv = __webpack_require__(344);
+var Ajv = __webpack_require__(345);
 ;
 ;
 /**
@@ -9979,7 +10201,7 @@ var DataValidator = /** @class */ (function () {
         };
         if (this.schema) {
             var ajvInstance = Ajv(this.options);
-            __webpack_require__(377)(ajvInstance);
+            __webpack_require__(378)(ajvInstance);
             result.valid = ajvInstance.validate(this.schema, data);
             result.errors = ajvInstance.errors || [];
         }
@@ -10078,20 +10300,20 @@ exports.DataValidator = DataValidator;
 
 
 /***/ }),
-/* 344 */
+/* 345 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var compileSchema = __webpack_require__(345)
+var compileSchema = __webpack_require__(346)
   , resolve = __webpack_require__(276)
-  , Cache = __webpack_require__(348)
-  , SchemaObject = __webpack_require__(302)
-  , stableStringify = __webpack_require__(303)
-  , formats = __webpack_require__(349)
-  , rules = __webpack_require__(350)
-  , $dataMetaSchema = __webpack_require__(371)
+  , Cache = __webpack_require__(349)
+  , SchemaObject = __webpack_require__(301)
+  , stableStringify = __webpack_require__(302)
+  , formats = __webpack_require__(350)
+  , rules = __webpack_require__(351)
+  , $dataMetaSchema = __webpack_require__(372)
   , util = __webpack_require__(256);
 
 module.exports = Ajv;
@@ -10109,8 +10331,8 @@ Ajv.prototype.errorsText = errorsText;
 Ajv.prototype._addSchema = _addSchema;
 Ajv.prototype._compile = _compile;
 
-Ajv.prototype.compileAsync = __webpack_require__(372);
-var customKeyword = __webpack_require__(373);
+Ajv.prototype.compileAsync = __webpack_require__(373);
+var customKeyword = __webpack_require__(374);
 Ajv.prototype.addKeyword = customKeyword.add;
 Ajv.prototype.getKeyword = customKeyword.get;
 Ajv.prototype.removeKeyword = customKeyword.remove;
@@ -10524,11 +10746,11 @@ function addFormat(name, format) {
 function addDraft6MetaSchema(self) {
   var $dataSchema;
   if (self._opts.$data) {
-    $dataSchema = __webpack_require__(375);
+    $dataSchema = __webpack_require__(376);
     self.addMetaSchema($dataSchema, $dataSchema.$id, true);
   }
   if (self._opts.meta === false) return;
-  var metaSchema = __webpack_require__(376);
+  var metaSchema = __webpack_require__(377);
   if (self._opts.$data) metaSchema = $dataMetaSchema(metaSchema, META_SUPPORT_DATA);
   self.addMetaSchema(metaSchema, META_SCHEMA_ID, true);
   self._refs['http://json-schema.org/schema'] = META_SCHEMA_ID;
@@ -10582,7 +10804,7 @@ function noop() {}
 
 
 /***/ }),
-/* 345 */
+/* 346 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10591,9 +10813,9 @@ function noop() {}
 var resolve = __webpack_require__(276)
   , util = __webpack_require__(256)
   , errorClasses = __webpack_require__(278)
-  , stableStringify = __webpack_require__(303);
+  , stableStringify = __webpack_require__(302);
 
-var validateGenerator = __webpack_require__(304);
+var validateGenerator = __webpack_require__(303);
 
 /**
  * Functions below are used inside compiled validations function
@@ -10966,7 +11188,7 @@ function vars(arr, statement) {
 
 
 /***/ }),
-/* 346 */
+/* 347 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10993,7 +11215,7 @@ module.exports = function ucs2length(str) {
 
 
 /***/ }),
-/* 347 */
+/* 348 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11081,7 +11303,7 @@ function escapeJsonPtr(str) {
 
 
 /***/ }),
-/* 348 */
+/* 349 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11114,7 +11336,7 @@ Cache.prototype.clear = function Cache_clear() {
 
 
 /***/ }),
-/* 349 */
+/* 350 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11270,13 +11492,13 @@ function regex(str) {
 
 
 /***/ }),
-/* 350 */
+/* 351 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var ruleModules = __webpack_require__(351)
+var ruleModules = __webpack_require__(352)
   , toHash = __webpack_require__(256).toHash;
 
 module.exports = function rules() {
@@ -11343,7 +11565,7 @@ module.exports = function rules() {
 
 
 /***/ }),
-/* 351 */
+/* 352 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11351,39 +11573,39 @@ module.exports = function rules() {
 
 //all requires must be explicit because browserify won't work with dynamic requires
 module.exports = {
-  '$ref': __webpack_require__(352),
-  allOf: __webpack_require__(353),
-  anyOf: __webpack_require__(354),
-  '$comment': __webpack_require__(355),
-  const: __webpack_require__(356),
-  contains: __webpack_require__(357),
-  dependencies: __webpack_require__(358),
-  'enum': __webpack_require__(359),
-  format: __webpack_require__(360),
-  'if': __webpack_require__(361),
-  items: __webpack_require__(362),
-  maximum: __webpack_require__(305),
-  minimum: __webpack_require__(305),
-  maxItems: __webpack_require__(306),
-  minItems: __webpack_require__(306),
-  maxLength: __webpack_require__(307),
-  minLength: __webpack_require__(307),
-  maxProperties: __webpack_require__(308),
-  minProperties: __webpack_require__(308),
-  multipleOf: __webpack_require__(363),
-  not: __webpack_require__(364),
-  oneOf: __webpack_require__(365),
-  pattern: __webpack_require__(366),
-  properties: __webpack_require__(367),
-  propertyNames: __webpack_require__(368),
-  required: __webpack_require__(369),
-  uniqueItems: __webpack_require__(370),
-  validate: __webpack_require__(304)
+  '$ref': __webpack_require__(353),
+  allOf: __webpack_require__(354),
+  anyOf: __webpack_require__(355),
+  '$comment': __webpack_require__(356),
+  const: __webpack_require__(357),
+  contains: __webpack_require__(358),
+  dependencies: __webpack_require__(359),
+  'enum': __webpack_require__(360),
+  format: __webpack_require__(361),
+  'if': __webpack_require__(362),
+  items: __webpack_require__(363),
+  maximum: __webpack_require__(304),
+  minimum: __webpack_require__(304),
+  maxItems: __webpack_require__(305),
+  minItems: __webpack_require__(305),
+  maxLength: __webpack_require__(306),
+  minLength: __webpack_require__(306),
+  maxProperties: __webpack_require__(307),
+  minProperties: __webpack_require__(307),
+  multipleOf: __webpack_require__(364),
+  not: __webpack_require__(365),
+  oneOf: __webpack_require__(366),
+  pattern: __webpack_require__(367),
+  properties: __webpack_require__(368),
+  propertyNames: __webpack_require__(369),
+  required: __webpack_require__(370),
+  uniqueItems: __webpack_require__(371),
+  validate: __webpack_require__(303)
 };
 
 
 /***/ }),
-/* 352 */
+/* 353 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11513,7 +11735,7 @@ module.exports = function generate_ref(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 353 */
+/* 354 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11563,7 +11785,7 @@ module.exports = function generate_allOf(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 354 */
+/* 355 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11643,7 +11865,7 @@ module.exports = function generate_anyOf(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 355 */
+/* 356 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11664,7 +11886,7 @@ module.exports = function generate_comment(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 356 */
+/* 357 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11726,7 +11948,7 @@ module.exports = function generate_const(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 357 */
+/* 358 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11814,7 +12036,7 @@ module.exports = function generate_contains(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 358 */
+/* 359 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11988,7 +12210,7 @@ module.exports = function generate_dependencies(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 359 */
+/* 360 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12060,7 +12282,7 @@ module.exports = function generate_enum(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 360 */
+/* 361 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12216,7 +12438,7 @@ module.exports = function generate_format(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 361 */
+/* 362 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12326,7 +12548,7 @@ module.exports = function generate_if(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 362 */
+/* 363 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12473,7 +12695,7 @@ module.exports = function generate_items(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 363 */
+/* 364 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12556,7 +12778,7 @@ module.exports = function generate_multipleOf(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 364 */
+/* 365 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12646,7 +12868,7 @@ module.exports = function generate_not(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 365 */
+/* 366 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12725,7 +12947,7 @@ module.exports = function generate_oneOf(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 366 */
+/* 367 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12806,7 +13028,7 @@ module.exports = function generate_pattern(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 367 */
+/* 368 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13141,7 +13363,7 @@ module.exports = function generate_properties(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 368 */
+/* 369 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13229,7 +13451,7 @@ module.exports = function generate_propertyNames(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 369 */
+/* 370 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13504,7 +13726,7 @@ module.exports = function generate_required(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 370 */
+/* 371 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13589,7 +13811,7 @@ module.exports = function generate_uniqueItems(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 371 */
+/* 372 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13645,7 +13867,7 @@ module.exports = function (metaSchema, keywordsJsonPointers) {
 
 
 /***/ }),
-/* 372 */
+/* 373 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13742,14 +13964,14 @@ function compileAsync(schema, meta, callback) {
 
 
 /***/ }),
-/* 373 */
+/* 374 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var IDENTIFIER = /^[a-z_$][a-z0-9_$-]*$/i;
-var customRuleCode = __webpack_require__(374);
+var customRuleCode = __webpack_require__(375);
 
 module.exports = {
   add: addKeyword,
@@ -13884,7 +14106,7 @@ function removeKeyword(keyword) {
 
 
 /***/ }),
-/* 374 */
+/* 375 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14117,7 +14339,7 @@ module.exports = function generate_custom(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 375 */
+/* 376 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -14145,7 +14367,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 376 */
+/* 377 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -14391,13 +14613,13 @@ module.exports = {
 };
 
 /***/ }),
-/* 377 */
+/* 378 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var KEYWORDS = __webpack_require__(378);
+var KEYWORDS = __webpack_require__(379);
 
 module.exports = defineKeywords;
 
@@ -14433,32 +14655,32 @@ function get(keyword) {
 
 
 /***/ }),
-/* 378 */
+/* 379 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 module.exports = {
-  'instanceof': __webpack_require__(379),
-  range: __webpack_require__(380),
-  regexp: __webpack_require__(381),
-  'typeof': __webpack_require__(382),
-  dynamicDefaults: __webpack_require__(383),
-  prohibited: __webpack_require__(384),
-  uniqueItemProperties: __webpack_require__(385),
-  deepProperties: __webpack_require__(386),
-  deepRequired: __webpack_require__(387),
-  formatMinimum: __webpack_require__(388),
-  formatMaximum: __webpack_require__(390),
-  patternRequired: __webpack_require__(391),
-  'switch': __webpack_require__(393),
-  select: __webpack_require__(395)
+  'instanceof': __webpack_require__(380),
+  range: __webpack_require__(381),
+  regexp: __webpack_require__(382),
+  'typeof': __webpack_require__(383),
+  dynamicDefaults: __webpack_require__(384),
+  prohibited: __webpack_require__(385),
+  uniqueItemProperties: __webpack_require__(386),
+  deepProperties: __webpack_require__(387),
+  deepRequired: __webpack_require__(388),
+  formatMinimum: __webpack_require__(389),
+  formatMaximum: __webpack_require__(391),
+  patternRequired: __webpack_require__(392),
+  'switch': __webpack_require__(394),
+  select: __webpack_require__(396)
 };
 
 
 /***/ }),
-/* 379 */
+/* 380 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14524,7 +14746,7 @@ module.exports = function defFunc(ajv) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(23).Buffer))
 
 /***/ }),
-/* 380 */
+/* 381 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14567,7 +14789,7 @@ module.exports = function defFunc(ajv) {
 
 
 /***/ }),
-/* 381 */
+/* 382 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14610,7 +14832,7 @@ module.exports = function defFunc(ajv) {
 
 
 /***/ }),
-/* 382 */
+/* 383 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14649,7 +14871,7 @@ module.exports = function defFunc(ajv) {
 
 
 /***/ }),
-/* 383 */
+/* 384 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14724,7 +14946,7 @@ module.exports = function defFunc(ajv) {
 
 
 /***/ }),
-/* 384 */
+/* 385 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14756,7 +14978,7 @@ module.exports = function defFunc(ajv) {
 
 
 /***/ }),
-/* 385 */
+/* 386 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14795,7 +15017,7 @@ module.exports = function defFunc(ajv) {
 
 
 /***/ }),
-/* 386 */
+/* 387 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14856,7 +15078,7 @@ function unescapeJsonPointer(str) {
 
 
 /***/ }),
-/* 387 */
+/* 388 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14920,17 +15142,17 @@ function unescapeJsonPointer(str) {
 
 
 /***/ }),
-/* 388 */
+/* 389 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-module.exports = __webpack_require__(309)('Minimum');
+module.exports = __webpack_require__(308)('Minimum');
 
 
 /***/ }),
-/* 389 */
+/* 390 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15113,17 +15335,17 @@ module.exports = function generate__formatLimit(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 390 */
+/* 391 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-module.exports = __webpack_require__(309)('Maximum');
+module.exports = __webpack_require__(308)('Maximum');
 
 
 /***/ }),
-/* 391 */
+/* 392 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15132,7 +15354,7 @@ module.exports = __webpack_require__(309)('Maximum');
 module.exports = function defFunc(ajv) {
   defFunc.definition = {
     type: 'object',
-    inline: __webpack_require__(392),
+    inline: __webpack_require__(393),
     statements: true,
     errors: 'full',
     metaSchema: {
@@ -15151,7 +15373,7 @@ module.exports = function defFunc(ajv) {
 
 
 /***/ }),
-/* 392 */
+/* 393 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15216,7 +15438,7 @@ module.exports = function generate_patternRequired(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 393 */
+/* 394 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15230,7 +15452,7 @@ module.exports = function defFunc(ajv) {
   var metaSchemaRef = util.metaSchemaRef(ajv);
 
   defFunc.definition = {
-    inline: __webpack_require__(394),
+    inline: __webpack_require__(395),
     statements: true,
     errors: 'full',
     metaSchema: {
@@ -15261,7 +15483,7 @@ module.exports = function defFunc(ajv) {
 
 
 /***/ }),
-/* 394 */
+/* 395 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15396,7 +15618,7 @@ module.exports = function generate_switch(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 395 */
+/* 396 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15479,220 +15701,6 @@ module.exports = function defFunc(ajv) {
             : ajv.compile(schema);
   }
 };
-
-
-/***/ }),
-/* 396 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * Ce logiciel est un programme informatique servant à faciliter la création
- * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
- * <p/>
- * Ce logiciel est régi par la licence CeCILL soumise au droit français et
- * respectant les principes de diffusion des logiciels libres. Vous pouvez
- * utiliser, modifier et/ou redistribuer ce programme sous les conditions
- * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
- * sur le site "http://www.cecill.info".
- * <p/>
- * En contrepartie de l'accessibilité au code source et des droits de copie,
- * de modification et de redistribution accordés par cette licence, il n'est
- * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
- * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
- * titulaire des droits patrimoniaux et les concédants successifs.
- * <p/>
- * A cet égard  l'attention de l'utilisateur est attirée sur les risques
- * associés au chargement,  à l'utilisation,  à la modification et/ou au
- * développement et à la reproduction du logiciel par l'utilisateur étant
- * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
- * manipuler et qui le réserve donc à des développeurs et des professionnels
- * avertis possédant  des  connaissances  informatiques approfondies.  Les
- * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
- * logiciel à leurs besoins dans des conditions permettant d'assurer la
- * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
- * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
- * <p/>
- * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
- * pris connaissance de la licence CeCILL, et que vous en avez accepté les
- * termes.
- * <p/>
- * <p/>
- * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * This software is a computer program whose purpose is to facilitate creation of
- * web application in accordance with french general repositories : RGI, RGS and RGAA.
- * <p/>
- * This software is governed by the CeCILL license under French law and
- * abiding by the rules of distribution of free software.  You can  use,
- * modify and/ or redistribute the software under the terms of the CeCILL
- * license as circulated by CEA, CNRS and INRIA at the following URL
- * "http://www.cecill.info".
- * <p/>
- * As a counterpart to the access to the source code and  rights to copy,
- * modify and redistribute granted by the license, users are provided only
- * with a limited warranty  and the software's author,  the holder of the
- * economic rights,  and the successive licensors  have only  limited
- * liability.
- * <p/>
- * In this respect, the user's attention is drawn to the risks associated
- * with loading,  using,  modifying and/or developing or reproducing the
- * software by the user in light of its specific status of free software,
- * that may mean  that it is complicated to manipulate,  and  that  also
- * therefore means  that it is reserved for developers  and  experienced
- * professionals having in-depth computer knowledge. Users are therefore
- * encouraged to load and test the software's suitability as regards their
- * requirements in conditions enabling the security of their systems and/or
- * data to be ensured and,  more generally, to use and operate it in the
- * same conditions as regards security.
- * <p/>
- * The fact that you are presently reading this means that you have had
- * knowledge of the CeCILL license and that you accept its terms.
- *
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(1);
-/**
- * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
- *
- * @author MEAE - Ministère de l'Europe et des Affaires étrangères
- * @version v5.1.1
- * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
- * @license CECILL-2.1
- */
-var React = __webpack_require__(2);
-var abstract_field_datasource_1 = __webpack_require__(301);
-var _ = __webpack_require__(6);
-var object_utils_1 = __webpack_require__(300);
-/**
- * Composant liste déroulante
- */
-var SelectField = /** @class */ (function (_super) {
-    tslib_1.__extends(SelectField, _super);
-    function SelectField(props, context) {
-        var _this = _super.call(this, props, context) || this;
-        if (_this.state.dataSource && _this.state.data) {
-            throw new Error("Le SelectField " + _this.state.name + " possède une props dataSource et une props data");
-        }
-        return _this;
-    }
-    /**
-     * Génère le rendu spécifique du champ : une liste déroulante dont les éléments correspondent au tableau dataSource
-     * @returns {any}
-     */
-    SelectField.prototype.renderWidget = function () {
-        var _this = this;
-        var hasError = this.hasErrors() ? " has-error" : "";
-        var htmlProps = this.getHtmlProps();
-        _.assign(htmlProps, { "className": htmlProps["className"] ? htmlProps["className"] + " selectfield" + hasError : " selectfield" + hasError, value: this.state.currentValue });
-        var hasData = this.state.data && this.state.data.length > 0;
-        var hasDataSource = this.state.dataSource && this.state.dataSource.results && this.state.dataSource.results.length > 0;
-        if (this.state.currentValue == undefined) {
-            if (hasDataSource && this.state.items && Array.isArray(this.state.items)) {
-                htmlProps.value = this.state.items[0][this.state.valueKey];
-            }
-            else if (hasData) {
-                htmlProps.value = this.state.data[0][this.state.valueKey];
-            }
-        }
-        return (React.createElement("select", tslib_1.__assign({ onChange: function (e) { _this.handleChange(e); }, ref: function (elt) { return _this.registerHtmlElement(elt); } }, htmlProps),
-            hasDataSource ? this.renderOptionsDataSource() : null,
-            hasData ? this.state.data.map(this.renderOption) : null));
-    };
-    // Setters
-    SelectField.prototype.setData = function (data, cb) {
-        this.setState({ data: data }, cb);
-        return this;
-    };
-    SelectField.prototype.setValueKey = function (key, cb) {
-        this.setState({ valueKey: key }, cb);
-        return this;
-    };
-    SelectField.prototype.setLabelKey = function (key, cb) {
-        this.setState({ labelKey: key }, cb);
-        return this;
-    };
-    /**
-     * Override
-     * @param state
-     */
-    SelectField.prototype.processHtmlProps = function (state) {
-        _super.prototype.processHtmlProps.call(this, state);
-        if (state.readOnly === true) {
-            state.disabled = true;
-        }
-    };
-    /**
-     * Génère le rendu du selectField à partir d'un dataSource
-     * @returns {any}
-     */
-    SelectField.prototype.renderOptionsDataSource = function () {
-        if (this.state.items && this.state.items.length > 0) {
-            return this.state.items.map(this.renderOption);
-        }
-    };
-    /**
-     * Génère le rendu d'un radio bouton et son libellé
-     * @param choice choix sélectionnable
-     * @returns {any}
-     */
-    SelectField.prototype.renderOption = function (choice) {
-        var _value = object_utils_1.ObjectUtils.getSubObject(choice, this.state.valueKey);
-        var _label = object_utils_1.ObjectUtils.getSubObject(choice, this.state.labelKey);
-        var value = (_value != null && _value.toString) ? _value.toString() : "";
-        var label = (_label != null && _label.toString) ? _label.toString() : value;
-        var optionsProps = {
-            key: this.state.name + "-" + label + "-" + value,
-            value: value
-        };
-        return React.createElement("option", tslib_1.__assign({}, optionsProps), label);
-    };
-    /**
-     *
-     * @param value
-     */
-    SelectField.prototype.selectItemByValue = function (value) {
-        var hasDataSource = this.state.dataSource && this.state.dataSource.results && this.state.dataSource.results.length > 0;
-        if (hasDataSource) {
-            for (var index = 0; index < this.state.dataSource.results.length; index++) {
-                var element = this.state.dataSource.results[index];
-                if (element[this.state.valueKey] == value) {
-                    this.state.dataSource.select(element);
-                    break;
-                }
-            }
-        }
-    };
-    /**
-     * @override
-     */
-    SelectField.prototype.setCurrentValue = function (value) {
-        _super.prototype.setCurrentValue.call(this, value);
-        this.selectItemByValue(value);
-        return this;
-    };
-    /**
-     * @override
-     */
-    SelectField.prototype.handleChange = function (e) {
-        this.setCurrentValue(e.target.value);
-    };
-    SelectField.defaultProps = _.assign(_.cloneDeep(abstract_field_datasource_1.AbstractFieldDatasource.defaultProps), {
-        labelClass: "blocLabelUp",
-        valueKey: "value",
-        labelKey: "label"
-    });
-    return SelectField;
-}(abstract_field_datasource_1.AbstractFieldDatasource));
-exports.SelectField = SelectField;
-
 
 
 /***/ }),
@@ -17828,7 +17836,7 @@ var warning = __webpack_require__(38);
 var assign = __webpack_require__(28);
 
 var ReactPropTypesSecret = __webpack_require__(98);
-var checkPropTypes = __webpack_require__(49);
+var checkPropTypes = __webpack_require__(50);
 
 module.exports = function(isValidElement, throwOnDirectAccess) {
   /* global Symbol */
@@ -21967,6 +21975,59 @@ exports.Button = Button;
 
 /***/ }),
 /* 459 */
+/***/ (function(module, exports) {
+
+module.exports = {
+	"$schema": "http://json-schema.org/schema#",
+	"title": "Formulaire d'entrée d'une demande d'authentification",
+	"description": "Validation des données de formulaire",
+	"type": "object",
+	"required": [
+		"nom",
+		"prenom",
+		"date_de_naissance",
+		"ville_de_naissance",
+		"pays_de_naissance",
+		"num_permis",
+		"copie_permis",
+		"date_de_delivrance",
+		"id_prefecture",
+		"copie_note_verbale_maeci"
+	],
+	"properties": {
+		"nom": {
+			"$ref": "#/definition/nom_propre"
+		},
+		"prenom": {
+			"$ref": "#/definition/nom_propre"
+		},
+		"date_de_naissance": {
+			"$ref": "#/definition/date"
+		},
+		"ville_de_naissance": {
+			"$ref": "#/definition/nom_propre"
+		},
+		"pays_de_naissance": {
+			"$ref": "#/definition/nom_propre"
+		},
+		"date_de_delivrance": {
+			"$ref": "#/definition/date"
+		}
+	},
+	"definition": {
+		"nom_propre": {
+			"type": "string",
+			"pattern": "^([a-zA-ZÀ-ÿ]+[-]{0,2}[a-zA-ZÀ-ÿ]+ ?)*$"
+		},
+		"date": {
+			"type": "Date",
+			"format": "date"
+		}
+	}
+};
+
+/***/ }),
+/* 460 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21974,7 +22035,7 @@ exports.Button = Button;
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
-var service_page_1 = __webpack_require__(460);
+var service_page_1 = __webpack_require__(461);
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.services.page.admin.admin-service-impl");
 var Form1ServiceImpl = /** @class */ (function (_super) {
     tslib_1.__extends(Form1ServiceImpl, _super);
@@ -22007,7 +22068,7 @@ exports.Form1ServiceImpl = Form1ServiceImpl;
 
 
 /***/ }),
-/* 460 */
+/* 461 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22113,7 +22174,7 @@ exports.ServicePage = ServicePage;
 
 
 /***/ }),
-/* 461 */
+/* 462 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

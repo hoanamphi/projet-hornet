@@ -257,8 +257,8 @@
           "required": "Le champ « Message » est obligatoire. Veuillez saisir ce champ."
         }
       },
-      "validTitle": "Validation de la saisie du formulaire de contact",
-      "cancelTitle": "Annulation de la saisie du formulaire de contact"
+      "validTitle": "Validation de la saisie de la demande d'authentification",
+      "cancelTitle": "Annulation de la saisie de la demande d'authentification"
     },
     "mailTemplate": "${content} \n\n Nom: ${name} \n Prénom: ${firstname} \n Mail: ${mail}",
     "subject": "Contact depuis l'application"
@@ -280,5 +280,68 @@
     "message": {
       "IN-GE-CNT-01": "Le message a bien été envoyé."
     }
+  },
+
+
+  "form1": {
+    "fields":{
+      "nom": {
+        "label": "Nom",
+        "required": "Le champ « Nom » est obligatoire. Veuillez saisir ce champ.",
+        "invalid": "Le format du champ « Nom » est incorrect"
+      },
+      "prenom": {
+        "label": "Prénom",
+        "required": "Le champ « Prénom » est obligatoire. Veuillez saisir ce champ.",
+        "invalid": "Le format du champ « Prénom » est incorrect"
+      },
+      "date_de_naissance": {
+        "label": "Date de naissance",
+        "title": "Calendrier",
+        "dateFormat": "DD/MM/YYYY",
+        "required": "Le champ « Date de naissance » est obligatoire. Veuillez saisir ce champ.",
+        "invalid": "Le format du champ « Date de naissance » est incorrect"
+      },
+      "pays_de_naissance": {
+        "label": "Pays de naissance",
+        "required": "Le champ « Pays de naissance » est obligatoire. Veuillez saisir ce champ.",
+        "invalid": "Le format du champ « Pays de naissance » est incorrect"
+      },
+      "ville_de_naissance": {
+        "label": "Ville de naissance",
+        "required": "Le champ « Ville de naissance » est obligatoire. Veuillez saisir ce champ.",
+        "invalid": "Le format du champ « Ville de naissance » est incorrect"
+      },
+      "num_permis": {
+        "label": "Numéro de permis",
+        "required": "Le champ « Numéro de permis » est obligatoire. Veuillez saisir ce champ."
+      },
+      "copie_permis": {
+        "label": "Copie du permis",
+        "buttonLabel": "Choisir un fichier",
+        "fileSelectedLabel": "Un fichier choisit",
+        "required": "Le champ « Copie du permis » est obligatoire. Veuillez saisir ce champ."
+      },
+      "date_de_delivrance": {
+        "label": "Date de délivrance du permis",
+        "title": "Calendrier",
+        "dateFormat": "DD/MM/YYYY",
+        "required": "Le champ « Date de délivrance du permis » est obligatoire. Veuillez saisir ce champ.",
+        "invalid": "Le format du champ « Date de délivrance » est incorrect"
+      },
+      "id_prefecture": {
+        "label": "Prefecture ayant délivré le permis",
+        "required": "Le champ « Prefecture ayant délivré le permis » est obligatoire. Veuillez saisir ce champ.",
+        "invalid": "Le format du champ « Préfecture » est incorrect"
+      },
+      "copie_note_verbale_maeci": {
+        "label": "Copie de la note verbale du MAECI",
+        "buttonLabel": "Choisir un fichier",
+        "fileSelectedLabel": "Un fichier choisit",
+        "required": "Le champ « Copie de la note verbale du MAECI » est obligatoire. Veuillez saisir ce champ."
+      }
+    },
+    "validTitle": "Validation de la saisie du formulaire de contact",
+    "cancelTitle": "Annulation de la saisie du formulaire de contact"
   }
 }

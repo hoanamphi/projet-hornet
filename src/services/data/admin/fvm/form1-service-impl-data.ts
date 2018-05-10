@@ -15,6 +15,8 @@ const logger: Logger = Utils.getLogger("projet-hornet.services.data.admin.admin-
 
 export class Form1ServiceImpl extends ServiceRequest implements Form1Service {
 
+  private Error = {"hasError": null, "hasReason": null};
+
   private personneDAO = new PersonneFVMDAO();
   private dossierDAO = new DossierFVMDAO();
   private permisDAO = new PermisFVMDAO();
@@ -49,7 +51,11 @@ export class Form1ServiceImpl extends ServiceRequest implements Form1Service {
 
       return Promise.all([insertCopieNoteVerbaleMAECI, insertDossier, insertPersonne, insertCopiePermis,insertPermis]);
     }).catch(error=>{
-      return {"hasError": error};
+      this.Error.hasError = error;
+      return error;
+    }).catch(reason=>{
+      this.Error.hasReason = reason;
+      return this.Error;
     });
   }
 

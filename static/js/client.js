@@ -30345,500 +30345,6 @@ exports.Dropdown = Dropdown;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-/**
- * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * Ce logiciel est un programme informatique servant à faciliter la création
- * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
- * <p/>
- * Ce logiciel est régi par la licence CeCILL soumise au droit français et
- * respectant les principes de diffusion des logiciels libres. Vous pouvez
- * utiliser, modifier et/ou redistribuer ce programme sous les conditions
- * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
- * sur le site "http://www.cecill.info".
- * <p/>
- * En contrepartie de l'accessibilité au code source et des droits de copie,
- * de modification et de redistribution accordés par cette licence, il n'est
- * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
- * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
- * titulaire des droits patrimoniaux et les concédants successifs.
- * <p/>
- * A cet égard  l'attention de l'utilisateur est attirée sur les risques
- * associés au chargement,  à l'utilisation,  à la modification et/ou au
- * développement et à la reproduction du logiciel par l'utilisateur étant
- * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
- * manipuler et qui le réserve donc à des développeurs et des professionnels
- * avertis possédant  des  connaissances  informatiques approfondies.  Les
- * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
- * logiciel à leurs besoins dans des conditions permettant d'assurer la
- * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
- * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
- * <p/>
- * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
- * pris connaissance de la licence CeCILL, et que vous en avez accepté les
- * termes.
- * <p/>
- * <p/>
- * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * This software is a computer program whose purpose is to facilitate creation of
- * web application in accordance with french general repositories : RGI, RGS and RGAA.
- * <p/>
- * This software is governed by the CeCILL license under French law and
- * abiding by the rules of distribution of free software.  You can  use,
- * modify and/ or redistribute the software under the terms of the CeCILL
- * license as circulated by CEA, CNRS and INRIA at the following URL
- * "http://www.cecill.info".
- * <p/>
- * As a counterpart to the access to the source code and  rights to copy,
- * modify and redistribute granted by the license, users are provided only
- * with a limited warranty  and the software's author,  the holder of the
- * economic rights,  and the successive licensors  have only  limited
- * liability.
- * <p/>
- * In this respect, the user's attention is drawn to the risks associated
- * with loading,  using,  modifying and/or developing or reproducing the
- * software by the user in light of its specific status of free software,
- * that may mean  that it is complicated to manipulate,  and  that  also
- * therefore means  that it is reserved for developers  and  experienced
- * professionals having in-depth computer knowledge. Users are therefore
- * encouraged to load and test the software's suitability as regards their
- * requirements in conditions enabling the security of their systems and/or
- * data to be ensured and,  more generally, to use and operate it in the
- * same conditions as regards security.
- * <p/>
- * The fact that you are presently reading this means that you have had
- * knowledge of the CeCILL license and that you accept its terms.
- *
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * hornet-js-utils - Partie commune et utilitaire à tous les composants hornet-js
- *
- * @author MEAE - Ministère de l'Europe et des Affaires étrangères
- * @version v5.1.1
- * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
- * @license CECILL-2.1
- */
-var index_1 = __webpack_require__(0);
-var Promise = __webpack_require__(17);
-exports.Promise = Promise;
-if (index_1.Utils.isServer) {
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // wrap bluebird afin de sécuriser l'utilisation de "continuation-local-storage" (perte ou mix de contexte) //
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    var shimmer = __webpack_require__(157);
-    var proto = Promise && Promise.prototype;
-    var ns_1 = index_1.Utils.getContinuationStorage();
-    shimmer.wrap(proto, "_addCallbacks", function (_addCallbacks) {
-        return function ns_addCallbacks(fulfill, reject, progress, promise, receiver, domain) {
-            if (typeof fulfill === "function") {
-                fulfill = ns_1.bind(fulfill);
-            }
-            if (typeof reject === "function") {
-                reject = ns_1.bind(reject);
-            }
-            if (typeof progress === "function") {
-                progress = ns_1.bind(progress);
-            }
-            return _addCallbacks.call(this, fulfill, reject, progress, promise, receiver, domain);
-        };
-    });
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-}
-
-
-
-/***/ }),
-/* 49 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-
-
-if (process.env.NODE_ENV !== 'production') {
-  var invariant = __webpack_require__(37);
-  var warning = __webpack_require__(38);
-  var ReactPropTypesSecret = __webpack_require__(98);
-  var loggedTypeFailures = {};
-}
-
-/**
- * Assert that the values match with the type specs.
- * Error messages are memorized and will only be shown once.
- *
- * @param {object} typeSpecs Map of name to a ReactPropType
- * @param {object} values Runtime values that need to be type-checked
- * @param {string} location e.g. "prop", "context", "child context"
- * @param {string} componentName Name of the component for error messages.
- * @param {?Function} getStack Returns the component stack.
- * @private
- */
-function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
-  if (process.env.NODE_ENV !== 'production') {
-    for (var typeSpecName in typeSpecs) {
-      if (typeSpecs.hasOwnProperty(typeSpecName)) {
-        var error;
-        // Prop type validation may throw. In case they do, we don't want to
-        // fail the render phase where it didn't fail before. So we log it.
-        // After these have been cleaned up, we'll let them throw.
-        try {
-          // This is intentionally an invariant that gets caught. It's the same
-          // behavior as without this statement except with a better message.
-          invariant(typeof typeSpecs[typeSpecName] === 'function', '%s: %s type `%s` is invalid; it must be a function, usually from ' + 'the `prop-types` package, but received `%s`.', componentName || 'React class', location, typeSpecName, typeof typeSpecs[typeSpecName]);
-          error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret);
-        } catch (ex) {
-          error = ex;
-        }
-        warning(!error || error instanceof Error, '%s: type specification of %s `%s` is invalid; the type checker ' + 'function must return `null` or an `Error` but returned a %s. ' + 'You may have forgotten to pass an argument to the type checker ' + 'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' + 'shape all require an argument).', componentName || 'React class', location, typeSpecName, typeof error);
-        if (error instanceof Error && !(error.message in loggedTypeFailures)) {
-          // Only monitor this failure once because there tends to be a lot of the
-          // same error.
-          loggedTypeFailures[error.message] = true;
-
-          var stack = getStack ? getStack() : '';
-
-          warning(false, 'Failed %s type: %s%s', location, error.message, stack != null ? stack : '');
-        }
-      }
-    }
-  }
-}
-
-module.exports = checkPropTypes;
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
-
-/***/ }),
-/* 50 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * Ce logiciel est un programme informatique servant à faciliter la création
- * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
- * <p/>
- * Ce logiciel est régi par la licence CeCILL soumise au droit français et
- * respectant les principes de diffusion des logiciels libres. Vous pouvez
- * utiliser, modifier et/ou redistribuer ce programme sous les conditions
- * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
- * sur le site "http://www.cecill.info".
- * <p/>
- * En contrepartie de l'accessibilité au code source et des droits de copie,
- * de modification et de redistribution accordés par cette licence, il n'est
- * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
- * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
- * titulaire des droits patrimoniaux et les concédants successifs.
- * <p/>
- * A cet égard  l'attention de l'utilisateur est attirée sur les risques
- * associés au chargement,  à l'utilisation,  à la modification et/ou au
- * développement et à la reproduction du logiciel par l'utilisateur étant
- * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
- * manipuler et qui le réserve donc à des développeurs et des professionnels
- * avertis possédant  des  connaissances  informatiques approfondies.  Les
- * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
- * logiciel à leurs besoins dans des conditions permettant d'assurer la
- * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
- * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
- * <p/>
- * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
- * pris connaissance de la licence CeCILL, et que vous en avez accepté les
- * termes.
- * <p/>
- * <p/>
- * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * This software is a computer program whose purpose is to facilitate creation of
- * web application in accordance with french general repositories : RGI, RGS and RGAA.
- * <p/>
- * This software is governed by the CeCILL license under French law and
- * abiding by the rules of distribution of free software.  You can  use,
- * modify and/ or redistribute the software under the terms of the CeCILL
- * license as circulated by CEA, CNRS and INRIA at the following URL
- * "http://www.cecill.info".
- * <p/>
- * As a counterpart to the access to the source code and  rights to copy,
- * modify and redistribute granted by the license, users are provided only
- * with a limited warranty  and the software's author,  the holder of the
- * economic rights,  and the successive licensors  have only  limited
- * liability.
- * <p/>
- * In this respect, the user's attention is drawn to the risks associated
- * with loading,  using,  modifying and/or developing or reproducing the
- * software by the user in light of its specific status of free software,
- * that may mean  that it is complicated to manipulate,  and  that  also
- * therefore means  that it is reserved for developers  and  experienced
- * professionals having in-depth computer knowledge. Users are therefore
- * encouraged to load and test the software's suitability as regards their
- * requirements in conditions enabling the security of their systems and/or
- * data to be ensured and,  more generally, to use and operate it in the
- * same conditions as regards security.
- * <p/>
- * The fact that you are presently reading this means that you have had
- * knowledge of the CeCILL license and that you accept its terms.
- *
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(1);
-/**
- * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
- *
- * @author MEAE - Ministère de l'Europe et des Affaires étrangères
- * @version v5.1.1
- * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
- * @license CECILL-2.1
- */
-var hornet_js_utils_1 = __webpack_require__(0);
-var React = __webpack_require__(2);
-var _ = __webpack_require__(6);
-var hornet_component_1 = __webpack_require__(3);
-var hornet_event_1 = __webpack_require__(7);
-var layout_switcher_1 = __webpack_require__(24);
-var router_client_async_elements_1 = __webpack_require__(19);
-var navigation_utils_1 = __webpack_require__(20);
-var hornet_event_2 = __webpack_require__(7);
-var expanding_layout_1 = __webpack_require__(178);
-var layout_switcher_2 = __webpack_require__(24);
-var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.component.hornet-page");
-/**
- * Composant de haut-niveau : correspond à une page.
- */
-var HornetPage = /** @class */ (function (_super) {
-    tslib_1.__extends(HornetPage, _super);
-    function HornetPage(props, context) {
-        var _this = _super.call(this, props, context) || this;
-        /**
-         * Service middleware pour le layout
-         */
-        _this.layoutService = new expanding_layout_1.ExpandingLayout();
-        _this.attributes = _.assign({}, _this.getRouteInfos().getAttributes());
-        if (_this.getRouteInfos().getService && _this.getRouteInfos().getService()) {
-            _this.service = new (_this.getRouteInfos().getService())();
-        }
-        if (!_this.props.workingZoneWidth) {
-            _this.copyInitialPropsToState({ workingZoneWidth: "1200px" }, _this.state);
-        }
-        _this.handleStyleAndWidth();
-        return _this;
-    }
-    /**
-     * @returns {any} les informations de routage associées à la page
-     */
-    HornetPage.prototype.getRouteInfos = function () {
-        return hornet_js_utils_1.Utils.getCls("hornet.routeInfos") || {
-            getAttributes: function () {
-                return {};
-            }
-        };
-    };
-    /**
-     * Permet d'effectuer les appels d'API et initialisations éventuellement nécessaires une fois le composant page
-     * monté côté client.
-     */
-    HornetPage.prototype.prepareClient = function () {
-        logger.trace("prepareClient HornetPage.");
-    };
-    /**
-     * Permet d'effectuer les appels d'API et initialisations éventuellement nécessaires une fois le composant page
-     * monté côté client et après le componentDidUpdate.
-     */
-    HornetPage.prototype.updateClient = function () {
-        logger.trace("updateClient HornetPage.");
-    };
-    /**
-     * @override
-     */
-    HornetPage.prototype.componentDidMount = function () {
-        _super.prototype.componentDidMount.call(this);
-        if (!hornet_js_utils_1.Utils.isServer && !this.hasError) {
-            this.prepareClient();
-        }
-    };
-    /**
-     * @override
-     */
-    HornetPage.prototype.componentDidUpdate = function (prevProps, prevState, prevContext) {
-        _super.prototype.componentDidUpdate.call(this, prevProps, prevState, prevContext);
-        if (!hornet_js_utils_1.Utils.isServer && !this.hasError) {
-            this.updateClient();
-        }
-    };
-    HornetPage.prototype.componentWillUpdate = function (nextProps, nextState, nextContext) {
-        _super.prototype.componentWillUpdate.call(this, nextProps, nextState, nextContext);
-    };
-    HornetPage.prototype.componentWillReceiveProps = function (nextProps, nextContext) {
-        _super.prototype.componentWillReceiveProps.call(this, nextProps, nextContext);
-        this.attributes = _.assign({}, this.getRouteInfos().getAttributes());
-    };
-    HornetPage.prototype.componentDidCatch = function (error, info) {
-        this.setState({ hasError: true, error: error });
-        var errorReport = {
-            componentName: this.constructor["name"],
-            method: "render",
-            methodArguments: arguments,
-            props: this.props,
-            state: this.state,
-            error: error
-        };
-        this.getErrorHandler()(errorReport, this.getErrorComponent());
-        // You can also log the error to an error reporting service
-    };
-    HornetPage.prototype.render = function () {
-        if (this.state.hasError) {
-            return React.createElement("h1", null, "Something went wrong.");
-        }
-        return _super.prototype.render.call(this);
-    };
-    /**
-     * renvoie le service de la page
-     */
-    HornetPage.prototype.getService = function () {
-        return this.service;
-    };
-    /**
-     * Ecoute l'évenement UPDATE_PAGE_EXPAND provenant du composant Hornet LayoutSwitcher
-     * @param specifiedMaxWidth
-     */
-    HornetPage.prototype.listenUpdatePageExpandEvent = function () {
-        var _this = this;
-        this.listen(layout_switcher_1.UPDATE_PAGE_EXPAND, function (ev) {
-            _this.layoutService.isExpandedLayout().then(function (retourApi) {
-                var body = retourApi.body;
-                if (body && body.isExpandedLayout) {
-                    _this.fetchHtmlElementsToSetClassBy("mainLayoutClassNameExpanded", "mainLayoutClassName", _this.state.workingZoneWidth);
-                    _this.setIsLayoutExpandedThroughService(false);
-                }
-                else {
-                    _this.fetchHtmlElementsToSetClassBy("mainLayoutClassName", "mainLayoutClassNameExpanded");
-                    _this.setIsLayoutExpandedThroughService(true);
-                }
-            });
-        });
-    };
-    /**
-     *
-     * @param currentClassName
-     * @param newClassName
-     * @param specifiedMaxWidth
-     */
-    HornetPage.prototype.fetchHtmlElementsToSetClassBy = function (currentClassName, newClassName, specifiedMaxWidth) {
-        if (!hornet_js_utils_1.Utils.isServer) {
-            var htmlElements = document.getElementsByClassName(currentClassName);
-            if (htmlElements && htmlElements.length > 0) {
-                for (var i = htmlElements.length - 1; i >= 0; --i) {
-                    this.majCssStyleExpand(htmlElements, i, currentClassName, newClassName, specifiedMaxWidth);
-                }
-            }
-        }
-    };
-    /**
-     *
-     * @param htmlElements
-     * @param i
-     * @param currentClassName
-     * @param newClassName
-     * @param specifiedMaxWidth
-     */
-    HornetPage.prototype.majCssStyleExpand = function (htmlElements, i, currentClassName, newClassName, specifiedMaxWidth) {
-        var element = document.getElementById(htmlElements[i].id);
-        if (element && element.classList) {
-            var elementClasses = element.classList;
-            elementClasses.remove(currentClassName);
-            elementClasses.add(newClassName);
-            if (specifiedMaxWidth) {
-                element.style.maxWidth = specifiedMaxWidth;
-            }
-            else {
-                element.style.maxWidth = "";
-            }
-        }
-    };
-    /**
-     * Méthode permettant à l'écoute du changement d'Url afin de changer le titre de la page
-     */
-    HornetPage.prototype.listenUrlChangeEvent = function () {
-        var _this = this;
-        this.listen(router_client_async_elements_1.URL_CHANGE_EVENT, function (ev) {
-            var currentPath = ev.detail.newPath, title = navigation_utils_1.NavigationUtils.retrievePageTextKey(navigation_utils_1.NavigationUtils.getConfigMenu(), currentPath);
-            navigation_utils_1.NavigationUtils.applyTitlePageOnClient(_this.i18n(title));
-        });
-    };
-    /**
-     *
-     * @param value
-     */
-    HornetPage.prototype.setIsLayoutExpandedThroughService = function (value) {
-        this.layoutService.setExpandedLayout({ isExpandedLayout: value }).then(function (retourApi) {
-            logger.trace("Retour API ExpandingLayoutRequest.setExpandedLayout :", retourApi.body.isExpandedLayout);
-            hornet_js_utils_1.Utils.appSharedProps.set("isExpandedLayout", retourApi.body.isExpandedLayout);
-            hornet_event_2.fireHornetEvent(layout_switcher_2.UPDATE_PAGE_EXPAND_MENU.withData(true));
-        });
-    };
-    /**
-     * Définis le style à positionner dans le state classNameExpanded
-     * et la taille max pour le state currentWorkingZoneWidth
-     * Ces states sont utilisées par le composant LayoutSwitcher
-     * pour étendre les composants
-     */
-    HornetPage.prototype.handleStyleAndWidth = function () {
-        // préparation de la taille pour le layout expanding
-        var maxWidth;
-        var classNameExpanded = "mainLayoutClassNameExpanded";
-        if (!(hornet_js_utils_1.Utils.appSharedProps.get("isExpandedLayout"))) {
-            maxWidth = this.state.workingZoneWidth;
-            classNameExpanded = "mainLayoutClassName";
-        }
-        this.copyInitialPropsToState({
-            currentWorkingZoneWidth: maxWidth,
-            classNameExpanded: classNameExpanded
-        }, this.state);
-    };
-    /**
-     * permet de changer d'url en passant des données à la page suivante
-     * @param {string} url - Url à charger
-     * @param {any} data - données à passer à la page suivante
-     * @param {() => void} cb - callback
-     */
-    HornetPage.prototype.navigateTo = function (url, data, cb) {
-        this.fire(hornet_event_1.CHANGE_URL_WITH_DATA_EVENT.withData({ url: url, data: data, cb: cb }));
-    };
-    /**
-     * Supprime les données de navigation
-     */
-    HornetPage.prototype.deleteNavigateData = function () {
-        hornet_js_utils_1.Utils.setCls("hornet.navigateData", {});
-    };
-    HornetPage.defaultProps = {};
-    return HornetPage;
-}(hornet_component_1.HornetComponent));
-exports.HornetPage = HornetPage;
-
-
-
-/***/ }),
-/* 51 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 /**
  * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
@@ -31251,6 +30757,500 @@ var NotificationContent = /** @class */ (function (_super) {
 
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * Ce logiciel est un programme informatique servant à faciliter la création
+ * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
+ * <p/>
+ * Ce logiciel est régi par la licence CeCILL soumise au droit français et
+ * respectant les principes de diffusion des logiciels libres. Vous pouvez
+ * utiliser, modifier et/ou redistribuer ce programme sous les conditions
+ * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
+ * sur le site "http://www.cecill.info".
+ * <p/>
+ * En contrepartie de l'accessibilité au code source et des droits de copie,
+ * de modification et de redistribution accordés par cette licence, il n'est
+ * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
+ * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
+ * titulaire des droits patrimoniaux et les concédants successifs.
+ * <p/>
+ * A cet égard  l'attention de l'utilisateur est attirée sur les risques
+ * associés au chargement,  à l'utilisation,  à la modification et/ou au
+ * développement et à la reproduction du logiciel par l'utilisateur étant
+ * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
+ * manipuler et qui le réserve donc à des développeurs et des professionnels
+ * avertis possédant  des  connaissances  informatiques approfondies.  Les
+ * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
+ * logiciel à leurs besoins dans des conditions permettant d'assurer la
+ * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
+ * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
+ * <p/>
+ * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
+ * pris connaissance de la licence CeCILL, et que vous en avez accepté les
+ * termes.
+ * <p/>
+ * <p/>
+ * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * This software is a computer program whose purpose is to facilitate creation of
+ * web application in accordance with french general repositories : RGI, RGS and RGAA.
+ * <p/>
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software.  You can  use,
+ * modify and/ or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ * <p/>
+ * As a counterpart to the access to the source code and  rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty  and the software's author,  the holder of the
+ * economic rights,  and the successive licensors  have only  limited
+ * liability.
+ * <p/>
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading,  using,  modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean  that it is complicated to manipulate,  and  that  also
+ * therefore means  that it is reserved for developers  and  experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and,  more generally, to use and operate it in the
+ * same conditions as regards security.
+ * <p/>
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * hornet-js-utils - Partie commune et utilitaire à tous les composants hornet-js
+ *
+ * @author MEAE - Ministère de l'Europe et des Affaires étrangères
+ * @version v5.1.1
+ * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
+ * @license CECILL-2.1
+ */
+var index_1 = __webpack_require__(0);
+var Promise = __webpack_require__(17);
+exports.Promise = Promise;
+if (index_1.Utils.isServer) {
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // wrap bluebird afin de sécuriser l'utilisation de "continuation-local-storage" (perte ou mix de contexte) //
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    var shimmer = __webpack_require__(157);
+    var proto = Promise && Promise.prototype;
+    var ns_1 = index_1.Utils.getContinuationStorage();
+    shimmer.wrap(proto, "_addCallbacks", function (_addCallbacks) {
+        return function ns_addCallbacks(fulfill, reject, progress, promise, receiver, domain) {
+            if (typeof fulfill === "function") {
+                fulfill = ns_1.bind(fulfill);
+            }
+            if (typeof reject === "function") {
+                reject = ns_1.bind(reject);
+            }
+            if (typeof progress === "function") {
+                progress = ns_1.bind(progress);
+            }
+            return _addCallbacks.call(this, fulfill, reject, progress, promise, receiver, domain);
+        };
+    });
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+}
+
+
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+if (process.env.NODE_ENV !== 'production') {
+  var invariant = __webpack_require__(37);
+  var warning = __webpack_require__(38);
+  var ReactPropTypesSecret = __webpack_require__(98);
+  var loggedTypeFailures = {};
+}
+
+/**
+ * Assert that the values match with the type specs.
+ * Error messages are memorized and will only be shown once.
+ *
+ * @param {object} typeSpecs Map of name to a ReactPropType
+ * @param {object} values Runtime values that need to be type-checked
+ * @param {string} location e.g. "prop", "context", "child context"
+ * @param {string} componentName Name of the component for error messages.
+ * @param {?Function} getStack Returns the component stack.
+ * @private
+ */
+function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
+  if (process.env.NODE_ENV !== 'production') {
+    for (var typeSpecName in typeSpecs) {
+      if (typeSpecs.hasOwnProperty(typeSpecName)) {
+        var error;
+        // Prop type validation may throw. In case they do, we don't want to
+        // fail the render phase where it didn't fail before. So we log it.
+        // After these have been cleaned up, we'll let them throw.
+        try {
+          // This is intentionally an invariant that gets caught. It's the same
+          // behavior as without this statement except with a better message.
+          invariant(typeof typeSpecs[typeSpecName] === 'function', '%s: %s type `%s` is invalid; it must be a function, usually from ' + 'the `prop-types` package, but received `%s`.', componentName || 'React class', location, typeSpecName, typeof typeSpecs[typeSpecName]);
+          error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret);
+        } catch (ex) {
+          error = ex;
+        }
+        warning(!error || error instanceof Error, '%s: type specification of %s `%s` is invalid; the type checker ' + 'function must return `null` or an `Error` but returned a %s. ' + 'You may have forgotten to pass an argument to the type checker ' + 'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' + 'shape all require an argument).', componentName || 'React class', location, typeSpecName, typeof error);
+        if (error instanceof Error && !(error.message in loggedTypeFailures)) {
+          // Only monitor this failure once because there tends to be a lot of the
+          // same error.
+          loggedTypeFailures[error.message] = true;
+
+          var stack = getStack ? getStack() : '';
+
+          warning(false, 'Failed %s type: %s%s', location, error.message, stack != null ? stack : '');
+        }
+      }
+    }
+  }
+}
+
+module.exports = checkPropTypes;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * Ce logiciel est un programme informatique servant à faciliter la création
+ * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
+ * <p/>
+ * Ce logiciel est régi par la licence CeCILL soumise au droit français et
+ * respectant les principes de diffusion des logiciels libres. Vous pouvez
+ * utiliser, modifier et/ou redistribuer ce programme sous les conditions
+ * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
+ * sur le site "http://www.cecill.info".
+ * <p/>
+ * En contrepartie de l'accessibilité au code source et des droits de copie,
+ * de modification et de redistribution accordés par cette licence, il n'est
+ * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
+ * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
+ * titulaire des droits patrimoniaux et les concédants successifs.
+ * <p/>
+ * A cet égard  l'attention de l'utilisateur est attirée sur les risques
+ * associés au chargement,  à l'utilisation,  à la modification et/ou au
+ * développement et à la reproduction du logiciel par l'utilisateur étant
+ * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
+ * manipuler et qui le réserve donc à des développeurs et des professionnels
+ * avertis possédant  des  connaissances  informatiques approfondies.  Les
+ * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
+ * logiciel à leurs besoins dans des conditions permettant d'assurer la
+ * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
+ * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
+ * <p/>
+ * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
+ * pris connaissance de la licence CeCILL, et que vous en avez accepté les
+ * termes.
+ * <p/>
+ * <p/>
+ * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * This software is a computer program whose purpose is to facilitate creation of
+ * web application in accordance with french general repositories : RGI, RGS and RGAA.
+ * <p/>
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software.  You can  use,
+ * modify and/ or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ * <p/>
+ * As a counterpart to the access to the source code and  rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty  and the software's author,  the holder of the
+ * economic rights,  and the successive licensors  have only  limited
+ * liability.
+ * <p/>
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading,  using,  modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean  that it is complicated to manipulate,  and  that  also
+ * therefore means  that it is reserved for developers  and  experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and,  more generally, to use and operate it in the
+ * same conditions as regards security.
+ * <p/>
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(1);
+/**
+ * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
+ *
+ * @author MEAE - Ministère de l'Europe et des Affaires étrangères
+ * @version v5.1.1
+ * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
+ * @license CECILL-2.1
+ */
+var hornet_js_utils_1 = __webpack_require__(0);
+var React = __webpack_require__(2);
+var _ = __webpack_require__(6);
+var hornet_component_1 = __webpack_require__(3);
+var hornet_event_1 = __webpack_require__(7);
+var layout_switcher_1 = __webpack_require__(24);
+var router_client_async_elements_1 = __webpack_require__(19);
+var navigation_utils_1 = __webpack_require__(20);
+var hornet_event_2 = __webpack_require__(7);
+var expanding_layout_1 = __webpack_require__(178);
+var layout_switcher_2 = __webpack_require__(24);
+var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.component.hornet-page");
+/**
+ * Composant de haut-niveau : correspond à une page.
+ */
+var HornetPage = /** @class */ (function (_super) {
+    tslib_1.__extends(HornetPage, _super);
+    function HornetPage(props, context) {
+        var _this = _super.call(this, props, context) || this;
+        /**
+         * Service middleware pour le layout
+         */
+        _this.layoutService = new expanding_layout_1.ExpandingLayout();
+        _this.attributes = _.assign({}, _this.getRouteInfos().getAttributes());
+        if (_this.getRouteInfos().getService && _this.getRouteInfos().getService()) {
+            _this.service = new (_this.getRouteInfos().getService())();
+        }
+        if (!_this.props.workingZoneWidth) {
+            _this.copyInitialPropsToState({ workingZoneWidth: "1200px" }, _this.state);
+        }
+        _this.handleStyleAndWidth();
+        return _this;
+    }
+    /**
+     * @returns {any} les informations de routage associées à la page
+     */
+    HornetPage.prototype.getRouteInfos = function () {
+        return hornet_js_utils_1.Utils.getCls("hornet.routeInfos") || {
+            getAttributes: function () {
+                return {};
+            }
+        };
+    };
+    /**
+     * Permet d'effectuer les appels d'API et initialisations éventuellement nécessaires une fois le composant page
+     * monté côté client.
+     */
+    HornetPage.prototype.prepareClient = function () {
+        logger.trace("prepareClient HornetPage.");
+    };
+    /**
+     * Permet d'effectuer les appels d'API et initialisations éventuellement nécessaires une fois le composant page
+     * monté côté client et après le componentDidUpdate.
+     */
+    HornetPage.prototype.updateClient = function () {
+        logger.trace("updateClient HornetPage.");
+    };
+    /**
+     * @override
+     */
+    HornetPage.prototype.componentDidMount = function () {
+        _super.prototype.componentDidMount.call(this);
+        if (!hornet_js_utils_1.Utils.isServer && !this.hasError) {
+            this.prepareClient();
+        }
+    };
+    /**
+     * @override
+     */
+    HornetPage.prototype.componentDidUpdate = function (prevProps, prevState, prevContext) {
+        _super.prototype.componentDidUpdate.call(this, prevProps, prevState, prevContext);
+        if (!hornet_js_utils_1.Utils.isServer && !this.hasError) {
+            this.updateClient();
+        }
+    };
+    HornetPage.prototype.componentWillUpdate = function (nextProps, nextState, nextContext) {
+        _super.prototype.componentWillUpdate.call(this, nextProps, nextState, nextContext);
+    };
+    HornetPage.prototype.componentWillReceiveProps = function (nextProps, nextContext) {
+        _super.prototype.componentWillReceiveProps.call(this, nextProps, nextContext);
+        this.attributes = _.assign({}, this.getRouteInfos().getAttributes());
+    };
+    HornetPage.prototype.componentDidCatch = function (error, info) {
+        this.setState({ hasError: true, error: error });
+        var errorReport = {
+            componentName: this.constructor["name"],
+            method: "render",
+            methodArguments: arguments,
+            props: this.props,
+            state: this.state,
+            error: error
+        };
+        this.getErrorHandler()(errorReport, this.getErrorComponent());
+        // You can also log the error to an error reporting service
+    };
+    HornetPage.prototype.render = function () {
+        if (this.state.hasError) {
+            return React.createElement("h1", null, "Something went wrong.");
+        }
+        return _super.prototype.render.call(this);
+    };
+    /**
+     * renvoie le service de la page
+     */
+    HornetPage.prototype.getService = function () {
+        return this.service;
+    };
+    /**
+     * Ecoute l'évenement UPDATE_PAGE_EXPAND provenant du composant Hornet LayoutSwitcher
+     * @param specifiedMaxWidth
+     */
+    HornetPage.prototype.listenUpdatePageExpandEvent = function () {
+        var _this = this;
+        this.listen(layout_switcher_1.UPDATE_PAGE_EXPAND, function (ev) {
+            _this.layoutService.isExpandedLayout().then(function (retourApi) {
+                var body = retourApi.body;
+                if (body && body.isExpandedLayout) {
+                    _this.fetchHtmlElementsToSetClassBy("mainLayoutClassNameExpanded", "mainLayoutClassName", _this.state.workingZoneWidth);
+                    _this.setIsLayoutExpandedThroughService(false);
+                }
+                else {
+                    _this.fetchHtmlElementsToSetClassBy("mainLayoutClassName", "mainLayoutClassNameExpanded");
+                    _this.setIsLayoutExpandedThroughService(true);
+                }
+            });
+        });
+    };
+    /**
+     *
+     * @param currentClassName
+     * @param newClassName
+     * @param specifiedMaxWidth
+     */
+    HornetPage.prototype.fetchHtmlElementsToSetClassBy = function (currentClassName, newClassName, specifiedMaxWidth) {
+        if (!hornet_js_utils_1.Utils.isServer) {
+            var htmlElements = document.getElementsByClassName(currentClassName);
+            if (htmlElements && htmlElements.length > 0) {
+                for (var i = htmlElements.length - 1; i >= 0; --i) {
+                    this.majCssStyleExpand(htmlElements, i, currentClassName, newClassName, specifiedMaxWidth);
+                }
+            }
+        }
+    };
+    /**
+     *
+     * @param htmlElements
+     * @param i
+     * @param currentClassName
+     * @param newClassName
+     * @param specifiedMaxWidth
+     */
+    HornetPage.prototype.majCssStyleExpand = function (htmlElements, i, currentClassName, newClassName, specifiedMaxWidth) {
+        var element = document.getElementById(htmlElements[i].id);
+        if (element && element.classList) {
+            var elementClasses = element.classList;
+            elementClasses.remove(currentClassName);
+            elementClasses.add(newClassName);
+            if (specifiedMaxWidth) {
+                element.style.maxWidth = specifiedMaxWidth;
+            }
+            else {
+                element.style.maxWidth = "";
+            }
+        }
+    };
+    /**
+     * Méthode permettant à l'écoute du changement d'Url afin de changer le titre de la page
+     */
+    HornetPage.prototype.listenUrlChangeEvent = function () {
+        var _this = this;
+        this.listen(router_client_async_elements_1.URL_CHANGE_EVENT, function (ev) {
+            var currentPath = ev.detail.newPath, title = navigation_utils_1.NavigationUtils.retrievePageTextKey(navigation_utils_1.NavigationUtils.getConfigMenu(), currentPath);
+            navigation_utils_1.NavigationUtils.applyTitlePageOnClient(_this.i18n(title));
+        });
+    };
+    /**
+     *
+     * @param value
+     */
+    HornetPage.prototype.setIsLayoutExpandedThroughService = function (value) {
+        this.layoutService.setExpandedLayout({ isExpandedLayout: value }).then(function (retourApi) {
+            logger.trace("Retour API ExpandingLayoutRequest.setExpandedLayout :", retourApi.body.isExpandedLayout);
+            hornet_js_utils_1.Utils.appSharedProps.set("isExpandedLayout", retourApi.body.isExpandedLayout);
+            hornet_event_2.fireHornetEvent(layout_switcher_2.UPDATE_PAGE_EXPAND_MENU.withData(true));
+        });
+    };
+    /**
+     * Définis le style à positionner dans le state classNameExpanded
+     * et la taille max pour le state currentWorkingZoneWidth
+     * Ces states sont utilisées par le composant LayoutSwitcher
+     * pour étendre les composants
+     */
+    HornetPage.prototype.handleStyleAndWidth = function () {
+        // préparation de la taille pour le layout expanding
+        var maxWidth;
+        var classNameExpanded = "mainLayoutClassNameExpanded";
+        if (!(hornet_js_utils_1.Utils.appSharedProps.get("isExpandedLayout"))) {
+            maxWidth = this.state.workingZoneWidth;
+            classNameExpanded = "mainLayoutClassName";
+        }
+        this.copyInitialPropsToState({
+            currentWorkingZoneWidth: maxWidth,
+            classNameExpanded: classNameExpanded
+        }, this.state);
+    };
+    /**
+     * permet de changer d'url en passant des données à la page suivante
+     * @param {string} url - Url à charger
+     * @param {any} data - données à passer à la page suivante
+     * @param {() => void} cb - callback
+     */
+    HornetPage.prototype.navigateTo = function (url, data, cb) {
+        this.fire(hornet_event_1.CHANGE_URL_WITH_DATA_EVENT.withData({ url: url, data: data, cb: cb }));
+    };
+    /**
+     * Supprime les données de navigation
+     */
+    HornetPage.prototype.deleteNavigateData = function () {
+        hornet_js_utils_1.Utils.setCls("hornet.navigateData", {});
+    };
+    HornetPage.defaultProps = {};
+    return HornetPage;
+}(hornet_component_1.HornetComponent));
+exports.HornetPage = HornetPage;
+
+
 
 /***/ }),
 /* 52 */
@@ -32803,7 +32803,7 @@ var tslib_1 = __webpack_require__(1);
  */
 var events_1 = __webpack_require__(27);
 var hornet_js_utils_1 = __webpack_require__(0);
-var promise_api_1 = __webpack_require__(48);
+var promise_api_1 = __webpack_require__(49);
 var domain = __webpack_require__(158);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.executor.AsyncExecutor");
 var AsyncExecutor = /** @class */ (function (_super) {
@@ -34055,7 +34055,7 @@ var hornet_event_2 = __webpack_require__(7);
 var hornet_event_3 = __webpack_require__(7);
 var base_error_1 = __webpack_require__(16);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.services.hornet-agent");
-var promise_api_1 = __webpack_require__(48);
+var promise_api_1 = __webpack_require__(49);
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // wrap http & https afin de sécuriser l'utilisation de "continuation-local-storage" (perte ou mix de contexte) //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -38664,8 +38664,8 @@ var tslib_1 = __webpack_require__(1);
  */
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
-var hornet_page_1 = __webpack_require__(50);
-var notification_1 = __webpack_require__(51);
+var hornet_page_1 = __webpack_require__(51);
+var notification_1 = __webpack_require__(48);
 var business_error_list_1 = __webpack_require__(31);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.component.error-page");
 var ErrorPage = /** @class */ (function (_super) {
@@ -53796,7 +53796,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
-var hornet_page_1 = __webpack_require__(50);
+var hornet_page_1 = __webpack_require__(51);
 var spinner_1 = __webpack_require__(211);
 var header_page_1 = __webpack_require__(212);
 var footer_page_1 = __webpack_require__(213);
@@ -54014,7 +54014,7 @@ var emptyObject = __webpack_require__(29);
 var invariant = __webpack_require__(37);
 var warning = __webpack_require__(38);
 var emptyFunction = __webpack_require__(14);
-var checkPropTypes = __webpack_require__(49);
+var checkPropTypes = __webpack_require__(50);
 
 // TODO: this is special because it gets imported during build.
 
@@ -63378,7 +63378,7 @@ var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
 var router_client_async_elements_1 = __webpack_require__(19);
-var notification_1 = __webpack_require__(51);
+var notification_1 = __webpack_require__(48);
 var bread_crumb_1 = __webpack_require__(226);
 var top_button_1 = __webpack_require__(228);
 var error_page_1 = __webpack_require__(93);
@@ -63782,7 +63782,7 @@ var shallowEqual = __webpack_require__(89);
 var containsNode = __webpack_require__(90);
 var focusNode = __webpack_require__(91);
 var emptyObject = __webpack_require__(29);
-var checkPropTypes = __webpack_require__(49);
+var checkPropTypes = __webpack_require__(50);
 var hyphenateStyleName = __webpack_require__(219);
 var camelizeStyleName = __webpack_require__(221);
 

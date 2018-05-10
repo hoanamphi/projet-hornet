@@ -11,10 +11,11 @@ import { Button } from "hornet-js-react-components/src/widget/button/button";
 import { Form1Service } from "src/services/page/admin/fvm/form1-service";
 import { ButtonsArea } from "hornet-js-react-components/src/widget/form/buttons-area";
 import { UploadFileField } from "hornet-js-react-components/src/widget/form/upload-file-field";
-import {AutoCompleteField} from "hornet-js-react-components/src/widget/form/auto-complete-field";
 import {DataSource} from "hornet-js-core/src/component/datasource/datasource";
-import {DataSourceConfig} from "hornet-js-core/src/component/datasource/config/service/datasource-config";
-import forEach = require("lodash/forEach");
+import {Notification} from "hornet-js-react-components/src/widget/notification/notification";
+
+import * as schema from "src/resources/admin/fvm/validation-form1.json";
+import {SelectField} from "hornet-js-react-components/src/widget/form/select-field";
 
 const logger: Logger = Utils.getLogger("projet-hornet.views.admin.gen-formulaire-page");
 
@@ -25,7 +26,7 @@ export class FormulairePage extends HornetPage<Form1Service, HornetComponentProp
   constructor(props?: HornetComponentProps, context?: any) {
     super(props, context);
 
-    this.prefectures = new DataSource<any> (null, {"value": "idPrefecture", "text": "prefecture"});
+    this.prefectures = new DataSource<any> (null, {"value": "idPrefecture", "label": "prefecture"}, );
   }
 
   prepareClient(): void {
@@ -37,8 +38,11 @@ export class FormulairePage extends HornetPage<Form1Service, HornetComponentProp
 
   onSubmit(data: any) {
     this.getService().insererDonnee(data).then(result=> {
-      if(result.hasError != null){
-        console.log(result.hasError);
+      if(result.hasError != null || result.hasReason != null){
+        console.log("error" + result["hasError"]);
+        console.log("reason"+ result["hasReason"]);
+      } else {
+        console.log(result);
       }
     }).catch(reason=>{
       throw new Error(reason);
@@ -47,68 +51,75 @@ export class FormulairePage extends HornetPage<Form1Service, HornetComponentProp
 
   render(): JSX.Element {
 
+    let format = this.i18n("form1");
+
     return (
       <div>
-        <h2>Formulaire 1</h2>
+        <h2>Formulaire d'entrée d'une demande d'authentification</h2>
+        <Notification id="notif"/>
         <Form
           id="form1"
+          schema={schema}
           onSubmit={this.onSubmit}
+          formMessages={format}
         >
           <Row>
             <InputField name="nom"
-                  label="Nom"
+                        label={format.fields.nom.label}
                   required={true}/>
           </Row>
           <Row>
             <InputField name="prenom"
-                  label="Prenom"
-                  required={true}/>
+                        label={format.fields.prenom.label}
+                        required={true}/>
           </Row>
           <Row>
             <CalendarField name="date_de_naissance"
-                  label="Date de naissance"
-                  title="Calendrier"
-                  required={true}/>
+                           label={format.fields.date_de_naissance.label}
+                           title={format.fields.date_de_naissance.title}
+                           required={true}/>
           </Row>
           <Row>
             <InputField name="pays_de_naissance"
-                  label="Pays de Naissance"
+                        label={format.fields.pays_de_naissance.label}
                   required={true}/>
           </Row>
           <Row>
             <InputField name="ville_de_naissance"
-                  label="Ville de Naissance"
+                        label={format.fields.ville_de_naissance.label}
                   required={true}/>
           </Row>
           <Row>
             <InputField name="num_permis"
-                        label="Numero de permis"
+                        label={format.fields.num_permis.label}
                         required={true}/>
           </Row>
           <Row>
             <UploadFileField name="copie_permis"
-                     label="Photocopie du permis de conduire"
-                     buttonLabel={"Choisir un fichier"}
-                     fileSelectedLabel={"Fichier choisi"}
+                             label={format.fields.copie_permis.label}
+                             buttonLabel={format.fields.copie_permis.buttonLabel}
+                             fileSelectedLabel={format.fields.copie_permis.fileSelectedLabel}
+                             required = {true}
             />
           </Row>
           <Row>
             <CalendarField name="date_de_delivrance"
-                           label="Date de délivrance"
-                           title="Calendrier"
+                           label={format.fields.date_de_delivrance.label}
+                           title={format.fields.date_de_delivrance.title}
                            required={true}/>
           </Row>
           <Row>
-            <AutoCompleteField dataSource={this.prefectures}
+            <SelectField dataSource={this.prefectures}
+                               label={format.fields.id_prefecture.label}
                         name="id_prefecture"
-                        label="Prefecture de delivrance"
                         required={true}/>
           </Row>
           <Row>
             <UploadFileField name="copie_note_verbale_maeci"
-                             label="Photocopie de la note verbale du MAECI"
-                             buttonLabel={"Choisir un fichier"}
-                             fileSelectedLabel={"Fichier choisi"}
+                             label={format.fields.copie_note_verbale_maeci.label}
+                             buttonLabel={format.fields.copie_note_verbale_maeci.buttonLabel}
+                             fileSelectedLabel={format.fields.copie_note_verbale_maeci.fileSelectedLabel}
+                             required={true}
             />
           </Row>
           <ButtonsArea>
