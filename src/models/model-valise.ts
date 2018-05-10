@@ -9,14 +9,14 @@ export interface ValiseAttributes extends HornetSequelizeAttributes {
 export let ValiseModel: Sequelize.DefineAttributes = {
   "numValise": {
     type: Sequelize.INTEGER,
-    field: "NUM_VALISE",
+    field: "num_valise",
     primaryKey: true,
     allowNull: false,
     unique: "valise_ pkey"
   },
   "dateValise": {
     type: Sequelize.DATE,
-    field: "DATE_VALISE",
+    field: "date_valise",
     allowNull: false
   }
 };

@@ -6594,13 +6594,13 @@ var FormulairePage = /** @class */ (function (_super) {
     tslib_1.__extends(FormulairePage, _super);
     function FormulairePage(props, context) {
         var _this = _super.call(this, props, context) || this;
-        _this.prefectures = new datasource_1.DataSource([]);
+        _this.prefectures = new datasource_1.DataSource(null, { "value": "idPrefecture", "text": "prefecture" });
         return _this;
     }
     FormulairePage.prototype.prepareClient = function () {
         var _this = this;
-        this.getService().getListePrefectures().then(function (list) {
-            _this.prefectures = new datasource_1.DataSource(list, { "value": "id", "text": "libelle" });
+        this.getService().getListePrefectures().then(function (liste) {
+            _this.prefectures.add(true, liste);
         });
     };
     FormulairePage.prototype.onSubmit = function (data) {
@@ -6633,7 +6633,7 @@ var FormulairePage = /** @class */ (function (_super) {
                 React.createElement(row_1.Row, null,
                     React.createElement(calendar_field_1.CalendarField, { name: "date_de_delivrance", label: "Date de d\u00E9livrance", title: "Calendrier", required: true })),
                 React.createElement(row_1.Row, null,
-                    React.createElement(auto_complete_field_1.AutoCompleteField, { dataSource: this.prefectures, name: "id_prefecture", label: "Id de la prefecture de delivrance", required: true })),
+                    React.createElement(auto_complete_field_1.AutoCompleteField, { dataSource: this.prefectures, name: "id_prefecture", label: "Prefecture de delivrance", required: true })),
                 React.createElement(row_1.Row, null,
                     React.createElement(upload_file_field_1.UploadFileField, { name: "copie_note_verbale_maeci", label: "Photocopie de la note verbale du MAECI", buttonLabel: "Choisir un fichier", fileSelectedLabel: "Fichier choisi" })),
                 React.createElement(buttons_area_1.ButtonsArea, null,

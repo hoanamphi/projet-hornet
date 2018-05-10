@@ -13,27 +13,29 @@ import { ButtonsArea } from "hornet-js-react-components/src/widget/form/buttons-
 import { UploadFileField } from "hornet-js-react-components/src/widget/form/upload-file-field";
 import {AutoCompleteField} from "hornet-js-react-components/src/widget/form/auto-complete-field";
 import {DataSource} from "hornet-js-core/src/component/datasource/datasource";
+import {DataSourceConfig} from "hornet-js-core/src/component/datasource/config/service/datasource-config";
+import forEach = require("lodash/forEach");
 
 const logger: Logger = Utils.getLogger("projet-hornet.views.admin.gen-formulaire-page");
 
 export class FormulairePage extends HornetPage<Form1Service, HornetComponentProps, any> {
 
-  private prefectures = new DataSource<any>([]);
+  private prefectures;
 
   constructor(props?: HornetComponentProps, context?: any) {
     super(props, context);
+
+    this.prefectures = new DataSource<any> (null, {"value": "idPrefecture", "text": "prefecture"});
   }
 
   prepareClient(): void {
-    this.getService().getListePrefectures().then(list=>{
 
-      this.prefectures = new DataSource<any>(list, {"value":"id", "text": "libelle"});
-
+    this.getService().getListePrefectures().then(liste=>{
+      this.prefectures.add(true, liste);
     });
   }
 
   onSubmit(data: any) {
-
     this.getService().insererDonnee(data).then(result=> {
       if(result.hasError != null){
         console.log(result.hasError);
@@ -99,7 +101,7 @@ export class FormulairePage extends HornetPage<Form1Service, HornetComponentProp
           <Row>
             <AutoCompleteField dataSource={this.prefectures}
                         name="id_prefecture"
-                        label="Id de la prefecture de delivrance"
+                        label="Prefecture de delivrance"
                         required={true}/>
           </Row>
           <Row>

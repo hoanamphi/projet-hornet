@@ -9,6 +9,7 @@ import {CopieNoteVerbaleMAECIFVMDao} from "../../../../dao/admin/fvm/copie_note_
 import {DossierFVMDAO} from "../../../../dao/admin/fvm/dossier-dao";
 import {PermisFVMDAO} from "../../../../dao/admin/fvm/permis-dao";
 import {CopiePermisFVMDao} from "../../../../dao/admin/fvm/copie_permis-dao";
+import {PrefectureDAO} from "../../../../dao/prefecture-dao";
 
 const logger: Logger = Utils.getLogger("projet-hornet.services.data.admin.admin-service-impl-data");
 
@@ -19,6 +20,7 @@ export class Form1ServiceImpl extends ServiceRequest implements Form1Service {
   private permisDAO = new PermisFVMDAO();
   private copieNoteVerbaleMAECIDAO = new CopieNoteVerbaleMAECIFVMDao();
   private copiePermisDAO = new CopiePermisFVMDao();
+  private prefectureDAO = new PrefectureDAO();
 
   @Transactional({configDatabase: Injector.getRegistered("databaseConfigName")})
   insererDonnee(data): Promise<any> {
@@ -43,7 +45,7 @@ export class Form1ServiceImpl extends ServiceRequest implements Form1Service {
 
       let insertCopiePermis = this.copiePermisDAO.insererCopiePermis(copie_permis.nom, copie_permis.mimetype, copie_permis.encoding, copie_permis.size, copie_permis.data, values[4]);
 
-      let insertPermis = this.permisDAO.insererPermis(content.num_permis, values[3], content.date_de_delivrance, values[2], values[1], content.id_prefecture);
+      let insertPermis = this.permisDAO.insererPermis(content.num_permis, values[3], content.date_de_delivrance, values[2], values[1], content.id_prefecture["value"]);
 
       return Promise.all([insertCopieNoteVerbaleMAECI, insertDossier, insertPersonne, insertCopiePermis,insertPermis]);
     }).catch(error=>{
@@ -52,6 +54,6 @@ export class Form1ServiceImpl extends ServiceRequest implements Form1Service {
   }
 
   getListePrefectures(): Promise<any>{
-    return Promise.resolve([{"id":1, "libelle":"test"}]);
+    return this.prefectureDAO.getListePrefecture();
   }
 }

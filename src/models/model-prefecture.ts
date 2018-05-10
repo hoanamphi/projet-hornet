@@ -14,39 +14,39 @@ export interface PrefectureAttributes extends HornetSequelizeAttributes {
 export let PrefectureModel: Sequelize.DefineAttributes = {
     "idPrefecture": {
         type: Sequelize.INTEGER,
-        field: "ID_PREFECTURE",
+        field: "id_prefecture",
         primaryKey: true,
         allowNull: false,
         unique: "prefecture_pkey"
     },
     "region": {
         type: Sequelize.STRING,
-        field: "REGION",
+        field: "region",
         allowNull: false
     },
     "departement": {
         type: Sequelize.STRING,
-        field: "DEPARTEMENT",
+        field: "departement",
         allowNull: false
     },
     "prefecture": {
         type: Sequelize.STRING,
-        field: "PREFECTURE",
+        field: "prefecture",
         allowNull: false
     },
     "adresse": {
         type: Sequelize.STRING,
-        field: "ADRESSE",
+        field: "adresse",
         allowNull: false
     },
     "codePostal": {
         type: Sequelize.INTEGER,
-        field: "CODE_POSTAL",
+        field: "code_postal",
         allowNull: false
     },
     "ville": {
         type: Sequelize.STRING,
-        field: "VILLE",
+        field: "ville",
         allowNull: false
     }
 };

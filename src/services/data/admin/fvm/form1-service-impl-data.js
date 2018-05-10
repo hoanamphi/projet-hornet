@@ -10,6 +10,7 @@ var copie_note_verbale_MAECI_dao_1 = require("../../../../dao/admin/fvm/copie_no
 var dossier_dao_1 = require("../../../../dao/admin/fvm/dossier-dao");
 var permis_dao_1 = require("../../../../dao/admin/fvm/permis-dao");
 var copie_permis_dao_1 = require("../../../../dao/admin/fvm/copie_permis-dao");
+var prefecture_dao_1 = require("../../../../dao/prefecture-dao");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.services.data.admin.admin-service-impl-data");
 var Form1ServiceImpl = /** @class */ (function (_super) {
     tslib_1.__extends(Form1ServiceImpl, _super);
@@ -20,6 +21,7 @@ var Form1ServiceImpl = /** @class */ (function (_super) {
         _this.permisDAO = new permis_dao_1.PermisFVMDAO();
         _this.copieNoteVerbaleMAECIDAO = new copie_note_verbale_MAECI_dao_1.CopieNoteVerbaleMAECIFVMDao();
         _this.copiePermisDAO = new copie_permis_dao_1.CopiePermisFVMDao();
+        _this.prefectureDAO = new prefecture_dao_1.PrefectureDAO();
         return _this;
     }
     Form1ServiceImpl.prototype.insererDonnee = function (data) {
@@ -37,14 +39,14 @@ var Form1ServiceImpl = /** @class */ (function (_super) {
             var insertDossier = _this.dossierDAO.insererDossier(values[0], new Date(), values[4]);
             var insertPersonne = _this.personneDAO.insererPersonne(content.nom, content.prenom, content.date_de_naissance, content.ville_de_naissance, content.pays_de_naissance, values[4]);
             var insertCopiePermis = _this.copiePermisDAO.insererCopiePermis(copie_permis.nom, copie_permis.mimetype, copie_permis.encoding, copie_permis.size, copie_permis.data, values[4]);
-            var insertPermis = _this.permisDAO.insererPermis(content.num_permis, values[3], content.date_de_delivrance, values[2], values[1], content.id_prefecture);
+            var insertPermis = _this.permisDAO.insererPermis(content.num_permis, values[3], content.date_de_delivrance, values[2], values[1], content.id_prefecture["value"]);
             return Promise.all([insertCopieNoteVerbaleMAECI, insertDossier, insertPersonne, insertCopiePermis, insertPermis]);
         }).catch(function (error) {
             return { "hasError": error };
         });
     };
     Form1ServiceImpl.prototype.getListePrefectures = function () {
-        return Promise.resolve([{ "id": 1, "libelle": "test" }]);
+        return this.prefectureDAO.getListePrefecture();
     };
     tslib_1.__decorate([
         dec_transactional_1.Transactional({ configDatabase: injector_1.Injector.getRegistered("databaseConfigName") }),
