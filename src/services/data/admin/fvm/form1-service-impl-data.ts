@@ -38,7 +38,6 @@ export class Form1ServiceImpl extends ServiceRequest implements Form1Service {
     let idPermis = this.permisDAO.getIdPermis();
 
     return Promise.all([idCopieNoteVerbaleMAECI, idDossier, idPersonne, idCopiePermis, idPermis]).then(values=>{
-
       let insertCopieNoteVerbaleMAECI = this.copieNoteVerbaleMAECIDAO.insererCopieNoteVerbaleMAECI(copie_note_verbale_maeci.nom, copie_note_verbale_maeci.mimetype, copie_note_verbale_maeci.encoding, copie_note_verbale_maeci.size, copie_note_verbale_maeci.data, values[1]);
 
       let insertDossier = this.dossierDAO.insererDossier(values[0], new Date(), values[4]);
@@ -52,9 +51,7 @@ export class Form1ServiceImpl extends ServiceRequest implements Form1Service {
       return Promise.all([insertCopieNoteVerbaleMAECI, insertDossier, insertPersonne, insertCopiePermis,insertPermis]);
     }).catch(error=>{
       this.Error.hasError = error;
-      return error;
-    }).catch(reason=>{
-      this.Error.hasReason = reason;
+      this.Error.hasReason = error.toString();
       return this.Error;
     });
   }

@@ -44,9 +44,7 @@ var Form1ServiceImpl = /** @class */ (function (_super) {
             return Promise.all([insertCopieNoteVerbaleMAECI, insertDossier, insertPersonne, insertCopiePermis, insertPermis]);
         }).catch(function (error) {
             _this.Error.hasError = error;
-            return error;
-        }).catch(function (reason) {
-            _this.Error.hasReason = reason;
+            _this.Error.hasReason = error.toString();
             return _this.Error;
         });
     };

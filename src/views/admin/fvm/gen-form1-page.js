@@ -15,37 +15,47 @@ var datasource_1 = require("hornet-js-core/src/component/datasource/datasource")
 var notification_1 = require("hornet-js-react-components/src/widget/notification/notification");
 var schema = require("src/resources/admin/fvm/validation-form1.json");
 var select_field_1 = require("hornet-js-react-components/src/widget/form/select-field");
-var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.admin.gen-formulaire-page");
+var notification_manager_1 = require("hornet-js-core/src/notification/notification-manager");
+var datasource_config_page_1 = require("hornet-js-core/src/component/datasource/config/service/datasource-config-page");
+var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
 var FormulairePage = /** @class */ (function (_super) {
     tslib_1.__extends(FormulairePage, _super);
     function FormulairePage(props, context) {
         var _this = _super.call(this, props, context) || this;
-        _this.prefectures = new datasource_1.DataSource(null, { "value": "idPrefecture", "label": "prefecture" });
+        _this.prefectures = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getListePrefectures), { "value": "idPrefecture", "label": "prefecture" });
+        _this.errors = new notification_manager_1.Notifications();
+        _this.SequelizeErrors = new notification_manager_1.NotificationType();
+        _this.SequelizeErrors.id = "SequelizeError";
+        _this.errors.addNotification(_this.SequelizeErrors);
         return _this;
     }
     FormulairePage.prototype.prepareClient = function () {
-        var _this = this;
-        this.getService().getListePrefectures().then(function (liste) {
-            _this.prefectures.add(true, liste);
-        });
+        this.prefectures.fetch(true);
     };
     FormulairePage.prototype.onSubmit = function (data) {
+        var _this = this;
         this.getService().insererDonnee(data).then(function (result) {
-            if (result.hasError != null || result.hasReason != null) {
-                console.log("error" + result["hasError"]);
-                console.log("reason" + result["hasReason"]);
+            if (result.hasError != null) {
+                console.error(result.hasReason);
+                console.error(result.hasError);
+                _this.SequelizeErrors.text = result.hasReason;
+                notification_manager_1.NotificationManager.notify("SequelizeError", "errors", _this.errors, null, null, null, null);
             }
             else {
                 console.log(result);
             }
         }).catch(function (reason) {
-            throw new Error(reason);
+            console.error(reason);
         });
+        this.prefectures.deleteAll();
+        this.prefectures.add([{ "idPrefecture": "test", "prefecture": "moncul" }]);
+        this.prefectures.reload();
     };
     FormulairePage.prototype.render = function () {
         var format = this.i18n("form1");
         return (React.createElement("div", null,
             React.createElement("h2", null, "Formulaire d'entr\u00E9e d'une demande d'authentification"),
+            React.createElement(notification_1.Notification, { id: "errors" }),
             React.createElement(notification_1.Notification, { id: "notif" }),
             React.createElement(form_1.Form, { id: "form1", schema: schema, onSubmit: this.onSubmit, formMessages: format },
                 React.createElement(row_1.Row, null,
@@ -74,5 +84,4 @@ var FormulairePage = /** @class */ (function (_super) {
     return FormulairePage;
 }(hornet_page_1.HornetPage));
 exports.FormulairePage = FormulairePage;
-
 //# sourceMappingURL=gen-form1-page.js.map

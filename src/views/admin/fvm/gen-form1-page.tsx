@@ -16,37 +16,52 @@ import {Notification} from "hornet-js-react-components/src/widget/notification/n
 
 import * as schema from "src/resources/admin/fvm/validation-form1.json";
 import {SelectField} from "hornet-js-react-components/src/widget/form/select-field";
+import {
+  NotificationManager,
+  Notifications,
+  NotificationType
+} from "hornet-js-core/src/notification/notification-manager";
+import {DataSourceConfigPage} from "hornet-js-core/src/component/datasource/config/service/datasource-config-page";
 
-const logger: Logger = Utils.getLogger("projet-hornet.views.admin.gen-formulaire-page");
+const logger: Logger = Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
 
 export class FormulairePage extends HornetPage<Form1Service, HornetComponentProps, any> {
 
   private prefectures;
+  private errors;
+  private SequelizeErrors;
 
   constructor(props?: HornetComponentProps, context?: any) {
     super(props, context);
 
-    this.prefectures = new DataSource<any> (null, {"value": "idPrefecture", "label": "prefecture"}, );
+    this.prefectures = new DataSource<any> (new DataSourceConfigPage(this, this.getService().getListePrefectures), {"value": "idPrefecture", "label": "prefecture"}, );
+    this.errors =  new Notifications();
+    this.SequelizeErrors = new NotificationType();
+    this.SequelizeErrors.id = "SequelizeError";
+    this.errors.addNotification(this.SequelizeErrors);
   }
 
   prepareClient(): void {
-
-    this.getService().getListePrefectures().then(liste=>{
-      this.prefectures.add(true, liste);
-    });
+    this.prefectures.fetch(true);
   }
 
   onSubmit(data: any) {
     this.getService().insererDonnee(data).then(result=> {
-      if(result.hasError != null || result.hasReason != null){
-        console.log("error" + result["hasError"]);
-        console.log("reason"+ result["hasReason"]);
+      if(result.hasError != null){
+        console.error(result.hasReason);
+        console.error(result.hasError);
+
+        this.SequelizeErrors.text = result.hasReason;
+        NotificationManager.notify("SequelizeError","errors", this.errors, null, null, null, null);
       } else {
         console.log(result);
       }
     }).catch(reason=>{
-      throw new Error(reason);
+      console.error(reason);
     });
+    this.prefectures.deleteAll();
+    this.prefectures.add([{"idPrefecture": "test", "prefecture": "moncul"}]);
+    this.prefectures.reload();
   }
 
   render(): JSX.Element {
@@ -56,6 +71,7 @@ export class FormulairePage extends HornetPage<Form1Service, HornetComponentProp
     return (
       <div>
         <h2>Formulaire d'entrée d'une demande d'authentification</h2>
+        <Notification id="errors"/>
         <Notification id="notif"/>
         <Form
           id="form1"
