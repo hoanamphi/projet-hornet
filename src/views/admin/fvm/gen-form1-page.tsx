@@ -14,7 +14,7 @@ import { UploadFileField } from "hornet-js-react-components/src/widget/form/uplo
 import {DataSource} from "hornet-js-core/src/component/datasource/datasource";
 import {Notification} from "hornet-js-react-components/src/widget/notification/notification";
 
-import * as schema from "src/resources/admin/fvm/validation-form1.json";
+import * as schema from "src/resources/admin/fvm/validation-form.json";
 import {SelectField} from "hornet-js-react-components/src/widget/form/select-field";
 import {
   NotificationManager,
@@ -63,7 +63,7 @@ export class FormulairePage extends HornetPage<Form1Service, HornetComponentProp
 
   render(): JSX.Element {
 
-    let format = this.i18n("form1");
+    let format = this.i18n("form");
 
     return (
       <div>

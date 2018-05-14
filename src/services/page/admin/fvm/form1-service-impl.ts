@@ -21,7 +21,6 @@ export class Form1ServiceImpl extends ServicePage implements Form1Service {
     request.attach = [];
     request.attach.push({field: "copie_permis", file: data["copie_permis"], fileName: data["copie_permis"].name});
     request.attach.push({field: "copie_note_verbale_maeci", file: data["copie_note_verbale_maeci"], fileName: data["copie_note_verbale_maeci"].name});
-
     return this.fetch(request);
   }
 

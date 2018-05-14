@@ -283,7 +283,7 @@
   },
 
 
-  "form1": {
+  "form": {
     "fields":{
       "nom": {
         "label": "Nom",
@@ -339,6 +339,12 @@
         "buttonLabel": "Choisir un fichier",
         "fileSelectedLabel": "Un fichier choisit",
         "required": "Le champ « Copie de la note verbale du MAECI » est obligatoire. Veuillez saisir ce champ."
+      },
+      "date_de_reception_du_dossier": {
+        "label": "Date de réception du dossier",
+        "title": "Calendrier",
+        "dateFormat": "DD/MM/YYYY",
+        "invalid": "Le format du champ « Date de réception du dossier » est incorrect"
       }
     },
     "validTitle": "Validation de la saisie du formulaire de contact",

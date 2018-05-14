@@ -33,6 +33,9 @@
     },
     "date_de_delivrance": {
       "$ref": "#/definition/date"
+    },
+    "date_de_reception_du_dossier": {
+      "$ref": "#/definition/date"
     }
   },
   "definition": {

@@ -2,7 +2,7 @@ import { FormulairePage } from "src/views/admin/fvm/gen-form1-page";
 import { AbstractRoutes, PageRouteInfos, PUBLIC_ROUTE } from "hornet-js-core/src/routes/abstract-routes";
 import { Form1ServiceImpl } from "src/services/page/admin/fvm/form1-service-impl";
 
-export default class PermisRoutesClient extends AbstractRoutes {
+export default class Form1RoutesClient extends AbstractRoutes {
     constructor() {
         super();
 

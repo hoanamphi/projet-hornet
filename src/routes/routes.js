@@ -45,6 +45,7 @@ var Routes = /** @class */ (function (_super) {
         // );
         // this.addLazyRoutes("/admin", "admin/admin-client-routes");
         this.addLazyRoutes("/form", "admin/fvm/form1-client-routes");
+        this.addLazyRoutes("/fvmentries", "admin/fvm/recordList-client-routes");
         // /* Routes lazy */
         // this.addLazyRoutes(URL_CONTACT, "cnt/gen-cnt-client-routes");
     };

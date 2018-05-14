@@ -14,7 +14,7 @@
     "maxConnections": 100,
     "timeout": 300000,
     "uploadFileSize": 1000000,
-    "uploadAntivirus": false,
+    "uploadAntivirus": true,
     "sessionTimeout": 1800000,
     "stackTraceLimit": 100,
     "bodyParserLimit": "50mb",

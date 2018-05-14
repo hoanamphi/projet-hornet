@@ -13,7 +13,7 @@ var buttons_area_1 = require("hornet-js-react-components/src/widget/form/buttons
 var upload_file_field_1 = require("hornet-js-react-components/src/widget/form/upload-file-field");
 var datasource_1 = require("hornet-js-core/src/component/datasource/datasource");
 var notification_1 = require("hornet-js-react-components/src/widget/notification/notification");
-var schema = require("src/resources/admin/fvm/validation-form1.json");
+var schema = require("src/resources/admin/fvm/validation-form.json");
 var select_field_1 = require("hornet-js-react-components/src/widget/form/select-field");
 var notification_manager_1 = require("hornet-js-core/src/notification/notification-manager");
 var datasource_config_page_1 = require("hornet-js-core/src/component/datasource/config/service/datasource-config-page");
@@ -49,7 +49,7 @@ var FormulairePage = /** @class */ (function (_super) {
         });
     };
     FormulairePage.prototype.render = function () {
-        var format = this.i18n("form1");
+        var format = this.i18n("form");
         return (React.createElement("div", null,
             React.createElement("h2", null, "Formulaire d'entr\u00E9e d'une demande d'authentification"),
             React.createElement(notification_1.Notification, { id: "errors" }),
