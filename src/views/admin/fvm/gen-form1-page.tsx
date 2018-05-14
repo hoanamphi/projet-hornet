@@ -59,9 +59,6 @@ export class FormulairePage extends HornetPage<Form1Service, HornetComponentProp
     }).catch(reason=>{
       console.error(reason);
     });
-    this.prefectures.deleteAll();
-    this.prefectures.add([{"idPrefecture": "test", "prefecture": "moncul"}]);
-    this.prefectures.reload();
   }
 
   render(): JSX.Element {

@@ -47,9 +47,6 @@ var FormulairePage = /** @class */ (function (_super) {
         }).catch(function (reason) {
             console.error(reason);
         });
-        this.prefectures.deleteAll();
-        this.prefectures.add([{ "idPrefecture": "test", "prefecture": "moncul" }]);
-        this.prefectures.reload();
     };
     FormulairePage.prototype.render = function () {
         var format = this.i18n("form1");
