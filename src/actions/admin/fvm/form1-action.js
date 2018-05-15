@@ -45,5 +45,17 @@ var ListePrefecture = /** @class */ (function (_super) {
     return ListePrefecture;
 }(abstract_routes_1.RouteActionService));
 exports.ListePrefecture = ListePrefecture;
+var ListeDossiers = /** @class */ (function (_super) {
+    tslib_1.__extends(ListeDossiers, _super);
+    function ListeDossiers() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    ListeDossiers.prototype.execute = function () {
+        logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
+        return this.getService().getListeDossiers();
+    };
+    return ListeDossiers;
+}(abstract_routes_1.RouteActionService));
+exports.ListeDossiers = ListeDossiers;
 
 //# sourceMappingURL=form1-action.js.map

@@ -15,4 +15,4 @@ var ContactRoutesClient = /** @class */ (function (_super) {
 }(abstract_routes_1.AbstractRoutes));
 exports.default = ContactRoutesClient;
 
-//# sourceMappingURL=gen-cnt-client-routes.js.map
+//# sourceMappingURL=gen-cnt-recordList-client-routes.jst-routes.js.map

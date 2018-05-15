@@ -21,7 +21,8 @@ export let BordereauAttestationMVFModel: Sequelize.DefineAttributes = {
     allowNull: false,
     references: {
       model: "AttestationMVFModel",
-      key: "idAttestation"
+      key: "idAttestation",
+      deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
     }
   },
   "idBordereau": {
@@ -30,7 +31,8 @@ export let BordereauAttestationMVFModel: Sequelize.DefineAttributes = {
     allowNull: false,
     references: {
       model: "BordereauMVFModel",
-      key: "idBordereau"
+      key: "idBordereau",
+      deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
     }
   }
 };

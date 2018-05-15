@@ -47,7 +47,7 @@ export class Routes extends AbstractRoutes {
     // this.addLazyRoutes("/admin", "admin/admin-client-routes");
     
     this.addLazyRoutes("/form", "admin/fvm/form1-client-routes");
-    this.addLazyRoutes("/fvmentries", "admin/fvm/recordList-client-routes");
+    this.addLazyRoutes("/fvmentries", "admin/fvm/record-client-routes");
 
     // /* Routes lazy */
     // this.addLazyRoutes(URL_CONTACT, "cnt/gen-cnt-client-routes");
@@ -56,6 +56,7 @@ export class Routes extends AbstractRoutes {
   public addServerRoutes(){
     this.addLazyRoutes("/inser", "admin/fvm/form1-server-routes");
     this.addLazyRoutes("/listPrefectures", "admin/fvm/listPrefectures-server-routes");
+    this.addLazyRoutes("/listDossiers", "admin/fvm/record-server-routes");
   }
   //   this.addLazyRoutes("/admin", "admin/admin-server-routes");
   //   this.addLazyRoutes("/inser", "admin/admin-inser-routes");

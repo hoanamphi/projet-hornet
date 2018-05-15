@@ -50,7 +50,8 @@ export let CopiePermisFVMModel: Sequelize.DefineAttributes = {
       allowNull: false,
       references: {
         model: "PermisFVMModel",
-        key: "idPermis"
+        key: "idPermis",
+        deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
       }
     }
 };

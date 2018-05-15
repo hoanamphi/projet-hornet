@@ -32,7 +32,8 @@ export let BordereauMVFModel: Sequelize.DefineAttributes = {
     allowNull: false,
     references: {
       model: "ValiseModel",
-      key: "numValise"
+      key: "numValise",
+      deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
     }
   }
 };

@@ -15,7 +15,8 @@ exports.NoteVerbalePermisMVFModel = {
         allowNull: false,
         references: {
             model: "PermisMVFModel",
-            key: "idPermis"
+            key: "idPermis",
+            deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
         }
     },
     "idNoteVerbale": {
@@ -24,7 +25,8 @@ exports.NoteVerbalePermisMVFModel = {
         allowNull: false,
         references: {
             model: "NoteVerbaleMVFModel",
-            key: "idNoteVerbale"
+            key: "idNoteVerbale",
+            deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
         }
     }
 };

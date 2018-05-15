@@ -29,7 +29,7 @@
 /******/
 /******/ 	// objects to store loaded and loading chunks
 /******/ 	var installedChunks = {
-/******/ 		4: 0
+/******/ 		6: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -247,8 +247,8 @@ if (typeof window !== "undefined" && window["Mode"]) {
 //permet de changer la serialisation json des types dates
 //cette surcharge est destinée à disparaitre lorsque les hornet-js-bean-converteurs seront créés
 Date.prototype.toJSON = function () { return this.getTime(); };
-var common_register_1 = __webpack_require__(16);
-var date_utils_1 = __webpack_require__(99);
+var common_register_1 = __webpack_require__(15);
+var date_utils_1 = __webpack_require__(102);
 var config_lib_1 = __webpack_require__(121);
 var app_shared_props_1 = __webpack_require__(122);
 var continuation_local_storage_1 = __webpack_require__(123);
@@ -688,9 +688,9 @@ var __importDefault;
 /* WEBPACK VAR INJECTION */(function(process) {
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(165);
-} else {
   module.exports = __webpack_require__(166);
+} else {
+  module.exports = __webpack_require__(167);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
@@ -785,9 +785,9 @@ var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var _ = __webpack_require__(6);
 var hornet_event_1 = __webpack_require__(7);
-var hornet_component_errors_1 = __webpack_require__(167);
-var i18n_utils_1 = __webpack_require__(168);
-var pathToRegexp = __webpack_require__(177);
+var hornet_component_errors_1 = __webpack_require__(168);
+var i18n_utils_1 = __webpack_require__(169);
+var pathToRegexp = __webpack_require__(178);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.component.hornet-component");
 var Alignment;
 (function (Alignment) {
@@ -1501,7 +1501,7 @@ process.umask = function() { return 0; };
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global, process) {
-var es5 = __webpack_require__(19);
+var es5 = __webpack_require__(18);
 var canEvaluate = typeof navigator == "undefined";
 
 var errorObj = {e: {}};
@@ -18986,7 +18986,7 @@ module.exports = ret;
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), __webpack_require__(42)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), __webpack_require__(43)(module)))
 
 /***/ }),
 /* 7 */
@@ -19075,7 +19075,7 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var hornet_js_utils_1 = __webpack_require__(0);
-var nodeUtil = __webpack_require__(59);
+var nodeUtil = __webpack_require__(57);
 var _ = __webpack_require__(6);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.event.hornet-event");
 /* Inclusion du polyfill pour support du constructeur CustomEvent pour IE >= 9 */
@@ -19532,7 +19532,7 @@ if (typeof Object.create === 'function') {
 
 "use strict";
 
-var es5 = __webpack_require__(19);
+var es5 = __webpack_require__(18);
 var Objectfreeze = es5.freeze;
 var util = __webpack_require__(5);
 var inherits = util.inherits;
@@ -19735,9 +19735,9 @@ var tslib_1 = __webpack_require__(1);
  * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
  * @license CECILL-2.1
  */
-var base_error_1 = __webpack_require__(17);
-var moment = __webpack_require__(43);
-var os = __webpack_require__(63);
+var base_error_1 = __webpack_require__(16);
+var moment = __webpack_require__(44);
+var os = __webpack_require__(61);
 var TechnicalError = /** @class */ (function (_super) {
     tslib_1.__extends(TechnicalError, _super);
     function TechnicalError(code, args, cause) {
@@ -19805,143 +19805,6 @@ module.exports = emptyFunction;
 
 /***/ }),
 /* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-// a duplex stream is just a stream that is both readable and writable.
-// Since JS doesn't have multiple prototypal inheritance, this class
-// prototypally inherits from Readable, and then parasitically from
-// Writable.
-
-
-
-/*<replacement>*/
-
-var pna = __webpack_require__(35);
-/*</replacement>*/
-
-/*<replacement>*/
-var objectKeys = Object.keys || function (obj) {
-  var keys = [];
-  for (var key in obj) {
-    keys.push(key);
-  }return keys;
-};
-/*</replacement>*/
-
-module.exports = Duplex;
-
-/*<replacement>*/
-var util = __webpack_require__(25);
-util.inherits = __webpack_require__(11);
-/*</replacement>*/
-
-var Readable = __webpack_require__(81);
-var Writable = __webpack_require__(54);
-
-util.inherits(Duplex, Readable);
-
-{
-  // avoid scope creep, the keys array can then be collected
-  var keys = objectKeys(Writable.prototype);
-  for (var v = 0; v < keys.length; v++) {
-    var method = keys[v];
-    if (!Duplex.prototype[method]) Duplex.prototype[method] = Writable.prototype[method];
-  }
-}
-
-function Duplex(options) {
-  if (!(this instanceof Duplex)) return new Duplex(options);
-
-  Readable.call(this, options);
-  Writable.call(this, options);
-
-  if (options && options.readable === false) this.readable = false;
-
-  if (options && options.writable === false) this.writable = false;
-
-  this.allowHalfOpen = true;
-  if (options && options.allowHalfOpen === false) this.allowHalfOpen = false;
-
-  this.once('end', onend);
-}
-
-Object.defineProperty(Duplex.prototype, 'writableHighWaterMark', {
-  // making it explicit this property is not enumerable
-  // because otherwise some prototype manipulation in
-  // userland will fail
-  enumerable: false,
-  get: function () {
-    return this._writableState.highWaterMark;
-  }
-});
-
-// the no-half-open enforcer
-function onend() {
-  // if we allow half-open state, or if the writable side ended,
-  // then we're ok.
-  if (this.allowHalfOpen || this._writableState.ended) return;
-
-  // no more data can be written.
-  // But allow more writes to happen in this tick.
-  pna.nextTick(onEndNT, this);
-}
-
-function onEndNT(self) {
-  self.end();
-}
-
-Object.defineProperty(Duplex.prototype, 'destroyed', {
-  get: function () {
-    if (this._readableState === undefined || this._writableState === undefined) {
-      return false;
-    }
-    return this._readableState.destroyed && this._writableState.destroyed;
-  },
-  set: function (value) {
-    // we ignore the value if the stream
-    // has not been initialized yet
-    if (this._readableState === undefined || this._writableState === undefined) {
-      return;
-    }
-
-    // backward compatibility, the user is explicitly
-    // managing destroyed
-    this._readableState.destroyed = value;
-    this._writableState.destroyed = value;
-  }
-});
-
-Duplex.prototype._destroy = function (err, cb) {
-  this.push(null);
-  this.end();
-
-  pna.nextTick(cb, err);
-};
-
-/***/ }),
-/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20025,7 +19888,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
  * @license CECILL-2.1
  */
-var logger_1 = __webpack_require__(58);
+var logger_1 = __webpack_require__(56);
 var Register = /** @class */ (function () {
     function Register() {
     }
@@ -20064,7 +19927,7 @@ Register.getLogger = Register.registerGlobal("hornetLogger.getLogger", logger_1.
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20149,7 +20012,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @license CECILL-2.1
  */
 var _ = __webpack_require__(6);
-var util = __webpack_require__(59);
+var util = __webpack_require__(57);
 var BaseError = /** @class */ (function () {
     function BaseError(code, message, args, cause) {
         if (code === void 0) { code = ""; }
@@ -20189,7 +20052,7 @@ BaseError.prototype.toString = function () {
 
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20207,7 +20070,7 @@ module.exports = bluebird;
 
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, exports) {
 
 var isES5 = (function(){
@@ -20293,7 +20156,7 @@ if (isES5) {
 
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20379,10 +20242,10 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var hornet_js_utils_1 = __webpack_require__(0);
-var async_element_1 = __webpack_require__(68);
+var async_element_1 = __webpack_require__(66);
 var hornet_event_1 = __webpack_require__(7);
-var security_error_1 = __webpack_require__(100);
-var authentication_utils_1 = __webpack_require__(70);
+var security_error_1 = __webpack_require__(163);
+var authentication_utils_1 = __webpack_require__(68);
 var error_manager_1 = __webpack_require__(32);
 // ------------------------------------------------------------------------------------------------------------------- //
 //                                      ContextInitializerElement
@@ -20508,7 +20371,7 @@ exports.UnmanagedViewErrorElement = UnmanagedViewErrorElement;
 
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20593,8 +20456,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @license CECILL-2.1
  */
 var hornet_js_utils_1 = __webpack_require__(0);
-var MenuConstants = __webpack_require__(46);
-var authentication_utils_1 = __webpack_require__(70);
+var MenuConstants = __webpack_require__(47);
+var authentication_utils_1 = __webpack_require__(68);
 var _ = __webpack_require__(6);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-component.navigation.utils.navigation-utils");
 /**
@@ -20833,6 +20696,143 @@ exports.NavigationUtils = NavigationUtils;
 
 
 /***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+// a duplex stream is just a stream that is both readable and writable.
+// Since JS doesn't have multiple prototypal inheritance, this class
+// prototypally inherits from Readable, and then parasitically from
+// Writable.
+
+
+
+/*<replacement>*/
+
+var pna = __webpack_require__(35);
+/*</replacement>*/
+
+/*<replacement>*/
+var objectKeys = Object.keys || function (obj) {
+  var keys = [];
+  for (var key in obj) {
+    keys.push(key);
+  }return keys;
+};
+/*</replacement>*/
+
+module.exports = Duplex;
+
+/*<replacement>*/
+var util = __webpack_require__(25);
+util.inherits = __webpack_require__(11);
+/*</replacement>*/
+
+var Readable = __webpack_require__(80);
+var Writable = __webpack_require__(83);
+
+util.inherits(Duplex, Readable);
+
+{
+  // avoid scope creep, the keys array can then be collected
+  var keys = objectKeys(Writable.prototype);
+  for (var v = 0; v < keys.length; v++) {
+    var method = keys[v];
+    if (!Duplex.prototype[method]) Duplex.prototype[method] = Writable.prototype[method];
+  }
+}
+
+function Duplex(options) {
+  if (!(this instanceof Duplex)) return new Duplex(options);
+
+  Readable.call(this, options);
+  Writable.call(this, options);
+
+  if (options && options.readable === false) this.readable = false;
+
+  if (options && options.writable === false) this.writable = false;
+
+  this.allowHalfOpen = true;
+  if (options && options.allowHalfOpen === false) this.allowHalfOpen = false;
+
+  this.once('end', onend);
+}
+
+Object.defineProperty(Duplex.prototype, 'writableHighWaterMark', {
+  // making it explicit this property is not enumerable
+  // because otherwise some prototype manipulation in
+  // userland will fail
+  enumerable: false,
+  get: function () {
+    return this._writableState.highWaterMark;
+  }
+});
+
+// the no-half-open enforcer
+function onend() {
+  // if we allow half-open state, or if the writable side ended,
+  // then we're ok.
+  if (this.allowHalfOpen || this._writableState.ended) return;
+
+  // no more data can be written.
+  // But allow more writes to happen in this tick.
+  pna.nextTick(onEndNT, this);
+}
+
+function onEndNT(self) {
+  self.end();
+}
+
+Object.defineProperty(Duplex.prototype, 'destroyed', {
+  get: function () {
+    if (this._readableState === undefined || this._writableState === undefined) {
+      return false;
+    }
+    return this._readableState.destroyed && this._writableState.destroyed;
+  },
+  set: function (value) {
+    // we ignore the value if the stream
+    // has not been initialized yet
+    if (this._readableState === undefined || this._writableState === undefined) {
+      return;
+    }
+
+    // backward compatibility, the user is explicitly
+    // managing destroyed
+    this._readableState.destroyed = value;
+    this._writableState.destroyed = value;
+  }
+});
+
+Duplex.prototype._destroy = function (err, cb) {
+  this.push(null);
+  this.end();
+
+  pna.nextTick(cb, err);
+};
+
+/***/ }),
 /* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -20871,9 +20871,9 @@ if (process.env.NODE_ENV === 'production') {
   // DCE check should happen before ReactDOM bundle executes so that
   // DevTools can report bad minification during injection.
   checkDCE();
-  module.exports = __webpack_require__(215);
+  module.exports = __webpack_require__(216);
 } else {
-  module.exports = __webpack_require__(218);
+  module.exports = __webpack_require__(219);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
@@ -20893,9 +20893,9 @@ if (process.env.NODE_ENV === 'production') {
 
 
 
-var base64 = __webpack_require__(199)
-var ieee754 = __webpack_require__(200)
-var isArray = __webpack_require__(78)
+var base64 = __webpack_require__(200)
+var ieee754 = __webpack_require__(201)
+var isArray = __webpack_require__(76)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -27445,7 +27445,7 @@ function objectToString(o) {
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(42)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(43)(module)))
 
 /***/ }),
 /* 27 */
@@ -27962,7 +27962,7 @@ var tslib_1 = __webpack_require__(1);
  * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
  * @license CECILL-2.1
  */
-var base_error_1 = __webpack_require__(17);
+var base_error_1 = __webpack_require__(16);
 var BusinessError = /** @class */ (function (_super) {
     tslib_1.__extends(BusinessError, _super);
     function BusinessError(code, args, cause) {
@@ -28183,7 +28183,7 @@ var business_error_1 = __webpack_require__(30);
 var business_error_list_1 = __webpack_require__(31);
 var notification_manager_1 = __webpack_require__(95);
 var hornet_event_1 = __webpack_require__(7);
-var router_client_async_elements_1 = __webpack_require__(20);
+var router_client_async_elements_1 = __webpack_require__(19);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.exception.error-manager");
 /**
  * Applique le traitement appropriété à l'erreur indiquée suivant sa nature :
@@ -28692,9 +28692,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 var hornet_js_utils_1 = __webpack_require__(0);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.services.service-request");
-var Url = __webpack_require__(40);
+var Url = __webpack_require__(41);
 var _ = __webpack_require__(6);
-var hornet_superagent_1 = __webpack_require__(73);
+var hornet_superagent_1 = __webpack_require__(71);
 var ServiceRequest = /** @class */ (function () {
     function ServiceRequest() {
         if (hornet_js_utils_1.Utils.isServer && !hornet_js_utils_1.Utils.config.has("database")) {
@@ -28769,6 +28769,424 @@ exports.ServiceRequest = ServiceRequest;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+/**
+ * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * Ce logiciel est un programme informatique servant à faciliter la création
+ * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
+ * <p/>
+ * Ce logiciel est régi par la licence CeCILL soumise au droit français et
+ * respectant les principes de diffusion des logiciels libres. Vous pouvez
+ * utiliser, modifier et/ou redistribuer ce programme sous les conditions
+ * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
+ * sur le site "http://www.cecill.info".
+ * <p/>
+ * En contrepartie de l'accessibilité au code source et des droits de copie,
+ * de modification et de redistribution accordés par cette licence, il n'est
+ * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
+ * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
+ * titulaire des droits patrimoniaux et les concédants successifs.
+ * <p/>
+ * A cet égard  l'attention de l'utilisateur est attirée sur les risques
+ * associés au chargement,  à l'utilisation,  à la modification et/ou au
+ * développement et à la reproduction du logiciel par l'utilisateur étant
+ * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
+ * manipuler et qui le réserve donc à des développeurs et des professionnels
+ * avertis possédant  des  connaissances  informatiques approfondies.  Les
+ * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
+ * logiciel à leurs besoins dans des conditions permettant d'assurer la
+ * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
+ * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
+ * <p/>
+ * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
+ * pris connaissance de la licence CeCILL, et que vous en avez accepté les
+ * termes.
+ * <p/>
+ * <p/>
+ * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * This software is a computer program whose purpose is to facilitate creation of
+ * web application in accordance with french general repositories : RGI, RGS and RGAA.
+ * <p/>
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software.  You can  use,
+ * modify and/ or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ * <p/>
+ * As a counterpart to the access to the source code and  rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty  and the software's author,  the holder of the
+ * economic rights,  and the successive licensors  have only  limited
+ * liability.
+ * <p/>
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading,  using,  modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean  that it is complicated to manipulate,  and  that  also
+ * therefore means  that it is reserved for developers  and  experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and,  more generally, to use and operate it in the
+ * same conditions as regards security.
+ * <p/>
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(1);
+/**
+ * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
+ *
+ * @author MEAE - Ministère de l'Europe et des Affaires étrangères
+ * @version v5.1.1
+ * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
+ * @license CECILL-2.1
+ */
+var React = __webpack_require__(2);
+var hornet_component_1 = __webpack_require__(3);
+var dropdown_item_1 = __webpack_require__(231);
+var classNames = __webpack_require__(9);
+var key_codes_1 = __webpack_require__(10);
+var Position;
+(function (Position) {
+    Position[Position["BOTTOMLEFT"] = 0] = "BOTTOMLEFT";
+    Position[Position["BOTTOMRIGHT"] = 1] = "BOTTOMRIGHT";
+    Position[Position["TOPLEFT"] = 2] = "TOPLEFT";
+    Position[Position["TOPRIGHT"] = 3] = "TOPRIGHT";
+})(Position = exports.Position || (exports.Position = {}));
+/**
+ * Composant Dropdown
+ */
+var Dropdown = /** @class */ (function (_super) {
+    tslib_1.__extends(Dropdown, _super);
+    function Dropdown(props, context) {
+        var _this = _super.call(this, props, context) || this;
+        /** Liste des items du dropdown */
+        _this.items = [];
+        /** Tableau pour matcher Enum avec className */
+        _this.lstPosition = ["position-bottom-left", "position-bottom-right", "position-top-left", "position-top-right"];
+        /**
+         * Gère les événements clavier sur le dropdown
+         * @param e Event
+         */
+        _this.handleKeyDownDropDown = function (e) {
+            switch (e.keyCode) {
+                // la touche echappe ferm le panneau
+                case key_codes_1.KeyCodes.ESCAPE:
+                    _this.handleClick();
+                    break;
+                // la barre d'espace ouvre ou ferme le
+                // panneau suivant son état
+                case key_codes_1.KeyCodes.SPACEBAR:
+                    e.preventDefault();
+                    if (!_this.state.isActive) {
+                        _this.handleClick();
+                    }
+                    break;
+                default:
+                    break;
+            }
+        };
+        /**
+         * Gère les événements clavier sur un item du dropdown
+         *
+         * @param e Event
+         * @param action Function
+         * @param url String
+         */
+        _this.handleKeyDownDropDownItem = function (e, action, url) {
+            // current event
+            var item;
+            switch (e.keyCode) {
+                // la touche echappe ferme le panneau
+                case key_codes_1.KeyCodes.ESCAPE:
+                    _this.closePanel();
+                    break;
+                // la barre d'espace et entrer executent l'action
+                // portée par l'item et ferment le
+                // panneau
+                case key_codes_1.KeyCodes.ENTER:
+                case key_codes_1.KeyCodes.SPACEBAR:
+                    e.preventDefault();
+                    if (_this.state.isActive) {
+                        if (typeof action != "undefined")
+                            action();
+                        else if (url != "undefined")
+                            window.location.href = url;
+                        _this.handleClick();
+                    }
+                    break;
+                case key_codes_1.KeyCodes.UP_ARROW:
+                    e.preventDefault();
+                    if (e.currentTarget.parentNode.previousElementSibling) {
+                        item = e.currentTarget.parentNode.previousElementSibling.firstElementChild;
+                        if (item)
+                            item.focus();
+                    }
+                    break;
+                case key_codes_1.KeyCodes.TAB:
+                    if (e.shiftKey) {
+                        if (e.currentTarget.parentNode.previousElementSibling.nodeName != "LI") {
+                            _this.closePanel();
+                        }
+                    }
+                    else {
+                        if (!e.currentTarget.parentNode.nextElementSibling) {
+                            _this.closePanel();
+                        }
+                    }
+                    break;
+                case key_codes_1.KeyCodes.DOWN_ARROW:
+                    e.preventDefault();
+                    if (e.currentTarget.parentNode.nextElementSibling) {
+                        item = e.currentTarget.parentNode.nextElementSibling.firstElementChild;
+                        if (item)
+                            item.focus();
+                    }
+                    break;
+                default:
+                    break;
+            }
+        };
+        _this.state.isActive = false;
+        return _this;
+    }
+    Dropdown.prototype.componentDidUpdate = function () {
+        // when the component is updated
+        // make sure you remove the listener on document
+        // and the component panel is not expand
+        if (typeof document !== undefined && !this.state.isActive) {
+            document.removeEventListener("click", this.handleExpandOutside, false);
+        }
+        else if (typeof document !== undefined && this.state.isActive) {
+            document.addEventListener("click", this.handleExpandOutside, false);
+        }
+    };
+    Dropdown.prototype.componentDidMount = function () {
+        this.calculPositionBox();
+    };
+    Dropdown.prototype.componentWillUpdate = function () {
+        this.calculPositionBox();
+    };
+    /**
+     * @inheritDoc
+     */
+    Dropdown.prototype.render = function () {
+        var dropdownClasses = {
+            "dropdown-container": true
+        };
+        if (this.state.className) {
+            dropdownClasses[this.state.className] = true;
+        }
+        return (React.createElement("div", { id: this.state.id, title: this.state.title, className: classNames(dropdownClasses) },
+            (this.props.type == "button") ? this.renderButton() : this.renderLink(),
+            this.renderDropDown()));
+    };
+    Dropdown.prototype.renderLink = function () {
+        var _this = this;
+        var img = null;
+        if (typeof this.props.icon == "string") {
+            img = React.createElement("span", { className: "icon " + this.props.icon });
+        }
+        else {
+            img = this.props.icon;
+        }
+        var labelClass = this.props.labelClassName || "dropdown-label-span";
+        var aProps = {
+            onClick: this.handleClick.bind(this),
+            onKeyDown: this.handleKeyDownDropDown,
+            role: "button",
+            href: "#",
+            tabIndex: 0,
+            ref: function (button) {
+                _this.button = button;
+            },
+            className: "dropdown-button button-action",
+            disabled: this.state.disabled,
+            "aria-expanded": this.state.isActive ? "true" : "false",
+            "aria-haspopup": true
+        };
+        return (React.createElement("a", tslib_1.__assign({}, aProps),
+            this.state.label ? null : React.createElement("span", { className: "dropdown-hidden-label" }, this.props.ariaLabel),
+            React.createElement("span", { className: "label" + " " + labelClass }, this.props.label ? this.props.label : this.props.valueCurrent),
+            img));
+    };
+    Dropdown.prototype.renderButton = function () {
+        var _this = this;
+        var img = null;
+        if (typeof this.props.icon == "string") {
+            img = React.createElement("span", { className: "icon " + this.props.icon });
+        }
+        else {
+            img = this.props.icon;
+        }
+        var buttonProps = {
+            onClick: this.handleClick.bind(this),
+            onKeyDown: this.handleKeyDownDropDown,
+            role: "button",
+            tabIndex: 0,
+            ref: function (button) {
+                _this.button = button;
+            },
+            className: "button-action",
+            disabled: this.state.disabled,
+            "aria-expanded": this.state.isActive ? "true" : "false",
+            "aria-haspopup": true,
+            "aria-label": this.props.ariaLabel,
+            "type": "button"
+        };
+        var labelClass = this.props.labelClassName || "dropdown-label-span";
+        return (React.createElement("button", tslib_1.__assign({}, buttonProps),
+            img,
+            React.createElement("span", { className: "dropdown-hidden-label" }, this.props.title),
+            React.createElement("span", { className: "label" + " " + labelClass }, this.props.label ? this.props.label : this.props.valueCurrent)));
+    };
+    /**
+     * Rendu type Dropdown
+     * @returns {any}
+     * @protected
+     */
+    Dropdown.prototype.renderDropDown = function () {
+        var _this = this;
+        var items;
+        var buildItem = function (item, index) {
+            var dropdownItemsProps = {
+                label: item.label,
+                url: item.url,
+                className: item.className,
+                srcImg: item.srcImg,
+                key: "dropdown-" + _this.props.id + "-" + index,
+                handleKeyDown: _this.handleKeyDownDropDownItem,
+                getRef: function (item) { return _this.items.push(item); },
+                disabled: item.disabled,
+                valueCurrent: item.valueCurrent,
+                lang: item.lang
+            };
+            if (item.action) {
+                dropdownItemsProps["action"] = item.action;
+            }
+            return React.createElement(dropdown_item_1.DropdownItem, tslib_1.__assign({}, dropdownItemsProps));
+        };
+        if (this.state.items && this.state.items.length > 0) {
+            items = this.state.items.map(function (item, index) { return buildItem(item, index); });
+        }
+        else if (this.state.children && this.state.children.length > 0) {
+            items = [];
+            this.state.children.map(function (item, index) {
+                items.push(React.cloneElement(item, {
+                    key: "li-dropdown-" + _this.props.id + "-" + index,
+                    onKeyDown: _this.handleKeyDownDropDownItem,
+                    ref: function (item) { return _this.items.push(item); }
+                }));
+            });
+        }
+        var dropDownClasses = {
+            "dropdown-content": true,
+            "dropdown-content-hidden": !this.state.isActive
+        };
+        var classStyle = this.lstPosition[this.props.position];
+        var position = (this.props.drawArrow) ? classStyle : "";
+        return (React.createElement("div", { id: this.state.id + "content", className: classStyle + " " + classNames(dropDownClasses), style: this.boxStyle },
+            React.createElement("span", { style: this.arrowStyle, className: "arrow " + position }),
+            React.createElement("ul", { className: "dropdown-list " + position, ref: function (dropDown) { return _this.dropDown = dropDown; }, "aria-expanded": this.state.isActive }, items)));
+    };
+    Dropdown.prototype.calculPositionBox = function () {
+        var valRightArrow = 0, valLeftBox = 0, valLeftArrow = 0;
+        var widthIcon = this.button.getElementsByClassName("icon")[0].getBoundingClientRect().width;
+        var widthLabel = this.button.getElementsByClassName("label")[0].getBoundingClientRect().width;
+        switch (this.props.position) {
+            case Position.BOTTOMRIGHT:
+            case Position.TOPRIGHT:
+                /* 5px decalement de la box -0.5em // -5px suppression de la moitié de la fleche*/
+                valRightArrow = (widthIcon / 2) + 5;
+                this.arrowStyle = {
+                    right: valRightArrow + "px"
+                };
+                break;
+            case Position.TOPLEFT:
+            case Position.BOTTOMLEFT:
+                if (this.props.valueCurrent) {
+                    valLeftBox = widthLabel;
+                }
+                valLeftArrow = (widthIcon / 2);
+                this.arrowStyle = {
+                    left: valLeftArrow + "px"
+                };
+                this.boxStyle = {
+                    left: valLeftBox + "px"
+                };
+                break;
+        }
+    };
+    /* Evenement sur le onClick */
+    Dropdown.prototype.handleClick = function () {
+        /* on ferme que si on a le droit ( par defaut oui ) */
+        if (this.state.isActive && this.state.closeClick) {
+            this.closePanel();
+        }
+        else if (!this.state.isActive) {
+            this.openPanel();
+        }
+    };
+    /**
+     * ouvre le dropdown et focus le premier enfant
+     */
+    Dropdown.prototype.openPanel = function () {
+        var _this = this;
+        this.setState({ isActive: true }, function () {
+            _this.dropDown.firstElementChild.firstElementChild.focus();
+        });
+    };
+    /**
+     * ferme le dropdown et focus le bouton parent
+     */
+    Dropdown.prototype.closePanel = function () {
+        var _this = this;
+        this.setState({ isActive: false }, function () {
+            _this.button.focus();
+        });
+    };
+    /**
+     * Ferme la liste lorsque le clic est en dehors de la div
+     * @param e Event
+     */
+    Dropdown.prototype.handleExpandOutside = function (e) {
+        e.stopPropagation();
+        if (document.getElementById(this.state.id + "content") != null) {
+            if (!document.getElementById(this.state.id + "content").contains(e.target)) {
+                // the click was outside your component, so handle closing here
+                this.setState({ isActive: false });
+            }
+            else {
+                this.handleClick();
+            }
+        }
+    };
+    Dropdown.defaultProps = {
+        disabled: false,
+        position: Position.BOTTOMRIGHT,
+        drawArrow: true,
+        closeClick: true
+    };
+    return Dropdown;
+}(hornet_component_1.HornetComponent));
+exports.Dropdown = Dropdown;
+
+
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -28792,8 +29210,8 @@ exports.ServiceRequest = ServiceRequest;
 
 
 
-var punycode = __webpack_require__(179);
-var util = __webpack_require__(180);
+var punycode = __webpack_require__(180);
+var util = __webpack_require__(181);
 
 exports.parse = urlParse;
 exports.resolve = urlResolve;
@@ -28868,7 +29286,7 @@ var protocolPattern = /^([a-z0-9.+-]+:)/i,
       'gopher:': true,
       'file:': true
     },
-    querystring = __webpack_require__(181);
+    querystring = __webpack_require__(182);
 
 function urlParse(url, parseQueryString, slashesDenoteHost) {
   if (url && util.isObject(url) && url instanceof Url) return url;
@@ -29504,7 +29922,7 @@ Url.prototype.parseHost = function() {
 
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29651,7 +30069,7 @@ module.exports = keysShim;
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -29679,7 +30097,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var moment = module.exports = __webpack_require__(118);
@@ -29687,7 +30105,7 @@ moment.tz.load(__webpack_require__(120));
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29779,7 +30197,7 @@ exports.CLEAN_ALL_NOTIFICATION_EVENT = new hornet_event_1.HornetEvent("CLEAN_ALL
 
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29817,7 +30235,7 @@ exports.hop = hop;
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29923,438 +30341,7 @@ exports.RIGHT_ARROW_IMG_HOVER = "vertical-menu-submenu-indicator-hover.png";
 
 
 /***/ }),
-/* 47 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * Ce logiciel est un programme informatique servant à faciliter la création
- * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
- * <p/>
- * Ce logiciel est régi par la licence CeCILL soumise au droit français et
- * respectant les principes de diffusion des logiciels libres. Vous pouvez
- * utiliser, modifier et/ou redistribuer ce programme sous les conditions
- * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
- * sur le site "http://www.cecill.info".
- * <p/>
- * En contrepartie de l'accessibilité au code source et des droits de copie,
- * de modification et de redistribution accordés par cette licence, il n'est
- * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
- * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
- * titulaire des droits patrimoniaux et les concédants successifs.
- * <p/>
- * A cet égard  l'attention de l'utilisateur est attirée sur les risques
- * associés au chargement,  à l'utilisation,  à la modification et/ou au
- * développement et à la reproduction du logiciel par l'utilisateur étant
- * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
- * manipuler et qui le réserve donc à des développeurs et des professionnels
- * avertis possédant  des  connaissances  informatiques approfondies.  Les
- * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
- * logiciel à leurs besoins dans des conditions permettant d'assurer la
- * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
- * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
- * <p/>
- * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
- * pris connaissance de la licence CeCILL, et que vous en avez accepté les
- * termes.
- * <p/>
- * <p/>
- * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * This software is a computer program whose purpose is to facilitate creation of
- * web application in accordance with french general repositories : RGI, RGS and RGAA.
- * <p/>
- * This software is governed by the CeCILL license under French law and
- * abiding by the rules of distribution of free software.  You can  use,
- * modify and/ or redistribute the software under the terms of the CeCILL
- * license as circulated by CEA, CNRS and INRIA at the following URL
- * "http://www.cecill.info".
- * <p/>
- * As a counterpart to the access to the source code and  rights to copy,
- * modify and redistribute granted by the license, users are provided only
- * with a limited warranty  and the software's author,  the holder of the
- * economic rights,  and the successive licensors  have only  limited
- * liability.
- * <p/>
- * In this respect, the user's attention is drawn to the risks associated
- * with loading,  using,  modifying and/or developing or reproducing the
- * software by the user in light of its specific status of free software,
- * that may mean  that it is complicated to manipulate,  and  that  also
- * therefore means  that it is reserved for developers  and  experienced
- * professionals having in-depth computer knowledge. Users are therefore
- * encouraged to load and test the software's suitability as regards their
- * requirements in conditions enabling the security of their systems and/or
- * data to be ensured and,  more generally, to use and operate it in the
- * same conditions as regards security.
- * <p/>
- * The fact that you are presently reading this means that you have had
- * knowledge of the CeCILL license and that you accept its terms.
- *
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(1);
-/**
- * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
- *
- * @author MEAE - Ministère de l'Europe et des Affaires étrangères
- * @version v5.1.1
- * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
- * @license CECILL-2.1
- */
-var React = __webpack_require__(2);
-var hornet_component_1 = __webpack_require__(3);
-var dropdown_item_1 = __webpack_require__(230);
-var classNames = __webpack_require__(9);
-var key_codes_1 = __webpack_require__(10);
-var Position;
-(function (Position) {
-    Position[Position["BOTTOMLEFT"] = 0] = "BOTTOMLEFT";
-    Position[Position["BOTTOMRIGHT"] = 1] = "BOTTOMRIGHT";
-    Position[Position["TOPLEFT"] = 2] = "TOPLEFT";
-    Position[Position["TOPRIGHT"] = 3] = "TOPRIGHT";
-})(Position = exports.Position || (exports.Position = {}));
-/**
- * Composant Dropdown
- */
-var Dropdown = /** @class */ (function (_super) {
-    tslib_1.__extends(Dropdown, _super);
-    function Dropdown(props, context) {
-        var _this = _super.call(this, props, context) || this;
-        /** Liste des items du dropdown */
-        _this.items = [];
-        /** Tableau pour matcher Enum avec className */
-        _this.lstPosition = ["position-bottom-left", "position-bottom-right", "position-top-left", "position-top-right"];
-        /**
-         * Gère les événements clavier sur le dropdown
-         * @param e Event
-         */
-        _this.handleKeyDownDropDown = function (e) {
-            switch (e.keyCode) {
-                // la touche echappe ferm le panneau
-                case key_codes_1.KeyCodes.ESCAPE:
-                    _this.handleClick();
-                    break;
-                // la barre d'espace ouvre ou ferme le
-                // panneau suivant son état
-                case key_codes_1.KeyCodes.SPACEBAR:
-                    e.preventDefault();
-                    if (!_this.state.isActive) {
-                        _this.handleClick();
-                    }
-                    break;
-                default:
-                    break;
-            }
-        };
-        /**
-         * Gère les événements clavier sur un item du dropdown
-         *
-         * @param e Event
-         * @param action Function
-         * @param url String
-         */
-        _this.handleKeyDownDropDownItem = function (e, action, url) {
-            // current event
-            var item;
-            switch (e.keyCode) {
-                // la touche echappe ferme le panneau
-                case key_codes_1.KeyCodes.ESCAPE:
-                    _this.closePanel();
-                    break;
-                // la barre d'espace et entrer executent l'action
-                // portée par l'item et ferment le
-                // panneau
-                case key_codes_1.KeyCodes.ENTER:
-                case key_codes_1.KeyCodes.SPACEBAR:
-                    e.preventDefault();
-                    if (_this.state.isActive) {
-                        if (typeof action != "undefined")
-                            action();
-                        else if (url != "undefined")
-                            window.location.href = url;
-                        _this.handleClick();
-                    }
-                    break;
-                case key_codes_1.KeyCodes.UP_ARROW:
-                    e.preventDefault();
-                    if (e.currentTarget.parentNode.previousElementSibling) {
-                        item = e.currentTarget.parentNode.previousElementSibling.firstElementChild;
-                        if (item)
-                            item.focus();
-                    }
-                    break;
-                case key_codes_1.KeyCodes.TAB:
-                    if (e.shiftKey) {
-                        if (e.currentTarget.parentNode.previousElementSibling.nodeName != "LI") {
-                            _this.closePanel();
-                        }
-                    }
-                    else {
-                        if (!e.currentTarget.parentNode.nextElementSibling) {
-                            _this.closePanel();
-                        }
-                    }
-                    break;
-                case key_codes_1.KeyCodes.DOWN_ARROW:
-                    e.preventDefault();
-                    if (e.currentTarget.parentNode.nextElementSibling) {
-                        item = e.currentTarget.parentNode.nextElementSibling.firstElementChild;
-                        if (item)
-                            item.focus();
-                    }
-                    break;
-                default:
-                    break;
-            }
-        };
-        _this.state.isActive = false;
-        return _this;
-    }
-    Dropdown.prototype.componentDidUpdate = function () {
-        // when the component is updated
-        // make sure you remove the listener on document
-        // and the component panel is not expand
-        if (typeof document !== undefined && !this.state.isActive) {
-            document.removeEventListener("click", this.handleExpandOutside, false);
-        }
-        else if (typeof document !== undefined && this.state.isActive) {
-            document.addEventListener("click", this.handleExpandOutside, false);
-        }
-    };
-    Dropdown.prototype.componentDidMount = function () {
-        this.calculPositionBox();
-    };
-    Dropdown.prototype.componentWillUpdate = function () {
-        this.calculPositionBox();
-    };
-    /**
-     * @inheritDoc
-     */
-    Dropdown.prototype.render = function () {
-        var dropdownClasses = {
-            "dropdown-container": true
-        };
-        if (this.state.className) {
-            dropdownClasses[this.state.className] = true;
-        }
-        return (React.createElement("div", { id: this.state.id, title: this.state.title, className: classNames(dropdownClasses) },
-            (this.props.type == "button") ? this.renderButton() : this.renderLink(),
-            this.renderDropDown()));
-    };
-    Dropdown.prototype.renderLink = function () {
-        var _this = this;
-        var img = null;
-        if (typeof this.props.icon == "string") {
-            img = React.createElement("span", { className: "icon " + this.props.icon });
-        }
-        else {
-            img = this.props.icon;
-        }
-        var labelClass = this.props.labelClassName || "dropdown-label-span";
-        var aProps = {
-            onClick: this.handleClick.bind(this),
-            onKeyDown: this.handleKeyDownDropDown,
-            role: "button",
-            href: "#",
-            tabIndex: 0,
-            ref: function (button) {
-                _this.button = button;
-            },
-            className: "dropdown-button button-action",
-            disabled: this.state.disabled,
-            "aria-expanded": this.state.isActive ? "true" : "false",
-            "aria-haspopup": true
-        };
-        return (React.createElement("a", tslib_1.__assign({}, aProps),
-            this.state.label ? null : React.createElement("span", { className: "dropdown-hidden-label" }, this.props.ariaLabel),
-            React.createElement("span", { className: "label" + " " + labelClass }, this.props.label ? this.props.label : this.props.valueCurrent),
-            img));
-    };
-    Dropdown.prototype.renderButton = function () {
-        var _this = this;
-        var img = null;
-        if (typeof this.props.icon == "string") {
-            img = React.createElement("span", { className: "icon " + this.props.icon });
-        }
-        else {
-            img = this.props.icon;
-        }
-        var buttonProps = {
-            onClick: this.handleClick.bind(this),
-            onKeyDown: this.handleKeyDownDropDown,
-            role: "button",
-            tabIndex: 0,
-            ref: function (button) {
-                _this.button = button;
-            },
-            className: "button-action",
-            disabled: this.state.disabled,
-            "aria-expanded": this.state.isActive ? "true" : "false",
-            "aria-haspopup": true,
-            "aria-label": this.props.ariaLabel,
-            "type": "button"
-        };
-        var labelClass = this.props.labelClassName || "dropdown-label-span";
-        return (React.createElement("button", tslib_1.__assign({}, buttonProps),
-            img,
-            React.createElement("span", { className: "dropdown-hidden-label" }, this.props.title),
-            React.createElement("span", { className: "label" + " " + labelClass }, this.props.label ? this.props.label : this.props.valueCurrent)));
-    };
-    /**
-     * Rendu type Dropdown
-     * @returns {any}
-     * @protected
-     */
-    Dropdown.prototype.renderDropDown = function () {
-        var _this = this;
-        var items;
-        var buildItem = function (item, index) {
-            var dropdownItemsProps = {
-                label: item.label,
-                url: item.url,
-                className: item.className,
-                srcImg: item.srcImg,
-                key: "dropdown-" + _this.props.id + "-" + index,
-                handleKeyDown: _this.handleKeyDownDropDownItem,
-                getRef: function (item) { return _this.items.push(item); },
-                disabled: item.disabled,
-                valueCurrent: item.valueCurrent,
-                lang: item.lang
-            };
-            if (item.action) {
-                dropdownItemsProps["action"] = item.action;
-            }
-            return React.createElement(dropdown_item_1.DropdownItem, tslib_1.__assign({}, dropdownItemsProps));
-        };
-        if (this.state.items && this.state.items.length > 0) {
-            items = this.state.items.map(function (item, index) { return buildItem(item, index); });
-        }
-        else if (this.state.children && this.state.children.length > 0) {
-            items = [];
-            this.state.children.map(function (item, index) {
-                items.push(React.cloneElement(item, {
-                    key: "li-dropdown-" + _this.props.id + "-" + index,
-                    onKeyDown: _this.handleKeyDownDropDownItem,
-                    ref: function (item) { return _this.items.push(item); }
-                }));
-            });
-        }
-        var dropDownClasses = {
-            "dropdown-content": true,
-            "dropdown-content-hidden": !this.state.isActive
-        };
-        var classStyle = this.lstPosition[this.props.position];
-        var position = (this.props.drawArrow) ? classStyle : "";
-        return (React.createElement("div", { id: this.state.id + "content", className: classStyle + " " + classNames(dropDownClasses), style: this.boxStyle },
-            React.createElement("span", { style: this.arrowStyle, className: "arrow " + position }),
-            React.createElement("ul", { className: "dropdown-list " + position, ref: function (dropDown) { return _this.dropDown = dropDown; }, "aria-expanded": this.state.isActive }, items)));
-    };
-    Dropdown.prototype.calculPositionBox = function () {
-        var valRightArrow = 0, valLeftBox = 0, valLeftArrow = 0;
-        var widthIcon = this.button.getElementsByClassName("icon")[0].getBoundingClientRect().width;
-        var widthLabel = this.button.getElementsByClassName("label")[0].getBoundingClientRect().width;
-        switch (this.props.position) {
-            case Position.BOTTOMRIGHT:
-            case Position.TOPRIGHT:
-                /* 5px decalement de la box -0.5em // -5px suppression de la moitié de la fleche*/
-                valRightArrow = (widthIcon / 2) + 5;
-                this.arrowStyle = {
-                    right: valRightArrow + "px"
-                };
-                break;
-            case Position.TOPLEFT:
-            case Position.BOTTOMLEFT:
-                if (this.props.valueCurrent) {
-                    valLeftBox = widthLabel;
-                }
-                valLeftArrow = (widthIcon / 2);
-                this.arrowStyle = {
-                    left: valLeftArrow + "px"
-                };
-                this.boxStyle = {
-                    left: valLeftBox + "px"
-                };
-                break;
-        }
-    };
-    /* Evenement sur le onClick */
-    Dropdown.prototype.handleClick = function () {
-        /* on ferme que si on a le droit ( par defaut oui ) */
-        if (this.state.isActive && this.state.closeClick) {
-            this.closePanel();
-        }
-        else if (!this.state.isActive) {
-            this.openPanel();
-        }
-    };
-    /**
-     * ouvre le dropdown et focus le premier enfant
-     */
-    Dropdown.prototype.openPanel = function () {
-        var _this = this;
-        this.setState({ isActive: true }, function () {
-            _this.dropDown.firstElementChild.firstElementChild.focus();
-        });
-    };
-    /**
-     * ferme le dropdown et focus le bouton parent
-     */
-    Dropdown.prototype.closePanel = function () {
-        var _this = this;
-        this.setState({ isActive: false }, function () {
-            _this.button.focus();
-        });
-    };
-    /**
-     * Ferme la liste lorsque le clic est en dehors de la div
-     * @param e Event
-     */
-    Dropdown.prototype.handleExpandOutside = function (e) {
-        e.stopPropagation();
-        if (document.getElementById(this.state.id + "content") != null) {
-            if (!document.getElementById(this.state.id + "content").contains(e.target)) {
-                // the click was outside your component, so handle closing here
-                this.setState({ isActive: false });
-            }
-            else {
-                this.handleClick();
-            }
-        }
-    };
-    Dropdown.defaultProps = {
-        disabled: false,
-        position: Position.BOTTOMRIGHT,
-        drawArrow: true,
-        closeClick: true
-    };
-    return Dropdown;
-}(hornet_component_1.HornetComponent));
-exports.Dropdown = Dropdown;
-
-
-
-/***/ }),
 /* 48 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(81);
-exports.Stream = exports;
-exports.Readable = exports;
-exports.Writable = __webpack_require__(54);
-exports.Duplex = __webpack_require__(15);
-exports.Transform = __webpack_require__(85);
-exports.PassThrough = __webpack_require__(205);
-
-
-/***/ }),
-/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30443,8 +30430,8 @@ var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var ReactDom = __webpack_require__(22);
 var hornet_component_1 = __webpack_require__(3);
-var notification_message_item_1 = __webpack_require__(223);
-var notification_events_1 = __webpack_require__(44);
+var notification_message_item_1 = __webpack_require__(224);
+var notification_events_1 = __webpack_require__(45);
 var accordion_1 = __webpack_require__(92);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.notification.notification");
 /**
@@ -30772,13 +30759,13 @@ var NotificationContent = /** @class */ (function (_super) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 50 */
+/* 49 */
 /***/ (function(module, exports) {
 
 module.exports = {};
 
 /***/ }),
-/* 51 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30863,7 +30850,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @license CECILL-2.1
  */
 var index_1 = __webpack_require__(0);
-var Promise = __webpack_require__(18);
+var Promise = __webpack_require__(17);
 exports.Promise = Promise;
 if (index_1.Utils.isServer) {
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -30892,7 +30879,7 @@ if (index_1.Utils.isServer) {
 
 
 /***/ }),
-/* 52 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30908,7 +30895,7 @@ if (index_1.Utils.isServer) {
 if (process.env.NODE_ENV !== 'production') {
   var invariant = __webpack_require__(37);
   var warning = __webpack_require__(38);
-  var ReactPropTypesSecret = __webpack_require__(98);
+  var ReactPropTypesSecret = __webpack_require__(99);
   var loggedTypeFailures = {};
 }
 
@@ -30959,7 +30946,7 @@ module.exports = checkPropTypes;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 53 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31050,10 +31037,10 @@ var _ = __webpack_require__(6);
 var hornet_component_1 = __webpack_require__(3);
 var hornet_event_1 = __webpack_require__(7);
 var layout_switcher_1 = __webpack_require__(24);
-var router_client_async_elements_1 = __webpack_require__(20);
-var navigation_utils_1 = __webpack_require__(21);
+var router_client_async_elements_1 = __webpack_require__(19);
+var navigation_utils_1 = __webpack_require__(20);
 var hornet_event_2 = __webpack_require__(7);
-var expanding_layout_1 = __webpack_require__(178);
+var expanding_layout_1 = __webpack_require__(179);
 var layout_switcher_2 = __webpack_require__(24);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.component.hornet-page");
 /**
@@ -31272,707 +31259,13 @@ exports.HornetPage = HornetPage;
 
 
 /***/ }),
-/* 54 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process, setImmediate, global) {// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-// A bit simpler than readable streams.
-// Implement an async ._write(chunk, encoding, cb), and it'll handle all
-// the drain event emission and buffering.
-
-
-
-/*<replacement>*/
-
-var pna = __webpack_require__(35);
-/*</replacement>*/
-
-module.exports = Writable;
-
-/* <replacement> */
-function WriteReq(chunk, encoding, cb) {
-  this.chunk = chunk;
-  this.encoding = encoding;
-  this.callback = cb;
-  this.next = null;
-}
-
-// It seems a linked list but it is not
-// there will be only 2 of these for each stream
-function CorkedRequest(state) {
-  var _this = this;
-
-  this.next = null;
-  this.entry = null;
-  this.finish = function () {
-    onCorkedFinish(_this, state);
-  };
-}
-/* </replacement> */
-
-/*<replacement>*/
-var asyncWrite = !process.browser && ['v0.10', 'v0.9.'].indexOf(process.version.slice(0, 5)) > -1 ? setImmediate : pna.nextTick;
-/*</replacement>*/
-
-/*<replacement>*/
-var Duplex;
-/*</replacement>*/
-
-Writable.WritableState = WritableState;
-
-/*<replacement>*/
-var util = __webpack_require__(25);
-util.inherits = __webpack_require__(11);
-/*</replacement>*/
-
-/*<replacement>*/
-var internalUtil = {
-  deprecate: __webpack_require__(204)
-};
-/*</replacement>*/
-
-/*<replacement>*/
-var Stream = __webpack_require__(82);
-/*</replacement>*/
-
-/*<replacement>*/
-
-var Buffer = __webpack_require__(36).Buffer;
-var OurUint8Array = global.Uint8Array || function () {};
-function _uint8ArrayToBuffer(chunk) {
-  return Buffer.from(chunk);
-}
-function _isUint8Array(obj) {
-  return Buffer.isBuffer(obj) || obj instanceof OurUint8Array;
-}
-
-/*</replacement>*/
-
-var destroyImpl = __webpack_require__(83);
-
-util.inherits(Writable, Stream);
-
-function nop() {}
-
-function WritableState(options, stream) {
-  Duplex = Duplex || __webpack_require__(15);
-
-  options = options || {};
-
-  // Duplex streams are both readable and writable, but share
-  // the same options object.
-  // However, some cases require setting options to different
-  // values for the readable and the writable sides of the duplex stream.
-  // These options can be provided separately as readableXXX and writableXXX.
-  var isDuplex = stream instanceof Duplex;
-
-  // object stream flag to indicate whether or not this stream
-  // contains buffers or objects.
-  this.objectMode = !!options.objectMode;
-
-  if (isDuplex) this.objectMode = this.objectMode || !!options.writableObjectMode;
-
-  // the point at which write() starts returning false
-  // Note: 0 is a valid value, means that we always return false if
-  // the entire buffer is not flushed immediately on write()
-  var hwm = options.highWaterMark;
-  var writableHwm = options.writableHighWaterMark;
-  var defaultHwm = this.objectMode ? 16 : 16 * 1024;
-
-  if (hwm || hwm === 0) this.highWaterMark = hwm;else if (isDuplex && (writableHwm || writableHwm === 0)) this.highWaterMark = writableHwm;else this.highWaterMark = defaultHwm;
-
-  // cast to ints.
-  this.highWaterMark = Math.floor(this.highWaterMark);
-
-  // if _final has been called
-  this.finalCalled = false;
-
-  // drain event flag.
-  this.needDrain = false;
-  // at the start of calling end()
-  this.ending = false;
-  // when end() has been called, and returned
-  this.ended = false;
-  // when 'finish' is emitted
-  this.finished = false;
-
-  // has it been destroyed
-  this.destroyed = false;
-
-  // should we decode strings into buffers before passing to _write?
-  // this is here so that some node-core streams can optimize string
-  // handling at a lower level.
-  var noDecode = options.decodeStrings === false;
-  this.decodeStrings = !noDecode;
-
-  // Crypto is kind of old and crusty.  Historically, its default string
-  // encoding is 'binary' so we have to make this configurable.
-  // Everything else in the universe uses 'utf8', though.
-  this.defaultEncoding = options.defaultEncoding || 'utf8';
-
-  // not an actual buffer we keep track of, but a measurement
-  // of how much we're waiting to get pushed to some underlying
-  // socket or file.
-  this.length = 0;
-
-  // a flag to see when we're in the middle of a write.
-  this.writing = false;
-
-  // when true all writes will be buffered until .uncork() call
-  this.corked = 0;
-
-  // a flag to be able to tell if the onwrite cb is called immediately,
-  // or on a later tick.  We set this to true at first, because any
-  // actions that shouldn't happen until "later" should generally also
-  // not happen before the first write call.
-  this.sync = true;
-
-  // a flag to know if we're processing previously buffered items, which
-  // may call the _write() callback in the same tick, so that we don't
-  // end up in an overlapped onwrite situation.
-  this.bufferProcessing = false;
-
-  // the callback that's passed to _write(chunk,cb)
-  this.onwrite = function (er) {
-    onwrite(stream, er);
-  };
-
-  // the callback that the user supplies to write(chunk,encoding,cb)
-  this.writecb = null;
-
-  // the amount that is being written when _write is called.
-  this.writelen = 0;
-
-  this.bufferedRequest = null;
-  this.lastBufferedRequest = null;
-
-  // number of pending user-supplied write callbacks
-  // this must be 0 before 'finish' can be emitted
-  this.pendingcb = 0;
-
-  // emit prefinish if the only thing we're waiting for is _write cbs
-  // This is relevant for synchronous Transform streams
-  this.prefinished = false;
-
-  // True if the error was already emitted and should not be thrown again
-  this.errorEmitted = false;
-
-  // count buffered requests
-  this.bufferedRequestCount = 0;
-
-  // allocate the first CorkedRequest, there is always
-  // one allocated and free to use, and we maintain at most two
-  this.corkedRequestsFree = new CorkedRequest(this);
-}
-
-WritableState.prototype.getBuffer = function getBuffer() {
-  var current = this.bufferedRequest;
-  var out = [];
-  while (current) {
-    out.push(current);
-    current = current.next;
-  }
-  return out;
-};
-
-(function () {
-  try {
-    Object.defineProperty(WritableState.prototype, 'buffer', {
-      get: internalUtil.deprecate(function () {
-        return this.getBuffer();
-      }, '_writableState.buffer is deprecated. Use _writableState.getBuffer ' + 'instead.', 'DEP0003')
-    });
-  } catch (_) {}
-})();
-
-// Test _writableState for inheritance to account for Duplex streams,
-// whose prototype chain only points to Readable.
-var realHasInstance;
-if (typeof Symbol === 'function' && Symbol.hasInstance && typeof Function.prototype[Symbol.hasInstance] === 'function') {
-  realHasInstance = Function.prototype[Symbol.hasInstance];
-  Object.defineProperty(Writable, Symbol.hasInstance, {
-    value: function (object) {
-      if (realHasInstance.call(this, object)) return true;
-      if (this !== Writable) return false;
-
-      return object && object._writableState instanceof WritableState;
-    }
-  });
-} else {
-  realHasInstance = function (object) {
-    return object instanceof this;
-  };
-}
-
-function Writable(options) {
-  Duplex = Duplex || __webpack_require__(15);
-
-  // Writable ctor is applied to Duplexes, too.
-  // `realHasInstance` is necessary because using plain `instanceof`
-  // would return false, as no `_writableState` property is attached.
-
-  // Trying to use the custom `instanceof` for Writable here will also break the
-  // Node.js LazyTransform implementation, which has a non-trivial getter for
-  // `_writableState` that would lead to infinite recursion.
-  if (!realHasInstance.call(Writable, this) && !(this instanceof Duplex)) {
-    return new Writable(options);
-  }
-
-  this._writableState = new WritableState(options, this);
-
-  // legacy.
-  this.writable = true;
-
-  if (options) {
-    if (typeof options.write === 'function') this._write = options.write;
-
-    if (typeof options.writev === 'function') this._writev = options.writev;
-
-    if (typeof options.destroy === 'function') this._destroy = options.destroy;
-
-    if (typeof options.final === 'function') this._final = options.final;
-  }
-
-  Stream.call(this);
-}
-
-// Otherwise people can pipe Writable streams, which is just wrong.
-Writable.prototype.pipe = function () {
-  this.emit('error', new Error('Cannot pipe, not readable'));
-};
-
-function writeAfterEnd(stream, cb) {
-  var er = new Error('write after end');
-  // TODO: defer error events consistently everywhere, not just the cb
-  stream.emit('error', er);
-  pna.nextTick(cb, er);
-}
-
-// Checks that a user-supplied chunk is valid, especially for the particular
-// mode the stream is in. Currently this means that `null` is never accepted
-// and undefined/non-string values are only allowed in object mode.
-function validChunk(stream, state, chunk, cb) {
-  var valid = true;
-  var er = false;
-
-  if (chunk === null) {
-    er = new TypeError('May not write null values to stream');
-  } else if (typeof chunk !== 'string' && chunk !== undefined && !state.objectMode) {
-    er = new TypeError('Invalid non-string/buffer chunk');
-  }
-  if (er) {
-    stream.emit('error', er);
-    pna.nextTick(cb, er);
-    valid = false;
-  }
-  return valid;
-}
-
-Writable.prototype.write = function (chunk, encoding, cb) {
-  var state = this._writableState;
-  var ret = false;
-  var isBuf = !state.objectMode && _isUint8Array(chunk);
-
-  if (isBuf && !Buffer.isBuffer(chunk)) {
-    chunk = _uint8ArrayToBuffer(chunk);
-  }
-
-  if (typeof encoding === 'function') {
-    cb = encoding;
-    encoding = null;
-  }
-
-  if (isBuf) encoding = 'buffer';else if (!encoding) encoding = state.defaultEncoding;
-
-  if (typeof cb !== 'function') cb = nop;
-
-  if (state.ended) writeAfterEnd(this, cb);else if (isBuf || validChunk(this, state, chunk, cb)) {
-    state.pendingcb++;
-    ret = writeOrBuffer(this, state, isBuf, chunk, encoding, cb);
-  }
-
-  return ret;
-};
-
-Writable.prototype.cork = function () {
-  var state = this._writableState;
-
-  state.corked++;
-};
-
-Writable.prototype.uncork = function () {
-  var state = this._writableState;
-
-  if (state.corked) {
-    state.corked--;
-
-    if (!state.writing && !state.corked && !state.finished && !state.bufferProcessing && state.bufferedRequest) clearBuffer(this, state);
-  }
-};
-
-Writable.prototype.setDefaultEncoding = function setDefaultEncoding(encoding) {
-  // node::ParseEncoding() requires lower case.
-  if (typeof encoding === 'string') encoding = encoding.toLowerCase();
-  if (!(['hex', 'utf8', 'utf-8', 'ascii', 'binary', 'base64', 'ucs2', 'ucs-2', 'utf16le', 'utf-16le', 'raw'].indexOf((encoding + '').toLowerCase()) > -1)) throw new TypeError('Unknown encoding: ' + encoding);
-  this._writableState.defaultEncoding = encoding;
-  return this;
-};
-
-function decodeChunk(state, chunk, encoding) {
-  if (!state.objectMode && state.decodeStrings !== false && typeof chunk === 'string') {
-    chunk = Buffer.from(chunk, encoding);
-  }
-  return chunk;
-}
-
-Object.defineProperty(Writable.prototype, 'writableHighWaterMark', {
-  // making it explicit this property is not enumerable
-  // because otherwise some prototype manipulation in
-  // userland will fail
-  enumerable: false,
-  get: function () {
-    return this._writableState.highWaterMark;
-  }
-});
-
-// if we're already writing something, then just put this
-// in the queue, and wait our turn.  Otherwise, call _write
-// If we return false, then we need a drain event, so set that flag.
-function writeOrBuffer(stream, state, isBuf, chunk, encoding, cb) {
-  if (!isBuf) {
-    var newChunk = decodeChunk(state, chunk, encoding);
-    if (chunk !== newChunk) {
-      isBuf = true;
-      encoding = 'buffer';
-      chunk = newChunk;
-    }
-  }
-  var len = state.objectMode ? 1 : chunk.length;
-
-  state.length += len;
-
-  var ret = state.length < state.highWaterMark;
-  // we must ensure that previous needDrain will not be reset to false.
-  if (!ret) state.needDrain = true;
-
-  if (state.writing || state.corked) {
-    var last = state.lastBufferedRequest;
-    state.lastBufferedRequest = {
-      chunk: chunk,
-      encoding: encoding,
-      isBuf: isBuf,
-      callback: cb,
-      next: null
-    };
-    if (last) {
-      last.next = state.lastBufferedRequest;
-    } else {
-      state.bufferedRequest = state.lastBufferedRequest;
-    }
-    state.bufferedRequestCount += 1;
-  } else {
-    doWrite(stream, state, false, len, chunk, encoding, cb);
-  }
-
-  return ret;
-}
-
-function doWrite(stream, state, writev, len, chunk, encoding, cb) {
-  state.writelen = len;
-  state.writecb = cb;
-  state.writing = true;
-  state.sync = true;
-  if (writev) stream._writev(chunk, state.onwrite);else stream._write(chunk, encoding, state.onwrite);
-  state.sync = false;
-}
-
-function onwriteError(stream, state, sync, er, cb) {
-  --state.pendingcb;
-
-  if (sync) {
-    // defer the callback if we are being called synchronously
-    // to avoid piling up things on the stack
-    pna.nextTick(cb, er);
-    // this can emit finish, and it will always happen
-    // after error
-    pna.nextTick(finishMaybe, stream, state);
-    stream._writableState.errorEmitted = true;
-    stream.emit('error', er);
-  } else {
-    // the caller expect this to happen before if
-    // it is async
-    cb(er);
-    stream._writableState.errorEmitted = true;
-    stream.emit('error', er);
-    // this can emit finish, but finish must
-    // always follow error
-    finishMaybe(stream, state);
-  }
-}
-
-function onwriteStateUpdate(state) {
-  state.writing = false;
-  state.writecb = null;
-  state.length -= state.writelen;
-  state.writelen = 0;
-}
-
-function onwrite(stream, er) {
-  var state = stream._writableState;
-  var sync = state.sync;
-  var cb = state.writecb;
-
-  onwriteStateUpdate(state);
-
-  if (er) onwriteError(stream, state, sync, er, cb);else {
-    // Check if we're actually ready to finish, but don't emit yet
-    var finished = needFinish(state);
-
-    if (!finished && !state.corked && !state.bufferProcessing && state.bufferedRequest) {
-      clearBuffer(stream, state);
-    }
-
-    if (sync) {
-      /*<replacement>*/
-      asyncWrite(afterWrite, stream, state, finished, cb);
-      /*</replacement>*/
-    } else {
-      afterWrite(stream, state, finished, cb);
-    }
-  }
-}
-
-function afterWrite(stream, state, finished, cb) {
-  if (!finished) onwriteDrain(stream, state);
-  state.pendingcb--;
-  cb();
-  finishMaybe(stream, state);
-}
-
-// Must force callback to be called on nextTick, so that we don't
-// emit 'drain' before the write() consumer gets the 'false' return
-// value, and has a chance to attach a 'drain' listener.
-function onwriteDrain(stream, state) {
-  if (state.length === 0 && state.needDrain) {
-    state.needDrain = false;
-    stream.emit('drain');
-  }
-}
-
-// if there's something in the buffer waiting, then process it
-function clearBuffer(stream, state) {
-  state.bufferProcessing = true;
-  var entry = state.bufferedRequest;
-
-  if (stream._writev && entry && entry.next) {
-    // Fast case, write everything using _writev()
-    var l = state.bufferedRequestCount;
-    var buffer = new Array(l);
-    var holder = state.corkedRequestsFree;
-    holder.entry = entry;
-
-    var count = 0;
-    var allBuffers = true;
-    while (entry) {
-      buffer[count] = entry;
-      if (!entry.isBuf) allBuffers = false;
-      entry = entry.next;
-      count += 1;
-    }
-    buffer.allBuffers = allBuffers;
-
-    doWrite(stream, state, true, state.length, buffer, '', holder.finish);
-
-    // doWrite is almost always async, defer these to save a bit of time
-    // as the hot path ends with doWrite
-    state.pendingcb++;
-    state.lastBufferedRequest = null;
-    if (holder.next) {
-      state.corkedRequestsFree = holder.next;
-      holder.next = null;
-    } else {
-      state.corkedRequestsFree = new CorkedRequest(state);
-    }
-    state.bufferedRequestCount = 0;
-  } else {
-    // Slow case, write chunks one-by-one
-    while (entry) {
-      var chunk = entry.chunk;
-      var encoding = entry.encoding;
-      var cb = entry.callback;
-      var len = state.objectMode ? 1 : chunk.length;
-
-      doWrite(stream, state, false, len, chunk, encoding, cb);
-      entry = entry.next;
-      state.bufferedRequestCount--;
-      // if we didn't call the onwrite immediately, then
-      // it means that we need to wait until it does.
-      // also, that means that the chunk and cb are currently
-      // being processed, so move the buffer counter past them.
-      if (state.writing) {
-        break;
-      }
-    }
-
-    if (entry === null) state.lastBufferedRequest = null;
-  }
-
-  state.bufferedRequest = entry;
-  state.bufferProcessing = false;
-}
-
-Writable.prototype._write = function (chunk, encoding, cb) {
-  cb(new Error('_write() is not implemented'));
-};
-
-Writable.prototype._writev = null;
-
-Writable.prototype.end = function (chunk, encoding, cb) {
-  var state = this._writableState;
-
-  if (typeof chunk === 'function') {
-    cb = chunk;
-    chunk = null;
-    encoding = null;
-  } else if (typeof encoding === 'function') {
-    cb = encoding;
-    encoding = null;
-  }
-
-  if (chunk !== null && chunk !== undefined) this.write(chunk, encoding);
-
-  // .end() fully uncorks
-  if (state.corked) {
-    state.corked = 1;
-    this.uncork();
-  }
-
-  // ignore unnecessary end() calls.
-  if (!state.ending && !state.finished) endWritable(this, state, cb);
-};
-
-function needFinish(state) {
-  return state.ending && state.length === 0 && state.bufferedRequest === null && !state.finished && !state.writing;
-}
-function callFinal(stream, state) {
-  stream._final(function (err) {
-    state.pendingcb--;
-    if (err) {
-      stream.emit('error', err);
-    }
-    state.prefinished = true;
-    stream.emit('prefinish');
-    finishMaybe(stream, state);
-  });
-}
-function prefinish(stream, state) {
-  if (!state.prefinished && !state.finalCalled) {
-    if (typeof stream._final === 'function') {
-      state.pendingcb++;
-      state.finalCalled = true;
-      pna.nextTick(callFinal, stream, state);
-    } else {
-      state.prefinished = true;
-      stream.emit('prefinish');
-    }
-  }
-}
-
-function finishMaybe(stream, state) {
-  var need = needFinish(state);
-  if (need) {
-    prefinish(stream, state);
-    if (state.pendingcb === 0) {
-      state.finished = true;
-      stream.emit('finish');
-    }
-  }
-  return need;
-}
-
-function endWritable(stream, state, cb) {
-  state.ending = true;
-  finishMaybe(stream, state);
-  if (cb) {
-    if (state.finished) pna.nextTick(cb);else stream.once('finish', cb);
-  }
-  state.ended = true;
-  stream.writable = false;
-}
-
-function onCorkedFinish(corkReq, state, err) {
-  var entry = corkReq.entry;
-  corkReq.entry = null;
-  while (entry) {
-    var cb = entry.callback;
-    state.pendingcb--;
-    cb(err);
-    entry = entry.next;
-  }
-  if (state.corkedRequestsFree) {
-    state.corkedRequestsFree.next = corkReq;
-  } else {
-    state.corkedRequestsFree = corkReq;
-  }
-}
-
-Object.defineProperty(Writable.prototype, 'destroyed', {
-  get: function () {
-    if (this._writableState === undefined) {
-      return false;
-    }
-    return this._writableState.destroyed;
-  },
-  set: function (value) {
-    // we ignore the value if the stream
-    // has not been initialized yet
-    if (!this._writableState) {
-      return;
-    }
-
-    // backward compatibility, the user is explicitly
-    // managing destroyed
-    this._writableState.destroyed = value;
-  }
-});
-
-Writable.prototype.destroy = destroyImpl.destroy;
-Writable.prototype._undestroy = destroyImpl.undestroy;
-Writable.prototype._destroy = function (err, cb) {
-  this.end();
-  cb(err);
-};
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(65).setImmediate, __webpack_require__(8)))
-
-/***/ }),
-/* 55 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var keys = __webpack_require__(41);
+var keys = __webpack_require__(42);
 var foreach = __webpack_require__(110);
 var hasSymbols = typeof Symbol === 'function' && typeof Symbol() === 'symbol';
 
@@ -32029,14 +31322,14 @@ module.exports = defineProperties;
 
 
 /***/ }),
-/* 56 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 // modified from https://github.com/es-shims/es6-shim
-var keys = __webpack_require__(41);
+var keys = __webpack_require__(42);
 var bind = __webpack_require__(111);
 var canBeObject = function (obj) {
 	return typeof obj !== 'undefined' && obj !== null;
@@ -32077,13 +31370,13 @@ module.exports = function assign(target, source1) {
 
 
 /***/ }),
-/* 57 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var implementation = __webpack_require__(56);
+var implementation = __webpack_require__(54);
 
 var lacksProperEnumerationOrder = function () {
 	if (!Object.assign) {
@@ -32135,7 +31428,7 @@ module.exports = function getPolyfill() {
 
 
 /***/ }),
-/* 58 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32224,7 +31517,7 @@ var path = __webpack_require__(116);
 var technical_error_1 = __webpack_require__(13);
 var business_error_1 = __webpack_require__(30);
 var business_error_list_1 = __webpack_require__(31);
-var base_error_1 = __webpack_require__(17);
+var base_error_1 = __webpack_require__(16);
 /**
  * Construit un logger avec la catégory demandée
  * @param category
@@ -32528,7 +31821,7 @@ exports.Logger = Logger;
 
 
 /***/ }),
-/* 59 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {// Copyright Joyent, Inc. and other Node contributors.
@@ -33121,7 +32414,7 @@ function hasOwnProperty(obj, prop) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), __webpack_require__(4)))
 
 /***/ }),
-/* 60 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -33208,7 +32501,7 @@ function hasOwnProperty(obj, prop) {
 
 
 /***/ }),
-/* 61 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -33286,7 +32579,7 @@ function hasOwnProperty(obj, prop) {
 
 
 /***/ }),
-/* 62 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -33368,7 +32661,7 @@ function hasOwnProperty(obj, prop) {
 
 
 /***/ }),
-/* 63 */
+/* 61 */
 /***/ (function(module, exports) {
 
 exports.endianness = function () { return 'LE' };
@@ -33423,7 +32716,7 @@ exports.homedir = function () {
 
 
 /***/ }),
-/* 64 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33510,7 +32803,7 @@ var tslib_1 = __webpack_require__(1);
  */
 var events_1 = __webpack_require__(27);
 var hornet_js_utils_1 = __webpack_require__(0);
-var promise_api_1 = __webpack_require__(51);
+var promise_api_1 = __webpack_require__(50);
 var domain = __webpack_require__(159);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.executor.AsyncExecutor");
 var AsyncExecutor = /** @class */ (function (_super) {
@@ -33610,7 +32903,7 @@ exports.AsyncExecutor = AsyncExecutor;
 
 
 /***/ }),
-/* 65 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = self || window;
@@ -33678,14 +32971,14 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
-/* 66 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 module.exports = function(NEXT_FILTER) {
 var util = __webpack_require__(5);
-var getKeys = __webpack_require__(19).keys;
+var getKeys = __webpack_require__(18).keys;
 var tryCatch = util.tryCatch;
 var errorObj = util.errorObj;
 
@@ -33727,7 +33020,7 @@ return catchFilter;
 
 
 /***/ }),
-/* 67 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33736,7 +33029,7 @@ var util = __webpack_require__(5);
 var maybeWrapAsError = util.maybeWrapAsError;
 var errors = __webpack_require__(12);
 var OperationalError = errors.OperationalError;
-var es5 = __webpack_require__(19);
+var es5 = __webpack_require__(18);
 
 function isUntypedError(obj) {
     return obj instanceof Error &&
@@ -33785,7 +33078,7 @@ module.exports = nodebackForPromise;
 
 
 /***/ }),
-/* 68 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33891,7 +33184,7 @@ exports.AsyncElement = AsyncElement;
 
 
 /***/ }),
-/* 69 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33993,7 +33286,7 @@ exports.HttpError = HttpError;
 
 
 /***/ }),
-/* 70 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34078,7 +33371,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @license CECILL-2.1
  */
 var _ = __webpack_require__(6);
-var common_register_1 = __webpack_require__(16);
+var common_register_1 = __webpack_require__(15);
 var logger = common_register_1.Register.getLogger("hornet-js-utils.authentication-utils");
 var AuthUtils = /** @class */ (function () {
     function AuthUtils() {
@@ -34117,7 +33410,7 @@ exports.AuthUtils = AuthUtils;
 
 
 /***/ }),
-/* 71 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34201,11 +33494,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
  * @license CECILL-2.1
  */
-var base_error_1 = __webpack_require__(17);
+var base_error_1 = __webpack_require__(16);
 var technical_error_1 = __webpack_require__(13);
 var business_error_1 = __webpack_require__(30);
 var business_error_list_1 = __webpack_require__(31);
-var http_error_1 = __webpack_require__(69);
+var http_error_1 = __webpack_require__(67);
 var _ = __webpack_require__(6);
 var NodeApiResultBuilder = /** @class */ (function () {
     function NodeApiResultBuilder() {
@@ -34481,7 +33774,7 @@ exports.BackendApiError = BackendApiError;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 72 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34663,7 +33956,7 @@ exports.MediaTypes = MediaTypes;
 
 
 /***/ }),
-/* 73 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34749,26 +34042,26 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 var hornet_js_utils_1 = __webpack_require__(0);
 var _ = __webpack_require__(6);
-var superagent = __webpack_require__(184);
+var superagent = __webpack_require__(185);
 var hornet_superagent_request_1 = __webpack_require__(33);
 var hornet_event_1 = __webpack_require__(7);
-var superAgentPlugins = __webpack_require__(190);
-var media_type_1 = __webpack_require__(72);
-var service_api_results_1 = __webpack_require__(71);
+var superAgentPlugins = __webpack_require__(191);
+var media_type_1 = __webpack_require__(70);
+var service_api_results_1 = __webpack_require__(69);
 var error_manager_1 = __webpack_require__(32);
 var technical_error_1 = __webpack_require__(13);
-var hornet_cache_1 = __webpack_require__(192);
+var hornet_cache_1 = __webpack_require__(193);
 var hornet_event_2 = __webpack_require__(7);
 var hornet_event_3 = __webpack_require__(7);
-var base_error_1 = __webpack_require__(17);
+var base_error_1 = __webpack_require__(16);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.services.hornet-agent");
-var promise_api_1 = __webpack_require__(51);
+var promise_api_1 = __webpack_require__(50);
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // wrap http & https afin de sécuriser l'utilisation de "continuation-local-storage" (perte ou mix de contexte) //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-var http = __webpack_require__(77);
-var https = __webpack_require__(209);
-var disposition_type_1 = __webpack_require__(210);
+var http = __webpack_require__(75);
+var https = __webpack_require__(210);
+var disposition_type_1 = __webpack_require__(211);
 if (http["__old_http_request"] == undefined) {
     http["__old_http_request"] = http.request;
     https["__old_https_reques"] = https.request;
@@ -35469,7 +34762,7 @@ exports.HornetList = HornetList;
 
 
 /***/ }),
-/* 74 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35491,13 +34784,13 @@ module.exports = isObject;
 
 
 /***/ }),
-/* 75 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var Promise = __webpack_require__(18);
+var Promise = __webpack_require__(17);
 
 function Item(key, pool) {
   this.key = key;
@@ -35711,12 +35004,12 @@ module.exports = Item;
 
 
 /***/ }),
-/* 76 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = Ephemeral;
 
-var Promise = __webpack_require__(18);
+var Promise = __webpack_require__(17);
 var Utils = __webpack_require__(34);
 var cache = {};
 
@@ -35782,14 +35075,14 @@ Ephemeral.prototype._updateLock = function (key, value) {
 
 
 /***/ }),
-/* 77 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {var ClientRequest = __webpack_require__(198)
-var response = __webpack_require__(80)
-var extend = __webpack_require__(207)
-var statusCodes = __webpack_require__(208)
-var url = __webpack_require__(40)
+/* WEBPACK VAR INJECTION */(function(global) {var ClientRequest = __webpack_require__(199)
+var response = __webpack_require__(78)
+var extend = __webpack_require__(208)
+var statusCodes = __webpack_require__(209)
+var url = __webpack_require__(41)
 
 var http = exports
 
@@ -35873,7 +35166,7 @@ http.METHODS = [
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
-/* 78 */
+/* 76 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -35884,7 +35177,7 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 79 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {exports.fetch = isFunction(global.fetch) && isFunction(global.ReadableStream)
@@ -35964,12 +35257,12 @@ xhr = null // Help gc
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
-/* 80 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(process, Buffer, global) {var capability = __webpack_require__(79)
+/* WEBPACK VAR INJECTION */(function(process, Buffer, global) {var capability = __webpack_require__(77)
 var inherits = __webpack_require__(11)
-var stream = __webpack_require__(48)
+var stream = __webpack_require__(79)
 
 var rStates = exports.readyStates = {
 	UNSENT: 0,
@@ -36188,7 +35481,20 @@ IncomingMessage.prototype._onXHRProgress = function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(23).Buffer, __webpack_require__(8)))
 
 /***/ }),
-/* 81 */
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(80);
+exports.Stream = exports;
+exports.Readable = exports;
+exports.Writable = __webpack_require__(83);
+exports.Duplex = __webpack_require__(21);
+exports.Transform = __webpack_require__(85);
+exports.PassThrough = __webpack_require__(206);
+
+
+/***/ }),
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36223,7 +35529,7 @@ var pna = __webpack_require__(35);
 module.exports = Readable;
 
 /*<replacement>*/
-var isArray = __webpack_require__(78);
+var isArray = __webpack_require__(76);
 /*</replacement>*/
 
 /*<replacement>*/
@@ -36241,7 +35547,7 @@ var EElistenerCount = function (emitter, type) {
 /*</replacement>*/
 
 /*<replacement>*/
-var Stream = __webpack_require__(82);
+var Stream = __webpack_require__(81);
 /*</replacement>*/
 
 /*<replacement>*/
@@ -36263,7 +35569,7 @@ util.inherits = __webpack_require__(11);
 /*</replacement>*/
 
 /*<replacement>*/
-var debugUtil = __webpack_require__(201);
+var debugUtil = __webpack_require__(202);
 var debug = void 0;
 if (debugUtil && debugUtil.debuglog) {
   debug = debugUtil.debuglog('stream');
@@ -36272,8 +35578,8 @@ if (debugUtil && debugUtil.debuglog) {
 }
 /*</replacement>*/
 
-var BufferList = __webpack_require__(202);
-var destroyImpl = __webpack_require__(83);
+var BufferList = __webpack_require__(203);
+var destroyImpl = __webpack_require__(82);
 var StringDecoder;
 
 util.inherits(Readable, Stream);
@@ -36293,7 +35599,7 @@ function prependListener(emitter, event, fn) {
 }
 
 function ReadableState(options, stream) {
-  Duplex = Duplex || __webpack_require__(15);
+  Duplex = Duplex || __webpack_require__(21);
 
   options = options || {};
 
@@ -36370,7 +35676,7 @@ function ReadableState(options, stream) {
 }
 
 function Readable(options) {
-  Duplex = Duplex || __webpack_require__(15);
+  Duplex = Duplex || __webpack_require__(21);
 
   if (!(this instanceof Readable)) return new Readable(options);
 
@@ -37214,14 +36520,14 @@ function indexOf(xs, x) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), __webpack_require__(4)))
 
 /***/ }),
-/* 82 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(27).EventEmitter;
 
 
 /***/ }),
-/* 83 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37299,6 +36605,700 @@ module.exports = {
   destroy: destroy,
   undestroy: undestroy
 };
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process, setImmediate, global) {// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+// A bit simpler than readable streams.
+// Implement an async ._write(chunk, encoding, cb), and it'll handle all
+// the drain event emission and buffering.
+
+
+
+/*<replacement>*/
+
+var pna = __webpack_require__(35);
+/*</replacement>*/
+
+module.exports = Writable;
+
+/* <replacement> */
+function WriteReq(chunk, encoding, cb) {
+  this.chunk = chunk;
+  this.encoding = encoding;
+  this.callback = cb;
+  this.next = null;
+}
+
+// It seems a linked list but it is not
+// there will be only 2 of these for each stream
+function CorkedRequest(state) {
+  var _this = this;
+
+  this.next = null;
+  this.entry = null;
+  this.finish = function () {
+    onCorkedFinish(_this, state);
+  };
+}
+/* </replacement> */
+
+/*<replacement>*/
+var asyncWrite = !process.browser && ['v0.10', 'v0.9.'].indexOf(process.version.slice(0, 5)) > -1 ? setImmediate : pna.nextTick;
+/*</replacement>*/
+
+/*<replacement>*/
+var Duplex;
+/*</replacement>*/
+
+Writable.WritableState = WritableState;
+
+/*<replacement>*/
+var util = __webpack_require__(25);
+util.inherits = __webpack_require__(11);
+/*</replacement>*/
+
+/*<replacement>*/
+var internalUtil = {
+  deprecate: __webpack_require__(205)
+};
+/*</replacement>*/
+
+/*<replacement>*/
+var Stream = __webpack_require__(81);
+/*</replacement>*/
+
+/*<replacement>*/
+
+var Buffer = __webpack_require__(36).Buffer;
+var OurUint8Array = global.Uint8Array || function () {};
+function _uint8ArrayToBuffer(chunk) {
+  return Buffer.from(chunk);
+}
+function _isUint8Array(obj) {
+  return Buffer.isBuffer(obj) || obj instanceof OurUint8Array;
+}
+
+/*</replacement>*/
+
+var destroyImpl = __webpack_require__(82);
+
+util.inherits(Writable, Stream);
+
+function nop() {}
+
+function WritableState(options, stream) {
+  Duplex = Duplex || __webpack_require__(21);
+
+  options = options || {};
+
+  // Duplex streams are both readable and writable, but share
+  // the same options object.
+  // However, some cases require setting options to different
+  // values for the readable and the writable sides of the duplex stream.
+  // These options can be provided separately as readableXXX and writableXXX.
+  var isDuplex = stream instanceof Duplex;
+
+  // object stream flag to indicate whether or not this stream
+  // contains buffers or objects.
+  this.objectMode = !!options.objectMode;
+
+  if (isDuplex) this.objectMode = this.objectMode || !!options.writableObjectMode;
+
+  // the point at which write() starts returning false
+  // Note: 0 is a valid value, means that we always return false if
+  // the entire buffer is not flushed immediately on write()
+  var hwm = options.highWaterMark;
+  var writableHwm = options.writableHighWaterMark;
+  var defaultHwm = this.objectMode ? 16 : 16 * 1024;
+
+  if (hwm || hwm === 0) this.highWaterMark = hwm;else if (isDuplex && (writableHwm || writableHwm === 0)) this.highWaterMark = writableHwm;else this.highWaterMark = defaultHwm;
+
+  // cast to ints.
+  this.highWaterMark = Math.floor(this.highWaterMark);
+
+  // if _final has been called
+  this.finalCalled = false;
+
+  // drain event flag.
+  this.needDrain = false;
+  // at the start of calling end()
+  this.ending = false;
+  // when end() has been called, and returned
+  this.ended = false;
+  // when 'finish' is emitted
+  this.finished = false;
+
+  // has it been destroyed
+  this.destroyed = false;
+
+  // should we decode strings into buffers before passing to _write?
+  // this is here so that some node-core streams can optimize string
+  // handling at a lower level.
+  var noDecode = options.decodeStrings === false;
+  this.decodeStrings = !noDecode;
+
+  // Crypto is kind of old and crusty.  Historically, its default string
+  // encoding is 'binary' so we have to make this configurable.
+  // Everything else in the universe uses 'utf8', though.
+  this.defaultEncoding = options.defaultEncoding || 'utf8';
+
+  // not an actual buffer we keep track of, but a measurement
+  // of how much we're waiting to get pushed to some underlying
+  // socket or file.
+  this.length = 0;
+
+  // a flag to see when we're in the middle of a write.
+  this.writing = false;
+
+  // when true all writes will be buffered until .uncork() call
+  this.corked = 0;
+
+  // a flag to be able to tell if the onwrite cb is called immediately,
+  // or on a later tick.  We set this to true at first, because any
+  // actions that shouldn't happen until "later" should generally also
+  // not happen before the first write call.
+  this.sync = true;
+
+  // a flag to know if we're processing previously buffered items, which
+  // may call the _write() callback in the same tick, so that we don't
+  // end up in an overlapped onwrite situation.
+  this.bufferProcessing = false;
+
+  // the callback that's passed to _write(chunk,cb)
+  this.onwrite = function (er) {
+    onwrite(stream, er);
+  };
+
+  // the callback that the user supplies to write(chunk,encoding,cb)
+  this.writecb = null;
+
+  // the amount that is being written when _write is called.
+  this.writelen = 0;
+
+  this.bufferedRequest = null;
+  this.lastBufferedRequest = null;
+
+  // number of pending user-supplied write callbacks
+  // this must be 0 before 'finish' can be emitted
+  this.pendingcb = 0;
+
+  // emit prefinish if the only thing we're waiting for is _write cbs
+  // This is relevant for synchronous Transform streams
+  this.prefinished = false;
+
+  // True if the error was already emitted and should not be thrown again
+  this.errorEmitted = false;
+
+  // count buffered requests
+  this.bufferedRequestCount = 0;
+
+  // allocate the first CorkedRequest, there is always
+  // one allocated and free to use, and we maintain at most two
+  this.corkedRequestsFree = new CorkedRequest(this);
+}
+
+WritableState.prototype.getBuffer = function getBuffer() {
+  var current = this.bufferedRequest;
+  var out = [];
+  while (current) {
+    out.push(current);
+    current = current.next;
+  }
+  return out;
+};
+
+(function () {
+  try {
+    Object.defineProperty(WritableState.prototype, 'buffer', {
+      get: internalUtil.deprecate(function () {
+        return this.getBuffer();
+      }, '_writableState.buffer is deprecated. Use _writableState.getBuffer ' + 'instead.', 'DEP0003')
+    });
+  } catch (_) {}
+})();
+
+// Test _writableState for inheritance to account for Duplex streams,
+// whose prototype chain only points to Readable.
+var realHasInstance;
+if (typeof Symbol === 'function' && Symbol.hasInstance && typeof Function.prototype[Symbol.hasInstance] === 'function') {
+  realHasInstance = Function.prototype[Symbol.hasInstance];
+  Object.defineProperty(Writable, Symbol.hasInstance, {
+    value: function (object) {
+      if (realHasInstance.call(this, object)) return true;
+      if (this !== Writable) return false;
+
+      return object && object._writableState instanceof WritableState;
+    }
+  });
+} else {
+  realHasInstance = function (object) {
+    return object instanceof this;
+  };
+}
+
+function Writable(options) {
+  Duplex = Duplex || __webpack_require__(21);
+
+  // Writable ctor is applied to Duplexes, too.
+  // `realHasInstance` is necessary because using plain `instanceof`
+  // would return false, as no `_writableState` property is attached.
+
+  // Trying to use the custom `instanceof` for Writable here will also break the
+  // Node.js LazyTransform implementation, which has a non-trivial getter for
+  // `_writableState` that would lead to infinite recursion.
+  if (!realHasInstance.call(Writable, this) && !(this instanceof Duplex)) {
+    return new Writable(options);
+  }
+
+  this._writableState = new WritableState(options, this);
+
+  // legacy.
+  this.writable = true;
+
+  if (options) {
+    if (typeof options.write === 'function') this._write = options.write;
+
+    if (typeof options.writev === 'function') this._writev = options.writev;
+
+    if (typeof options.destroy === 'function') this._destroy = options.destroy;
+
+    if (typeof options.final === 'function') this._final = options.final;
+  }
+
+  Stream.call(this);
+}
+
+// Otherwise people can pipe Writable streams, which is just wrong.
+Writable.prototype.pipe = function () {
+  this.emit('error', new Error('Cannot pipe, not readable'));
+};
+
+function writeAfterEnd(stream, cb) {
+  var er = new Error('write after end');
+  // TODO: defer error events consistently everywhere, not just the cb
+  stream.emit('error', er);
+  pna.nextTick(cb, er);
+}
+
+// Checks that a user-supplied chunk is valid, especially for the particular
+// mode the stream is in. Currently this means that `null` is never accepted
+// and undefined/non-string values are only allowed in object mode.
+function validChunk(stream, state, chunk, cb) {
+  var valid = true;
+  var er = false;
+
+  if (chunk === null) {
+    er = new TypeError('May not write null values to stream');
+  } else if (typeof chunk !== 'string' && chunk !== undefined && !state.objectMode) {
+    er = new TypeError('Invalid non-string/buffer chunk');
+  }
+  if (er) {
+    stream.emit('error', er);
+    pna.nextTick(cb, er);
+    valid = false;
+  }
+  return valid;
+}
+
+Writable.prototype.write = function (chunk, encoding, cb) {
+  var state = this._writableState;
+  var ret = false;
+  var isBuf = !state.objectMode && _isUint8Array(chunk);
+
+  if (isBuf && !Buffer.isBuffer(chunk)) {
+    chunk = _uint8ArrayToBuffer(chunk);
+  }
+
+  if (typeof encoding === 'function') {
+    cb = encoding;
+    encoding = null;
+  }
+
+  if (isBuf) encoding = 'buffer';else if (!encoding) encoding = state.defaultEncoding;
+
+  if (typeof cb !== 'function') cb = nop;
+
+  if (state.ended) writeAfterEnd(this, cb);else if (isBuf || validChunk(this, state, chunk, cb)) {
+    state.pendingcb++;
+    ret = writeOrBuffer(this, state, isBuf, chunk, encoding, cb);
+  }
+
+  return ret;
+};
+
+Writable.prototype.cork = function () {
+  var state = this._writableState;
+
+  state.corked++;
+};
+
+Writable.prototype.uncork = function () {
+  var state = this._writableState;
+
+  if (state.corked) {
+    state.corked--;
+
+    if (!state.writing && !state.corked && !state.finished && !state.bufferProcessing && state.bufferedRequest) clearBuffer(this, state);
+  }
+};
+
+Writable.prototype.setDefaultEncoding = function setDefaultEncoding(encoding) {
+  // node::ParseEncoding() requires lower case.
+  if (typeof encoding === 'string') encoding = encoding.toLowerCase();
+  if (!(['hex', 'utf8', 'utf-8', 'ascii', 'binary', 'base64', 'ucs2', 'ucs-2', 'utf16le', 'utf-16le', 'raw'].indexOf((encoding + '').toLowerCase()) > -1)) throw new TypeError('Unknown encoding: ' + encoding);
+  this._writableState.defaultEncoding = encoding;
+  return this;
+};
+
+function decodeChunk(state, chunk, encoding) {
+  if (!state.objectMode && state.decodeStrings !== false && typeof chunk === 'string') {
+    chunk = Buffer.from(chunk, encoding);
+  }
+  return chunk;
+}
+
+Object.defineProperty(Writable.prototype, 'writableHighWaterMark', {
+  // making it explicit this property is not enumerable
+  // because otherwise some prototype manipulation in
+  // userland will fail
+  enumerable: false,
+  get: function () {
+    return this._writableState.highWaterMark;
+  }
+});
+
+// if we're already writing something, then just put this
+// in the queue, and wait our turn.  Otherwise, call _write
+// If we return false, then we need a drain event, so set that flag.
+function writeOrBuffer(stream, state, isBuf, chunk, encoding, cb) {
+  if (!isBuf) {
+    var newChunk = decodeChunk(state, chunk, encoding);
+    if (chunk !== newChunk) {
+      isBuf = true;
+      encoding = 'buffer';
+      chunk = newChunk;
+    }
+  }
+  var len = state.objectMode ? 1 : chunk.length;
+
+  state.length += len;
+
+  var ret = state.length < state.highWaterMark;
+  // we must ensure that previous needDrain will not be reset to false.
+  if (!ret) state.needDrain = true;
+
+  if (state.writing || state.corked) {
+    var last = state.lastBufferedRequest;
+    state.lastBufferedRequest = {
+      chunk: chunk,
+      encoding: encoding,
+      isBuf: isBuf,
+      callback: cb,
+      next: null
+    };
+    if (last) {
+      last.next = state.lastBufferedRequest;
+    } else {
+      state.bufferedRequest = state.lastBufferedRequest;
+    }
+    state.bufferedRequestCount += 1;
+  } else {
+    doWrite(stream, state, false, len, chunk, encoding, cb);
+  }
+
+  return ret;
+}
+
+function doWrite(stream, state, writev, len, chunk, encoding, cb) {
+  state.writelen = len;
+  state.writecb = cb;
+  state.writing = true;
+  state.sync = true;
+  if (writev) stream._writev(chunk, state.onwrite);else stream._write(chunk, encoding, state.onwrite);
+  state.sync = false;
+}
+
+function onwriteError(stream, state, sync, er, cb) {
+  --state.pendingcb;
+
+  if (sync) {
+    // defer the callback if we are being called synchronously
+    // to avoid piling up things on the stack
+    pna.nextTick(cb, er);
+    // this can emit finish, and it will always happen
+    // after error
+    pna.nextTick(finishMaybe, stream, state);
+    stream._writableState.errorEmitted = true;
+    stream.emit('error', er);
+  } else {
+    // the caller expect this to happen before if
+    // it is async
+    cb(er);
+    stream._writableState.errorEmitted = true;
+    stream.emit('error', er);
+    // this can emit finish, but finish must
+    // always follow error
+    finishMaybe(stream, state);
+  }
+}
+
+function onwriteStateUpdate(state) {
+  state.writing = false;
+  state.writecb = null;
+  state.length -= state.writelen;
+  state.writelen = 0;
+}
+
+function onwrite(stream, er) {
+  var state = stream._writableState;
+  var sync = state.sync;
+  var cb = state.writecb;
+
+  onwriteStateUpdate(state);
+
+  if (er) onwriteError(stream, state, sync, er, cb);else {
+    // Check if we're actually ready to finish, but don't emit yet
+    var finished = needFinish(state);
+
+    if (!finished && !state.corked && !state.bufferProcessing && state.bufferedRequest) {
+      clearBuffer(stream, state);
+    }
+
+    if (sync) {
+      /*<replacement>*/
+      asyncWrite(afterWrite, stream, state, finished, cb);
+      /*</replacement>*/
+    } else {
+      afterWrite(stream, state, finished, cb);
+    }
+  }
+}
+
+function afterWrite(stream, state, finished, cb) {
+  if (!finished) onwriteDrain(stream, state);
+  state.pendingcb--;
+  cb();
+  finishMaybe(stream, state);
+}
+
+// Must force callback to be called on nextTick, so that we don't
+// emit 'drain' before the write() consumer gets the 'false' return
+// value, and has a chance to attach a 'drain' listener.
+function onwriteDrain(stream, state) {
+  if (state.length === 0 && state.needDrain) {
+    state.needDrain = false;
+    stream.emit('drain');
+  }
+}
+
+// if there's something in the buffer waiting, then process it
+function clearBuffer(stream, state) {
+  state.bufferProcessing = true;
+  var entry = state.bufferedRequest;
+
+  if (stream._writev && entry && entry.next) {
+    // Fast case, write everything using _writev()
+    var l = state.bufferedRequestCount;
+    var buffer = new Array(l);
+    var holder = state.corkedRequestsFree;
+    holder.entry = entry;
+
+    var count = 0;
+    var allBuffers = true;
+    while (entry) {
+      buffer[count] = entry;
+      if (!entry.isBuf) allBuffers = false;
+      entry = entry.next;
+      count += 1;
+    }
+    buffer.allBuffers = allBuffers;
+
+    doWrite(stream, state, true, state.length, buffer, '', holder.finish);
+
+    // doWrite is almost always async, defer these to save a bit of time
+    // as the hot path ends with doWrite
+    state.pendingcb++;
+    state.lastBufferedRequest = null;
+    if (holder.next) {
+      state.corkedRequestsFree = holder.next;
+      holder.next = null;
+    } else {
+      state.corkedRequestsFree = new CorkedRequest(state);
+    }
+    state.bufferedRequestCount = 0;
+  } else {
+    // Slow case, write chunks one-by-one
+    while (entry) {
+      var chunk = entry.chunk;
+      var encoding = entry.encoding;
+      var cb = entry.callback;
+      var len = state.objectMode ? 1 : chunk.length;
+
+      doWrite(stream, state, false, len, chunk, encoding, cb);
+      entry = entry.next;
+      state.bufferedRequestCount--;
+      // if we didn't call the onwrite immediately, then
+      // it means that we need to wait until it does.
+      // also, that means that the chunk and cb are currently
+      // being processed, so move the buffer counter past them.
+      if (state.writing) {
+        break;
+      }
+    }
+
+    if (entry === null) state.lastBufferedRequest = null;
+  }
+
+  state.bufferedRequest = entry;
+  state.bufferProcessing = false;
+}
+
+Writable.prototype._write = function (chunk, encoding, cb) {
+  cb(new Error('_write() is not implemented'));
+};
+
+Writable.prototype._writev = null;
+
+Writable.prototype.end = function (chunk, encoding, cb) {
+  var state = this._writableState;
+
+  if (typeof chunk === 'function') {
+    cb = chunk;
+    chunk = null;
+    encoding = null;
+  } else if (typeof encoding === 'function') {
+    cb = encoding;
+    encoding = null;
+  }
+
+  if (chunk !== null && chunk !== undefined) this.write(chunk, encoding);
+
+  // .end() fully uncorks
+  if (state.corked) {
+    state.corked = 1;
+    this.uncork();
+  }
+
+  // ignore unnecessary end() calls.
+  if (!state.ending && !state.finished) endWritable(this, state, cb);
+};
+
+function needFinish(state) {
+  return state.ending && state.length === 0 && state.bufferedRequest === null && !state.finished && !state.writing;
+}
+function callFinal(stream, state) {
+  stream._final(function (err) {
+    state.pendingcb--;
+    if (err) {
+      stream.emit('error', err);
+    }
+    state.prefinished = true;
+    stream.emit('prefinish');
+    finishMaybe(stream, state);
+  });
+}
+function prefinish(stream, state) {
+  if (!state.prefinished && !state.finalCalled) {
+    if (typeof stream._final === 'function') {
+      state.pendingcb++;
+      state.finalCalled = true;
+      pna.nextTick(callFinal, stream, state);
+    } else {
+      state.prefinished = true;
+      stream.emit('prefinish');
+    }
+  }
+}
+
+function finishMaybe(stream, state) {
+  var need = needFinish(state);
+  if (need) {
+    prefinish(stream, state);
+    if (state.pendingcb === 0) {
+      state.finished = true;
+      stream.emit('finish');
+    }
+  }
+  return need;
+}
+
+function endWritable(stream, state, cb) {
+  state.ending = true;
+  finishMaybe(stream, state);
+  if (cb) {
+    if (state.finished) pna.nextTick(cb);else stream.once('finish', cb);
+  }
+  state.ended = true;
+  stream.writable = false;
+}
+
+function onCorkedFinish(corkReq, state, err) {
+  var entry = corkReq.entry;
+  corkReq.entry = null;
+  while (entry) {
+    var cb = entry.callback;
+    state.pendingcb--;
+    cb(err);
+    entry = entry.next;
+  }
+  if (state.corkedRequestsFree) {
+    state.corkedRequestsFree.next = corkReq;
+  } else {
+    state.corkedRequestsFree = corkReq;
+  }
+}
+
+Object.defineProperty(Writable.prototype, 'destroyed', {
+  get: function () {
+    if (this._writableState === undefined) {
+      return false;
+    }
+    return this._writableState.destroyed;
+  },
+  set: function (value) {
+    // we ignore the value if the stream
+    // has not been initialized yet
+    if (!this._writableState) {
+      return;
+    }
+
+    // backward compatibility, the user is explicitly
+    // managing destroyed
+    this._writableState.destroyed = value;
+  }
+});
+
+Writable.prototype.destroy = destroyImpl.destroy;
+Writable.prototype._undestroy = destroyImpl.undestroy;
+Writable.prototype._destroy = function (err, cb) {
+  this.end();
+  cb(err);
+};
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(63).setImmediate, __webpack_require__(8)))
 
 /***/ }),
 /* 84 */
@@ -37674,7 +37674,7 @@ function simpleEnd(buf) {
 
 module.exports = Transform;
 
-var Duplex = __webpack_require__(15);
+var Duplex = __webpack_require__(21);
 
 /*<replacement>*/
 var util = __webpack_require__(25);
@@ -38071,7 +38071,7 @@ module.exports = shallowEqual;
  * 
  */
 
-var isTextNode = __webpack_require__(216);
+var isTextNode = __webpack_require__(217);
 
 /*eslint-disable no-bitwise */
 
@@ -38220,9 +38220,9 @@ var classNames = __webpack_require__(9);
 var key_codes_1 = __webpack_require__(10);
 var hornet_component_1 = __webpack_require__(3);
 var hornet_event_1 = __webpack_require__(7);
-var notification_events_1 = __webpack_require__(44);
-var accordion_header_1 = __webpack_require__(224);
-var accordion_info_1 = __webpack_require__(225);
+var notification_events_1 = __webpack_require__(45);
+var accordion_header_1 = __webpack_require__(225);
+var accordion_info_1 = __webpack_require__(226);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.accordion.accordion");
 exports.TAB_ID_NAME = "tab";
 exports.FOCUS_ON_ACCORDION = new hornet_event_1.HornetEvent("FOCUS_ON_ACCORDION");
@@ -38664,8 +38664,8 @@ var tslib_1 = __webpack_require__(1);
  */
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
-var hornet_page_1 = __webpack_require__(53);
-var notification_1 = __webpack_require__(49);
+var hornet_page_1 = __webpack_require__(52);
+var notification_1 = __webpack_require__(48);
 var business_error_list_1 = __webpack_require__(31);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.component.error-page");
 var ErrorPage = /** @class */ (function (_super) {
@@ -38788,9 +38788,9 @@ var tslib_1 = __webpack_require__(1);
  */
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
-var navigation_utils_1 = __webpack_require__(21);
+var navigation_utils_1 = __webpack_require__(20);
 var hornet_component_1 = __webpack_require__(3);
-var menu_constantes_1 = __webpack_require__(46);
+var menu_constantes_1 = __webpack_require__(47);
 var key_codes_1 = __webpack_require__(10);
 var hornet_event_1 = __webpack_require__(7);
 var hornet_event_2 = __webpack_require__(7);
@@ -39023,7 +39023,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
  * @license CECILL-2.1
  */
-var notification_events_1 = __webpack_require__(44);
+var notification_events_1 = __webpack_require__(45);
 var hornet_event_1 = __webpack_require__(7);
 /**
  * Gestionnaire d'évènements de notifications
@@ -39354,7 +39354,7 @@ var hornet_js_utils_1 = __webpack_require__(0);
 var _ = __webpack_require__(6);
 var technical_error_1 = __webpack_require__(13);
 var codes_error_1 = __webpack_require__(96);
-var media_type_1 = __webpack_require__(72);
+var media_type_1 = __webpack_require__(70);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.routes.abstract-routes");
 /** Routes type */
 exports.RouteType = {
@@ -39551,905 +39551,6 @@ exports.AbstractRoutes = AbstractRoutes;
 
 /***/ }),
 /* 98 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-
-
-var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
-
-module.exports = ReactPropTypesSecret;
-
-
-/***/ }),
-/* 99 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * Ce logiciel est un programme informatique servant à faciliter la création
- * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
- * <p/>
- * Ce logiciel est régi par la licence CeCILL soumise au droit français et
- * respectant les principes de diffusion des logiciels libres. Vous pouvez
- * utiliser, modifier et/ou redistribuer ce programme sous les conditions
- * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
- * sur le site "http://www.cecill.info".
- * <p/>
- * En contrepartie de l'accessibilité au code source et des droits de copie,
- * de modification et de redistribution accordés par cette licence, il n'est
- * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
- * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
- * titulaire des droits patrimoniaux et les concédants successifs.
- * <p/>
- * A cet égard  l'attention de l'utilisateur est attirée sur les risques
- * associés au chargement,  à l'utilisation,  à la modification et/ou au
- * développement et à la reproduction du logiciel par l'utilisateur étant
- * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
- * manipuler et qui le réserve donc à des développeurs et des professionnels
- * avertis possédant  des  connaissances  informatiques approfondies.  Les
- * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
- * logiciel à leurs besoins dans des conditions permettant d'assurer la
- * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
- * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
- * <p/>
- * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
- * pris connaissance de la licence CeCILL, et que vous en avez accepté les
- * termes.
- * <p/>
- * <p/>
- * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * This software is a computer program whose purpose is to facilitate creation of
- * web application in accordance with french general repositories : RGI, RGS and RGAA.
- * <p/>
- * This software is governed by the CeCILL license under French law and
- * abiding by the rules of distribution of free software.  You can  use,
- * modify and/ or redistribute the software under the terms of the CeCILL
- * license as circulated by CEA, CNRS and INRIA at the following URL
- * "http://www.cecill.info".
- * <p/>
- * As a counterpart to the access to the source code and  rights to copy,
- * modify and redistribute granted by the license, users are provided only
- * with a limited warranty  and the software's author,  the holder of the
- * economic rights,  and the successive licensors  have only  limited
- * liability.
- * <p/>
- * In this respect, the user's attention is drawn to the risks associated
- * with loading,  using,  modifying and/or developing or reproducing the
- * software by the user in light of its specific status of free software,
- * that may mean  that it is complicated to manipulate,  and  that  also
- * therefore means  that it is reserved for developers  and  experienced
- * professionals having in-depth computer knowledge. Users are therefore
- * encouraged to load and test the software's suitability as regards their
- * requirements in conditions enabling the security of their systems and/or
- * data to be ensured and,  more generally, to use and operate it in the
- * same conditions as regards security.
- * <p/>
- * The fact that you are presently reading this means that you have had
- * knowledge of the CeCILL license and that you accept its terms.
- *
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * hornet-js-utils - Partie commune et utilitaire à tous les composants hornet-js
- *
- * @author MEAE - Ministère de l'Europe et des Affaires étrangères
- * @version v5.1.1
- * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
- * @license CECILL-2.1
- */
-var common_register_1 = __webpack_require__(16);
-var moment = __webpack_require__(43);
-var logger = common_register_1.Register.getLogger("hornet-js-utils.date-utils");
-var DateUtils = /** @class */ (function () {
-    function DateUtils() {
-    }
-    /**
-     *  On s'assure que le fuseau horaire utilisé est le même que dans l'interpréteur javascript
-     *  @param calendarLocale objet de configuration des calendriers et dates : doit etre non nul
-     */
-    DateUtils.initTimeZone = function (calendarLocale) {
-        /* (le signe est inversé car Date().getTimezoneOffset() renvoie (temps UTC - temps local) ce qui donne par exemple -60 en hiver en zone UTC+1*/
-        if (calendarLocale) {
-            calendarLocale.timezoneOffset = -new Date().getTimezoneOffset();
-        }
-    };
-    /**
-     * Crée un objet Moment à partir de la chaîne de caractère dateStr et en utilisant le format spécifié et la locale indiquée
-     * @param dateStr chaîne de caractères représentant une date. Doit être non nulle.
-     * @param dateFormat format de date à utiliser. Doit être non nul.
-     * @param locale locale
-     * @returns {Moment} un objet Moment correspondant à dateStr ou undefined en cas d'erreur
-     */
-    DateUtils.parseWithFormat = function (dateStr, dateFormat, locale, exact) {
-        var calendar;
-        if (dateStr && dateFormat) {
-            calendar = moment(dateStr, dateFormat, exact);
-            if (!calendar.isValid()) {
-                calendar = undefined;
-            }
-            else {
-                var newLocale = locale ? locale : DateUtils.default_locale;
-                calendar.locale(newLocale);
-            }
-        }
-        return calendar;
-    };
-    /**
-     * Crée un objet Moment à partir de la chaîne de caractère dateStr et en utilisant le format spécifié dans la locale indiquée : calendarLocale.dateFormat
-     * @param dateStr chaîne de caractères représentant une date
-     * @param calendarLocale configuration locale des dates
-     * @param locale locale
-     * @returns {Moment} un objet Moment correspondant à dateStr ou undefined en cas d'erreur
-     */
-    DateUtils.parse = function (dateStr, calendarLocale, locale) {
-        logger.trace("Date à parser : ", dateStr);
-        var calendar;
-        if (dateStr && calendarLocale) {
-            try {
-                calendar = DateUtils.parseWithFormat(dateStr, calendarLocale.dateFormat, locale, false);
-            }
-            catch (err) {
-                logger.trace("Erreur pour parser au format local la date suivante : ", dateStr);
-            }
-        }
-        return calendar;
-    };
-    /**
-     * Crée un objet Moment à partir de la chaîne de caractère dateStr et en utilisant les formats de date spécifiés et la locale indiquée.
-     * Lorsque dateFormats n'est pas défini ou est vide, on utilise calendarLocale.dateFormat.
-     * @param dateStr chaîne de caractères représentant une date
-     * @param dateFormats formats de date compatibles Moment
-     * @param calendarLocale  configuration locale des dates
-     * @param locale locale
-     * @returns {Moment} un objet Moment correspondant à dateStr ou undefined en cas d'erreur
-     */
-    DateUtils.parseMultipleFmt = function (dateStr, dateFormats, calendarLocale, locale) {
-        logger.trace("Date à parser : ", dateStr);
-        var calendar;
-        if (dateStr && calendarLocale) {
-            if (!dateFormats || dateFormats.length < 1) {
-                calendar = DateUtils.parse(dateStr, calendarLocale, locale);
-            }
-            else {
-                var index = void 0;
-                for (index in dateFormats) {
-                    try {
-                        calendar = DateUtils.parseWithFormat(dateStr, dateFormats[index], locale, true);
-                    }
-                    catch (err) {
-                        logger.debug("Erreur pour parser la date avec le format : ", dateFormats[index]);
-                    }
-                    if (calendar) {
-                        break;
-                    }
-                }
-                if (!calendar) {
-                    logger.trace("La date n'a pu être parsée avec aucun des formats indiqués");
-                }
-            }
-        }
-        return calendar;
-    };
-    /**
-     * Anlyse la chaîne de caractères indiquée et essaie de créer l'objet Date correspondant.
-     * @param dateStr chaîne de caractères représentant une date
-     * @param format le format de la date au format Moment
-     * @param timezone le fuseau horaire sur lequel formatter la date (Europe/Paris, America/Los_Angeles,
-     * Australia/Sydney, ...). Par défaut : le fuseau horaire du navigateur/serveur node est utilisé
-     * @param locale codes langue et pays (fr_FR, en_US, ...). Par défaut : fr_FR
-     * @returns {Date} une instance de Date ou undefined en cas d'erreur
-     */
-    DateUtils.parseInTZ = function (dateStr, format, timezone, locale) {
-        if (locale === void 0) { locale = "fr_FR"; }
-        logger.trace("parseInTZ(dateStr, format, timezone, locale):string", dateStr, format, timezone, locale);
-        var parsed;
-        try {
-            var mdate = moment.tz(dateStr, format, true, timezone).locale(locale);
-            if (mdate.isValid()) {
-                parsed = mdate.toDate();
-                if (DateUtils.YMD_Formats.indexOf(format) >= 0 && timezone == DateUtils.TZ_EUROPE_PARIS) {
-                    // la date est instanciée avec le fuseau local (UTC+2).
-                    // L'heure étant 00h00, la date UTC (renvoyee par getTime) correspond au jour precedent à 22h (15/04/2014)
-                    // afin d'éviter le problème on instancie la date sur le fuseau UTC
-                    parsed = new Date(Date.UTC(parsed.getFullYear(), parsed.getMonth(), parsed.getDate()));
-                }
-            }
-        }
-        catch (err) {
-            logger.trace("Erreur pour formater la date suivante : ", err);
-        }
-        logger.trace("Date parsée : ", parsed + "  -- à partir de la chaîne ", dateStr, ", du fuseau horaire ", timezone, " et de la locale", locale);
-        return parsed;
-    };
-    /**
-     * Crée un objet Date à partir de la chaîne de caractères indiquée en utilisant la fonction Date.parse(str)
-     * @param dateStr chaîne de caractères représentant une date générée par Date.toString(), Date.toUTCString(), Date.toISOString() ou Date.toLocaleString()
-     * @returns {Date} un objet Date ou undefined en cas d'erreur
-     */
-    DateUtils.stdParse = function (dateStr) {
-        var date;
-        if (dateStr) {
-            try {
-                date = new Date(Date.parse(dateStr));
-            }
-            catch (err) {
-                logger.trace("Erreur pour parser la date suivante : ", dateStr);
-            }
-        }
-        return date;
-    };
-    /**
-     * Formatte la date correspondant à time en utilisant le format spécifié dans la locale
-     * @param time temps en millisecondes UTC depuis 'epoch'
-     * @param calendarLocale locale
-     * @returns {string} la chaîne de caractères formatée suivant calendarLocale.dateFormat ou une chaîne vide en cas d'erreur
-     */
-    DateUtils.format = function (time, calendarLocale) {
-        logger.trace("format(time, calendarLocale):string", time);
-        var strValue = "";
-        try {
-            var calendar = moment(time);
-            strValue = calendar.format(calendarLocale.dateFormat);
-        }
-        catch (err) {
-            logger.trace("Erreur pour formater la date suivante : ", err);
-        }
-        logger.trace("Date formatée : ", strValue + " -- à partir de la valeur", time);
-        return strValue;
-    };
-    /**
-     * Formatte la date correspondant à time en utilisant le format spécifié dans la locale
-     * @param date un objet Date
-     * @param format le format de la date
-     * @param timezone la timezone sur laquelle formater la date (Europe/Paris, America/Los_Angeles, Australia/Sydney, ...) defaut : Timezone du navigateur/serveur node
-     * @param locale la locale (fr_FR, en_US, ...) defaut : fr_FR
-     * @returns {string} la chaîne de caractères formatée suivant {format} ou une chaîne vide en cas d'erreur
-     */
-    DateUtils.formatInTZ = function (date, format, timezone, locale) {
-        if (locale === void 0) { locale = "fr_FR"; }
-        logger.trace("format(date, format, timezone, locale):string", date, format, timezone, locale);
-        var strValue = "";
-        try {
-            var mdate = moment(date).locale(locale);
-            var tzDate = timezone ? mdate.tz(timezone) : mdate;
-            strValue = tzDate.format(format);
-        }
-        catch (err) {
-            logger.trace("Erreur pour formater la date suivante : ", err);
-        }
-        logger.trace("Date formatée : ", strValue + "  -- à partir de la date", date, ", " +
-            "de la timezone", timezone, "et de la locale", locale);
-        return strValue;
-    };
-    /**
-     * Calcule la différence entre deux dates
-     * @param {Date} date un objet Date
-     * @param {Date} dateBis un objet Date
-     * @param {DateDiffUnit=ALL} unité calculée
-     * @returns {DateDiff} Objet contenant les résultat des calculs suivant unité.
-     */
-    DateUtils.diff = function (date, dateBis, unit) {
-        if (unit === void 0) { unit = DateDiffUnit.All; }
-        var t1 = date.getTime();
-        var t2 = dateBis.getTime();
-        // inverse suivant la plus grande
-        if (t1 > t2) {
-            t1 = t2;
-            t2 = date.getTime();
-        }
-        var d1Y = date.getFullYear();
-        var d2Y = dateBis.getFullYear();
-        var d1M = date.getMonth();
-        var d2M = dateBis.getMonth();
-        var result = {};
-        switch (unit) {
-            case DateDiffUnit.DAYS || DateDiffUnit.All:
-                result.days = (t2 - t1) / (24 * 3600 * 1000);
-                if (unit !== DateDiffUnit.All)
-                    break;
-            case DateDiffUnit.WEEKS || DateDiffUnit.All:
-                result.weeks = (t2 - t1) / (24 * 3600 * 1000 * 7);
-                if (unit !== DateDiffUnit.All)
-                    break;
-            case DateDiffUnit.MONTHS || DateDiffUnit.All:
-                result.months = (d2M + 12 * d2Y) - (d1M + 12 * d1Y);
-                if (unit !== DateDiffUnit.All)
-                    break;
-            case DateDiffUnit.YEARS || DateDiffUnit.All:
-                result.years = dateBis.getFullYear() - date.getFullYear();
-                break;
-        }
-        return result;
-    };
-    DateUtils.TZ_EUROPE_PARIS = "Europe/Paris";
-    DateUtils.default_locale = "fr-FR";
-    /**
-     * Formats de date en année, mois, jour
-     */
-    // TODO tetaudf améliorer en enum
-    DateUtils.YMD_Formats = ["DD/MM/YYYY", "MM/DD/YYYY", "YYYY/MM/DD", "YYYY-MM-DD"];
-    return DateUtils;
-}());
-exports.DateUtils = DateUtils;
-var DateDiffUnit;
-(function (DateDiffUnit) {
-    DateDiffUnit[DateDiffUnit["DAYS"] = 1] = "DAYS";
-    DateDiffUnit[DateDiffUnit["WEEKS"] = 2] = "WEEKS";
-    DateDiffUnit[DateDiffUnit["MONTHS"] = 3] = "MONTHS";
-    DateDiffUnit[DateDiffUnit["YEARS"] = 4] = "YEARS";
-    DateDiffUnit[DateDiffUnit["All"] = 5] = "All";
-})(DateDiffUnit = exports.DateDiffUnit || (exports.DateDiffUnit = {}));
-
-
-
-/***/ }),
-/* 100 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * Ce logiciel est un programme informatique servant à faciliter la création
- * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
- * <p/>
- * Ce logiciel est régi par la licence CeCILL soumise au droit français et
- * respectant les principes de diffusion des logiciels libres. Vous pouvez
- * utiliser, modifier et/ou redistribuer ce programme sous les conditions
- * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
- * sur le site "http://www.cecill.info".
- * <p/>
- * En contrepartie de l'accessibilité au code source et des droits de copie,
- * de modification et de redistribution accordés par cette licence, il n'est
- * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
- * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
- * titulaire des droits patrimoniaux et les concédants successifs.
- * <p/>
- * A cet égard  l'attention de l'utilisateur est attirée sur les risques
- * associés au chargement,  à l'utilisation,  à la modification et/ou au
- * développement et à la reproduction du logiciel par l'utilisateur étant
- * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
- * manipuler et qui le réserve donc à des développeurs et des professionnels
- * avertis possédant  des  connaissances  informatiques approfondies.  Les
- * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
- * logiciel à leurs besoins dans des conditions permettant d'assurer la
- * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
- * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
- * <p/>
- * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
- * pris connaissance de la licence CeCILL, et que vous en avez accepté les
- * termes.
- * <p/>
- * <p/>
- * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * This software is a computer program whose purpose is to facilitate creation of
- * web application in accordance with french general repositories : RGI, RGS and RGAA.
- * <p/>
- * This software is governed by the CeCILL license under French law and
- * abiding by the rules of distribution of free software.  You can  use,
- * modify and/ or redistribute the software under the terms of the CeCILL
- * license as circulated by CEA, CNRS and INRIA at the following URL
- * "http://www.cecill.info".
- * <p/>
- * As a counterpart to the access to the source code and  rights to copy,
- * modify and redistribute granted by the license, users are provided only
- * with a limited warranty  and the software's author,  the holder of the
- * economic rights,  and the successive licensors  have only  limited
- * liability.
- * <p/>
- * In this respect, the user's attention is drawn to the risks associated
- * with loading,  using,  modifying and/or developing or reproducing the
- * software by the user in light of its specific status of free software,
- * that may mean  that it is complicated to manipulate,  and  that  also
- * therefore means  that it is reserved for developers  and  experienced
- * professionals having in-depth computer knowledge. Users are therefore
- * encouraged to load and test the software's suitability as regards their
- * requirements in conditions enabling the security of their systems and/or
- * data to be ensured and,  more generally, to use and operate it in the
- * same conditions as regards security.
- * <p/>
- * The fact that you are presently reading this means that you have had
- * knowledge of the CeCILL license and that you accept its terms.
- *
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(1);
-/**
- * hornet-js-utils - Partie commune et utilitaire à tous les composants hornet-js
- *
- * @author MEAE - Ministère de l'Europe et des Affaires étrangères
- * @version v5.1.1
- * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
- * @license CECILL-2.1
- */
-var http_error_1 = __webpack_require__(69);
-var SecurityError = /** @class */ (function (_super) {
-    tslib_1.__extends(SecurityError, _super);
-    function SecurityError(code, args, cause) {
-        if (code === void 0) { code = "ERR_HORNET_SECURITY"; }
-        var _this = _super.call(this, SecurityError.status, code, args, cause) || this;
-        _this.name = "SecurityError";
-        return _this;
-    }
-    SecurityError.status = 403;
-    return SecurityError;
-}(http_error_1.HttpError));
-exports.SecurityError = SecurityError;
-
-
-
-/***/ }),
-/* 101 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* jshint node:true */
-
-
-
-var IntlMessageFormat = __webpack_require__(169)['default'];
-
-// Add all locale data to `IntlMessageFormat`. This module will be ignored when
-// bundling for the browser with Browserify/Webpack.
-__webpack_require__(176);
-
-// Re-export `IntlMessageFormat` as the CommonJS default exports with all the
-// locale data registered, and with English set as the default locale. Define
-// the `default` prop for use with other compiled ES6 Modules.
-exports = module.exports = IntlMessageFormat;
-exports['default'] = exports;
-
-
-/***/ }),
-/* 102 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * Ce logiciel est un programme informatique servant à faciliter la création
- * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
- * <p/>
- * Ce logiciel est régi par la licence CeCILL soumise au droit français et
- * respectant les principes de diffusion des logiciels libres. Vous pouvez
- * utiliser, modifier et/ou redistribuer ce programme sous les conditions
- * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
- * sur le site "http://www.cecill.info".
- * <p/>
- * En contrepartie de l'accessibilité au code source et des droits de copie,
- * de modification et de redistribution accordés par cette licence, il n'est
- * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
- * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
- * titulaire des droits patrimoniaux et les concédants successifs.
- * <p/>
- * A cet égard  l'attention de l'utilisateur est attirée sur les risques
- * associés au chargement,  à l'utilisation,  à la modification et/ou au
- * développement et à la reproduction du logiciel par l'utilisateur étant
- * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
- * manipuler et qui le réserve donc à des développeurs et des professionnels
- * avertis possédant  des  connaissances  informatiques approfondies.  Les
- * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
- * logiciel à leurs besoins dans des conditions permettant d'assurer la
- * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
- * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
- * <p/>
- * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
- * pris connaissance de la licence CeCILL, et que vous en avez accepté les
- * termes.
- * <p/>
- * <p/>
- * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * This software is a computer program whose purpose is to facilitate creation of
- * web application in accordance with french general repositories : RGI, RGS and RGAA.
- * <p/>
- * This software is governed by the CeCILL license under French law and
- * abiding by the rules of distribution of free software.  You can  use,
- * modify and/ or redistribute the software under the terms of the CeCILL
- * license as circulated by CEA, CNRS and INRIA at the following URL
- * "http://www.cecill.info".
- * <p/>
- * As a counterpart to the access to the source code and  rights to copy,
- * modify and redistribute granted by the license, users are provided only
- * with a limited warranty  and the software's author,  the holder of the
- * economic rights,  and the successive licensors  have only  limited
- * liability.
- * <p/>
- * In this respect, the user's attention is drawn to the risks associated
- * with loading,  using,  modifying and/or developing or reproducing the
- * software by the user in light of its specific status of free software,
- * that may mean  that it is complicated to manipulate,  and  that  also
- * therefore means  that it is reserved for developers  and  experienced
- * professionals having in-depth computer knowledge. Users are therefore
- * encouraged to load and test the software's suitability as regards their
- * requirements in conditions enabling the security of their systems and/or
- * data to be ensured and,  more generally, to use and operate it in the
- * same conditions as regards security.
- * <p/>
- * The fact that you are presently reading this means that you have had
- * knowledge of the CeCILL license and that you accept its terms.
- *
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(1);
-/**
- * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
- *
- * @author MEAE - Ministère de l'Europe et des Affaires étrangères
- * @version v5.1.1
- * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
- * @license CECILL-2.1
- */
-var hornet_js_utils_1 = __webpack_require__(0);
-var React = __webpack_require__(2);
-var hornet_component_1 = __webpack_require__(3);
-var hornet_event_1 = __webpack_require__(7);
-var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.spinner.spinner-component");
-/**
- * Composant affichant une image (par défaut une roue dentée animée) et un texte d'attente
- * dans une fenêtre modale en attendant la fin d'une action longue.
- */
-var SpinnerComponent = /** @class */ (function (_super) {
-    tslib_1.__extends(SpinnerComponent, _super);
-    function SpinnerComponent(props, context) {
-        var _this = _super.call(this, props, context) || this;
-        /** Décompte le nombre d'évènements en attente de terminaison */
-        _this.count = 0;
-        _this.copyInitialPropsToState({ isVisible: props.isVisible ? props.isVisible : false }, _this.state);
-        return _this;
-    }
-    /**
-     * @inheritDoc
-     */
-    SpinnerComponent.prototype.componentDidMount = function () {
-        this.listen(hornet_event_1.ASYNCHRONOUS_REQUEST_EVENT_COMPONENT, this.asyncRequestEventTreatment);
-    };
-    /**
-     * @inheritDoc
-     */
-    SpinnerComponent.prototype.componentWillUnmount = function () {
-        this.remove(hornet_event_1.ASYNCHRONOUS_REQUEST_EVENT_COMPONENT, this.asyncRequestEventTreatment);
-    };
-    SpinnerComponent.prototype.asyncRequestEventTreatment = function (ev) {
-        this.progress(ev.detail.inProgress);
-    };
-    /**
-     * @inheritDoc
-     */
-    SpinnerComponent.prototype.shouldComponentUpdate = function (nextProps, nextState) {
-        return this.state.isVisible !== nextState.isVisible;
-    };
-    /**
-     * gestion des compteurs d'affichage/fermeture du spinner
-     */
-    SpinnerComponent.prototype.progress = function (inProgress) {
-        logger.trace("spinnerCount", this.count, "inProgressFlag", inProgress);
-        if (inProgress) {
-            this.count++;
-            this.openSpinner();
-        }
-        else {
-            this.count--;
-            if (this.count === 0)
-                this.closeSpinner();
-        }
-    };
-    /**
-     * Affichage Spinner
-     */
-    SpinnerComponent.prototype.openSpinner = function () {
-        if (this.count > 0) {
-            this.setState({ isVisible: true });
-        }
-    };
-    /**
-     * Fermeture Spinner
-     */
-    SpinnerComponent.prototype.closeSpinner = function () {
-        this.setState({ isVisible: false });
-    };
-    /**
-     * @inheritDoc
-     */
-    SpinnerComponent.prototype.render = function () {
-        return ((this.state.isVisible && this.count > 0) ?
-            React.createElement("div", { className: "component-spinner" },
-                React.createElement("div", null, this.getLoadingText()),
-                React.createElement("img", { src: this.getSpinnerImage(), alt: this.getLoadingTitle() })) : React.createElement("div", null));
-    };
-    /**
-     * Return l'url de l'image spinner
-     * @returns Url image spinner
-     * @protected
-     */
-    SpinnerComponent.prototype.getSpinnerImage = function () {
-        return this.props.imageLoadingUrl || hornet_component_1.HornetComponent.genUrlTheme("/components/img/spinner/spinner.gif");
-    };
-    /**
-     * Extrait le libelle loadingText passé dans les propriétés du composant ou indique un libellé par défaut
-     * @returns Titre
-     * @protected
-     */
-    SpinnerComponent.prototype.getLoadingText = function () {
-        return this.props.loadingText || this.i18n("spinner.loadingText");
-    };
-    /**
-     * Extrait le libelle loadingTitle passé dans les propriétés du composant ou indique un libellé par défaut
-     * @returns Titre
-     * @protected
-     */
-    SpinnerComponent.prototype.getLoadingTitle = function () {
-        return this.props.loadingTitle || this.i18n("spinner.loadingTitle");
-    };
-    /**delay permettant de decaler dans le temps les demandes d'affichage du spinner fixé à 500ms (optimisation)*/
-    SpinnerComponent.defaultProps = {
-        minimalShowTimeInMs: 500
-    };
-    return SpinnerComponent;
-}(hornet_component_1.HornetComponent));
-exports.SpinnerComponent = SpinnerComponent;
-
-
-
-/***/ }),
-/* 103 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * Ce logiciel est un programme informatique servant à faciliter la création
- * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
- * <p/>
- * Ce logiciel est régi par la licence CeCILL soumise au droit français et
- * respectant les principes de diffusion des logiciels libres. Vous pouvez
- * utiliser, modifier et/ou redistribuer ce programme sous les conditions
- * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
- * sur le site "http://www.cecill.info".
- * <p/>
- * En contrepartie de l'accessibilité au code source et des droits de copie,
- * de modification et de redistribution accordés par cette licence, il n'est
- * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
- * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
- * titulaire des droits patrimoniaux et les concédants successifs.
- * <p/>
- * A cet égard  l'attention de l'utilisateur est attirée sur les risques
- * associés au chargement,  à l'utilisation,  à la modification et/ou au
- * développement et à la reproduction du logiciel par l'utilisateur étant
- * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
- * manipuler et qui le réserve donc à des développeurs et des professionnels
- * avertis possédant  des  connaissances  informatiques approfondies.  Les
- * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
- * logiciel à leurs besoins dans des conditions permettant d'assurer la
- * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
- * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
- * <p/>
- * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
- * pris connaissance de la licence CeCILL, et que vous en avez accepté les
- * termes.
- * <p/>
- * <p/>
- * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * This software is a computer program whose purpose is to facilitate creation of
- * web application in accordance with french general repositories : RGI, RGS and RGAA.
- * <p/>
- * This software is governed by the CeCILL license under French law and
- * abiding by the rules of distribution of free software.  You can  use,
- * modify and/ or redistribute the software under the terms of the CeCILL
- * license as circulated by CEA, CNRS and INRIA at the following URL
- * "http://www.cecill.info".
- * <p/>
- * As a counterpart to the access to the source code and  rights to copy,
- * modify and redistribute granted by the license, users are provided only
- * with a limited warranty  and the software's author,  the holder of the
- * economic rights,  and the successive licensors  have only  limited
- * liability.
- * <p/>
- * In this respect, the user's attention is drawn to the risks associated
- * with loading,  using,  modifying and/or developing or reproducing the
- * software by the user in light of its specific status of free software,
- * that may mean  that it is complicated to manipulate,  and  that  also
- * therefore means  that it is reserved for developers  and  experienced
- * professionals having in-depth computer knowledge. Users are therefore
- * encouraged to load and test the software's suitability as regards their
- * requirements in conditions enabling the security of their systems and/or
- * data to be ensured and,  more generally, to use and operate it in the
- * same conditions as regards security.
- * <p/>
- * The fact that you are presently reading this means that you have had
- * knowledge of the CeCILL license and that you accept its terms.
- *
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(1);
-/**
- * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
- *
- * @author MEAE - Ministère de l'Europe et des Affaires étrangères
- * @version v5.1.1
- * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
- * @license CECILL-2.1
- */
-var hornet_js_utils_1 = __webpack_require__(0);
-var React = __webpack_require__(2);
-var hornet_component_1 = __webpack_require__(3);
-var react_aria_modal_1 = __webpack_require__(236);
-var key_codes_1 = __webpack_require__(10);
-var classNames = __webpack_require__(9);
-var Modal = /** @class */ (function (_super) {
-    tslib_1.__extends(Modal, _super);
-    function Modal(props, context) {
-        return _super.call(this, props, context) || this;
-    }
-    Modal.prototype.setTitle = function (title, cb) {
-        this.setState({ title: title }, cb);
-        return this;
-    };
-    Modal.prototype.setCloseLabel = function (closeLabel, cb) {
-        this.setState({ closeLabel: closeLabel }, cb);
-        return this;
-    };
-    Modal.prototype.setCloseSymbole = function (closeSymbole, cb) {
-        this.setState({ closeSymbole: closeSymbole }, cb);
-        return this;
-    };
-    Modal.prototype.setChildren = function (children, cb) {
-        this.setState({ children: children }, cb);
-        return this;
-    };
-    Modal.prototype.open = function (cb) {
-        this.setState({ isVisible: true }, cb);
-        document.addEventListener("keydown", this.handleKeyDown, false);
-        return this;
-    };
-    Modal.prototype.close = function (cb) {
-        this.setState({ isVisible: false }, cb);
-        document.removeEventListener("keydown", this.handleKeyDown, false);
-        return this;
-    };
-    /**
-     * Gestion par défaut du clic sur le bouton de fermeture
-     * @param event
-     */
-    Modal.prototype.onClickClose = function (event) {
-        this.close();
-    };
-    /**
-     * Gestion par défaut du clic sur echap
-     * @param event
-     */
-    Modal.prototype.handleKeyDown = function (event) {
-        if (event.keyCode == key_codes_1.KeyCodes.ESCAPE) {
-            if (this.state.onClickClose) {
-                this.state.onClickClose(event);
-            }
-            else {
-                this.close();
-            }
-        }
-    };
-    /**
-     * @inheritDoc
-     */
-    Modal.prototype.componentDidMount = function () {
-    };
-    /**
-     * @inheritDoc
-     */
-    Modal.prototype.componentWillUnmount = function () {
-        document.removeEventListener("keydown", this.handleKeyDown, false);
-    };
-    /**
-     * @inheritDoc
-     */
-    Modal.prototype.render = function () {
-        if (hornet_js_utils_1.Utils.isServer) {
-            return null;
-        }
-        var title = this.getTitle();
-        var closeLabel = this.getCloseLabel();
-        var closeSymbole = this.getCloseSymbole();
-        var titleBarRender = null;
-        var closeBarRender = null;
-        var titleClasses = {};
-        titleClasses["widget-dialogue-title"] = true;
-        titleClasses["react-draggable-cursor"] = this.state.isDraggable;
-        var titleClassName = classNames(titleClasses);
-        if (!this.state.hideTitleBar) {
-            titleBarRender = (React.createElement("div", { className: "widget-dialogue-header" },
-                React.createElement("div", { className: titleClassName, id: "dialogue-title", "aria-describedby": "dialogue-body-content" }, title)));
-        }
-        if (!this.state.hideCloseBar) {
-            closeBarRender = (React.createElement("div", { className: "widget-dialogue-close" },
-                React.createElement("button", { type: "button", className: "hornet-button hornet-dialogue-croix", onClick: this.state.onClickClose || this.onClickClose, title: closeLabel, "aria-label": closeLabel }, closeSymbole)));
-        }
-        var bodyClasses = {
-            "widget-dialogue-body": true,
-            "modal-overflow-y": !this.state.withoutOverflow
-        };
-        return this.state.isVisible ?
-            (React.createElement(react_aria_modal_1.ReactAriaModal, { titleText: title, onShow: this.state.onShow, onExit: this.state.onClickClose || this.onClickClose, dialogClass: this.state.className, verticallyCenter: this.state.verticallyCenter, escapeKeyExits: this.state.escapeKeyExits, underlayClickExits: this.state.underlayClickExits, alert: this.state.alert, underlayClass: this.state.underlayClass, initialFocus: this.state.initialFocus, focusDialog: this.state.focusDialog, manageFocus: this.state.manageFocus, isDraggable: this.state.isDraggable, id: this.state.dialogId },
-                titleBarRender,
-                React.createElement("div", { id: "dialogue-body-content", className: classNames(bodyClasses) }, this.state.children),
-                closeBarRender)) : null;
-    };
-    /**
-     * Extrait le titre passé dans les propriétés du composant ou indique un titre par défaut
-     * @returns Titre
-     * @protected
-     */
-    Modal.prototype.getTitle = function () {
-        return this.state.title || this.i18n("dialog.title");
-    };
-    /**
-     * Extrait le label de fermeture passé dans les propriétés du composant ou indique un label par défaut
-     * @returns Titre
-     * @protected
-     */
-    Modal.prototype.getCloseLabel = function () {
-        return this.state.closeLabel || this.i18n("dialog.closeLabel");
-    };
-    /**
-     * Extrait le symbole de fermeture dans les propriétés du composant ou indique un symbole par défaut
-     * @returns Titre
-     * @protected
-     */
-    Modal.prototype.getCloseSymbole = function () {
-        return this.state.closeSymbole || this.i18n("dialog.closeSymbole");
-    };
-    Modal.defaultProps = {
-        isVisible: false,
-        hideTitleBar: false,
-        hideCloseBar: false,
-        alert: false,
-        underlayClickExits: true,
-        verticallyCenter: true,
-        focusDialog: true,
-        withoutOverflow: false
-    };
-    return Modal;
-}(hornet_component_1.HornetComponent));
-exports.Modal = Modal;
-
-
-
-/***/ }),
-/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40766,6 +39867,963 @@ exports.Picto = Picto;
 
 
 /***/ }),
+/* 99 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
+
+module.exports = ReactPropTypesSecret;
+
+
+/***/ }),
+/* 100 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * Ce logiciel est un programme informatique servant à faciliter la création
+ * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
+ * <p/>
+ * Ce logiciel est régi par la licence CeCILL soumise au droit français et
+ * respectant les principes de diffusion des logiciels libres. Vous pouvez
+ * utiliser, modifier et/ou redistribuer ce programme sous les conditions
+ * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
+ * sur le site "http://www.cecill.info".
+ * <p/>
+ * En contrepartie de l'accessibilité au code source et des droits de copie,
+ * de modification et de redistribution accordés par cette licence, il n'est
+ * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
+ * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
+ * titulaire des droits patrimoniaux et les concédants successifs.
+ * <p/>
+ * A cet égard  l'attention de l'utilisateur est attirée sur les risques
+ * associés au chargement,  à l'utilisation,  à la modification et/ou au
+ * développement et à la reproduction du logiciel par l'utilisateur étant
+ * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
+ * manipuler et qui le réserve donc à des développeurs et des professionnels
+ * avertis possédant  des  connaissances  informatiques approfondies.  Les
+ * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
+ * logiciel à leurs besoins dans des conditions permettant d'assurer la
+ * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
+ * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
+ * <p/>
+ * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
+ * pris connaissance de la licence CeCILL, et que vous en avez accepté les
+ * termes.
+ * <p/>
+ * <p/>
+ * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * This software is a computer program whose purpose is to facilitate creation of
+ * web application in accordance with french general repositories : RGI, RGS and RGAA.
+ * <p/>
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software.  You can  use,
+ * modify and/ or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ * <p/>
+ * As a counterpart to the access to the source code and  rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty  and the software's author,  the holder of the
+ * economic rights,  and the successive licensors  have only  limited
+ * liability.
+ * <p/>
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading,  using,  modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean  that it is complicated to manipulate,  and  that  also
+ * therefore means  that it is reserved for developers  and  experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and,  more generally, to use and operate it in the
+ * same conditions as regards security.
+ * <p/>
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(1);
+/**
+ * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
+ *
+ * @author MEAE - Ministère de l'Europe et des Affaires étrangères
+ * @version v5.1.1
+ * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
+ * @license CECILL-2.1
+ */
+var hornet_js_utils_1 = __webpack_require__(0);
+var React = __webpack_require__(2);
+var hornet_component_1 = __webpack_require__(3);
+var hornet_event_1 = __webpack_require__(7);
+var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.spinner.spinner-component");
+/**
+ * Composant affichant une image (par défaut une roue dentée animée) et un texte d'attente
+ * dans une fenêtre modale en attendant la fin d'une action longue.
+ */
+var SpinnerComponent = /** @class */ (function (_super) {
+    tslib_1.__extends(SpinnerComponent, _super);
+    function SpinnerComponent(props, context) {
+        var _this = _super.call(this, props, context) || this;
+        /** Décompte le nombre d'évènements en attente de terminaison */
+        _this.count = 0;
+        _this.copyInitialPropsToState({ isVisible: props.isVisible ? props.isVisible : false }, _this.state);
+        return _this;
+    }
+    /**
+     * @inheritDoc
+     */
+    SpinnerComponent.prototype.componentDidMount = function () {
+        this.listen(hornet_event_1.ASYNCHRONOUS_REQUEST_EVENT_COMPONENT, this.asyncRequestEventTreatment);
+    };
+    /**
+     * @inheritDoc
+     */
+    SpinnerComponent.prototype.componentWillUnmount = function () {
+        this.remove(hornet_event_1.ASYNCHRONOUS_REQUEST_EVENT_COMPONENT, this.asyncRequestEventTreatment);
+    };
+    SpinnerComponent.prototype.asyncRequestEventTreatment = function (ev) {
+        this.progress(ev.detail.inProgress);
+    };
+    /**
+     * @inheritDoc
+     */
+    SpinnerComponent.prototype.shouldComponentUpdate = function (nextProps, nextState) {
+        return this.state.isVisible !== nextState.isVisible;
+    };
+    /**
+     * gestion des compteurs d'affichage/fermeture du spinner
+     */
+    SpinnerComponent.prototype.progress = function (inProgress) {
+        logger.trace("spinnerCount", this.count, "inProgressFlag", inProgress);
+        if (inProgress) {
+            this.count++;
+            this.openSpinner();
+        }
+        else {
+            this.count--;
+            if (this.count === 0)
+                this.closeSpinner();
+        }
+    };
+    /**
+     * Affichage Spinner
+     */
+    SpinnerComponent.prototype.openSpinner = function () {
+        if (this.count > 0) {
+            this.setState({ isVisible: true });
+        }
+    };
+    /**
+     * Fermeture Spinner
+     */
+    SpinnerComponent.prototype.closeSpinner = function () {
+        this.setState({ isVisible: false });
+    };
+    /**
+     * @inheritDoc
+     */
+    SpinnerComponent.prototype.render = function () {
+        return ((this.state.isVisible && this.count > 0) ?
+            React.createElement("div", { className: "component-spinner" },
+                React.createElement("div", null, this.getLoadingText()),
+                React.createElement("img", { src: this.getSpinnerImage(), alt: this.getLoadingTitle() })) : React.createElement("div", null));
+    };
+    /**
+     * Return l'url de l'image spinner
+     * @returns Url image spinner
+     * @protected
+     */
+    SpinnerComponent.prototype.getSpinnerImage = function () {
+        return this.props.imageLoadingUrl || hornet_component_1.HornetComponent.genUrlTheme("/components/img/spinner/spinner.gif");
+    };
+    /**
+     * Extrait le libelle loadingText passé dans les propriétés du composant ou indique un libellé par défaut
+     * @returns Titre
+     * @protected
+     */
+    SpinnerComponent.prototype.getLoadingText = function () {
+        return this.props.loadingText || this.i18n("spinner.loadingText");
+    };
+    /**
+     * Extrait le libelle loadingTitle passé dans les propriétés du composant ou indique un libellé par défaut
+     * @returns Titre
+     * @protected
+     */
+    SpinnerComponent.prototype.getLoadingTitle = function () {
+        return this.props.loadingTitle || this.i18n("spinner.loadingTitle");
+    };
+    /**delay permettant de decaler dans le temps les demandes d'affichage du spinner fixé à 500ms (optimisation)*/
+    SpinnerComponent.defaultProps = {
+        minimalShowTimeInMs: 500
+    };
+    return SpinnerComponent;
+}(hornet_component_1.HornetComponent));
+exports.SpinnerComponent = SpinnerComponent;
+
+
+
+/***/ }),
+/* 101 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * Ce logiciel est un programme informatique servant à faciliter la création
+ * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
+ * <p/>
+ * Ce logiciel est régi par la licence CeCILL soumise au droit français et
+ * respectant les principes de diffusion des logiciels libres. Vous pouvez
+ * utiliser, modifier et/ou redistribuer ce programme sous les conditions
+ * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
+ * sur le site "http://www.cecill.info".
+ * <p/>
+ * En contrepartie de l'accessibilité au code source et des droits de copie,
+ * de modification et de redistribution accordés par cette licence, il n'est
+ * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
+ * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
+ * titulaire des droits patrimoniaux et les concédants successifs.
+ * <p/>
+ * A cet égard  l'attention de l'utilisateur est attirée sur les risques
+ * associés au chargement,  à l'utilisation,  à la modification et/ou au
+ * développement et à la reproduction du logiciel par l'utilisateur étant
+ * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
+ * manipuler et qui le réserve donc à des développeurs et des professionnels
+ * avertis possédant  des  connaissances  informatiques approfondies.  Les
+ * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
+ * logiciel à leurs besoins dans des conditions permettant d'assurer la
+ * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
+ * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
+ * <p/>
+ * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
+ * pris connaissance de la licence CeCILL, et que vous en avez accepté les
+ * termes.
+ * <p/>
+ * <p/>
+ * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * This software is a computer program whose purpose is to facilitate creation of
+ * web application in accordance with french general repositories : RGI, RGS and RGAA.
+ * <p/>
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software.  You can  use,
+ * modify and/ or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ * <p/>
+ * As a counterpart to the access to the source code and  rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty  and the software's author,  the holder of the
+ * economic rights,  and the successive licensors  have only  limited
+ * liability.
+ * <p/>
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading,  using,  modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean  that it is complicated to manipulate,  and  that  also
+ * therefore means  that it is reserved for developers  and  experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and,  more generally, to use and operate it in the
+ * same conditions as regards security.
+ * <p/>
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(1);
+/**
+ * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
+ *
+ * @author MEAE - Ministère de l'Europe et des Affaires étrangères
+ * @version v5.1.1
+ * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
+ * @license CECILL-2.1
+ */
+var hornet_js_utils_1 = __webpack_require__(0);
+var React = __webpack_require__(2);
+var hornet_component_1 = __webpack_require__(3);
+var react_aria_modal_1 = __webpack_require__(236);
+var key_codes_1 = __webpack_require__(10);
+var classNames = __webpack_require__(9);
+var Modal = /** @class */ (function (_super) {
+    tslib_1.__extends(Modal, _super);
+    function Modal(props, context) {
+        return _super.call(this, props, context) || this;
+    }
+    Modal.prototype.setTitle = function (title, cb) {
+        this.setState({ title: title }, cb);
+        return this;
+    };
+    Modal.prototype.setCloseLabel = function (closeLabel, cb) {
+        this.setState({ closeLabel: closeLabel }, cb);
+        return this;
+    };
+    Modal.prototype.setCloseSymbole = function (closeSymbole, cb) {
+        this.setState({ closeSymbole: closeSymbole }, cb);
+        return this;
+    };
+    Modal.prototype.setChildren = function (children, cb) {
+        this.setState({ children: children }, cb);
+        return this;
+    };
+    Modal.prototype.open = function (cb) {
+        this.setState({ isVisible: true }, cb);
+        document.addEventListener("keydown", this.handleKeyDown, false);
+        return this;
+    };
+    Modal.prototype.close = function (cb) {
+        this.setState({ isVisible: false }, cb);
+        document.removeEventListener("keydown", this.handleKeyDown, false);
+        return this;
+    };
+    /**
+     * Gestion par défaut du clic sur le bouton de fermeture
+     * @param event
+     */
+    Modal.prototype.onClickClose = function (event) {
+        this.close();
+    };
+    /**
+     * Gestion par défaut du clic sur echap
+     * @param event
+     */
+    Modal.prototype.handleKeyDown = function (event) {
+        if (event.keyCode == key_codes_1.KeyCodes.ESCAPE) {
+            if (this.state.onClickClose) {
+                this.state.onClickClose(event);
+            }
+            else {
+                this.close();
+            }
+        }
+    };
+    /**
+     * @inheritDoc
+     */
+    Modal.prototype.componentDidMount = function () {
+    };
+    /**
+     * @inheritDoc
+     */
+    Modal.prototype.componentWillUnmount = function () {
+        document.removeEventListener("keydown", this.handleKeyDown, false);
+    };
+    /**
+     * @inheritDoc
+     */
+    Modal.prototype.render = function () {
+        if (hornet_js_utils_1.Utils.isServer) {
+            return null;
+        }
+        var title = this.getTitle();
+        var closeLabel = this.getCloseLabel();
+        var closeSymbole = this.getCloseSymbole();
+        var titleBarRender = null;
+        var closeBarRender = null;
+        var titleClasses = {};
+        titleClasses["widget-dialogue-title"] = true;
+        titleClasses["react-draggable-cursor"] = this.state.isDraggable;
+        var titleClassName = classNames(titleClasses);
+        if (!this.state.hideTitleBar) {
+            titleBarRender = (React.createElement("div", { className: "widget-dialogue-header" },
+                React.createElement("div", { className: titleClassName, id: "dialogue-title", "aria-describedby": "dialogue-body-content" }, title)));
+        }
+        if (!this.state.hideCloseBar) {
+            closeBarRender = (React.createElement("div", { className: "widget-dialogue-close" },
+                React.createElement("button", { type: "button", className: "hornet-button hornet-dialogue-croix", onClick: this.state.onClickClose || this.onClickClose, title: closeLabel, "aria-label": closeLabel }, closeSymbole)));
+        }
+        var bodyClasses = {
+            "widget-dialogue-body": true,
+            "modal-overflow-y": !this.state.withoutOverflow
+        };
+        return this.state.isVisible ?
+            (React.createElement(react_aria_modal_1.ReactAriaModal, { titleText: title, onShow: this.state.onShow, onExit: this.state.onClickClose || this.onClickClose, dialogClass: this.state.className, verticallyCenter: this.state.verticallyCenter, escapeKeyExits: this.state.escapeKeyExits, underlayClickExits: this.state.underlayClickExits, alert: this.state.alert, underlayClass: this.state.underlayClass, initialFocus: this.state.initialFocus, focusDialog: this.state.focusDialog, manageFocus: this.state.manageFocus, isDraggable: this.state.isDraggable, id: this.state.dialogId },
+                titleBarRender,
+                React.createElement("div", { id: "dialogue-body-content", className: classNames(bodyClasses) }, this.state.children),
+                closeBarRender)) : null;
+    };
+    /**
+     * Extrait le titre passé dans les propriétés du composant ou indique un titre par défaut
+     * @returns Titre
+     * @protected
+     */
+    Modal.prototype.getTitle = function () {
+        return this.state.title || this.i18n("dialog.title");
+    };
+    /**
+     * Extrait le label de fermeture passé dans les propriétés du composant ou indique un label par défaut
+     * @returns Titre
+     * @protected
+     */
+    Modal.prototype.getCloseLabel = function () {
+        return this.state.closeLabel || this.i18n("dialog.closeLabel");
+    };
+    /**
+     * Extrait le symbole de fermeture dans les propriétés du composant ou indique un symbole par défaut
+     * @returns Titre
+     * @protected
+     */
+    Modal.prototype.getCloseSymbole = function () {
+        return this.state.closeSymbole || this.i18n("dialog.closeSymbole");
+    };
+    Modal.defaultProps = {
+        isVisible: false,
+        hideTitleBar: false,
+        hideCloseBar: false,
+        alert: false,
+        underlayClickExits: true,
+        verticallyCenter: true,
+        focusDialog: true,
+        withoutOverflow: false
+    };
+    return Modal;
+}(hornet_component_1.HornetComponent));
+exports.Modal = Modal;
+
+
+
+/***/ }),
+/* 102 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * Ce logiciel est un programme informatique servant à faciliter la création
+ * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
+ * <p/>
+ * Ce logiciel est régi par la licence CeCILL soumise au droit français et
+ * respectant les principes de diffusion des logiciels libres. Vous pouvez
+ * utiliser, modifier et/ou redistribuer ce programme sous les conditions
+ * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
+ * sur le site "http://www.cecill.info".
+ * <p/>
+ * En contrepartie de l'accessibilité au code source et des droits de copie,
+ * de modification et de redistribution accordés par cette licence, il n'est
+ * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
+ * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
+ * titulaire des droits patrimoniaux et les concédants successifs.
+ * <p/>
+ * A cet égard  l'attention de l'utilisateur est attirée sur les risques
+ * associés au chargement,  à l'utilisation,  à la modification et/ou au
+ * développement et à la reproduction du logiciel par l'utilisateur étant
+ * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
+ * manipuler et qui le réserve donc à des développeurs et des professionnels
+ * avertis possédant  des  connaissances  informatiques approfondies.  Les
+ * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
+ * logiciel à leurs besoins dans des conditions permettant d'assurer la
+ * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
+ * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
+ * <p/>
+ * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
+ * pris connaissance de la licence CeCILL, et que vous en avez accepté les
+ * termes.
+ * <p/>
+ * <p/>
+ * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * This software is a computer program whose purpose is to facilitate creation of
+ * web application in accordance with french general repositories : RGI, RGS and RGAA.
+ * <p/>
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software.  You can  use,
+ * modify and/ or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ * <p/>
+ * As a counterpart to the access to the source code and  rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty  and the software's author,  the holder of the
+ * economic rights,  and the successive licensors  have only  limited
+ * liability.
+ * <p/>
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading,  using,  modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean  that it is complicated to manipulate,  and  that  also
+ * therefore means  that it is reserved for developers  and  experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and,  more generally, to use and operate it in the
+ * same conditions as regards security.
+ * <p/>
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * hornet-js-utils - Partie commune et utilitaire à tous les composants hornet-js
+ *
+ * @author MEAE - Ministère de l'Europe et des Affaires étrangères
+ * @version v5.1.1
+ * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
+ * @license CECILL-2.1
+ */
+var common_register_1 = __webpack_require__(15);
+var moment = __webpack_require__(44);
+var logger = common_register_1.Register.getLogger("hornet-js-utils.date-utils");
+var DateUtils = /** @class */ (function () {
+    function DateUtils() {
+    }
+    /**
+     *  On s'assure que le fuseau horaire utilisé est le même que dans l'interpréteur javascript
+     *  @param calendarLocale objet de configuration des calendriers et dates : doit etre non nul
+     */
+    DateUtils.initTimeZone = function (calendarLocale) {
+        /* (le signe est inversé car Date().getTimezoneOffset() renvoie (temps UTC - temps local) ce qui donne par exemple -60 en hiver en zone UTC+1*/
+        if (calendarLocale) {
+            calendarLocale.timezoneOffset = -new Date().getTimezoneOffset();
+        }
+    };
+    /**
+     * Crée un objet Moment à partir de la chaîne de caractère dateStr et en utilisant le format spécifié et la locale indiquée
+     * @param dateStr chaîne de caractères représentant une date. Doit être non nulle.
+     * @param dateFormat format de date à utiliser. Doit être non nul.
+     * @param locale locale
+     * @returns {Moment} un objet Moment correspondant à dateStr ou undefined en cas d'erreur
+     */
+    DateUtils.parseWithFormat = function (dateStr, dateFormat, locale, exact) {
+        var calendar;
+        if (dateStr && dateFormat) {
+            calendar = moment(dateStr, dateFormat, exact);
+            if (!calendar.isValid()) {
+                calendar = undefined;
+            }
+            else {
+                var newLocale = locale ? locale : DateUtils.default_locale;
+                calendar.locale(newLocale);
+            }
+        }
+        return calendar;
+    };
+    /**
+     * Crée un objet Moment à partir de la chaîne de caractère dateStr et en utilisant le format spécifié dans la locale indiquée : calendarLocale.dateFormat
+     * @param dateStr chaîne de caractères représentant une date
+     * @param calendarLocale configuration locale des dates
+     * @param locale locale
+     * @returns {Moment} un objet Moment correspondant à dateStr ou undefined en cas d'erreur
+     */
+    DateUtils.parse = function (dateStr, calendarLocale, locale) {
+        logger.trace("Date à parser : ", dateStr);
+        var calendar;
+        if (dateStr && calendarLocale) {
+            try {
+                calendar = DateUtils.parseWithFormat(dateStr, calendarLocale.dateFormat, locale, false);
+            }
+            catch (err) {
+                logger.trace("Erreur pour parser au format local la date suivante : ", dateStr);
+            }
+        }
+        return calendar;
+    };
+    /**
+     * Crée un objet Moment à partir de la chaîne de caractère dateStr et en utilisant les formats de date spécifiés et la locale indiquée.
+     * Lorsque dateFormats n'est pas défini ou est vide, on utilise calendarLocale.dateFormat.
+     * @param dateStr chaîne de caractères représentant une date
+     * @param dateFormats formats de date compatibles Moment
+     * @param calendarLocale  configuration locale des dates
+     * @param locale locale
+     * @returns {Moment} un objet Moment correspondant à dateStr ou undefined en cas d'erreur
+     */
+    DateUtils.parseMultipleFmt = function (dateStr, dateFormats, calendarLocale, locale) {
+        logger.trace("Date à parser : ", dateStr);
+        var calendar;
+        if (dateStr && calendarLocale) {
+            if (!dateFormats || dateFormats.length < 1) {
+                calendar = DateUtils.parse(dateStr, calendarLocale, locale);
+            }
+            else {
+                var index = void 0;
+                for (index in dateFormats) {
+                    try {
+                        calendar = DateUtils.parseWithFormat(dateStr, dateFormats[index], locale, true);
+                    }
+                    catch (err) {
+                        logger.debug("Erreur pour parser la date avec le format : ", dateFormats[index]);
+                    }
+                    if (calendar) {
+                        break;
+                    }
+                }
+                if (!calendar) {
+                    logger.trace("La date n'a pu être parsée avec aucun des formats indiqués");
+                }
+            }
+        }
+        return calendar;
+    };
+    /**
+     * Anlyse la chaîne de caractères indiquée et essaie de créer l'objet Date correspondant.
+     * @param dateStr chaîne de caractères représentant une date
+     * @param format le format de la date au format Moment
+     * @param timezone le fuseau horaire sur lequel formatter la date (Europe/Paris, America/Los_Angeles,
+     * Australia/Sydney, ...). Par défaut : le fuseau horaire du navigateur/serveur node est utilisé
+     * @param locale codes langue et pays (fr_FR, en_US, ...). Par défaut : fr_FR
+     * @returns {Date} une instance de Date ou undefined en cas d'erreur
+     */
+    DateUtils.parseInTZ = function (dateStr, format, timezone, locale) {
+        if (locale === void 0) { locale = "fr_FR"; }
+        logger.trace("parseInTZ(dateStr, format, timezone, locale):string", dateStr, format, timezone, locale);
+        var parsed;
+        try {
+            var mdate = moment.tz(dateStr, format, true, timezone).locale(locale);
+            if (mdate.isValid()) {
+                parsed = mdate.toDate();
+                if (DateUtils.YMD_Formats.indexOf(format) >= 0 && timezone == DateUtils.TZ_EUROPE_PARIS) {
+                    // la date est instanciée avec le fuseau local (UTC+2).
+                    // L'heure étant 00h00, la date UTC (renvoyee par getTime) correspond au jour precedent à 22h (15/04/2014)
+                    // afin d'éviter le problème on instancie la date sur le fuseau UTC
+                    parsed = new Date(Date.UTC(parsed.getFullYear(), parsed.getMonth(), parsed.getDate()));
+                }
+            }
+        }
+        catch (err) {
+            logger.trace("Erreur pour formater la date suivante : ", err);
+        }
+        logger.trace("Date parsée : ", parsed + "  -- à partir de la chaîne ", dateStr, ", du fuseau horaire ", timezone, " et de la locale", locale);
+        return parsed;
+    };
+    /**
+     * Crée un objet Date à partir de la chaîne de caractères indiquée en utilisant la fonction Date.parse(str)
+     * @param dateStr chaîne de caractères représentant une date générée par Date.toString(), Date.toUTCString(), Date.toISOString() ou Date.toLocaleString()
+     * @returns {Date} un objet Date ou undefined en cas d'erreur
+     */
+    DateUtils.stdParse = function (dateStr) {
+        var date;
+        if (dateStr) {
+            try {
+                date = new Date(Date.parse(dateStr));
+            }
+            catch (err) {
+                logger.trace("Erreur pour parser la date suivante : ", dateStr);
+            }
+        }
+        return date;
+    };
+    /**
+     * Formatte la date correspondant à time en utilisant le format spécifié dans la locale
+     * @param time temps en millisecondes UTC depuis 'epoch'
+     * @param calendarLocale locale
+     * @returns {string} la chaîne de caractères formatée suivant calendarLocale.dateFormat ou une chaîne vide en cas d'erreur
+     */
+    DateUtils.format = function (time, calendarLocale) {
+        logger.trace("format(time, calendarLocale):string", time);
+        var strValue = "";
+        try {
+            var calendar = moment(time);
+            strValue = calendar.format(calendarLocale.dateFormat);
+        }
+        catch (err) {
+            logger.trace("Erreur pour formater la date suivante : ", err);
+        }
+        logger.trace("Date formatée : ", strValue + " -- à partir de la valeur", time);
+        return strValue;
+    };
+    /**
+     * Formatte la date correspondant à time en utilisant le format spécifié dans la locale
+     * @param date un objet Date
+     * @param format le format de la date
+     * @param timezone la timezone sur laquelle formater la date (Europe/Paris, America/Los_Angeles, Australia/Sydney, ...) defaut : Timezone du navigateur/serveur node
+     * @param locale la locale (fr_FR, en_US, ...) defaut : fr_FR
+     * @returns {string} la chaîne de caractères formatée suivant {format} ou une chaîne vide en cas d'erreur
+     */
+    DateUtils.formatInTZ = function (date, format, timezone, locale) {
+        if (locale === void 0) { locale = "fr_FR"; }
+        logger.trace("format(date, format, timezone, locale):string", date, format, timezone, locale);
+        var strValue = "";
+        try {
+            var mdate = moment(date).locale(locale);
+            var tzDate = timezone ? mdate.tz(timezone) : mdate;
+            strValue = tzDate.format(format);
+        }
+        catch (err) {
+            logger.trace("Erreur pour formater la date suivante : ", err);
+        }
+        logger.trace("Date formatée : ", strValue + "  -- à partir de la date", date, ", " +
+            "de la timezone", timezone, "et de la locale", locale);
+        return strValue;
+    };
+    /**
+     * Calcule la différence entre deux dates
+     * @param {Date} date un objet Date
+     * @param {Date} dateBis un objet Date
+     * @param {DateDiffUnit=ALL} unité calculée
+     * @returns {DateDiff} Objet contenant les résultat des calculs suivant unité.
+     */
+    DateUtils.diff = function (date, dateBis, unit) {
+        if (unit === void 0) { unit = DateDiffUnit.All; }
+        var t1 = date.getTime();
+        var t2 = dateBis.getTime();
+        // inverse suivant la plus grande
+        if (t1 > t2) {
+            t1 = t2;
+            t2 = date.getTime();
+        }
+        var d1Y = date.getFullYear();
+        var d2Y = dateBis.getFullYear();
+        var d1M = date.getMonth();
+        var d2M = dateBis.getMonth();
+        var result = {};
+        switch (unit) {
+            case DateDiffUnit.DAYS || DateDiffUnit.All:
+                result.days = (t2 - t1) / (24 * 3600 * 1000);
+                if (unit !== DateDiffUnit.All)
+                    break;
+            case DateDiffUnit.WEEKS || DateDiffUnit.All:
+                result.weeks = (t2 - t1) / (24 * 3600 * 1000 * 7);
+                if (unit !== DateDiffUnit.All)
+                    break;
+            case DateDiffUnit.MONTHS || DateDiffUnit.All:
+                result.months = (d2M + 12 * d2Y) - (d1M + 12 * d1Y);
+                if (unit !== DateDiffUnit.All)
+                    break;
+            case DateDiffUnit.YEARS || DateDiffUnit.All:
+                result.years = dateBis.getFullYear() - date.getFullYear();
+                break;
+        }
+        return result;
+    };
+    DateUtils.TZ_EUROPE_PARIS = "Europe/Paris";
+    DateUtils.default_locale = "fr-FR";
+    /**
+     * Formats de date en année, mois, jour
+     */
+    // TODO tetaudf améliorer en enum
+    DateUtils.YMD_Formats = ["DD/MM/YYYY", "MM/DD/YYYY", "YYYY/MM/DD", "YYYY-MM-DD"];
+    return DateUtils;
+}());
+exports.DateUtils = DateUtils;
+var DateDiffUnit;
+(function (DateDiffUnit) {
+    DateDiffUnit[DateDiffUnit["DAYS"] = 1] = "DAYS";
+    DateDiffUnit[DateDiffUnit["WEEKS"] = 2] = "WEEKS";
+    DateDiffUnit[DateDiffUnit["MONTHS"] = 3] = "MONTHS";
+    DateDiffUnit[DateDiffUnit["YEARS"] = 4] = "YEARS";
+    DateDiffUnit[DateDiffUnit["All"] = 5] = "All";
+})(DateDiffUnit = exports.DateDiffUnit || (exports.DateDiffUnit = {}));
+
+
+
+/***/ }),
+/* 103 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* jshint node:true */
+
+
+
+var IntlMessageFormat = __webpack_require__(170)['default'];
+
+// Add all locale data to `IntlMessageFormat`. This module will be ignored when
+// bundling for the browser with Browserify/Webpack.
+__webpack_require__(177);
+
+// Re-export `IntlMessageFormat` as the CommonJS default exports with all the
+// locale data registered, and with English set as the default locale. Define
+// the `default` prop for use with other compiled ES6 Modules.
+exports = module.exports = IntlMessageFormat;
+exports['default'] = exports;
+
+
+/***/ }),
+/* 104 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * Ce logiciel est un programme informatique servant à faciliter la création
+ * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
+ * <p/>
+ * Ce logiciel est régi par la licence CeCILL soumise au droit français et
+ * respectant les principes de diffusion des logiciels libres. Vous pouvez
+ * utiliser, modifier et/ou redistribuer ce programme sous les conditions
+ * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
+ * sur le site "http://www.cecill.info".
+ * <p/>
+ * En contrepartie de l'accessibilité au code source et des droits de copie,
+ * de modification et de redistribution accordés par cette licence, il n'est
+ * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
+ * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
+ * titulaire des droits patrimoniaux et les concédants successifs.
+ * <p/>
+ * A cet égard  l'attention de l'utilisateur est attirée sur les risques
+ * associés au chargement,  à l'utilisation,  à la modification et/ou au
+ * développement et à la reproduction du logiciel par l'utilisateur étant
+ * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
+ * manipuler et qui le réserve donc à des développeurs et des professionnels
+ * avertis possédant  des  connaissances  informatiques approfondies.  Les
+ * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
+ * logiciel à leurs besoins dans des conditions permettant d'assurer la
+ * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
+ * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
+ * <p/>
+ * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
+ * pris connaissance de la licence CeCILL, et que vous en avez accepté les
+ * termes.
+ * <p/>
+ * <p/>
+ * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * This software is a computer program whose purpose is to facilitate creation of
+ * web application in accordance with french general repositories : RGI, RGS and RGAA.
+ * <p/>
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software.  You can  use,
+ * modify and/ or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ * <p/>
+ * As a counterpart to the access to the source code and  rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty  and the software's author,  the holder of the
+ * economic rights,  and the successive licensors  have only  limited
+ * liability.
+ * <p/>
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading,  using,  modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean  that it is complicated to manipulate,  and  that  also
+ * therefore means  that it is reserved for developers  and  experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and,  more generally, to use and operate it in the
+ * same conditions as regards security.
+ * <p/>
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(1);
+/**
+ * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
+ *
+ * @author MEAE - Ministère de l'Europe et des Affaires étrangères
+ * @version v5.1.1
+ * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
+ * @license CECILL-2.1
+ */
+var hornet_js_utils_1 = __webpack_require__(0);
+var React = __webpack_require__(2);
+var ReactDOM = __webpack_require__(22);
+var hornet_component_1 = __webpack_require__(3);
+var icon_1 = __webpack_require__(235);
+var modal_1 = __webpack_require__(101);
+var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.table.button-info-accessibilite");
+/**
+ * Bouton et modale d'information sur l'accessibilité clavier du composant Table
+ */
+var ButtonInfoAccessibilite = /** @class */ (function (_super) {
+    tslib_1.__extends(ButtonInfoAccessibilite, _super);
+    function ButtonInfoAccessibilite() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.shortcutsI18n = ButtonInfoAccessibilite.getI18n("shortcuts");
+        return _this;
+    }
+    /**
+     * @inheritDoc
+     */
+    ButtonInfoAccessibilite.prototype.render = function () {
+        var _this = this;
+        return (React.createElement("div", { className: "button-info-accessibilite" },
+            React.createElement(icon_1.Icon, { title: this.state.message.shortcuts ? this.state.message.shortcuts.iconTitle : this.shortcutsI18n.iconTitle, alt: this.state.message.shortcuts ? this.state.message.shortcuts.iconTitle : this.shortcutsI18n.iconTitle, action: this.handleShowInfoModal, url: "#", src: this.props.srcImg || ButtonInfoAccessibilite.genUrlTheme() + "/img/button/icon_info.svg", classLink: "button-info-accessibilite-button button-action", hasPopUp: true, ref: function (icon) { _this.htmlIcon = icon; } }),
+            this.renderModal()));
+    };
+    ButtonInfoAccessibilite.prototype.renderModal = function () {
+        return (React.createElement(modal_1.Modal, { ref: "modal", title: this.state.message.shortcuts ? this.state.message.shortcuts.modalTitle : this.shortcutsI18n.modalTitle, onClickClose: this.handleClickClose, className: "modal-shortcuts-content", escapeKeyExits: true },
+            React.createElement("div", { className: "widget-shortcuts-body" },
+                React.createElement("div", { className: "widget-shortcuts-content" },
+                    React.createElement("div", { className: "shortCutsList" },
+                        React.createElement("h4", null, this.state.message.shortcuts ?
+                            this.state.message.shortcuts.modalContentTitle : this.shortcutsI18n.modalContentTitle),
+                        React.createElement("ul", null, this.state.shortcutDescriptions.map(this.renderShortCut.bind(this))))))));
+    };
+    ButtonInfoAccessibilite.prototype.renderShortCut = function (item, index) {
+        var separator = (item.and) ? "+" : "/";
+        var shortcuts = [];
+        item.shortcuts.map(function (shortcut, i) {
+            shortcuts.push(React.createElement("kbd", { key: "shortcut-" + shortcut + "-" + i }, shortcut));
+            if ((i + 1) !== item.shortcuts.length) {
+                shortcuts.push(separator);
+            }
+        });
+        return (React.createElement("li", { key: "item-shortcut-" + index },
+            React.createElement("div", null,
+                React.createElement("div", null,
+                    shortcuts,
+                    " :"),
+                React.createElement("div", null, item.description))));
+    };
+    ButtonInfoAccessibilite.prototype.handleShowInfoModal = function () {
+        this.refs.modal.open();
+    };
+    ButtonInfoAccessibilite.prototype.handleClickClose = function (t) {
+        var _this = this;
+        this.refs.modal.close(function () {
+            var el = ReactDOM.findDOMNode(_this.htmlIcon);
+            if (el && el instanceof HTMLElement && el.focus) {
+                el.tabIndex = 0;
+                el.focus();
+            }
+        });
+    };
+    ButtonInfoAccessibilite.defaultProps = {
+        message: "",
+        shortcutDescriptions: []
+    };
+    return ButtonInfoAccessibilite;
+}(hornet_component_1.HornetComponent));
+exports.ButtonInfoAccessibilite = ButtonInfoAccessibilite;
+
+
+
+/***/ }),
 /* 105 */,
 /* 106 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -40775,8 +40833,8 @@ exports.Picto = Picto;
 Object.defineProperty(exports, "__esModule", { value: true });
 var hornet_js_utils_1 = __webpack_require__(0);
 var client_1 = __webpack_require__(125);
-var routes_1 = __webpack_require__(163);
-var hornet_app_1 = __webpack_require__(164);
+var routes_1 = __webpack_require__(164);
+var hornet_app_1 = __webpack_require__(165);
 var error_page_1 = __webpack_require__(93);
 var react_client_1 = __webpack_require__(245);
 __webpack_require__(246);
@@ -40786,16 +40844,19 @@ __webpack_require__(246);
         logger.info("routeLoaderClient(" + name + ")");
         // [AUTO GENERATED] DO NOT EDIT THIS FUNCTION DIRECTLY
 if (name === 'admin/fvm/form1-client-routes') { 
-__webpack_require__.e/* require */(7).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(247)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+__webpack_require__.e/* require */(4).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(247)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 }
 else if (name === 'admin/fvm/form1-server-routes') { 
-__webpack_require__.e/* require */(6).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(250)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+__webpack_require__.e/* require */(3).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(251)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 }
 else if (name === 'admin/fvm/listPrefectures-server-routes') { 
-__webpack_require__.e/* require */(5).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(251)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+__webpack_require__.e/* require */(2).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(252)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 }
-else if (name === 'admin/fvm/recordList-client-routes') { 
-__webpack_require__.e/* require */(8).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(519)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+else if (name === 'admin/fvm/record-client-routes') { 
+__webpack_require__.e/* require */(1).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(248)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+}
+else if (name === 'admin/fvm/record-server-routes') { 
+__webpack_require__.e/* require */(0).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(253)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 }
 else{callback('ERROR: No File with name \''+name+'\' found');}
         return null;
@@ -40940,10 +41001,10 @@ else{callback('ERROR: No File with name \''+name+'\' found');}
 "use strict";
 
 
-var defineProperties = __webpack_require__(55);
+var defineProperties = __webpack_require__(53);
 
-var implementation = __webpack_require__(56);
-var getPolyfill = __webpack_require__(57);
+var implementation = __webpack_require__(54);
+var getPolyfill = __webpack_require__(55);
 var shim = __webpack_require__(114);
 
 var polyfill = getPolyfill();
@@ -41087,7 +41148,7 @@ module.exports = function bind(that) {
 "use strict";
 
 
-var keys = __webpack_require__(41);
+var keys = __webpack_require__(42);
 
 module.exports = function hasSymbols() {
 	if (typeof Symbol !== 'function' || typeof Object.getOwnPropertySymbols !== 'function') { return false; }
@@ -41135,8 +41196,8 @@ module.exports = function hasSymbols() {
 "use strict";
 
 
-var define = __webpack_require__(55);
-var getPolyfill = __webpack_require__(57);
+var define = __webpack_require__(53);
+var getPolyfill = __webpack_require__(55);
 
 module.exports = function shimAssign() {
 	var polyfill = getPolyfill();
@@ -43195,12 +43256,12 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./fr": 60,
-	"./fr-ca": 61,
-	"./fr-ca.js": 61,
-	"./fr-ch": 62,
-	"./fr-ch.js": 62,
-	"./fr.js": 60
+	"./fr": 58,
+	"./fr-ca": 59,
+	"./fr-ca.js": 59,
+	"./fr-ch": 60,
+	"./fr-ch.js": 60,
+	"./fr.js": 58
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -43907,7 +43968,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
  * @license CECILL-2.1
  */
-var common_register_1 = __webpack_require__(16);
+var common_register_1 = __webpack_require__(15);
 var logger = common_register_1.Register.getLogger("hornet-js-utils.config-lib");
 /**
  * Classe gérant l'accès à l'objet de configuration
@@ -43936,7 +43997,7 @@ var ConfigLib = /** @class */ (function () {
         else {
             logger.trace("Chargement de la configuration APPLI en mode DEV", "./config");
         }
-        this._configObj = __webpack_require__(50);
+        this._configObj = __webpack_require__(49);
         logger.trace("Configuration APPLI : ", JSON.stringify(this._configObj));
         var infraFolder = process.env.HORNET_CONFIG_DIR_INFRA;
         if (infraFolder) {
@@ -44285,7 +44346,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
  * @license CECILL-2.1
  */
-var common_register_1 = __webpack_require__(16);
+var common_register_1 = __webpack_require__(15);
 var BrowserNameSpace = /** @class */ (function () {
     function BrowserNameSpace() {
         this.content = {};
@@ -44334,7 +44395,7 @@ var ContinuationLocalStorage = /** @class */ (function () {
         if (localStorageName === void 0) { localStorageName = "HornetContinuationLocalStorage"; }
         var cls;
         if (common_register_1.Register.isServer) {
-            cls = __webpack_require__(50);
+            cls = __webpack_require__(49);
         }
         else {
             cls = BrowserContinuationLocalStorage;
@@ -46484,20 +46545,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var hornet_js_utils_1 = __webpack_require__(0);
 hornet_js_utils_1.Utils.setConfigObj(window.Config);
 hornet_js_utils_1.Utils.appSharedProps.rehydrate(window.AppSharedProps);
-var logger_1 = __webpack_require__(58);
+var logger_1 = __webpack_require__(56);
 var client_log_1 = __webpack_require__(126);
 logger_1.Logger.prototype.buildLogger = client_log_1.ClientLog.getLoggerBuilder(hornet_js_utils_1.Utils.config.getOrDefault("logClient", {}));
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.client");
-var async_executor_1 = __webpack_require__(64);
-var async_element_1 = __webpack_require__(68);
+var async_executor_1 = __webpack_require__(62);
+var async_element_1 = __webpack_require__(66);
 var router_client_1 = __webpack_require__(160);
-var router_client_async_elements_1 = __webpack_require__(20);
+var router_client_async_elements_1 = __webpack_require__(19);
 var hornet_event_1 = __webpack_require__(7);
 var hornet_event_2 = __webpack_require__(7);
-var service_api_results_1 = __webpack_require__(71);
+var service_api_results_1 = __webpack_require__(69);
 var error_manager_1 = __webpack_require__(32);
 var technical_error_1 = __webpack_require__(13);
-var base_error_1 = __webpack_require__(17);
+var base_error_1 = __webpack_require__(16);
 window.addEventListener("unhandledrejection", function (e) {
     // NOTE: e.preventDefault() must be manually called to prevent the default
     // action which is currently to log the stack trace to console.warn
@@ -46553,11 +46614,11 @@ var Client = /** @class */ (function () {
         if (!window.Intl) {
             logger.warn("Chargement d'une librairie remplacant Intl qui n'est pas supportée par ce navigateur");
             executor.addElement(new async_element_1.AsyncElement(function (next) {
-                __webpack_require__.e/* require.ensure */(3).then((function (require) {
+                __webpack_require__.e/* require.ensure */(5).then((function (require) {
                     window.Intl = __webpack_require__(105);
-                    __webpack_require__(248);
+                    __webpack_require__(249);
                     var locale = window.HornetCLS.i18n.lang || "fr";
-                    __webpack_require__(249)("./" + locale.toLowerCase());
+                    __webpack_require__(250)("./" + locale.toLowerCase());
                     next();
                 }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
             }));
@@ -47079,7 +47140,7 @@ if (util.isNode) {
 }
 util.notEnumerableProp(Promise, "_getDomain", getDomain);
 
-var es5 = __webpack_require__(19);
+var es5 = __webpack_require__(18);
 var Async = __webpack_require__(128);
 var async = new Async();
 es5.defineProperty(Promise, "_async", {value: async});
@@ -47105,8 +47166,8 @@ var debug = __webpack_require__(135)(Promise, Context);
 var CapturedTrace = debug.CapturedTrace;
 var PassThroughHandlerContext =
     __webpack_require__(136)(Promise, tryConvertToPromise, NEXT_FILTER);
-var catchFilter = __webpack_require__(66)(NEXT_FILTER);
-var nodebackForPromise = __webpack_require__(67);
+var catchFilter = __webpack_require__(64)(NEXT_FILTER);
+var nodebackForPromise = __webpack_require__(65);
 var errorObj = util.errorObj;
 var tryCatch = util.tryCatch;
 function check(self, executor) {
@@ -48064,7 +48125,7 @@ if (util.isNode && typeof MutationObserver === "undefined") {
 }
 module.exports = schedule;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), __webpack_require__(4), __webpack_require__(65).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), __webpack_require__(4), __webpack_require__(63).setImmediate))
 
 /***/ }),
 /* 130 */
@@ -49637,7 +49698,7 @@ module.exports = function(Promise, tryConvertToPromise, NEXT_FILTER) {
 var util = __webpack_require__(5);
 var CancellationError = Promise.CancellationError;
 var errorObj = util.errorObj;
-var catchFilter = __webpack_require__(66)(NEXT_FILTER);
+var catchFilter = __webpack_require__(64)(NEXT_FILTER);
 
 function PassThroughHandlerContext(promise, type, handler) {
     this.promise = promise;
@@ -51332,7 +51393,7 @@ Promise.prototype.asCallback = Promise.prototype.nodeify = function (nodeback,
 module.exports = function(Promise, INTERNAL) {
 var THIS = {};
 var util = __webpack_require__(5);
-var nodebackForPromise = __webpack_require__(67);
+var nodebackForPromise = __webpack_require__(65);
 var withAppended = util.withAppended;
 var maybeWrapAsError = util.maybeWrapAsError;
 var canEvaluate = util.canEvaluate;
@@ -51654,7 +51715,7 @@ module.exports = function(
     Promise, PromiseArray, tryConvertToPromise, apiRejection) {
 var util = __webpack_require__(5);
 var isObject = util.isObject;
-var es5 = __webpack_require__(19);
+var es5 = __webpack_require__(18);
 var Es6Map;
 if (typeof Map === "function") Es6Map = Map;
 
@@ -52587,8 +52648,8 @@ var hornet_js_utils_1 = __webpack_require__(0);
 var director_1 = __webpack_require__(161);
 var _ = __webpack_require__(6);
 var lazy_class_loader_1 = __webpack_require__(162);
-var async_executor_1 = __webpack_require__(64);
-var router_client_async_elements_1 = __webpack_require__(20);
+var async_executor_1 = __webpack_require__(62);
+var router_client_async_elements_1 = __webpack_require__(19);
 var hornet_event_1 = __webpack_require__(7);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.routes.router-client");
 var RouterClient = /** @class */ (function () {
@@ -53691,7 +53752,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
  * @license CECILL-2.1
  */
-var common_register_1 = __webpack_require__(16);
+var common_register_1 = __webpack_require__(15);
 var logger = common_register_1.Register.getLogger("hornet-js-utils.lazy-class-loader");
 var LazyClassLoader = /** @class */ (function () {
     function LazyClassLoader() {
@@ -53726,6 +53787,108 @@ exports.LazyClassLoader = LazyClassLoader;
 
 /***/ }),
 /* 163 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * Ce logiciel est un programme informatique servant à faciliter la création
+ * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
+ * <p/>
+ * Ce logiciel est régi par la licence CeCILL soumise au droit français et
+ * respectant les principes de diffusion des logiciels libres. Vous pouvez
+ * utiliser, modifier et/ou redistribuer ce programme sous les conditions
+ * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
+ * sur le site "http://www.cecill.info".
+ * <p/>
+ * En contrepartie de l'accessibilité au code source et des droits de copie,
+ * de modification et de redistribution accordés par cette licence, il n'est
+ * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
+ * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
+ * titulaire des droits patrimoniaux et les concédants successifs.
+ * <p/>
+ * A cet égard  l'attention de l'utilisateur est attirée sur les risques
+ * associés au chargement,  à l'utilisation,  à la modification et/ou au
+ * développement et à la reproduction du logiciel par l'utilisateur étant
+ * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
+ * manipuler et qui le réserve donc à des développeurs et des professionnels
+ * avertis possédant  des  connaissances  informatiques approfondies.  Les
+ * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
+ * logiciel à leurs besoins dans des conditions permettant d'assurer la
+ * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
+ * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
+ * <p/>
+ * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
+ * pris connaissance de la licence CeCILL, et que vous en avez accepté les
+ * termes.
+ * <p/>
+ * <p/>
+ * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * This software is a computer program whose purpose is to facilitate creation of
+ * web application in accordance with french general repositories : RGI, RGS and RGAA.
+ * <p/>
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software.  You can  use,
+ * modify and/ or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ * <p/>
+ * As a counterpart to the access to the source code and  rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty  and the software's author,  the holder of the
+ * economic rights,  and the successive licensors  have only  limited
+ * liability.
+ * <p/>
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading,  using,  modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean  that it is complicated to manipulate,  and  that  also
+ * therefore means  that it is reserved for developers  and  experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and,  more generally, to use and operate it in the
+ * same conditions as regards security.
+ * <p/>
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(1);
+/**
+ * hornet-js-utils - Partie commune et utilitaire à tous les composants hornet-js
+ *
+ * @author MEAE - Ministère de l'Europe et des Affaires étrangères
+ * @version v5.1.1
+ * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
+ * @license CECILL-2.1
+ */
+var http_error_1 = __webpack_require__(67);
+var SecurityError = /** @class */ (function (_super) {
+    tslib_1.__extends(SecurityError, _super);
+    function SecurityError(code, args, cause) {
+        if (code === void 0) { code = "ERR_HORNET_SECURITY"; }
+        var _this = _super.call(this, SecurityError.status, code, args, cause) || this;
+        _this.name = "SecurityError";
+        return _this;
+    }
+    SecurityError.status = 403;
+    return SecurityError;
+}(http_error_1.HttpError));
+exports.SecurityError = SecurityError;
+
+
+
+/***/ }),
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53776,13 +53939,14 @@ var Routes = /** @class */ (function (_super) {
         // );
         // this.addLazyRoutes("/admin", "admin/admin-client-routes");
         this.addLazyRoutes("/form", "admin/fvm/form1-client-routes");
-        this.addLazyRoutes("/fvmentries", "admin/fvm/recordList-client-routes");
+        this.addLazyRoutes("/fvmentries", "admin/fvm/record-client-routes");
         // /* Routes lazy */
         // this.addLazyRoutes(URL_CONTACT, "cnt/gen-cnt-client-routes");
     };
     Routes.prototype.addServerRoutes = function () {
         this.addLazyRoutes("/inser", "admin/fvm/form1-server-routes");
         this.addLazyRoutes("/listPrefectures", "admin/fvm/listPrefectures-server-routes");
+        this.addLazyRoutes("/listDossiers", "admin/fvm/record-server-routes");
     };
     return Routes;
 }(abstract_routes_1.AbstractRoutes));
@@ -53791,7 +53955,7 @@ exports.Routes = Routes;
 
 
 /***/ }),
-/* 164 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53800,18 +53964,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
-var hornet_page_1 = __webpack_require__(53);
-var spinner_1 = __webpack_require__(211);
-var header_page_1 = __webpack_require__(212);
-var footer_page_1 = __webpack_require__(213);
-var hornet_content_1 = __webpack_require__(214);
-var user_1 = __webpack_require__(229);
-var menu_1 = __webpack_require__(231);
+var hornet_page_1 = __webpack_require__(52);
+var spinner_1 = __webpack_require__(212);
+var header_page_1 = __webpack_require__(213);
+var footer_page_1 = __webpack_require__(214);
+var hornet_content_1 = __webpack_require__(215);
+var user_1 = __webpack_require__(230);
+var menu_1 = __webpack_require__(232);
 var layout_switcher_1 = __webpack_require__(24);
 var change_language_1 = __webpack_require__(240);
-var dropdown_1 = __webpack_require__(47);
+var dropdown_1 = __webpack_require__(40);
 var ChangeLanguageService = __webpack_require__(241);
-var navigation_utils_1 = __webpack_require__(21);
+var navigation_utils_1 = __webpack_require__(20);
 var notification_session_footer_1 = __webpack_require__(242);
 var menu_accessibilite_1 = __webpack_require__(244);
 var _ = __webpack_require__(6);
@@ -53964,7 +54128,7 @@ exports.HornetApp = HornetApp;
 
 
 /***/ }),
-/* 165 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53992,7 +54156,7 @@ isValidElement:K,version:"16.2.0",__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_F
 
 
 /***/ }),
-/* 166 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54018,7 +54182,7 @@ var emptyObject = __webpack_require__(29);
 var invariant = __webpack_require__(37);
 var warning = __webpack_require__(38);
 var emptyFunction = __webpack_require__(14);
-var checkPropTypes = __webpack_require__(52);
+var checkPropTypes = __webpack_require__(51);
 
 // TODO: this is special because it gets imported during build.
 
@@ -55357,7 +55521,7 @@ module.exports = react;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 167 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55446,7 +55610,7 @@ exports.DEFAULT_ERROR_HANDLER = function (report, errorPage) {
 
 
 /***/ }),
-/* 168 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55534,8 +55698,8 @@ var index_1 = __webpack_require__(0);
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                patch intl-messageformat afin de ne pas échouer si un paramètre est manquant              //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-var src$utils$$ = __webpack_require__(45);
-var IntlMessageFormat = __webpack_require__(101);
+var src$utils$$ = __webpack_require__(46);
+var IntlMessageFormat = __webpack_require__(103);
 IntlMessageFormat.prototype._format = function (pattern, values) {
     var result = "", i, len, part, id, value;
     for (i = 0, len = pattern.length; i < len; i += 1) {
@@ -55607,14 +55771,14 @@ exports.I18nUtils = I18nUtils;
 
 
 /***/ }),
-/* 169 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* jslint esnext: true */
 
 
-var src$core$$ = __webpack_require__(170), src$en$$ = __webpack_require__(175);
+var src$core$$ = __webpack_require__(171), src$en$$ = __webpack_require__(176);
 
 src$core$$["default"].__addLocaleData(src$en$$["default"]);
 src$core$$["default"].defaultLocale = 'en';
@@ -55624,7 +55788,7 @@ exports["default"] = src$core$$["default"];
 
 
 /***/ }),
-/* 170 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55637,7 +55801,7 @@ See the accompanying LICENSE file for terms.
 /* jslint esnext: true */
 
 
-var src$utils$$ = __webpack_require__(45), src$es5$$ = __webpack_require__(171), src$compiler$$ = __webpack_require__(172), intl$messageformat$parser$$ = __webpack_require__(173);
+var src$utils$$ = __webpack_require__(46), src$es5$$ = __webpack_require__(172), src$compiler$$ = __webpack_require__(173), intl$messageformat$parser$$ = __webpack_require__(174);
 exports["default"] = MessageFormat;
 
 // -- MessageFormat --------------------------------------------------------
@@ -55907,7 +56071,7 @@ MessageFormat.prototype._resolveLocale = function (locales) {
 
 
 /***/ }),
-/* 171 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55920,7 +56084,7 @@ See the accompanying LICENSE file for terms.
 /* jslint esnext: true */
 
 
-var src$utils$$ = __webpack_require__(45);
+var src$utils$$ = __webpack_require__(46);
 
 // Purposely using the same implementation as the Intl.js `Intl` polyfill.
 // Copyright 2013 Andy Earnshaw, MIT License
@@ -55963,7 +56127,7 @@ exports.defineProperty = defineProperty, exports.objCreate = objCreate;
 
 
 /***/ }),
-/* 172 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -56178,18 +56342,18 @@ SelectFormat.prototype.getOption = function (value) {
 
 
 /***/ }),
-/* 173 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-exports = module.exports = __webpack_require__(174)['default'];
+exports = module.exports = __webpack_require__(175)['default'];
 exports['default'] = exports;
 
 
 /***/ }),
-/* 174 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -57596,7 +57760,7 @@ exports["default"] = (function() {
 
 
 /***/ }),
-/* 175 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -57607,13 +57771,13 @@ exports["default"] = {"locale":"en","pluralRuleFunction":function (n,ord){var s=
 
 
 /***/ }),
-/* 176 */
+/* 177 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 177 */
+/* 178 */
 /***/ (function(module, exports) {
 
 /**
@@ -57990,7 +58154,7 @@ function pathToRegexp (path, keys, options) {
 
 
 /***/ }),
-/* 178 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58107,7 +58271,7 @@ exports.ExpandingLayout = ExpandingLayout;
 
 
 /***/ }),
-/* 179 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module, global) {var __WEBPACK_AMD_DEFINE_RESULT__;/*! https://mths.be/punycode v1.4.1 by @mathias */
@@ -58643,10 +58807,10 @@ exports.ExpandingLayout = ExpandingLayout;
 
 }(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(42)(module), __webpack_require__(8)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(43)(module), __webpack_require__(8)))
 
 /***/ }),
-/* 180 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58669,18 +58833,18 @@ module.exports = {
 
 
 /***/ }),
-/* 181 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-exports.decode = exports.parse = __webpack_require__(182);
-exports.encode = exports.stringify = __webpack_require__(183);
+exports.decode = exports.parse = __webpack_require__(183);
+exports.encode = exports.stringify = __webpack_require__(184);
 
 
 /***/ }),
-/* 182 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58771,7 +58935,7 @@ var isArray = Array.isArray || function (xs) {
 
 
 /***/ }),
-/* 183 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58863,7 +59027,7 @@ var objectKeys = Object.keys || function (obj) {
 
 
 /***/ }),
-/* 184 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -58880,11 +59044,11 @@ if (typeof window !== 'undefined') { // Browser window
   root = this;
 }
 
-var Emitter = __webpack_require__(185);
-var RequestBase = __webpack_require__(186);
-var isObject = __webpack_require__(74);
-var ResponseBase = __webpack_require__(187);
-var Agent = __webpack_require__(189);
+var Emitter = __webpack_require__(186);
+var RequestBase = __webpack_require__(187);
+var isObject = __webpack_require__(72);
+var ResponseBase = __webpack_require__(188);
+var Agent = __webpack_require__(190);
 
 /**
  * Noop.
@@ -59789,7 +59953,7 @@ request.put = function(url, data, fn) {
 
 
 /***/ }),
-/* 185 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -59958,7 +60122,7 @@ Emitter.prototype.hasListeners = function(event){
 
 
 /***/ }),
-/* 186 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59967,7 +60131,7 @@ Emitter.prototype.hasListeners = function(event){
 /**
  * Module of mixed-in functions shared between node and client code
  */
-var isObject = __webpack_require__(74);
+var isObject = __webpack_require__(72);
 
 /**
  * Expose `RequestBase`.
@@ -60659,7 +60823,7 @@ RequestBase.prototype._setTimeouts = function() {
 
 
 /***/ }),
-/* 187 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60669,7 +60833,7 @@ RequestBase.prototype._setTimeouts = function() {
  * Module dependencies.
  */
 
-var utils = __webpack_require__(188);
+var utils = __webpack_require__(189);
 
 /**
  * Expose `ResponseBase`.
@@ -60800,7 +60964,7 @@ ResponseBase.prototype._setStatusProperties = function(status){
 
 
 /***/ }),
-/* 188 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60878,7 +61042,7 @@ exports.cleanHeader = function(header, changesOrigin){
 
 
 /***/ }),
-/* 189 */
+/* 190 */
 /***/ (function(module, exports) {
 
 function Agent() {
@@ -60904,7 +61068,7 @@ module.exports = Agent;
 
 
 /***/ }),
-/* 190 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60992,7 +61156,7 @@ var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var technical_error_1 = __webpack_require__(13);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.services.superagent-hornet-plugins");
-var browser = __webpack_require__(191);
+var browser = __webpack_require__(192);
 var HEADER_CSRF_NAME = "x-csrf-token";
 var HEADER_LOGIN_PAGE = "x-is-login-page";
 var HornetPlugin = /** @class */ (function () {
@@ -61153,7 +61317,7 @@ exports.AddParam = AddParam;
 
 
 /***/ }),
-/* 191 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -61228,7 +61392,7 @@ function getNodeVersion() {
   return isNode ? {
     name: 'node',
     version: process.version.slice(1),
-    os: __webpack_require__(63).type().toLowerCase()
+    os: __webpack_require__(61).type().toLowerCase()
   } : null;
 }
 
@@ -61331,7 +61495,7 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 192 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61416,7 +61580,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @license CECILL-2.1
  */
 var hornet_js_utils_1 = __webpack_require__(0);
-var OnionSkin = __webpack_require__(193);
+var OnionSkin = __webpack_require__(194);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.cache.hornet-cache");
 /**
  * Cache de l'application.
@@ -61466,26 +61630,26 @@ exports.HornetCache = HornetCache;
 
 
 /***/ }),
-/* 193 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var OnionSkin = __webpack_require__(194);
+var OnionSkin = __webpack_require__(195);
 OnionSkin.Drivers = {
   Utils: __webpack_require__(34),
-  Ephemeral: __webpack_require__(76),
-  LocalStorage: __webpack_require__(196),
-  IndexedDB: __webpack_require__(197)
+  Ephemeral: __webpack_require__(74),
+  LocalStorage: __webpack_require__(197),
+  IndexedDB: __webpack_require__(198)
 };
 
 module.exports = OnionSkin;
 
 
 /***/ }),
-/* 194 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Item = __webpack_require__(75);
-var Pool = __webpack_require__(195);
+var Item = __webpack_require__(73);
+var Pool = __webpack_require__(196);
 var OnionSkin = function (drivers) {
   'use strict';
   return new Pool(drivers);
@@ -61503,12 +61667,12 @@ module.exports = OnionSkin;
 
 
 /***/ }),
-/* 195 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Promise = __webpack_require__(18);
-var Ephemeral = __webpack_require__(76);
-var Item = __webpack_require__(75);
+var Promise = __webpack_require__(17);
+var Ephemeral = __webpack_require__(74);
+var Item = __webpack_require__(73);
 
 function Pool(drivers) {
   if (!drivers) {
@@ -61572,12 +61736,12 @@ module.exports = Pool;
 
 
 /***/ }),
-/* 196 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = LocalStorage;
 
-var Promise = __webpack_require__(18);
+var Promise = __webpack_require__(17);
 var Utils = __webpack_require__(34);
 
 function LocalStorage (namespace) {
@@ -61650,10 +61814,10 @@ LocalStorage.prototype.unlock = function (key) {
 
 
 /***/ }),
-/* 197 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Promise = __webpack_require__(18);
+var Promise = __webpack_require__(17);
 var Utils = __webpack_require__(34);
 
 module.exports = IndexedDB;
@@ -61844,14 +62008,14 @@ IndexedDB.prototype._key = function (key) {
 
 
 /***/ }),
-/* 198 */
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(Buffer, global, process) {var capability = __webpack_require__(79)
+/* WEBPACK VAR INJECTION */(function(Buffer, global, process) {var capability = __webpack_require__(77)
 var inherits = __webpack_require__(11)
-var response = __webpack_require__(80)
-var stream = __webpack_require__(48)
-var toArrayBuffer = __webpack_require__(206)
+var response = __webpack_require__(78)
+var stream = __webpack_require__(79)
+var toArrayBuffer = __webpack_require__(207)
 
 var IncomingMessage = response.IncomingMessage
 var rStates = response.readyStates
@@ -62174,7 +62338,7 @@ var unsafeHeaders = [
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(23).Buffer, __webpack_require__(8), __webpack_require__(4)))
 
 /***/ }),
-/* 199 */
+/* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62297,7 +62461,7 @@ function fromByteArray (uint8) {
 
 
 /***/ }),
-/* 200 */
+/* 201 */
 /***/ (function(module, exports) {
 
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -62387,13 +62551,13 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 
 /***/ }),
-/* 201 */
+/* 202 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 202 */
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62402,7 +62566,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Buffer = __webpack_require__(36).Buffer;
-var util = __webpack_require__(203);
+var util = __webpack_require__(204);
 
 function copyBuffer(src, target, offset) {
   src.copy(target, offset);
@@ -62478,13 +62642,13 @@ if (util && util.inspect && util.inspect.custom) {
 }
 
 /***/ }),
-/* 203 */
+/* 204 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 204 */
+/* 205 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -62558,7 +62722,7 @@ function config (name) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
-/* 205 */
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62611,7 +62775,7 @@ PassThrough.prototype._transform = function (chunk, encoding, cb) {
 };
 
 /***/ }),
-/* 206 */
+/* 207 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Buffer = __webpack_require__(23).Buffer
@@ -62644,7 +62808,7 @@ module.exports = function (buf) {
 
 
 /***/ }),
-/* 207 */
+/* 208 */
 /***/ (function(module, exports) {
 
 module.exports = extend
@@ -62669,7 +62833,7 @@ function extend() {
 
 
 /***/ }),
-/* 208 */
+/* 209 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -62739,11 +62903,11 @@ module.exports = {
 
 
 /***/ }),
-/* 209 */
+/* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var http = __webpack_require__(77)
-var url = __webpack_require__(40)
+var http = __webpack_require__(75)
+var url = __webpack_require__(41)
 
 var https = module.exports
 
@@ -62776,7 +62940,7 @@ function validateParams (params) {
 
 
 /***/ }),
-/* 210 */
+/* 211 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62869,7 +63033,7 @@ var DispositionType;
 
 
 /***/ }),
-/* 211 */
+/* 212 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62957,7 +63121,7 @@ var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var hornet_event_1 = __webpack_require__(7);
-var spinner_component_1 = __webpack_require__(102);
+var spinner_component_1 = __webpack_require__(100);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.spinner.spinner");
 /**
  * Composant affichant une image (par défaut une roue dentée animée) et un texte d'attente
@@ -63028,7 +63192,7 @@ exports.Spinner = Spinner;
 
 
 /***/ }),
-/* 212 */
+/* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63171,7 +63335,7 @@ exports.HeaderPage = HeaderPage;
 
 
 /***/ }),
-/* 213 */
+/* 214 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63293,7 +63457,7 @@ exports.FooterPage = FooterPage;
 
 
 /***/ }),
-/* 214 */
+/* 215 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63381,10 +63545,10 @@ var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
-var router_client_async_elements_1 = __webpack_require__(20);
-var notification_1 = __webpack_require__(49);
-var bread_crumb_1 = __webpack_require__(226);
-var top_button_1 = __webpack_require__(228);
+var router_client_async_elements_1 = __webpack_require__(19);
+var notification_1 = __webpack_require__(48);
+var bread_crumb_1 = __webpack_require__(227);
+var top_button_1 = __webpack_require__(229);
 var error_page_1 = __webpack_require__(93);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.component.hornet-content");
 var HornetContent = /** @class */ (function (_super) {
@@ -63461,7 +63625,7 @@ exports.HornetContent = HornetContent;
 
 
 /***/ }),
-/* 215 */
+/* 216 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63697,7 +63861,7 @@ Z.injectIntoDevTools({findFiberByHostInstance:pb,bundleType:0,version:"16.2.0",r
 
 
 /***/ }),
-/* 216 */
+/* 217 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63712,7 +63876,7 @@ Z.injectIntoDevTools({findFiberByHostInstance:pb,bundleType:0,version:"16.2.0",r
  * @typechecks
  */
 
-var isNode = __webpack_require__(217);
+var isNode = __webpack_require__(218);
 
 /**
  * @param {*} object The object to check.
@@ -63725,7 +63889,7 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ }),
-/* 217 */
+/* 218 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63753,7 +63917,7 @@ function isNode(object) {
 module.exports = isNode;
 
 /***/ }),
-/* 218 */
+/* 219 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63786,9 +63950,9 @@ var shallowEqual = __webpack_require__(89);
 var containsNode = __webpack_require__(90);
 var focusNode = __webpack_require__(91);
 var emptyObject = __webpack_require__(29);
-var checkPropTypes = __webpack_require__(52);
-var hyphenateStyleName = __webpack_require__(219);
-var camelizeStyleName = __webpack_require__(221);
+var checkPropTypes = __webpack_require__(51);
+var hyphenateStyleName = __webpack_require__(220);
+var camelizeStyleName = __webpack_require__(222);
 
 /**
  * WARNING: DO NOT manually require this module.
@@ -79155,7 +79319,7 @@ module.exports = reactDom;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 219 */
+/* 220 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79170,7 +79334,7 @@ module.exports = reactDom;
 
 
 
-var hyphenate = __webpack_require__(220);
+var hyphenate = __webpack_require__(221);
 
 var msPattern = /^ms-/;
 
@@ -79197,7 +79361,7 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 
 /***/ }),
-/* 220 */
+/* 221 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79233,7 +79397,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 221 */
+/* 222 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79248,7 +79412,7 @@ module.exports = hyphenate;
 
 
 
-var camelize = __webpack_require__(222);
+var camelize = __webpack_require__(223);
 
 var msPattern = /^-ms-/;
 
@@ -79276,7 +79440,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 222 */
+/* 223 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79311,7 +79475,7 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 223 */
+/* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79463,7 +79627,7 @@ exports.MessageItem = MessageItem;
 
 
 /***/ }),
-/* 224 */
+/* 225 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79573,7 +79737,7 @@ exports.AccordionHeader = AccordionHeader;
 
 
 /***/ }),
-/* 225 */
+/* 226 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79683,7 +79847,7 @@ exports.AccordionInfo = AccordionInfo;
 
 
 /***/ }),
-/* 226 */
+/* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79771,9 +79935,9 @@ var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
-var bread_crumb_item_1 = __webpack_require__(227);
-var navigation_utils_1 = __webpack_require__(21);
-var router_client_async_elements_1 = __webpack_require__(20);
+var bread_crumb_item_1 = __webpack_require__(228);
+var navigation_utils_1 = __webpack_require__(20);
+var router_client_async_elements_1 = __webpack_require__(19);
 var _ = __webpack_require__(6);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.navigation.breadcrumb");
 /**
@@ -79892,7 +80056,7 @@ exports.BreadCrumb = BreadCrumb;
 
 
 /***/ }),
-/* 227 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80051,7 +80215,7 @@ exports.BreadCrumbItem = BreadCrumbItem;
 
 
 /***/ }),
-/* 228 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80265,7 +80429,7 @@ exports.TopButton = TopButton;
 
 
 /***/ }),
-/* 229 */
+/* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80354,7 +80518,7 @@ var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
 var hornet_js_utils_1 = __webpack_require__(0);
 var key_codes_1 = __webpack_require__(10);
-var dropdown_1 = __webpack_require__(47);
+var dropdown_1 = __webpack_require__(40);
 /**
  * Composant User
  */
@@ -80437,7 +80601,7 @@ exports.User = User;
 
 
 /***/ }),
-/* 230 */
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80593,7 +80757,7 @@ exports.DropdownItem = DropdownItem;
 
 
 /***/ }),
-/* 231 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80679,14 +80843,14 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var React = __webpack_require__(2);
-var navigation_utils_1 = __webpack_require__(21);
+var navigation_utils_1 = __webpack_require__(20);
 var hornet_component_1 = __webpack_require__(3);
-var menu_navigation_1 = __webpack_require__(232);
+var menu_navigation_1 = __webpack_require__(233);
 var _ = __webpack_require__(6);
 var classnames = __webpack_require__(9);
 var classNames = __webpack_require__(9);
 var key_codes_1 = __webpack_require__(10);
-var menu_info_accessibilite_1 = __webpack_require__(233);
+var menu_info_accessibilite_1 = __webpack_require__(234);
 var hornet_js_utils_1 = __webpack_require__(0);
 var layout_switcher_1 = __webpack_require__(24);
 var menu_link_1 = __webpack_require__(94);
@@ -80887,7 +81051,7 @@ exports.Menu = Menu;
 
 
 /***/ }),
-/* 232 */
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80974,8 +81138,8 @@ var tslib_1 = __webpack_require__(1);
  */
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
-var menu_constantes_1 = __webpack_require__(46);
-var navigation_utils_1 = __webpack_require__(21);
+var menu_constantes_1 = __webpack_require__(47);
+var navigation_utils_1 = __webpack_require__(20);
 var hornet_component_1 = __webpack_require__(3);
 var menu_link_1 = __webpack_require__(94);
 var classNames = __webpack_require__(9);
@@ -81572,146 +81736,6 @@ exports.MenuNavigation = MenuNavigation;
 
 
 /***/ }),
-/* 233 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * Ce logiciel est un programme informatique servant à faciliter la création
- * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
- * <p/>
- * Ce logiciel est régi par la licence CeCILL soumise au droit français et
- * respectant les principes de diffusion des logiciels libres. Vous pouvez
- * utiliser, modifier et/ou redistribuer ce programme sous les conditions
- * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
- * sur le site "http://www.cecill.info".
- * <p/>
- * En contrepartie de l'accessibilité au code source et des droits de copie,
- * de modification et de redistribution accordés par cette licence, il n'est
- * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
- * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
- * titulaire des droits patrimoniaux et les concédants successifs.
- * <p/>
- * A cet égard  l'attention de l'utilisateur est attirée sur les risques
- * associés au chargement,  à l'utilisation,  à la modification et/ou au
- * développement et à la reproduction du logiciel par l'utilisateur étant
- * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
- * manipuler et qui le réserve donc à des développeurs et des professionnels
- * avertis possédant  des  connaissances  informatiques approfondies.  Les
- * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
- * logiciel à leurs besoins dans des conditions permettant d'assurer la
- * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
- * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
- * <p/>
- * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
- * pris connaissance de la licence CeCILL, et que vous en avez accepté les
- * termes.
- * <p/>
- * <p/>
- * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * This software is a computer program whose purpose is to facilitate creation of
- * web application in accordance with french general repositories : RGI, RGS and RGAA.
- * <p/>
- * This software is governed by the CeCILL license under French law and
- * abiding by the rules of distribution of free software.  You can  use,
- * modify and/ or redistribute the software under the terms of the CeCILL
- * license as circulated by CEA, CNRS and INRIA at the following URL
- * "http://www.cecill.info".
- * <p/>
- * As a counterpart to the access to the source code and  rights to copy,
- * modify and redistribute granted by the license, users are provided only
- * with a limited warranty  and the software's author,  the holder of the
- * economic rights,  and the successive licensors  have only  limited
- * liability.
- * <p/>
- * In this respect, the user's attention is drawn to the risks associated
- * with loading,  using,  modifying and/or developing or reproducing the
- * software by the user in light of its specific status of free software,
- * that may mean  that it is complicated to manipulate,  and  that  also
- * therefore means  that it is reserved for developers  and  experienced
- * professionals having in-depth computer knowledge. Users are therefore
- * encouraged to load and test the software's suitability as regards their
- * requirements in conditions enabling the security of their systems and/or
- * data to be ensured and,  more generally, to use and operate it in the
- * same conditions as regards security.
- * <p/>
- * The fact that you are presently reading this means that you have had
- * knowledge of the CeCILL license and that you accept its terms.
- *
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(1);
-/**
- * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
- *
- * @author MEAE - Ministère de l'Europe et des Affaires étrangères
- * @version v5.1.1
- * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
- * @license CECILL-2.1
- */
-var hornet_js_utils_1 = __webpack_require__(0);
-var hornet_component_1 = __webpack_require__(3);
-var button_info_accessibilite_1 = __webpack_require__(234);
-var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.navigation.menu-info-accessibilite");
-/**
- * Bouton et modale d'information sur l'accessibilité clavier du composant Menu
- */
-var MenuInfoAccessibilite = /** @class */ (function (_super) {
-    tslib_1.__extends(MenuInfoAccessibilite, _super);
-    function MenuInfoAccessibilite(props, context) {
-        var _this = _super.call(this, props, context) || this;
-        _this.state.shortcutDescriptions = [
-            {
-                shortcuts: ["Enter", "Space"],
-                or: true,
-                description: hornet_component_1.HornetComponent.getI18n("menu.shortcuts.enterSpace")
-            },
-            {
-                shortcuts: ["Echap"],
-                description: hornet_component_1.HornetComponent.getI18n("menu.shortcuts.escape")
-            },
-            {
-                shortcuts: ["←"],
-                description: hornet_component_1.HornetComponent.getI18n("menu.shortcuts.arrowLeft")
-            },
-            {
-                shortcuts: ["↑"],
-                description: hornet_component_1.HornetComponent.getI18n("menu.shortcuts.arrowUp")
-            },
-            {
-                shortcuts: ["→"],
-                description: hornet_component_1.HornetComponent.getI18n("menu.shortcuts.arrowRight")
-            },
-            {
-                shortcuts: ["↓"],
-                description: hornet_component_1.HornetComponent.getI18n("menu.shortcuts.arrowDown")
-            },
-            {
-                shortcuts: ["shift", "tab"],
-                description: hornet_component_1.HornetComponent.getI18n("menu.shortcuts.shiftTab")
-            },
-            {
-                shortcuts: ["tab"],
-                description: hornet_component_1.HornetComponent.getI18n("menu.shortcuts.tab")
-            }
-        ];
-        return _this;
-    }
-    return MenuInfoAccessibilite;
-}(button_info_accessibilite_1.ButtonInfoAccessibilite));
-exports.MenuInfoAccessibilite = MenuInfoAccessibilite;
-
-
-
-/***/ }),
 /* 234 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -81798,76 +81822,56 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var hornet_js_utils_1 = __webpack_require__(0);
-var React = __webpack_require__(2);
-var ReactDOM = __webpack_require__(22);
 var hornet_component_1 = __webpack_require__(3);
-var icon_1 = __webpack_require__(235);
-var modal_1 = __webpack_require__(103);
-var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.table.button-info-accessibilite");
+var button_info_accessibilite_1 = __webpack_require__(104);
+var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.navigation.menu-info-accessibilite");
 /**
- * Bouton et modale d'information sur l'accessibilité clavier du composant Table
+ * Bouton et modale d'information sur l'accessibilité clavier du composant Menu
  */
-var ButtonInfoAccessibilite = /** @class */ (function (_super) {
-    tslib_1.__extends(ButtonInfoAccessibilite, _super);
-    function ButtonInfoAccessibilite() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.shortcutsI18n = ButtonInfoAccessibilite.getI18n("shortcuts");
+var MenuInfoAccessibilite = /** @class */ (function (_super) {
+    tslib_1.__extends(MenuInfoAccessibilite, _super);
+    function MenuInfoAccessibilite(props, context) {
+        var _this = _super.call(this, props, context) || this;
+        _this.state.shortcutDescriptions = [
+            {
+                shortcuts: ["Enter", "Space"],
+                or: true,
+                description: hornet_component_1.HornetComponent.getI18n("menu.shortcuts.enterSpace")
+            },
+            {
+                shortcuts: ["Echap"],
+                description: hornet_component_1.HornetComponent.getI18n("menu.shortcuts.escape")
+            },
+            {
+                shortcuts: ["←"],
+                description: hornet_component_1.HornetComponent.getI18n("menu.shortcuts.arrowLeft")
+            },
+            {
+                shortcuts: ["↑"],
+                description: hornet_component_1.HornetComponent.getI18n("menu.shortcuts.arrowUp")
+            },
+            {
+                shortcuts: ["→"],
+                description: hornet_component_1.HornetComponent.getI18n("menu.shortcuts.arrowRight")
+            },
+            {
+                shortcuts: ["↓"],
+                description: hornet_component_1.HornetComponent.getI18n("menu.shortcuts.arrowDown")
+            },
+            {
+                shortcuts: ["shift", "tab"],
+                description: hornet_component_1.HornetComponent.getI18n("menu.shortcuts.shiftTab")
+            },
+            {
+                shortcuts: ["tab"],
+                description: hornet_component_1.HornetComponent.getI18n("menu.shortcuts.tab")
+            }
+        ];
         return _this;
     }
-    /**
-     * @inheritDoc
-     */
-    ButtonInfoAccessibilite.prototype.render = function () {
-        var _this = this;
-        return (React.createElement("div", { className: "button-info-accessibilite" },
-            React.createElement(icon_1.Icon, { title: this.state.message.shortcuts ? this.state.message.shortcuts.iconTitle : this.shortcutsI18n.iconTitle, alt: this.state.message.shortcuts ? this.state.message.shortcuts.iconTitle : this.shortcutsI18n.iconTitle, action: this.handleShowInfoModal, url: "#", src: this.props.srcImg || ButtonInfoAccessibilite.genUrlTheme() + "/img/button/icon_info.svg", classLink: "button-info-accessibilite-button button-action", hasPopUp: true, ref: function (icon) { _this.htmlIcon = icon; } }),
-            this.renderModal()));
-    };
-    ButtonInfoAccessibilite.prototype.renderModal = function () {
-        return (React.createElement(modal_1.Modal, { ref: "modal", title: this.state.message.shortcuts ? this.state.message.shortcuts.modalTitle : this.shortcutsI18n.modalTitle, onClickClose: this.handleClickClose, className: "modal-shortcuts-content", escapeKeyExits: true },
-            React.createElement("div", { className: "widget-shortcuts-body" },
-                React.createElement("div", { className: "widget-shortcuts-content" },
-                    React.createElement("div", { className: "shortCutsList" },
-                        React.createElement("h4", null, this.state.message.shortcuts ?
-                            this.state.message.shortcuts.modalContentTitle : this.shortcutsI18n.modalContentTitle),
-                        React.createElement("ul", null, this.state.shortcutDescriptions.map(this.renderShortCut.bind(this))))))));
-    };
-    ButtonInfoAccessibilite.prototype.renderShortCut = function (item, index) {
-        var separator = (item.and) ? "+" : "/";
-        var shortcuts = [];
-        item.shortcuts.map(function (shortcut, i) {
-            shortcuts.push(React.createElement("kbd", { key: "shortcut-" + shortcut + "-" + i }, shortcut));
-            if ((i + 1) !== item.shortcuts.length) {
-                shortcuts.push(separator);
-            }
-        });
-        return (React.createElement("li", { key: "item-shortcut-" + index },
-            React.createElement("div", null,
-                React.createElement("div", null,
-                    shortcuts,
-                    " :"),
-                React.createElement("div", null, item.description))));
-    };
-    ButtonInfoAccessibilite.prototype.handleShowInfoModal = function () {
-        this.refs.modal.open();
-    };
-    ButtonInfoAccessibilite.prototype.handleClickClose = function (t) {
-        var _this = this;
-        this.refs.modal.close(function () {
-            var el = ReactDOM.findDOMNode(_this.htmlIcon);
-            if (el && el instanceof HTMLElement && el.focus) {
-                el.tabIndex = 0;
-                el.focus();
-            }
-        });
-    };
-    ButtonInfoAccessibilite.defaultProps = {
-        message: "",
-        shortcutDescriptions: []
-    };
-    return ButtonInfoAccessibilite;
-}(hornet_component_1.HornetComponent));
-exports.ButtonInfoAccessibilite = ButtonInfoAccessibilite;
+    return MenuInfoAccessibilite;
+}(button_info_accessibilite_1.ButtonInfoAccessibilite));
+exports.MenuInfoAccessibilite = MenuInfoAccessibilite;
 
 
 
@@ -85309,7 +85313,7 @@ var tslib_1 = __webpack_require__(1);
 var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
 var hornet_js_utils_1 = __webpack_require__(0);
-var dropdown_1 = __webpack_require__(47);
+var dropdown_1 = __webpack_require__(40);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.language.change-language");
 /**
  * Composant ChangeLanguage
@@ -85496,11 +85500,11 @@ var tslib_1 = __webpack_require__(1);
 var React = __webpack_require__(2);
 var hornet_js_utils_1 = __webpack_require__(0);
 var hornet_component_1 = __webpack_require__(3);
-var hornet_superagent_1 = __webpack_require__(73);
+var hornet_superagent_1 = __webpack_require__(71);
 var wakeup_node_1 = __webpack_require__(243);
-var picto_1 = __webpack_require__(104);
+var picto_1 = __webpack_require__(98);
 var classNames = __webpack_require__(9);
-var moment = __webpack_require__(43);
+var moment = __webpack_require__(44);
 moment.duration.fn.format = function () {
     var str = "";
     if (this.days() > 1)

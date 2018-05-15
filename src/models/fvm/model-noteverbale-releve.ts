@@ -21,7 +21,8 @@ export let NoteVerbaleReleveFVMModel: Sequelize.DefineAttributes = {
     allowNull: false,
     references: {
       model: "ReleveFVMModel",
-      key: "idReleve"
+      key: "idReleve",
+      deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
     }
   },
   "idNoteVerbale": {
@@ -30,7 +31,8 @@ export let NoteVerbaleReleveFVMModel: Sequelize.DefineAttributes = {
     allowNull: false,
     references: {
       model: "NoteVerbaleFVMModel",
-      key: "idNoteVerbale"
+      key: "idNoteVerbale",
+      deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
     }
   }
 };

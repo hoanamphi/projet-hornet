@@ -40,7 +40,8 @@ exports.CopieReleveFVMModel = {
         allowNull: false,
         references: {
             model: "ReleveFVMModel",
-            key: "idReleve"
+            key: "idReleve",
+            deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
         }
     }
 };

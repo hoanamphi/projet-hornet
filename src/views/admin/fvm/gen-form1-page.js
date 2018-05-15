@@ -76,7 +76,11 @@ var FormulairePage = /** @class */ (function (_super) {
                 React.createElement(row_1.Row, null,
                     React.createElement(upload_file_field_1.UploadFileField, { name: "copie_note_verbale_maeci", label: format.fields.copie_note_verbale_maeci.label, buttonLabel: format.fields.copie_note_verbale_maeci.buttonLabel, fileSelectedLabel: format.fields.copie_note_verbale_maeci.fileSelectedLabel, required: true })),
                 React.createElement(buttons_area_1.ButtonsArea, null,
+                    React.createElement(button_1.Button, { type: "button", onClick: this.retourPage, label: "Annuler" }),
                     React.createElement(button_1.Button, { type: "submit", value: "Valider", className: "hornet-button", label: "valider", title: "valider" })))));
+    };
+    FormulairePage.prototype.retourPage = function () {
+        this.navigateTo("/fvmentries", {}, function () { });
     };
     return FormulairePage;
 }(hornet_page_1.HornetPage));

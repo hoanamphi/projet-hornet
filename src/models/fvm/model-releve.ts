@@ -23,7 +23,8 @@ export let ReleveFVMModel: Sequelize.DefineAttributes = {
     allowNull: false,
     references: {
       model: "CopieReleveFVMModel",
-      key: "idCopieReleve"
+      key: "idCopieReleve",
+      deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
     }
   },
   "idCopieCourrierPrefecture": {
@@ -32,7 +33,8 @@ export let ReleveFVMModel: Sequelize.DefineAttributes = {
     allowNull: false,
     references: {
       model: "CopieCourrierPrefectureFVMModel",
-      key: "idCopieCourrierPrefecture"
+      key: "idCopieCourrierPrefecture",
+      deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
     }
   },
   "dateReceptionReleve": {
@@ -46,7 +48,8 @@ export let ReleveFVMModel: Sequelize.DefineAttributes = {
     allowNull: false,
     references: {
       model: "PermisFVMModel",
-      key: "idPermis"
+      key: "idPermis",
+      deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
     }
   }
 };

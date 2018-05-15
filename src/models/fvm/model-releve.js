@@ -15,7 +15,8 @@ exports.ReleveFVMModel = {
         allowNull: false,
         references: {
             model: "CopieReleveFVMModel",
-            key: "idCopieReleve"
+            key: "idCopieReleve",
+            deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
         }
     },
     "idCopieCourrierPrefecture": {
@@ -24,7 +25,8 @@ exports.ReleveFVMModel = {
         allowNull: false,
         references: {
             model: "CopieCourrierPrefectureFVMModel",
-            key: "idCopieCourrierPrefecture"
+            key: "idCopieCourrierPrefecture",
+            deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
         }
     },
     "dateReceptionReleve": {
@@ -38,7 +40,8 @@ exports.ReleveFVMModel = {
         allowNull: false,
         references: {
             model: "PermisFVMModel",
-            key: "idPermis"
+            key: "idPermis",
+            deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
         }
     }
 };

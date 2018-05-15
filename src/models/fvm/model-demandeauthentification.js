@@ -25,7 +25,8 @@ exports.DemandeAuthentificationFVMModel = {
         allowNull: false,
         references: {
             model: "PermisFVMModel",
-            key: "idPermis"
+            key: "idPermis",
+            deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
         }
     },
     "numValise": {
@@ -34,7 +35,8 @@ exports.DemandeAuthentificationFVMModel = {
         allowNull: false,
         references: {
             model: "ValiseModel",
-            key: "numValise"
+            key: "numValise",
+            deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
         }
     }
 };

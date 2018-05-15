@@ -40,7 +40,8 @@ exports.CopieNoteVerbaleMAECIFVMModel = {
         allowNull: false,
         references: {
             model: "DossierFVMModel",
-            key: "idDossier"
+            key: "idDossier",
+            deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
         }
     }
 };

@@ -23,7 +23,8 @@ export let DossierMVFModel: Sequelize.DefineAttributes = {
     allowNull: false,
     references: {
       model: "CopieDemandePrefectureMVFModel",
-      key: "idCopieDemandePrefecture"
+      key: "idCopieDemandePrefecture",
+      deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
     }
   },
   "dateReceptionDossier": {
@@ -37,7 +38,8 @@ export let DossierMVFModel: Sequelize.DefineAttributes = {
     allowNull: false,
     references: {
       model: "PermisMVFModel",
-      key: "idPermis"
+      key: "idPermis",
+      deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
     }
   },
   "idPrefectureEnvoi": {
@@ -46,7 +48,8 @@ export let DossierMVFModel: Sequelize.DefineAttributes = {
     allowNull: false,
     references: {
       model: "PrefectureModel",
-      key: "idPrefecture"
+      key: "idPrefecture",
+      deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
     }
   }
 };

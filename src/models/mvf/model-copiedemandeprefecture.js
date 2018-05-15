@@ -40,7 +40,8 @@ exports.CopieDemandePrefectureMVFModel = {
         allowNull: false,
         references: {
             model: "DossierMVFModel",
-            key: "idDossier"
+            key: "idDossier",
+            deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
         }
     }
 };

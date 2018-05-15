@@ -2,6 +2,7 @@ import { Utils } from "hornet-js-utils";
 import { Logger } from "hornet-js-utils/src/logger";
 import { RouteActionService } from "hornet-js-core/src/routes/abstract-routes";
 import { Form1Service } from "src/services/page/admin/fvm/form1-service";
+import {RecordListService} from "../../../services/page/admin/fvm/recordList-service";
 
 const logger: Logger = Utils.getLogger("projet-hornet.actions.admin.permis_actions");
 
@@ -38,5 +39,13 @@ export class ListePrefecture extends RouteActionService<any, Form1Service> {
     logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
 
     return this.getService().getListePrefectures();
+  }
+}
+
+export class ListeDossiers extends RouteActionService<any, RecordListService> {
+  execute(): Promise<any> {
+    logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
+
+    return this.getService().getListeDossiers();
   }
 }

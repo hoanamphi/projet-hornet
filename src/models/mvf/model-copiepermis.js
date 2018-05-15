@@ -40,7 +40,8 @@ exports.CopiePermisMVFModel = {
         allowNull: false,
         references: {
             model: "PermisMVFModel",
-            key: "idPermis"
+            key: "idPermis",
+            deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
         }
     }
 };

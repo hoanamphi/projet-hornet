@@ -15,7 +15,8 @@ exports.DossierFVMModel = {
         allowNull: false,
         references: {
             model: "CopieNoteVerbaleMAECIFVMModel",
-            key: "idCopieNoteVerbaleMAECI"
+            key: "idCopieNoteVerbaleMAECI",
+            deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
         }
     },
     "dateReceptionDossier": {
@@ -29,7 +30,8 @@ exports.DossierFVMModel = {
         allowNull: false,
         references: {
             model: "PermisFVMModel",
-            key: "idPermis"
+            key: "idPermis",
+            deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
         }
     }
 };

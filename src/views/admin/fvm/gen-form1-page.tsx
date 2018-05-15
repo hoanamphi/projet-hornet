@@ -136,6 +136,7 @@ export class FormulairePage extends HornetPage<Form1Service, HornetComponentProp
             />
           </Row>
           <ButtonsArea>
+            <Button type="button" onClick={this.retourPage} label="Annuler"/>
             <Button type="submit"
                 value="Valider" className="hornet-button" label="valider"
                 title="valider"/>
@@ -143,5 +144,9 @@ export class FormulairePage extends HornetPage<Form1Service, HornetComponentProp
         </Form>
       </div>
     );
+  }
+
+  retourPage(){
+    this.navigateTo("/fvmentries", {}, ()=>{});
   }
 }

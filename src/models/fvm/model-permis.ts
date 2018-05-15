@@ -40,7 +40,8 @@ export let PermisFVMModel: Sequelize.DefineAttributes = {
     allowNull: false,
     references: {
       model: "PersonneModelFVM",
-      key: "idPersonne"
+      key: "idPersonne",
+      deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
     }
   },
   "idDossier": {
@@ -49,7 +50,8 @@ export let PermisFVMModel: Sequelize.DefineAttributes = {
     allowNull: false,
     references: {
       model: "DossierModelFVM",
-      key: "idDossier"
+      key: "idDossier",
+      deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
     }
   },
   "idPrefectureDelivrance": {
@@ -58,7 +60,8 @@ export let PermisFVMModel: Sequelize.DefineAttributes = {
     allowNull: false,
     references: {
       model: "PrefectureModel",
-      key: "idPrefecture"
+      key: "idPrefecture",
+      deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
     }
   }
 };

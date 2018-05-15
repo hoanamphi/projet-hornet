@@ -15,7 +15,8 @@ exports.AttestationMVFModel = {
         allowNull: false,
         references: {
             model: "CopieAttestationMVFModel",
-            key: "idCopieAttestation"
+            key: "idCopieAttestation",
+            deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
         }
     },
     "idCopieNoteVerbaleMAECI": {
@@ -24,7 +25,8 @@ exports.AttestationMVFModel = {
         allowNull: false,
         references: {
             model: "CopieNoteVerbaleMAECIMVFModel",
-            key: "idCopieNoteVerbaleMAECI"
+            key: "idCopieNoteVerbaleMAECI",
+            deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
         }
     },
     "dateReceptionAttestation": {
@@ -38,7 +40,8 @@ exports.AttestationMVFModel = {
         allowNull: false,
         references: {
             model: "PermisMVFModel",
-            key: "idPermis"
+            key: "idPermis",
+            deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
         }
     }
 };

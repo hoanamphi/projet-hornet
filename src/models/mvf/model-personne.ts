@@ -38,7 +38,8 @@ export let PersonneMVFModel: Sequelize.DefineAttributes = {
     allowNull: false,
     references: {
       model: "PermisMVFModel",
-      key: "idPersonne"
+      key: "idPersonne",
+      deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
     }
   }
 };

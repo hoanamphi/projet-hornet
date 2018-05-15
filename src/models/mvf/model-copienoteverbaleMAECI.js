@@ -40,7 +40,8 @@ exports.CopieNoteVerbaleMAECIMVFModel = {
         allowNull: false,
         references: {
             model: "AttestationMVFModel",
-            key: "idAttestation"
+            key: "idAttestation",
+            deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
         }
     }
 };

@@ -340,7 +340,7 @@
         "fileSelectedLabel": "Un fichier choisit",
         "required": "Le champ « Copie de la note verbale du MAECI » est obligatoire. Veuillez saisir ce champ."
       },
-      "date_de_reception_du_dossier": {
+      "date_reception_dossier": {
         "label": "Date de réception du dossier",
         "title": "Calendrier",
         "dateFormat": "DD/MM/YYYY",
