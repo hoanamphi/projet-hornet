@@ -14,7 +14,7 @@ export class DossierFVMDAO extends EntityDAO {
   }
 
   insererDossier(idCopieNoteVerbaleMAECI, dateReceptionDossier, idPermis): Promise<any> {
-    return this.getIdDossier().then(idDossier=> {
+    return this.getNewIdDossier().then(idDossier=> {
 
       return this.modelDAO.dossierFVMEntity.create({
         idDossier: idDossier,
@@ -29,7 +29,7 @@ export class DossierFVMDAO extends EntityDAO {
     });
   }
 
-  getIdDossier(): Promise<any> {
+  getNewIdDossier(): Promise<any> {
     return this.modelDAO.dossierFVMEntity.count().then(count=>{
       if(count > 0) {
         return this.modelDAO.dossierFVMEntity.max("idDossier");
@@ -38,6 +38,14 @@ export class DossierFVMDAO extends EntityDAO {
       }
     }).then(max=>{
       return Promise.resolve(max+1);
+    });
+  }
+
+  getDossier(idDossier): Promise<any> {
+    return this.modelDAO.dossierFVMEntity.findAll({
+      where: {
+        idDossier: idDossier
+      }
     });
   }
 }

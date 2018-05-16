@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "title": "Formulaire de recherche d'une entrée",
+  "description": "Validation des données de formulaire",
+  "type": "object",
+  "required": [
+    "num_permis"
+  ],
+  "properties": {
+    "nom": {
+      "$ref": "#/definition/nom_propre"
+    },
+    "prenom": {
+      "$ref": "#/definition/nom_propre"
+    },
+    "date_de_naissance": {
+      "$ref": "#/definition/date"
+    }
+  },
+  "definition": {
+    "nom_propre": {
+      "type": "string",
+      "pattern": "^([a-zÀ-ÿ]+[-]{0,2}[a-zÀ-ÿ]+ ?)*$"
+    },
+    "date": {
+      "type": "Date",
+      "format": "date"
+    }
+  }
+}

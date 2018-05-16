@@ -11,7 +11,7 @@ var DossierFVMDAO = /** @class */ (function (_super) {
     }
     DossierFVMDAO.prototype.insererDossier = function (idCopieNoteVerbaleMAECI, dateReceptionDossier, idPermis) {
         var _this = this;
-        return this.getIdDossier().then(function (idDossier) {
+        return this.getNewIdDossier().then(function (idDossier) {
             return _this.modelDAO.dossierFVMEntity.create({
                 idDossier: idDossier,
                 idCopieNoteVerbaleMAECI: idCopieNoteVerbaleMAECI,
@@ -24,7 +24,7 @@ var DossierFVMDAO = /** @class */ (function (_super) {
             });
         });
     };
-    DossierFVMDAO.prototype.getIdDossier = function () {
+    DossierFVMDAO.prototype.getNewIdDossier = function () {
         var _this = this;
         return this.modelDAO.dossierFVMEntity.count().then(function (count) {
             if (count > 0) {
@@ -35,6 +35,13 @@ var DossierFVMDAO = /** @class */ (function (_super) {
             }
         }).then(function (max) {
             return Promise.resolve(max + 1);
+        });
+    };
+    DossierFVMDAO.prototype.getDossier = function (idDossier) {
+        return this.modelDAO.dossierFVMEntity.findAll({
+            where: {
+                idDossier: idDossier
+            }
         });
     };
     return DossierFVMDAO;

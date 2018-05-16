@@ -9,12 +9,12 @@ var CopiePermisFVMDao = /** @class */ (function (_super) {
     function CopiePermisFVMDao() {
         return _super.call(this) || this;
     }
-    CopiePermisFVMDao.prototype.insererCopiePermis = function (nom, mimetype, encoding, size, data, idPermis) {
+    CopiePermisFVMDao.prototype.insererCopiePermis = function (mimetype, encoding, size, data, idPermis) {
         var _this = this;
-        return this.getIdCopiePermis().then(function (idCopiePermis) {
+        return this.getNewIdCopiePermis().then(function (idCopiePermis) {
             return _this.modelDAO.copiePermisFVMEntity.create({
                 idCopiePermis: idCopiePermis,
-                nom: nom,
+                nom: _this.getNewNom(idCopiePermis),
                 mimetype: mimetype,
                 encoding: encoding,
                 size: size,
@@ -23,7 +23,10 @@ var CopiePermisFVMDao = /** @class */ (function (_super) {
             });
         });
     };
-    CopiePermisFVMDao.prototype.getIdCopiePermis = function () {
+    CopiePermisFVMDao.prototype.getNewNom = function (idCopiePermis) {
+        return "copieNoteVerbaleMAECI" + idCopiePermis + (new Date()).toString();
+    };
+    CopiePermisFVMDao.prototype.getNewIdCopiePermis = function () {
         var _this = this;
         return this.modelDAO.copiePermisFVMEntity.count().then(function (count) {
             if (count > 0) {
@@ -34,6 +37,13 @@ var CopiePermisFVMDao = /** @class */ (function (_super) {
             }
         }).then(function (max) {
             return Promise.resolve(max + 1);
+        });
+    };
+    CopiePermisFVMDao.prototype.getCopiePermis = function (idCopiePermis) {
+        return this.modelDAO.copiePermisFVMEntity.findAll({
+            where: {
+                idCopiePermis: idCopiePermis
+            }
         });
     };
     return CopiePermisFVMDao;

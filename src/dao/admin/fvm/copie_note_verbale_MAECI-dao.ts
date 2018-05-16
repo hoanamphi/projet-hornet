@@ -13,12 +13,12 @@ export class CopieNoteVerbaleMAECIFVMDao extends EntityDAO {
     super();
   }
 
-  insererCopieNoteVerbaleMAECI(nom, mimetype, encoding, size, data, idDossier): Promise<any> {
-    return this.getIdCopieNoteVerbaleMAECI().then(idCopieNoteVerbaleMAECI=> {
+  insererCopieNoteVerbaleMAECI(mimetype, encoding, size, data, idDossier): Promise<any> {
+    return this.getNewIdCopieNoteVerbaleMAECI().then(idCopieNoteVerbaleMAECI=> {
 
       return this.modelDAO.copieNoteVerbaleMAECIFVMEntity.create({
         idCopieNoteVerbaleMAECI: idCopieNoteVerbaleMAECI,
-        nom: nom,
+        nom: this.getNewNom(idCopieNoteVerbaleMAECI),
         mimetype: mimetype,
         encoding: encoding,
         size: size,
@@ -28,7 +28,11 @@ export class CopieNoteVerbaleMAECIFVMDao extends EntityDAO {
     });
   }
 
-  getIdCopieNoteVerbaleMAECI(): Promise<any> {
+  getNewNom(idCopieNoteVerbaleMAECI): string {
+    return "copieNoteVerbaleMAECI"+idCopieNoteVerbaleMAECI+(new Date()).toString();
+  }
+
+  getNewIdCopieNoteVerbaleMAECI(): Promise<any> {
     return this.modelDAO.copieNoteVerbaleMAECIFVMEntity.count().then(count=>{
       if(count > 0) {
         return this.modelDAO.copieNoteVerbaleMAECIFVMEntity.max("idCopieNoteVerbaleMAECI");
@@ -37,6 +41,14 @@ export class CopieNoteVerbaleMAECIFVMDao extends EntityDAO {
       }
     }).then(max=>{
       return Promise.resolve(max+1);
+    });
+  }
+
+  getCopieNoteVerbaleMAECI(idCopieNoteVerbaleMAECI): Promise<any> {
+    return this.modelDAO.copieNoteVerbaleMAECIFVMEntity.findAll({
+      where: {
+        idCopieNoteVerbaleMAECI: idCopieNoteVerbaleMAECI
+      }
     });
   }
 }

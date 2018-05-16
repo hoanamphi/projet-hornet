@@ -14,7 +14,7 @@ export class PermisFVMDAO extends EntityDAO {
   }
 
   insererPermis(numPermis, idCopiePermis, dateDeDelivrance, idPersonne, idDossier, idPrefectureDelivrance): Promise<any> {
-    return this.getIdPermis().then(idPermis=>{
+    return this.getNewIdPermis().then(idPermis=>{
 
       return this.modelDAO.permisFVMEntity.create({
         idPermis: idPermis,
@@ -28,7 +28,7 @@ export class PermisFVMDAO extends EntityDAO {
     });
   }
 
-  getIdPermis(): Promise<any> {
+  getNewIdPermis(): Promise<any> {
     return this.modelDAO.permisFVMEntity.count().then(count=>{
       if(count > 0) {
         return this.modelDAO.permisFVMEntity.max("idPermis");
@@ -37,6 +37,18 @@ export class PermisFVMDAO extends EntityDAO {
       }
     }).then(max=>{
       return Promise.resolve(max+1);
+    });
+  }
+
+  getAllPermis(): Promise<any> {
+    return this.modelDAO.permisFVMEntity.findAll();
+  }
+
+  getPermis(idPermis): Promise<any> {
+    return this.modelDAO.permisFVMEntity.findAll({
+      where: {
+        idPermis: idPermis
+      }
     });
   }
 }

@@ -11,7 +11,7 @@ export class PersonneFVMDAO extends EntityDAO {
   }
 
   insererPersonne(nom, prenom, dateDeNaissance, villeDeNaissance, paysDeNaissance, idPermis): Promise<any> {
-    return this.getIdPersonne().then(idPersonne=>{
+    return this.getNewIdPersonne().then(idPersonne=>{
 
       return this.modelDAO.personneFVMEntity.create({
         idPersonne: idPersonne,
@@ -25,7 +25,7 @@ export class PersonneFVMDAO extends EntityDAO {
     });
   }
 
-  getIdPersonne(): Promise<any> {
+  getNewIdPersonne(): Promise<any> {
     return this.modelDAO.personneFVMEntity.count().then(count=>{
       if(count > 0) {
         return this.modelDAO.personneFVMEntity.max("idPersonne");
@@ -34,6 +34,14 @@ export class PersonneFVMDAO extends EntityDAO {
       }
     }).then(max=>{
       return Promise.resolve(max+1);
+    });
+  }
+
+  getPersonne(idPersonne): Promise<any> {
+    return this.modelDAO.personneFVMEntity.findAll({
+      where: {
+        idPersonne: idPersonne
+      }
     });
   }
 }

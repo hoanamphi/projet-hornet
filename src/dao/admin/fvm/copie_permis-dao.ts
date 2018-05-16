@@ -13,12 +13,12 @@ export class CopiePermisFVMDao extends EntityDAO {
     super();
   }
 
-  insererCopiePermis(nom, mimetype, encoding, size, data, idPermis): Promise<any> {
-    return this.getIdCopiePermis().then(idCopiePermis=> {
+  insererCopiePermis(mimetype, encoding, size, data, idPermis): Promise<any> {
+    return this.getNewIdCopiePermis().then(idCopiePermis=> {
 
       return this.modelDAO.copiePermisFVMEntity.create({
         idCopiePermis: idCopiePermis,
-        nom: nom,
+        nom: this.getNewNom(idCopiePermis),
         mimetype: mimetype,
         encoding: encoding,
         size: size,
@@ -28,7 +28,11 @@ export class CopiePermisFVMDao extends EntityDAO {
     });
   }
 
-  getIdCopiePermis(): Promise<any> {
+  getNewNom(idCopiePermis): string {
+    return "copieNoteVerbaleMAECI"+idCopiePermis+(new Date()).toString();
+  }
+
+  getNewIdCopiePermis(): Promise<any> {
     return this.modelDAO.copiePermisFVMEntity.count().then(count=>{
       if(count > 0) {
         return this.modelDAO.copiePermisFVMEntity.max("idCopiePermis");
@@ -37,6 +41,14 @@ export class CopiePermisFVMDao extends EntityDAO {
       }
     }).then(max=>{
       return Promise.resolve(max+1);
+    });
+  }
+
+  getCopiePermis(idCopiePermis): Promise<any> {
+    return this.modelDAO.copiePermisFVMEntity.findAll({
+      where: {
+        idCopiePermis: idCopiePermis
+      }
     });
   }
 }

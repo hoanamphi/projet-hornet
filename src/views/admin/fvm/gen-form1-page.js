@@ -13,7 +13,7 @@ var buttons_area_1 = require("hornet-js-react-components/src/widget/form/buttons
 var upload_file_field_1 = require("hornet-js-react-components/src/widget/form/upload-file-field");
 var datasource_1 = require("hornet-js-core/src/component/datasource/datasource");
 var notification_1 = require("hornet-js-react-components/src/widget/notification/notification");
-var schema = require("src/resources/admin/fvm/validation-form.json");
+var schema = require("src/resources/admin/fvm/validation-form1.json");
 var select_field_1 = require("hornet-js-react-components/src/widget/form/select-field");
 var notification_manager_1 = require("hornet-js-core/src/notification/notification-manager");
 var datasource_config_page_1 = require("hornet-js-core/src/component/datasource/config/service/datasource-config-page");
@@ -76,7 +76,7 @@ var FormulairePage = /** @class */ (function (_super) {
                 React.createElement(row_1.Row, null,
                     React.createElement(upload_file_field_1.UploadFileField, { name: "copie_note_verbale_maeci", label: format.fields.copie_note_verbale_maeci.label, buttonLabel: format.fields.copie_note_verbale_maeci.buttonLabel, fileSelectedLabel: format.fields.copie_note_verbale_maeci.fileSelectedLabel, required: true })),
                 React.createElement(buttons_area_1.ButtonsArea, null,
-                    React.createElement(button_1.Button, { type: "button", onClick: this.retourPage, label: "Annuler" }),
+                    React.createElement(button_1.Button, { type: "button", onClick: this.retourPage, label: "annuler" }),
                     React.createElement(button_1.Button, { type: "submit", value: "Valider", className: "hornet-button", label: "valider", title: "valider" })))));
     };
     FormulairePage.prototype.retourPage = function () {

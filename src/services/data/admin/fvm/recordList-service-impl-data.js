@@ -23,7 +23,40 @@ var RecordListServiceImpl = /** @class */ (function (_super) {
         return _this;
     }
     RecordListServiceImpl.prototype.getListeDossiers = function () {
-        return Promise.resolve([{ "num_permis": "permis", "nom": "nom", "prenom": "prenom", "date_de_naissance": "21/09/1998", "date_reception_dossier": "10/05/2018" }]);
+        var _this = this;
+        return this.permisDAO.getAllPermis().then(function (permisList) {
+            var idPersonneArray = [];
+            var idDossierArray = [];
+            permisList.forEach(function (permis) {
+                idPersonneArray.push(permis["idPersonne"]);
+                idDossierArray.push(permis["idDossier"]);
+            });
+            var personne = _this.personneDAO.getPersonne(idPersonneArray);
+            var dossier = _this.dossierDAO.getDossier(idDossierArray);
+            return Promise.all([personne, dossier]).then(function (values) {
+                var personneList = values[0];
+                var dossierList = values[1];
+                var result = [];
+                permisList.forEach(function (permis) {
+                    var obj = { "id_permis": permis.idPermis, "num_permis": null, "nom": null, "prenom": null, "date_de_naissance": null, "date_reception_dossier": null };
+                    obj.num_permis = permis.numPermis;
+                    personneList.forEach(function (personne) {
+                        if (personne.idPermis == permis.idPermis) {
+                            obj.nom = personne.nom;
+                            obj.prenom = personne.prenom;
+                            obj.date_de_naissance = Date.parse(personne.dateDeNaissance);
+                        }
+                    });
+                    dossierList.forEach(function (dossier) {
+                        if (dossier.idPermis == permis.idPermis) {
+                            obj.date_reception_dossier = Date.parse(dossier.dateReceptionDossier);
+                        }
+                    });
+                    result.push(obj);
+                });
+                return Promise.resolve(result);
+            });
+        });
     };
     return RecordListServiceImpl;
 }(service_request_1.ServiceRequest));

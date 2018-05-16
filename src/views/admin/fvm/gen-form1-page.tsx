@@ -14,7 +14,7 @@ import { UploadFileField } from "hornet-js-react-components/src/widget/form/uplo
 import {DataSource} from "hornet-js-core/src/component/datasource/datasource";
 import {Notification} from "hornet-js-react-components/src/widget/notification/notification";
 
-import * as schema from "src/resources/admin/fvm/validation-form.json";
+import * as schema from "src/resources/admin/fvm/validation-form1.json";
 import {SelectField} from "hornet-js-react-components/src/widget/form/select-field";
 import {
   NotificationManager,
@@ -136,7 +136,7 @@ export class FormulairePage extends HornetPage<Form1Service, HornetComponentProp
             />
           </Row>
           <ButtonsArea>
-            <Button type="button" onClick={this.retourPage} label="Annuler"/>
+            <Button type="button" onClick={this.retourPage} label="annuler"/>
             <Button type="submit"
                 value="Valider" className="hornet-button" label="valider"
                 title="valider"/>

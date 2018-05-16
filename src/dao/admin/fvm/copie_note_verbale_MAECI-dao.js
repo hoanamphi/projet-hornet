@@ -9,12 +9,12 @@ var CopieNoteVerbaleMAECIFVMDao = /** @class */ (function (_super) {
     function CopieNoteVerbaleMAECIFVMDao() {
         return _super.call(this) || this;
     }
-    CopieNoteVerbaleMAECIFVMDao.prototype.insererCopieNoteVerbaleMAECI = function (nom, mimetype, encoding, size, data, idDossier) {
+    CopieNoteVerbaleMAECIFVMDao.prototype.insererCopieNoteVerbaleMAECI = function (mimetype, encoding, size, data, idDossier) {
         var _this = this;
-        return this.getIdCopieNoteVerbaleMAECI().then(function (idCopieNoteVerbaleMAECI) {
+        return this.getNewIdCopieNoteVerbaleMAECI().then(function (idCopieNoteVerbaleMAECI) {
             return _this.modelDAO.copieNoteVerbaleMAECIFVMEntity.create({
                 idCopieNoteVerbaleMAECI: idCopieNoteVerbaleMAECI,
-                nom: nom,
+                nom: _this.getNewNom(idCopieNoteVerbaleMAECI),
                 mimetype: mimetype,
                 encoding: encoding,
                 size: size,
@@ -23,7 +23,10 @@ var CopieNoteVerbaleMAECIFVMDao = /** @class */ (function (_super) {
             });
         });
     };
-    CopieNoteVerbaleMAECIFVMDao.prototype.getIdCopieNoteVerbaleMAECI = function () {
+    CopieNoteVerbaleMAECIFVMDao.prototype.getNewNom = function (idCopieNoteVerbaleMAECI) {
+        return "copieNoteVerbaleMAECI" + idCopieNoteVerbaleMAECI + (new Date()).toString();
+    };
+    CopieNoteVerbaleMAECIFVMDao.prototype.getNewIdCopieNoteVerbaleMAECI = function () {
         var _this = this;
         return this.modelDAO.copieNoteVerbaleMAECIFVMEntity.count().then(function (count) {
             if (count > 0) {
@@ -34,6 +37,13 @@ var CopieNoteVerbaleMAECIFVMDao = /** @class */ (function (_super) {
             }
         }).then(function (max) {
             return Promise.resolve(max + 1);
+        });
+    };
+    CopieNoteVerbaleMAECIFVMDao.prototype.getCopieNoteVerbaleMAECI = function (idCopieNoteVerbaleMAECI) {
+        return this.modelDAO.copieNoteVerbaleMAECIFVMEntity.findAll({
+            where: {
+                idCopieNoteVerbaleMAECI: idCopieNoteVerbaleMAECI
+            }
         });
     };
     return CopieNoteVerbaleMAECIFVMDao;

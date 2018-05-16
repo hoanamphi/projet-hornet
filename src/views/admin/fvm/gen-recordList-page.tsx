@@ -9,10 +9,9 @@ import { InputField } from "hornet-js-react-components/src/widget/form/input-fie
 import { CalendarField } from "hornet-js-react-components/src/widget/form/calendar-field";
 import { Button } from "hornet-js-react-components/src/widget/button/button";
 import { ButtonsArea } from "hornet-js-react-components/src/widget/form/buttons-area";
-import {DataSource} from "hornet-js-core/src/component/datasource/datasource";
 import {Notification} from "hornet-js-react-components/src/widget/notification/notification";
 
-import * as schema from "src/resources/admin/fvm/validation-form.json";
+import * as schema from "src/resources/admin/fvm/validation-recordList.json";
 import {
   NotificationManager,
   Notifications,
@@ -28,6 +27,10 @@ import {Content} from "hornet-js-react-components/src/widget/table/content";
 import {Column} from "hornet-js-react-components/src/widget/table/column";
 import {Columns} from "hornet-js-react-components/src/widget/table/columns";
 import {DateColumn} from "hornet-js-react-components/src/widget/table/column/date-column";
+import {Footer} from "hornet-js-react-components/src/widget/table/footer";
+import {Pager} from "hornet-js-react-components/src/widget/pager/pager";
+import {PaginateDataSource, Pagination} from "hornet-js-core/src/component/datasource/paginate-datasource";
+import {ActionColumn} from "hornet-js-react-components/src/widget/table/column/action-column";
 
 const logger: Logger = Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
 
@@ -38,15 +41,33 @@ export class RecordListPage extends HornetPage<any, HornetComponentProps, any> {
   constructor(props?: HornetComponentProps, context?: any) {
     super(props, context);
 
-    this.entries = new DataSource<any> (new DataSourceConfigPage(this, this.getService().getListeDossiers) );
+    this.entries = new PaginateDataSource<any> ([], {itemsPerPage: 10}, {});
   }
 
   prepareClient(): void {
-    this.entries.fetch(true);
+    this.getService().getListeDossiers().then((all)=>{
+      this.entries.add(true, all);
+    });
   }
 
   onSubmit(data: any) {
-    console.log(data);
+    let criteria = {"num_permis": data.num_permis};
+    if(data.nom != null) {
+      criteria["nom"] = data.nom;
+    }
+    if(data.prenom != null) {
+      criteria["prenom"] = data.prenom;
+    }
+    if(data.date_de_naissance != null) {
+      criteria["date_de_naissance"] = Date.parse(data.date_de_naissance);
+    }
+    let subList = this.entries.findAll(criteria);
+    console.log(criteria);
+    subList.forEach(result=>{
+      console.log(result);
+    });
+    this.entries.deleteAll();
+    this.entries.add(true, subList);
   }
 
   render(): JSX.Element {
@@ -54,26 +75,45 @@ export class RecordListPage extends HornetPage<any, HornetComponentProps, any> {
 
     return (
       <div>
+        <Notification id="notif"/>
         <Table id="tableau des entrées">
           <Header title={"Dossiers entrés dans la base"}>
             <MenuActions>
               <ActionButton title={"Ajout"}
                             srcImg={Picto.white.ajouter}
+                            displayedWithoutResult={true}
                             action={this.ajouterDossier} priority={true}/>
             </MenuActions>
           </Header>
 
           <Content dataSource={this.entries}>
             <Columns>
-              <Column keyColumn="num_permis" title={format.fields.num_permis.label} sortable={false}/>
-              <Column keyColumn="nom" title={format.fields.nom.label} sortable={false}/>
-              <Column keyColumn="prenom" title={format.fields.prenom.label} sortable={false}/>
-              <DateColumn keyColumn="date_de_naissance" title={format.fields.date_de_naissance.label} sortable={false}/>
-              <DateColumn keyColumn="date_reception_dossier" title={format.fields.date_reception_dossier.label} sortable={false}/>
+              <Column keyColumn="num_permis"
+                      title={format.fields.num_permis.label}
+                      sortable={false}/>
+              <Column keyColumn="nom"
+                      title={format.fields.nom.label}
+                      sortable={true}/>
+              <Column keyColumn="prenom"
+                      title={format.fields.prenom.label}
+                      sortable={false}/>
+              <DateColumn keyColumn="date_de_naissance"
+                          title={format.fields.date_de_naissance.label}
+                          sortable={false}/>
+              <DateColumn keyColumn="date_reception_dossier"
+                          title={format.fields.date_reception_dossier.label}
+                          sortable={true}/>
+              <ActionColumn keyColumn="id_permis"
+                            srcImg={Picto.black.consulter}
+                            url={"/fvmentries/:id_permis"}/>
             </Columns>
           </Content>
+          <Footer>
+            <Pager dataSource={this.entries} id="table-paginate"/>
+          </Footer>
         </Table>
 
+        <h3> Recherche d'un dossier </h3>
         <Form id="entrycriteriaform"
               schema={schema}
               onSubmit={this.onSubmit}
@@ -93,6 +133,7 @@ export class RecordListPage extends HornetPage<any, HornetComponentProps, any> {
                            title={format.fields.date_de_naissance.title}
                            required={false}/>
             <ButtonsArea>
+              <Button type="button" onClick={this.reloadData} label="annuler"/>
               <Button type="submit"
                       value="Valider" className="hornet-button" label="valider"
                       title="valider"/>
@@ -106,5 +147,12 @@ export class RecordListPage extends HornetPage<any, HornetComponentProps, any> {
 
   ajouterDossier() {
     this.navigateTo("/form", {}, ()=>{});
+  }
+
+  reloadData() {
+    this.entries.deleteAll();
+    this.getService().getListeDossiers().then((all)=>{
+      this.entries.add(true, all);
+    });
   }
 }

@@ -20,8 +20,48 @@ export class RecordListServiceImpl extends ServiceRequest implements RecordListS
   private copiePermisDAO = new CopiePermisFVMDao();
   private prefectureDAO = new PrefectureDAO();
 
-  getListeDossiers(): Promise<any>{
+  getListeDossiers(): Promise<any> {
+    return this.permisDAO.getAllPermis().then(permisList=>{
+      let idPersonneArray = [];
+      let idDossierArray = [];
 
-    return Promise.resolve([{"num_permis": "permis", "nom": "nom", "prenom": "prenom", "date_de_naissance": "21/09/1998", "date_reception_dossier": "10/05/2018"}]);
+      permisList.forEach(permis=>{
+        idPersonneArray.push(permis["idPersonne"]);
+        idDossierArray.push(permis["idDossier"]);
+      });
+
+      let personne = this.personneDAO.getPersonne(idPersonneArray);
+      let dossier = this.dossierDAO.getDossier(idDossierArray)
+
+      return Promise.all([personne, dossier]).then(values=>{
+        let personneList = values[0];
+        let dossierList = values[1];
+
+        let result = [];
+        permisList.forEach(permis=>{
+          let obj = {"id_permis":permis.idPermis, "num_permis": null, "nom": null, "prenom": null, "date_de_naissance": null, "date_reception_dossier": null};
+          obj.num_permis = permis.numPermis;
+
+          personneList.forEach(personne=>{
+            if(personne.idPermis == permis.idPermis){
+              obj.nom = personne.nom;
+              obj.prenom = personne.prenom;
+              obj.date_de_naissance = Date.parse(personne.dateDeNaissance);
+            }
+          });
+
+          dossierList.forEach(dossier=>{
+            if(dossier.idPermis == permis.idPermis){
+              obj.date_reception_dossier = Date.parse(dossier.dateReceptionDossier);
+            }
+          });
+
+          result.push(obj);
+        });
+
+        return Promise.resolve(result);
+      });
+    });
   }
+
 }

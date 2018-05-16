@@ -31,22 +31,22 @@ export class Form1ServiceImpl extends ServiceRequest implements Form1Service {
     let copie_permis = data["copie_permis"];
     let copie_note_verbale_maeci = data["copie_note_verbale_maeci"];
 
-    let idCopieNoteVerbaleMAECI = this.copieNoteVerbaleMAECIDAO.getIdCopieNoteVerbaleMAECI();
-    let idDossier = this.dossierDAO.getIdDossier();
-    let idPersonne = this.personneDAO.getIdPersonne();
-    let idCopiePermis = this.copiePermisDAO.getIdCopiePermis();
-    let idPermis = this.permisDAO.getIdPermis();
+    let idCopieNoteVerbaleMAECI = this.copieNoteVerbaleMAECIDAO.getNewIdCopieNoteVerbaleMAECI();
+    let idDossier = this.dossierDAO.getNewIdDossier();
+    let idPersonne = this.personneDAO.getNewIdPersonne();
+    let idCopiePermis = this.copiePermisDAO.getNewIdCopiePermis();
+    let idPermis = this.permisDAO.getNewIdPermis();
 
     return Promise.all([idCopieNoteVerbaleMAECI, idDossier, idPersonne, idCopiePermis, idPermis]).then(values=>{
-      let insertCopieNoteVerbaleMAECI = this.copieNoteVerbaleMAECIDAO.insererCopieNoteVerbaleMAECI(copie_note_verbale_maeci.nom, copie_note_verbale_maeci.mimetype, copie_note_verbale_maeci.encoding, copie_note_verbale_maeci.size, copie_note_verbale_maeci.data, values[1]);
+      let insertCopieNoteVerbaleMAECI = this.copieNoteVerbaleMAECIDAO.insererCopieNoteVerbaleMAECI(copie_note_verbale_maeci.mimetype, copie_note_verbale_maeci.encoding, copie_note_verbale_maeci.size, copie_note_verbale_maeci.data, values[1]);
 
       let insertDossier = this.dossierDAO.insererDossier(values[0], new Date(), values[4]);
 
-      let insertPersonne = this.personneDAO.insererPersonne(content.nom, content.prenom, content.date_de_naissance, content.ville_de_naissance, content.pays_de_naissance, values[4]);
+      let insertPersonne = this.personneDAO.insererPersonne(content.nom.toLowerCase(), content.prenom.toLowerCase(), content.date_de_naissance, content.ville_de_naissance, content.pays_de_naissance, values[4]);
 
-      let insertCopiePermis = this.copiePermisDAO.insererCopiePermis(copie_permis.nom, copie_permis.mimetype, copie_permis.encoding, copie_permis.size, copie_permis.data, values[4]);
+      let insertCopiePermis = this.copiePermisDAO.insererCopiePermis(copie_permis.mimetype, copie_permis.encoding, copie_permis.size, copie_permis.data, values[4]);
 
-      let insertPermis = this.permisDAO.insererPermis(content.num_permis, values[3], content.date_de_delivrance, values[2], values[1], content.id_prefecture["value"]);
+      let insertPermis = this.permisDAO.insererPermis(content.num_permis, values[3], content.date_de_delivrance, values[2], values[1], content.id_prefecture);
 
       return Promise.all([insertCopieNoteVerbaleMAECI, insertDossier, insertPersonne, insertCopiePermis,insertPermis]);
     }).catch(error=>{
