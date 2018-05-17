@@ -7,11 +7,11 @@ import {DossierFVMDAO} from "../../../../dao/admin/fvm/dossier-dao";
 import {PermisFVMDAO} from "../../../../dao/admin/fvm/permis-dao";
 import {CopiePermisFVMDao} from "../../../../dao/admin/fvm/copie_permis-dao";
 import {PrefectureDAO} from "../../../../dao/prefecture-dao";
-import {RecordListService} from "../../../page/admin/fvm/recordList-service";
+import {ClientListService} from "../../../page/admin/fvm/client-list-service";
 
 const logger: Logger = Utils.getLogger("projet-hornet.services.data.admin.admin-service-impl-data");
 
-export class RecordListServiceImpl extends ServiceRequest implements RecordListService {
+export class ClientListServiceImpl extends ServiceRequest implements ClientListService {
 
   private personneDAO = new PersonneFVMDAO();
   private dossierDAO = new DossierFVMDAO();
@@ -64,4 +64,56 @@ export class RecordListServiceImpl extends ServiceRequest implements RecordListS
     });
   }
 
+  getDossier(data): Promise<any> {
+    let idPermis = data["id"];
+    return this.permisDAO.getPermis(idPermis).then(values=>{
+      let permis = values[0];
+
+      let result = {};
+      result["num_permis"] = permis.numPermis;
+      result["date_de_delivrance"] = Date.parse(permis.dateDeDelivrance);
+
+      let personne = this.personneDAO.getPersonne(permis.idPersonne);
+      let dossier = this.dossierDAO.getDossier(permis.idDossier);
+      let prefecture_delivrance = this.prefectureDAO.getPrefecture(permis.idPrefectureDelivrance);
+
+      return Promise.all([personne, dossier, prefecture_delivrance]).then(values=>{
+        let personne = values[0][0];
+        let dossier = values[1][0];
+        let prefecture = values[2][0];
+
+        result["nom"] = personne.nom;
+        result["prenom"] = personne.prenom;
+        result["date_de_naissance"] = Date.parse(personne.dateDeNaissance);
+        result["ville_de_naissance"] = personne.villeDeNaissance;
+        result["pays_de_naissance"] = personne.paysDeNaissance;
+
+        result["date_reception_dossier"] = Date.parse(dossier.dateReceptionDossier);
+
+        result["region"] = prefecture.region;
+        result["departement"] = prefecture.departement;
+        result["prefecture"] = prefecture.prefecture;
+        result["adresse"] = prefecture.adresse;
+        result["code_postal"] = prefecture.codePostal;
+        result["ville"] = prefecture.ville;
+
+        return Promise.resolve([result]);
+      });
+    });
+  }
+
+  getDemandeAuthentification(data): Promise<any> {
+    let idPermis = data["id"];
+    return Promise.resolve([]);
+  }
+
+  getReleve(data): Promise<any> {
+    let idPermis = data["id"];
+    return Promise.resolve([]);
+  }
+
+  getNoteVerbale(data): Promise<any> {
+    let idPermis = data["id"];
+    return Promise.resolve([]);
+  }
 }

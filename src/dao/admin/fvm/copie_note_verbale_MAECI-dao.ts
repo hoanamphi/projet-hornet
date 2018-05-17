@@ -24,6 +24,8 @@ export class CopieNoteVerbaleMAECIFVMDao extends EntityDAO {
         size: size,
         data: data,
         idDossier: idDossier
+      }).then(result=>{
+        return Promise.resolve(idCopieNoteVerbaleMAECI);
       });
     });
   }

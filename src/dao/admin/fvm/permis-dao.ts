@@ -24,6 +24,8 @@ export class PermisFVMDAO extends EntityDAO {
         idPersonne: idPersonne,
         idDossier: idDossier,
         idPrefectureDelivrance: idPrefectureDelivrance
+      }).then(result=>{
+        return Promise.resolve(idPermis);
       });
     });
   }

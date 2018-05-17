@@ -73,7 +73,7 @@ var RecordListPage = /** @class */ (function (_super) {
                         React.createElement(column_1.Column, { keyColumn: "prenom", title: format.fields.prenom.label, sortable: false }),
                         React.createElement(date_column_1.DateColumn, { keyColumn: "date_de_naissance", title: format.fields.date_de_naissance.label, sortable: false }),
                         React.createElement(date_column_1.DateColumn, { keyColumn: "date_reception_dossier", title: format.fields.date_reception_dossier.label, sortable: true }),
-                        React.createElement(action_column_1.ActionColumn, { keyColumn: "id_permis", srcImg: picto_1.Picto.black.consulter, url: "/fvmentries/:id_permis" }))),
+                        React.createElement(action_column_1.ActionColumn, { keyColumn: "id_permis", srcImg: picto_1.Picto.black.consulter, url: "/record/:id_permis" }))),
                 React.createElement(footer_1.Footer, null,
                     React.createElement(pager_1.Pager, { dataSource: this.entries, id: "table-paginate" }))),
             React.createElement("h3", null, " Recherche d'un dossier "),
@@ -88,7 +88,7 @@ var RecordListPage = /** @class */ (function (_super) {
                         React.createElement(button_1.Button, { type: "submit", value: "Valider", className: "hornet-button", label: "valider", title: "valider" }))))));
     };
     RecordListPage.prototype.ajouterDossier = function () {
-        this.navigateTo("/form", {}, function () { });
+        this.navigateTo("/form1", {}, function () { });
     };
     RecordListPage.prototype.reloadData = function () {
         var _this = this;
@@ -100,4 +100,5 @@ var RecordListPage = /** @class */ (function (_super) {
     return RecordListPage;
 }(hornet_page_1.HornetPage));
 exports.RecordListPage = RecordListPage;
+
 //# sourceMappingURL=gen-recordList-page.js.map

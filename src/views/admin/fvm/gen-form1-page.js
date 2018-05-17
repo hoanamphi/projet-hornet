@@ -80,7 +80,7 @@ var FormulairePage = /** @class */ (function (_super) {
                     React.createElement(button_1.Button, { type: "submit", value: "Valider", className: "hornet-button", label: "valider", title: "valider" })))));
     };
     FormulairePage.prototype.retourPage = function () {
-        this.navigateTo("/fvmentries", {}, function () { });
+        this.navigateTo("/record", {}, function () { });
     };
     return FormulairePage;
 }(hornet_page_1.HornetPage));

@@ -29,7 +29,7 @@
 /******/
 /******/ 	// objects to store loaded and loading chunks
 /******/ 	var installedChunks = {
-/******/ 		6: 0
+/******/ 		5: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -19075,7 +19075,7 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var hornet_js_utils_1 = __webpack_require__(0);
-var nodeUtil = __webpack_require__(57);
+var nodeUtil = __webpack_require__(58);
 var _ = __webpack_require__(6);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.event.hornet-event");
 /* Inclusion du polyfill pour support du constructeur CustomEvent pour IE >= 9 */
@@ -19737,7 +19737,7 @@ var tslib_1 = __webpack_require__(1);
  */
 var base_error_1 = __webpack_require__(16);
 var moment = __webpack_require__(44);
-var os = __webpack_require__(61);
+var os = __webpack_require__(62);
 var TechnicalError = /** @class */ (function (_super) {
     tslib_1.__extends(TechnicalError, _super);
     function TechnicalError(code, args, cause) {
@@ -19888,7 +19888,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
  * @license CECILL-2.1
  */
-var logger_1 = __webpack_require__(56);
+var logger_1 = __webpack_require__(57);
 var Register = /** @class */ (function () {
     function Register() {
     }
@@ -20012,7 +20012,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @license CECILL-2.1
  */
 var _ = __webpack_require__(6);
-var util = __webpack_require__(57);
+var util = __webpack_require__(58);
 var BaseError = /** @class */ (function () {
     function BaseError(code, message, args, cause) {
         if (code === void 0) { code = ""; }
@@ -20242,10 +20242,10 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var hornet_js_utils_1 = __webpack_require__(0);
-var async_element_1 = __webpack_require__(66);
+var async_element_1 = __webpack_require__(67);
 var hornet_event_1 = __webpack_require__(7);
 var security_error_1 = __webpack_require__(163);
-var authentication_utils_1 = __webpack_require__(68);
+var authentication_utils_1 = __webpack_require__(69);
 var error_manager_1 = __webpack_require__(32);
 // ------------------------------------------------------------------------------------------------------------------- //
 //                                      ContextInitializerElement
@@ -20457,7 +20457,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 var hornet_js_utils_1 = __webpack_require__(0);
 var MenuConstants = __webpack_require__(47);
-var authentication_utils_1 = __webpack_require__(68);
+var authentication_utils_1 = __webpack_require__(69);
 var _ = __webpack_require__(6);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-component.navigation.utils.navigation-utils");
 /**
@@ -20749,8 +20749,8 @@ var util = __webpack_require__(25);
 util.inherits = __webpack_require__(11);
 /*</replacement>*/
 
-var Readable = __webpack_require__(80);
-var Writable = __webpack_require__(83);
+var Readable = __webpack_require__(81);
+var Writable = __webpack_require__(84);
 
 util.inherits(Duplex, Readable);
 
@@ -20895,7 +20895,7 @@ if (process.env.NODE_ENV === 'production') {
 
 var base64 = __webpack_require__(200)
 var ieee754 = __webpack_require__(201)
-var isArray = __webpack_require__(76)
+var isArray = __webpack_require__(77)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -28682,165 +28682,6 @@ module.exports = warning;
  *
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * hornet-js-core - Ensemble des composants qui forment le coeur de hornet-js
- *
- * @author MEAE - Ministère de l'Europe et des Affaires étrangères
- * @version v5.1.1
- * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
- * @license CECILL-2.1
- */
-var hornet_js_utils_1 = __webpack_require__(0);
-var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.services.service-request");
-var Url = __webpack_require__(41);
-var _ = __webpack_require__(6);
-var hornet_superagent_1 = __webpack_require__(71);
-var ServiceRequest = /** @class */ (function () {
-    function ServiceRequest() {
-        if (hornet_js_utils_1.Utils.isServer && !hornet_js_utils_1.Utils.config.has("database")) {
-            // pas de defaultServices dans le cas d'une base de données présente. => Hornet-lite
-            this.serviceHost = hornet_js_utils_1.Utils.config.get("defaultServices.host");
-            this.serviceName = hornet_js_utils_1.Utils.config.get("defaultServices.name");
-        }
-        else {
-            this.serviceHost = hornet_js_utils_1.Utils.config.getOrDefault("fullSpa.host", "");
-            this.serviceName = hornet_js_utils_1.Utils.buildContextPath(hornet_js_utils_1.Utils.config.getOrDefault("fullSpa.name", "/services"));
-        }
-    }
-    ServiceRequest.prototype.getServiceHost = function () {
-        return this.serviceHost;
-    };
-    ServiceRequest.prototype.setServiceHost = function (serviceHost) {
-        this.serviceHost = serviceHost;
-    };
-    ServiceRequest.prototype.getServiceName = function () {
-        return this.serviceName;
-    };
-    ServiceRequest.prototype.setServiceName = function (serviceName) {
-        this.serviceName = serviceName;
-    };
-    /**
-     * envoi d'une requete
-     * @param {HornetRequest} request objet representant une requête (methode 'get' par defaut)
-     * @returns {Promise<Response>}
-     */
-    ServiceRequest.prototype.fetch = function (request) {
-        return this.getFetcher().fetch(request);
-    };
-    /**
-     * envoi d'une requete avec la reponse superagent bindée sur un flux
-     * @param {HornetRequest} request objet representant une requête
-     * @param {NodeJS.WritableStream} pipedStream flux bindé sur la reponse superagent
-     * @returns {Promise<Response>}
-     */
-    ServiceRequest.prototype.fetchOnStream = function (request, pipedStream) {
-        return this.getFetcher().fetch(request, pipedStream);
-    };
-    /**
-     * Récupère une instance de HornetSuperagent
-     * @returns {HornetSuperAgent}
-     */
-    ServiceRequest.prototype.getFetcher = function () {
-        return new hornet_superagent_1.HornetSuperAgent();
-    };
-    /**
-     * Construit une url complète en ajoutant le Host et le chemin aux ressources services
-     * @param {string} path url partielle
-     * @return url complete {host}/{service}/{path}
-     */
-    ServiceRequest.prototype.buildUrl = function (path) {
-        var urlService = Url.resolve(this.serviceHost, this.serviceName);
-        if (_.endsWith(urlService, "/")) {
-            // On enlève le slash de fin si présent
-            urlService = urlService.substr(0, urlService.length - 1);
-        }
-        var url = urlService + path;
-        logger.trace("buildUrl : url = ", url);
-        return url;
-    };
-    return ServiceRequest;
-}());
-exports.ServiceRequest = ServiceRequest;
-
-
-
-/***/ }),
-/* 40 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * Ce logiciel est un programme informatique servant à faciliter la création
- * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
- * <p/>
- * Ce logiciel est régi par la licence CeCILL soumise au droit français et
- * respectant les principes de diffusion des logiciels libres. Vous pouvez
- * utiliser, modifier et/ou redistribuer ce programme sous les conditions
- * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
- * sur le site "http://www.cecill.info".
- * <p/>
- * En contrepartie de l'accessibilité au code source et des droits de copie,
- * de modification et de redistribution accordés par cette licence, il n'est
- * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
- * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
- * titulaire des droits patrimoniaux et les concédants successifs.
- * <p/>
- * A cet égard  l'attention de l'utilisateur est attirée sur les risques
- * associés au chargement,  à l'utilisation,  à la modification et/ou au
- * développement et à la reproduction du logiciel par l'utilisateur étant
- * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
- * manipuler et qui le réserve donc à des développeurs et des professionnels
- * avertis possédant  des  connaissances  informatiques approfondies.  Les
- * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
- * logiciel à leurs besoins dans des conditions permettant d'assurer la
- * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
- * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
- * <p/>
- * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
- * pris connaissance de la licence CeCILL, et que vous en avez accepté les
- * termes.
- * <p/>
- * <p/>
- * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * This software is a computer program whose purpose is to facilitate creation of
- * web application in accordance with french general repositories : RGI, RGS and RGAA.
- * <p/>
- * This software is governed by the CeCILL license under French law and
- * abiding by the rules of distribution of free software.  You can  use,
- * modify and/ or redistribute the software under the terms of the CeCILL
- * license as circulated by CEA, CNRS and INRIA at the following URL
- * "http://www.cecill.info".
- * <p/>
- * As a counterpart to the access to the source code and  rights to copy,
- * modify and redistribute granted by the license, users are provided only
- * with a limited warranty  and the software's author,  the holder of the
- * economic rights,  and the successive licensors  have only  limited
- * liability.
- * <p/>
- * In this respect, the user's attention is drawn to the risks associated
- * with loading,  using,  modifying and/or developing or reproducing the
- * software by the user in light of its specific status of free software,
- * that may mean  that it is complicated to manipulate,  and  that  also
- * therefore means  that it is reserved for developers  and  experienced
- * professionals having in-depth computer knowledge. Users are therefore
- * encouraged to load and test the software's suitability as regards their
- * requirements in conditions enabling the security of their systems and/or
- * data to be ensured and,  more generally, to use and operate it in the
- * same conditions as regards security.
- * <p/>
- * The fact that you are presently reading this means that you have had
- * knowledge of the CeCILL license and that you accept its terms.
- *
- */
-Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 /**
  * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
@@ -29179,6 +29020,165 @@ var Dropdown = /** @class */ (function (_super) {
     return Dropdown;
 }(hornet_component_1.HornetComponent));
 exports.Dropdown = Dropdown;
+
+
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * Ce logiciel est un programme informatique servant à faciliter la création
+ * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
+ * <p/>
+ * Ce logiciel est régi par la licence CeCILL soumise au droit français et
+ * respectant les principes de diffusion des logiciels libres. Vous pouvez
+ * utiliser, modifier et/ou redistribuer ce programme sous les conditions
+ * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
+ * sur le site "http://www.cecill.info".
+ * <p/>
+ * En contrepartie de l'accessibilité au code source et des droits de copie,
+ * de modification et de redistribution accordés par cette licence, il n'est
+ * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
+ * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
+ * titulaire des droits patrimoniaux et les concédants successifs.
+ * <p/>
+ * A cet égard  l'attention de l'utilisateur est attirée sur les risques
+ * associés au chargement,  à l'utilisation,  à la modification et/ou au
+ * développement et à la reproduction du logiciel par l'utilisateur étant
+ * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
+ * manipuler et qui le réserve donc à des développeurs et des professionnels
+ * avertis possédant  des  connaissances  informatiques approfondies.  Les
+ * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
+ * logiciel à leurs besoins dans des conditions permettant d'assurer la
+ * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
+ * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
+ * <p/>
+ * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
+ * pris connaissance de la licence CeCILL, et que vous en avez accepté les
+ * termes.
+ * <p/>
+ * <p/>
+ * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * This software is a computer program whose purpose is to facilitate creation of
+ * web application in accordance with french general repositories : RGI, RGS and RGAA.
+ * <p/>
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software.  You can  use,
+ * modify and/ or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ * <p/>
+ * As a counterpart to the access to the source code and  rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty  and the software's author,  the holder of the
+ * economic rights,  and the successive licensors  have only  limited
+ * liability.
+ * <p/>
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading,  using,  modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean  that it is complicated to manipulate,  and  that  also
+ * therefore means  that it is reserved for developers  and  experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and,  more generally, to use and operate it in the
+ * same conditions as regards security.
+ * <p/>
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * hornet-js-core - Ensemble des composants qui forment le coeur de hornet-js
+ *
+ * @author MEAE - Ministère de l'Europe et des Affaires étrangères
+ * @version v5.1.1
+ * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
+ * @license CECILL-2.1
+ */
+var hornet_js_utils_1 = __webpack_require__(0);
+var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.services.service-request");
+var Url = __webpack_require__(41);
+var _ = __webpack_require__(6);
+var hornet_superagent_1 = __webpack_require__(72);
+var ServiceRequest = /** @class */ (function () {
+    function ServiceRequest() {
+        if (hornet_js_utils_1.Utils.isServer && !hornet_js_utils_1.Utils.config.has("database")) {
+            // pas de defaultServices dans le cas d'une base de données présente. => Hornet-lite
+            this.serviceHost = hornet_js_utils_1.Utils.config.get("defaultServices.host");
+            this.serviceName = hornet_js_utils_1.Utils.config.get("defaultServices.name");
+        }
+        else {
+            this.serviceHost = hornet_js_utils_1.Utils.config.getOrDefault("fullSpa.host", "");
+            this.serviceName = hornet_js_utils_1.Utils.buildContextPath(hornet_js_utils_1.Utils.config.getOrDefault("fullSpa.name", "/services"));
+        }
+    }
+    ServiceRequest.prototype.getServiceHost = function () {
+        return this.serviceHost;
+    };
+    ServiceRequest.prototype.setServiceHost = function (serviceHost) {
+        this.serviceHost = serviceHost;
+    };
+    ServiceRequest.prototype.getServiceName = function () {
+        return this.serviceName;
+    };
+    ServiceRequest.prototype.setServiceName = function (serviceName) {
+        this.serviceName = serviceName;
+    };
+    /**
+     * envoi d'une requete
+     * @param {HornetRequest} request objet representant une requête (methode 'get' par defaut)
+     * @returns {Promise<Response>}
+     */
+    ServiceRequest.prototype.fetch = function (request) {
+        return this.getFetcher().fetch(request);
+    };
+    /**
+     * envoi d'une requete avec la reponse superagent bindée sur un flux
+     * @param {HornetRequest} request objet representant une requête
+     * @param {NodeJS.WritableStream} pipedStream flux bindé sur la reponse superagent
+     * @returns {Promise<Response>}
+     */
+    ServiceRequest.prototype.fetchOnStream = function (request, pipedStream) {
+        return this.getFetcher().fetch(request, pipedStream);
+    };
+    /**
+     * Récupère une instance de HornetSuperagent
+     * @returns {HornetSuperAgent}
+     */
+    ServiceRequest.prototype.getFetcher = function () {
+        return new hornet_superagent_1.HornetSuperAgent();
+    };
+    /**
+     * Construit une url complète en ajoutant le Host et le chemin aux ressources services
+     * @param {string} path url partielle
+     * @return url complete {host}/{service}/{path}
+     */
+    ServiceRequest.prototype.buildUrl = function (path) {
+        var urlService = Url.resolve(this.serviceHost, this.serviceName);
+        if (_.endsWith(urlService, "/")) {
+            // On enlève le slash de fin si présent
+            urlService = urlService.substr(0, urlService.length - 1);
+        }
+        var url = urlService + path;
+        logger.trace("buildUrl : url = ", url);
+        return url;
+    };
+    return ServiceRequest;
+}());
+exports.ServiceRequest = ServiceRequest;
 
 
 
@@ -30432,7 +30432,7 @@ var ReactDom = __webpack_require__(22);
 var hornet_component_1 = __webpack_require__(3);
 var notification_message_item_1 = __webpack_require__(224);
 var notification_events_1 = __webpack_require__(45);
-var accordion_1 = __webpack_require__(92);
+var accordion_1 = __webpack_require__(53);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.notification.notification");
 /**
  * Type d'erreur
@@ -30883,73 +30883,6 @@ if (index_1.Utils.isServer) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-
-
-if (process.env.NODE_ENV !== 'production') {
-  var invariant = __webpack_require__(37);
-  var warning = __webpack_require__(38);
-  var ReactPropTypesSecret = __webpack_require__(99);
-  var loggedTypeFailures = {};
-}
-
-/**
- * Assert that the values match with the type specs.
- * Error messages are memorized and will only be shown once.
- *
- * @param {object} typeSpecs Map of name to a ReactPropType
- * @param {object} values Runtime values that need to be type-checked
- * @param {string} location e.g. "prop", "context", "child context"
- * @param {string} componentName Name of the component for error messages.
- * @param {?Function} getStack Returns the component stack.
- * @private
- */
-function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
-  if (process.env.NODE_ENV !== 'production') {
-    for (var typeSpecName in typeSpecs) {
-      if (typeSpecs.hasOwnProperty(typeSpecName)) {
-        var error;
-        // Prop type validation may throw. In case they do, we don't want to
-        // fail the render phase where it didn't fail before. So we log it.
-        // After these have been cleaned up, we'll let them throw.
-        try {
-          // This is intentionally an invariant that gets caught. It's the same
-          // behavior as without this statement except with a better message.
-          invariant(typeof typeSpecs[typeSpecName] === 'function', '%s: %s type `%s` is invalid; it must be a function, usually from ' + 'the `prop-types` package, but received `%s`.', componentName || 'React class', location, typeSpecName, typeof typeSpecs[typeSpecName]);
-          error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret);
-        } catch (ex) {
-          error = ex;
-        }
-        warning(!error || error instanceof Error, '%s: type specification of %s `%s` is invalid; the type checker ' + 'function must return `null` or an `Error` but returned a %s. ' + 'You may have forgotten to pass an argument to the type checker ' + 'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' + 'shape all require an argument).', componentName || 'React class', location, typeSpecName, typeof error);
-        if (error instanceof Error && !(error.message in loggedTypeFailures)) {
-          // Only monitor this failure once because there tends to be a lot of the
-          // same error.
-          loggedTypeFailures[error.message] = true;
-
-          var stack = getStack ? getStack() : '';
-
-          warning(false, 'Failed %s type: %s%s', location, error.message, stack != null ? stack : '');
-        }
-      }
-    }
-  }
-}
-
-module.exports = checkPropTypes;
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
-
-/***/ }),
-/* 52 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
 
 /**
  * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
@@ -31259,7 +31192,522 @@ exports.HornetPage = HornetPage;
 
 
 /***/ }),
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+if (process.env.NODE_ENV !== 'production') {
+  var invariant = __webpack_require__(37);
+  var warning = __webpack_require__(38);
+  var ReactPropTypesSecret = __webpack_require__(99);
+  var loggedTypeFailures = {};
+}
+
+/**
+ * Assert that the values match with the type specs.
+ * Error messages are memorized and will only be shown once.
+ *
+ * @param {object} typeSpecs Map of name to a ReactPropType
+ * @param {object} values Runtime values that need to be type-checked
+ * @param {string} location e.g. "prop", "context", "child context"
+ * @param {string} componentName Name of the component for error messages.
+ * @param {?Function} getStack Returns the component stack.
+ * @private
+ */
+function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
+  if (process.env.NODE_ENV !== 'production') {
+    for (var typeSpecName in typeSpecs) {
+      if (typeSpecs.hasOwnProperty(typeSpecName)) {
+        var error;
+        // Prop type validation may throw. In case they do, we don't want to
+        // fail the render phase where it didn't fail before. So we log it.
+        // After these have been cleaned up, we'll let them throw.
+        try {
+          // This is intentionally an invariant that gets caught. It's the same
+          // behavior as without this statement except with a better message.
+          invariant(typeof typeSpecs[typeSpecName] === 'function', '%s: %s type `%s` is invalid; it must be a function, usually from ' + 'the `prop-types` package, but received `%s`.', componentName || 'React class', location, typeSpecName, typeof typeSpecs[typeSpecName]);
+          error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret);
+        } catch (ex) {
+          error = ex;
+        }
+        warning(!error || error instanceof Error, '%s: type specification of %s `%s` is invalid; the type checker ' + 'function must return `null` or an `Error` but returned a %s. ' + 'You may have forgotten to pass an argument to the type checker ' + 'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' + 'shape all require an argument).', componentName || 'React class', location, typeSpecName, typeof error);
+        if (error instanceof Error && !(error.message in loggedTypeFailures)) {
+          // Only monitor this failure once because there tends to be a lot of the
+          // same error.
+          loggedTypeFailures[error.message] = true;
+
+          var stack = getStack ? getStack() : '';
+
+          warning(false, 'Failed %s type: %s%s', location, error.message, stack != null ? stack : '');
+        }
+      }
+    }
+  }
+}
+
+module.exports = checkPropTypes;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+
+/***/ }),
 /* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * Ce logiciel est un programme informatique servant à faciliter la création
+ * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
+ * <p/>
+ * Ce logiciel est régi par la licence CeCILL soumise au droit français et
+ * respectant les principes de diffusion des logiciels libres. Vous pouvez
+ * utiliser, modifier et/ou redistribuer ce programme sous les conditions
+ * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
+ * sur le site "http://www.cecill.info".
+ * <p/>
+ * En contrepartie de l'accessibilité au code source et des droits de copie,
+ * de modification et de redistribution accordés par cette licence, il n'est
+ * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
+ * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
+ * titulaire des droits patrimoniaux et les concédants successifs.
+ * <p/>
+ * A cet égard  l'attention de l'utilisateur est attirée sur les risques
+ * associés au chargement,  à l'utilisation,  à la modification et/ou au
+ * développement et à la reproduction du logiciel par l'utilisateur étant
+ * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
+ * manipuler et qui le réserve donc à des développeurs et des professionnels
+ * avertis possédant  des  connaissances  informatiques approfondies.  Les
+ * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
+ * logiciel à leurs besoins dans des conditions permettant d'assurer la
+ * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
+ * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
+ * <p/>
+ * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
+ * pris connaissance de la licence CeCILL, et que vous en avez accepté les
+ * termes.
+ * <p/>
+ * <p/>
+ * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * This software is a computer program whose purpose is to facilitate creation of
+ * web application in accordance with french general repositories : RGI, RGS and RGAA.
+ * <p/>
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software.  You can  use,
+ * modify and/ or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ * <p/>
+ * As a counterpart to the access to the source code and  rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty  and the software's author,  the holder of the
+ * economic rights,  and the successive licensors  have only  limited
+ * liability.
+ * <p/>
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading,  using,  modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean  that it is complicated to manipulate,  and  that  also
+ * therefore means  that it is reserved for developers  and  experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and,  more generally, to use and operate it in the
+ * same conditions as regards security.
+ * <p/>
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(1);
+/**
+ * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
+ *
+ * @author MEAE - Ministère de l'Europe et des Affaires étrangères
+ * @version v5.1.1
+ * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
+ * @license CECILL-2.1
+ */
+var hornet_js_utils_1 = __webpack_require__(0);
+var React = __webpack_require__(2);
+var classNames = __webpack_require__(9);
+var key_codes_1 = __webpack_require__(10);
+var hornet_component_1 = __webpack_require__(3);
+var hornet_event_1 = __webpack_require__(7);
+var notification_events_1 = __webpack_require__(45);
+var accordion_header_1 = __webpack_require__(225);
+var accordion_info_1 = __webpack_require__(226);
+var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.accordion.accordion");
+exports.TAB_ID_NAME = "tab";
+exports.FOCUS_ON_ACCORDION = new hornet_event_1.HornetEvent("FOCUS_ON_ACCORDION");
+/**
+ * Composant Accordion
+ */
+var Accordion = /** @class */ (function (_super) {
+    tslib_1.__extends(Accordion, _super);
+    function Accordion(props, context) {
+        var _this = _super.call(this, props, context) || this;
+        _this.errors = 0;
+        _this.state.id = _this.props.id + _this.props.panelIndex;
+        return _this;
+    }
+    Accordion.prototype.componentDidMount = function () {
+        var _this = this;
+        _super.prototype.componentDidMount.call(this);
+        this.trackInputFieldFromChildren(document.getElementById(this.getAccordionLiId()));
+        this.listen(exports.FOCUS_ON_ACCORDION, function (ev) {
+            if (ev.detail == _this.getAccordionPanelId()) {
+                var element = document.getElementById(ev.detail);
+                element.className = element.className.replace("hidden", "visible");
+            }
+        });
+        this.listen(notification_events_1.ADD_NOTIFICATION_EVENT, this.accordionHasError);
+        this.listen(notification_events_1.CLEAN_NOTIFICATION_EVENT, this.accordionHasError);
+        this.listen(notification_events_1.CLEAN_ALL_NOTIFICATION_EVENT, this.accordionHasError);
+    };
+    /**
+     * @inheritDoc
+     */
+    Accordion.prototype.componentWillUnmount = function () {
+        _super.prototype.componentWillUnmount.call(this);
+        this.remove(notification_events_1.ADD_NOTIFICATION_EVENT, this.accordionHasError);
+        this.remove(notification_events_1.CLEAN_NOTIFICATION_EVENT, this.accordionHasError);
+        this.remove(notification_events_1.CLEAN_ALL_NOTIFICATION_EVENT, this.accordionHasError);
+    };
+    Accordion.prototype.getAccordionPanelId = function () {
+        return this.state.id + "-" + "panel";
+    };
+    Accordion.prototype.getAccordionLiId = function () {
+        return this.state.id + "-" + "li";
+    };
+    Accordion.prototype.trackInputFieldFromChildren = function (node) {
+        var _this = this;
+        if (node) {
+            if (Array.isArray(node)) {
+                node.forEach(function (element) {
+                    _this.trackInputFieldFromChildren(element);
+                });
+            }
+            else {
+                if (node.localName == "input" && !node.hidden) {
+                    node.setAttribute("accordion", this.getAccordionPanelId());
+                    node.setAttribute("accordionIndex", this.state.panelIndex);
+                }
+                else if (node.children) {
+                    this.trackInputFieldFromChildren(node.children);
+                }
+                else if (node instanceof HTMLCollection) {
+                    for (var i = 0; i < node.length; i++) {
+                        this.trackInputFieldFromChildren(node[i]);
+                    }
+                }
+            }
+        }
+    };
+    /**
+     * @inheritDoc
+     */
+    Accordion.prototype.render = function () {
+        var _this = this;
+        var classNameLi = classNames({
+            "accordion-header": true,
+            "accordion-selected": this.state.isOpen
+        });
+        var handClick = function () {
+            _this.state.handleClickAccordion(_this.state.panelIndex);
+        };
+        var handleFocus = function (e) {
+            var target = e.target;
+            var event = e;
+            _this.state.handleFocusAccordion(_this.state.panelIndex, event, target);
+        };
+        var handleBlur = function (e) {
+            var target = e.target;
+            var event = e;
+            _this.state.handleBlurAccordion(_this.state.panelIndex, event, target);
+        };
+        var classNameDivContent = classNames({
+            "accordion-content": true,
+            "visible": this.state.isOpen,
+            "hidden": !this.state.isOpen
+        });
+        var classAccordionPicto = classNames({
+            'accordion-arrow-close': !this.state.isOpen,
+            'accordion-arrow-open': this.state.isOpen,
+            "fr": true
+        });
+        var classAccordionErrors = classNames({
+            'accordion-errors-close': !this.state.isOpen,
+            'accordion-errors-open': this.state.isOpen,
+            "fr": true
+        });
+        var classNameAccordion = classNames({
+            "accordion-label": true,
+            'accordion-label-open': this.state.isOpen
+        });
+        var errorMessage = "";
+        if (this.state.errors > 0) {
+            errorMessage = this.state.errors + " ";
+            errorMessage += this.state.errors == 1 ? this.i18n("form.accordion.error") : this.i18n("form.accordion.errors");
+        }
+        var header;
+        React.Children.map(this.props.children, function (child) {
+            if (child.type === accordion_header_1.AccordionHeader) {
+                header = child;
+            }
+        });
+        var info;
+        React.Children.map(this.props.children, function (child) {
+            if (child.type === accordion_info_1.AccordionInfo) {
+                info = child;
+            }
+        });
+        return (React.createElement("li", { className: classNameLi, onKeyDown: this.handleKeyDownButton, onFocus: handleFocus, role: "heading", id: this.getAccordionLiId() },
+            React.createElement("a", { href: "#", className: classNameAccordion, onClick: handClick, id: this.state.id + "-" + exports.TAB_ID_NAME, "aria-expanded": this.state.isOpen, role: "button", "aria-level": "3", tabIndex: this.state.tabIndex, "aria-controls": this.getAccordionPanelId() },
+                header ? header : this.props.title,
+                React.createElement("div", { id: this.state.id + "-" + "arrow-content", className: "arrow-content " + classAccordionPicto }, info ? info : this.props.infoAccordion),
+                React.createElement("div", { id: this.state.id + "-" + "errors-content", className: "errors-content " + classAccordionErrors }, errorMessage)),
+            React.createElement("div", { className: classNameDivContent, id: this.getAccordionPanelId(), role: "region", "aria-labelledby": this.state.id + "-" + exports.TAB_ID_NAME }, React.Children.map(this.state.children, function (child) {
+                if ((child.type != accordion_header_1.AccordionHeader) &&
+                    (child.type != accordion_info_1.AccordionInfo)) {
+                    return React.cloneElement(child);
+                }
+            }))));
+    };
+    /**
+     * Gestion aux clavier
+     * @param e
+     */
+    Accordion.prototype.handleKeyDownButton = function (e) {
+        /* On ne prend en compte que les évènements clavier sans modificateur, pour ne pas surcharger
+         * des raccourcis standards tels Alt+ArrowLeft */
+        var keyCode = e.keyCode;
+        var preventDefault = true;
+        var maxAccordion = (this.props.totalAccordion - 1);
+        if (e.ctrlKey) {
+            this.handleKeyDownPanel(e, preventDefault);
+        }
+        else {
+            /** Si c'est différent d */
+            if (e.target.className != "accordion-label accordion-label-open" && e.target.className != "accordion-label") {
+                e.stopPropagation();
+                preventDefault = false;
+            }
+            else {
+                switch (keyCode) {
+                    case key_codes_1.KeyCodes.LEFT_ARROW:
+                    case key_codes_1.KeyCodes.UP_ARROW:
+                        logger.trace("Focus sur header precedent");
+                        if (this.state.panelIndex > 0) {
+                            this.Panelfocus(this.state.panelIndex - 1);
+                        }
+                        else {
+                            this.Panelfocus(maxAccordion);
+                        }
+                        break;
+                    case key_codes_1.KeyCodes.RIGHT_ARROW:
+                    case key_codes_1.KeyCodes.DOWN_ARROW:
+                        logger.trace("Focus sur header suivant");
+                        if (this.state.panelIndex >= 0 && this.state.panelIndex < maxAccordion) {
+                            this.Panelfocus(this.state.panelIndex + 1);
+                        }
+                        else {
+                            this.Panelfocus(0);
+                        }
+                        break;
+                    case key_codes_1.KeyCodes.HOME:
+                        logger.trace("Focus sur le premier header de l'accordion");
+                        this.Panelfocus(0);
+                        break;
+                    case key_codes_1.KeyCodes.END:
+                        logger.trace("focus sur le dernier header de l'accordion");
+                        this.Panelfocus(maxAccordion);
+                        break;
+                    case key_codes_1.KeyCodes.ENTER:
+                    case key_codes_1.KeyCodes.SPACEBAR:
+                        logger.trace("Ouverture  de l'accordion");
+                        this.setState({ isOpen: !this.state.isOpen });
+                        break;
+                    default:
+                        preventDefault = false;
+                }
+            }
+            /* On supprime le comportement par défaut pour les touches utilisées pour la navigation :
+             pour éviter par exemple de faire défiler les ascenseurs */
+            if (preventDefault) {
+                e.preventDefault();
+            }
+        }
+    };
+    /**
+     * gestion du clavier lors de la touche CTRL ou SHIFT
+     * @param e :
+        * @param preventDefault
+     */
+    Accordion.prototype.handleKeyDownPanel = function (e, preventDefault) {
+        logger.trace("navigation avec la touche ctrl");
+        if (e.ctrlKey) {
+            switch (e.keyCode) {
+                case key_codes_1.KeyCodes.UP_ARROW:
+                case key_codes_1.KeyCodes.LEFT_ARROW:
+                    logger.trace(" accordion ctrl + UP ou  ctrl + LEFT");
+                    this.Panelfocus(this.state.panelIndex);
+                    break;
+                case key_codes_1.KeyCodes.DOWN_ARROW:
+                case key_codes_1.KeyCodes.RIGHT_ARROW:
+                    logger.trace(" accordion ctrl + UP ou  ctrl + LEFT");
+                    this.Panelfocus(this.state.panelIndex + 1);
+                    break;
+                /* Ne fonctionne pas sous chrome */
+                case key_codes_1.KeyCodes.PAGE_UP:
+                    logger.trace(" accordion ctrl + PAGE_UP");
+                    break;
+                case key_codes_1.KeyCodes.PAGE_DOWN:
+                    logger.trace(" accordion ctrl + PAGE_DOWN");
+                    break;
+                default:
+                    preventDefault = false;
+            }
+        }
+        if (preventDefault) {
+            e.preventDefault();
+        }
+    };
+    /**
+     * Place le focus sur l'accordeon dont l'index est passer en parametre
+     * si l'index n'existe pas, le focus est placer sur l'accordeon 0
+     * @param index
+     */
+    Accordion.prototype.Panelfocus = function (index) {
+        var element = document.getElementById(this.props.id + index + "-" + exports.TAB_ID_NAME);
+        if (element && element.focus) {
+            element.focus();
+        }
+        else {
+            if (index != 0) {
+                this.Panelfocus(0);
+            }
+        }
+    };
+    Accordion.handleFocusOnAccordion = function (element) {
+        var accordionAttribute = element.getAttribute("accordion");
+        if (accordionAttribute) {
+            hornet_event_1.fireHornetEvent(exports.FOCUS_ON_ACCORDION.withData(accordionAttribute));
+        }
+    };
+    /**
+     * teste si l'accordion a des erreurs
+     * @param ev
+     */
+    Accordion.prototype.accordionHasError = function (ev) {
+        var _this = this;
+        if (ev && ev.detail && this.isLinkedWithFormManager(ev.detail.idComponent)) {
+            this.errors = 0;
+            if (ev.detail && ev.detail.errors && ev.detail.errors.notifications) {
+                ev.detail.errors.notifications.map(function (error) {
+                    React.Children.map(_this.state.children, function (child) {
+                        _this.errors += _this.isErrorInAccordion(child, error);
+                    });
+                });
+            }
+            this.setState({ errors: this.errors });
+        }
+    };
+    /**
+     * teste si l'erreur se trouve dans l'enfant présent dans l'accordion
+     * @param elem enfant de l'accordion
+     * @param error erreur recherchée
+     * @returns {number}
+     */
+    Accordion.prototype.isErrorInAccordion = function (elem, error) {
+        var _this = this;
+        var errors = 0;
+        if (elem.props) {
+            // Gestion de champs dans un tableau
+            // todo: améliorer la recherche des champs en erreur présents dans un tablea éditable
+            var tableIdTmp = error.field.split(".");
+            var tableId = "";
+            if (Array.isArray(tableIdTmp) && tableIdTmp.length > 0) {
+                tableId = tableIdTmp[0].split("-").splice(0, tableIdTmp[0].split("-").length - 1).join("-");
+            }
+            if ((elem.props.id && elem.props.id == error.field && !elem.props.keyColumn) ||
+                (elem.props.name && elem.props.name == error.field && !elem.props.keyColumn) ||
+                (elem.props.labelKey && elem.props.name && (elem.props.name + "." + elem.props.labelKey) == error.field && !elem.props.keyColumn) ||
+                (elem.props.id === tableId)) {
+                errors++;
+            }
+            if (elem.props.children) {
+                if (elem.props.children instanceof Array) {
+                    elem.props.children.map(function (child) {
+                        errors += _this.isErrorInAccordion(child, error);
+                    });
+                }
+                else {
+                    errors += this.isErrorInAccordion(elem.props.children, error);
+                }
+            }
+        }
+        return errors;
+    };
+    /**
+     * Recherche un lien de parenté entre le composant déclenchant la notification
+     * et l'accordion
+     * @param {string} idComponent
+     * @returns {boolean}
+     */
+    Accordion.prototype.isLinkedWithFormManager = function (idComponent) {
+        var result = false;
+        if (idComponent) {
+            var accordionHtmlElement = document.getElementById(this.getAccordionLiId());
+            //parcourir les children de l'accordion pour trouver le form dont l'id est idComponent
+            result = this.isHtmlElementFoundThroughChildren(accordionHtmlElement, idComponent);
+            //si il n'est pas enfant, on vérifie si il est parent
+            if (!result && idComponent) {
+                var formHtmlElement = document.getElementById(idComponent);
+                //parcourir les children du form pour trouver l'accordion
+                result = this.isHtmlElementFoundThroughChildren(formHtmlElement, this.getAccordionLiId());
+            }
+        }
+        return result;
+    };
+    Accordion.prototype.isHtmlElementFoundThroughChildren = function (element, targetedId) {
+        var result = false;
+        if (element) {
+            result = element.id == targetedId;
+            if (!result && element.children) {
+                var i = 0;
+                while (!result && i < element.children.length) {
+                    result = this.isHtmlElementFoundThroughChildren(element.children[i], targetedId);
+                    i++;
+                }
+            }
+        }
+        return result;
+    };
+    return Accordion;
+}(hornet_component_1.HornetComponent));
+exports.Accordion = Accordion;
+
+
+
+/***/ }),
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31322,7 +31770,7 @@ module.exports = defineProperties;
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31370,13 +31818,13 @@ module.exports = function assign(target, source1) {
 
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var implementation = __webpack_require__(54);
+var implementation = __webpack_require__(55);
 
 var lacksProperEnumerationOrder = function () {
 	if (!Object.assign) {
@@ -31428,7 +31876,7 @@ module.exports = function getPolyfill() {
 
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31821,7 +32269,7 @@ exports.Logger = Logger;
 
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {// Copyright Joyent, Inc. and other Node contributors.
@@ -32414,7 +32862,7 @@ function hasOwnProperty(obj, prop) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), __webpack_require__(4)))
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -32501,7 +32949,7 @@ function hasOwnProperty(obj, prop) {
 
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -32579,7 +33027,7 @@ function hasOwnProperty(obj, prop) {
 
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -32661,7 +33109,7 @@ function hasOwnProperty(obj, prop) {
 
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports) {
 
 exports.endianness = function () { return 'LE' };
@@ -32716,7 +33164,7 @@ exports.homedir = function () {
 
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32903,7 +33351,7 @@ exports.AsyncExecutor = AsyncExecutor;
 
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = self || window;
@@ -32971,7 +33419,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33020,7 +33468,7 @@ return catchFilter;
 
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33078,7 +33526,7 @@ module.exports = nodebackForPromise;
 
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33184,7 +33632,7 @@ exports.AsyncElement = AsyncElement;
 
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33286,7 +33734,7 @@ exports.HttpError = HttpError;
 
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33410,7 +33858,7 @@ exports.AuthUtils = AuthUtils;
 
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33498,7 +33946,7 @@ var base_error_1 = __webpack_require__(16);
 var technical_error_1 = __webpack_require__(13);
 var business_error_1 = __webpack_require__(30);
 var business_error_list_1 = __webpack_require__(31);
-var http_error_1 = __webpack_require__(67);
+var http_error_1 = __webpack_require__(68);
 var _ = __webpack_require__(6);
 var NodeApiResultBuilder = /** @class */ (function () {
     function NodeApiResultBuilder() {
@@ -33774,7 +34222,7 @@ exports.BackendApiError = BackendApiError;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33956,7 +34404,7 @@ exports.MediaTypes = MediaTypes;
 
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34046,8 +34494,8 @@ var superagent = __webpack_require__(185);
 var hornet_superagent_request_1 = __webpack_require__(33);
 var hornet_event_1 = __webpack_require__(7);
 var superAgentPlugins = __webpack_require__(191);
-var media_type_1 = __webpack_require__(70);
-var service_api_results_1 = __webpack_require__(69);
+var media_type_1 = __webpack_require__(71);
+var service_api_results_1 = __webpack_require__(70);
 var error_manager_1 = __webpack_require__(32);
 var technical_error_1 = __webpack_require__(13);
 var hornet_cache_1 = __webpack_require__(193);
@@ -34059,7 +34507,7 @@ var promise_api_1 = __webpack_require__(50);
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // wrap http & https afin de sécuriser l'utilisation de "continuation-local-storage" (perte ou mix de contexte) //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-var http = __webpack_require__(75);
+var http = __webpack_require__(76);
 var https = __webpack_require__(210);
 var disposition_type_1 = __webpack_require__(211);
 if (http["__old_http_request"] == undefined) {
@@ -34762,7 +35210,7 @@ exports.HornetList = HornetList;
 
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34784,7 +35232,7 @@ module.exports = isObject;
 
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35004,7 +35452,7 @@ module.exports = Item;
 
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = Ephemeral;
@@ -35075,11 +35523,11 @@ Ephemeral.prototype._updateLock = function (key, value) {
 
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var ClientRequest = __webpack_require__(199)
-var response = __webpack_require__(78)
+var response = __webpack_require__(79)
 var extend = __webpack_require__(208)
 var statusCodes = __webpack_require__(209)
 var url = __webpack_require__(41)
@@ -35166,7 +35614,7 @@ http.METHODS = [
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -35177,7 +35625,7 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {exports.fetch = isFunction(global.fetch) && isFunction(global.ReadableStream)
@@ -35257,12 +35705,12 @@ xhr = null // Help gc
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(process, Buffer, global) {var capability = __webpack_require__(77)
+/* WEBPACK VAR INJECTION */(function(process, Buffer, global) {var capability = __webpack_require__(78)
 var inherits = __webpack_require__(11)
-var stream = __webpack_require__(79)
+var stream = __webpack_require__(80)
 
 var rStates = exports.readyStates = {
 	UNSENT: 0,
@@ -35481,20 +35929,20 @@ IncomingMessage.prototype._onXHRProgress = function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(23).Buffer, __webpack_require__(8)))
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(80);
+exports = module.exports = __webpack_require__(81);
 exports.Stream = exports;
 exports.Readable = exports;
-exports.Writable = __webpack_require__(83);
+exports.Writable = __webpack_require__(84);
 exports.Duplex = __webpack_require__(21);
-exports.Transform = __webpack_require__(85);
+exports.Transform = __webpack_require__(86);
 exports.PassThrough = __webpack_require__(206);
 
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35529,7 +35977,7 @@ var pna = __webpack_require__(35);
 module.exports = Readable;
 
 /*<replacement>*/
-var isArray = __webpack_require__(76);
+var isArray = __webpack_require__(77);
 /*</replacement>*/
 
 /*<replacement>*/
@@ -35547,7 +35995,7 @@ var EElistenerCount = function (emitter, type) {
 /*</replacement>*/
 
 /*<replacement>*/
-var Stream = __webpack_require__(81);
+var Stream = __webpack_require__(82);
 /*</replacement>*/
 
 /*<replacement>*/
@@ -35579,7 +36027,7 @@ if (debugUtil && debugUtil.debuglog) {
 /*</replacement>*/
 
 var BufferList = __webpack_require__(203);
-var destroyImpl = __webpack_require__(82);
+var destroyImpl = __webpack_require__(83);
 var StringDecoder;
 
 util.inherits(Readable, Stream);
@@ -35669,7 +36117,7 @@ function ReadableState(options, stream) {
   this.decoder = null;
   this.encoding = null;
   if (options.encoding) {
-    if (!StringDecoder) StringDecoder = __webpack_require__(84).StringDecoder;
+    if (!StringDecoder) StringDecoder = __webpack_require__(85).StringDecoder;
     this.decoder = new StringDecoder(options.encoding);
     this.encoding = options.encoding;
   }
@@ -35825,7 +36273,7 @@ Readable.prototype.isPaused = function () {
 
 // backwards compatibility.
 Readable.prototype.setEncoding = function (enc) {
-  if (!StringDecoder) StringDecoder = __webpack_require__(84).StringDecoder;
+  if (!StringDecoder) StringDecoder = __webpack_require__(85).StringDecoder;
   this._readableState.decoder = new StringDecoder(enc);
   this._readableState.encoding = enc;
   return this;
@@ -36520,14 +36968,14 @@ function indexOf(xs, x) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), __webpack_require__(4)))
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(27).EventEmitter;
 
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36607,7 +37055,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36688,7 +37136,7 @@ var internalUtil = {
 /*</replacement>*/
 
 /*<replacement>*/
-var Stream = __webpack_require__(81);
+var Stream = __webpack_require__(82);
 /*</replacement>*/
 
 /*<replacement>*/
@@ -36704,7 +37152,7 @@ function _isUint8Array(obj) {
 
 /*</replacement>*/
 
-var destroyImpl = __webpack_require__(82);
+var destroyImpl = __webpack_require__(83);
 
 util.inherits(Writable, Stream);
 
@@ -37298,10 +37746,10 @@ Writable.prototype._destroy = function (err, cb) {
   this.end();
   cb(err);
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(63).setImmediate, __webpack_require__(8)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(64).setImmediate, __webpack_require__(8)))
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37603,7 +38051,7 @@ function simpleEnd(buf) {
 }
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37823,7 +38271,7 @@ function done(stream, er, data) {
 }
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37862,7 +38310,7 @@ var ExecutionEnvironment = {
 module.exports = ExecutionEnvironment;
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37943,7 +38391,7 @@ module.exports = EventListener;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37985,7 +38433,7 @@ function getActiveElement(doc) /*?DOMElement*/{
 module.exports = getActiveElement;
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38056,7 +38504,7 @@ function shallowEqual(objA, objB) {
 module.exports = shallowEqual;
 
 /***/ }),
-/* 90 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38099,7 +38547,7 @@ function containsNode(outerNode, innerNode) {
 module.exports = containsNode;
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38127,454 +38575,6 @@ function focusNode(node) {
 }
 
 module.exports = focusNode;
-
-/***/ }),
-/* 92 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * Ce logiciel est un programme informatique servant à faciliter la création
- * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
- * <p/>
- * Ce logiciel est régi par la licence CeCILL soumise au droit français et
- * respectant les principes de diffusion des logiciels libres. Vous pouvez
- * utiliser, modifier et/ou redistribuer ce programme sous les conditions
- * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
- * sur le site "http://www.cecill.info".
- * <p/>
- * En contrepartie de l'accessibilité au code source et des droits de copie,
- * de modification et de redistribution accordés par cette licence, il n'est
- * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
- * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
- * titulaire des droits patrimoniaux et les concédants successifs.
- * <p/>
- * A cet égard  l'attention de l'utilisateur est attirée sur les risques
- * associés au chargement,  à l'utilisation,  à la modification et/ou au
- * développement et à la reproduction du logiciel par l'utilisateur étant
- * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
- * manipuler et qui le réserve donc à des développeurs et des professionnels
- * avertis possédant  des  connaissances  informatiques approfondies.  Les
- * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
- * logiciel à leurs besoins dans des conditions permettant d'assurer la
- * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
- * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
- * <p/>
- * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
- * pris connaissance de la licence CeCILL, et que vous en avez accepté les
- * termes.
- * <p/>
- * <p/>
- * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * This software is a computer program whose purpose is to facilitate creation of
- * web application in accordance with french general repositories : RGI, RGS and RGAA.
- * <p/>
- * This software is governed by the CeCILL license under French law and
- * abiding by the rules of distribution of free software.  You can  use,
- * modify and/ or redistribute the software under the terms of the CeCILL
- * license as circulated by CEA, CNRS and INRIA at the following URL
- * "http://www.cecill.info".
- * <p/>
- * As a counterpart to the access to the source code and  rights to copy,
- * modify and redistribute granted by the license, users are provided only
- * with a limited warranty  and the software's author,  the holder of the
- * economic rights,  and the successive licensors  have only  limited
- * liability.
- * <p/>
- * In this respect, the user's attention is drawn to the risks associated
- * with loading,  using,  modifying and/or developing or reproducing the
- * software by the user in light of its specific status of free software,
- * that may mean  that it is complicated to manipulate,  and  that  also
- * therefore means  that it is reserved for developers  and  experienced
- * professionals having in-depth computer knowledge. Users are therefore
- * encouraged to load and test the software's suitability as regards their
- * requirements in conditions enabling the security of their systems and/or
- * data to be ensured and,  more generally, to use and operate it in the
- * same conditions as regards security.
- * <p/>
- * The fact that you are presently reading this means that you have had
- * knowledge of the CeCILL license and that you accept its terms.
- *
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(1);
-/**
- * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
- *
- * @author MEAE - Ministère de l'Europe et des Affaires étrangères
- * @version v5.1.1
- * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
- * @license CECILL-2.1
- */
-var hornet_js_utils_1 = __webpack_require__(0);
-var React = __webpack_require__(2);
-var classNames = __webpack_require__(9);
-var key_codes_1 = __webpack_require__(10);
-var hornet_component_1 = __webpack_require__(3);
-var hornet_event_1 = __webpack_require__(7);
-var notification_events_1 = __webpack_require__(45);
-var accordion_header_1 = __webpack_require__(225);
-var accordion_info_1 = __webpack_require__(226);
-var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.accordion.accordion");
-exports.TAB_ID_NAME = "tab";
-exports.FOCUS_ON_ACCORDION = new hornet_event_1.HornetEvent("FOCUS_ON_ACCORDION");
-/**
- * Composant Accordion
- */
-var Accordion = /** @class */ (function (_super) {
-    tslib_1.__extends(Accordion, _super);
-    function Accordion(props, context) {
-        var _this = _super.call(this, props, context) || this;
-        _this.errors = 0;
-        _this.state.id = _this.props.id + _this.props.panelIndex;
-        return _this;
-    }
-    Accordion.prototype.componentDidMount = function () {
-        var _this = this;
-        _super.prototype.componentDidMount.call(this);
-        this.trackInputFieldFromChildren(document.getElementById(this.getAccordionLiId()));
-        this.listen(exports.FOCUS_ON_ACCORDION, function (ev) {
-            if (ev.detail == _this.getAccordionPanelId()) {
-                var element = document.getElementById(ev.detail);
-                element.className = element.className.replace("hidden", "visible");
-            }
-        });
-        this.listen(notification_events_1.ADD_NOTIFICATION_EVENT, this.accordionHasError);
-        this.listen(notification_events_1.CLEAN_NOTIFICATION_EVENT, this.accordionHasError);
-        this.listen(notification_events_1.CLEAN_ALL_NOTIFICATION_EVENT, this.accordionHasError);
-    };
-    /**
-     * @inheritDoc
-     */
-    Accordion.prototype.componentWillUnmount = function () {
-        _super.prototype.componentWillUnmount.call(this);
-        this.remove(notification_events_1.ADD_NOTIFICATION_EVENT, this.accordionHasError);
-        this.remove(notification_events_1.CLEAN_NOTIFICATION_EVENT, this.accordionHasError);
-        this.remove(notification_events_1.CLEAN_ALL_NOTIFICATION_EVENT, this.accordionHasError);
-    };
-    Accordion.prototype.getAccordionPanelId = function () {
-        return this.state.id + "-" + "panel";
-    };
-    Accordion.prototype.getAccordionLiId = function () {
-        return this.state.id + "-" + "li";
-    };
-    Accordion.prototype.trackInputFieldFromChildren = function (node) {
-        var _this = this;
-        if (node) {
-            if (Array.isArray(node)) {
-                node.forEach(function (element) {
-                    _this.trackInputFieldFromChildren(element);
-                });
-            }
-            else {
-                if (node.localName == "input" && !node.hidden) {
-                    node.setAttribute("accordion", this.getAccordionPanelId());
-                    node.setAttribute("accordionIndex", this.state.panelIndex);
-                }
-                else if (node.children) {
-                    this.trackInputFieldFromChildren(node.children);
-                }
-                else if (node instanceof HTMLCollection) {
-                    for (var i = 0; i < node.length; i++) {
-                        this.trackInputFieldFromChildren(node[i]);
-                    }
-                }
-            }
-        }
-    };
-    /**
-     * @inheritDoc
-     */
-    Accordion.prototype.render = function () {
-        var _this = this;
-        var classNameLi = classNames({
-            "accordion-header": true,
-            "accordion-selected": this.state.isOpen
-        });
-        var handClick = function () {
-            _this.state.handleClickAccordion(_this.state.panelIndex);
-        };
-        var handleFocus = function (e) {
-            var target = e.target;
-            var event = e;
-            _this.state.handleFocusAccordion(_this.state.panelIndex, event, target);
-        };
-        var handleBlur = function (e) {
-            var target = e.target;
-            var event = e;
-            _this.state.handleBlurAccordion(_this.state.panelIndex, event, target);
-        };
-        var classNameDivContent = classNames({
-            "accordion-content": true,
-            "visible": this.state.isOpen,
-            "hidden": !this.state.isOpen
-        });
-        var classAccordionPicto = classNames({
-            'accordion-arrow-close': !this.state.isOpen,
-            'accordion-arrow-open': this.state.isOpen,
-            "fr": true
-        });
-        var classAccordionErrors = classNames({
-            'accordion-errors-close': !this.state.isOpen,
-            'accordion-errors-open': this.state.isOpen,
-            "fr": true
-        });
-        var classNameAccordion = classNames({
-            "accordion-label": true,
-            'accordion-label-open': this.state.isOpen
-        });
-        var errorMessage = "";
-        if (this.state.errors > 0) {
-            errorMessage = this.state.errors + " ";
-            errorMessage += this.state.errors == 1 ? this.i18n("form.accordion.error") : this.i18n("form.accordion.errors");
-        }
-        var header;
-        React.Children.map(this.props.children, function (child) {
-            if (child.type === accordion_header_1.AccordionHeader) {
-                header = child;
-            }
-        });
-        var info;
-        React.Children.map(this.props.children, function (child) {
-            if (child.type === accordion_info_1.AccordionInfo) {
-                info = child;
-            }
-        });
-        return (React.createElement("li", { className: classNameLi, onKeyDown: this.handleKeyDownButton, onFocus: handleFocus, role: "heading", id: this.getAccordionLiId() },
-            React.createElement("a", { href: "#", className: classNameAccordion, onClick: handClick, id: this.state.id + "-" + exports.TAB_ID_NAME, "aria-expanded": this.state.isOpen, role: "button", "aria-level": "3", tabIndex: this.state.tabIndex, "aria-controls": this.getAccordionPanelId() },
-                header ? header : this.props.title,
-                React.createElement("div", { id: this.state.id + "-" + "arrow-content", className: "arrow-content " + classAccordionPicto }, info ? info : this.props.infoAccordion),
-                React.createElement("div", { id: this.state.id + "-" + "errors-content", className: "errors-content " + classAccordionErrors }, errorMessage)),
-            React.createElement("div", { className: classNameDivContent, id: this.getAccordionPanelId(), role: "region", "aria-labelledby": this.state.id + "-" + exports.TAB_ID_NAME }, React.Children.map(this.state.children, function (child) {
-                if ((child.type != accordion_header_1.AccordionHeader) &&
-                    (child.type != accordion_info_1.AccordionInfo)) {
-                    return React.cloneElement(child);
-                }
-            }))));
-    };
-    /**
-     * Gestion aux clavier
-     * @param e
-     */
-    Accordion.prototype.handleKeyDownButton = function (e) {
-        /* On ne prend en compte que les évènements clavier sans modificateur, pour ne pas surcharger
-         * des raccourcis standards tels Alt+ArrowLeft */
-        var keyCode = e.keyCode;
-        var preventDefault = true;
-        var maxAccordion = (this.props.totalAccordion - 1);
-        if (e.ctrlKey) {
-            this.handleKeyDownPanel(e, preventDefault);
-        }
-        else {
-            /** Si c'est différent d */
-            if (e.target.className != "accordion-label accordion-label-open" && e.target.className != "accordion-label") {
-                e.stopPropagation();
-                preventDefault = false;
-            }
-            else {
-                switch (keyCode) {
-                    case key_codes_1.KeyCodes.LEFT_ARROW:
-                    case key_codes_1.KeyCodes.UP_ARROW:
-                        logger.trace("Focus sur header precedent");
-                        if (this.state.panelIndex > 0) {
-                            this.Panelfocus(this.state.panelIndex - 1);
-                        }
-                        else {
-                            this.Panelfocus(maxAccordion);
-                        }
-                        break;
-                    case key_codes_1.KeyCodes.RIGHT_ARROW:
-                    case key_codes_1.KeyCodes.DOWN_ARROW:
-                        logger.trace("Focus sur header suivant");
-                        if (this.state.panelIndex >= 0 && this.state.panelIndex < maxAccordion) {
-                            this.Panelfocus(this.state.panelIndex + 1);
-                        }
-                        else {
-                            this.Panelfocus(0);
-                        }
-                        break;
-                    case key_codes_1.KeyCodes.HOME:
-                        logger.trace("Focus sur le premier header de l'accordion");
-                        this.Panelfocus(0);
-                        break;
-                    case key_codes_1.KeyCodes.END:
-                        logger.trace("focus sur le dernier header de l'accordion");
-                        this.Panelfocus(maxAccordion);
-                        break;
-                    case key_codes_1.KeyCodes.ENTER:
-                    case key_codes_1.KeyCodes.SPACEBAR:
-                        logger.trace("Ouverture  de l'accordion");
-                        this.setState({ isOpen: !this.state.isOpen });
-                        break;
-                    default:
-                        preventDefault = false;
-                }
-            }
-            /* On supprime le comportement par défaut pour les touches utilisées pour la navigation :
-             pour éviter par exemple de faire défiler les ascenseurs */
-            if (preventDefault) {
-                e.preventDefault();
-            }
-        }
-    };
-    /**
-     * gestion du clavier lors de la touche CTRL ou SHIFT
-     * @param e :
-        * @param preventDefault
-     */
-    Accordion.prototype.handleKeyDownPanel = function (e, preventDefault) {
-        logger.trace("navigation avec la touche ctrl");
-        if (e.ctrlKey) {
-            switch (e.keyCode) {
-                case key_codes_1.KeyCodes.UP_ARROW:
-                case key_codes_1.KeyCodes.LEFT_ARROW:
-                    logger.trace(" accordion ctrl + UP ou  ctrl + LEFT");
-                    this.Panelfocus(this.state.panelIndex);
-                    break;
-                case key_codes_1.KeyCodes.DOWN_ARROW:
-                case key_codes_1.KeyCodes.RIGHT_ARROW:
-                    logger.trace(" accordion ctrl + UP ou  ctrl + LEFT");
-                    this.Panelfocus(this.state.panelIndex + 1);
-                    break;
-                /* Ne fonctionne pas sous chrome */
-                case key_codes_1.KeyCodes.PAGE_UP:
-                    logger.trace(" accordion ctrl + PAGE_UP");
-                    break;
-                case key_codes_1.KeyCodes.PAGE_DOWN:
-                    logger.trace(" accordion ctrl + PAGE_DOWN");
-                    break;
-                default:
-                    preventDefault = false;
-            }
-        }
-        if (preventDefault) {
-            e.preventDefault();
-        }
-    };
-    /**
-     * Place le focus sur l'accordeon dont l'index est passer en parametre
-     * si l'index n'existe pas, le focus est placer sur l'accordeon 0
-     * @param index
-     */
-    Accordion.prototype.Panelfocus = function (index) {
-        var element = document.getElementById(this.props.id + index + "-" + exports.TAB_ID_NAME);
-        if (element && element.focus) {
-            element.focus();
-        }
-        else {
-            if (index != 0) {
-                this.Panelfocus(0);
-            }
-        }
-    };
-    Accordion.handleFocusOnAccordion = function (element) {
-        var accordionAttribute = element.getAttribute("accordion");
-        if (accordionAttribute) {
-            hornet_event_1.fireHornetEvent(exports.FOCUS_ON_ACCORDION.withData(accordionAttribute));
-        }
-    };
-    /**
-     * teste si l'accordion a des erreurs
-     * @param ev
-     */
-    Accordion.prototype.accordionHasError = function (ev) {
-        var _this = this;
-        if (ev && ev.detail && this.isLinkedWithFormManager(ev.detail.idComponent)) {
-            this.errors = 0;
-            if (ev.detail && ev.detail.errors && ev.detail.errors.notifications) {
-                ev.detail.errors.notifications.map(function (error) {
-                    React.Children.map(_this.state.children, function (child) {
-                        _this.errors += _this.isErrorInAccordion(child, error);
-                    });
-                });
-            }
-            this.setState({ errors: this.errors });
-        }
-    };
-    /**
-     * teste si l'erreur se trouve dans l'enfant présent dans l'accordion
-     * @param elem enfant de l'accordion
-     * @param error erreur recherchée
-     * @returns {number}
-     */
-    Accordion.prototype.isErrorInAccordion = function (elem, error) {
-        var _this = this;
-        var errors = 0;
-        if (elem.props) {
-            // Gestion de champs dans un tableau
-            // todo: améliorer la recherche des champs en erreur présents dans un tablea éditable
-            var tableIdTmp = error.field.split(".");
-            var tableId = "";
-            if (Array.isArray(tableIdTmp) && tableIdTmp.length > 0) {
-                tableId = tableIdTmp[0].split("-").splice(0, tableIdTmp[0].split("-").length - 1).join("-");
-            }
-            if ((elem.props.id && elem.props.id == error.field && !elem.props.keyColumn) ||
-                (elem.props.name && elem.props.name == error.field && !elem.props.keyColumn) ||
-                (elem.props.labelKey && elem.props.name && (elem.props.name + "." + elem.props.labelKey) == error.field && !elem.props.keyColumn) ||
-                (elem.props.id === tableId)) {
-                errors++;
-            }
-            if (elem.props.children) {
-                if (elem.props.children instanceof Array) {
-                    elem.props.children.map(function (child) {
-                        errors += _this.isErrorInAccordion(child, error);
-                    });
-                }
-                else {
-                    errors += this.isErrorInAccordion(elem.props.children, error);
-                }
-            }
-        }
-        return errors;
-    };
-    /**
-     * Recherche un lien de parenté entre le composant déclenchant la notification
-     * et l'accordion
-     * @param {string} idComponent
-     * @returns {boolean}
-     */
-    Accordion.prototype.isLinkedWithFormManager = function (idComponent) {
-        var result = false;
-        if (idComponent) {
-            var accordionHtmlElement = document.getElementById(this.getAccordionLiId());
-            //parcourir les children de l'accordion pour trouver le form dont l'id est idComponent
-            result = this.isHtmlElementFoundThroughChildren(accordionHtmlElement, idComponent);
-            //si il n'est pas enfant, on vérifie si il est parent
-            if (!result && idComponent) {
-                var formHtmlElement = document.getElementById(idComponent);
-                //parcourir les children du form pour trouver l'accordion
-                result = this.isHtmlElementFoundThroughChildren(formHtmlElement, this.getAccordionLiId());
-            }
-        }
-        return result;
-    };
-    Accordion.prototype.isHtmlElementFoundThroughChildren = function (element, targetedId) {
-        var result = false;
-        if (element) {
-            result = element.id == targetedId;
-            if (!result && element.children) {
-                var i = 0;
-                while (!result && i < element.children.length) {
-                    result = this.isHtmlElementFoundThroughChildren(element.children[i], targetedId);
-                    i++;
-                }
-            }
-        }
-        return result;
-    };
-    return Accordion;
-}(hornet_component_1.HornetComponent));
-exports.Accordion = Accordion;
-
-
 
 /***/ }),
 /* 93 */
@@ -38664,7 +38664,7 @@ var tslib_1 = __webpack_require__(1);
  */
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
-var hornet_page_1 = __webpack_require__(52);
+var hornet_page_1 = __webpack_require__(51);
 var notification_1 = __webpack_require__(48);
 var business_error_list_1 = __webpack_require__(31);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.component.error-page");
@@ -39343,291 +39343,6 @@ exports.CodesError = CodesError;
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 /**
- * hornet-js-core - Ensemble des composants qui forment le coeur de hornet-js
- *
- * @author MEAE - Ministère de l'Europe et des Affaires étrangères
- * @version v5.1.1
- * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
- * @license CECILL-2.1
- */
-var hornet_js_utils_1 = __webpack_require__(0);
-var _ = __webpack_require__(6);
-var technical_error_1 = __webpack_require__(13);
-var codes_error_1 = __webpack_require__(96);
-var media_type_1 = __webpack_require__(70);
-var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.routes.abstract-routes");
-/** Routes type */
-exports.RouteType = {
-    PAGE: "PAGE_ROUTE",
-    DATA: "DATA_ROUTE"
-};
-exports.PUBLIC_ROUTE = [];
-exports.PRIVATE_ROUTE = ["*"];
-exports.DEFAULT_AUTHORIZATION = exports.PRIVATE_ROUTE;
-exports.DEFAULT_METHOD = "get";
-var RouteAction = /** @class */ (function () {
-    function RouteAction() {
-        /** Attributs de la route déclenchant l'action */
-        this.attributes = {};
-        /** Utilisateur connecté */
-        this.user = hornet_js_utils_1.Utils.getCls("hornet.user");
-    }
-    /**
-     * Renvoie l'objet contenant les éléments nécessaires à la validation des données transmises à cette action.
-     * Renvoie null par défaut : à surcharger éventuellement dans la classe action implémentée.
-     * @returns {null} une instance de ActionValidation ou null
-     */
-    RouteAction.prototype.getDataValidator = function () {
-        return null;
-    };
-    /**
-     * Renvoie les données entrantes éventuelles, récupérées par défaut directement dans le corps de la requête.
-     * A sucharger si nécessaire.
-     * @return {any} un objet contenant les données transmises à cette action
-     */
-    RouteAction.prototype.getPayload = function () {
-        return this.req.body;
-    };
-    /**
-     * Renvoie le MediaType issu de l'entête de la requête.
-     * @return {any} un objet contenant les données transmises à cette action
-     */
-    RouteAction.prototype.getMediaType = function () {
-        return media_type_1.MediaTypes.fromMime(this.req.get('Accept'));
-    };
-    return RouteAction;
-}());
-exports.RouteAction = RouteAction;
-var RouteActionService = /** @class */ (function (_super) {
-    tslib_1.__extends(RouteActionService, _super);
-    function RouteActionService() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    RouteActionService.prototype.getService = function () {
-        return this.service;
-    };
-    return RouteActionService;
-}(RouteAction));
-exports.RouteActionService = RouteActionService;
-var RouteInfos = /** @class */ (function () {
-    function RouteInfos(type, attributes, service) {
-        if (attributes === void 0) { attributes = {}; }
-        this.attributes = {};
-        this.type = type;
-        _.assign(this.attributes, attributes);
-        if (service) {
-            this.service = service;
-        }
-    }
-    RouteInfos.prototype.getRouteType = function () {
-        return this.type;
-    };
-    RouteInfos.prototype.getAttributes = function () {
-        return this.attributes;
-    };
-    RouteInfos.prototype.getService = function () {
-        return this.service;
-    };
-    return RouteInfos;
-}());
-exports.RouteInfos = RouteInfos;
-var PageRouteInfos = /** @class */ (function (_super) {
-    tslib_1.__extends(PageRouteInfos, _super);
-    function PageRouteInfos(viewComponent, attributes, service) {
-        var _this = _super.call(this, exports.RouteType.PAGE, attributes, service) || this;
-        _this.viewComponent = viewComponent;
-        return _this;
-    }
-    PageRouteInfos.prototype.getViewComponent = function () {
-        return this.viewComponent;
-    };
-    return PageRouteInfos;
-}(RouteInfos));
-exports.PageRouteInfos = PageRouteInfos;
-var DataRouteInfos = /** @class */ (function (_super) {
-    tslib_1.__extends(DataRouteInfos, _super);
-    function DataRouteInfos(action, attributes, service) {
-        var _this = _super.call(this, exports.RouteType.DATA, attributes, service) || this;
-        _this.action = action;
-        return _this;
-    }
-    DataRouteInfos.prototype.getAction = function () {
-        return this.action;
-    };
-    return DataRouteInfos;
-}(RouteInfos));
-exports.DataRouteInfos = DataRouteInfos;
-/** Routes Declaration */
-var AbstractRoutes = /** @class */ (function () {
-    function AbstractRoutes() {
-        this.pageRoutes = {};
-        this.dataRoutes = {};
-        this.lazyRoutes = {};
-        this.subRoutes = {};
-    }
-    AbstractRoutes.prototype.resolveAuthorizationAndMethod = function (authorizationOrMethod, method) {
-        var auth, meth;
-        if (_.isString(authorizationOrMethod)) {
-            auth = exports.DEFAULT_AUTHORIZATION;
-            meth = authorizationOrMethod;
-        }
-        else {
-            if (_.isUndefined(authorizationOrMethod)) {
-                auth = exports.DEFAULT_AUTHORIZATION;
-            }
-            else {
-                auth = authorizationOrMethod;
-            }
-            if (_.isString(method)) {
-                meth = method;
-            }
-            else {
-                meth = exports.DEFAULT_METHOD;
-            }
-        }
-        return { authorization: auth, method: meth };
-    };
-    AbstractRoutes.prototype.addPageRoute = function (path, handler, authorization) {
-        var args = this.resolveAuthorizationAndMethod(authorization, exports.DEFAULT_METHOD);
-        if (!this.pageRoutes[path])
-            this.pageRoutes[path] = {};
-        this.pageRoutes[path][args.method.toLowerCase()] = { authorization: args.authorization, handler: handler };
-    };
-    AbstractRoutes.prototype.addDataRoute = function (path, handler, authorizationOrMethod, method) {
-        var args = this.resolveAuthorizationAndMethod(authorizationOrMethod, method);
-        if (!this.dataRoutes[path])
-            this.dataRoutes[path] = {};
-        this.dataRoutes[path][args.method.toLowerCase()] = { authorization: args.authorization, handler: handler };
-    };
-    AbstractRoutes.prototype.addLazyRoutes = function (path, subRoutesFile) {
-        this.lazyRoutes[path] = subRoutesFile;
-    };
-    AbstractRoutes.prototype.getPageRoutes = function () {
-        return this.pageRoutes;
-    };
-    AbstractRoutes.prototype.getDataRoutes = function () {
-        return this.dataRoutes;
-    };
-    AbstractRoutes.prototype.getLazyRoutes = function () {
-        return this.lazyRoutes;
-    };
-    AbstractRoutes.prototype.addSubRoute = function (path, subRoutesFile) {
-        this.subRoutes[path] = subRoutesFile;
-    };
-    AbstractRoutes.prototype.getSubRoutes = function () {
-        return this.subRoutes;
-    };
-    /**
-     * Permet de charger les routes depuis une liste de répertoires
-     * @param paths
-     * @returns route module
-     */
-    AbstractRoutes.prototype.getDefaultRouteLoader = function (paths) {
-        return function (name) {
-            logger.trace("defaultRouteLoader(" + name + ")");
-            var index = _.findIndex(paths, function (path) {
-                try {
-                    return __webpack_require__.c[__webpack_require__.s].require(path + name);
-                }
-                catch (e) {
-                    // not throw error for module not found (parse all paths)
-                    if (e.code !== "MODULE_NOT_FOUND") {
-                        throw new technical_error_1.TechnicalError('ERR_TECH_' + codes_error_1.CodesError.ROUTE_ERROR, { errorMessage: e.message });
-                    }
-                }
-            });
-            if (index == -1) {
-                logger.error("Unknow route " + name + " in paths " + paths);
-                throw new technical_error_1.TechnicalError('ERR_TECH_' + codes_error_1.CodesError.ROUTE_ERROR, { errorMessage: codes_error_1.CodesError.DEFAULT_ERROR_MSG });
-            }
-            return __webpack_require__.c[__webpack_require__.s].require(paths[index] + name);
-        };
-    };
-    return AbstractRoutes;
-}());
-exports.AbstractRoutes = AbstractRoutes;
-
-
-
-/***/ }),
-/* 98 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * Ce logiciel est un programme informatique servant à faciliter la création
- * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
- * <p/>
- * Ce logiciel est régi par la licence CeCILL soumise au droit français et
- * respectant les principes de diffusion des logiciels libres. Vous pouvez
- * utiliser, modifier et/ou redistribuer ce programme sous les conditions
- * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
- * sur le site "http://www.cecill.info".
- * <p/>
- * En contrepartie de l'accessibilité au code source et des droits de copie,
- * de modification et de redistribution accordés par cette licence, il n'est
- * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
- * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
- * titulaire des droits patrimoniaux et les concédants successifs.
- * <p/>
- * A cet égard  l'attention de l'utilisateur est attirée sur les risques
- * associés au chargement,  à l'utilisation,  à la modification et/ou au
- * développement et à la reproduction du logiciel par l'utilisateur étant
- * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
- * manipuler et qui le réserve donc à des développeurs et des professionnels
- * avertis possédant  des  connaissances  informatiques approfondies.  Les
- * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
- * logiciel à leurs besoins dans des conditions permettant d'assurer la
- * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
- * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
- * <p/>
- * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
- * pris connaissance de la licence CeCILL, et que vous en avez accepté les
- * termes.
- * <p/>
- * <p/>
- * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * This software is a computer program whose purpose is to facilitate creation of
- * web application in accordance with french general repositories : RGI, RGS and RGAA.
- * <p/>
- * This software is governed by the CeCILL license under French law and
- * abiding by the rules of distribution of free software.  You can  use,
- * modify and/ or redistribute the software under the terms of the CeCILL
- * license as circulated by CEA, CNRS and INRIA at the following URL
- * "http://www.cecill.info".
- * <p/>
- * As a counterpart to the access to the source code and  rights to copy,
- * modify and redistribute granted by the license, users are provided only
- * with a limited warranty  and the software's author,  the holder of the
- * economic rights,  and the successive licensors  have only  limited
- * liability.
- * <p/>
- * In this respect, the user's attention is drawn to the risks associated
- * with loading,  using,  modifying and/or developing or reproducing the
- * software by the user in light of its specific status of free software,
- * that may mean  that it is complicated to manipulate,  and  that  also
- * therefore means  that it is reserved for developers  and  experienced
- * professionals having in-depth computer knowledge. Users are therefore
- * encouraged to load and test the software's suitability as regards their
- * requirements in conditions enabling the security of their systems and/or
- * data to be ensured and,  more generally, to use and operate it in the
- * same conditions as regards security.
- * <p/>
- * The fact that you are presently reading this means that you have had
- * knowledge of the CeCILL license and that you accept its terms.
- *
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(1);
-/**
  * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
  *
  * @author MEAE - Ministère de l'Europe et des Affaires étrangères
@@ -39863,6 +39578,291 @@ var Picto = /** @class */ (function (_super) {
     return Picto;
 }(hornet_component_1.HornetComponent));
 exports.Picto = Picto;
+
+
+
+/***/ }),
+/* 98 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * Ce logiciel est un programme informatique servant à faciliter la création
+ * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
+ * <p/>
+ * Ce logiciel est régi par la licence CeCILL soumise au droit français et
+ * respectant les principes de diffusion des logiciels libres. Vous pouvez
+ * utiliser, modifier et/ou redistribuer ce programme sous les conditions
+ * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
+ * sur le site "http://www.cecill.info".
+ * <p/>
+ * En contrepartie de l'accessibilité au code source et des droits de copie,
+ * de modification et de redistribution accordés par cette licence, il n'est
+ * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
+ * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
+ * titulaire des droits patrimoniaux et les concédants successifs.
+ * <p/>
+ * A cet égard  l'attention de l'utilisateur est attirée sur les risques
+ * associés au chargement,  à l'utilisation,  à la modification et/ou au
+ * développement et à la reproduction du logiciel par l'utilisateur étant
+ * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
+ * manipuler et qui le réserve donc à des développeurs et des professionnels
+ * avertis possédant  des  connaissances  informatiques approfondies.  Les
+ * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
+ * logiciel à leurs besoins dans des conditions permettant d'assurer la
+ * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
+ * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
+ * <p/>
+ * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
+ * pris connaissance de la licence CeCILL, et que vous en avez accepté les
+ * termes.
+ * <p/>
+ * <p/>
+ * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * This software is a computer program whose purpose is to facilitate creation of
+ * web application in accordance with french general repositories : RGI, RGS and RGAA.
+ * <p/>
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software.  You can  use,
+ * modify and/ or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ * <p/>
+ * As a counterpart to the access to the source code and  rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty  and the software's author,  the holder of the
+ * economic rights,  and the successive licensors  have only  limited
+ * liability.
+ * <p/>
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading,  using,  modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean  that it is complicated to manipulate,  and  that  also
+ * therefore means  that it is reserved for developers  and  experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and,  more generally, to use and operate it in the
+ * same conditions as regards security.
+ * <p/>
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(1);
+/**
+ * hornet-js-core - Ensemble des composants qui forment le coeur de hornet-js
+ *
+ * @author MEAE - Ministère de l'Europe et des Affaires étrangères
+ * @version v5.1.1
+ * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
+ * @license CECILL-2.1
+ */
+var hornet_js_utils_1 = __webpack_require__(0);
+var _ = __webpack_require__(6);
+var technical_error_1 = __webpack_require__(13);
+var codes_error_1 = __webpack_require__(96);
+var media_type_1 = __webpack_require__(71);
+var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.routes.abstract-routes");
+/** Routes type */
+exports.RouteType = {
+    PAGE: "PAGE_ROUTE",
+    DATA: "DATA_ROUTE"
+};
+exports.PUBLIC_ROUTE = [];
+exports.PRIVATE_ROUTE = ["*"];
+exports.DEFAULT_AUTHORIZATION = exports.PRIVATE_ROUTE;
+exports.DEFAULT_METHOD = "get";
+var RouteAction = /** @class */ (function () {
+    function RouteAction() {
+        /** Attributs de la route déclenchant l'action */
+        this.attributes = {};
+        /** Utilisateur connecté */
+        this.user = hornet_js_utils_1.Utils.getCls("hornet.user");
+    }
+    /**
+     * Renvoie l'objet contenant les éléments nécessaires à la validation des données transmises à cette action.
+     * Renvoie null par défaut : à surcharger éventuellement dans la classe action implémentée.
+     * @returns {null} une instance de ActionValidation ou null
+     */
+    RouteAction.prototype.getDataValidator = function () {
+        return null;
+    };
+    /**
+     * Renvoie les données entrantes éventuelles, récupérées par défaut directement dans le corps de la requête.
+     * A sucharger si nécessaire.
+     * @return {any} un objet contenant les données transmises à cette action
+     */
+    RouteAction.prototype.getPayload = function () {
+        return this.req.body;
+    };
+    /**
+     * Renvoie le MediaType issu de l'entête de la requête.
+     * @return {any} un objet contenant les données transmises à cette action
+     */
+    RouteAction.prototype.getMediaType = function () {
+        return media_type_1.MediaTypes.fromMime(this.req.get('Accept'));
+    };
+    return RouteAction;
+}());
+exports.RouteAction = RouteAction;
+var RouteActionService = /** @class */ (function (_super) {
+    tslib_1.__extends(RouteActionService, _super);
+    function RouteActionService() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    RouteActionService.prototype.getService = function () {
+        return this.service;
+    };
+    return RouteActionService;
+}(RouteAction));
+exports.RouteActionService = RouteActionService;
+var RouteInfos = /** @class */ (function () {
+    function RouteInfos(type, attributes, service) {
+        if (attributes === void 0) { attributes = {}; }
+        this.attributes = {};
+        this.type = type;
+        _.assign(this.attributes, attributes);
+        if (service) {
+            this.service = service;
+        }
+    }
+    RouteInfos.prototype.getRouteType = function () {
+        return this.type;
+    };
+    RouteInfos.prototype.getAttributes = function () {
+        return this.attributes;
+    };
+    RouteInfos.prototype.getService = function () {
+        return this.service;
+    };
+    return RouteInfos;
+}());
+exports.RouteInfos = RouteInfos;
+var PageRouteInfos = /** @class */ (function (_super) {
+    tslib_1.__extends(PageRouteInfos, _super);
+    function PageRouteInfos(viewComponent, attributes, service) {
+        var _this = _super.call(this, exports.RouteType.PAGE, attributes, service) || this;
+        _this.viewComponent = viewComponent;
+        return _this;
+    }
+    PageRouteInfos.prototype.getViewComponent = function () {
+        return this.viewComponent;
+    };
+    return PageRouteInfos;
+}(RouteInfos));
+exports.PageRouteInfos = PageRouteInfos;
+var DataRouteInfos = /** @class */ (function (_super) {
+    tslib_1.__extends(DataRouteInfos, _super);
+    function DataRouteInfos(action, attributes, service) {
+        var _this = _super.call(this, exports.RouteType.DATA, attributes, service) || this;
+        _this.action = action;
+        return _this;
+    }
+    DataRouteInfos.prototype.getAction = function () {
+        return this.action;
+    };
+    return DataRouteInfos;
+}(RouteInfos));
+exports.DataRouteInfos = DataRouteInfos;
+/** Routes Declaration */
+var AbstractRoutes = /** @class */ (function () {
+    function AbstractRoutes() {
+        this.pageRoutes = {};
+        this.dataRoutes = {};
+        this.lazyRoutes = {};
+        this.subRoutes = {};
+    }
+    AbstractRoutes.prototype.resolveAuthorizationAndMethod = function (authorizationOrMethod, method) {
+        var auth, meth;
+        if (_.isString(authorizationOrMethod)) {
+            auth = exports.DEFAULT_AUTHORIZATION;
+            meth = authorizationOrMethod;
+        }
+        else {
+            if (_.isUndefined(authorizationOrMethod)) {
+                auth = exports.DEFAULT_AUTHORIZATION;
+            }
+            else {
+                auth = authorizationOrMethod;
+            }
+            if (_.isString(method)) {
+                meth = method;
+            }
+            else {
+                meth = exports.DEFAULT_METHOD;
+            }
+        }
+        return { authorization: auth, method: meth };
+    };
+    AbstractRoutes.prototype.addPageRoute = function (path, handler, authorization) {
+        var args = this.resolveAuthorizationAndMethod(authorization, exports.DEFAULT_METHOD);
+        if (!this.pageRoutes[path])
+            this.pageRoutes[path] = {};
+        this.pageRoutes[path][args.method.toLowerCase()] = { authorization: args.authorization, handler: handler };
+    };
+    AbstractRoutes.prototype.addDataRoute = function (path, handler, authorizationOrMethod, method) {
+        var args = this.resolveAuthorizationAndMethod(authorizationOrMethod, method);
+        if (!this.dataRoutes[path])
+            this.dataRoutes[path] = {};
+        this.dataRoutes[path][args.method.toLowerCase()] = { authorization: args.authorization, handler: handler };
+    };
+    AbstractRoutes.prototype.addLazyRoutes = function (path, subRoutesFile) {
+        this.lazyRoutes[path] = subRoutesFile;
+    };
+    AbstractRoutes.prototype.getPageRoutes = function () {
+        return this.pageRoutes;
+    };
+    AbstractRoutes.prototype.getDataRoutes = function () {
+        return this.dataRoutes;
+    };
+    AbstractRoutes.prototype.getLazyRoutes = function () {
+        return this.lazyRoutes;
+    };
+    AbstractRoutes.prototype.addSubRoute = function (path, subRoutesFile) {
+        this.subRoutes[path] = subRoutesFile;
+    };
+    AbstractRoutes.prototype.getSubRoutes = function () {
+        return this.subRoutes;
+    };
+    /**
+     * Permet de charger les routes depuis une liste de répertoires
+     * @param paths
+     * @returns route module
+     */
+    AbstractRoutes.prototype.getDefaultRouteLoader = function (paths) {
+        return function (name) {
+            logger.trace("defaultRouteLoader(" + name + ")");
+            var index = _.findIndex(paths, function (path) {
+                try {
+                    return __webpack_require__.c[__webpack_require__.s].require(path + name);
+                }
+                catch (e) {
+                    // not throw error for module not found (parse all paths)
+                    if (e.code !== "MODULE_NOT_FOUND") {
+                        throw new technical_error_1.TechnicalError('ERR_TECH_' + codes_error_1.CodesError.ROUTE_ERROR, { errorMessage: e.message });
+                    }
+                }
+            });
+            if (index == -1) {
+                logger.error("Unknow route " + name + " in paths " + paths);
+                throw new technical_error_1.TechnicalError('ERR_TECH_' + codes_error_1.CodesError.ROUTE_ERROR, { errorMessage: codes_error_1.CodesError.DEFAULT_ERROR_MSG });
+            }
+            return __webpack_require__.c[__webpack_require__.s].require(paths[index] + name);
+        };
+    };
+    return AbstractRoutes;
+}());
+exports.AbstractRoutes = AbstractRoutes;
 
 
 
@@ -40844,19 +40844,16 @@ __webpack_require__(246);
         logger.info("routeLoaderClient(" + name + ")");
         // [AUTO GENERATED] DO NOT EDIT THIS FUNCTION DIRECTLY
 if (name === 'admin/fvm/form1-client-routes') { 
-__webpack_require__.e/* require */(4).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(247)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+__webpack_require__.e/* require */(3).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(247)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 }
 else if (name === 'admin/fvm/form1-server-routes') { 
-__webpack_require__.e/* require */(3).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(251)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
-}
-else if (name === 'admin/fvm/listPrefectures-server-routes') { 
-__webpack_require__.e/* require */(2).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(252)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+__webpack_require__.e/* require */(2).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(251)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 }
 else if (name === 'admin/fvm/record-client-routes') { 
 __webpack_require__.e/* require */(1).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(248)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 }
 else if (name === 'admin/fvm/record-server-routes') { 
-__webpack_require__.e/* require */(0).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(253)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+__webpack_require__.e/* require */(0).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(252)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 }
 else{callback('ERROR: No File with name \''+name+'\' found');}
         return null;
@@ -41001,10 +40998,10 @@ else{callback('ERROR: No File with name \''+name+'\' found');}
 "use strict";
 
 
-var defineProperties = __webpack_require__(53);
+var defineProperties = __webpack_require__(54);
 
-var implementation = __webpack_require__(54);
-var getPolyfill = __webpack_require__(55);
+var implementation = __webpack_require__(55);
+var getPolyfill = __webpack_require__(56);
 var shim = __webpack_require__(114);
 
 var polyfill = getPolyfill();
@@ -41196,8 +41193,8 @@ module.exports = function hasSymbols() {
 "use strict";
 
 
-var define = __webpack_require__(53);
-var getPolyfill = __webpack_require__(55);
+var define = __webpack_require__(54);
+var getPolyfill = __webpack_require__(56);
 
 module.exports = function shimAssign() {
 	var polyfill = getPolyfill();
@@ -43256,12 +43253,12 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./fr": 58,
-	"./fr-ca": 59,
-	"./fr-ca.js": 59,
-	"./fr-ch": 60,
-	"./fr-ch.js": 60,
-	"./fr.js": 58
+	"./fr": 59,
+	"./fr-ca": 60,
+	"./fr-ca.js": 60,
+	"./fr-ch": 61,
+	"./fr-ch.js": 61,
+	"./fr.js": 59
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -46545,17 +46542,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var hornet_js_utils_1 = __webpack_require__(0);
 hornet_js_utils_1.Utils.setConfigObj(window.Config);
 hornet_js_utils_1.Utils.appSharedProps.rehydrate(window.AppSharedProps);
-var logger_1 = __webpack_require__(56);
+var logger_1 = __webpack_require__(57);
 var client_log_1 = __webpack_require__(126);
 logger_1.Logger.prototype.buildLogger = client_log_1.ClientLog.getLoggerBuilder(hornet_js_utils_1.Utils.config.getOrDefault("logClient", {}));
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.client");
-var async_executor_1 = __webpack_require__(62);
-var async_element_1 = __webpack_require__(66);
+var async_executor_1 = __webpack_require__(63);
+var async_element_1 = __webpack_require__(67);
 var router_client_1 = __webpack_require__(160);
 var router_client_async_elements_1 = __webpack_require__(19);
 var hornet_event_1 = __webpack_require__(7);
 var hornet_event_2 = __webpack_require__(7);
-var service_api_results_1 = __webpack_require__(69);
+var service_api_results_1 = __webpack_require__(70);
 var error_manager_1 = __webpack_require__(32);
 var technical_error_1 = __webpack_require__(13);
 var base_error_1 = __webpack_require__(16);
@@ -46614,7 +46611,7 @@ var Client = /** @class */ (function () {
         if (!window.Intl) {
             logger.warn("Chargement d'une librairie remplacant Intl qui n'est pas supportée par ce navigateur");
             executor.addElement(new async_element_1.AsyncElement(function (next) {
-                __webpack_require__.e/* require.ensure */(5).then((function (require) {
+                __webpack_require__.e/* require.ensure */(4).then((function (require) {
                     window.Intl = __webpack_require__(105);
                     __webpack_require__(249);
                     var locale = window.HornetCLS.i18n.lang || "fr";
@@ -47166,8 +47163,8 @@ var debug = __webpack_require__(135)(Promise, Context);
 var CapturedTrace = debug.CapturedTrace;
 var PassThroughHandlerContext =
     __webpack_require__(136)(Promise, tryConvertToPromise, NEXT_FILTER);
-var catchFilter = __webpack_require__(64)(NEXT_FILTER);
-var nodebackForPromise = __webpack_require__(65);
+var catchFilter = __webpack_require__(65)(NEXT_FILTER);
+var nodebackForPromise = __webpack_require__(66);
 var errorObj = util.errorObj;
 var tryCatch = util.tryCatch;
 function check(self, executor) {
@@ -48125,7 +48122,7 @@ if (util.isNode && typeof MutationObserver === "undefined") {
 }
 module.exports = schedule;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), __webpack_require__(4), __webpack_require__(63).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), __webpack_require__(4), __webpack_require__(64).setImmediate))
 
 /***/ }),
 /* 130 */
@@ -49698,7 +49695,7 @@ module.exports = function(Promise, tryConvertToPromise, NEXT_FILTER) {
 var util = __webpack_require__(5);
 var CancellationError = Promise.CancellationError;
 var errorObj = util.errorObj;
-var catchFilter = __webpack_require__(64)(NEXT_FILTER);
+var catchFilter = __webpack_require__(65)(NEXT_FILTER);
 
 function PassThroughHandlerContext(promise, type, handler) {
     this.promise = promise;
@@ -51393,7 +51390,7 @@ Promise.prototype.asCallback = Promise.prototype.nodeify = function (nodeback,
 module.exports = function(Promise, INTERNAL) {
 var THIS = {};
 var util = __webpack_require__(5);
-var nodebackForPromise = __webpack_require__(65);
+var nodebackForPromise = __webpack_require__(66);
 var withAppended = util.withAppended;
 var maybeWrapAsError = util.maybeWrapAsError;
 var canEvaluate = util.canEvaluate;
@@ -52648,7 +52645,7 @@ var hornet_js_utils_1 = __webpack_require__(0);
 var director_1 = __webpack_require__(161);
 var _ = __webpack_require__(6);
 var lazy_class_loader_1 = __webpack_require__(162);
-var async_executor_1 = __webpack_require__(62);
+var async_executor_1 = __webpack_require__(63);
 var router_client_async_elements_1 = __webpack_require__(19);
 var hornet_event_1 = __webpack_require__(7);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.routes.router-client");
@@ -53871,7 +53868,7 @@ var tslib_1 = __webpack_require__(1);
  * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
  * @license CECILL-2.1
  */
-var http_error_1 = __webpack_require__(67);
+var http_error_1 = __webpack_require__(68);
 var SecurityError = /** @class */ (function (_super) {
     tslib_1.__extends(SecurityError, _super);
     function SecurityError(code, args, cause) {
@@ -53895,7 +53892,7 @@ exports.SecurityError = SecurityError;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
-var abstract_routes_1 = __webpack_require__(97);
+var abstract_routes_1 = __webpack_require__(98);
 // import { HomePage } from "src/views/gen/gen-hom-page";
 // import { AidePage } from "src/views/gen/gen-aid-page";
 // import { PlanAppliPage } from "src/views/nav/nav-pap-page";
@@ -53938,19 +53935,19 @@ var Routes = /** @class */ (function (_super) {
         //   PUBLIC_ROUTE
         // );
         // this.addLazyRoutes("/admin", "admin/admin-client-routes");
-        this.addLazyRoutes("/form", "admin/fvm/form1-client-routes");
-        this.addLazyRoutes("/fvmentries", "admin/fvm/record-client-routes");
+        this.addLazyRoutes("/form1", "admin/fvm/form1-client-routes");
+        this.addLazyRoutes("/record", "admin/fvm/record-client-routes");
         // /* Routes lazy */
         // this.addLazyRoutes(URL_CONTACT, "cnt/gen-cnt-client-routes");
     };
     Routes.prototype.addServerRoutes = function () {
-        this.addLazyRoutes("/inser", "admin/fvm/form1-server-routes");
-        this.addLazyRoutes("/listPrefectures", "admin/fvm/listPrefectures-server-routes");
-        this.addLazyRoutes("/listDossiers", "admin/fvm/record-server-routes");
+        this.addLazyRoutes("/form1server", "admin/fvm/form1-server-routes");
+        this.addLazyRoutes("/recordserver", "admin/fvm/record-server-routes");
     };
     return Routes;
 }(abstract_routes_1.AbstractRoutes));
 exports.Routes = Routes;
+
 
 
 /***/ }),
@@ -53963,7 +53960,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
-var hornet_page_1 = __webpack_require__(52);
+var hornet_page_1 = __webpack_require__(51);
 var spinner_1 = __webpack_require__(212);
 var header_page_1 = __webpack_require__(213);
 var footer_page_1 = __webpack_require__(214);
@@ -53972,7 +53969,7 @@ var user_1 = __webpack_require__(230);
 var menu_1 = __webpack_require__(232);
 var layout_switcher_1 = __webpack_require__(24);
 var change_language_1 = __webpack_require__(240);
-var dropdown_1 = __webpack_require__(40);
+var dropdown_1 = __webpack_require__(39);
 var ChangeLanguageService = __webpack_require__(241);
 var navigation_utils_1 = __webpack_require__(20);
 var notification_session_footer_1 = __webpack_require__(242);
@@ -54181,7 +54178,7 @@ var emptyObject = __webpack_require__(29);
 var invariant = __webpack_require__(37);
 var warning = __webpack_require__(38);
 var emptyFunction = __webpack_require__(14);
-var checkPropTypes = __webpack_require__(51);
+var checkPropTypes = __webpack_require__(52);
 
 // TODO: this is special because it gets imported during build.
 
@@ -58239,7 +58236,7 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var hornet_js_utils_1 = __webpack_require__(0);
-var service_request_1 = __webpack_require__(39);
+var service_request_1 = __webpack_require__(40);
 var hornet_superagent_request_1 = __webpack_require__(33);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.services.layout-through-session-request");
 var ExpandingLayout = /** @class */ (function (_super) {
@@ -59045,7 +59042,7 @@ if (typeof window !== 'undefined') { // Browser window
 
 var Emitter = __webpack_require__(186);
 var RequestBase = __webpack_require__(187);
-var isObject = __webpack_require__(72);
+var isObject = __webpack_require__(73);
 var ResponseBase = __webpack_require__(188);
 var Agent = __webpack_require__(190);
 
@@ -60130,7 +60127,7 @@ Emitter.prototype.hasListeners = function(event){
 /**
  * Module of mixed-in functions shared between node and client code
  */
-var isObject = __webpack_require__(72);
+var isObject = __webpack_require__(73);
 
 /**
  * Expose `RequestBase`.
@@ -61391,7 +61388,7 @@ function getNodeVersion() {
   return isNode ? {
     name: 'node',
     version: process.version.slice(1),
-    os: __webpack_require__(61).type().toLowerCase()
+    os: __webpack_require__(62).type().toLowerCase()
   } : null;
 }
 
@@ -61635,7 +61632,7 @@ exports.HornetCache = HornetCache;
 var OnionSkin = __webpack_require__(195);
 OnionSkin.Drivers = {
   Utils: __webpack_require__(34),
-  Ephemeral: __webpack_require__(74),
+  Ephemeral: __webpack_require__(75),
   LocalStorage: __webpack_require__(197),
   IndexedDB: __webpack_require__(198)
 };
@@ -61647,7 +61644,7 @@ module.exports = OnionSkin;
 /* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Item = __webpack_require__(73);
+var Item = __webpack_require__(74);
 var Pool = __webpack_require__(196);
 var OnionSkin = function (drivers) {
   'use strict';
@@ -61670,8 +61667,8 @@ module.exports = OnionSkin;
 /***/ (function(module, exports, __webpack_require__) {
 
 var Promise = __webpack_require__(17);
-var Ephemeral = __webpack_require__(74);
-var Item = __webpack_require__(73);
+var Ephemeral = __webpack_require__(75);
+var Item = __webpack_require__(74);
 
 function Pool(drivers) {
   if (!drivers) {
@@ -62010,10 +62007,10 @@ IndexedDB.prototype._key = function (key) {
 /* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(Buffer, global, process) {var capability = __webpack_require__(77)
+/* WEBPACK VAR INJECTION */(function(Buffer, global, process) {var capability = __webpack_require__(78)
 var inherits = __webpack_require__(11)
-var response = __webpack_require__(78)
-var stream = __webpack_require__(79)
+var response = __webpack_require__(79)
+var stream = __webpack_require__(80)
 var toArrayBuffer = __webpack_require__(207)
 
 var IncomingMessage = response.IncomingMessage
@@ -62754,7 +62751,7 @@ function config (name) {
 
 module.exports = PassThrough;
 
-var Transform = __webpack_require__(85);
+var Transform = __webpack_require__(86);
 
 /*<replacement>*/
 var util = __webpack_require__(25);
@@ -62905,7 +62902,7 @@ module.exports = {
 /* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var http = __webpack_require__(75)
+var http = __webpack_require__(76)
 var url = __webpack_require__(41)
 
 var https = module.exports
@@ -63640,7 +63637,7 @@ exports.HornetContent = HornetContent;
 /*
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(2),l=__webpack_require__(86),B=__webpack_require__(28),C=__webpack_require__(14),ba=__webpack_require__(87),da=__webpack_require__(88),ea=__webpack_require__(89),fa=__webpack_require__(90),ia=__webpack_require__(91),D=__webpack_require__(29);
+var aa=__webpack_require__(2),l=__webpack_require__(87),B=__webpack_require__(28),C=__webpack_require__(14),ba=__webpack_require__(88),da=__webpack_require__(89),ea=__webpack_require__(90),fa=__webpack_require__(91),ia=__webpack_require__(92),D=__webpack_require__(29);
 function E(a){for(var b=arguments.length-1,c="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,d=0;d<b;d++)c+="\x26args[]\x3d"+encodeURIComponent(arguments[d+1]);b=Error(c+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}aa?void 0:E("227");
 var oa={children:!0,dangerouslySetInnerHTML:!0,defaultValue:!0,defaultChecked:!0,innerHTML:!0,suppressContentEditableWarning:!0,suppressHydrationWarning:!0,style:!0};function pa(a,b){return(a&b)===b}
 var ta={MUST_USE_PROPERTY:1,HAS_BOOLEAN_VALUE:4,HAS_NUMERIC_VALUE:8,HAS_POSITIVE_NUMERIC_VALUE:24,HAS_OVERLOADED_BOOLEAN_VALUE:32,HAS_STRING_BOOLEAN_VALUE:64,injectDOMPropertyConfig:function(a){var b=ta,c=a.Properties||{},d=a.DOMAttributeNamespaces||{},e=a.DOMAttributeNames||{};a=a.DOMMutationMethods||{};for(var f in c){ua.hasOwnProperty(f)?E("48",f):void 0;var g=f.toLowerCase(),h=c[f];g={attributeName:g,attributeNamespace:null,propertyName:f,mutationMethod:null,mustUseProperty:pa(h,b.MUST_USE_PROPERTY),
@@ -63940,16 +63937,16 @@ if (process.env.NODE_ENV !== "production") {
 var React = __webpack_require__(2);
 var invariant = __webpack_require__(37);
 var warning = __webpack_require__(38);
-var ExecutionEnvironment = __webpack_require__(86);
+var ExecutionEnvironment = __webpack_require__(87);
 var _assign = __webpack_require__(28);
 var emptyFunction = __webpack_require__(14);
-var EventListener = __webpack_require__(87);
-var getActiveElement = __webpack_require__(88);
-var shallowEqual = __webpack_require__(89);
-var containsNode = __webpack_require__(90);
-var focusNode = __webpack_require__(91);
+var EventListener = __webpack_require__(88);
+var getActiveElement = __webpack_require__(89);
+var shallowEqual = __webpack_require__(90);
+var containsNode = __webpack_require__(91);
+var focusNode = __webpack_require__(92);
 var emptyObject = __webpack_require__(29);
-var checkPropTypes = __webpack_require__(51);
+var checkPropTypes = __webpack_require__(52);
 var hyphenateStyleName = __webpack_require__(220);
 var camelizeStyleName = __webpack_require__(222);
 
@@ -79562,7 +79559,7 @@ var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
-var accordion_1 = __webpack_require__(92);
+var accordion_1 = __webpack_require__(53);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.notification.notification-message-item");
 /**
  * Composant MessageItem
@@ -80517,7 +80514,7 @@ var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
 var hornet_js_utils_1 = __webpack_require__(0);
 var key_codes_1 = __webpack_require__(10);
-var dropdown_1 = __webpack_require__(40);
+var dropdown_1 = __webpack_require__(39);
 /**
  * Composant User
  */
@@ -85312,7 +85309,7 @@ var tslib_1 = __webpack_require__(1);
 var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
 var hornet_js_utils_1 = __webpack_require__(0);
-var dropdown_1 = __webpack_require__(40);
+var dropdown_1 = __webpack_require__(39);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.language.change-language");
 /**
  * Composant ChangeLanguage
@@ -85466,7 +85463,7 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var hornet_js_utils_1 = __webpack_require__(0);
-var service_request_1 = __webpack_require__(39);
+var service_request_1 = __webpack_require__(40);
 var hornet_superagent_request_1 = __webpack_require__(33);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.services.i18n-service-api");
 var ChangeLanguage = /** @class */ (function (_super) {
@@ -85499,9 +85496,9 @@ var tslib_1 = __webpack_require__(1);
 var React = __webpack_require__(2);
 var hornet_js_utils_1 = __webpack_require__(0);
 var hornet_component_1 = __webpack_require__(3);
-var hornet_superagent_1 = __webpack_require__(71);
+var hornet_superagent_1 = __webpack_require__(72);
 var wakeup_node_1 = __webpack_require__(243);
-var picto_1 = __webpack_require__(98);
+var picto_1 = __webpack_require__(97);
 var classNames = __webpack_require__(9);
 var moment = __webpack_require__(44);
 moment.duration.fn.format = function () {
@@ -85782,7 +85779,7 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var hornet_js_utils_1 = __webpack_require__(0);
-var service_request_1 = __webpack_require__(39);
+var service_request_1 = __webpack_require__(40);
 var hornet_superagent_request_1 = __webpack_require__(33);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.services.wakeup-node-request");
 var WakeUpNode = /** @class */ (function (_super) {

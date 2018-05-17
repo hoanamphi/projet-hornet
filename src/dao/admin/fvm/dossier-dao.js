@@ -19,8 +19,6 @@ var DossierFVMDAO = /** @class */ (function (_super) {
                 idPermis: idPermis
             }).then(function (result) {
                 return Promise.resolve(idDossier);
-            }).catch(function (error) {
-                throw new Error(error);
             });
         });
     };

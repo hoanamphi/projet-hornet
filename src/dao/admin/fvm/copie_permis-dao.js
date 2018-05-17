@@ -20,6 +20,8 @@ var CopiePermisFVMDao = /** @class */ (function (_super) {
                 size: size,
                 data: data,
                 idPermis: idPermis
+            }).then(function (result) {
+                return Promise.resolve(idCopiePermis);
             });
         });
     };

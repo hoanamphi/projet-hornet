@@ -105,7 +105,7 @@ export class RecordListPage extends HornetPage<any, HornetComponentProps, any> {
                           sortable={true}/>
               <ActionColumn keyColumn="id_permis"
                             srcImg={Picto.black.consulter}
-                            url={"/fvmentries/:id_permis"}/>
+                            url={"/record/:id_permis"}/>
             </Columns>
           </Content>
           <Footer>
@@ -146,7 +146,7 @@ export class RecordListPage extends HornetPage<any, HornetComponentProps, any> {
   }
 
   ajouterDossier() {
-    this.navigateTo("/form", {}, ()=>{});
+    this.navigateTo("/form1", {}, ()=>{});
   }
 
   reloadData() {

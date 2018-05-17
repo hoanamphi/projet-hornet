@@ -345,6 +345,24 @@
         "title": "Calendrier",
         "dateFormat": "DD/MM/YYYY",
         "invalid": "Le format du champ « Date de réception du dossier » est incorrect"
+      },
+      "region": {
+        "label": "Région"
+      },
+      "departement": {
+        "label": "Département"
+      },
+      "prefecture": {
+        "label": "Préfecture"
+      },
+      "adresse": {
+        "label": "Adresse"
+      },
+      "code_postal": {
+        "label": "Code postal"
+      },
+      "ville": {
+        "label": "Ville"
       }
     },
     "validTitle": "Validation de la saisie du formulaire de contact",

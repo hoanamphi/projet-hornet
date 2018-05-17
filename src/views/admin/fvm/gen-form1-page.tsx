@@ -8,7 +8,7 @@ import { Row } from "hornet-js-react-components/src/widget/form/row";
 import { InputField } from "hornet-js-react-components/src/widget/form/input-field";
 import { CalendarField } from "hornet-js-react-components/src/widget/form/calendar-field";
 import { Button } from "hornet-js-react-components/src/widget/button/button";
-import { Form1Service } from "src/services/page/admin/fvm/form1-service";
+import { ServerFormService } from "src/services/page/admin/fvm/server-form-service";
 import { ButtonsArea } from "hornet-js-react-components/src/widget/form/buttons-area";
 import { UploadFileField } from "hornet-js-react-components/src/widget/form/upload-file-field";
 import {DataSource} from "hornet-js-core/src/component/datasource/datasource";
@@ -25,7 +25,7 @@ import {DataSourceConfigPage} from "hornet-js-core/src/component/datasource/conf
 
 const logger: Logger = Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
 
-export class FormulairePage extends HornetPage<Form1Service, HornetComponentProps, any> {
+export class FormulairePage extends HornetPage<ServerFormService, HornetComponentProps, any> {
 
   private prefectures;
   private errors;
@@ -147,6 +147,6 @@ export class FormulairePage extends HornetPage<Form1Service, HornetComponentProp
   }
 
   retourPage(){
-    this.navigateTo("/fvmentries", {}, ()=>{});
+    this.navigateTo("/record", {}, ()=>{});
   }
 }

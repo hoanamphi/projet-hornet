@@ -1,16 +1,23 @@
-import { Inser } from "src/actions/admin/fvm/form1-action";
+import { Inser } from "src/actions/admin/fvm/fvm-action";
 import { DataRouteInfos, PUBLIC_ROUTE } from "hornet-js-core/src/routes/abstract-routes";
-import { Form1ServiceImpl } from "src/services/data/admin/fvm/form1-service-impl-data";
+import { ServerFormServiceImpl } from "src/services/data/admin/fvm/server-form-service-impl-data";
 import Form1RoutesClient from "src/routes/admin/fvm/form1-client-routes";
+import {ListePrefecture} from "../../../actions/admin/fvm/fvm-action";
 
 export default class Form1RoutesServer extends Form1RoutesClient {
     constructor() {
         super();
 
          this.addDataRoute("/",
-             () => new DataRouteInfos(Inser, null, Form1ServiceImpl),
+             () => new DataRouteInfos(Inser, null, ServerFormServiceImpl),
              PUBLIC_ROUTE,
              "post"
          );
+
+      this.addDataRoute("/listPrefectures",
+        () => new DataRouteInfos(ListePrefecture, null, ServerFormServiceImpl),
+        PUBLIC_ROUTE,
+        "post"
+      );
     }
 }

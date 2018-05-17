@@ -10,9 +10,9 @@ var permis_dao_1 = require("../../../../dao/admin/fvm/permis-dao");
 var copie_permis_dao_1 = require("../../../../dao/admin/fvm/copie_permis-dao");
 var prefecture_dao_1 = require("../../../../dao/prefecture-dao");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.services.data.admin.admin-service-impl-data");
-var RecordListServiceImpl = /** @class */ (function (_super) {
-    tslib_1.__extends(RecordListServiceImpl, _super);
-    function RecordListServiceImpl() {
+var ClientListServiceImpl = /** @class */ (function (_super) {
+    tslib_1.__extends(ClientListServiceImpl, _super);
+    function ClientListServiceImpl() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.personneDAO = new personne_dao_1.PersonneFVMDAO();
         _this.dossierDAO = new dossier_dao_1.DossierFVMDAO();
@@ -22,7 +22,7 @@ var RecordListServiceImpl = /** @class */ (function (_super) {
         _this.prefectureDAO = new prefecture_dao_1.PrefectureDAO();
         return _this;
     }
-    RecordListServiceImpl.prototype.getListeDossiers = function () {
+    ClientListServiceImpl.prototype.getListeDossiers = function () {
         var _this = this;
         return this.permisDAO.getAllPermis().then(function (permisList) {
             var idPersonneArray = [];
@@ -58,8 +58,51 @@ var RecordListServiceImpl = /** @class */ (function (_super) {
             });
         });
     };
-    return RecordListServiceImpl;
+    ClientListServiceImpl.prototype.getDossier = function (data) {
+        var _this = this;
+        var idPermis = data["id"];
+        return this.permisDAO.getPermis(idPermis).then(function (values) {
+            var permis = values[0];
+            var result = {};
+            result["num_permis"] = permis.numPermis;
+            result["date_de_delivrance"] = Date.parse(permis.dateDeDelivrance);
+            var personne = _this.personneDAO.getPersonne(permis.idPersonne);
+            var dossier = _this.dossierDAO.getDossier(permis.idDossier);
+            var prefecture_delivrance = _this.prefectureDAO.getPrefecture(permis.idPrefectureDelivrance);
+            return Promise.all([personne, dossier, prefecture_delivrance]).then(function (values) {
+                var personne = values[0][0];
+                var dossier = values[1][0];
+                var prefecture = values[2][0];
+                result["nom"] = personne.nom;
+                result["prenom"] = personne.prenom;
+                result["date_de_naissance"] = Date.parse(personne.dateDeNaissance);
+                result["ville_de_naissance"] = personne.villeDeNaissance;
+                result["pays_de_naissance"] = personne.paysDeNaissance;
+                result["date_reception_dossier"] = Date.parse(dossier.dateReceptionDossier);
+                result["region"] = prefecture.region;
+                result["departement"] = prefecture.departement;
+                result["prefecture"] = prefecture.prefecture;
+                result["adresse"] = prefecture.adresse;
+                result["code_postal"] = prefecture.codePostal;
+                result["ville"] = prefecture.ville;
+                return Promise.resolve([result]);
+            });
+        });
+    };
+    ClientListServiceImpl.prototype.getDemandeAuthentification = function (data) {
+        var idPermis = data["id"];
+        return Promise.resolve([]);
+    };
+    ClientListServiceImpl.prototype.getReleve = function (data) {
+        var idPermis = data["id"];
+        return Promise.resolve([]);
+    };
+    ClientListServiceImpl.prototype.getNoteVerbale = function (data) {
+        var idPermis = data["id"];
+        return Promise.resolve([]);
+    };
+    return ClientListServiceImpl;
 }(service_request_1.ServiceRequest));
-exports.RecordListServiceImpl = RecordListServiceImpl;
+exports.ClientListServiceImpl = ClientListServiceImpl;
 
-//# sourceMappingURL=recordList-service-impl-data.js.map
+//# sourceMappingURL=client-list-service-impl-data.js.map

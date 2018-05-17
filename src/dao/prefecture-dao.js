@@ -14,6 +14,13 @@ var PrefectureDAO = /** @class */ (function (_super) {
             attributes: ["idPrefecture", "prefecture"]
         });
     };
+    PrefectureDAO.prototype.getPrefecture = function (idPrefecture) {
+        return this.modelDAO.prefectureEntity.findAll({
+            where: {
+                idPrefecture: idPrefecture
+            }
+        });
+    };
     return PrefectureDAO;
 }(entity_dao_1.EntityDAO));
 exports.PrefectureDAO = PrefectureDAO;

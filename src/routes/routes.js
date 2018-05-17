@@ -44,17 +44,17 @@ var Routes = /** @class */ (function (_super) {
         //   PUBLIC_ROUTE
         // );
         // this.addLazyRoutes("/admin", "admin/admin-client-routes");
-        this.addLazyRoutes("/form", "admin/fvm/form1-client-routes");
-        this.addLazyRoutes("/fvmentries", "admin/fvm/record-client-routes");
+        this.addLazyRoutes("/form1", "admin/fvm/form1-client-routes");
+        this.addLazyRoutes("/record", "admin/fvm/record-client-routes");
         // /* Routes lazy */
         // this.addLazyRoutes(URL_CONTACT, "cnt/gen-cnt-client-routes");
     };
     Routes.prototype.addServerRoutes = function () {
-        this.addLazyRoutes("/inser", "admin/fvm/form1-server-routes");
-        this.addLazyRoutes("/listPrefectures", "admin/fvm/listPrefectures-server-routes");
-        this.addLazyRoutes("/listDossiers", "admin/fvm/record-server-routes");
+        this.addLazyRoutes("/form1server", "admin/fvm/form1-server-routes");
+        this.addLazyRoutes("/recordserver", "admin/fvm/record-server-routes");
     };
     return Routes;
 }(abstract_routes_1.AbstractRoutes));
 exports.Routes = Routes;
+
 //# sourceMappingURL=routes.js.map

@@ -21,6 +21,8 @@ export class PersonneFVMDAO extends EntityDAO {
         villeDeNaissance: villeDeNaissance,
         paysDeNaissance: paysDeNaissance,
         idPermis: idPermis
+      }).then(result=>{
+        return Promise.resolve(idPersonne);
       });
     });
   }

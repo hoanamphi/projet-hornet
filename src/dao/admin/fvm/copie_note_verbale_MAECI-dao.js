@@ -20,6 +20,8 @@ var CopieNoteVerbaleMAECIFVMDao = /** @class */ (function (_super) {
                 size: size,
                 data: data,
                 idDossier: idDossier
+            }).then(function (result) {
+                return Promise.resolve(idCopieNoteVerbaleMAECI);
             });
         });
     };

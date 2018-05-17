@@ -12,9 +12,9 @@ var permis_dao_1 = require("../../../../dao/admin/fvm/permis-dao");
 var copie_permis_dao_1 = require("../../../../dao/admin/fvm/copie_permis-dao");
 var prefecture_dao_1 = require("../../../../dao/prefecture-dao");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.services.data.admin.admin-service-impl-data");
-var Form1ServiceImpl = /** @class */ (function (_super) {
-    tslib_1.__extends(Form1ServiceImpl, _super);
-    function Form1ServiceImpl() {
+var ServerFormServiceImpl = /** @class */ (function (_super) {
+    tslib_1.__extends(ServerFormServiceImpl, _super);
+    function ServerFormServiceImpl() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.Error = { "hasError": null, "hasReason": null };
         _this.personneDAO = new personne_dao_1.PersonneFVMDAO();
@@ -25,7 +25,7 @@ var Form1ServiceImpl = /** @class */ (function (_super) {
         _this.prefectureDAO = new prefecture_dao_1.PrefectureDAO();
         return _this;
     }
-    Form1ServiceImpl.prototype.insererDonnee = function (data) {
+    ServerFormServiceImpl.prototype.insererDonnee = function (data) {
         var _this = this;
         var content = JSON.parse(data["content"]);
         var copie_permis = data["copie_permis"];
@@ -48,7 +48,7 @@ var Form1ServiceImpl = /** @class */ (function (_super) {
             return _this.Error;
         });
     };
-    Form1ServiceImpl.prototype.getListePrefectures = function () {
+    ServerFormServiceImpl.prototype.getListePrefectures = function () {
         return this.prefectureDAO.getListePrefecture();
     };
     tslib_1.__decorate([
@@ -56,9 +56,9 @@ var Form1ServiceImpl = /** @class */ (function (_super) {
         tslib_1.__metadata("design:type", Function),
         tslib_1.__metadata("design:paramtypes", [Object]),
         tslib_1.__metadata("design:returntype", Promise)
-    ], Form1ServiceImpl.prototype, "insererDonnee", null);
-    return Form1ServiceImpl;
+    ], ServerFormServiceImpl.prototype, "insererDonnee", null);
+    return ServerFormServiceImpl;
 }(service_request_1.ServiceRequest));
-exports.Form1ServiceImpl = Form1ServiceImpl;
+exports.ServerFormServiceImpl = ServerFormServiceImpl;
 
-//# sourceMappingURL=form1-service-impl-data.js.map
+//# sourceMappingURL=server-form-service-impl-data.js.map

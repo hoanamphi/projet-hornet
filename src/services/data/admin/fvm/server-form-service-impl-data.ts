@@ -1,7 +1,7 @@
 import { Utils } from "hornet-js-utils";
 import { Logger } from "hornet-js-utils/src/logger";
 import { ServiceRequest } from "hornet-js-core/src/services/service-request";
-import { Form1Service } from "src/services/page/admin/fvm/form1-service";
+import { ServerFormService } from "src/services/page/admin/fvm/server-form-service";
 import { Transactional } from "hornet-js-database/src/decorators/dec-transactional";
 import { Injector } from "hornet-js-core/src/inject/injector";
 import {PersonneFVMDAO} from "../../../../dao/admin/fvm/personne-dao";
@@ -13,7 +13,7 @@ import {PrefectureDAO} from "../../../../dao/prefecture-dao";
 
 const logger: Logger = Utils.getLogger("projet-hornet.services.data.admin.admin-service-impl-data");
 
-export class Form1ServiceImpl extends ServiceRequest implements Form1Service {
+export class ServerFormServiceImpl extends ServiceRequest implements ServerFormService {
 
   private Error = {"hasError": null, "hasReason": null};
 

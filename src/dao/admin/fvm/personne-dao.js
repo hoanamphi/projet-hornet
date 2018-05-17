@@ -20,6 +20,8 @@ var PersonneFVMDAO = /** @class */ (function (_super) {
                 villeDeNaissance: villeDeNaissance,
                 paysDeNaissance: paysDeNaissance,
                 idPermis: idPermis
+            }).then(function (result) {
+                return Promise.resolve(idPersonne);
             });
         });
     };

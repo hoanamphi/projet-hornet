@@ -22,9 +22,7 @@ export class DossierFVMDAO extends EntityDAO {
         dateReceptionDossier: dateReceptionDossier,
         idPermis: idPermis
       }).then(result=>{
-        return Promise.resolve(idDossier)
-      }).catch(error=>{
-        throw new Error(error);
+        return Promise.resolve(idDossier);
       });
     });
   }

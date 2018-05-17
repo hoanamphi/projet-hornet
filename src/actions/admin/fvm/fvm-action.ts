@@ -1,12 +1,12 @@
 import { Utils } from "hornet-js-utils";
 import { Logger } from "hornet-js-utils/src/logger";
 import { RouteActionService } from "hornet-js-core/src/routes/abstract-routes";
-import { Form1Service } from "src/services/page/admin/fvm/form1-service";
-import {RecordListService} from "../../../services/page/admin/fvm/recordList-service";
+import { ServerFormService } from "src/services/page/admin/fvm/server-form-service";
+import {ClientListService} from "../../../services/page/admin/fvm/client-list-service";
 
 const logger: Logger = Utils.getLogger("projet-hornet.actions.admin.permis_actions");
 
-export class Inser extends RouteActionService<any, Form1Service> {
+export class Inser extends RouteActionService<any, ServerFormService> {
   execute(): Promise<any> {
     logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
 
@@ -34,7 +34,7 @@ export class Inser extends RouteActionService<any, Form1Service> {
   }
 }
 
-export class ListePrefecture extends RouteActionService<any, Form1Service> {
+export class ListePrefecture extends RouteActionService<any, ServerFormService> {
   execute(): Promise<any> {
     logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
 
@@ -42,10 +42,50 @@ export class ListePrefecture extends RouteActionService<any, Form1Service> {
   }
 }
 
-export class ListeDossiers extends RouteActionService<any, RecordListService> {
+export class ListeDossiers extends RouteActionService<any, ClientListService> {
   execute(): Promise<any> {
     logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
 
     return this.getService().getListeDossiers();
+  }
+}
+
+export class GetDossier extends RouteActionService<any, ClientListService> {
+  execute(): Promise<any> {
+    logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
+
+    let data = this.req.body;
+
+    return this.getService().getDossier(data);
+  }
+}
+
+export class GetDemandeAuthentification extends RouteActionService<any, ClientListService> {
+  execute(): Promise<any> {
+    logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
+
+    let data = this.req.body;
+
+    return this.getService().getDemandeAuthentification(data);
+  }
+}
+
+export class GetReleve extends RouteActionService<any, ClientListService> {
+  execute(): Promise<any> {
+    logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
+
+    let data = this.req.body;
+
+    return this.getService().getReleve(data);
+  }
+}
+
+export class GetNoteVerbale extends RouteActionService<any, ClientListService> {
+  execute(): Promise<any> {
+    logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
+
+    let data = this.req.body;
+
+    return this.getService().getNoteVerbale(data);
   }
 }

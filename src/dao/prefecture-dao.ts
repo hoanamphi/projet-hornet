@@ -15,4 +15,12 @@ export class PrefectureDAO extends EntityDAO {
       attributes: ["idPrefecture", "prefecture"]
     });
   }
+
+  getPrefecture(idPrefecture): Promise<any> {
+    return this.modelDAO.prefectureEntity.findAll({
+      where: {
+        idPrefecture: idPrefecture
+      }
+    });
+  }
 }

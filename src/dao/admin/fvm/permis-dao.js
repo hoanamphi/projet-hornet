@@ -20,6 +20,8 @@ var PermisFVMDAO = /** @class */ (function (_super) {
                 idPersonne: idPersonne,
                 idDossier: idDossier,
                 idPrefectureDelivrance: idPrefectureDelivrance
+            }).then(function (result) {
+                return Promise.resolve(idPermis);
             });
         });
     };

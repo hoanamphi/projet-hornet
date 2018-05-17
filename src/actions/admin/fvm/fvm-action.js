@@ -57,5 +57,57 @@ var ListeDossiers = /** @class */ (function (_super) {
     return ListeDossiers;
 }(abstract_routes_1.RouteActionService));
 exports.ListeDossiers = ListeDossiers;
+var GetDossier = /** @class */ (function (_super) {
+    tslib_1.__extends(GetDossier, _super);
+    function GetDossier() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    GetDossier.prototype.execute = function () {
+        logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
+        var data = this.req.body;
+        return this.getService().getDossier(data);
+    };
+    return GetDossier;
+}(abstract_routes_1.RouteActionService));
+exports.GetDossier = GetDossier;
+var GetDemandeAuthentification = /** @class */ (function (_super) {
+    tslib_1.__extends(GetDemandeAuthentification, _super);
+    function GetDemandeAuthentification() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    GetDemandeAuthentification.prototype.execute = function () {
+        logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
+        var data = this.req.body;
+        return this.getService().getDemandeAuthentification(data);
+    };
+    return GetDemandeAuthentification;
+}(abstract_routes_1.RouteActionService));
+exports.GetDemandeAuthentification = GetDemandeAuthentification;
+var GetReleve = /** @class */ (function (_super) {
+    tslib_1.__extends(GetReleve, _super);
+    function GetReleve() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    GetReleve.prototype.execute = function () {
+        logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
+        var data = this.req.body;
+        return this.getService().getReleve(data);
+    };
+    return GetReleve;
+}(abstract_routes_1.RouteActionService));
+exports.GetReleve = GetReleve;
+var GetNoteVerbale = /** @class */ (function (_super) {
+    tslib_1.__extends(GetNoteVerbale, _super);
+    function GetNoteVerbale() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    GetNoteVerbale.prototype.execute = function () {
+        logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
+        var data = this.req.body;
+        return this.getService().getNoteVerbale(data);
+    };
+    return GetNoteVerbale;
+}(abstract_routes_1.RouteActionService));
+exports.GetNoteVerbale = GetNoteVerbale;
 
-//# sourceMappingURL=form1-action.js.map
+//# sourceMappingURL=fvm-action.js.map

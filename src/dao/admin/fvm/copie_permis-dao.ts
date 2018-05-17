@@ -24,7 +24,9 @@ export class CopiePermisFVMDao extends EntityDAO {
         size: size,
         data: data,
         idPermis: idPermis
-      })
+      }).then(result=>{
+        return Promise.resolve(idCopiePermis);
+      });
     });
   }
 
