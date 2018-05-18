@@ -73,14 +73,18 @@ export class ClientListServiceImpl extends ServiceRequest implements ClientListS
       result["num_permis"] = permis.numPermis;
       result["date_de_delivrance"] = Date.parse(permis.dateDeDelivrance);
 
+      let copie_permis = this.copiePermisDAO.getCopiePermis(permis.idCopiePermis);
       let personne = this.personneDAO.getPersonne(permis.idPersonne);
       let dossier = this.dossierDAO.getDossier(permis.idDossier);
       let prefecture_delivrance = this.prefectureDAO.getPrefecture(permis.idPrefectureDelivrance);
 
-      return Promise.all([personne, dossier, prefecture_delivrance]).then(values=>{
-        let personne = values[0][0];
-        let dossier = values[1][0];
-        let prefecture = values[2][0];
+      return Promise.all([copie_permis, personne, dossier, prefecture_delivrance]).then(values=>{
+        let copie_permis = values[0][0];
+        let personne = values[1][0];
+        let dossier = values[2][0];
+        let prefecture = values[3][0];
+
+        result["copie_permis"] = copie_permis;
 
         result["nom"] = personne.nom;
         result["prenom"] = personne.prenom;

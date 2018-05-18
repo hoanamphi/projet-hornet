@@ -66,13 +66,16 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
             var result = {};
             result["num_permis"] = permis.numPermis;
             result["date_de_delivrance"] = Date.parse(permis.dateDeDelivrance);
+            var copie_permis = _this.copiePermisDAO.getCopiePermis(permis.idCopiePermis);
             var personne = _this.personneDAO.getPersonne(permis.idPersonne);
             var dossier = _this.dossierDAO.getDossier(permis.idDossier);
             var prefecture_delivrance = _this.prefectureDAO.getPrefecture(permis.idPrefectureDelivrance);
-            return Promise.all([personne, dossier, prefecture_delivrance]).then(function (values) {
-                var personne = values[0][0];
-                var dossier = values[1][0];
-                var prefecture = values[2][0];
+            return Promise.all([copie_permis, personne, dossier, prefecture_delivrance]).then(function (values) {
+                var copie_permis = values[0][0];
+                var personne = values[1][0];
+                var dossier = values[2][0];
+                var prefecture = values[3][0];
+                result["copie_permis"] = copie_permis;
                 result["nom"] = personne.nom;
                 result["prenom"] = personne.prenom;
                 result["date_de_naissance"] = Date.parse(personne.dateDeNaissance);

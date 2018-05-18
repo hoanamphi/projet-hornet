@@ -330,7 +330,7 @@
         "invalid": "Le format du champ « Date de délivrance » est incorrect"
       },
       "id_prefecture": {
-        "label": "Prefecture ayant délivré le permis",
+        "label": "Préfecture ayant délivré le permis",
         "required": "Le champ « Prefecture ayant délivré le permis » est obligatoire. Veuillez saisir ce champ.",
         "invalid": "Le format du champ « Préfecture » est incorrect"
       },
