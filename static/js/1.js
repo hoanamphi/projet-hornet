@@ -7,9 +7,9 @@ webpackJsonp([1],Array(248).concat([
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var abstract_routes_1 = __webpack_require__(98);
-var gen_recordList_page_1 = __webpack_require__(489);
-var client_list_service_impl_1 = __webpack_require__(505);
-var gen_recordDetails_page_1 = __webpack_require__(506);
+var gen_recordList_page_1 = __webpack_require__(491);
+var client_list_service_impl_1 = __webpack_require__(507);
+var gen_recordDetails_page_1 = __webpack_require__(508);
 var RecordListRoutesClient = /** @class */ (function (_super) {
     tslib_1.__extends(RecordListRoutesClient, _super);
     function RecordListRoutesClient() {
@@ -153,7 +153,7 @@ var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var classNames = __webpack_require__(9);
 var _ = __webpack_require__(6);
-var dom_adapter_1 = __webpack_require__(302);
+var dom_adapter_1 = __webpack_require__(303);
 var field_error_1 = __webpack_require__(343);
 var html_attributes_1 = __webpack_require__(344);
 var tool_tip_1 = __webpack_require__(346);
@@ -849,7 +849,7 @@ module.exports = __webpack_require__(262) ? function (object, key, value) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var anObject = __webpack_require__(268);
-var IE8_DOM_DEFINE = __webpack_require__(319);
+var IE8_DOM_DEFINE = __webpack_require__(321);
 var toPrimitive = __webpack_require__(282);
 var dP = Object.defineProperty;
 
@@ -890,7 +890,7 @@ module.exports = !__webpack_require__(269)(function () {
 /***/ (function(module, exports, __webpack_require__) {
 
 // to indexed object, toObject with fallback for non-array-like ES3 strings
-var IObject = __webpack_require__(322);
+var IObject = __webpack_require__(324);
 var defined = __webpack_require__(283);
 module.exports = function (it) {
   return IObject(defined(it));
@@ -1071,7 +1071,7 @@ function isAllowedDate(value, disabledDate, disabledTime) {
 
 var global = __webpack_require__(255);
 var core = __webpack_require__(258);
-var ctx = __webpack_require__(318);
+var ctx = __webpack_require__(320);
 var hide = __webpack_require__(259);
 var PROTOTYPE = 'prototype';
 
@@ -1180,7 +1180,7 @@ exports.default = function (instance, Constructor) {
 
 exports.__esModule = true;
 
-var _typeof2 = __webpack_require__(325);
+var _typeof2 = __webpack_require__(327);
 
 var _typeof3 = _interopRequireDefault(_typeof2);
 
@@ -1211,7 +1211,7 @@ var _create = __webpack_require__(449);
 
 var _create2 = _interopRequireDefault(_create);
 
-var _typeof2 = __webpack_require__(325);
+var _typeof2 = __webpack_require__(327);
 
 var _typeof3 = _interopRequireDefault(_typeof2);
 
@@ -1252,7 +1252,7 @@ module.exports = function (bitmap, value) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
-var $keys = __webpack_require__(321);
+var $keys = __webpack_require__(323);
 var enumBugKeys = __webpack_require__(287);
 
 module.exports = Object.keys || function keys(O) {
@@ -1288,7 +1288,7 @@ exports.f = {}.propertyIsEnumerable;
 var url = __webpack_require__(41)
   , equal = __webpack_require__(278)
   , util = __webpack_require__(257)
-  , SchemaObject = __webpack_require__(308)
+  , SchemaObject = __webpack_require__(310)
   , traverse = __webpack_require__(358);
 
 module.exports = resolve;
@@ -1820,7 +1820,7 @@ var PROTOTYPE = 'prototype';
 // Create object with fake `null` prototype: use iframe Object with cleared prototype
 var createDict = function () {
   // Thrash, waste and sodomy: IE GC bug
-  var iframe = __webpack_require__(320)('iframe');
+  var iframe = __webpack_require__(322)('iframe');
   var i = enumBugKeys.length;
   var lt = '<';
   var gt = '>';
@@ -2139,11 +2139,11 @@ var events = __webpack_require__(27);
 var _ = __webpack_require__(6);
 var promise_api_1 = __webpack_require__(50);
 var technical_error_1 = __webpack_require__(13);
-var codes_error_1 = __webpack_require__(96);
-var object_utils_1 = __webpack_require__(305);
+var codes_error_1 = __webpack_require__(97);
+var object_utils_1 = __webpack_require__(307);
 var datasource_option_1 = __webpack_require__(351);
 var datasource_config_1 = __webpack_require__(352);
-var datasource_config_page_1 = __webpack_require__(306);
+var datasource_config_page_1 = __webpack_require__(308);
 var DataSourceStatus;
 (function (DataSourceStatus) {
     DataSourceStatus[DataSourceStatus["Dummy"] = 0] = "Dummy";
@@ -3046,11 +3046,11 @@ var tslib_1 = __webpack_require__(1);
  */
 var React = __webpack_require__(2);
 var abstract_field_1 = __webpack_require__(254);
-var picto_1 = __webpack_require__(97);
+var picto_1 = __webpack_require__(96);
 var _ = __webpack_require__(6);
 var classNames = __webpack_require__(9);
 var hornet_event_1 = __webpack_require__(7);
-var event_1 = __webpack_require__(317);
+var event_1 = __webpack_require__(319);
 var InputField = /** @class */ (function (_super) {
     tslib_1.__extends(InputField, _super);
     function InputField() {
@@ -3416,9 +3416,9 @@ var tslib_1 = __webpack_require__(1);
  */
 var hornet_js_utils_1 = __webpack_require__(0);
 var hornet_component_1 = __webpack_require__(3);
-var header_cell_1 = __webpack_require__(493);
-var body_cell_1 = __webpack_require__(494);
-var input_text_in_line_body_cell_1 = __webpack_require__(495);
+var header_cell_1 = __webpack_require__(495);
+var body_cell_1 = __webpack_require__(496);
+var input_text_in_line_body_cell_1 = __webpack_require__(497);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.table.column");
 /**
  * Classe abstraite d'une colonne de tableau
@@ -3773,8 +3773,640 @@ exports.AbstractBodyCell = AbstractBodyCell;
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
+/**
+ * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
+ *
+ * @author MEAE - Ministère de l'Europe et des Affaires étrangères
+ * @version v5.1.1
+ * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
+ * @license CECILL-2.1
+ */
+var hornet_js_utils_1 = __webpack_require__(0);
+var React = __webpack_require__(2);
+var notification_1 = __webpack_require__(48);
+var abstract_field_1 = __webpack_require__(254);
+var abstract_form_1 = __webpack_require__(347);
+var upload_file_field_1 = __webpack_require__(305);
+var form_utils_1 = __webpack_require__(304);
+var dom_adapter_1 = __webpack_require__(303);
+var auto_complete_field_1 = __webpack_require__(348);
+var notification_manager_1 = __webpack_require__(95);
+var checkbox_field_1 = __webpack_require__(353);
+var data_validator_1 = __webpack_require__(354);
+var classNames = __webpack_require__(9);
+var _ = __webpack_require__(6);
+var select_field_1 = __webpack_require__(338);
+var buttons_area_1 = __webpack_require__(318);
+var event_1 = __webpack_require__(319);
+var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.form.form");
+/**
+ * Composant permettant de rendre un formulaire Hornet de manière standardisée
+ */
+var Form = /** @class */ (function (_super) {
+    tslib_1.__extends(Form, _super);
+    function Form(props, context) {
+        var _this = _super.call(this, props, context) || this;
+        var calendarLocale = _this.i18n("calendar");
+        if (calendarLocale == null) {
+            calendarLocale = {};
+        }
+        /* Messages génériques */
+        /* Configuration locale des calendriers et dates */
+        _this.state.calendarLocale = calendarLocale;
+        _this.state.customNotif = props.notifId != null;
+        _this.state.notifId = props.notifId != null ? props.notifId : "Form-" + (Form.idx++);
+        _this.listen(event_1.VALUE_CHANGED_EVENT, function (ev) {
+            if (ev.detail.form.id == _this.state.id && _this.state.onFormChange) {
+                _this.state.onFormChange();
+            }
+        });
+        return _this;
+    }
+    // Setters (pas de setter sur defaultValues, car cette propriété sert uniquement lors du montage initial du composant
+    Form.prototype.setName = function (value, callback) {
+        this.setState({ name: value }, callback);
+        return this;
+    };
+    Form.prototype.setOnSubmit = function (handler, callback) {
+        this.setState({ onSubmit: handler }, callback);
+        return this;
+    };
+    Form.prototype.setOnFormChange = function (handler, callback) {
+        this.setState({ onFormChange: handler }, callback);
+        return this;
+    };
+    Form.prototype.setIsMandatoryFieldsHidden = function (value, callback) {
+        this.setState({ isMandatoryFieldsHidden: value }, callback);
+        return this;
+    };
+    Form.prototype.setSubTitle = function (value, callback) {
+        this.setState({ subTitle: value }, callback);
+        return this;
+    };
+    Form.prototype.setText = function (value, callback) {
+        this.setState({ text: value }, callback);
+        return this;
+    };
+    Form.prototype.setClassName = function (value, callback) {
+        this.setState({ className: value }, callback);
+        return this;
+    };
+    Form.prototype.setMarkRequired = function (value, callback) {
+        this.setState({ markRequired: value }, callback);
+        /* Propagation de la propriété aux champs Hornet appartenant à ce formulaire */
+        this.updateMarkRequiredFields(value);
+        return this;
+    };
+    Form.prototype.setImgFilePath = function (value, callback) {
+        this.setState({ imgFilePath: value }, callback);
+        /* Propagation de la propriété aux champs Hornet appartenant à ce formulaire */
+        this.updateImagFilePathFields(value);
+        return this;
+    };
+    Form.prototype.setSchema = function (value, callback) {
+        this.setState({ schema: value }, callback);
+        return this;
+    };
+    Form.prototype.setValidationOptions = function (value, callback) {
+        this.setState({ validationOptions: value }, callback);
+        return this;
+    };
+    Form.prototype.setFormMessages = function (value, callback) {
+        this.setState({ formMessages: value }, callback);
+        return this;
+    };
+    Form.prototype.setCustomValidators = function (value, callback) {
+        this.setState({ customValidators: value }, callback);
+        return this;
+    };
+    Form.prototype.setNotifId = function (value, callback) {
+        if (value != null) {
+            this.setState({ notifId: value, customNotif: true }, callback);
+        }
+        else {
+            this.setState({ notifId: "Form-" + (Form.idx++), customNotif: false }, callback);
+        }
+        return this;
+    };
+    Form.prototype.componentWillUnmount = function () {
+        _super.prototype.componentWillUnmount.call(this);
+        notification_manager_1.NotificationManager.clean(this.state.notifId, this.state.id);
+        if (this.formElement) {
+            this.formElement["__component"] = null;
+        }
+    };
+    Form.prototype.componentDidMount = function () {
+        _super.prototype.componentDidMount.call(this);
+        /* On évite la soumission intempestive du formulaire en cas de clics répétés ou de touche entrée maintenue
+         sur le bouton de soumission*/
+        this.debouncedValidateAndSubmit = _.debounce(this.validateAndSubmit, 500);
+        if (this.state.defaultValues) {
+            this.updateFields(this.state.defaultValues);
+        }
+        if (!this.isOneRequired(this.state.children)) {
+            this.setMarkRequired(false);
+        }
+    };
+    /**
+     * Met à jour la propriété markRequired sur chacun des champs héritant de AbstractField contenus dans le formulaire
+     * @param isMarkRequired valeur à assigner à la propriété 'markRequired'
+     * @return ce formulaire
+     */
+    Form.prototype.updateMarkRequiredFields = function (isMarkRequired) {
+        var fields = this.extractFields();
+        /* Met à jour l'affichage de chaque champ en cas de readOnly*/
+        Object.keys(fields).every(function (key) {
+            var field = fields[key];
+            if (field instanceof abstract_field_1.AbstractField) {
+                field.setMarkRequired(isMarkRequired);
+            }
+            return true;
+        });
+        return this;
+    };
+    /**
+     * Met à jour la propriété imgFilePath sur chacun des champs héritant de AbstractField contenus dans le formulaire
+     * @param imgFilePath valeur à assigner à la propriété 'imgFilePath'
+     * @return ce formulaire
+     */
+    Form.prototype.updateImagFilePathFields = function (imgFilePath) {
+        var fields = this.extractFields();
+        Object.keys(fields).every(function (key) {
+            var field = fields[key];
+            if (field instanceof abstract_field_1.AbstractField) {
+                field.setImgFilePath(imgFilePath);
+            }
+            return true;
+        });
+        return this;
+    };
+    /**
+     * Met à jour les valeurs courantes des champs du formulaire
+     * @param data données du formulaire (clé : nom du champ -> valeur du champ)
+     */
+    Form.prototype.updateFields = function (data) {
+        var fields = this.extractFields();
+        this.propagateParentState();
+        for (var nameField in fields) {
+            var val = _.get(data, nameField);
+            if (val != null) {
+                if (fields[nameField] instanceof checkbox_field_1.CheckBoxField) {
+                    /* Traitement spécifique pour une checkbox : on affecte currentChecked lorsque la valeur est booléenne*/
+                    // if (val === true || val === false) {
+                    //     fields[name].setCurrentValue("");
+                    fields[nameField].setCurrentChecked(val);
+                    // } else {
+                    //     fields[name].setCurrentValue(val);
+                    // }
+                }
+                else {
+                    if (fields[nameField] instanceof select_field_1.SelectField || fields[nameField] instanceof auto_complete_field_1.AutoCompleteField) {
+                        if (val instanceof Array) {
+                            var choices = [];
+                            /** TODO : a deplace dans le composant autocompleteField */
+                            if (fields[nameField].state.multiple) {
+                                for (var i = 0; i < fields[nameField].state.allChoices.length; i++) {
+                                    var choice = fields[nameField].state.allChoices[i];
+                                    for (var j = 0; j < val.length; j++) {
+                                        if (val[j].toString() == choice["value"]) {
+                                            choices.push(choice["value"]);
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                            else {
+                                for (var i = 0; i < fields[nameField].state.dataSource.length; i++) {
+                                    var choice = fields[nameField].state.dataSource[i];
+                                    for (var j = 0; j < val.length; j++) {
+                                        if (val[j].toString() == choice[fields[nameField].state.valueKey]) {
+                                            choices.push(choice[fields[nameField].state.valueKey]);
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                            fields[nameField].setCurrentValue(choices);
+                        }
+                        else {
+                            fields[nameField].setCurrentValue(val);
+                        }
+                    }
+                    else {
+                        /* Traitement des champs radio et select en mode readOnly */
+                        if ((fields[nameField].state.choices) && (this.state.readOnly || fields[nameField].state.readOnly)) {
+                            for (var i = 0; i < fields[nameField].state.dataSource.length; i++) {
+                                var choice = fields[nameField].state.dataSource[i];
+                                if (val.toString() == choice[fields[nameField].state.valueKey]) {
+                                    fields[nameField].setCurrentValue(choice[fields[nameField].state.valueKey]);
+                                    break;
+                                }
+                            }
+                        }
+                        else {
+                            fields[nameField].setCurrentValue(val);
+                        }
+                    }
+                }
+            }
+            else {
+                if (fields[nameField] instanceof checkbox_field_1.CheckBoxField) {
+                    fields[nameField].setCurrentChecked(false);
+                }
+                else {
+                    fields[nameField].setCurrentValue(null);
+                }
+            }
+        }
+    };
+    /**
+     * Traitement spécifique des notifications concernant les champs d'autocomplétion
+     * @param fields champs du formulaire
+     * @param notifs notifications d'erreurs de validation
+     */
+    Form.prototype.processAutocompleteErrors = function (fields, notifs) {
+        var processedNotifs = notifs.getNotifications().map(function (notif) {
+            /* Parcours de tous les champs */
+            Object.keys(fields).every(function (key) {
+                var field = fields[key];
+                if (field instanceof auto_complete_field_1.AutoCompleteField) {
+                    var autoField = field;
+                    /* La notification référence le nom global du champ d'auto-complétion
+                     ou bien le champ caché contenant la valeur :
+                     on modifie cette référence pour pointer vers le champ de saisie libre */
+                    // if (notif.field == autoField.getAttribute("name") ||
+                    if (notif.field == autoField.state.name ||
+                        notif.field == (autoField.getValueFieldName())) {
+                        notif.field = autoField.getFreeTypingFieldName();
+                        /* Fin de la boucle de parcours des auto-complete */
+                        return false;
+                    }
+                }
+                return true;
+            }, this);
+            return notif;
+        }, this);
+        notifs.setNotifications(processedNotifs);
+    };
+    /**
+     * Déclenche les notifications correspondant aux éventuelles erreurs de validation
+     * @param errors erreurs de validation de formulaire, éventuellement vides
+     */
+    Form.prototype.notifyErrors = function (errors) {
+        if (errors) {
+            var fieldsMessages = this.state.formMessages && this.state.formMessages.fields;
+            var genericValidationMessages = this.i18n("form.validation");
+            var fields_1 = this.extractFields();
+            var notificationsError_1 = form_utils_1.FormUtils.getErrors(errors, fields_1, fieldsMessages, genericValidationMessages);
+            /* Post-traitement des notifications concernant les champs d'autocomplétion */
+            this.processAutocompleteErrors(fields_1, notificationsError_1);
+            /* Met à jour les erreurs affichées par chaque composant champ */
+            Object.keys(fields_1).every(function (key) {
+                var field = fields_1[key];
+                if (field instanceof abstract_field_1.AbstractField) {
+                    field.setErrors(notificationsError_1.getNotifications());
+                }
+                return true;
+            });
+            /* Emission des notifications */
+            notification_manager_1.NotificationManager.notify(this.state.notifId, this.state.id, notificationsError_1);
+        }
+    };
+    /**
+     * Transforme les valeurs des champs déclarés avec le format "date-time" dans le schéma de validation :
+     * effectue la conversion depuis la locale courante, vers le format ISO 8601. Ceci permet une validation isomorphique
+     * côté client comme serveur en utilisant le même schéma, et la conversion automatique en objet Date côté backend REST
+     * reste possible.
+     * @param schema schéma de validation JSON-Schema
+     * @param data données de formualaire
+     */
+    Form.prototype.transformDatesToISO = function (schema, data) {
+        if (schema && schema.properties && data) {
+            var propNames = Object.keys(schema.properties);
+            var property = void 0, propName = void 0;
+            for (var i = 0; i < propNames.length; i++) {
+                propName = propNames[i];
+                property = schema.properties[propName];
+                if (property.type == "object") {
+                    /* Appel récursif sur les éventuelles propriétés incluses dans le sous-schéma */
+                    this.transformDatesToISO(property, data[propName]);
+                }
+                else if (property.format == "date-time") {
+                    if (data[propName]) {
+                        var date = hornet_js_utils_1.Utils.dateUtils.parseInTZ(data[propName], this.state.calendarLocale.dateFormat);
+                        if (date) {
+                            /* La chaîne de caractères est une date valide pour la locale : on convertit en représentation ISO 8601.*/
+                            data[propName] = date.toISOString();
+                        }
+                        /* Sinon la valeur incorrecte est conservée*/
+                    }
+                }
+            }
+        }
+    };
+    /**
+     * Déclenche la validation du formulaire, notifie les erreurs éventuelles et exécute la fonction
+     * onSubmit présente dans les propriétés s'il n'y a pas d'erreurs
+     *
+     */
+    Form.prototype.validateAndSubmit = function () {
+        if (this.formElement) {
+            logger.trace("Validation et envoi du formulaire");
+            var data = this.extractData();
+            if (this.state.onBeforeSubmit) {
+                this.state.onBeforeSubmit(data);
+            }
+            var options = this.state.validationOptions;
+            var schema = data_validator_1.DataValidator.transformRequiredStrings(this.state.schema);
+            this.transformDatesToISO(this.state.schema, data);
+            var validationRes = new data_validator_1.DataValidator(schema, this.state.customValidators, options).validate(data);
+            if (!validationRes.valid) {
+                this.notifyErrors(validationRes.errors);
+            }
+            else {
+                this.cleanFormErrors();
+                if (this.state.onSubmit) {
+                    this.state.onSubmit(data);
+                }
+            }
+        }
+    };
+    /**
+     * Supprime les nofifications d'erreurs et les erreurs associées à chaque champ de ce formulaire
+     */
+    Form.prototype.cleanFormErrors = function () {
+        var fields = this.extractFields();
+        for (var fieldName in fields) {
+            var field = fields[fieldName];
+            if (field instanceof abstract_field_1.AbstractField) {
+                field.setErrors(null);
+            }
+        }
+        notification_manager_1.NotificationManager.clean(this.state.notifId, this.state.id);
+    };
+    /**
+     * Met à jour les valeurs courantes des champs du formulaire et
+     * supprime les nofifications d'erreurs et les erreurs associées à chaque champ de ce formulaire
+     * @param data données du formulaire (clé : nom du champ -> valeur du champ)
+     */
+    Form.prototype.updateFieldsAndClean = function (data) {
+        this.updateFields(data);
+        this.cleanFormErrors();
+    };
+    /**
+     * Méthode permettant d'alimenter le bloc Notifications d'erreurs puis de déléguer l'évent au composant parent
+     * @param e
+     *
+     */
+    Form.prototype._submitHornetForm = function (e) {
+        /* e.preventDefault ne doit pas être 'débouncée', sinon la soumission par défaut du formulaire serait effectuée */
+        e.preventDefault();
+        this.debouncedValidateAndSubmit();
+    };
+    /** @override */
+    Form.prototype.propagateParentState = function () {
+        /* Le composant parent se charge de propager les propriétés readOnly et disabled */
+        _super.prototype.propagateParentState.call(this);
+        var fields = this.extractFields();
+        Object.keys(fields).every(function (key) {
+            var field = fields[key];
+            if (field instanceof abstract_field_1.AbstractField) {
+                field.setMarkRequired(this.state.markRequired);
+                field.setImgFilePath(this.state.imgFilePath);
+            }
+            return true;
+        }, this);
+    };
+    /** @override */
+    Form.prototype.extractFields = function () {
+        var fields = {};
+        if (this.formElement) {
+            for (var index = 0; index < this.formElement.elements.length; index++) {
+                var item = this.formElement.elements[index];
+                if (item["name"]) {
+                    if (item["__component"]) {
+                        fields[item["name"]] = item["__component"];
+                    }
+                    else {
+                        if (fields[item["name"]]) {
+                            fields[item["name"]].addHtmlElement(item);
+                        }
+                        else {
+                            fields[item["name"]] = new dom_adapter_1.DomAdapter();
+                            fields[item["name"]].registerHtmlElement(item);
+                        }
+                    }
+                }
+            }
+        }
+        return fields;
+    };
+    /**
+     * Méthode permettant de déterminer si le formulaire dispose d'un champ de type UploadFileField
+     * Dans ce cas, on ajoute la propriété ["encType"] = "multipart/form-data" au formulaire
+     * @param items
+     * @returns {boolean}
+     */
+    Form.prototype.isMultiPartForm = function (items) {
+        var _this = this;
+        var isMultiPart = false;
+        React.Children.map(items, function (child) {
+            if (!isMultiPart) {
+                if (child != null) {
+                    if (child["props"] && child["props"].children) {
+                        isMultiPart = _this.isMultiPartForm(child["props"].children);
+                    }
+                    if (!isMultiPart && child.type === upload_file_field_1.UploadFileField) {
+                        isMultiPart = true;
+                    }
+                }
+            }
+        });
+        return isMultiPart;
+    };
+    /**
+     * Méthode permettant de déterminer s'il y a au moins un champ requis.
+     * @param items
+     * @returns {boolean}
+     */
+    Form.prototype.isOneRequired = function (items) {
+        var _this = this;
+        var isOneRequired = false;
+        React.Children.map(items, function (child) {
+            if (!isOneRequired) {
+                if (child != null) {
+                    if (child["props"] && child["props"].children) {
+                        isOneRequired = _this.isOneRequired(child["props"].children);
+                    }
+                    if (!isOneRequired && child.props && child.props.required == true) {
+                        isOneRequired = true;
+                    }
+                }
+            }
+        });
+        return isOneRequired;
+    };
+    /**
+     * @inheritDoc
+     */
+    Form.prototype.render = function () {
+        var classes = {
+            "form": true,
+            "clear": true,
+            /* Application du style CSS readonly à tout le bloc lorsque tous les champs sont en lecture seule */
+            "readonly": this.state.readOnly
+        };
+        logger.trace("render(), HornetForm ");
+        var customNotif = null;
+        if (!this.state.customNotif) {
+            customNotif = (React.createElement(notification_1.Notification, { id: this.state.notifId }));
+        }
+        /* La validation de formulaire HTML 5 est désactivée (noValidate="true") :
+         on s'appuie uniquement sur la validation à la soumission et on a ainsi un rendu cohérent entre navigateurs. */
+        var formProps = {
+            id: this.state.id,
+            name: this.state.name,
+            className: this.state.className,
+            method: "post",
+            onSubmit: this._submitHornetForm,
+            noValidate: true,
+            onChange: this.state.onFormChange ? this.state.onFormChange : undefined,
+            ref: this.registerForm
+        };
+        if (this.isMultiPartForm(this.state.children)) {
+            formProps["encType"] = "multipart/form-data";
+        }
+        var textHtmlProps = {
+            lang: this.props.textLang ? this.props.textLang : null
+        };
+        return (React.createElement("section", { className: "form-container" },
+            customNotif,
+            React.createElement("div", { className: classNames(classes) },
+                React.createElement("form", tslib_1.__assign({}, formProps),
+                    (this.state.subTitle || this.state.text
+                        || (this.state.markRequired && !this.state.isMandatoryFieldsHidden)) ?
+                        React.createElement("div", { className: "form-titles" },
+                            this.state.subTitle ? React.createElement("h3", { className: "form-soustitre" }, this.state.subTitle) : null,
+                            this.state.text ?
+                                React.createElement("p", tslib_1.__assign({ className: "form-texte" }, textHtmlProps), this.state.text) : null,
+                            this.state.markRequired && !this.state.isMandatoryFieldsHidden ?
+                                React.createElement("p", { className: "discret" }, this.i18n("form.fillField")) : null)
+                        : null,
+                    (this.state.children) ?
+                        React.createElement("div", { className: "form-content" },
+                            React.createElement("div", null, this.state.children))
+                        : null))));
+    };
+    /**
+     * retourne un tableau de bouton pour la validation du formulaire
+     * @param children
+     * @returns {Array<any>}
+     */
+    Form.prototype.getButtonsArea = function (children) {
+        var tableauButtonsArea = [];
+        React.Children.map(children, function (child) {
+            if (child.type === buttons_area_1.ButtonsArea) {
+                tableauButtonsArea.push(child);
+            }
+        });
+        return tableauButtonsArea;
+    };
+    Form.idx = 0;
+    /** Valeur de propriétés par défaut */
+    Form.defaultProps = _.assign(_.cloneDeep(abstract_form_1.AbstractForm.defaultProps), {
+        markRequired: true,
+        isMandatoryFieldsHidden: false,
+        subTitle: null,
+        className: "formRecherche",
+        customValidators: [],
+        validationOptions: data_validator_1.DataValidator.DEFAULT_VALIDATION_OPTIONS
+    });
+    return Form;
+}(abstract_form_1.AbstractForm));
+exports.Form = Form;
+
+
+
+/***/ }),
+/* 303 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * Ce logiciel est un programme informatique servant à faciliter la création
+ * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
+ * <p/>
+ * Ce logiciel est régi par la licence CeCILL soumise au droit français et
+ * respectant les principes de diffusion des logiciels libres. Vous pouvez
+ * utiliser, modifier et/ou redistribuer ce programme sous les conditions
+ * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
+ * sur le site "http://www.cecill.info".
+ * <p/>
+ * En contrepartie de l'accessibilité au code source et des droits de copie,
+ * de modification et de redistribution accordés par cette licence, il n'est
+ * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
+ * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
+ * titulaire des droits patrimoniaux et les concédants successifs.
+ * <p/>
+ * A cet égard  l'attention de l'utilisateur est attirée sur les risques
+ * associés au chargement,  à l'utilisation,  à la modification et/ou au
+ * développement et à la reproduction du logiciel par l'utilisateur étant
+ * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
+ * manipuler et qui le réserve donc à des développeurs et des professionnels
+ * avertis possédant  des  connaissances  informatiques approfondies.  Les
+ * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
+ * logiciel à leurs besoins dans des conditions permettant d'assurer la
+ * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
+ * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
+ * <p/>
+ * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
+ * pris connaissance de la licence CeCILL, et que vous en avez accepté les
+ * termes.
+ * <p/>
+ * <p/>
+ * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * This software is a computer program whose purpose is to facilitate creation of
+ * web application in accordance with french general repositories : RGI, RGS and RGAA.
+ * <p/>
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software.  You can  use,
+ * modify and/ or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ * <p/>
+ * As a counterpart to the access to the source code and  rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty  and the software's author,  the holder of the
+ * economic rights,  and the successive licensors  have only  limited
+ * liability.
+ * <p/>
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading,  using,  modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean  that it is complicated to manipulate,  and  that  also
+ * therefore means  that it is reserved for developers  and  experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and,  more generally, to use and operate it in the
+ * same conditions as regards security.
+ * <p/>
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(1);
 var hornet_component_1 = __webpack_require__(3);
-var form_utils_1 = __webpack_require__(303);
+var form_utils_1 = __webpack_require__(304);
 var hornet_js_utils_1 = __webpack_require__(0);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.form.dom-adapter");
 /**
@@ -4039,7 +4671,7 @@ exports.DomAdapter = DomAdapter;
 
 
 /***/ }),
-/* 303 */
+/* 304 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4243,7 +4875,247 @@ exports.FormUtils = FormUtils;
 
 
 /***/ }),
-/* 304 */
+/* 305 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * Ce logiciel est un programme informatique servant à faciliter la création
+ * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
+ * <p/>
+ * Ce logiciel est régi par la licence CeCILL soumise au droit français et
+ * respectant les principes de diffusion des logiciels libres. Vous pouvez
+ * utiliser, modifier et/ou redistribuer ce programme sous les conditions
+ * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
+ * sur le site "http://www.cecill.info".
+ * <p/>
+ * En contrepartie de l'accessibilité au code source et des droits de copie,
+ * de modification et de redistribution accordés par cette licence, il n'est
+ * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
+ * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
+ * titulaire des droits patrimoniaux et les concédants successifs.
+ * <p/>
+ * A cet égard  l'attention de l'utilisateur est attirée sur les risques
+ * associés au chargement,  à l'utilisation,  à la modification et/ou au
+ * développement et à la reproduction du logiciel par l'utilisateur étant
+ * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
+ * manipuler et qui le réserve donc à des développeurs et des professionnels
+ * avertis possédant  des  connaissances  informatiques approfondies.  Les
+ * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
+ * logiciel à leurs besoins dans des conditions permettant d'assurer la
+ * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
+ * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
+ * <p/>
+ * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
+ * pris connaissance de la licence CeCILL, et que vous en avez accepté les
+ * termes.
+ * <p/>
+ * <p/>
+ * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * This software is a computer program whose purpose is to facilitate creation of
+ * web application in accordance with french general repositories : RGI, RGS and RGAA.
+ * <p/>
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software.  You can  use,
+ * modify and/ or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ * <p/>
+ * As a counterpart to the access to the source code and  rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty  and the software's author,  the holder of the
+ * economic rights,  and the successive licensors  have only  limited
+ * liability.
+ * <p/>
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading,  using,  modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean  that it is complicated to manipulate,  and  that  also
+ * therefore means  that it is reserved for developers  and  experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and,  more generally, to use and operate it in the
+ * same conditions as regards security.
+ * <p/>
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(1);
+/**
+ * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
+ *
+ * @author MEAE - Ministère de l'Europe et des Affaires étrangères
+ * @version v5.1.1
+ * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
+ * @license CECILL-2.1
+ */
+var hornet_js_utils_1 = __webpack_require__(0);
+var React = __webpack_require__(2);
+var _ = __webpack_require__(6);
+var abstract_field_1 = __webpack_require__(254);
+var key_codes_1 = __webpack_require__(10);
+var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.form.upload-file-field");
+/**
+ * Composant champ de formulaire de type envoi de fichier
+ */
+var UploadFileField = /** @class */ (function (_super) {
+    tslib_1.__extends(UploadFileField, _super);
+    function UploadFileField(props, context) {
+        var _this = _super.call(this, props, context) || this;
+        _this.state.readOnlyFile = _this.state.defaultFile;
+        if (!_this.state.buttonLabel) {
+            _this.state.buttonLabel = _this.state.name;
+        }
+        _this.state.activeButtonLabel = _this.state.buttonLabel;
+        return _this;
+    }
+    UploadFileField.prototype.setReadOnlyFile = function (readOnlyFile, callback) {
+        this.setState({ readOnlyFile: readOnlyFile }, callback);
+        return this;
+    };
+    /**
+     * Gestion du changement de fichier sélectionné
+     * @param e évènement
+     */
+    UploadFileField.prototype.handleChange = function (e) {
+        var input = e.target;
+        if (input.files && input.files.length > 0) {
+            this.setState({ activeButtonLabel: this.i18n(this.state.i18nLabelKey, { "count": input.files.length }) });
+        }
+        else {
+            this.setState({ activeButtonLabel: this.i18n(this.state.i18nLabelKey, { "count": 0 }) });
+        }
+        /* Déclenchement de la fonction onChange éventuellement passée en propriété */
+        if (this.state.onChange) {
+            this.state.onChange(e);
+        }
+    };
+    /**
+     * @returns {any} les propriétés du fichier en consultation converties en attributs html data
+     */
+    UploadFileField.prototype.getDataFileProps = function () {
+        var dataProps = {};
+        if (this.state.defaultFile) {
+            dataProps["data-file-id"] = this.state.defaultFile.id;
+            dataProps["data-file-originalname"] = this.state.defaultFile.originalname;
+            dataProps["data-file-name"] = this.state.defaultFile.name;
+            dataProps["data-file-mime-type"] = this.state.defaultFile.mimeType;
+            dataProps["data-file-encoding"] = this.state.defaultFile.encoding;
+            dataProps["data-file-size"] = this.state.defaultFile.size;
+        }
+        return dataProps;
+    };
+    /**
+     * @override
+     */
+    UploadFileField.prototype.setCurrentValue = function (formData) {
+        //let value:any = _.get(formData, this.state.name);
+        if (!formData) {
+            this.handleDelete();
+        }
+        this.setState({
+            readOnlyFile: formData,
+            defaultFile: formData
+        });
+        return this;
+    };
+    UploadFileField.prototype.registerUploadFieldElement = function (elt) {
+        this.registerHtmlElement(elt);
+        this.inputFileElement = elt;
+    };
+    /**
+     * Génère le rendu spécifique du champ
+     * @returns {any}
+     */
+    UploadFileField.prototype.renderWidget = function () {
+        var _this = this;
+        logger.info("Rendu composant UploadFileField");
+        var preview = "";
+        if (this.props.renderPreviewFile) {
+            preview = this.props.renderPreviewFile(this.state.readOnlyFile);
+        }
+        /* On n'inclut pas les propriétés spécifiques ou celles dont on surcharge la valeur */
+        var htmlProps = _.omit(this.getHtmlProps(), ["defaultFile", "type", "onChange"]);
+        _.assign(htmlProps, { "className": htmlProps["className"] ? htmlProps["className"] + " uploadfile" : " uploadfile" });
+        _.assign(htmlProps, { "data-multiple-caption": this.state.fileSelectedLabel });
+        var cssDelete = (this.props.classNameDelete) ? "hornet-button hornet-button-right upload-delete-button " + this.props.classNameDelete : "hornet-button hornet-button-right upload-delete-button";
+        /* On ne peut assigner programmatiquement la valeur d'un champ de type fichier (problème de sécurité potentiel)
+         * on utilise donc ici les attributs data-* pour stocker les propriétés de l'éventuel fichier déjà sélectionné.
+         * Celles-ci seront ensuite récupérées lors de l'envoi du formulaire, si un autre fichier n'a pas été sélectionné.*/
+        var dataProps = this.getDataFileProps();
+        var inputFile = React.createElement("input", tslib_1.__assign({ ref: function (elt) {
+                _this.registerUploadFieldElement(elt);
+            }, type: "file", onChange: this.handleChange }, dataProps, htmlProps));
+        var labelProps = {
+            htmlFor: htmlProps["id"],
+            readOnly: htmlProps["readOnly"],
+            className: "upload-content"
+        };
+        var aProps = {
+            href: "#",
+            onClick: this.downloadButtonActionHandler,
+            onKeyDown: this.downloadButtonKeyDownHandler,
+            disabled: htmlProps["readOnly"],
+            "aria-haspopup": true
+        };
+        return (React.createElement("div", { className: "upload-container" },
+            inputFile,
+            React.createElement("label", tslib_1.__assign({}, labelProps),
+                React.createElement("a", tslib_1.__assign({}, aProps),
+                    React.createElement("span", { className: "upload-text" }, this.state.activeButtonLabel))),
+            (this.htmlElement) && this.htmlElement.files.length ?
+                React.createElement("button", { type: "button", className: cssDelete, onClick: this.handleDelete, "aria-label": this.i18n("uploadFile.labelSupprimer"), disabled: this.state.readOnly }, "X")
+                : "",
+            preview));
+    };
+    /* suppression du fichier sélectionné  dans le champs input */
+    UploadFileField.prototype.handleDelete = function () {
+        this.htmlElement.value = "";
+        this.setState({ defaultFile: null, activeButtonLabel: this.i18n(this.state.i18nLabelKey, { "count": 0 }) });
+    };
+    /**
+     * Déclenchement d'un click sur l'input file afin d'ouvrir la boite de dialogue
+     * d'upload de fichier
+     */
+    UploadFileField.prototype.downloadButtonActionHandler = function () {
+        this.inputFileElement.click();
+    };
+    /**
+     * Appel au gestionnaire d'action pour l'ouverture de la boite de dialogue
+     * uniquement sur presse des touches entrée et espace
+     * @param e
+     */
+    UploadFileField.prototype.downloadButtonKeyDownHandler = function (e) {
+        if (!(e.ctrlKey || e.shiftKey || e.altKey || e.metaKey)) {
+            var keyCode = e.keyCode;
+            if (keyCode == key_codes_1.KeyCodes.ENTER || keyCode == key_codes_1.KeyCodes.SPACEBAR) {
+                this.downloadButtonActionHandler();
+            }
+        }
+    };
+    UploadFileField.defaultProps = _.assign(abstract_field_1.AbstractField.defaultProps, {
+        fileSelectedLabel: UploadFileField.getI18n("uploadFile.selectedFile", { "count": 0 }),
+        i18nLabelKey: "uploadFile.selectedFile"
+    });
+    return UploadFileField;
+}(abstract_field_1.AbstractField));
+exports.UploadFileField = UploadFileField;
+
+
+
+/***/ }),
+/* 306 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4354,7 +5226,7 @@ exports.AutoCompleteState = AutoCompleteState;
 
 
 /***/ }),
-/* 305 */
+/* 307 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4479,7 +5351,7 @@ exports.ObjectUtils = ObjectUtils;
 
 
 /***/ }),
-/* 306 */
+/* 308 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4572,7 +5444,7 @@ exports.DataSourceConfigPage = DataSourceConfigPage;
 
 
 /***/ }),
-/* 307 */
+/* 309 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4771,7 +5643,7 @@ exports.AbstractFieldDatasource = AbstractFieldDatasource;
 
 
 /***/ }),
-/* 308 */
+/* 310 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4787,7 +5659,7 @@ function SchemaObject(obj) {
 
 
 /***/ }),
-/* 309 */
+/* 311 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4853,7 +5725,7 @@ module.exports = function (data, opts) {
 
 
 /***/ }),
-/* 310 */
+/* 312 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5305,7 +6177,7 @@ module.exports = function generate_validate(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 311 */
+/* 313 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5461,7 +6333,7 @@ module.exports = function generate__limit(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 312 */
+/* 314 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5544,7 +6416,7 @@ module.exports = function generate__limitItems(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 313 */
+/* 315 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5632,7 +6504,7 @@ module.exports = function generate__limitLength(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 314 */
+/* 316 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5715,7 +6587,7 @@ module.exports = function generate__limitProperties(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 315 */
+/* 317 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5812,7 +6684,7 @@ function compareDateTime(dt1, dt2) {
 
 
 /***/ }),
-/* 316 */
+/* 318 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5966,7 +6838,7 @@ exports.ButtonsArea = ButtonsArea;
 
 
 /***/ }),
-/* 317 */
+/* 319 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5978,7 +6850,7 @@ exports.VALUE_CHANGED_EVENT = new hornet_event_1.HornetEvent("VALUE_CHANGED_EVEN
 
 
 /***/ }),
-/* 318 */
+/* 320 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // optional / simple context binding
@@ -6004,16 +6876,16 @@ module.exports = function (fn, that, length) {
 
 
 /***/ }),
-/* 319 */
+/* 321 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = !__webpack_require__(262) && !__webpack_require__(269)(function () {
-  return Object.defineProperty(__webpack_require__(320)('div'), 'a', { get: function () { return 7; } }).a != 7;
+  return Object.defineProperty(__webpack_require__(322)('div'), 'a', { get: function () { return 7; } }).a != 7;
 });
 
 
 /***/ }),
-/* 320 */
+/* 322 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(261);
@@ -6026,7 +6898,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 321 */
+/* 323 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var has = __webpack_require__(256);
@@ -6049,11 +6921,11 @@ module.exports = function (object, names) {
 
 
 /***/ }),
-/* 322 */
+/* 324 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
-var cof = __webpack_require__(323);
+var cof = __webpack_require__(325);
 // eslint-disable-next-line no-prototype-builtins
 module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
   return cof(it) == 'String' ? it.split('') : Object(it);
@@ -6061,7 +6933,7 @@ module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
 
 
 /***/ }),
-/* 323 */
+/* 325 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -6072,7 +6944,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 324 */
+/* 326 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.13 ToObject(argument)
@@ -6083,7 +6955,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 325 */
+/* 327 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6110,14 +6982,14 @@ exports.default = typeof _symbol2.default === "function" && _typeof(_iterator2.d
 };
 
 /***/ }),
-/* 326 */
+/* 328 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var LIBRARY = __webpack_require__(289);
 var $export = __webpack_require__(267);
-var redefine = __webpack_require__(327);
+var redefine = __webpack_require__(329);
 var hide = __webpack_require__(259);
 var has = __webpack_require__(256);
 var Iterators = __webpack_require__(290);
@@ -6187,18 +7059,18 @@ module.exports = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCE
 
 
 /***/ }),
-/* 327 */
+/* 329 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(259);
 
 
 /***/ }),
-/* 328 */
+/* 330 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
-var $keys = __webpack_require__(321);
+var $keys = __webpack_require__(323);
 var hiddenKeys = __webpack_require__(287).concat('length', 'prototype');
 
 exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
@@ -6207,7 +7079,7 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
 
 
 /***/ }),
-/* 329 */
+/* 331 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pIE = __webpack_require__(276);
@@ -6215,7 +7087,7 @@ var createDesc = __webpack_require__(273);
 var toIObject = __webpack_require__(263);
 var toPrimitive = __webpack_require__(282);
 var has = __webpack_require__(256);
-var IE8_DOM_DEFINE = __webpack_require__(319);
+var IE8_DOM_DEFINE = __webpack_require__(321);
 var gOPD = Object.getOwnPropertyDescriptor;
 
 exports.f = __webpack_require__(262) ? gOPD : function getOwnPropertyDescriptor(O, P) {
@@ -6229,7 +7101,7 @@ exports.f = __webpack_require__(262) ? gOPD : function getOwnPropertyDescriptor(
 
 
 /***/ }),
-/* 330 */
+/* 332 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6243,7 +7115,7 @@ exports["default"] = {
 module.exports = exports['default'];
 
 /***/ }),
-/* 331 */
+/* 333 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6271,7 +7143,7 @@ function mapSelf(children) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 332 */
+/* 334 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6458,7 +7330,7 @@ exports.Button = Button;
 
 
 /***/ }),
-/* 333 */
+/* 335 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6619,7 +7491,7 @@ exports.ArrayUtils = ArrayUtils;
 
 
 /***/ }),
-/* 334 */
+/* 336 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6705,24 +7577,24 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var hornet_js_utils_1 = __webpack_require__(0);
-var array_utils_1 = __webpack_require__(333);
+var array_utils_1 = __webpack_require__(335);
 var sort_data_1 = __webpack_require__(297);
 var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
 var confirm_1 = __webpack_require__(475);
-var spinner_table_1 = __webpack_require__(492);
+var spinner_table_1 = __webpack_require__(494);
 var paginate_datasource_1 = __webpack_require__(341);
 var columns_1 = __webpack_require__(342);
 var action_column_1 = __webpack_require__(476);
-var edition_action_column_1 = __webpack_require__(497);
+var edition_action_column_1 = __webpack_require__(499);
 var check_column_1 = __webpack_require__(479);
 var abstract_cell_1 = __webpack_require__(469);
-var cell_coordinates_1 = __webpack_require__(501);
+var cell_coordinates_1 = __webpack_require__(503);
 var table_state_1 = __webpack_require__(299);
 var navigation_direction_1 = __webpack_require__(477);
-var form_1 = __webpack_require__(335);
-var line_before_1 = __webpack_require__(502);
-var line_after_1 = __webpack_require__(503);
+var form_1 = __webpack_require__(302);
+var line_before_1 = __webpack_require__(504);
+var line_after_1 = __webpack_require__(505);
 var classNames = __webpack_require__(9);
 var _ = __webpack_require__(6);
 var hornet_event_1 = __webpack_require__(7);
@@ -7611,878 +8483,6 @@ exports.Content = Content;
 
 
 /***/ }),
-/* 335 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * Ce logiciel est un programme informatique servant à faciliter la création
- * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
- * <p/>
- * Ce logiciel est régi par la licence CeCILL soumise au droit français et
- * respectant les principes de diffusion des logiciels libres. Vous pouvez
- * utiliser, modifier et/ou redistribuer ce programme sous les conditions
- * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
- * sur le site "http://www.cecill.info".
- * <p/>
- * En contrepartie de l'accessibilité au code source et des droits de copie,
- * de modification et de redistribution accordés par cette licence, il n'est
- * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
- * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
- * titulaire des droits patrimoniaux et les concédants successifs.
- * <p/>
- * A cet égard  l'attention de l'utilisateur est attirée sur les risques
- * associés au chargement,  à l'utilisation,  à la modification et/ou au
- * développement et à la reproduction du logiciel par l'utilisateur étant
- * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
- * manipuler et qui le réserve donc à des développeurs et des professionnels
- * avertis possédant  des  connaissances  informatiques approfondies.  Les
- * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
- * logiciel à leurs besoins dans des conditions permettant d'assurer la
- * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
- * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
- * <p/>
- * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
- * pris connaissance de la licence CeCILL, et que vous en avez accepté les
- * termes.
- * <p/>
- * <p/>
- * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * This software is a computer program whose purpose is to facilitate creation of
- * web application in accordance with french general repositories : RGI, RGS and RGAA.
- * <p/>
- * This software is governed by the CeCILL license under French law and
- * abiding by the rules of distribution of free software.  You can  use,
- * modify and/ or redistribute the software under the terms of the CeCILL
- * license as circulated by CEA, CNRS and INRIA at the following URL
- * "http://www.cecill.info".
- * <p/>
- * As a counterpart to the access to the source code and  rights to copy,
- * modify and redistribute granted by the license, users are provided only
- * with a limited warranty  and the software's author,  the holder of the
- * economic rights,  and the successive licensors  have only  limited
- * liability.
- * <p/>
- * In this respect, the user's attention is drawn to the risks associated
- * with loading,  using,  modifying and/or developing or reproducing the
- * software by the user in light of its specific status of free software,
- * that may mean  that it is complicated to manipulate,  and  that  also
- * therefore means  that it is reserved for developers  and  experienced
- * professionals having in-depth computer knowledge. Users are therefore
- * encouraged to load and test the software's suitability as regards their
- * requirements in conditions enabling the security of their systems and/or
- * data to be ensured and,  more generally, to use and operate it in the
- * same conditions as regards security.
- * <p/>
- * The fact that you are presently reading this means that you have had
- * knowledge of the CeCILL license and that you accept its terms.
- *
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(1);
-/**
- * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
- *
- * @author MEAE - Ministère de l'Europe et des Affaires étrangères
- * @version v5.1.1
- * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
- * @license CECILL-2.1
- */
-var hornet_js_utils_1 = __webpack_require__(0);
-var React = __webpack_require__(2);
-var notification_1 = __webpack_require__(48);
-var abstract_field_1 = __webpack_require__(254);
-var abstract_form_1 = __webpack_require__(347);
-var upload_file_field_1 = __webpack_require__(336);
-var form_utils_1 = __webpack_require__(303);
-var dom_adapter_1 = __webpack_require__(302);
-var auto_complete_field_1 = __webpack_require__(348);
-var notification_manager_1 = __webpack_require__(95);
-var checkbox_field_1 = __webpack_require__(353);
-var data_validator_1 = __webpack_require__(354);
-var classNames = __webpack_require__(9);
-var _ = __webpack_require__(6);
-var select_field_1 = __webpack_require__(338);
-var buttons_area_1 = __webpack_require__(316);
-var event_1 = __webpack_require__(317);
-var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.form.form");
-/**
- * Composant permettant de rendre un formulaire Hornet de manière standardisée
- */
-var Form = /** @class */ (function (_super) {
-    tslib_1.__extends(Form, _super);
-    function Form(props, context) {
-        var _this = _super.call(this, props, context) || this;
-        var calendarLocale = _this.i18n("calendar");
-        if (calendarLocale == null) {
-            calendarLocale = {};
-        }
-        /* Messages génériques */
-        /* Configuration locale des calendriers et dates */
-        _this.state.calendarLocale = calendarLocale;
-        _this.state.customNotif = props.notifId != null;
-        _this.state.notifId = props.notifId != null ? props.notifId : "Form-" + (Form.idx++);
-        _this.listen(event_1.VALUE_CHANGED_EVENT, function (ev) {
-            if (ev.detail.form.id == _this.state.id && _this.state.onFormChange) {
-                _this.state.onFormChange();
-            }
-        });
-        return _this;
-    }
-    // Setters (pas de setter sur defaultValues, car cette propriété sert uniquement lors du montage initial du composant
-    Form.prototype.setName = function (value, callback) {
-        this.setState({ name: value }, callback);
-        return this;
-    };
-    Form.prototype.setOnSubmit = function (handler, callback) {
-        this.setState({ onSubmit: handler }, callback);
-        return this;
-    };
-    Form.prototype.setOnFormChange = function (handler, callback) {
-        this.setState({ onFormChange: handler }, callback);
-        return this;
-    };
-    Form.prototype.setIsMandatoryFieldsHidden = function (value, callback) {
-        this.setState({ isMandatoryFieldsHidden: value }, callback);
-        return this;
-    };
-    Form.prototype.setSubTitle = function (value, callback) {
-        this.setState({ subTitle: value }, callback);
-        return this;
-    };
-    Form.prototype.setText = function (value, callback) {
-        this.setState({ text: value }, callback);
-        return this;
-    };
-    Form.prototype.setClassName = function (value, callback) {
-        this.setState({ className: value }, callback);
-        return this;
-    };
-    Form.prototype.setMarkRequired = function (value, callback) {
-        this.setState({ markRequired: value }, callback);
-        /* Propagation de la propriété aux champs Hornet appartenant à ce formulaire */
-        this.updateMarkRequiredFields(value);
-        return this;
-    };
-    Form.prototype.setImgFilePath = function (value, callback) {
-        this.setState({ imgFilePath: value }, callback);
-        /* Propagation de la propriété aux champs Hornet appartenant à ce formulaire */
-        this.updateImagFilePathFields(value);
-        return this;
-    };
-    Form.prototype.setSchema = function (value, callback) {
-        this.setState({ schema: value }, callback);
-        return this;
-    };
-    Form.prototype.setValidationOptions = function (value, callback) {
-        this.setState({ validationOptions: value }, callback);
-        return this;
-    };
-    Form.prototype.setFormMessages = function (value, callback) {
-        this.setState({ formMessages: value }, callback);
-        return this;
-    };
-    Form.prototype.setCustomValidators = function (value, callback) {
-        this.setState({ customValidators: value }, callback);
-        return this;
-    };
-    Form.prototype.setNotifId = function (value, callback) {
-        if (value != null) {
-            this.setState({ notifId: value, customNotif: true }, callback);
-        }
-        else {
-            this.setState({ notifId: "Form-" + (Form.idx++), customNotif: false }, callback);
-        }
-        return this;
-    };
-    Form.prototype.componentWillUnmount = function () {
-        _super.prototype.componentWillUnmount.call(this);
-        notification_manager_1.NotificationManager.clean(this.state.notifId, this.state.id);
-        if (this.formElement) {
-            this.formElement["__component"] = null;
-        }
-    };
-    Form.prototype.componentDidMount = function () {
-        _super.prototype.componentDidMount.call(this);
-        /* On évite la soumission intempestive du formulaire en cas de clics répétés ou de touche entrée maintenue
-         sur le bouton de soumission*/
-        this.debouncedValidateAndSubmit = _.debounce(this.validateAndSubmit, 500);
-        if (this.state.defaultValues) {
-            this.updateFields(this.state.defaultValues);
-        }
-        if (!this.isOneRequired(this.state.children)) {
-            this.setMarkRequired(false);
-        }
-    };
-    /**
-     * Met à jour la propriété markRequired sur chacun des champs héritant de AbstractField contenus dans le formulaire
-     * @param isMarkRequired valeur à assigner à la propriété 'markRequired'
-     * @return ce formulaire
-     */
-    Form.prototype.updateMarkRequiredFields = function (isMarkRequired) {
-        var fields = this.extractFields();
-        /* Met à jour l'affichage de chaque champ en cas de readOnly*/
-        Object.keys(fields).every(function (key) {
-            var field = fields[key];
-            if (field instanceof abstract_field_1.AbstractField) {
-                field.setMarkRequired(isMarkRequired);
-            }
-            return true;
-        });
-        return this;
-    };
-    /**
-     * Met à jour la propriété imgFilePath sur chacun des champs héritant de AbstractField contenus dans le formulaire
-     * @param imgFilePath valeur à assigner à la propriété 'imgFilePath'
-     * @return ce formulaire
-     */
-    Form.prototype.updateImagFilePathFields = function (imgFilePath) {
-        var fields = this.extractFields();
-        Object.keys(fields).every(function (key) {
-            var field = fields[key];
-            if (field instanceof abstract_field_1.AbstractField) {
-                field.setImgFilePath(imgFilePath);
-            }
-            return true;
-        });
-        return this;
-    };
-    /**
-     * Met à jour les valeurs courantes des champs du formulaire
-     * @param data données du formulaire (clé : nom du champ -> valeur du champ)
-     */
-    Form.prototype.updateFields = function (data) {
-        var fields = this.extractFields();
-        this.propagateParentState();
-        for (var nameField in fields) {
-            var val = _.get(data, nameField);
-            if (val != null) {
-                if (fields[nameField] instanceof checkbox_field_1.CheckBoxField) {
-                    /* Traitement spécifique pour une checkbox : on affecte currentChecked lorsque la valeur est booléenne*/
-                    // if (val === true || val === false) {
-                    //     fields[name].setCurrentValue("");
-                    fields[nameField].setCurrentChecked(val);
-                    // } else {
-                    //     fields[name].setCurrentValue(val);
-                    // }
-                }
-                else {
-                    if (fields[nameField] instanceof select_field_1.SelectField || fields[nameField] instanceof auto_complete_field_1.AutoCompleteField) {
-                        if (val instanceof Array) {
-                            var choices = [];
-                            /** TODO : a deplace dans le composant autocompleteField */
-                            if (fields[nameField].state.multiple) {
-                                for (var i = 0; i < fields[nameField].state.allChoices.length; i++) {
-                                    var choice = fields[nameField].state.allChoices[i];
-                                    for (var j = 0; j < val.length; j++) {
-                                        if (val[j].toString() == choice["value"]) {
-                                            choices.push(choice["value"]);
-                                            break;
-                                        }
-                                    }
-                                }
-                            }
-                            else {
-                                for (var i = 0; i < fields[nameField].state.dataSource.length; i++) {
-                                    var choice = fields[nameField].state.dataSource[i];
-                                    for (var j = 0; j < val.length; j++) {
-                                        if (val[j].toString() == choice[fields[nameField].state.valueKey]) {
-                                            choices.push(choice[fields[nameField].state.valueKey]);
-                                            break;
-                                        }
-                                    }
-                                }
-                            }
-                            fields[nameField].setCurrentValue(choices);
-                        }
-                        else {
-                            fields[nameField].setCurrentValue(val);
-                        }
-                    }
-                    else {
-                        /* Traitement des champs radio et select en mode readOnly */
-                        if ((fields[nameField].state.choices) && (this.state.readOnly || fields[nameField].state.readOnly)) {
-                            for (var i = 0; i < fields[nameField].state.dataSource.length; i++) {
-                                var choice = fields[nameField].state.dataSource[i];
-                                if (val.toString() == choice[fields[nameField].state.valueKey]) {
-                                    fields[nameField].setCurrentValue(choice[fields[nameField].state.valueKey]);
-                                    break;
-                                }
-                            }
-                        }
-                        else {
-                            fields[nameField].setCurrentValue(val);
-                        }
-                    }
-                }
-            }
-            else {
-                if (fields[nameField] instanceof checkbox_field_1.CheckBoxField) {
-                    fields[nameField].setCurrentChecked(false);
-                }
-                else {
-                    fields[nameField].setCurrentValue(null);
-                }
-            }
-        }
-    };
-    /**
-     * Traitement spécifique des notifications concernant les champs d'autocomplétion
-     * @param fields champs du formulaire
-     * @param notifs notifications d'erreurs de validation
-     */
-    Form.prototype.processAutocompleteErrors = function (fields, notifs) {
-        var processedNotifs = notifs.getNotifications().map(function (notif) {
-            /* Parcours de tous les champs */
-            Object.keys(fields).every(function (key) {
-                var field = fields[key];
-                if (field instanceof auto_complete_field_1.AutoCompleteField) {
-                    var autoField = field;
-                    /* La notification référence le nom global du champ d'auto-complétion
-                     ou bien le champ caché contenant la valeur :
-                     on modifie cette référence pour pointer vers le champ de saisie libre */
-                    // if (notif.field == autoField.getAttribute("name") ||
-                    if (notif.field == autoField.state.name ||
-                        notif.field == (autoField.getValueFieldName())) {
-                        notif.field = autoField.getFreeTypingFieldName();
-                        /* Fin de la boucle de parcours des auto-complete */
-                        return false;
-                    }
-                }
-                return true;
-            }, this);
-            return notif;
-        }, this);
-        notifs.setNotifications(processedNotifs);
-    };
-    /**
-     * Déclenche les notifications correspondant aux éventuelles erreurs de validation
-     * @param errors erreurs de validation de formulaire, éventuellement vides
-     */
-    Form.prototype.notifyErrors = function (errors) {
-        if (errors) {
-            var fieldsMessages = this.state.formMessages && this.state.formMessages.fields;
-            var genericValidationMessages = this.i18n("form.validation");
-            var fields_1 = this.extractFields();
-            var notificationsError_1 = form_utils_1.FormUtils.getErrors(errors, fields_1, fieldsMessages, genericValidationMessages);
-            /* Post-traitement des notifications concernant les champs d'autocomplétion */
-            this.processAutocompleteErrors(fields_1, notificationsError_1);
-            /* Met à jour les erreurs affichées par chaque composant champ */
-            Object.keys(fields_1).every(function (key) {
-                var field = fields_1[key];
-                if (field instanceof abstract_field_1.AbstractField) {
-                    field.setErrors(notificationsError_1.getNotifications());
-                }
-                return true;
-            });
-            /* Emission des notifications */
-            notification_manager_1.NotificationManager.notify(this.state.notifId, this.state.id, notificationsError_1);
-        }
-    };
-    /**
-     * Transforme les valeurs des champs déclarés avec le format "date-time" dans le schéma de validation :
-     * effectue la conversion depuis la locale courante, vers le format ISO 8601. Ceci permet une validation isomorphique
-     * côté client comme serveur en utilisant le même schéma, et la conversion automatique en objet Date côté backend REST
-     * reste possible.
-     * @param schema schéma de validation JSON-Schema
-     * @param data données de formualaire
-     */
-    Form.prototype.transformDatesToISO = function (schema, data) {
-        if (schema && schema.properties && data) {
-            var propNames = Object.keys(schema.properties);
-            var property = void 0, propName = void 0;
-            for (var i = 0; i < propNames.length; i++) {
-                propName = propNames[i];
-                property = schema.properties[propName];
-                if (property.type == "object") {
-                    /* Appel récursif sur les éventuelles propriétés incluses dans le sous-schéma */
-                    this.transformDatesToISO(property, data[propName]);
-                }
-                else if (property.format == "date-time") {
-                    if (data[propName]) {
-                        var date = hornet_js_utils_1.Utils.dateUtils.parseInTZ(data[propName], this.state.calendarLocale.dateFormat);
-                        if (date) {
-                            /* La chaîne de caractères est une date valide pour la locale : on convertit en représentation ISO 8601.*/
-                            data[propName] = date.toISOString();
-                        }
-                        /* Sinon la valeur incorrecte est conservée*/
-                    }
-                }
-            }
-        }
-    };
-    /**
-     * Déclenche la validation du formulaire, notifie les erreurs éventuelles et exécute la fonction
-     * onSubmit présente dans les propriétés s'il n'y a pas d'erreurs
-     *
-     */
-    Form.prototype.validateAndSubmit = function () {
-        if (this.formElement) {
-            logger.trace("Validation et envoi du formulaire");
-            var data = this.extractData();
-            if (this.state.onBeforeSubmit) {
-                this.state.onBeforeSubmit(data);
-            }
-            var options = this.state.validationOptions;
-            var schema = data_validator_1.DataValidator.transformRequiredStrings(this.state.schema);
-            this.transformDatesToISO(this.state.schema, data);
-            var validationRes = new data_validator_1.DataValidator(schema, this.state.customValidators, options).validate(data);
-            if (!validationRes.valid) {
-                this.notifyErrors(validationRes.errors);
-            }
-            else {
-                this.cleanFormErrors();
-                if (this.state.onSubmit) {
-                    this.state.onSubmit(data);
-                }
-            }
-        }
-    };
-    /**
-     * Supprime les nofifications d'erreurs et les erreurs associées à chaque champ de ce formulaire
-     */
-    Form.prototype.cleanFormErrors = function () {
-        var fields = this.extractFields();
-        for (var fieldName in fields) {
-            var field = fields[fieldName];
-            if (field instanceof abstract_field_1.AbstractField) {
-                field.setErrors(null);
-            }
-        }
-        notification_manager_1.NotificationManager.clean(this.state.notifId, this.state.id);
-    };
-    /**
-     * Met à jour les valeurs courantes des champs du formulaire et
-     * supprime les nofifications d'erreurs et les erreurs associées à chaque champ de ce formulaire
-     * @param data données du formulaire (clé : nom du champ -> valeur du champ)
-     */
-    Form.prototype.updateFieldsAndClean = function (data) {
-        this.updateFields(data);
-        this.cleanFormErrors();
-    };
-    /**
-     * Méthode permettant d'alimenter le bloc Notifications d'erreurs puis de déléguer l'évent au composant parent
-     * @param e
-     *
-     */
-    Form.prototype._submitHornetForm = function (e) {
-        /* e.preventDefault ne doit pas être 'débouncée', sinon la soumission par défaut du formulaire serait effectuée */
-        e.preventDefault();
-        this.debouncedValidateAndSubmit();
-    };
-    /** @override */
-    Form.prototype.propagateParentState = function () {
-        /* Le composant parent se charge de propager les propriétés readOnly et disabled */
-        _super.prototype.propagateParentState.call(this);
-        var fields = this.extractFields();
-        Object.keys(fields).every(function (key) {
-            var field = fields[key];
-            if (field instanceof abstract_field_1.AbstractField) {
-                field.setMarkRequired(this.state.markRequired);
-                field.setImgFilePath(this.state.imgFilePath);
-            }
-            return true;
-        }, this);
-    };
-    /** @override */
-    Form.prototype.extractFields = function () {
-        var fields = {};
-        if (this.formElement) {
-            for (var index = 0; index < this.formElement.elements.length; index++) {
-                var item = this.formElement.elements[index];
-                if (item["name"]) {
-                    if (item["__component"]) {
-                        fields[item["name"]] = item["__component"];
-                    }
-                    else {
-                        if (fields[item["name"]]) {
-                            fields[item["name"]].addHtmlElement(item);
-                        }
-                        else {
-                            fields[item["name"]] = new dom_adapter_1.DomAdapter();
-                            fields[item["name"]].registerHtmlElement(item);
-                        }
-                    }
-                }
-            }
-        }
-        return fields;
-    };
-    /**
-     * Méthode permettant de déterminer si le formulaire dispose d'un champ de type UploadFileField
-     * Dans ce cas, on ajoute la propriété ["encType"] = "multipart/form-data" au formulaire
-     * @param items
-     * @returns {boolean}
-     */
-    Form.prototype.isMultiPartForm = function (items) {
-        var _this = this;
-        var isMultiPart = false;
-        React.Children.map(items, function (child) {
-            if (!isMultiPart) {
-                if (child != null) {
-                    if (child["props"] && child["props"].children) {
-                        isMultiPart = _this.isMultiPartForm(child["props"].children);
-                    }
-                    if (!isMultiPart && child.type === upload_file_field_1.UploadFileField) {
-                        isMultiPart = true;
-                    }
-                }
-            }
-        });
-        return isMultiPart;
-    };
-    /**
-     * Méthode permettant de déterminer s'il y a au moins un champ requis.
-     * @param items
-     * @returns {boolean}
-     */
-    Form.prototype.isOneRequired = function (items) {
-        var _this = this;
-        var isOneRequired = false;
-        React.Children.map(items, function (child) {
-            if (!isOneRequired) {
-                if (child != null) {
-                    if (child["props"] && child["props"].children) {
-                        isOneRequired = _this.isOneRequired(child["props"].children);
-                    }
-                    if (!isOneRequired && child.props && child.props.required == true) {
-                        isOneRequired = true;
-                    }
-                }
-            }
-        });
-        return isOneRequired;
-    };
-    /**
-     * @inheritDoc
-     */
-    Form.prototype.render = function () {
-        var classes = {
-            "form": true,
-            "clear": true,
-            /* Application du style CSS readonly à tout le bloc lorsque tous les champs sont en lecture seule */
-            "readonly": this.state.readOnly
-        };
-        logger.trace("render(), HornetForm ");
-        var customNotif = null;
-        if (!this.state.customNotif) {
-            customNotif = (React.createElement(notification_1.Notification, { id: this.state.notifId }));
-        }
-        /* La validation de formulaire HTML 5 est désactivée (noValidate="true") :
-         on s'appuie uniquement sur la validation à la soumission et on a ainsi un rendu cohérent entre navigateurs. */
-        var formProps = {
-            id: this.state.id,
-            name: this.state.name,
-            className: this.state.className,
-            method: "post",
-            onSubmit: this._submitHornetForm,
-            noValidate: true,
-            onChange: this.state.onFormChange ? this.state.onFormChange : undefined,
-            ref: this.registerForm
-        };
-        if (this.isMultiPartForm(this.state.children)) {
-            formProps["encType"] = "multipart/form-data";
-        }
-        var textHtmlProps = {
-            lang: this.props.textLang ? this.props.textLang : null
-        };
-        return (React.createElement("section", { className: "form-container" },
-            customNotif,
-            React.createElement("div", { className: classNames(classes) },
-                React.createElement("form", tslib_1.__assign({}, formProps),
-                    (this.state.subTitle || this.state.text
-                        || (this.state.markRequired && !this.state.isMandatoryFieldsHidden)) ?
-                        React.createElement("div", { className: "form-titles" },
-                            this.state.subTitle ? React.createElement("h3", { className: "form-soustitre" }, this.state.subTitle) : null,
-                            this.state.text ?
-                                React.createElement("p", tslib_1.__assign({ className: "form-texte" }, textHtmlProps), this.state.text) : null,
-                            this.state.markRequired && !this.state.isMandatoryFieldsHidden ?
-                                React.createElement("p", { className: "discret" }, this.i18n("form.fillField")) : null)
-                        : null,
-                    (this.state.children) ?
-                        React.createElement("div", { className: "form-content" },
-                            React.createElement("div", null, this.state.children))
-                        : null))));
-    };
-    /**
-     * retourne un tableau de bouton pour la validation du formulaire
-     * @param children
-     * @returns {Array<any>}
-     */
-    Form.prototype.getButtonsArea = function (children) {
-        var tableauButtonsArea = [];
-        React.Children.map(children, function (child) {
-            if (child.type === buttons_area_1.ButtonsArea) {
-                tableauButtonsArea.push(child);
-            }
-        });
-        return tableauButtonsArea;
-    };
-    Form.idx = 0;
-    /** Valeur de propriétés par défaut */
-    Form.defaultProps = _.assign(_.cloneDeep(abstract_form_1.AbstractForm.defaultProps), {
-        markRequired: true,
-        isMandatoryFieldsHidden: false,
-        subTitle: null,
-        className: "formRecherche",
-        customValidators: [],
-        validationOptions: data_validator_1.DataValidator.DEFAULT_VALIDATION_OPTIONS
-    });
-    return Form;
-}(abstract_form_1.AbstractForm));
-exports.Form = Form;
-
-
-
-/***/ }),
-/* 336 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * Ce logiciel est un programme informatique servant à faciliter la création
- * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
- * <p/>
- * Ce logiciel est régi par la licence CeCILL soumise au droit français et
- * respectant les principes de diffusion des logiciels libres. Vous pouvez
- * utiliser, modifier et/ou redistribuer ce programme sous les conditions
- * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
- * sur le site "http://www.cecill.info".
- * <p/>
- * En contrepartie de l'accessibilité au code source et des droits de copie,
- * de modification et de redistribution accordés par cette licence, il n'est
- * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
- * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
- * titulaire des droits patrimoniaux et les concédants successifs.
- * <p/>
- * A cet égard  l'attention de l'utilisateur est attirée sur les risques
- * associés au chargement,  à l'utilisation,  à la modification et/ou au
- * développement et à la reproduction du logiciel par l'utilisateur étant
- * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
- * manipuler et qui le réserve donc à des développeurs et des professionnels
- * avertis possédant  des  connaissances  informatiques approfondies.  Les
- * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
- * logiciel à leurs besoins dans des conditions permettant d'assurer la
- * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
- * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
- * <p/>
- * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
- * pris connaissance de la licence CeCILL, et que vous en avez accepté les
- * termes.
- * <p/>
- * <p/>
- * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * This software is a computer program whose purpose is to facilitate creation of
- * web application in accordance with french general repositories : RGI, RGS and RGAA.
- * <p/>
- * This software is governed by the CeCILL license under French law and
- * abiding by the rules of distribution of free software.  You can  use,
- * modify and/ or redistribute the software under the terms of the CeCILL
- * license as circulated by CEA, CNRS and INRIA at the following URL
- * "http://www.cecill.info".
- * <p/>
- * As a counterpart to the access to the source code and  rights to copy,
- * modify and redistribute granted by the license, users are provided only
- * with a limited warranty  and the software's author,  the holder of the
- * economic rights,  and the successive licensors  have only  limited
- * liability.
- * <p/>
- * In this respect, the user's attention is drawn to the risks associated
- * with loading,  using,  modifying and/or developing or reproducing the
- * software by the user in light of its specific status of free software,
- * that may mean  that it is complicated to manipulate,  and  that  also
- * therefore means  that it is reserved for developers  and  experienced
- * professionals having in-depth computer knowledge. Users are therefore
- * encouraged to load and test the software's suitability as regards their
- * requirements in conditions enabling the security of their systems and/or
- * data to be ensured and,  more generally, to use and operate it in the
- * same conditions as regards security.
- * <p/>
- * The fact that you are presently reading this means that you have had
- * knowledge of the CeCILL license and that you accept its terms.
- *
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(1);
-/**
- * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
- *
- * @author MEAE - Ministère de l'Europe et des Affaires étrangères
- * @version v5.1.1
- * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
- * @license CECILL-2.1
- */
-var hornet_js_utils_1 = __webpack_require__(0);
-var React = __webpack_require__(2);
-var _ = __webpack_require__(6);
-var abstract_field_1 = __webpack_require__(254);
-var key_codes_1 = __webpack_require__(10);
-var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.form.upload-file-field");
-/**
- * Composant champ de formulaire de type envoi de fichier
- */
-var UploadFileField = /** @class */ (function (_super) {
-    tslib_1.__extends(UploadFileField, _super);
-    function UploadFileField(props, context) {
-        var _this = _super.call(this, props, context) || this;
-        _this.state.readOnlyFile = _this.state.defaultFile;
-        if (!_this.state.buttonLabel) {
-            _this.state.buttonLabel = _this.state.name;
-        }
-        _this.state.activeButtonLabel = _this.state.buttonLabel;
-        return _this;
-    }
-    UploadFileField.prototype.setReadOnlyFile = function (readOnlyFile, callback) {
-        this.setState({ readOnlyFile: readOnlyFile }, callback);
-        return this;
-    };
-    /**
-     * Gestion du changement de fichier sélectionné
-     * @param e évènement
-     */
-    UploadFileField.prototype.handleChange = function (e) {
-        var input = e.target;
-        if (input.files && input.files.length > 0) {
-            this.setState({ activeButtonLabel: this.i18n(this.state.i18nLabelKey, { "count": input.files.length }) });
-        }
-        else {
-            this.setState({ activeButtonLabel: this.i18n(this.state.i18nLabelKey, { "count": 0 }) });
-        }
-        /* Déclenchement de la fonction onChange éventuellement passée en propriété */
-        if (this.state.onChange) {
-            this.state.onChange(e);
-        }
-    };
-    /**
-     * @returns {any} les propriétés du fichier en consultation converties en attributs html data
-     */
-    UploadFileField.prototype.getDataFileProps = function () {
-        var dataProps = {};
-        if (this.state.defaultFile) {
-            dataProps["data-file-id"] = this.state.defaultFile.id;
-            dataProps["data-file-originalname"] = this.state.defaultFile.originalname;
-            dataProps["data-file-name"] = this.state.defaultFile.name;
-            dataProps["data-file-mime-type"] = this.state.defaultFile.mimeType;
-            dataProps["data-file-encoding"] = this.state.defaultFile.encoding;
-            dataProps["data-file-size"] = this.state.defaultFile.size;
-        }
-        return dataProps;
-    };
-    /**
-     * @override
-     */
-    UploadFileField.prototype.setCurrentValue = function (formData) {
-        //let value:any = _.get(formData, this.state.name);
-        if (!formData) {
-            this.handleDelete();
-        }
-        this.setState({
-            readOnlyFile: formData,
-            defaultFile: formData
-        });
-        return this;
-    };
-    UploadFileField.prototype.registerUploadFieldElement = function (elt) {
-        this.registerHtmlElement(elt);
-        this.inputFileElement = elt;
-    };
-    /**
-     * Génère le rendu spécifique du champ
-     * @returns {any}
-     */
-    UploadFileField.prototype.renderWidget = function () {
-        var _this = this;
-        logger.info("Rendu composant UploadFileField");
-        var preview = "";
-        if (this.props.renderPreviewFile) {
-            preview = this.props.renderPreviewFile(this.state.readOnlyFile);
-        }
-        /* On n'inclut pas les propriétés spécifiques ou celles dont on surcharge la valeur */
-        var htmlProps = _.omit(this.getHtmlProps(), ["defaultFile", "type", "onChange"]);
-        _.assign(htmlProps, { "className": htmlProps["className"] ? htmlProps["className"] + " uploadfile" : " uploadfile" });
-        _.assign(htmlProps, { "data-multiple-caption": this.state.fileSelectedLabel });
-        var cssDelete = (this.props.classNameDelete) ? "hornet-button hornet-button-right upload-delete-button " + this.props.classNameDelete : "hornet-button hornet-button-right upload-delete-button";
-        /* On ne peut assigner programmatiquement la valeur d'un champ de type fichier (problème de sécurité potentiel)
-         * on utilise donc ici les attributs data-* pour stocker les propriétés de l'éventuel fichier déjà sélectionné.
-         * Celles-ci seront ensuite récupérées lors de l'envoi du formulaire, si un autre fichier n'a pas été sélectionné.*/
-        var dataProps = this.getDataFileProps();
-        var inputFile = React.createElement("input", tslib_1.__assign({ ref: function (elt) {
-                _this.registerUploadFieldElement(elt);
-            }, type: "file", onChange: this.handleChange }, dataProps, htmlProps));
-        var labelProps = {
-            htmlFor: htmlProps["id"],
-            readOnly: htmlProps["readOnly"],
-            className: "upload-content"
-        };
-        var aProps = {
-            href: "#",
-            onClick: this.downloadButtonActionHandler,
-            onKeyDown: this.downloadButtonKeyDownHandler,
-            disabled: htmlProps["readOnly"],
-            "aria-haspopup": true
-        };
-        return (React.createElement("div", { className: "upload-container" },
-            inputFile,
-            React.createElement("label", tslib_1.__assign({}, labelProps),
-                React.createElement("a", tslib_1.__assign({}, aProps),
-                    React.createElement("span", { className: "upload-text" }, this.state.activeButtonLabel))),
-            (this.htmlElement) && this.htmlElement.files.length ?
-                React.createElement("button", { type: "button", className: cssDelete, onClick: this.handleDelete, "aria-label": this.i18n("uploadFile.labelSupprimer"), disabled: this.state.readOnly }, "X")
-                : "",
-            preview));
-    };
-    /* suppression du fichier sélectionné  dans le champs input */
-    UploadFileField.prototype.handleDelete = function () {
-        this.htmlElement.value = "";
-        this.setState({ defaultFile: null, activeButtonLabel: this.i18n(this.state.i18nLabelKey, { "count": 0 }) });
-    };
-    /**
-     * Déclenchement d'un click sur l'input file afin d'ouvrir la boite de dialogue
-     * d'upload de fichier
-     */
-    UploadFileField.prototype.downloadButtonActionHandler = function () {
-        this.inputFileElement.click();
-    };
-    /**
-     * Appel au gestionnaire d'action pour l'ouverture de la boite de dialogue
-     * uniquement sur presse des touches entrée et espace
-     * @param e
-     */
-    UploadFileField.prototype.downloadButtonKeyDownHandler = function (e) {
-        if (!(e.ctrlKey || e.shiftKey || e.altKey || e.metaKey)) {
-            var keyCode = e.keyCode;
-            if (keyCode == key_codes_1.KeyCodes.ENTER || keyCode == key_codes_1.KeyCodes.SPACEBAR) {
-                this.downloadButtonActionHandler();
-            }
-        }
-    };
-    UploadFileField.defaultProps = _.assign(abstract_field_1.AbstractField.defaultProps, {
-        fileSelectedLabel: UploadFileField.getI18n("uploadFile.selectedFile", { "count": 0 }),
-        i18nLabelKey: "uploadFile.selectedFile"
-    });
-    return UploadFileField;
-}(abstract_field_1.AbstractField));
-exports.UploadFileField = UploadFileField;
-
-
-
-/***/ }),
 /* 337 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8679,9 +8679,9 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var React = __webpack_require__(2);
-var abstract_field_datasource_1 = __webpack_require__(307);
+var abstract_field_datasource_1 = __webpack_require__(309);
 var _ = __webpack_require__(6);
-var object_utils_1 = __webpack_require__(305);
+var object_utils_1 = __webpack_require__(307);
 /**
  * Composant liste déroulante
  */
@@ -9200,9 +9200,9 @@ var _ = __webpack_require__(6);
 var promise_api_1 = __webpack_require__(50);
 var datasource_1 = __webpack_require__(296);
 var technical_error_1 = __webpack_require__(13);
-var codes_error_1 = __webpack_require__(96);
+var codes_error_1 = __webpack_require__(97);
 var hornet_js_utils_1 = __webpack_require__(0);
-var array_utils_1 = __webpack_require__(333);
+var array_utils_1 = __webpack_require__(335);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.component.datasource.paginate-datasource");
 exports.ITEMS_PER_PAGE_ALL = 2147483647;
 /**
@@ -10945,9 +10945,9 @@ var abstract_field_1 = __webpack_require__(254);
 var auto_complete_selector_1 = __webpack_require__(349);
 var _ = __webpack_require__(6);
 var key_codes_1 = __webpack_require__(10);
-var auto_complete_state_1 = __webpack_require__(304);
+var auto_complete_state_1 = __webpack_require__(306);
 var datasource_master_1 = __webpack_require__(350);
-var abstract_field_datasource_1 = __webpack_require__(307);
+var abstract_field_datasource_1 = __webpack_require__(309);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.form.auto-complete-field");
 var FilterTextType;
 (function (FilterTextType) {
@@ -11893,7 +11893,7 @@ var classNames = __webpack_require__(9);
 var _ = __webpack_require__(6);
 var hornet_component_1 = __webpack_require__(3);
 var checkbox_1 = __webpack_require__(295);
-var auto_complete_state_1 = __webpack_require__(304);
+var auto_complete_state_1 = __webpack_require__(306);
 var React = __webpack_require__(2);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.form.auto-complete-selector");
 /**
@@ -12493,7 +12493,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 var sort_data_1 = __webpack_require__(297);
 var technical_error_1 = __webpack_require__(13);
-var codes_error_1 = __webpack_require__(96);
+var codes_error_1 = __webpack_require__(97);
 var hornet_js_utils_1 = __webpack_require__(0);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.component.datasource.options.datasource-option");
 var CompareMethod;
@@ -13167,8 +13167,8 @@ exports.DataValidator = DataValidator;
 var compileSchema = __webpack_require__(356)
   , resolve = __webpack_require__(277)
   , Cache = __webpack_require__(359)
-  , SchemaObject = __webpack_require__(308)
-  , stableStringify = __webpack_require__(309)
+  , SchemaObject = __webpack_require__(310)
+  , stableStringify = __webpack_require__(311)
   , formats = __webpack_require__(360)
   , rules = __webpack_require__(361)
   , $dataMetaSchema = __webpack_require__(382)
@@ -13671,9 +13671,9 @@ function noop() {}
 var resolve = __webpack_require__(277)
   , util = __webpack_require__(257)
   , errorClasses = __webpack_require__(279)
-  , stableStringify = __webpack_require__(309);
+  , stableStringify = __webpack_require__(311);
 
-var validateGenerator = __webpack_require__(310);
+var validateGenerator = __webpack_require__(312);
 
 /**
  * Functions below are used inside compiled validations function
@@ -14442,14 +14442,14 @@ module.exports = {
   format: __webpack_require__(371),
   'if': __webpack_require__(372),
   items: __webpack_require__(373),
-  maximum: __webpack_require__(311),
-  minimum: __webpack_require__(311),
-  maxItems: __webpack_require__(312),
-  minItems: __webpack_require__(312),
-  maxLength: __webpack_require__(313),
-  minLength: __webpack_require__(313),
-  maxProperties: __webpack_require__(314),
-  minProperties: __webpack_require__(314),
+  maximum: __webpack_require__(313),
+  minimum: __webpack_require__(313),
+  maxItems: __webpack_require__(314),
+  minItems: __webpack_require__(314),
+  maxLength: __webpack_require__(315),
+  minLength: __webpack_require__(315),
+  maxProperties: __webpack_require__(316),
+  minProperties: __webpack_require__(316),
   multipleOf: __webpack_require__(374),
   not: __webpack_require__(375),
   oneOf: __webpack_require__(376),
@@ -14458,7 +14458,7 @@ module.exports = {
   propertyNames: __webpack_require__(379),
   required: __webpack_require__(380),
   uniqueItems: __webpack_require__(381),
-  validate: __webpack_require__(310)
+  validate: __webpack_require__(312)
 };
 
 
@@ -18006,7 +18006,7 @@ function unescapeJsonPointer(str) {
 "use strict";
 
 
-module.exports = __webpack_require__(315)('Minimum');
+module.exports = __webpack_require__(317)('Minimum');
 
 
 /***/ }),
@@ -18199,7 +18199,7 @@ module.exports = function generate__formatLimit(it, $keyword, $ruleType) {
 "use strict";
 
 
-module.exports = __webpack_require__(315)('Maximum');
+module.exports = __webpack_require__(317)('Maximum');
 
 
 /***/ }),
@@ -19492,8 +19492,8 @@ module.exports = function (it) {
 var getKeys = __webpack_require__(274);
 var gOPS = __webpack_require__(288);
 var pIE = __webpack_require__(276);
-var toObject = __webpack_require__(324);
-var IObject = __webpack_require__(322);
+var toObject = __webpack_require__(326);
+var IObject = __webpack_require__(324);
 var $assign = Object.assign;
 
 // should work with symbols and should have deterministic property order (V8 bug)
@@ -21740,7 +21740,7 @@ module.exports = __webpack_require__(293).f('iterator');
 var $at = __webpack_require__(426)(true);
 
 // 21.1.3.27 String.prototype[@@iterator]()
-__webpack_require__(326)(String, 'String', function (iterated) {
+__webpack_require__(328)(String, 'String', function (iterated) {
   this._t = String(iterated); // target
   this._i = 0;                // next index
 // 21.1.5.2.1 %StringIteratorPrototype%.next()
@@ -21831,7 +21831,7 @@ module.exports = document && document.documentElement;
 
 // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
 var has = __webpack_require__(256);
-var toObject = __webpack_require__(324);
+var toObject = __webpack_require__(326);
 var IE_PROTO = __webpack_require__(285)('IE_PROTO');
 var ObjectProto = Object.prototype;
 
@@ -21884,7 +21884,7 @@ var toIObject = __webpack_require__(263);
 // 22.1.3.13 Array.prototype.keys()
 // 22.1.3.29 Array.prototype.values()
 // 22.1.3.30 Array.prototype[@@iterator]()
-module.exports = __webpack_require__(326)(Array, 'Array', function (iterated, kind) {
+module.exports = __webpack_require__(328)(Array, 'Array', function (iterated, kind) {
   this._t = toIObject(iterated); // target
   this._i = 0;                   // next index
   this._k = kind;                // kind
@@ -21954,7 +21954,7 @@ var global = __webpack_require__(255);
 var has = __webpack_require__(256);
 var DESCRIPTORS = __webpack_require__(262);
 var $export = __webpack_require__(267);
-var redefine = __webpack_require__(327);
+var redefine = __webpack_require__(329);
 var META = __webpack_require__(438).KEY;
 var $fails = __webpack_require__(269);
 var shared = __webpack_require__(286);
@@ -21972,7 +21972,7 @@ var toPrimitive = __webpack_require__(282);
 var createDesc = __webpack_require__(273);
 var _create = __webpack_require__(291);
 var gOPNExt = __webpack_require__(441);
-var $GOPD = __webpack_require__(329);
+var $GOPD = __webpack_require__(331);
 var $DP = __webpack_require__(260);
 var $keys = __webpack_require__(274);
 var gOPD = $GOPD.f;
@@ -22097,7 +22097,7 @@ if (!USE_NATIVE) {
 
   $GOPD.f = $getOwnPropertyDescriptor;
   $DP.f = $defineProperty;
-  __webpack_require__(328).f = gOPNExt.f = $getOwnPropertyNames;
+  __webpack_require__(330).f = gOPNExt.f = $getOwnPropertyNames;
   __webpack_require__(276).f = $propertyIsEnumerable;
   __webpack_require__(288).f = $getOwnPropertySymbols;
 
@@ -22269,7 +22269,7 @@ module.exports = function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.2.2 IsArray(argument)
-var cof = __webpack_require__(323);
+var cof = __webpack_require__(325);
 module.exports = Array.isArray || function isArray(arg) {
   return cof(arg) == 'Array';
 };
@@ -22281,7 +22281,7 @@ module.exports = Array.isArray || function isArray(arg) {
 
 // fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
 var toIObject = __webpack_require__(263);
-var gOPN = __webpack_require__(328).f;
+var gOPN = __webpack_require__(330).f;
 var toString = {}.toString;
 
 var windowNames = typeof window == 'object' && window && Object.getOwnPropertyNames
@@ -22359,7 +22359,7 @@ module.exports = {
   set: Object.setPrototypeOf || ('__proto__' in {} ? // eslint-disable-line
     function (test, buggy, set) {
       try {
-        set = __webpack_require__(318)(Function.call, __webpack_require__(329).f(Object.prototype, '__proto__').set, 2);
+        set = __webpack_require__(320)(Function.call, __webpack_require__(331).f(Object.prototype, '__proto__').set, 2);
         set(test, []);
         buggy = !(test instanceof Array);
       } catch (e) { buggy = true; }
@@ -22425,7 +22425,7 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _DateConstants = __webpack_require__(330);
+var _DateConstants = __webpack_require__(332);
 
 var _DateConstants2 = _interopRequireDefault(_DateConstants);
 
@@ -22533,7 +22533,7 @@ var _classnames = __webpack_require__(9);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _DateConstants = __webpack_require__(330);
+var _DateConstants = __webpack_require__(332);
 
 var _DateConstants2 = _interopRequireDefault(_DateConstants);
 
@@ -22810,7 +22810,7 @@ var _propTypes = __webpack_require__(253);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _mapSelf = __webpack_require__(331);
+var _mapSelf = __webpack_require__(333);
 
 var _mapSelf2 = _interopRequireDefault(_mapSelf);
 
@@ -23833,7 +23833,7 @@ var _propTypes = __webpack_require__(253);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _mapSelf = __webpack_require__(331);
+var _mapSelf = __webpack_require__(333);
 
 var _mapSelf2 = _interopRequireDefault(_mapSelf);
 
@@ -25317,13 +25317,13 @@ var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
 var header_1 = __webpack_require__(471);
-var content_1 = __webpack_require__(334);
+var content_1 = __webpack_require__(336);
 var columns_1 = __webpack_require__(342);
 var footer_1 = __webpack_require__(481);
 var table_state_1 = __webpack_require__(299);
 var notification_1 = __webpack_require__(48);
 var toggle_columns_button_1 = __webpack_require__(474);
-var content_2 = __webpack_require__(334);
+var content_2 = __webpack_require__(336);
 var check_column_1 = __webpack_require__(479);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-components.widget.table.table");
 /**
@@ -25662,7 +25662,7 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var hornet_js_utils_1 = __webpack_require__(0);
-var array_utils_1 = __webpack_require__(333);
+var array_utils_1 = __webpack_require__(335);
 var React = __webpack_require__(2);
 var classNames = __webpack_require__(9);
 var hornet_component_1 = __webpack_require__(3);
@@ -25981,9 +25981,9 @@ var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
 var dropdown_1 = __webpack_require__(39);
-var picto_1 = __webpack_require__(97);
+var picto_1 = __webpack_require__(96);
 var action_button_1 = __webpack_require__(473);
-var table_button_info_accessibilite_1 = __webpack_require__(491);
+var table_button_info_accessibilite_1 = __webpack_require__(493);
 var _ = __webpack_require__(6);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.table.menu-actions");
 /**
@@ -26179,7 +26179,7 @@ var tslib_1 = __webpack_require__(1);
  */
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
-var button_1 = __webpack_require__(332);
+var button_1 = __webpack_require__(334);
 var classNames = __webpack_require__(9);
 var _ = __webpack_require__(6);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.table.action-button");
@@ -26690,7 +26690,7 @@ var tslib_1 = __webpack_require__(1);
  */
 var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
-var button_1 = __webpack_require__(332);
+var button_1 = __webpack_require__(334);
 var modal_1 = __webpack_require__(101);
 var notification_1 = __webpack_require__(48);
 var Confirm = /** @class */ (function (_super) {
@@ -26909,7 +26909,7 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var column_1 = __webpack_require__(300);
-var action_body_cell_1 = __webpack_require__(496);
+var action_body_cell_1 = __webpack_require__(498);
 var action_header_cell_1 = __webpack_require__(478);
 /**
  * Classe permettant de gérer les colonnes de type date
@@ -27247,8 +27247,8 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var column_1 = __webpack_require__(300);
-var check_body_cell_1 = __webpack_require__(499);
-var check_header_cell_1 = __webpack_require__(500);
+var check_body_cell_1 = __webpack_require__(501);
+var check_header_cell_1 = __webpack_require__(502);
 /**
  * Classe permettant de gérer les colonnes de type CheckBox
  */
@@ -28005,7 +28005,7 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var column_1 = __webpack_require__(300);
-var date_body_cell_1 = __webpack_require__(504);
+var date_body_cell_1 = __webpack_require__(506);
 /**
  * Classe permettant de gérer les colonnes de type date
  */
@@ -28208,7 +28208,9 @@ exports.Tab = Tab;
 /* 486 */,
 /* 487 */,
 /* 488 */,
-/* 489 */
+/* 489 */,
+/* 490 */,
+/* 491 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28218,20 +28220,20 @@ var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var hornet_page_1 = __webpack_require__(51);
-var form_1 = __webpack_require__(335);
+var form_1 = __webpack_require__(302);
 var row_1 = __webpack_require__(339);
 var input_field_1 = __webpack_require__(298);
 var calendar_field_1 = __webpack_require__(407);
-var button_1 = __webpack_require__(332);
-var buttons_area_1 = __webpack_require__(316);
+var button_1 = __webpack_require__(334);
+var buttons_area_1 = __webpack_require__(318);
 var notification_1 = __webpack_require__(48);
-var schema = __webpack_require__(490);
+var schema = __webpack_require__(492);
 var table_1 = __webpack_require__(470);
 var header_1 = __webpack_require__(471);
 var menu_actions_1 = __webpack_require__(472);
 var action_button_1 = __webpack_require__(473);
-var picto_1 = __webpack_require__(97);
-var content_1 = __webpack_require__(334);
+var picto_1 = __webpack_require__(96);
+var content_1 = __webpack_require__(336);
 var column_1 = __webpack_require__(300);
 var columns_1 = __webpack_require__(342);
 var date_column_1 = __webpack_require__(483);
@@ -28254,7 +28256,7 @@ var RecordListPage = /** @class */ (function (_super) {
         });
     };
     RecordListPage.prototype.onSubmit = function (data) {
-        var criteria = { "num_permis": data.num_permis };
+        var criteria = { "numPermis": data.num_permis };
         if (data.nom != null) {
             criteria["nom"] = data.nom;
         }
@@ -28262,13 +28264,9 @@ var RecordListPage = /** @class */ (function (_super) {
             criteria["prenom"] = data.prenom;
         }
         if (data.date_de_naissance != null) {
-            criteria["date_de_naissance"] = Date.parse(data.date_de_naissance);
+            criteria["dateDeNaissance"] = Date.parse(data.date_de_naissance);
         }
         var subList = this.entries.findAll(criteria);
-        console.log(criteria);
-        subList.forEach(function (result) {
-            console.log(result);
-        });
         this.entries.deleteAll();
         this.entries.add(true, subList);
     };
@@ -28282,12 +28280,12 @@ var RecordListPage = /** @class */ (function (_super) {
                         React.createElement(action_button_1.ActionButton, { title: "Ajout", srcImg: picto_1.Picto.white.ajouter, displayedWithoutResult: true, action: this.ajouterDossier, priority: true }))),
                 React.createElement(content_1.Content, { dataSource: this.entries },
                     React.createElement(columns_1.Columns, null,
-                        React.createElement(column_1.Column, { keyColumn: "num_permis", title: format.fields.num_permis.label, sortable: false }),
+                        React.createElement(column_1.Column, { keyColumn: "numPermis", title: format.fields.num_permis.label, sortable: false }),
                         React.createElement(column_1.Column, { keyColumn: "nom", title: format.fields.nom.label, sortable: true }),
                         React.createElement(column_1.Column, { keyColumn: "prenom", title: format.fields.prenom.label, sortable: false }),
-                        React.createElement(date_column_1.DateColumn, { keyColumn: "date_de_naissance", title: format.fields.date_de_naissance.label, sortable: false }),
-                        React.createElement(date_column_1.DateColumn, { keyColumn: "date_reception_dossier", title: format.fields.date_reception_dossier.label, sortable: true }),
-                        React.createElement(action_column_1.ActionColumn, { keyColumn: "id_permis", srcImg: picto_1.Picto.black.consulter, url: "/record/:id_permis" }))),
+                        React.createElement(date_column_1.DateColumn, { keyColumn: "dateDeNaissance", title: format.fields.date_de_naissance.label, sortable: false }),
+                        React.createElement(date_column_1.DateColumn, { keyColumn: "dateReceptionDossier", title: format.fields.date_reception_dossier.label, sortable: true }),
+                        React.createElement(action_column_1.ActionColumn, { keyColumn: "idPermis", srcImg: picto_1.Picto.black.consulter, url: "/record/:idPermis" }))),
                 React.createElement(footer_1.Footer, null,
                     React.createElement(pager_1.Pager, { dataSource: this.entries, id: "table-paginate" }))),
             React.createElement("h3", null, " Recherche d'un dossier "),
@@ -28318,7 +28316,7 @@ exports.RecordListPage = RecordListPage;
 
 
 /***/ }),
-/* 490 */
+/* 492 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -28353,7 +28351,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 491 */
+/* 493 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28502,7 +28500,7 @@ exports.TableButtonInfoAccessibilite = TableButtonInfoAccessibilite;
 
 
 /***/ }),
-/* 492 */
+/* 494 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28589,7 +28587,7 @@ var tslib_1 = __webpack_require__(1);
  */
 var React = __webpack_require__(2);
 var spinner_component_1 = __webpack_require__(100);
-var content_1 = __webpack_require__(334);
+var content_1 = __webpack_require__(336);
 var classNames = __webpack_require__(9);
 /**
  * Composant représentant un tableau en cours de chargement
@@ -28659,7 +28657,7 @@ exports.SpinnerOverlay = SpinnerOverlay;
 
 
 /***/ }),
-/* 493 */
+/* 495 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28847,7 +28845,7 @@ exports.HeaderCell = HeaderCell;
 
 
 /***/ }),
-/* 494 */
+/* 496 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28957,7 +28955,7 @@ exports.BodyCell = BodyCell;
 
 
 /***/ }),
-/* 495 */
+/* 497 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29104,7 +29102,7 @@ exports.InputTextInLineBodyCell = InputTextInLineBodyCell;
 
 
 /***/ }),
-/* 496 */
+/* 498 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29322,7 +29320,7 @@ exports.ActionBodyCell = ActionBodyCell;
 
 
 /***/ }),
-/* 497 */
+/* 499 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29408,7 +29406,7 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var column_1 = __webpack_require__(300);
-var edition_action_body_cell_1 = __webpack_require__(498);
+var edition_action_body_cell_1 = __webpack_require__(500);
 var action_header_cell_1 = __webpack_require__(478);
 /**
  * Classe permettant de gérer les colonnes de type edition rapide action
@@ -29443,7 +29441,7 @@ exports.EditionActionColumn = EditionActionColumn;
 
 
 /***/ }),
-/* 498 */
+/* 500 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29532,7 +29530,7 @@ var hornet_js_utils_1 = __webpack_require__(0);
 var abstract_body_cell_1 = __webpack_require__(301);
 var React = __webpack_require__(2);
 var notification_manager_1 = __webpack_require__(95);
-var picto_1 = __webpack_require__(97);
+var picto_1 = __webpack_require__(96);
 var key_codes_1 = __webpack_require__(10);
 var template_1 = __webpack_require__(340);
 var classNames = __webpack_require__(9);
@@ -29682,7 +29680,7 @@ exports.EditionActionBodyCell = EditionActionBodyCell;
 
 
 /***/ }),
-/* 499 */
+/* 501 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29768,7 +29766,7 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var hornet_js_utils_1 = __webpack_require__(0);
-var array_utils_1 = __webpack_require__(333);
+var array_utils_1 = __webpack_require__(335);
 var abstract_body_cell_1 = __webpack_require__(301);
 var checkbox_1 = __webpack_require__(295);
 var React = __webpack_require__(2);
@@ -29887,7 +29885,7 @@ exports.CheckBodyCell = CheckBodyCell;
 
 
 /***/ }),
-/* 500 */
+/* 502 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29976,7 +29974,7 @@ var hornet_js_utils_1 = __webpack_require__(0);
 var abstract_header_cell_1 = __webpack_require__(468);
 var checkbox_1 = __webpack_require__(295);
 var React = __webpack_require__(2);
-var array_utils_1 = __webpack_require__(333);
+var array_utils_1 = __webpack_require__(335);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.table.column.cell.check.check-header-cell");
 var CheckHeaderCell = /** @class */ (function (_super) {
     tslib_1.__extends(CheckHeaderCell, _super);
@@ -30076,7 +30074,7 @@ exports.CheckHeaderCell = CheckHeaderCell;
 
 
 /***/ }),
-/* 501 */
+/* 503 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30183,7 +30181,7 @@ exports.CellCoordinates = CellCoordinates;
 
 
 /***/ }),
-/* 502 */
+/* 504 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30276,7 +30274,7 @@ exports.LineBefore = LineBefore;
 
 
 /***/ }),
-/* 503 */
+/* 505 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30369,7 +30367,7 @@ exports.LineAfter = LineAfter;
 
 
 /***/ }),
-/* 504 */
+/* 506 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30497,7 +30495,7 @@ exports.DateBodyCell = DateBodyCell;
 
 
 /***/ }),
-/* 505 */
+/* 507 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30551,6 +30549,13 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
         };
         return this.fetch(request);
     };
+    ClientListServiceImpl.prototype.getCopiePermis = function (idPermis) {
+        var request = {
+            method: "post",
+            url: this.buildUrl("/recordserver/copiePermis/" + idPermis)
+        };
+        return this.fetch(request);
+    };
     return ClientListServiceImpl;
 }(service_page_1.ServicePage));
 exports.ClientListServiceImpl = ClientListServiceImpl;
@@ -30558,7 +30563,7 @@ exports.ClientListServiceImpl = ClientListServiceImpl;
 
 
 /***/ }),
-/* 506 */
+/* 508 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30568,25 +30573,27 @@ var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var hornet_page_1 = __webpack_require__(51);
+var form_1 = __webpack_require__(302);
 var row_1 = __webpack_require__(339);
-var datasource_config_page_1 = __webpack_require__(306);
+var datasource_config_page_1 = __webpack_require__(308);
 var table_1 = __webpack_require__(470);
-var content_1 = __webpack_require__(334);
+var content_1 = __webpack_require__(336);
 var column_1 = __webpack_require__(300);
 var columns_1 = __webpack_require__(342);
 var date_column_1 = __webpack_require__(483);
-var accordions_1 = __webpack_require__(507);
+var accordions_1 = __webpack_require__(509);
 var accordion_1 = __webpack_require__(53);
 var datasource_1 = __webpack_require__(296);
-var tabs_1 = __webpack_require__(509);
+var upload_file_field_1 = __webpack_require__(305);
+var tabs_1 = __webpack_require__(511);
 var tab_1 = __webpack_require__(484);
-var tab_content_1 = __webpack_require__(511);
-var spinner_1 = __webpack_require__(104);
+var tab_content_1 = __webpack_require__(513);
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
 var RecordDetailsPage = /** @class */ (function (_super) {
     tslib_1.__extends(RecordDetailsPage, _super);
     function RecordDetailsPage(props, context) {
         var _this = _super.call(this, props, context) || this;
+        _this.tabs = new tabs_1.Tabs();
         _this.dossier = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getDossier), {});
         return _this;
     }
@@ -30594,10 +30601,8 @@ var RecordDetailsPage = /** @class */ (function (_super) {
         var _this = this;
         this.dossier.fetch(true, this.attributes);
         this.dossier.on("fetch", function (Result) {
-            _this.tabs.removeElementsById(["test"]);
             _this.tabs.addElements(0, _this.renderDossierTab(Result[0]));
-            console.log(Result);
-            _this.tabs.refresh();
+            _this.tabs.removeElementsById("temp");
         });
     };
     RecordDetailsPage.prototype.onSubmit = function (data) {
@@ -30609,10 +30614,7 @@ var RecordDetailsPage = /** @class */ (function (_super) {
             React.createElement(tabs_1.Tabs, { ref: function (tabs) {
                     _this.tabs = tabs;
                 }, id: "tabs", selectedTabIndex: 0 },
-                React.createElement(tab_1.Tab, { index: 5, id: "test" },
-                    " ",
-                    React.createElement(spinner_1.Spinner, { loadingText: "test" }),
-                    " "))));
+                React.createElement(tab_1.Tab, { index: -1, id: "temp" }, " "))));
     };
     RecordDetailsPage.prototype.renderDossierTab = function (dossier) {
         var format = this.i18n("form");
@@ -30624,8 +30626,8 @@ var RecordDetailsPage = /** @class */ (function (_super) {
                             React.createElement(table_1.Table, { id: "entr\u00E9e permis" },
                                 React.createElement(content_1.Content, { dataSource: this.dossier },
                                     React.createElement(columns_1.Columns, null,
-                                        React.createElement(column_1.Column, { keyColumn: "num_permis", title: format.fields.num_permis.label, sortable: false }),
-                                        React.createElement(date_column_1.DateColumn, { keyColumn: "date_de_delivrance", title: format.fields.date_de_delivrance.label, sortable: false }))))),
+                                        React.createElement(column_1.Column, { keyColumn: "numPermis", title: format.fields.num_permis.label, sortable: false }),
+                                        React.createElement(date_column_1.DateColumn, { keyColumn: "dateDeDelivrance", title: format.fields.date_de_delivrance.label, sortable: false }))))),
                         React.createElement(row_1.Row, null,
                             React.createElement("div", null,
                                 React.createElement("b", null,
@@ -30648,35 +30650,22 @@ var RecordDetailsPage = /** @class */ (function (_super) {
                                 React.createElement(columns_1.Columns, null,
                                     React.createElement(column_1.Column, { keyColumn: "nom", title: format.fields.nom.label, sortable: false }),
                                     React.createElement(column_1.Column, { keyColumn: "prenom", title: format.fields.prenom.label, sortable: false }),
-                                    React.createElement(date_column_1.DateColumn, { keyColumn: "date_de_naissance", title: format.fields.date_de_naissance.label, sortable: false }),
+                                    React.createElement(date_column_1.DateColumn, { keyColumn: "dateDeNaissance", title: format.fields.date_de_naissance.label, sortable: false }),
                                     React.createElement(column_1.Column, { keyColumn: "ville_de_naissance", title: format.fields.ville_de_naissance.label, sortable: false }),
                                     React.createElement(column_1.Column, { keyColumn: "pays_de_naissance", title: format.fields.pays_de_naissance.label, sortable: false }))))),
-                    React.createElement(accordion_1.Accordion, { title: "Annexes", isOpen: false })))));
-    };
-    RecordDetailsPage.prototype.test = function () {
-        console.log(this.dossier.findAll()[0]);
-        return "test";
+                    React.createElement(accordion_1.Accordion, { title: "Annexes", isOpen: false },
+                        React.createElement(form_1.Form, { id: "form", readOnly: true, defaultValues: dossier },
+                            React.createElement(upload_file_field_1.UploadFileField, { name: "copie_permis", readOnly: true, label: format.fields.copie_permis.label, renderPreviewFile: this.renderCopieNoteVerbaleMAECI, buttonLabel: format.fields.copie_permis.buttonLabel, fileSelectedLabel: format.fields.copie_permis.fileSelectedLabel })))))));
     };
     RecordDetailsPage.prototype.renderCopieNoteVerbaleMAECI = function (file) {
-        console.log("test");
+        var format = this.i18n("form");
         var fileTag = null;
-        console.log(file);
-        if (file && file.id > -1) {
-            var urlfile = hornet_js_utils_1.Utils.buildContextPath("/test");
-            var filetarget = "tab";
-            fileTag =
-                React.createElement("div", { className: "grid-form-field" },
-                    React.createElement("div", { className: "" },
-                        React.createElement("a", { href: urlfile, "data-pass-thru": "true", target: filetarget }, " ")));
-        }
-        else if (file && file.name) {
-            fileTag = React.createElement(row_1.Row, null,
-                React.createElement("div", { className: "blocLabel" },
-                    React.createElement("label", { htmlFor: "photo", id: "photoLabel" },
-                        React.createElement("span", { className: "inputLabel" }, this.i18n("form").fields.copie_note_verbale_maeci.label))),
-                React.createElement("div", { className: "grid-form-field" },
-                    React.createElement("div", { className: "" }, file.name)));
-        }
+        var urlfile = hornet_js_utils_1.Utils.buildContextPath("/services/recordserver/copiePermis/" + this.attributes.id);
+        var fileTarget = "newTabForPhoto" + this.attributes.id;
+        fileTag =
+            React.createElement("div", { className: "grid-form-field " },
+                React.createElement("div", { className: "" },
+                    React.createElement("a", { href: urlfile, "data-pass-thru": "true", target: fileTarget }, format.fields.copie_permis.label)));
         return fileTag;
     };
     return RecordDetailsPage;
@@ -30686,7 +30675,7 @@ exports.RecordDetailsPage = RecordDetailsPage;
 
 
 /***/ }),
-/* 507 */
+/* 509 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30775,7 +30764,7 @@ var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var classNames = __webpack_require__(9);
 var accordion_1 = __webpack_require__(53);
-var abstract_group_component_1 = __webpack_require__(508);
+var abstract_group_component_1 = __webpack_require__(510);
 var _ = __webpack_require__(6);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.accordion.accordions");
 var Accordions = /** @class */ (function (_super) {
@@ -30925,7 +30914,7 @@ exports.Accordions = Accordions;
 
 
 /***/ }),
-/* 508 */
+/* 510 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31028,7 +31017,7 @@ exports.GroupComponent = GroupComponent;
 
 
 /***/ }),
-/* 509 */
+/* 511 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31120,7 +31109,7 @@ var hornet_component_1 = __webpack_require__(3);
 var tab_1 = __webpack_require__(484);
 var key_codes_1 = __webpack_require__(10);
 var ReactDOM = __webpack_require__(22);
-var tab_header_1 = __webpack_require__(510);
+var tab_header_1 = __webpack_require__(512);
 var _ = __webpack_require__(6);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.tab.tabs");
 var TabsButtonScrolling;
@@ -31805,7 +31794,7 @@ exports.Tabs = Tabs;
 
 
 /***/ }),
-/* 510 */
+/* 512 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31898,7 +31887,7 @@ exports.TabHeader = TabHeader;
 
 
 /***/ }),
-/* 511 */
+/* 513 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

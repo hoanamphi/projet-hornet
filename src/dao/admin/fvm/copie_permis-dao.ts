@@ -31,7 +31,7 @@ export class CopiePermisFVMDao extends EntityDAO {
   }
 
   getNewNom(idCopiePermis): string {
-    return "copieNoteVerbaleMAECI"+idCopiePermis+(new Date()).toString();
+    return ("copieNoteVerbaleMAECI"+idCopiePermis+(new Date())).replace(/\s+/g, "_");
   }
 
   getNewIdCopiePermis(): Promise<any> {

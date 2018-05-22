@@ -57,4 +57,13 @@ export class ClientListServiceImpl extends ServicePage implements ClientListServ
 
     return this.fetch(request);
   }
+
+  getCopiePermis(idPermis: number): Promise<any> {
+    let request: HornetRequest = {
+      method: "post",
+      url: this.buildUrl("/recordserver/copiePermis/"+idPermis)
+    };
+
+    return this.fetch(request);
+  }
 }

@@ -31,7 +31,7 @@ export class CopieNoteVerbaleMAECIFVMDao extends EntityDAO {
   }
 
   getNewNom(idCopieNoteVerbaleMAECI): string {
-    return "copieNoteVerbaleMAECI"+idCopieNoteVerbaleMAECI+(new Date()).toString();
+    return ("copieNoteVerbaleMAECI"+idCopieNoteVerbaleMAECI+(new Date())).replace(/\s+/g, "_");
   }
 
   getNewIdCopieNoteVerbaleMAECI(): Promise<any> {

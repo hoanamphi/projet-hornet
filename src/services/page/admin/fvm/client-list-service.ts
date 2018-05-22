@@ -9,4 +9,6 @@ export interface ClientListService {
   getDemandeAuthentification(data): Promise<any>;
   getReleve(data): Promise<any>;
   getNoteVerbale(data): Promise<any>;
+
+  getCopiePermis(data): Promise<any>;
 }

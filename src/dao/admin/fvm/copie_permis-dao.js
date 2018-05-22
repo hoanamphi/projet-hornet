@@ -26,7 +26,7 @@ var CopiePermisFVMDao = /** @class */ (function (_super) {
         });
     };
     CopiePermisFVMDao.prototype.getNewNom = function (idCopiePermis) {
-        return "copieNoteVerbaleMAECI" + idCopiePermis + (new Date()).toString();
+        return ("copieNoteVerbaleMAECI" + idCopiePermis + (new Date())).replace(/\s+/g, "_");
     };
     CopiePermisFVMDao.prototype.getNewIdCopiePermis = function () {
         var _this = this;

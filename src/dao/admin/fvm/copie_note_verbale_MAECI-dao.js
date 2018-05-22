@@ -26,7 +26,7 @@ var CopieNoteVerbaleMAECIFVMDao = /** @class */ (function (_super) {
         });
     };
     CopieNoteVerbaleMAECIFVMDao.prototype.getNewNom = function (idCopieNoteVerbaleMAECI) {
-        return "copieNoteVerbaleMAECI" + idCopieNoteVerbaleMAECI + (new Date()).toString();
+        return ("copieNoteVerbaleMAECI" + idCopieNoteVerbaleMAECI + (new Date())).replace(/\s+/g, "_");
     };
     CopieNoteVerbaleMAECIFVMDao.prototype.getNewIdCopieNoteVerbaleMAECI = function () {
         var _this = this;

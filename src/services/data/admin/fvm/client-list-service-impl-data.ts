@@ -39,20 +39,20 @@ export class ClientListServiceImpl extends ServiceRequest implements ClientListS
 
         let result = [];
         permisList.forEach(permis=>{
-          let obj = {"id_permis":permis.idPermis, "num_permis": null, "nom": null, "prenom": null, "date_de_naissance": null, "date_reception_dossier": null};
-          obj.num_permis = permis.numPermis;
+          let obj = {"idPermis":permis.idPermis, "numPermis": null, "nom": null, "prenom": null, "dateDeNaissance": null, "dateReceptionDossier": null};
+          obj.numPermis = permis.numPermis;
 
           personneList.forEach(personne=>{
             if(personne.idPermis == permis.idPermis){
               obj.nom = personne.nom;
               obj.prenom = personne.prenom;
-              obj.date_de_naissance = Date.parse(personne.dateDeNaissance);
+              obj.dateDeNaissance = Date.parse(personne.dateDeNaissance);
             }
           });
 
           dossierList.forEach(dossier=>{
             if(dossier.idPermis == permis.idPermis){
-              obj.date_reception_dossier = Date.parse(dossier.dateReceptionDossier);
+              obj.dateReceptionDossier = Date.parse(dossier.dateReceptionDossier);
             }
           });
 
@@ -70,8 +70,8 @@ export class ClientListServiceImpl extends ServiceRequest implements ClientListS
       let permis = values[0];
 
       let result = {};
-      result["num_permis"] = permis.numPermis;
-      result["date_de_delivrance"] = Date.parse(permis.dateDeDelivrance);
+      result["numPermis"] = permis.numPermis;
+      result["dateDeDelivrance"] = Date.parse(permis.dateDeDelivrance);
 
       let copie_permis = this.copiePermisDAO.getCopiePermis(permis.idCopiePermis);
       let personne = this.personneDAO.getPersonne(permis.idPersonne);
@@ -88,17 +88,18 @@ export class ClientListServiceImpl extends ServiceRequest implements ClientListS
 
         result["nom"] = personne.nom;
         result["prenom"] = personne.prenom;
-        result["date_de_naissance"] = Date.parse(personne.dateDeNaissance);
-        result["ville_de_naissance"] = personne.villeDeNaissance;
-        result["pays_de_naissance"] = personne.paysDeNaissance;
+        result["dateDeNaissance"] = Date.parse(personne.dateDeNaissance);
+        result["villeDeNaissance"] = personne.villeDeNaissance;
+        result["paysDeNaissance"] = personne.paysDeNaissance;
 
-        result["date_reception_dossier"] = Date.parse(dossier.dateReceptionDossier);
+
+        result["dateReceptionDossier"] = Date.parse(dossier.dateReceptionDossier);
 
         result["region"] = prefecture.region;
         result["departement"] = prefecture.departement;
         result["prefecture"] = prefecture.prefecture;
         result["adresse"] = prefecture.adresse;
-        result["code_postal"] = prefecture.codePostal;
+        result["codePostal"] = prefecture.codePostal;
         result["ville"] = prefecture.ville;
 
         return Promise.resolve([result]);
@@ -119,5 +120,16 @@ export class ClientListServiceImpl extends ServiceRequest implements ClientListS
   getNoteVerbale(data): Promise<any> {
     let idPermis = data["id"];
     return Promise.resolve([]);
+  }
+
+  getCopiePermis(idPermis): Promise<any> {
+    console.log(idPermis);
+    return this.permisDAO.getPermis(idPermis).then(values=>{
+      let permis = values[0];
+
+      return this.copiePermisDAO.getCopiePermis(permis.idCopiePermis).then(values=>{
+        return Promise.resolve(values[0]);
+      });
+    });
   }
 }

@@ -3,6 +3,11 @@ import { Logger } from "hornet-js-utils/src/logger";
 import { RouteActionService } from "hornet-js-core/src/routes/abstract-routes";
 import { ServerFormService } from "src/services/page/admin/fvm/server-form-service";
 import {ClientListService} from "../../../services/page/admin/fvm/client-list-service";
+import {ResultDOC} from "hornet-js-core/src/result/result-doc";
+import {ResultFile} from "hornet-js-core/src/result/result-file";
+import {MediaTypes} from "hornet-js-core/src/protocol/media-type";
+import {CopiePermisFVMMetier} from "../../../models/fvm/fvm-mod";
+import {ResultJSON} from "hornet-js-core/src/result/result-json";
 
 const logger: Logger = Utils.getLogger("projet-hornet.actions.admin.permis_actions");
 
@@ -87,5 +92,19 @@ export class GetNoteVerbale extends RouteActionService<any, ClientListService> {
     let data = this.req.body;
 
     return this.getService().getNoteVerbale(data);
+  }
+}
+
+export class GetCopiePermis extends RouteActionService<{"idPermis": number}, ClientListService> {
+  execute(): Promise<any> {
+    logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
+
+    return this.getService().getCopiePermis(this.attributes.idPermis).then((copiePermis: CopiePermisFVMMetier) => {
+      return new ResultFile({"data": copiePermis.data,
+          "filename": copiePermis.nom,
+          "encoding": copiePermis.encoding,
+          "size": copiePermis.size
+        }, MediaTypes.fromMime(copiePermis.mimetype));
+    });
   }
 }

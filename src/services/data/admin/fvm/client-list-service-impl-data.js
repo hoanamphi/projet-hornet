@@ -38,18 +38,18 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
                 var dossierList = values[1];
                 var result = [];
                 permisList.forEach(function (permis) {
-                    var obj = { "id_permis": permis.idPermis, "num_permis": null, "nom": null, "prenom": null, "date_de_naissance": null, "date_reception_dossier": null };
-                    obj.num_permis = permis.numPermis;
+                    var obj = { "idPermis": permis.idPermis, "numPermis": null, "nom": null, "prenom": null, "dateDeNaissance": null, "dateReceptionDossier": null };
+                    obj.numPermis = permis.numPermis;
                     personneList.forEach(function (personne) {
                         if (personne.idPermis == permis.idPermis) {
                             obj.nom = personne.nom;
                             obj.prenom = personne.prenom;
-                            obj.date_de_naissance = Date.parse(personne.dateDeNaissance);
+                            obj.dateDeNaissance = Date.parse(personne.dateDeNaissance);
                         }
                     });
                     dossierList.forEach(function (dossier) {
                         if (dossier.idPermis == permis.idPermis) {
-                            obj.date_reception_dossier = Date.parse(dossier.dateReceptionDossier);
+                            obj.dateReceptionDossier = Date.parse(dossier.dateReceptionDossier);
                         }
                     });
                     result.push(obj);
@@ -64,8 +64,8 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
         return this.permisDAO.getPermis(idPermis).then(function (values) {
             var permis = values[0];
             var result = {};
-            result["num_permis"] = permis.numPermis;
-            result["date_de_delivrance"] = Date.parse(permis.dateDeDelivrance);
+            result["numPermis"] = permis.numPermis;
+            result["dateDeDelivrance"] = Date.parse(permis.dateDeDelivrance);
             var copie_permis = _this.copiePermisDAO.getCopiePermis(permis.idCopiePermis);
             var personne = _this.personneDAO.getPersonne(permis.idPersonne);
             var dossier = _this.dossierDAO.getDossier(permis.idDossier);
@@ -78,15 +78,15 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
                 result["copie_permis"] = copie_permis;
                 result["nom"] = personne.nom;
                 result["prenom"] = personne.prenom;
-                result["date_de_naissance"] = Date.parse(personne.dateDeNaissance);
-                result["ville_de_naissance"] = personne.villeDeNaissance;
-                result["pays_de_naissance"] = personne.paysDeNaissance;
-                result["date_reception_dossier"] = Date.parse(dossier.dateReceptionDossier);
+                result["dateDeNaissance"] = Date.parse(personne.dateDeNaissance);
+                result["villeDeNaissance"] = personne.villeDeNaissance;
+                result["paysDeNaissance"] = personne.paysDeNaissance;
+                result["dateReceptionDossier"] = Date.parse(dossier.dateReceptionDossier);
                 result["region"] = prefecture.region;
                 result["departement"] = prefecture.departement;
                 result["prefecture"] = prefecture.prefecture;
                 result["adresse"] = prefecture.adresse;
-                result["code_postal"] = prefecture.codePostal;
+                result["codePostal"] = prefecture.codePostal;
                 result["ville"] = prefecture.ville;
                 return Promise.resolve([result]);
             });
@@ -103,6 +103,16 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
     ClientListServiceImpl.prototype.getNoteVerbale = function (data) {
         var idPermis = data["id"];
         return Promise.resolve([]);
+    };
+    ClientListServiceImpl.prototype.getCopiePermis = function (idPermis) {
+        var _this = this;
+        console.log(idPermis);
+        return this.permisDAO.getPermis(idPermis).then(function (values) {
+            var permis = values[0];
+            return _this.copiePermisDAO.getCopiePermis(permis.idCopiePermis).then(function (values) {
+                return Promise.resolve(values[0]);
+            });
+        });
     };
     return ClientListServiceImpl;
 }(service_request_1.ServiceRequest));

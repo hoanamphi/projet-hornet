@@ -51,7 +51,7 @@ export class RecordListPage extends HornetPage<any, HornetComponentProps, any> {
   }
 
   onSubmit(data: any) {
-    let criteria = {"num_permis": data.num_permis};
+    let criteria = {"numPermis": data.num_permis};
     if(data.nom != null) {
       criteria["nom"] = data.nom;
     }
@@ -59,13 +59,9 @@ export class RecordListPage extends HornetPage<any, HornetComponentProps, any> {
       criteria["prenom"] = data.prenom;
     }
     if(data.date_de_naissance != null) {
-      criteria["date_de_naissance"] = Date.parse(data.date_de_naissance);
+      criteria["dateDeNaissance"] = Date.parse(data.date_de_naissance);
     }
     let subList = this.entries.findAll(criteria);
-    console.log(criteria);
-    subList.forEach(result=>{
-      console.log(result);
-    });
     this.entries.deleteAll();
     this.entries.add(true, subList);
   }
@@ -88,7 +84,7 @@ export class RecordListPage extends HornetPage<any, HornetComponentProps, any> {
 
           <Content dataSource={this.entries}>
             <Columns>
-              <Column keyColumn="num_permis"
+              <Column keyColumn="numPermis"
                       title={format.fields.num_permis.label}
                       sortable={false}/>
               <Column keyColumn="nom"
@@ -97,15 +93,15 @@ export class RecordListPage extends HornetPage<any, HornetComponentProps, any> {
               <Column keyColumn="prenom"
                       title={format.fields.prenom.label}
                       sortable={false}/>
-              <DateColumn keyColumn="date_de_naissance"
+              <DateColumn keyColumn="dateDeNaissance"
                           title={format.fields.date_de_naissance.label}
                           sortable={false}/>
-              <DateColumn keyColumn="date_reception_dossier"
+              <DateColumn keyColumn="dateReceptionDossier"
                           title={format.fields.date_reception_dossier.label}
                           sortable={true}/>
-              <ActionColumn keyColumn="id_permis"
+              <ActionColumn keyColumn="idPermis"
                             srcImg={Picto.black.consulter}
-                            url={"/record/:id_permis"}/>
+                            url={"/record/:idPermis"}/>
             </Columns>
           </Content>
           <Footer>

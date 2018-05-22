@@ -40,6 +40,7 @@ import {Tabs, TabsProps} from "hornet-js-react-components/src/widget/tab/tabs";
 import {Tab, TabProps} from "hornet-js-react-components/src/widget/tab/tab";
 import {TabContent} from "hornet-js-react-components/src/widget/tab/tab-content";
 import {Spinner} from "hornet-js-react-components/src/widget/spinner/spinner";
+import {Icon} from "hornet-js-react-components/src/widget/icon/icon";
 
 const logger: Logger = Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
 
@@ -50,7 +51,7 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
   private releve;
   private noteverbale;
 
-  private tabs;
+  private tabs = new Tabs<TabsProps>();
 
   constructor(props?: HornetComponentProps, context?: any) {
     super(props, context);
@@ -61,10 +62,8 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
   prepareClient(): void {
     this.dossier.fetch(true, this.attributes);
     this.dossier.on("fetch", (Result)=>{
-      this.tabs.removeElementsById(["test"]);
       this.tabs.addElements(0, this.renderDossierTab(Result[0]));
-      console.log(Result);
-      this.tabs.refresh();
+      this.tabs.removeElementsById("temp");
     });
   }
 
@@ -81,7 +80,7 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
           this.tabs = tabs;
         }} id="tabs" selectedTabIndex={0}
         >
-          <Tab index={5} id="test"> <Spinner loadingText={"test"}/> </Tab>
+          <Tab index={-1} id="temp"> </Tab>
         </Tabs>
       </div>
     );
@@ -99,10 +98,10 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
                 <Table id="entrée permis">
                   <Content dataSource={this.dossier}>
                     <Columns>
-                      <Column keyColumn="num_permis"
+                      <Column keyColumn="numPermis"
                               title={format.fields.num_permis.label}
                               sortable={false}/>
-                      <DateColumn keyColumn="date_de_delivrance"
+                      <DateColumn keyColumn="dateDeDelivrance"
                                   title={format.fields.date_de_delivrance.label}
                                   sortable={false}/>
                     </Columns>
@@ -152,7 +151,7 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
                     <Column keyColumn="prenom"
                             title={format.fields.prenom.label}
                             sortable={false}/>
-                    <DateColumn keyColumn="date_de_naissance"
+                    <DateColumn keyColumn="dateDeNaissance"
                                 title={format.fields.date_de_naissance.label}
                                 sortable={false}/>
                     <Column keyColumn="ville_de_naissance"
@@ -166,15 +165,15 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
               </Table>
             </Accordion>
             <Accordion title="Annexes" isOpen={false}>
-              {/*<Form id="form" readOnly={true} defaultValues={dossier}>*/}
-                {/*<InputField name={"num_permis"}/>*/}
-                {/*<UploadFileField name="copie_permis"*/}
-                                 {/*label={format.fields.copie_note_verbale_maeci.label}*/}
-                                 {/*renderPreviewFile={this.renderCopieNoteVerbaleMAECI}*/}
-                                 {/*buttonLabel={format.fields.copie_note_verbale_maeci.buttonLabel}*/}
-                                 {/*fileSelectedLabel={format.fields.copie_note_verbale_maeci.fileSelectedLabel}*/}
-                {/*/>*/}
-              {/*</Form>*/}
+              <Form id="form" readOnly={true} defaultValues={dossier}>
+                <UploadFileField name="copie_permis"
+                                 readOnly={true}
+                                 label={format.fields.copie_permis.label}
+                                 renderPreviewFile={this.renderCopieNoteVerbaleMAECI}
+                                 buttonLabel={format.fields.copie_permis.buttonLabel}
+                                 fileSelectedLabel={format.fields.copie_permis.fileSelectedLabel}
+                />
+              </Form>
             </Accordion>
           </Accordions>
         </TabContent>
@@ -182,44 +181,22 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
     );
   }
 
-  test(): string {
-    console.log(this.dossier.findAll()[0]);
-    return "test";
-  }
-
   renderCopieNoteVerbaleMAECI(file: UploadedFile): React.ReactElement<any> {
-    console.log("test");
+    let format = this.i18n("form");
     let fileTag: React.ReactElement<any> = null;
 
-    console.log(file);
+    let urlfile: string = Utils.buildContextPath("/services/recordserver/copiePermis/"+this.attributes.id);
 
-    if(file && file.id > -1) {
-      let urlfile = Utils.buildContextPath("/test");
+    let fileTarget = "newTabForPhoto" + this.attributes.id;
 
-      let filetarget = "tab";
+    fileTag =
+      <div className="grid-form-field ">
+        <div className="">
+          <a href={urlfile} data-pass-thru="true"
+             target={fileTarget}>{format.fields.copie_permis.label}</a>
+        </div>
+      </div>;
 
-      fileTag=
-        <div className="grid-form-field">
-          <div className="">
-            <a href={urlfile} data-pass-thru="true"
-               target={filetarget}> </a>
-          </div>
-        </div>;
-
-    } else if(file && file.name) {
-      fileTag = <Row>
-                  <div className="blocLabel">
-                    <label htmlFor="photo" id="photoLabel">
-                      <span className="inputLabel">
-                        {this.i18n("form").fields.copie_note_verbale_maeci.label}
-                      </span>
-                    </label>
-                  </div>
-                  <div className="grid-form-field">
-                    <div className="">{file.name}</div>
-                  </div>
-                </Row>;
-    }
     return fileTag;
   }
 }

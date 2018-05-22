@@ -22,6 +22,8 @@ import {
   NotificationType
 } from "hornet-js-core/src/notification/notification-manager";
 import {DataSourceConfigPage} from "hornet-js-core/src/component/datasource/config/service/datasource-config-page";
+import {Icon} from "hornet-js-react-components/src/widget/icon/icon";
+import {Picto} from "hornet-js-react-components/src/img/picto";
 
 const logger: Logger = Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
 
@@ -53,8 +55,6 @@ export class FormulairePage extends HornetPage<ServerFormService, HornetComponen
 
         this.SequelizeErrors.text = result.hasReason;
         NotificationManager.notify("SequelizeError","errors", this.errors, null, null, null, null);
-      } else {
-        console.log(result);
       }
     }).catch(reason=>{
       console.error(reason);
@@ -135,8 +135,8 @@ export class FormulairePage extends HornetPage<ServerFormService, HornetComponen
                              required={true}
             />
           </Row>
+          <Icon src={Picto.white.undo} alt="retour" title="Retourner à la page de sélection" action={this.retourPage}/>
           <ButtonsArea>
-            <Button type="button" onClick={this.retourPage} label="annuler"/>
             <Button type="submit"
                 value="Valider" className="hornet-button" label="valider"
                 title="valider"/>

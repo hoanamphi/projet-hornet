@@ -3,6 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
 var hornet_js_utils_1 = require("hornet-js-utils");
 var abstract_routes_1 = require("hornet-js-core/src/routes/abstract-routes");
+var result_file_1 = require("hornet-js-core/src/result/result-file");
+var media_type_1 = require("hornet-js-core/src/protocol/media-type");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.actions.admin.permis_actions");
 var Inser = /** @class */ (function (_super) {
     tslib_1.__extends(Inser, _super);
@@ -109,5 +111,23 @@ var GetNoteVerbale = /** @class */ (function (_super) {
     return GetNoteVerbale;
 }(abstract_routes_1.RouteActionService));
 exports.GetNoteVerbale = GetNoteVerbale;
+var GetCopiePermis = /** @class */ (function (_super) {
+    tslib_1.__extends(GetCopiePermis, _super);
+    function GetCopiePermis() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    GetCopiePermis.prototype.execute = function () {
+        logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
+        return this.getService().getCopiePermis(this.attributes.idPermis).then(function (copiePermis) {
+            return new result_file_1.ResultFile({ "data": copiePermis.data,
+                "filename": copiePermis.nom,
+                "encoding": copiePermis.encoding,
+                "size": copiePermis.size
+            }, media_type_1.MediaTypes.fromMime(copiePermis.mimetype));
+        });
+    };
+    return GetCopiePermis;
+}(abstract_routes_1.RouteActionService));
+exports.GetCopiePermis = GetCopiePermis;
 
 //# sourceMappingURL=fvm-action.js.map

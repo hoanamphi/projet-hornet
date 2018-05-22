@@ -142,7 +142,7 @@
 /******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 107);
+/******/ 	return __webpack_require__(__webpack_require__.s = 108);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -231,14 +231,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @license CECILL-2.1
  */
 // Inclusion du polyfill pour faire fonctionner firefox et IE
-__webpack_require__(108);
+__webpack_require__(109);
 /* Inclusion du shim object.assign : Firefox < 34 */
 if (!Object["assign"]) {
-    __webpack_require__(109).shim();
+    __webpack_require__(110).shim();
 }
 /* Inclusion du polyfill es6-promise */
 if (typeof Promise === "undefined") {
-    __webpack_require__(116).polyfill();
+    __webpack_require__(117).polyfill();
 }
 // propagation dynamique de la variable NODE_ENV vers le client
 if (typeof window !== "undefined" && window["Mode"]) {
@@ -249,9 +249,9 @@ if (typeof window !== "undefined" && window["Mode"]) {
 Date.prototype.toJSON = function () { return this.getTime(); };
 var common_register_1 = __webpack_require__(15);
 var date_utils_1 = __webpack_require__(102);
-var config_lib_1 = __webpack_require__(122);
-var app_shared_props_1 = __webpack_require__(123);
-var continuation_local_storage_1 = __webpack_require__(124);
+var config_lib_1 = __webpack_require__(123);
+var app_shared_props_1 = __webpack_require__(124);
+var continuation_local_storage_1 = __webpack_require__(125);
 var _ = __webpack_require__(6);
 var Utils = /** @class */ (function () {
     function Utils() {
@@ -425,7 +425,7 @@ if (Utils.isServer) {
     Utils.config = Utils.registerGlobal("config", config);
 }
 if (!Utils.isServer) {
-    Utils.log4js = Utils.registerGlobal("log4js", __webpack_require__(125));
+    Utils.log4js = Utils.registerGlobal("log4js", __webpack_require__(126));
 }
 
 
@@ -688,9 +688,9 @@ var __importDefault;
 /* WEBPACK VAR INJECTION */(function(process) {
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(167);
-} else {
   module.exports = __webpack_require__(168);
+} else {
+  module.exports = __webpack_require__(169);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
@@ -785,9 +785,9 @@ var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var _ = __webpack_require__(6);
 var hornet_event_1 = __webpack_require__(7);
-var hornet_component_errors_1 = __webpack_require__(169);
-var i18n_utils_1 = __webpack_require__(170);
-var pathToRegexp = __webpack_require__(179);
+var hornet_component_errors_1 = __webpack_require__(170);
+var i18n_utils_1 = __webpack_require__(171);
+var pathToRegexp = __webpack_require__(180);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.component.hornet-component");
 var Alignment;
 (function (Alignment) {
@@ -19075,7 +19075,7 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var hornet_js_utils_1 = __webpack_require__(0);
-var nodeUtil = __webpack_require__(58);
+var nodeUtil = __webpack_require__(60);
 var _ = __webpack_require__(6);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.event.hornet-event");
 /* Inclusion du polyfill pour support du constructeur CustomEvent pour IE >= 9 */
@@ -19737,7 +19737,7 @@ var tslib_1 = __webpack_require__(1);
  */
 var base_error_1 = __webpack_require__(16);
 var moment = __webpack_require__(44);
-var os = __webpack_require__(62);
+var os = __webpack_require__(64);
 var TechnicalError = /** @class */ (function (_super) {
     tslib_1.__extends(TechnicalError, _super);
     function TechnicalError(code, args, cause) {
@@ -19888,7 +19888,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
  * @license CECILL-2.1
  */
-var logger_1 = __webpack_require__(57);
+var logger_1 = __webpack_require__(59);
 var Register = /** @class */ (function () {
     function Register() {
     }
@@ -20012,7 +20012,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @license CECILL-2.1
  */
 var _ = __webpack_require__(6);
-var util = __webpack_require__(58);
+var util = __webpack_require__(60);
 var BaseError = /** @class */ (function () {
     function BaseError(code, message, args, cause) {
         if (code === void 0) { code = ""; }
@@ -20064,7 +20064,7 @@ function noConflict() {
     catch (e) {}
     return bluebird;
 }
-var bluebird = __webpack_require__(128)();
+var bluebird = __webpack_require__(129)();
 bluebird.noConflict = noConflict;
 module.exports = bluebird;
 
@@ -20242,10 +20242,10 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var hornet_js_utils_1 = __webpack_require__(0);
-var async_element_1 = __webpack_require__(67);
+var async_element_1 = __webpack_require__(69);
 var hornet_event_1 = __webpack_require__(7);
-var security_error_1 = __webpack_require__(164);
-var authentication_utils_1 = __webpack_require__(69);
+var security_error_1 = __webpack_require__(165);
+var authentication_utils_1 = __webpack_require__(71);
 var error_manager_1 = __webpack_require__(32);
 // ------------------------------------------------------------------------------------------------------------------- //
 //                                      ContextInitializerElement
@@ -20457,7 +20457,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 var hornet_js_utils_1 = __webpack_require__(0);
 var MenuConstants = __webpack_require__(47);
-var authentication_utils_1 = __webpack_require__(69);
+var authentication_utils_1 = __webpack_require__(71);
 var _ = __webpack_require__(6);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-component.navigation.utils.navigation-utils");
 /**
@@ -20871,9 +20871,9 @@ if (process.env.NODE_ENV === 'production') {
   // DCE check should happen before ReactDOM bundle executes so that
   // DevTools can report bad minification during injection.
   checkDCE();
-  module.exports = __webpack_require__(216);
+  module.exports = __webpack_require__(217);
 } else {
-  module.exports = __webpack_require__(219);
+  module.exports = __webpack_require__(220);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
@@ -20893,8 +20893,8 @@ if (process.env.NODE_ENV === 'production') {
 
 
 
-var base64 = __webpack_require__(201)
-var ieee754 = __webpack_require__(202)
+var base64 = __webpack_require__(202)
+var ieee754 = __webpack_require__(203)
 var isArray = __webpack_require__(77)
 
 exports.Buffer = Buffer
@@ -24773,7 +24773,7 @@ function objectToString(o) {
             try {
                 oldLocale = globalLocale._abbr;
                 var aliasedRequire = require;
-                __webpack_require__(120)("./" + name);
+                __webpack_require__(121)("./" + name);
                 getSetGlobalLocale(oldLocale);
             } catch (e) {}
         }
@@ -28693,7 +28693,7 @@ var tslib_1 = __webpack_require__(1);
  */
 var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
-var dropdown_item_1 = __webpack_require__(231);
+var dropdown_item_1 = __webpack_require__(232);
 var classNames = __webpack_require__(9);
 var key_codes_1 = __webpack_require__(10);
 var Position;
@@ -29210,8 +29210,8 @@ exports.ServiceRequest = ServiceRequest;
 
 
 
-var punycode = __webpack_require__(181);
-var util = __webpack_require__(182);
+var punycode = __webpack_require__(182);
+var util = __webpack_require__(183);
 
 exports.parse = urlParse;
 exports.resolve = urlResolve;
@@ -29286,7 +29286,7 @@ var protocolPattern = /^([a-z0-9.+-]+:)/i,
       'gopher:': true,
       'file:': true
     },
-    querystring = __webpack_require__(183);
+    querystring = __webpack_require__(184);
 
 function urlParse(url, parseQueryString, slashesDenoteHost) {
   if (url && util.isObject(url) && url instanceof Url) return url;
@@ -29932,7 +29932,7 @@ Url.prototype.parseHost = function() {
 var has = Object.prototype.hasOwnProperty;
 var toStr = Object.prototype.toString;
 var slice = Array.prototype.slice;
-var isArgs = __webpack_require__(110);
+var isArgs = __webpack_require__(111);
 var isEnumerable = Object.prototype.propertyIsEnumerable;
 var hasDontEnumBug = !isEnumerable.call({ toString: null }, 'toString');
 var hasProtoEnumBug = isEnumerable.call(function () {}, 'prototype');
@@ -30100,8 +30100,8 @@ module.exports = function(module) {
 /* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var moment = module.exports = __webpack_require__(119);
-moment.tz.load(__webpack_require__(121));
+var moment = module.exports = __webpack_require__(120);
+moment.tz.load(__webpack_require__(122));
 
 
 /***/ }),
@@ -30430,7 +30430,7 @@ var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var ReactDom = __webpack_require__(22);
 var hornet_component_1 = __webpack_require__(3);
-var notification_message_item_1 = __webpack_require__(224);
+var notification_message_item_1 = __webpack_require__(225);
 var notification_events_1 = __webpack_require__(45);
 var accordion_1 = __webpack_require__(53);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.notification.notification");
@@ -30856,7 +30856,7 @@ if (index_1.Utils.isServer) {
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // wrap bluebird afin de sécuriser l'utilisation de "continuation-local-storage" (perte ou mix de contexte) //
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    var shimmer = __webpack_require__(159);
+    var shimmer = __webpack_require__(160);
     var proto = Promise && Promise.prototype;
     var ns_1 = index_1.Utils.getContinuationStorage();
     shimmer.wrap(proto, "_addCallbacks", function (_addCallbacks) {
@@ -30973,7 +30973,7 @@ var layout_switcher_1 = __webpack_require__(24);
 var router_client_async_elements_1 = __webpack_require__(19);
 var navigation_utils_1 = __webpack_require__(20);
 var hornet_event_2 = __webpack_require__(7);
-var expanding_layout_1 = __webpack_require__(180);
+var expanding_layout_1 = __webpack_require__(181);
 var layout_switcher_2 = __webpack_require__(24);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.component.hornet-page");
 /**
@@ -31351,8 +31351,8 @@ var key_codes_1 = __webpack_require__(10);
 var hornet_component_1 = __webpack_require__(3);
 var hornet_event_1 = __webpack_require__(7);
 var notification_events_1 = __webpack_require__(45);
-var accordion_header_1 = __webpack_require__(225);
-var accordion_info_1 = __webpack_require__(226);
+var accordion_header_1 = __webpack_require__(226);
+var accordion_info_1 = __webpack_require__(227);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.accordion.accordion");
 exports.TAB_ID_NAME = "tab";
 exports.FOCUS_ON_ACCORDION = new hornet_event_1.HornetEvent("FOCUS_ON_ACCORDION");
@@ -31711,10 +31711,556 @@ exports.Accordion = Accordion;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+/**
+ * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * Ce logiciel est un programme informatique servant à faciliter la création
+ * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
+ * <p/>
+ * Ce logiciel est régi par la licence CeCILL soumise au droit français et
+ * respectant les principes de diffusion des logiciels libres. Vous pouvez
+ * utiliser, modifier et/ou redistribuer ce programme sous les conditions
+ * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
+ * sur le site "http://www.cecill.info".
+ * <p/>
+ * En contrepartie de l'accessibilité au code source et des droits de copie,
+ * de modification et de redistribution accordés par cette licence, il n'est
+ * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
+ * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
+ * titulaire des droits patrimoniaux et les concédants successifs.
+ * <p/>
+ * A cet égard  l'attention de l'utilisateur est attirée sur les risques
+ * associés au chargement,  à l'utilisation,  à la modification et/ou au
+ * développement et à la reproduction du logiciel par l'utilisateur étant
+ * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
+ * manipuler et qui le réserve donc à des développeurs et des professionnels
+ * avertis possédant  des  connaissances  informatiques approfondies.  Les
+ * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
+ * logiciel à leurs besoins dans des conditions permettant d'assurer la
+ * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
+ * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
+ * <p/>
+ * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
+ * pris connaissance de la licence CeCILL, et que vous en avez accepté les
+ * termes.
+ * <p/>
+ * <p/>
+ * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * This software is a computer program whose purpose is to facilitate creation of
+ * web application in accordance with french general repositories : RGI, RGS and RGAA.
+ * <p/>
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software.  You can  use,
+ * modify and/ or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ * <p/>
+ * As a counterpart to the access to the source code and  rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty  and the software's author,  the holder of the
+ * economic rights,  and the successive licensors  have only  limited
+ * liability.
+ * <p/>
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading,  using,  modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean  that it is complicated to manipulate,  and  that  also
+ * therefore means  that it is reserved for developers  and  experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and,  more generally, to use and operate it in the
+ * same conditions as regards security.
+ * <p/>
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * hornet-js-core - Ensemble des composants qui forment le coeur de hornet-js
+ *
+ * @author MEAE - Ministère de l'Europe et des Affaires étrangères
+ * @version v5.1.1
+ * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
+ * @license CECILL-2.1
+ */
+var base_error_1 = __webpack_require__(16);
+var technical_error_1 = __webpack_require__(13);
+var business_error_1 = __webpack_require__(30);
+var business_error_list_1 = __webpack_require__(31);
+var http_error_1 = __webpack_require__(70);
+var _ = __webpack_require__(6);
+var NodeApiResultBuilder = /** @class */ (function () {
+    function NodeApiResultBuilder() {
+    }
+    NodeApiResultBuilder.build = function (jsonData) {
+        return {
+            hasTechnicalError: false,
+            hasBusinessError: false,
+            status: 200,
+            url: "???",
+            data: jsonData,
+            errors: []
+        };
+    };
+    NodeApiResultBuilder.buildError = function (error) {
+        return {
+            hasTechnicalError: error instanceof technical_error_1.TechnicalError,
+            hasBusinessError: error instanceof business_error_1.BusinessError,
+            status: (error.args["httpStatus"] && parseInt(error.args["httpStatus"])) || 200,
+            url: "???",
+            data: null,
+            errors: [error]
+        };
+    };
+    return NodeApiResultBuilder;
+}());
+exports.NodeApiResultBuilder = NodeApiResultBuilder;
+var NodeApiError = /** @class */ (function () {
+    function NodeApiError(date, code, name, details, args, reportId, backend, httpStatus) {
+        this.backend = false;
+        this.date = date;
+        this.code = code;
+        this.name = name;
+        this.details = details;
+        this.args = args;
+        this.reportId = reportId;
+        this.backend = backend;
+        this.httpStatus = httpStatus;
+        this.nodeApiErrorList = [];
+    }
+    /**
+     * Renvoie le résumé des détails éventuels de l'erreur d'origine.
+     * @param apiError erreur serveur
+     * @returns {string} la première ligne de détail
+     */
+    NodeApiError.parseDetails = function (apiError) {
+        var details;
+        if (apiError.err_cause && apiError.err_cause.message) {
+            /* apiErrors[i].err_cause.message contient toute la pile d'erreur côté serveur :
+             * on récupère uniquement la première ligne car il n'est pas judicieux
+             * (notamment pour des raisons de sécurité) d'afficher toute la pile
+             * d'erreur serveur dans le log client */
+            var lineEndIndex = apiError.err_cause.message.indexOf("\n");
+            if (process.env.NODE_ENV !== "production") {
+                details = apiError.err_cause.message;
+            }
+            else {
+                if (lineEndIndex > 0) {
+                    details = apiError.err_cause.message.substring(0, lineEndIndex);
+                }
+                else {
+                    details = apiError.err_cause.message;
+                }
+            }
+        }
+        return details;
+    };
+    NodeApiError.parseError = function (apiErrors, httpStatus) {
+        if (!_.isArray(apiErrors) && apiErrors.name == "BusinessErrorList") {
+            apiErrors = apiErrors["errors"];
+        }
+        else if (_.isArray(apiErrors) && apiErrors.length == 1 && apiErrors[0].name == "BusinessErrorList") {
+            apiErrors = apiErrors[0]["errors"];
+        }
+        if (_.isArray(apiErrors) && apiErrors.length > 1) {
+            // cas d'une liste d'erreurs
+            var global_1 = new NodeApiError();
+            for (var i = 0; i < apiErrors.length; i++) {
+                var details = NodeApiError.parseDetails(apiErrors[i]);
+                global_1.nodeApiErrorList.push(new NodeApiError(apiErrors[i].date, apiErrors[i].code, apiErrors[i].name, details, apiErrors[i].args, apiErrors[i].reportId, apiErrors[i].backend, httpStatus));
+            }
+            return global_1;
+        }
+        else {
+            // cas d'une erreur simple
+            var singleError = void 0;
+            if (_.isArray(apiErrors)) {
+                singleError = apiErrors[0];
+            }
+            else {
+                singleError = apiErrors;
+            }
+            var details = NodeApiError.parseDetails(singleError);
+            return new NodeApiError(singleError.date, singleError.code, singleError.name, details, singleError.args, singleError.reportId, singleError.backend, httpStatus);
+        }
+    };
+    NodeApiError.prototype.toJsError = function () {
+        if (this.nodeApiErrorList.length == 0) {
+            var error = void 0;
+            var args = {};
+            // backend args
+            for (var i in this.args) {
+                args[i] = this.args[i];
+            }
+            // default args
+            if (!args["reportId"] && this.reportId) {
+                args["reportId"] = this.reportId;
+            }
+            if (!args["httpStatus"] && this.httpStatus) {
+                args["httpStatus"] = this.httpStatus;
+            }
+            // Error type
+            if (this.name == "BusinessError") {
+                error = new business_error_1.BusinessError(this.code, args);
+            }
+            else if (this.httpStatus && (this.httpStatus < 200 || this.httpStatus > 299)) {
+                error = new http_error_1.HttpError(this.httpStatus, this.code, args, this.details ? new base_error_1.BaseError("", this.details) : null);
+            }
+            else {
+                error = new technical_error_1.TechnicalError(this.code, args, this.details ? new base_error_1.BaseError("", this.details) : null);
+            }
+            error.backend = this.backend;
+            return error;
+        }
+        else {
+            var error = new business_error_list_1.BusinessErrorList();
+            var backend = false;
+            for (var i = 0; i < this.nodeApiErrorList.length; i++) {
+                var apiError = this.nodeApiErrorList[i];
+                var suberror = void 0;
+                var args = {};
+                // backend args
+                for (var i_1 in apiError.args) {
+                    args[i_1] = apiError.args[i_1];
+                }
+                // default args
+                if (!args["reportId"] && apiError.reportId) {
+                    args["reportId"] = apiError.reportId;
+                }
+                if (!args["httpStatus"] && apiError.httpStatus) {
+                    args["httpStatus"] = apiError.httpStatus;
+                }
+                // Error type
+                if (apiError.name == "BusinessError") {
+                    suberror = new business_error_1.BusinessError(apiError.code, args);
+                }
+                else {
+                    suberror = new technical_error_1.TechnicalError(apiError.code, args, apiError.details ? new base_error_1.BaseError("", apiError.details) : null);
+                }
+                suberror.backend = backend = apiError.backend;
+                error.addError(suberror);
+            }
+            error.backend = backend;
+            return error;
+        }
+    };
+    return NodeApiError;
+}());
+exports.NodeApiError = NodeApiError;
+var BackendApiError = /** @class */ (function () {
+    function BackendApiError(date, code, name, type, details, args, reportId, httpStatus) {
+        this.date = date;
+        this.code = code;
+        this.name = name;
+        this.type = type;
+        this.details = details;
+        this.args = args;
+        this.reportId = reportId;
+        this.httpStatus = httpStatus;
+        this.backendApiErrorList = [];
+    }
+    /**
+     * Crée l'instance de BackendApiError à partir de l'objet JSON représentant la ou les erreurs
+     * @param apiErrors erreurs[s] représentant
+     * @param httpStatus
+     * @returns {BackendApiError}
+     */
+    BackendApiError.parseError = function (apiErrors, httpStatus) {
+        if (_.isArray(apiErrors) && apiErrors.length > 1) {
+            // cas d'une liste d'erreurs
+            var global_2 = new BackendApiError();
+            for (var i = 0; i < apiErrors.length; i++) {
+                global_2.backendApiErrorList.push(new BackendApiError(apiErrors[i].date, apiErrors[i].code, apiErrors[i].name, apiErrors[i].type, apiErrors[i].details, apiErrors[i].args, apiErrors[i].reportId, httpStatus));
+            }
+            return global_2;
+        }
+        else {
+            // cas d'une erreur simple
+            var singleError = void 0;
+            if (_.isArray(apiErrors)) {
+                singleError = apiErrors[0];
+            }
+            else {
+                singleError = apiErrors;
+            }
+            return new BackendApiError(singleError.date, singleError.code, singleError.name, singleError.type, singleError.details, singleError.args, singleError.reportId, httpStatus);
+        }
+    };
+    BackendApiError.prototype.toJsError = function () {
+        if (this.backendApiErrorList.length == 0) {
+            var error = void 0;
+            var args = {};
+            // backend args
+            for (var i = 0; i < this.args.length; i++) {
+                args["$" + i] = this.args[i];
+            }
+            // default args
+            if (this.reportId) {
+                args["reportId"] = this.reportId;
+            }
+            if (this.httpStatus) {
+                args["httpStatus"] = this.httpStatus;
+            }
+            if (this.name) {
+                args["errorMessage"] = this.name;
+            }
+            else {
+                args["errorMessage"] = "";
+            }
+            // Error type
+            if (this.type == "TechnicalException") {
+                error = new technical_error_1.TechnicalError(this.code, args, this.details ? new base_error_1.BaseError("", this.details) : null);
+                error.backend = true;
+            }
+            else if (this.type == "BusinessException") {
+                error = new business_error_1.BusinessError(this.code, args);
+                error.backend = true;
+            }
+            return error;
+        }
+        else {
+            var error = new business_error_list_1.BusinessErrorList();
+            for (var i = 0; i < this.backendApiErrorList.length; i++) {
+                var apiError = this.backendApiErrorList[i];
+                var suberror = void 0;
+                var args = {};
+                // backend args
+                for (var i_2 = 0; i_2 < apiError.args.length; i_2++) {
+                    args["$" + i_2] = apiError.args[i_2];
+                }
+                // default args
+                if (apiError.reportId) {
+                    args["reportId"] = apiError.reportId;
+                }
+                if (apiError.httpStatus) {
+                    args["httpStatus"] = apiError.httpStatus;
+                }
+                if (apiError.name) {
+                    args["errorMessage"] = apiError.name;
+                }
+                else {
+                    args["errorMessage"] = "";
+                }
+                // Error type
+                if (apiError.type == "TechnicalException") {
+                    suberror = new technical_error_1.TechnicalError(apiError.code, args, apiError.details ? new base_error_1.BaseError("", apiError.details) : null);
+                }
+                else if (apiError.type == "BusinessException") {
+                    suberror = new business_error_1.BusinessError(apiError.code, args);
+                }
+                suberror.backend = true;
+                error.addError(suberror);
+            }
+            error.backend = true;
+            return error;
+        }
+    };
+    return BackendApiError;
+}());
+exports.BackendApiError = BackendApiError;
+
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * Ce logiciel est un programme informatique servant à faciliter la création
+ * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
+ * <p/>
+ * Ce logiciel est régi par la licence CeCILL soumise au droit français et
+ * respectant les principes de diffusion des logiciels libres. Vous pouvez
+ * utiliser, modifier et/ou redistribuer ce programme sous les conditions
+ * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
+ * sur le site "http://www.cecill.info".
+ * <p/>
+ * En contrepartie de l'accessibilité au code source et des droits de copie,
+ * de modification et de redistribution accordés par cette licence, il n'est
+ * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
+ * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
+ * titulaire des droits patrimoniaux et les concédants successifs.
+ * <p/>
+ * A cet égard  l'attention de l'utilisateur est attirée sur les risques
+ * associés au chargement,  à l'utilisation,  à la modification et/ou au
+ * développement et à la reproduction du logiciel par l'utilisateur étant
+ * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
+ * manipuler et qui le réserve donc à des développeurs et des professionnels
+ * avertis possédant  des  connaissances  informatiques approfondies.  Les
+ * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
+ * logiciel à leurs besoins dans des conditions permettant d'assurer la
+ * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
+ * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
+ * <p/>
+ * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
+ * pris connaissance de la licence CeCILL, et que vous en avez accepté les
+ * termes.
+ * <p/>
+ * <p/>
+ * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * This software is a computer program whose purpose is to facilitate creation of
+ * web application in accordance with french general repositories : RGI, RGS and RGAA.
+ * <p/>
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software.  You can  use,
+ * modify and/ or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ * <p/>
+ * As a counterpart to the access to the source code and  rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty  and the software's author,  the holder of the
+ * economic rights,  and the successive licensors  have only  limited
+ * liability.
+ * <p/>
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading,  using,  modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean  that it is complicated to manipulate,  and  that  also
+ * therefore means  that it is reserved for developers  and  experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and,  more generally, to use and operate it in the
+ * same conditions as regards security.
+ * <p/>
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * hornet-js-core - Ensemble des composants qui forment le coeur de hornet-js
+ *
+ * @author MEAE - Ministère de l'Europe et des Affaires étrangères
+ * @version v5.1.1
+ * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
+ * @license CECILL-2.1
+ */
+var _ = __webpack_require__(6);
+var MediaTypes = /** @class */ (function () {
+    function MediaTypes() {
+    }
+    MediaTypes._fromShortValue = function (parameter) {
+        var mediaType = null;
+        _.forOwn(MediaTypes, function (value) {
+            if (value && value.SHORT && value.SHORT === parameter) {
+                mediaType = value;
+                return false;
+            }
+        });
+        return mediaType;
+    };
+    MediaTypes._fromMime = function (mimeType) {
+        var mediaType = null;
+        _.forOwn(MediaTypes, function (value) {
+            if (value && value.MIME && value.MIME === mimeType) {
+                mediaType = value;
+                return false;
+            }
+        });
+        return mediaType;
+    };
+    /**
+     * Rerouve la constante MediaType suivant la valeur abrégée
+     * @param {string} shortValue
+     * @return MediaTypes or MediaTypes.JSON si non pris en charge
+     */
+    MediaTypes.fromShortValue = function (shortValue) {
+        return MediaTypes._fromShortValue(shortValue) || MediaTypes.DEFAULT;
+    };
+    /**
+     * Rerouve la constante MediaType suivant la valeur de l'entête Accept
+     * @param {string} shortValue
+     * @return MediaTypes or MediaTypes.JSON si non pris en charge
+     */
+    MediaTypes.fromMime = function (accept) {
+        return MediaTypes._fromMime(accept) || MediaTypes.DEFAULT;
+    };
+    MediaTypes.MEDIATYPE_PARAMETER = "mediaType";
+    MediaTypes.JSON = {
+        SHORT: "json",
+        MIME: "application/json"
+    };
+    MediaTypes.XLS = {
+        SHORT: "xls",
+        MIME: "application/vnd.ms-excel"
+    };
+    MediaTypes.CSV = {
+        SHORT: "csv",
+        MIME: "text/csv"
+    };
+    MediaTypes.PDF = {
+        SHORT: "pdf",
+        MIME: "application/pdf",
+    };
+    MediaTypes.DOC = {
+        SHORT: "doc",
+        MIME: "application/msword"
+    };
+    MediaTypes.TXT = {
+        SHORT: "txt",
+        MIME: "text/plain"
+    };
+    MediaTypes.PNG = {
+        SHORT: "png",
+        MIME: "image/png"
+    };
+    MediaTypes.BMP = {
+        SHORT: "bmp",
+        MIME: "image/x-ms-bmp"
+    };
+    MediaTypes.JPG = {
+        SHORT: "jpg",
+        MIME: "image/jpeg"
+    };
+    MediaTypes.OCTETSTREAM = {
+        SHORT: "octet-stream",
+        MIME: "application/octet-stream"
+    };
+    MediaTypes.ODS = {
+        SHORT: "ods",
+        MIME: "application/vnd.oasis.opendocument.spreadsheet"
+    };
+    MediaTypes.ODT = {
+        SHORT: "odt",
+        MIME: "application/vnd.oasis.opendocument.text"
+    };
+    // Attention à ne pas déclarer le DEFAUT avant sa valeur
+    MediaTypes.DEFAULT = MediaTypes.JSON;
+    return MediaTypes;
+}());
+exports.MediaTypes = MediaTypes;
+
+
+
+/***/ }),
+/* 56 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 
 
 var keys = __webpack_require__(42);
-var foreach = __webpack_require__(111);
+var foreach = __webpack_require__(112);
 var hasSymbols = typeof Symbol === 'function' && typeof Symbol() === 'symbol';
 
 var toStr = Object.prototype.toString;
@@ -31770,7 +32316,7 @@ module.exports = defineProperties;
 
 
 /***/ }),
-/* 55 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31778,11 +32324,11 @@ module.exports = defineProperties;
 
 // modified from https://github.com/es-shims/es6-shim
 var keys = __webpack_require__(42);
-var bind = __webpack_require__(112);
+var bind = __webpack_require__(113);
 var canBeObject = function (obj) {
 	return typeof obj !== 'undefined' && obj !== null;
 };
-var hasSymbols = __webpack_require__(114)();
+var hasSymbols = __webpack_require__(115)();
 var toObject = Object;
 var push = bind.call(Function.call, Array.prototype.push);
 var propIsEnumerable = bind.call(Function.call, Object.prototype.propertyIsEnumerable);
@@ -31818,13 +32364,13 @@ module.exports = function assign(target, source1) {
 
 
 /***/ }),
-/* 56 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var implementation = __webpack_require__(55);
+var implementation = __webpack_require__(57);
 
 var lacksProperEnumerationOrder = function () {
 	if (!Object.assign) {
@@ -31876,7 +32422,7 @@ module.exports = function getPolyfill() {
 
 
 /***/ }),
-/* 57 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31961,7 +32507,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @license CECILL-2.1
  */
 var _ = __webpack_require__(6);
-var path = __webpack_require__(117);
+var path = __webpack_require__(118);
 var technical_error_1 = __webpack_require__(13);
 var business_error_1 = __webpack_require__(30);
 var business_error_list_1 = __webpack_require__(31);
@@ -32269,7 +32815,7 @@ exports.Logger = Logger;
 
 
 /***/ }),
-/* 58 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {// Copyright Joyent, Inc. and other Node contributors.
@@ -32797,7 +33343,7 @@ function isPrimitive(arg) {
 }
 exports.isPrimitive = isPrimitive;
 
-exports.isBuffer = __webpack_require__(118);
+exports.isBuffer = __webpack_require__(119);
 
 function objectToString(o) {
   return Object.prototype.toString.call(o);
@@ -32862,7 +33408,7 @@ function hasOwnProperty(obj, prop) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), __webpack_require__(4)))
 
 /***/ }),
-/* 59 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -32949,7 +33495,7 @@ function hasOwnProperty(obj, prop) {
 
 
 /***/ }),
-/* 60 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -33027,7 +33573,7 @@ function hasOwnProperty(obj, prop) {
 
 
 /***/ }),
-/* 61 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -33109,7 +33655,7 @@ function hasOwnProperty(obj, prop) {
 
 
 /***/ }),
-/* 62 */
+/* 64 */
 /***/ (function(module, exports) {
 
 exports.endianness = function () { return 'LE' };
@@ -33164,7 +33710,7 @@ exports.homedir = function () {
 
 
 /***/ }),
-/* 63 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33252,7 +33798,7 @@ var tslib_1 = __webpack_require__(1);
 var events_1 = __webpack_require__(27);
 var hornet_js_utils_1 = __webpack_require__(0);
 var promise_api_1 = __webpack_require__(50);
-var domain = __webpack_require__(160);
+var domain = __webpack_require__(161);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.executor.AsyncExecutor");
 var AsyncExecutor = /** @class */ (function (_super) {
     tslib_1.__extends(AsyncExecutor, _super);
@@ -33351,7 +33897,7 @@ exports.AsyncExecutor = AsyncExecutor;
 
 
 /***/ }),
-/* 64 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = self || window;
@@ -33405,7 +33951,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(131);
+__webpack_require__(132);
 // On some exotic environments, it's not clear which object `setimmeidate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -33419,7 +33965,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
-/* 65 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33468,7 +34014,7 @@ return catchFilter;
 
 
 /***/ }),
-/* 66 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33526,7 +34072,7 @@ module.exports = nodebackForPromise;
 
 
 /***/ }),
-/* 67 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33632,7 +34178,7 @@ exports.AsyncElement = AsyncElement;
 
 
 /***/ }),
-/* 68 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33734,7 +34280,7 @@ exports.HttpError = HttpError;
 
 
 /***/ }),
-/* 69 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33858,552 +34404,6 @@ exports.AuthUtils = AuthUtils;
 
 
 /***/ }),
-/* 70 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-/**
- * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * Ce logiciel est un programme informatique servant à faciliter la création
- * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
- * <p/>
- * Ce logiciel est régi par la licence CeCILL soumise au droit français et
- * respectant les principes de diffusion des logiciels libres. Vous pouvez
- * utiliser, modifier et/ou redistribuer ce programme sous les conditions
- * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
- * sur le site "http://www.cecill.info".
- * <p/>
- * En contrepartie de l'accessibilité au code source et des droits de copie,
- * de modification et de redistribution accordés par cette licence, il n'est
- * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
- * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
- * titulaire des droits patrimoniaux et les concédants successifs.
- * <p/>
- * A cet égard  l'attention de l'utilisateur est attirée sur les risques
- * associés au chargement,  à l'utilisation,  à la modification et/ou au
- * développement et à la reproduction du logiciel par l'utilisateur étant
- * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
- * manipuler et qui le réserve donc à des développeurs et des professionnels
- * avertis possédant  des  connaissances  informatiques approfondies.  Les
- * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
- * logiciel à leurs besoins dans des conditions permettant d'assurer la
- * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
- * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
- * <p/>
- * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
- * pris connaissance de la licence CeCILL, et que vous en avez accepté les
- * termes.
- * <p/>
- * <p/>
- * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * This software is a computer program whose purpose is to facilitate creation of
- * web application in accordance with french general repositories : RGI, RGS and RGAA.
- * <p/>
- * This software is governed by the CeCILL license under French law and
- * abiding by the rules of distribution of free software.  You can  use,
- * modify and/ or redistribute the software under the terms of the CeCILL
- * license as circulated by CEA, CNRS and INRIA at the following URL
- * "http://www.cecill.info".
- * <p/>
- * As a counterpart to the access to the source code and  rights to copy,
- * modify and redistribute granted by the license, users are provided only
- * with a limited warranty  and the software's author,  the holder of the
- * economic rights,  and the successive licensors  have only  limited
- * liability.
- * <p/>
- * In this respect, the user's attention is drawn to the risks associated
- * with loading,  using,  modifying and/or developing or reproducing the
- * software by the user in light of its specific status of free software,
- * that may mean  that it is complicated to manipulate,  and  that  also
- * therefore means  that it is reserved for developers  and  experienced
- * professionals having in-depth computer knowledge. Users are therefore
- * encouraged to load and test the software's suitability as regards their
- * requirements in conditions enabling the security of their systems and/or
- * data to be ensured and,  more generally, to use and operate it in the
- * same conditions as regards security.
- * <p/>
- * The fact that you are presently reading this means that you have had
- * knowledge of the CeCILL license and that you accept its terms.
- *
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * hornet-js-core - Ensemble des composants qui forment le coeur de hornet-js
- *
- * @author MEAE - Ministère de l'Europe et des Affaires étrangères
- * @version v5.1.1
- * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
- * @license CECILL-2.1
- */
-var base_error_1 = __webpack_require__(16);
-var technical_error_1 = __webpack_require__(13);
-var business_error_1 = __webpack_require__(30);
-var business_error_list_1 = __webpack_require__(31);
-var http_error_1 = __webpack_require__(68);
-var _ = __webpack_require__(6);
-var NodeApiResultBuilder = /** @class */ (function () {
-    function NodeApiResultBuilder() {
-    }
-    NodeApiResultBuilder.build = function (jsonData) {
-        return {
-            hasTechnicalError: false,
-            hasBusinessError: false,
-            status: 200,
-            url: "???",
-            data: jsonData,
-            errors: []
-        };
-    };
-    NodeApiResultBuilder.buildError = function (error) {
-        return {
-            hasTechnicalError: error instanceof technical_error_1.TechnicalError,
-            hasBusinessError: error instanceof business_error_1.BusinessError,
-            status: (error.args["httpStatus"] && parseInt(error.args["httpStatus"])) || 200,
-            url: "???",
-            data: null,
-            errors: [error]
-        };
-    };
-    return NodeApiResultBuilder;
-}());
-exports.NodeApiResultBuilder = NodeApiResultBuilder;
-var NodeApiError = /** @class */ (function () {
-    function NodeApiError(date, code, name, details, args, reportId, backend, httpStatus) {
-        this.backend = false;
-        this.date = date;
-        this.code = code;
-        this.name = name;
-        this.details = details;
-        this.args = args;
-        this.reportId = reportId;
-        this.backend = backend;
-        this.httpStatus = httpStatus;
-        this.nodeApiErrorList = [];
-    }
-    /**
-     * Renvoie le résumé des détails éventuels de l'erreur d'origine.
-     * @param apiError erreur serveur
-     * @returns {string} la première ligne de détail
-     */
-    NodeApiError.parseDetails = function (apiError) {
-        var details;
-        if (apiError.err_cause && apiError.err_cause.message) {
-            /* apiErrors[i].err_cause.message contient toute la pile d'erreur côté serveur :
-             * on récupère uniquement la première ligne car il n'est pas judicieux
-             * (notamment pour des raisons de sécurité) d'afficher toute la pile
-             * d'erreur serveur dans le log client */
-            var lineEndIndex = apiError.err_cause.message.indexOf("\n");
-            if (process.env.NODE_ENV !== "production") {
-                details = apiError.err_cause.message;
-            }
-            else {
-                if (lineEndIndex > 0) {
-                    details = apiError.err_cause.message.substring(0, lineEndIndex);
-                }
-                else {
-                    details = apiError.err_cause.message;
-                }
-            }
-        }
-        return details;
-    };
-    NodeApiError.parseError = function (apiErrors, httpStatus) {
-        if (!_.isArray(apiErrors) && apiErrors.name == "BusinessErrorList") {
-            apiErrors = apiErrors["errors"];
-        }
-        else if (_.isArray(apiErrors) && apiErrors.length == 1 && apiErrors[0].name == "BusinessErrorList") {
-            apiErrors = apiErrors[0]["errors"];
-        }
-        if (_.isArray(apiErrors) && apiErrors.length > 1) {
-            // cas d'une liste d'erreurs
-            var global_1 = new NodeApiError();
-            for (var i = 0; i < apiErrors.length; i++) {
-                var details = NodeApiError.parseDetails(apiErrors[i]);
-                global_1.nodeApiErrorList.push(new NodeApiError(apiErrors[i].date, apiErrors[i].code, apiErrors[i].name, details, apiErrors[i].args, apiErrors[i].reportId, apiErrors[i].backend, httpStatus));
-            }
-            return global_1;
-        }
-        else {
-            // cas d'une erreur simple
-            var singleError = void 0;
-            if (_.isArray(apiErrors)) {
-                singleError = apiErrors[0];
-            }
-            else {
-                singleError = apiErrors;
-            }
-            var details = NodeApiError.parseDetails(singleError);
-            return new NodeApiError(singleError.date, singleError.code, singleError.name, details, singleError.args, singleError.reportId, singleError.backend, httpStatus);
-        }
-    };
-    NodeApiError.prototype.toJsError = function () {
-        if (this.nodeApiErrorList.length == 0) {
-            var error = void 0;
-            var args = {};
-            // backend args
-            for (var i in this.args) {
-                args[i] = this.args[i];
-            }
-            // default args
-            if (!args["reportId"] && this.reportId) {
-                args["reportId"] = this.reportId;
-            }
-            if (!args["httpStatus"] && this.httpStatus) {
-                args["httpStatus"] = this.httpStatus;
-            }
-            // Error type
-            if (this.name == "BusinessError") {
-                error = new business_error_1.BusinessError(this.code, args);
-            }
-            else if (this.httpStatus && (this.httpStatus < 200 || this.httpStatus > 299)) {
-                error = new http_error_1.HttpError(this.httpStatus, this.code, args, this.details ? new base_error_1.BaseError("", this.details) : null);
-            }
-            else {
-                error = new technical_error_1.TechnicalError(this.code, args, this.details ? new base_error_1.BaseError("", this.details) : null);
-            }
-            error.backend = this.backend;
-            return error;
-        }
-        else {
-            var error = new business_error_list_1.BusinessErrorList();
-            var backend = false;
-            for (var i = 0; i < this.nodeApiErrorList.length; i++) {
-                var apiError = this.nodeApiErrorList[i];
-                var suberror = void 0;
-                var args = {};
-                // backend args
-                for (var i_1 in apiError.args) {
-                    args[i_1] = apiError.args[i_1];
-                }
-                // default args
-                if (!args["reportId"] && apiError.reportId) {
-                    args["reportId"] = apiError.reportId;
-                }
-                if (!args["httpStatus"] && apiError.httpStatus) {
-                    args["httpStatus"] = apiError.httpStatus;
-                }
-                // Error type
-                if (apiError.name == "BusinessError") {
-                    suberror = new business_error_1.BusinessError(apiError.code, args);
-                }
-                else {
-                    suberror = new technical_error_1.TechnicalError(apiError.code, args, apiError.details ? new base_error_1.BaseError("", apiError.details) : null);
-                }
-                suberror.backend = backend = apiError.backend;
-                error.addError(suberror);
-            }
-            error.backend = backend;
-            return error;
-        }
-    };
-    return NodeApiError;
-}());
-exports.NodeApiError = NodeApiError;
-var BackendApiError = /** @class */ (function () {
-    function BackendApiError(date, code, name, type, details, args, reportId, httpStatus) {
-        this.date = date;
-        this.code = code;
-        this.name = name;
-        this.type = type;
-        this.details = details;
-        this.args = args;
-        this.reportId = reportId;
-        this.httpStatus = httpStatus;
-        this.backendApiErrorList = [];
-    }
-    /**
-     * Crée l'instance de BackendApiError à partir de l'objet JSON représentant la ou les erreurs
-     * @param apiErrors erreurs[s] représentant
-     * @param httpStatus
-     * @returns {BackendApiError}
-     */
-    BackendApiError.parseError = function (apiErrors, httpStatus) {
-        if (_.isArray(apiErrors) && apiErrors.length > 1) {
-            // cas d'une liste d'erreurs
-            var global_2 = new BackendApiError();
-            for (var i = 0; i < apiErrors.length; i++) {
-                global_2.backendApiErrorList.push(new BackendApiError(apiErrors[i].date, apiErrors[i].code, apiErrors[i].name, apiErrors[i].type, apiErrors[i].details, apiErrors[i].args, apiErrors[i].reportId, httpStatus));
-            }
-            return global_2;
-        }
-        else {
-            // cas d'une erreur simple
-            var singleError = void 0;
-            if (_.isArray(apiErrors)) {
-                singleError = apiErrors[0];
-            }
-            else {
-                singleError = apiErrors;
-            }
-            return new BackendApiError(singleError.date, singleError.code, singleError.name, singleError.type, singleError.details, singleError.args, singleError.reportId, httpStatus);
-        }
-    };
-    BackendApiError.prototype.toJsError = function () {
-        if (this.backendApiErrorList.length == 0) {
-            var error = void 0;
-            var args = {};
-            // backend args
-            for (var i = 0; i < this.args.length; i++) {
-                args["$" + i] = this.args[i];
-            }
-            // default args
-            if (this.reportId) {
-                args["reportId"] = this.reportId;
-            }
-            if (this.httpStatus) {
-                args["httpStatus"] = this.httpStatus;
-            }
-            if (this.name) {
-                args["errorMessage"] = this.name;
-            }
-            else {
-                args["errorMessage"] = "";
-            }
-            // Error type
-            if (this.type == "TechnicalException") {
-                error = new technical_error_1.TechnicalError(this.code, args, this.details ? new base_error_1.BaseError("", this.details) : null);
-                error.backend = true;
-            }
-            else if (this.type == "BusinessException") {
-                error = new business_error_1.BusinessError(this.code, args);
-                error.backend = true;
-            }
-            return error;
-        }
-        else {
-            var error = new business_error_list_1.BusinessErrorList();
-            for (var i = 0; i < this.backendApiErrorList.length; i++) {
-                var apiError = this.backendApiErrorList[i];
-                var suberror = void 0;
-                var args = {};
-                // backend args
-                for (var i_2 = 0; i_2 < apiError.args.length; i_2++) {
-                    args["$" + i_2] = apiError.args[i_2];
-                }
-                // default args
-                if (apiError.reportId) {
-                    args["reportId"] = apiError.reportId;
-                }
-                if (apiError.httpStatus) {
-                    args["httpStatus"] = apiError.httpStatus;
-                }
-                if (apiError.name) {
-                    args["errorMessage"] = apiError.name;
-                }
-                else {
-                    args["errorMessage"] = "";
-                }
-                // Error type
-                if (apiError.type == "TechnicalException") {
-                    suberror = new technical_error_1.TechnicalError(apiError.code, args, apiError.details ? new base_error_1.BaseError("", apiError.details) : null);
-                }
-                else if (apiError.type == "BusinessException") {
-                    suberror = new business_error_1.BusinessError(apiError.code, args);
-                }
-                suberror.backend = true;
-                error.addError(suberror);
-            }
-            error.backend = true;
-            return error;
-        }
-    };
-    return BackendApiError;
-}());
-exports.BackendApiError = BackendApiError;
-
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
-
-/***/ }),
-/* 71 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * Ce logiciel est un programme informatique servant à faciliter la création
- * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
- * <p/>
- * Ce logiciel est régi par la licence CeCILL soumise au droit français et
- * respectant les principes de diffusion des logiciels libres. Vous pouvez
- * utiliser, modifier et/ou redistribuer ce programme sous les conditions
- * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
- * sur le site "http://www.cecill.info".
- * <p/>
- * En contrepartie de l'accessibilité au code source et des droits de copie,
- * de modification et de redistribution accordés par cette licence, il n'est
- * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
- * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
- * titulaire des droits patrimoniaux et les concédants successifs.
- * <p/>
- * A cet égard  l'attention de l'utilisateur est attirée sur les risques
- * associés au chargement,  à l'utilisation,  à la modification et/ou au
- * développement et à la reproduction du logiciel par l'utilisateur étant
- * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
- * manipuler et qui le réserve donc à des développeurs et des professionnels
- * avertis possédant  des  connaissances  informatiques approfondies.  Les
- * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
- * logiciel à leurs besoins dans des conditions permettant d'assurer la
- * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
- * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
- * <p/>
- * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
- * pris connaissance de la licence CeCILL, et que vous en avez accepté les
- * termes.
- * <p/>
- * <p/>
- * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * This software is a computer program whose purpose is to facilitate creation of
- * web application in accordance with french general repositories : RGI, RGS and RGAA.
- * <p/>
- * This software is governed by the CeCILL license under French law and
- * abiding by the rules of distribution of free software.  You can  use,
- * modify and/ or redistribute the software under the terms of the CeCILL
- * license as circulated by CEA, CNRS and INRIA at the following URL
- * "http://www.cecill.info".
- * <p/>
- * As a counterpart to the access to the source code and  rights to copy,
- * modify and redistribute granted by the license, users are provided only
- * with a limited warranty  and the software's author,  the holder of the
- * economic rights,  and the successive licensors  have only  limited
- * liability.
- * <p/>
- * In this respect, the user's attention is drawn to the risks associated
- * with loading,  using,  modifying and/or developing or reproducing the
- * software by the user in light of its specific status of free software,
- * that may mean  that it is complicated to manipulate,  and  that  also
- * therefore means  that it is reserved for developers  and  experienced
- * professionals having in-depth computer knowledge. Users are therefore
- * encouraged to load and test the software's suitability as regards their
- * requirements in conditions enabling the security of their systems and/or
- * data to be ensured and,  more generally, to use and operate it in the
- * same conditions as regards security.
- * <p/>
- * The fact that you are presently reading this means that you have had
- * knowledge of the CeCILL license and that you accept its terms.
- *
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * hornet-js-core - Ensemble des composants qui forment le coeur de hornet-js
- *
- * @author MEAE - Ministère de l'Europe et des Affaires étrangères
- * @version v5.1.1
- * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
- * @license CECILL-2.1
- */
-var _ = __webpack_require__(6);
-var MediaTypes = /** @class */ (function () {
-    function MediaTypes() {
-    }
-    MediaTypes._fromShortValue = function (parameter) {
-        var mediaType = null;
-        _.forOwn(MediaTypes, function (value) {
-            if (value && value.SHORT && value.SHORT === parameter) {
-                mediaType = value;
-                return false;
-            }
-        });
-        return mediaType;
-    };
-    MediaTypes._fromMime = function (mimeType) {
-        var mediaType = null;
-        _.forOwn(MediaTypes, function (value) {
-            if (value && value.MIME && value.MIME === mimeType) {
-                mediaType = value;
-                return false;
-            }
-        });
-        return mediaType;
-    };
-    /**
-     * Rerouve la constante MediaType suivant la valeur abrégée
-     * @param {string} shortValue
-     * @return MediaTypes or MediaTypes.JSON si non pris en charge
-     */
-    MediaTypes.fromShortValue = function (shortValue) {
-        return MediaTypes._fromShortValue(shortValue) || MediaTypes.DEFAULT;
-    };
-    /**
-     * Rerouve la constante MediaType suivant la valeur de l'entête Accept
-     * @param {string} shortValue
-     * @return MediaTypes or MediaTypes.JSON si non pris en charge
-     */
-    MediaTypes.fromMime = function (accept) {
-        return MediaTypes._fromMime(accept) || MediaTypes.DEFAULT;
-    };
-    MediaTypes.MEDIATYPE_PARAMETER = "mediaType";
-    MediaTypes.JSON = {
-        SHORT: "json",
-        MIME: "application/json"
-    };
-    MediaTypes.XLS = {
-        SHORT: "xls",
-        MIME: "application/vnd.ms-excel"
-    };
-    MediaTypes.CSV = {
-        SHORT: "csv",
-        MIME: "text/csv"
-    };
-    MediaTypes.PDF = {
-        SHORT: "pdf",
-        MIME: "application/pdf",
-    };
-    MediaTypes.DOC = {
-        SHORT: "doc",
-        MIME: "application/msword"
-    };
-    MediaTypes.TXT = {
-        SHORT: "txt",
-        MIME: "text/plain"
-    };
-    MediaTypes.PNG = {
-        SHORT: "png",
-        MIME: "image/png"
-    };
-    MediaTypes.BMP = {
-        SHORT: "bmp",
-        MIME: "image/x-ms-bmp"
-    };
-    MediaTypes.JPG = {
-        SHORT: "jpg",
-        MIME: "image/jpeg"
-    };
-    MediaTypes.OCTETSTREAM = {
-        SHORT: "octet-stream",
-        MIME: "application/octet-stream"
-    };
-    MediaTypes.ODS = {
-        SHORT: "ods",
-        MIME: "application/vnd.oasis.opendocument.spreadsheet"
-    };
-    MediaTypes.ODT = {
-        SHORT: "odt",
-        MIME: "application/vnd.oasis.opendocument.text"
-    };
-    // Attention à ne pas déclarer le DEFAUT avant sa valeur
-    MediaTypes.DEFAULT = MediaTypes.JSON;
-    return MediaTypes;
-}());
-exports.MediaTypes = MediaTypes;
-
-
-
-/***/ }),
 /* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -34490,15 +34490,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 var hornet_js_utils_1 = __webpack_require__(0);
 var _ = __webpack_require__(6);
-var superagent = __webpack_require__(186);
+var superagent = __webpack_require__(187);
 var hornet_superagent_request_1 = __webpack_require__(33);
 var hornet_event_1 = __webpack_require__(7);
-var superAgentPlugins = __webpack_require__(192);
-var media_type_1 = __webpack_require__(71);
-var service_api_results_1 = __webpack_require__(70);
+var superAgentPlugins = __webpack_require__(193);
+var media_type_1 = __webpack_require__(55);
+var service_api_results_1 = __webpack_require__(54);
 var error_manager_1 = __webpack_require__(32);
 var technical_error_1 = __webpack_require__(13);
-var hornet_cache_1 = __webpack_require__(194);
+var hornet_cache_1 = __webpack_require__(195);
 var hornet_event_2 = __webpack_require__(7);
 var hornet_event_3 = __webpack_require__(7);
 var base_error_1 = __webpack_require__(16);
@@ -34508,8 +34508,8 @@ var promise_api_1 = __webpack_require__(50);
 // wrap http & https afin de sécuriser l'utilisation de "continuation-local-storage" (perte ou mix de contexte) //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 var http = __webpack_require__(76);
-var https = __webpack_require__(211);
-var disposition_type_1 = __webpack_require__(212);
+var https = __webpack_require__(212);
+var disposition_type_1 = __webpack_require__(104);
 if (http["__old_http_request"] == undefined) {
     http["__old_http_request"] = http.request;
     https["__old_https_reques"] = https.request;
@@ -35526,10 +35526,10 @@ Ephemeral.prototype._updateLock = function (key, value) {
 /* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {var ClientRequest = __webpack_require__(200)
+/* WEBPACK VAR INJECTION */(function(global) {var ClientRequest = __webpack_require__(201)
 var response = __webpack_require__(79)
-var extend = __webpack_require__(209)
-var statusCodes = __webpack_require__(210)
+var extend = __webpack_require__(210)
+var statusCodes = __webpack_require__(211)
 var url = __webpack_require__(41)
 
 var http = exports
@@ -35938,7 +35938,7 @@ exports.Readable = exports;
 exports.Writable = __webpack_require__(84);
 exports.Duplex = __webpack_require__(21);
 exports.Transform = __webpack_require__(86);
-exports.PassThrough = __webpack_require__(207);
+exports.PassThrough = __webpack_require__(208);
 
 
 /***/ }),
@@ -36017,7 +36017,7 @@ util.inherits = __webpack_require__(11);
 /*</replacement>*/
 
 /*<replacement>*/
-var debugUtil = __webpack_require__(203);
+var debugUtil = __webpack_require__(204);
 var debug = void 0;
 if (debugUtil && debugUtil.debuglog) {
   debug = debugUtil.debuglog('stream');
@@ -36026,7 +36026,7 @@ if (debugUtil && debugUtil.debuglog) {
 }
 /*</replacement>*/
 
-var BufferList = __webpack_require__(204);
+var BufferList = __webpack_require__(205);
 var destroyImpl = __webpack_require__(83);
 var StringDecoder;
 
@@ -37131,7 +37131,7 @@ util.inherits = __webpack_require__(11);
 
 /*<replacement>*/
 var internalUtil = {
-  deprecate: __webpack_require__(206)
+  deprecate: __webpack_require__(207)
 };
 /*</replacement>*/
 
@@ -37746,7 +37746,7 @@ Writable.prototype._destroy = function (err, cb) {
   this.end();
   cb(err);
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(64).setImmediate, __webpack_require__(8)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(66).setImmediate, __webpack_require__(8)))
 
 /***/ }),
 /* 85 */
@@ -38519,7 +38519,7 @@ module.exports = shallowEqual;
  * 
  */
 
-var isTextNode = __webpack_require__(217);
+var isTextNode = __webpack_require__(218);
 
 /*eslint-disable no-bitwise */
 
@@ -39184,163 +39184,6 @@ exports.NotificationType = NotificationType;
  *
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * hornet-js-utils - Partie commune et utilitaire à tous les composants hornet-js
- *
- * @author MEAE - Ministère de l'Europe et des Affaires étrangères
- * @version v5.1.1
- * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
- * @license CECILL-2.1
- */
-var CodesError = /** @class */ (function () {
-    function CodesError() {
-    }
-    CodesError.DEFAULT_ERROR_MSG = "Erreur inattendue.";
-    /**
-     * codes error SEQUELIZE 10000 - 10099
-     */
-    CodesError.SEQUELIZE_CONNECTION_REFUSED = 10001;
-    CodesError.SEQUELIZE_HOST_NOT_FOUND = 10002;
-    CodesError.SEQUELIZE_HOST_NOT_REACHABLE = 10003;
-    CodesError.SEQUELIZE_INVALID_CONNECTION = 10004;
-    CodesError.SEQUELIZE_CONNECTION = 10005;
-    CodesError.SEQUELIZE_INSTANCE_ERROR = 10006;
-    CodesError.SEQUELIZE_CONNECTION_TIMEOUT = 10007;
-    CodesError.SEQUELIZE_TIMEOUT_ERROR = 10008;
-    CodesError.SEQUELIZE_ACCESSDENIED = 10009;
-    CodesError.SEQUELIZE_CONNECTION_ERROR = 10010;
-    CodesError.SEQUELIZE_EXCLUSION_ERROR = 10011;
-    CodesError.SEQUELIZE_FOREIGN_KEY_ERROR = 10012;
-    CodesError.SEQUELIZE_VALIDATION_ERROR = 10013;
-    CodesError.SEQUELIZE_UNIQUE_ERROR = 10014;
-    CodesError.SEQUELIZE_DATABASE_ERROR = 10015;
-    /**
-     * codes error BINDING 10100 - 10199
-     */
-    CodesError.BINDING_ERROR = 10101;
-    /**
-     * codes error BINDING 10200 - 10299
-     */
-    CodesError.ROUTE_ERROR = 10201;
-    /**
-     * codes error DATASOURCE 10300 - 10399
-     */
-    CodesError.DATASOURCE_FETCH_ERROR = 10301;
-    CodesError.DATASOURCE_SORT_ERROR = 10302;
-    CodesError.DATASOURCE_FILTER_ERROR = 10303;
-    CodesError.DATASOURCE_ADD_ERROR = 10304;
-    CodesError.DATASOURCE_DELETE_ERROR = 10305;
-    CodesError.DATASOURCE_RESPONSE_ERROR = 10306;
-    CodesError.DATASOURCE_SORT_ARGS_ERROR = 10307;
-    CodesError.DATASOURCE_CONFIGURATION_ERROR = 10320;
-    /**
-     * codes error INJECT 10400 - 10499
-     */
-    CodesError.INJECT_ERROR = 10400;
-    CodesError.INJECT_ALREADY_DEFINED_ERROR = 10401;
-    CodesError.INJECT_NOT_DEFINED_ERROR = 10402;
-    /**
-     * codes error NODEMAILER 10500 - 10599
-     */
-    CodesError.NODEMAILER_AUTH_ERROR = 10500;
-    CodesError.NODEMAILER_SERVER_NOTFOUND = 10501;
-    CodesError.NODEMAILER_SERVER_TIMEOUT = 10502;
-    CodesError.NODEMAILER_UNKNOWN = 10599;
-    /**
-     * codes error CLAMAV 10600 - 10699
-     */
-    CodesError.CLAMAV_SCAN_INFECTED = 10600;
-    CodesError.CLAMAV_SCAN_REMOVE = 10601;
-    CodesError.CLAMAV_SCAN_TIMEOUT = 10602;
-    CodesError.CLAMAV_SCAN_RESPONSE_MALFORMED = 10603;
-    CodesError.CLAMAV_SCAN_UNKNOWN = 10604;
-    /**
-     * code error BATCH 10700 - 10799
-     */
-    CodesError.BATCH_OPTIONS_UNDEFINED = 10700;
-    return CodesError;
-}());
-exports.CodesError = CodesError;
-
-
-
-/***/ }),
-/* 97 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * Ce logiciel est un programme informatique servant à faciliter la création
- * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
- * <p/>
- * Ce logiciel est régi par la licence CeCILL soumise au droit français et
- * respectant les principes de diffusion des logiciels libres. Vous pouvez
- * utiliser, modifier et/ou redistribuer ce programme sous les conditions
- * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
- * sur le site "http://www.cecill.info".
- * <p/>
- * En contrepartie de l'accessibilité au code source et des droits de copie,
- * de modification et de redistribution accordés par cette licence, il n'est
- * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
- * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
- * titulaire des droits patrimoniaux et les concédants successifs.
- * <p/>
- * A cet égard  l'attention de l'utilisateur est attirée sur les risques
- * associés au chargement,  à l'utilisation,  à la modification et/ou au
- * développement et à la reproduction du logiciel par l'utilisateur étant
- * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
- * manipuler et qui le réserve donc à des développeurs et des professionnels
- * avertis possédant  des  connaissances  informatiques approfondies.  Les
- * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
- * logiciel à leurs besoins dans des conditions permettant d'assurer la
- * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
- * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
- * <p/>
- * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
- * pris connaissance de la licence CeCILL, et que vous en avez accepté les
- * termes.
- * <p/>
- * <p/>
- * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * This software is a computer program whose purpose is to facilitate creation of
- * web application in accordance with french general repositories : RGI, RGS and RGAA.
- * <p/>
- * This software is governed by the CeCILL license under French law and
- * abiding by the rules of distribution of free software.  You can  use,
- * modify and/ or redistribute the software under the terms of the CeCILL
- * license as circulated by CEA, CNRS and INRIA at the following URL
- * "http://www.cecill.info".
- * <p/>
- * As a counterpart to the access to the source code and  rights to copy,
- * modify and redistribute granted by the license, users are provided only
- * with a limited warranty  and the software's author,  the holder of the
- * economic rights,  and the successive licensors  have only  limited
- * liability.
- * <p/>
- * In this respect, the user's attention is drawn to the risks associated
- * with loading,  using,  modifying and/or developing or reproducing the
- * software by the user in light of its specific status of free software,
- * that may mean  that it is complicated to manipulate,  and  that  also
- * therefore means  that it is reserved for developers  and  experienced
- * professionals having in-depth computer knowledge. Users are therefore
- * encouraged to load and test the software's suitability as regards their
- * requirements in conditions enabling the security of their systems and/or
- * data to be ensured and,  more generally, to use and operate it in the
- * same conditions as regards security.
- * <p/>
- * The fact that you are presently reading this means that you have had
- * knowledge of the CeCILL license and that you accept its terms.
- *
- */
-Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 /**
  * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
@@ -39582,6 +39425,163 @@ exports.Picto = Picto;
 
 
 /***/ }),
+/* 97 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * Ce logiciel est un programme informatique servant à faciliter la création
+ * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
+ * <p/>
+ * Ce logiciel est régi par la licence CeCILL soumise au droit français et
+ * respectant les principes de diffusion des logiciels libres. Vous pouvez
+ * utiliser, modifier et/ou redistribuer ce programme sous les conditions
+ * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
+ * sur le site "http://www.cecill.info".
+ * <p/>
+ * En contrepartie de l'accessibilité au code source et des droits de copie,
+ * de modification et de redistribution accordés par cette licence, il n'est
+ * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
+ * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
+ * titulaire des droits patrimoniaux et les concédants successifs.
+ * <p/>
+ * A cet égard  l'attention de l'utilisateur est attirée sur les risques
+ * associés au chargement,  à l'utilisation,  à la modification et/ou au
+ * développement et à la reproduction du logiciel par l'utilisateur étant
+ * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
+ * manipuler et qui le réserve donc à des développeurs et des professionnels
+ * avertis possédant  des  connaissances  informatiques approfondies.  Les
+ * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
+ * logiciel à leurs besoins dans des conditions permettant d'assurer la
+ * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
+ * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
+ * <p/>
+ * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
+ * pris connaissance de la licence CeCILL, et que vous en avez accepté les
+ * termes.
+ * <p/>
+ * <p/>
+ * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * This software is a computer program whose purpose is to facilitate creation of
+ * web application in accordance with french general repositories : RGI, RGS and RGAA.
+ * <p/>
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software.  You can  use,
+ * modify and/ or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ * <p/>
+ * As a counterpart to the access to the source code and  rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty  and the software's author,  the holder of the
+ * economic rights,  and the successive licensors  have only  limited
+ * liability.
+ * <p/>
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading,  using,  modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean  that it is complicated to manipulate,  and  that  also
+ * therefore means  that it is reserved for developers  and  experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and,  more generally, to use and operate it in the
+ * same conditions as regards security.
+ * <p/>
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * hornet-js-utils - Partie commune et utilitaire à tous les composants hornet-js
+ *
+ * @author MEAE - Ministère de l'Europe et des Affaires étrangères
+ * @version v5.1.1
+ * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
+ * @license CECILL-2.1
+ */
+var CodesError = /** @class */ (function () {
+    function CodesError() {
+    }
+    CodesError.DEFAULT_ERROR_MSG = "Erreur inattendue.";
+    /**
+     * codes error SEQUELIZE 10000 - 10099
+     */
+    CodesError.SEQUELIZE_CONNECTION_REFUSED = 10001;
+    CodesError.SEQUELIZE_HOST_NOT_FOUND = 10002;
+    CodesError.SEQUELIZE_HOST_NOT_REACHABLE = 10003;
+    CodesError.SEQUELIZE_INVALID_CONNECTION = 10004;
+    CodesError.SEQUELIZE_CONNECTION = 10005;
+    CodesError.SEQUELIZE_INSTANCE_ERROR = 10006;
+    CodesError.SEQUELIZE_CONNECTION_TIMEOUT = 10007;
+    CodesError.SEQUELIZE_TIMEOUT_ERROR = 10008;
+    CodesError.SEQUELIZE_ACCESSDENIED = 10009;
+    CodesError.SEQUELIZE_CONNECTION_ERROR = 10010;
+    CodesError.SEQUELIZE_EXCLUSION_ERROR = 10011;
+    CodesError.SEQUELIZE_FOREIGN_KEY_ERROR = 10012;
+    CodesError.SEQUELIZE_VALIDATION_ERROR = 10013;
+    CodesError.SEQUELIZE_UNIQUE_ERROR = 10014;
+    CodesError.SEQUELIZE_DATABASE_ERROR = 10015;
+    /**
+     * codes error BINDING 10100 - 10199
+     */
+    CodesError.BINDING_ERROR = 10101;
+    /**
+     * codes error BINDING 10200 - 10299
+     */
+    CodesError.ROUTE_ERROR = 10201;
+    /**
+     * codes error DATASOURCE 10300 - 10399
+     */
+    CodesError.DATASOURCE_FETCH_ERROR = 10301;
+    CodesError.DATASOURCE_SORT_ERROR = 10302;
+    CodesError.DATASOURCE_FILTER_ERROR = 10303;
+    CodesError.DATASOURCE_ADD_ERROR = 10304;
+    CodesError.DATASOURCE_DELETE_ERROR = 10305;
+    CodesError.DATASOURCE_RESPONSE_ERROR = 10306;
+    CodesError.DATASOURCE_SORT_ARGS_ERROR = 10307;
+    CodesError.DATASOURCE_CONFIGURATION_ERROR = 10320;
+    /**
+     * codes error INJECT 10400 - 10499
+     */
+    CodesError.INJECT_ERROR = 10400;
+    CodesError.INJECT_ALREADY_DEFINED_ERROR = 10401;
+    CodesError.INJECT_NOT_DEFINED_ERROR = 10402;
+    /**
+     * codes error NODEMAILER 10500 - 10599
+     */
+    CodesError.NODEMAILER_AUTH_ERROR = 10500;
+    CodesError.NODEMAILER_SERVER_NOTFOUND = 10501;
+    CodesError.NODEMAILER_SERVER_TIMEOUT = 10502;
+    CodesError.NODEMAILER_UNKNOWN = 10599;
+    /**
+     * codes error CLAMAV 10600 - 10699
+     */
+    CodesError.CLAMAV_SCAN_INFECTED = 10600;
+    CodesError.CLAMAV_SCAN_REMOVE = 10601;
+    CodesError.CLAMAV_SCAN_TIMEOUT = 10602;
+    CodesError.CLAMAV_SCAN_RESPONSE_MALFORMED = 10603;
+    CodesError.CLAMAV_SCAN_UNKNOWN = 10604;
+    /**
+     * code error BATCH 10700 - 10799
+     */
+    CodesError.BATCH_OPTIONS_UNDEFINED = 10700;
+    return CodesError;
+}());
+exports.CodesError = CodesError;
+
+
+
+/***/ }),
 /* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -39670,8 +39670,8 @@ var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var _ = __webpack_require__(6);
 var technical_error_1 = __webpack_require__(13);
-var codes_error_1 = __webpack_require__(96);
-var media_type_1 = __webpack_require__(71);
+var codes_error_1 = __webpack_require__(97);
+var media_type_1 = __webpack_require__(55);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.routes.abstract-routes");
 /** Routes type */
 exports.RouteType = {
@@ -40650,11 +40650,11 @@ var DateDiffUnit;
 
 
 
-var IntlMessageFormat = __webpack_require__(171)['default'];
+var IntlMessageFormat = __webpack_require__(172)['default'];
 
 // Add all locale data to `IntlMessageFormat`. This module will be ignored when
 // bundling for the browser with Browserify/Webpack.
-__webpack_require__(178);
+__webpack_require__(179);
 
 // Re-export `IntlMessageFormat` as the CommonJS default exports with all the
 // locale data registered, and with English set as the default locale. Define
@@ -40740,85 +40740,19 @@ exports['default'] = exports;
  *
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(1);
 /**
- * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
+ * hornet-js-core - Ensemble des composants qui forment le coeur de hornet-js
  *
  * @author MEAE - Ministère de l'Europe et des Affaires étrangères
  * @version v5.1.1
  * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
  * @license CECILL-2.1
  */
-var hornet_js_utils_1 = __webpack_require__(0);
-var React = __webpack_require__(2);
-var hornet_event_1 = __webpack_require__(7);
-var spinner_component_1 = __webpack_require__(100);
-var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.spinner.spinner");
-/**
- * Composant affichant une image (par défaut une roue dentée animée) et un texte d'attente
- * dans une fenêtre modale en attendant la fin d'une action longue.
- */
-var Spinner = /** @class */ (function (_super) {
-    tslib_1.__extends(Spinner, _super);
-    function Spinner(props, context) {
-        return _super.call(this, props, context) || this;
-    }
-    /**
-     * @inheritDoc
-     */
-    Spinner.prototype.componentDidMount = function () {
-        this.listen(hornet_event_1.ASYNCHRONOUS_REQUEST_EVENT, this.asyncRequestEventTreatment);
-    };
-    /**
-     * @inheritDoc
-     */
-    Spinner.prototype.componentWillUnmount = function () {
-        this.remove(hornet_event_1.ASYNCHRONOUS_REQUEST_EVENT, this.asyncRequestEventTreatment);
-    };
-    /**
-     * @inheritDoc
-     */
-    Spinner.prototype.render = function () {
-        return (this.state.isVisible ? this.renderLoader() : null);
-    };
-    /**
-     * Methode de rendu du loader
-     */
-    Spinner.prototype.renderLoader = function () {
-        return (React.createElement("div", null,
-            React.createElement("div", { className: "loader-overlay" }),
-            React.createElement("div", { className: "loader-page" })));
-    };
-    /**
-     * gestion des compteurs d'affichage/fermeture du spinner
-     */
-    Spinner.prototype.progress = function (inProgress) {
-        if (inProgress) {
-            this.count++;
-            setTimeout(this.openSpinner, this.props.minimalShowTimeInMs);
-        }
-        else {
-            this.count--;
-            if (this.count === 0)
-                this.closeSpinner();
-        }
-    };
-    /**
-     * Affichage Spinner
-     */
-    Spinner.prototype.openSpinner = function () {
-        if (this.count > 0 && !this.state.isVisible)
-            this.setState({ isVisible: true });
-    };
-    /**
-     * Fermeture Spinner
-     */
-    Spinner.prototype.closeSpinner = function () {
-        this.setState({ isVisible: false });
-    };
-    return Spinner;
-}(spinner_component_1.SpinnerComponent));
-exports.Spinner = Spinner;
+var DispositionType;
+(function (DispositionType) {
+    DispositionType["INLINE"] = "inline";
+    DispositionType["ATTACHMENT"] = "attachment";
+})(DispositionType = exports.DispositionType || (exports.DispositionType = {}));
 
 
 
@@ -40912,7 +40846,7 @@ var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var ReactDOM = __webpack_require__(22);
 var hornet_component_1 = __webpack_require__(3);
-var icon_1 = __webpack_require__(235);
+var icon_1 = __webpack_require__(106);
 var modal_1 = __webpack_require__(101);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.table.button-info-accessibilite");
 /**
@@ -40983,17 +40917,162 @@ exports.ButtonInfoAccessibilite = ButtonInfoAccessibilite;
 
 
 /***/ }),
-/* 106 */,
-/* 107 */
+/* 106 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * Ce logiciel est un programme informatique servant à faciliter la création
+ * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
+ * <p/>
+ * Ce logiciel est régi par la licence CeCILL soumise au droit français et
+ * respectant les principes de diffusion des logiciels libres. Vous pouvez
+ * utiliser, modifier et/ou redistribuer ce programme sous les conditions
+ * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
+ * sur le site "http://www.cecill.info".
+ * <p/>
+ * En contrepartie de l'accessibilité au code source et des droits de copie,
+ * de modification et de redistribution accordés par cette licence, il n'est
+ * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
+ * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
+ * titulaire des droits patrimoniaux et les concédants successifs.
+ * <p/>
+ * A cet égard  l'attention de l'utilisateur est attirée sur les risques
+ * associés au chargement,  à l'utilisation,  à la modification et/ou au
+ * développement et à la reproduction du logiciel par l'utilisateur étant
+ * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
+ * manipuler et qui le réserve donc à des développeurs et des professionnels
+ * avertis possédant  des  connaissances  informatiques approfondies.  Les
+ * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
+ * logiciel à leurs besoins dans des conditions permettant d'assurer la
+ * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
+ * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
+ * <p/>
+ * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
+ * pris connaissance de la licence CeCILL, et que vous en avez accepté les
+ * termes.
+ * <p/>
+ * <p/>
+ * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * This software is a computer program whose purpose is to facilitate creation of
+ * web application in accordance with french general repositories : RGI, RGS and RGAA.
+ * <p/>
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software.  You can  use,
+ * modify and/ or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ * <p/>
+ * As a counterpart to the access to the source code and  rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty  and the software's author,  the holder of the
+ * economic rights,  and the successive licensors  have only  limited
+ * liability.
+ * <p/>
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading,  using,  modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean  that it is complicated to manipulate,  and  that  also
+ * therefore means  that it is reserved for developers  and  experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and,  more generally, to use and operate it in the
+ * same conditions as regards security.
+ * <p/>
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(1);
+/**
+ * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
+ *
+ * @author MEAE - Ministère de l'Europe et des Affaires étrangères
+ * @version v5.1.1
+ * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
+ * @license CECILL-2.1
+ */
+var hornet_js_utils_1 = __webpack_require__(0);
+var React = __webpack_require__(2);
+var hornet_component_1 = __webpack_require__(3);
+var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.icon.icon");
+/** Valeur de l'url par défaut lorsque la propriété url est vide */
+exports.EMPTY_URL = "#";
+/**
+ * Composant Icône
+ */
+var Icon = /** @class */ (function (_super) {
+    tslib_1.__extends(Icon, _super);
+    function Icon() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /**
+     * Retire le focus de l'élément une fois cliqué de façon à permettre de scroller ou mettre le focus sur les
+     * notifications éventuellement présentées suite à l'action.
+     * @param event évènement
+     * @protected
+     */
+    Icon.prototype.iconOnClick = function (event) {
+        if (event.currentTarget && event.currentTarget.blur) {
+            event.currentTarget.blur();
+        }
+        else {
+            logger.warn("iconOnClick : impossible d'enlever le focus de l'élement");
+        }
+        /* Exécute ensuite la fonction fournie en propriétés */
+        if (this.state.action) {
+            this.state.action();
+        }
+    };
+    /**
+     * @inheritDoc
+     */
+    Icon.prototype.render = function () {
+        var result;
+        if (this.state.url == null || this.state.url == exports.EMPTY_URL) {
+            /* L'URL n'est pas valorisée : le comportement est celui d'un bouton (raccourci clavier : Entrée OU Espace )
+             * (cf. https://www.w3.org/TR/wai-aria-practices/#button > "Keyboard Interaction")  */
+            result = React.createElement("button", { type: "button", title: this.state.title, id: this.state.idLink, className: this.props.classLink, onClick: this.iconOnClick, tabIndex: this.props.tabIndex, "aria-haspopup": this.props.hasPopUp },
+                React.createElement("img", { src: this.state.src, alt: this.state.alt, id: this.state.idImg, className: this.state.classImg }));
+        }
+        else {
+            /* L'URL est valorisée : le comportement est celui d'un lien (raccourci clavier : Entrée uniquement )*/
+            result = React.createElement("a", { href: this.state.url, title: this.state.title, id: this.state.idLink, className: this.props.classLink, onClick: this.iconOnClick, target: this.state.target, tabIndex: this.props.tabIndex },
+                React.createElement("img", { src: this.state.src, alt: this.state.alt, id: this.state.idImg, className: this.state.classImg }));
+        }
+        return result;
+    };
+    Icon.defaultProps = {
+        url: exports.EMPTY_URL
+    };
+    return Icon;
+}(hornet_component_1.HornetComponent));
+exports.Icon = Icon;
+
+
+
+/***/ }),
+/* 107 */,
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var hornet_js_utils_1 = __webpack_require__(0);
-var client_1 = __webpack_require__(126);
-var routes_1 = __webpack_require__(165);
-var hornet_app_1 = __webpack_require__(166);
+var client_1 = __webpack_require__(127);
+var routes_1 = __webpack_require__(166);
+var hornet_app_1 = __webpack_require__(167);
 var error_page_1 = __webpack_require__(93);
 var react_client_1 = __webpack_require__(245);
 __webpack_require__(246);
@@ -41053,7 +41132,7 @@ else{callback('ERROR: No File with name \''+name+'\' found');}
 
 
 /***/ }),
-/* 108 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41151,17 +41230,17 @@ else{callback('ERROR: No File with name \''+name+'\' found');}
 })();
 
 /***/ }),
-/* 109 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var defineProperties = __webpack_require__(54);
+var defineProperties = __webpack_require__(56);
 
-var implementation = __webpack_require__(55);
-var getPolyfill = __webpack_require__(56);
-var shim = __webpack_require__(115);
+var implementation = __webpack_require__(57);
+var getPolyfill = __webpack_require__(58);
+var shim = __webpack_require__(116);
 
 var polyfill = getPolyfill();
 
@@ -41175,7 +41254,7 @@ module.exports = polyfill;
 
 
 /***/ }),
-/* 110 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41199,7 +41278,7 @@ module.exports = function isArguments(value) {
 
 
 /***/ }),
-/* 111 */
+/* 112 */
 /***/ (function(module, exports) {
 
 
@@ -41227,19 +41306,19 @@ module.exports = function forEach (obj, fn, ctx) {
 
 
 /***/ }),
-/* 112 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var implementation = __webpack_require__(113);
+var implementation = __webpack_require__(114);
 
 module.exports = Function.prototype.bind || implementation;
 
 
 /***/ }),
-/* 113 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41298,7 +41377,7 @@ module.exports = function bind(that) {
 
 
 /***/ }),
-/* 114 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41346,14 +41425,14 @@ module.exports = function hasSymbols() {
 
 
 /***/ }),
-/* 115 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var define = __webpack_require__(54);
-var getPolyfill = __webpack_require__(56);
+var define = __webpack_require__(56);
+var getPolyfill = __webpack_require__(58);
 
 module.exports = function shimAssign() {
 	var polyfill = getPolyfill();
@@ -41367,7 +41446,7 @@ module.exports = function shimAssign() {
 
 
 /***/ }),
-/* 116 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process, global) {/*!
@@ -42552,7 +42631,7 @@ return Promise$1;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(8)))
 
 /***/ }),
-/* 117 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {// Copyright Joyent, Inc. and other Node contributors.
@@ -42783,7 +42862,7 @@ var substr = 'ab'.substr(-1) === 'b'
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 118 */
+/* 119 */
 /***/ (function(module, exports) {
 
 module.exports = function isBuffer(arg) {
@@ -42794,7 +42873,7 @@ module.exports = function isBuffer(arg) {
 }
 
 /***/ }),
-/* 119 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;//! moment-timezone.js
@@ -43408,16 +43487,16 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ }),
-/* 120 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./fr": 59,
-	"./fr-ca": 60,
-	"./fr-ca.js": 60,
-	"./fr-ch": 61,
-	"./fr-ch.js": 61,
-	"./fr.js": 59
+	"./fr": 61,
+	"./fr-ca": 62,
+	"./fr-ca.js": 62,
+	"./fr-ch": 63,
+	"./fr-ch.js": 63,
+	"./fr.js": 61
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -43433,10 +43512,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 120;
+webpackContext.id = 121;
 
 /***/ }),
-/* 121 */
+/* 122 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -44040,7 +44119,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 122 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44299,7 +44378,7 @@ exports.ConfigLib = ConfigLib;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 123 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44418,7 +44497,7 @@ exports.AppSharedProps = AppSharedProps;
 
 
 /***/ }),
-/* 124 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44571,7 +44650,7 @@ exports.ContinuationLocalStorage = ContinuationLocalStorage;
 
 
 /***/ }),
-/* 125 */
+/* 126 */
 /***/ (function(module, exports) {
 
 /*
@@ -46614,7 +46693,7 @@ exports.ContinuationLocalStorage = ContinuationLocalStorage;
 })();
 
 /***/ }),
-/* 126 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46701,17 +46780,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var hornet_js_utils_1 = __webpack_require__(0);
 hornet_js_utils_1.Utils.setConfigObj(window.Config);
 hornet_js_utils_1.Utils.appSharedProps.rehydrate(window.AppSharedProps);
-var logger_1 = __webpack_require__(57);
-var client_log_1 = __webpack_require__(127);
+var logger_1 = __webpack_require__(59);
+var client_log_1 = __webpack_require__(128);
 logger_1.Logger.prototype.buildLogger = client_log_1.ClientLog.getLoggerBuilder(hornet_js_utils_1.Utils.config.getOrDefault("logClient", {}));
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.client");
-var async_executor_1 = __webpack_require__(63);
-var async_element_1 = __webpack_require__(67);
-var router_client_1 = __webpack_require__(161);
+var async_executor_1 = __webpack_require__(65);
+var async_element_1 = __webpack_require__(69);
+var router_client_1 = __webpack_require__(162);
 var router_client_async_elements_1 = __webpack_require__(19);
 var hornet_event_1 = __webpack_require__(7);
 var hornet_event_2 = __webpack_require__(7);
-var service_api_results_1 = __webpack_require__(70);
+var service_api_results_1 = __webpack_require__(54);
 var error_manager_1 = __webpack_require__(32);
 var technical_error_1 = __webpack_require__(13);
 var base_error_1 = __webpack_require__(16);
@@ -46771,7 +46850,7 @@ var Client = /** @class */ (function () {
             logger.warn("Chargement d'une librairie remplacant Intl qui n'est pas supportée par ce navigateur");
             executor.addElement(new async_element_1.AsyncElement(function (next) {
                 __webpack_require__.e/* require.ensure */(4).then((function (require) {
-                    window.Intl = __webpack_require__(106);
+                    window.Intl = __webpack_require__(107);
                     __webpack_require__(249);
                     var locale = window.HornetCLS.i18n.lang || "fr";
                     __webpack_require__(250)("./" + locale.toLowerCase());
@@ -46830,7 +46909,7 @@ exports.Client = Client;
 
 
 /***/ }),
-/* 127 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47263,7 +47342,7 @@ exports.ClientLog = ClientLog;
 
 
 /***/ }),
-/* 128 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47297,7 +47376,7 @@ if (util.isNode) {
 util.notEnumerableProp(Promise, "_getDomain", getDomain);
 
 var es5 = __webpack_require__(18);
-var Async = __webpack_require__(129);
+var Async = __webpack_require__(130);
 var async = new Async();
 es5.defineProperty(Promise, "_async", {value: async});
 var errors = __webpack_require__(12);
@@ -47311,19 +47390,19 @@ Promise.AggregateError = errors.AggregateError;
 var INTERNAL = function(){};
 var APPLY = {};
 var NEXT_FILTER = {};
-var tryConvertToPromise = __webpack_require__(133)(Promise, INTERNAL);
+var tryConvertToPromise = __webpack_require__(134)(Promise, INTERNAL);
 var PromiseArray =
-    __webpack_require__(134)(Promise, INTERNAL,
+    __webpack_require__(135)(Promise, INTERNAL,
                                tryConvertToPromise, apiRejection, Proxyable);
-var Context = __webpack_require__(135)(Promise);
+var Context = __webpack_require__(136)(Promise);
  /*jshint unused:false*/
 var createContext = Context.create;
-var debug = __webpack_require__(136)(Promise, Context);
+var debug = __webpack_require__(137)(Promise, Context);
 var CapturedTrace = debug.CapturedTrace;
 var PassThroughHandlerContext =
-    __webpack_require__(137)(Promise, tryConvertToPromise, NEXT_FILTER);
-var catchFilter = __webpack_require__(65)(NEXT_FILTER);
-var nodebackForPromise = __webpack_require__(66);
+    __webpack_require__(138)(Promise, tryConvertToPromise, NEXT_FILTER);
+var catchFilter = __webpack_require__(67)(NEXT_FILTER);
+var nodebackForPromise = __webpack_require__(68);
 var errorObj = util.errorObj;
 var tryCatch = util.tryCatch;
 function check(self, executor) {
@@ -47993,31 +48072,31 @@ util.notEnumerableProp(Promise,
                        "_makeSelfResolutionError",
                        makeSelfResolutionError);
 
-__webpack_require__(138)(Promise, INTERNAL, tryConvertToPromise, apiRejection,
+__webpack_require__(139)(Promise, INTERNAL, tryConvertToPromise, apiRejection,
     debug);
-__webpack_require__(139)(Promise, INTERNAL, tryConvertToPromise, debug);
-__webpack_require__(140)(Promise, PromiseArray, apiRejection, debug);
-__webpack_require__(141)(Promise);
+__webpack_require__(140)(Promise, INTERNAL, tryConvertToPromise, debug);
+__webpack_require__(141)(Promise, PromiseArray, apiRejection, debug);
 __webpack_require__(142)(Promise);
-__webpack_require__(143)(
+__webpack_require__(143)(Promise);
+__webpack_require__(144)(
     Promise, PromiseArray, tryConvertToPromise, INTERNAL, async, getDomain);
 Promise.Promise = Promise;
 Promise.version = "3.5.1";
-__webpack_require__(144)(Promise, PromiseArray, apiRejection, tryConvertToPromise, INTERNAL, debug);
-__webpack_require__(145)(Promise);
-__webpack_require__(146)(Promise, apiRejection, tryConvertToPromise, createContext, INTERNAL, debug);
-__webpack_require__(147)(Promise, INTERNAL, debug);
-__webpack_require__(148)(Promise, apiRejection, INTERNAL, tryConvertToPromise, Proxyable, debug);
-__webpack_require__(149)(Promise);
-__webpack_require__(150)(Promise, INTERNAL);
-__webpack_require__(151)(Promise, PromiseArray, tryConvertToPromise, apiRejection);
-__webpack_require__(152)(Promise, INTERNAL, tryConvertToPromise, apiRejection);
-__webpack_require__(153)(Promise, PromiseArray, apiRejection, tryConvertToPromise, INTERNAL, debug);
-__webpack_require__(154)(Promise, PromiseArray, debug);
-__webpack_require__(155)(Promise, PromiseArray, apiRejection);
-__webpack_require__(156)(Promise, INTERNAL);
+__webpack_require__(145)(Promise, PromiseArray, apiRejection, tryConvertToPromise, INTERNAL, debug);
+__webpack_require__(146)(Promise);
+__webpack_require__(147)(Promise, apiRejection, tryConvertToPromise, createContext, INTERNAL, debug);
+__webpack_require__(148)(Promise, INTERNAL, debug);
+__webpack_require__(149)(Promise, apiRejection, INTERNAL, tryConvertToPromise, Proxyable, debug);
+__webpack_require__(150)(Promise);
+__webpack_require__(151)(Promise, INTERNAL);
+__webpack_require__(152)(Promise, PromiseArray, tryConvertToPromise, apiRejection);
+__webpack_require__(153)(Promise, INTERNAL, tryConvertToPromise, apiRejection);
+__webpack_require__(154)(Promise, PromiseArray, apiRejection, tryConvertToPromise, INTERNAL, debug);
+__webpack_require__(155)(Promise, PromiseArray, debug);
+__webpack_require__(156)(Promise, PromiseArray, apiRejection);
 __webpack_require__(157)(Promise, INTERNAL);
-__webpack_require__(158)(Promise);
+__webpack_require__(158)(Promise, INTERNAL);
+__webpack_require__(159)(Promise);
                                                          
     util.toFastProperties(Promise);                                          
     util.toFastProperties(Promise.prototype);                                
@@ -48046,15 +48125,15 @@ __webpack_require__(158)(Promise);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 129 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 var firstLineError;
 try {throw new Error(); } catch (e) {firstLineError = e;}
-var schedule = __webpack_require__(130);
-var Queue = __webpack_require__(132);
+var schedule = __webpack_require__(131);
+var Queue = __webpack_require__(133);
 var util = __webpack_require__(5);
 
 function Async() {
@@ -48215,7 +48294,7 @@ module.exports.firstLineError = firstLineError;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 130 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48281,10 +48360,10 @@ if (util.isNode && typeof MutationObserver === "undefined") {
 }
 module.exports = schedule;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), __webpack_require__(4), __webpack_require__(64).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), __webpack_require__(4), __webpack_require__(66).setImmediate))
 
 /***/ }),
-/* 131 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -48477,7 +48556,7 @@ module.exports = schedule;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), __webpack_require__(4)))
 
 /***/ }),
-/* 132 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48557,7 +48636,7 @@ module.exports = Queue;
 
 
 /***/ }),
-/* 133 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48650,7 +48729,7 @@ return tryConvertToPromise;
 
 
 /***/ }),
-/* 134 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48842,7 +48921,7 @@ return PromiseArray;
 
 
 /***/ }),
-/* 135 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48918,7 +48997,7 @@ return Context;
 
 
 /***/ }),
-/* 136 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49845,7 +49924,7 @@ return {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 137 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49854,7 +49933,7 @@ module.exports = function(Promise, tryConvertToPromise, NEXT_FILTER) {
 var util = __webpack_require__(5);
 var CancellationError = Promise.CancellationError;
 var errorObj = util.errorObj;
-var catchFilter = __webpack_require__(65)(NEXT_FILTER);
+var catchFilter = __webpack_require__(67)(NEXT_FILTER);
 
 function PassThroughHandlerContext(promise, type, handler) {
     this.promise = promise;
@@ -49998,7 +50077,7 @@ return PassThroughHandlerContext;
 
 
 /***/ }),
-/* 138 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50060,7 +50139,7 @@ Promise.prototype._resolveFromSyncValue = function (value) {
 
 
 /***/ }),
-/* 139 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50134,7 +50213,7 @@ Promise.bind = function (thisArg, value) {
 
 
 /***/ }),
-/* 140 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50270,7 +50349,7 @@ Promise.prototype._resultCancelled = function() {
 
 
 /***/ }),
-/* 141 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50323,7 +50402,7 @@ Promise.prototype.catchReturn = function (value) {
 
 
 /***/ }),
-/* 142 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50433,7 +50512,7 @@ Promise.PromiseInspection = PromiseInspection;
 
 
 /***/ }),
-/* 143 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50608,7 +50687,7 @@ Promise.join = function () {
 
 
 /***/ }),
-/* 144 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50783,7 +50862,7 @@ Promise.map = function (promises, fn, options, _filter) {
 
 
 /***/ }),
-/* 145 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50913,7 +50992,7 @@ Promise.prototype.get = function (propertyName) {
 
 
 /***/ }),
-/* 146 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51146,7 +51225,7 @@ module.exports = function (Promise, apiRejection, tryConvertToPromise,
 
 
 /***/ }),
-/* 147 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51246,7 +51325,7 @@ Promise.prototype.timeout = function (ms, message) {
 
 
 /***/ }),
-/* 148 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51476,7 +51555,7 @@ Promise.spawn = function (generatorFunction) {
 
 
 /***/ }),
-/* 149 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51541,7 +51620,7 @@ Promise.prototype.asCallback = Promise.prototype.nodeify = function (nodeback,
 
 
 /***/ }),
-/* 150 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51549,7 +51628,7 @@ Promise.prototype.asCallback = Promise.prototype.nodeify = function (nodeback,
 module.exports = function(Promise, INTERNAL) {
 var THIS = {};
 var util = __webpack_require__(5);
-var nodebackForPromise = __webpack_require__(66);
+var nodebackForPromise = __webpack_require__(68);
 var withAppended = util.withAppended;
 var maybeWrapAsError = util.maybeWrapAsError;
 var canEvaluate = util.canEvaluate;
@@ -51862,7 +51941,7 @@ Promise.promisifyAll = function (target, options) {
 
 
 /***/ }),
-/* 151 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51987,7 +52066,7 @@ Promise.props = function (promises) {
 
 
 /***/ }),
-/* 152 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52043,7 +52122,7 @@ Promise.prototype.race = function () {
 
 
 /***/ }),
-/* 153 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52222,7 +52301,7 @@ function gotValue(value) {
 
 
 /***/ }),
-/* 154 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52272,7 +52351,7 @@ Promise.prototype.settle = function () {
 
 
 /***/ }),
-/* 155 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52427,7 +52506,7 @@ Promise._SomePromiseArray = SomePromiseArray;
 
 
 /***/ }),
-/* 156 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52446,7 +52525,7 @@ Promise.filter = function (promises, fn, options) {
 
 
 /***/ }),
-/* 157 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52483,7 +52562,7 @@ Promise.mapSeries = PromiseMapSeries;
 
 
 /***/ }),
-/* 158 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52511,7 +52590,7 @@ Promise.prototype.any = function () {
 
 
 /***/ }),
-/* 159 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52639,7 +52718,7 @@ module.exports = shimmer
 
 
 /***/ }),
-/* 160 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52716,7 +52795,7 @@ module.exports = (function () {
 
 
 /***/ }),
-/* 161 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52801,10 +52880,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @license CECILL-2.1
  */
 var hornet_js_utils_1 = __webpack_require__(0);
-var director_1 = __webpack_require__(162);
+var director_1 = __webpack_require__(163);
 var _ = __webpack_require__(6);
-var lazy_class_loader_1 = __webpack_require__(163);
-var async_executor_1 = __webpack_require__(63);
+var lazy_class_loader_1 = __webpack_require__(164);
+var async_executor_1 = __webpack_require__(65);
 var router_client_async_elements_1 = __webpack_require__(19);
 var hornet_event_1 = __webpack_require__(7);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.routes.router-client");
@@ -53094,7 +53173,7 @@ exports.RouterClient = RouterClient;
 
 
 /***/ }),
-/* 162 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -53824,7 +53903,7 @@ Router.prototype.mount = function(routes, path) {
 }( true ? exports : window));
 
 /***/ }),
-/* 163 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53942,7 +54021,7 @@ exports.LazyClassLoader = LazyClassLoader;
 
 
 /***/ }),
-/* 164 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54027,7 +54106,7 @@ var tslib_1 = __webpack_require__(1);
  * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
  * @license CECILL-2.1
  */
-var http_error_1 = __webpack_require__(68);
+var http_error_1 = __webpack_require__(70);
 var SecurityError = /** @class */ (function (_super) {
     tslib_1.__extends(SecurityError, _super);
     function SecurityError(code, args, cause) {
@@ -54044,7 +54123,7 @@ exports.SecurityError = SecurityError;
 
 
 /***/ }),
-/* 165 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54110,7 +54189,7 @@ exports.Routes = Routes;
 
 
 /***/ }),
-/* 166 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54120,12 +54199,12 @@ var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var hornet_page_1 = __webpack_require__(51);
-var spinner_1 = __webpack_require__(104);
-var header_page_1 = __webpack_require__(213);
-var footer_page_1 = __webpack_require__(214);
-var hornet_content_1 = __webpack_require__(215);
-var user_1 = __webpack_require__(230);
-var menu_1 = __webpack_require__(232);
+var spinner_1 = __webpack_require__(213);
+var header_page_1 = __webpack_require__(214);
+var footer_page_1 = __webpack_require__(215);
+var hornet_content_1 = __webpack_require__(216);
+var user_1 = __webpack_require__(231);
+var menu_1 = __webpack_require__(233);
 var layout_switcher_1 = __webpack_require__(24);
 var change_language_1 = __webpack_require__(240);
 var dropdown_1 = __webpack_require__(39);
@@ -54283,7 +54362,7 @@ exports.HornetApp = HornetApp;
 
 
 /***/ }),
-/* 167 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54311,7 +54390,7 @@ isValidElement:K,version:"16.2.0",__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_F
 
 
 /***/ }),
-/* 168 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55676,7 +55755,7 @@ module.exports = react;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 169 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55765,7 +55844,7 @@ exports.DEFAULT_ERROR_HANDLER = function (report, errorPage) {
 
 
 /***/ }),
-/* 170 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55926,14 +56005,14 @@ exports.I18nUtils = I18nUtils;
 
 
 /***/ }),
-/* 171 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* jslint esnext: true */
 
 
-var src$core$$ = __webpack_require__(172), src$en$$ = __webpack_require__(177);
+var src$core$$ = __webpack_require__(173), src$en$$ = __webpack_require__(178);
 
 src$core$$["default"].__addLocaleData(src$en$$["default"]);
 src$core$$["default"].defaultLocale = 'en';
@@ -55943,7 +56022,7 @@ exports["default"] = src$core$$["default"];
 
 
 /***/ }),
-/* 172 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55956,7 +56035,7 @@ See the accompanying LICENSE file for terms.
 /* jslint esnext: true */
 
 
-var src$utils$$ = __webpack_require__(46), src$es5$$ = __webpack_require__(173), src$compiler$$ = __webpack_require__(174), intl$messageformat$parser$$ = __webpack_require__(175);
+var src$utils$$ = __webpack_require__(46), src$es5$$ = __webpack_require__(174), src$compiler$$ = __webpack_require__(175), intl$messageformat$parser$$ = __webpack_require__(176);
 exports["default"] = MessageFormat;
 
 // -- MessageFormat --------------------------------------------------------
@@ -56226,7 +56305,7 @@ MessageFormat.prototype._resolveLocale = function (locales) {
 
 
 /***/ }),
-/* 173 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -56282,7 +56361,7 @@ exports.defineProperty = defineProperty, exports.objCreate = objCreate;
 
 
 /***/ }),
-/* 174 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -56497,18 +56576,18 @@ SelectFormat.prototype.getOption = function (value) {
 
 
 /***/ }),
-/* 175 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-exports = module.exports = __webpack_require__(176)['default'];
+exports = module.exports = __webpack_require__(177)['default'];
 exports['default'] = exports;
 
 
 /***/ }),
-/* 176 */
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -57915,7 +57994,7 @@ exports["default"] = (function() {
 
 
 /***/ }),
-/* 177 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -57926,13 +58005,13 @@ exports["default"] = {"locale":"en","pluralRuleFunction":function (n,ord){var s=
 
 
 /***/ }),
-/* 178 */
+/* 179 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 179 */
+/* 180 */
 /***/ (function(module, exports) {
 
 /**
@@ -58309,7 +58388,7 @@ function pathToRegexp (path, keys, options) {
 
 
 /***/ }),
-/* 180 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58426,7 +58505,7 @@ exports.ExpandingLayout = ExpandingLayout;
 
 
 /***/ }),
-/* 181 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module, global) {var __WEBPACK_AMD_DEFINE_RESULT__;/*! https://mths.be/punycode v1.4.1 by @mathias */
@@ -58965,7 +59044,7 @@ exports.ExpandingLayout = ExpandingLayout;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(43)(module), __webpack_require__(8)))
 
 /***/ }),
-/* 182 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58988,18 +59067,18 @@ module.exports = {
 
 
 /***/ }),
-/* 183 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-exports.decode = exports.parse = __webpack_require__(184);
-exports.encode = exports.stringify = __webpack_require__(185);
+exports.decode = exports.parse = __webpack_require__(185);
+exports.encode = exports.stringify = __webpack_require__(186);
 
 
 /***/ }),
-/* 184 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59090,7 +59169,7 @@ var isArray = Array.isArray || function (xs) {
 
 
 /***/ }),
-/* 185 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59182,7 +59261,7 @@ var objectKeys = Object.keys || function (obj) {
 
 
 /***/ }),
-/* 186 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -59199,11 +59278,11 @@ if (typeof window !== 'undefined') { // Browser window
   root = this;
 }
 
-var Emitter = __webpack_require__(187);
-var RequestBase = __webpack_require__(188);
+var Emitter = __webpack_require__(188);
+var RequestBase = __webpack_require__(189);
 var isObject = __webpack_require__(73);
-var ResponseBase = __webpack_require__(189);
-var Agent = __webpack_require__(191);
+var ResponseBase = __webpack_require__(190);
+var Agent = __webpack_require__(192);
 
 /**
  * Noop.
@@ -60108,7 +60187,7 @@ request.put = function(url, data, fn) {
 
 
 /***/ }),
-/* 187 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -60277,7 +60356,7 @@ Emitter.prototype.hasListeners = function(event){
 
 
 /***/ }),
-/* 188 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60978,7 +61057,7 @@ RequestBase.prototype._setTimeouts = function() {
 
 
 /***/ }),
-/* 189 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60988,7 +61067,7 @@ RequestBase.prototype._setTimeouts = function() {
  * Module dependencies.
  */
 
-var utils = __webpack_require__(190);
+var utils = __webpack_require__(191);
 
 /**
  * Expose `ResponseBase`.
@@ -61119,7 +61198,7 @@ ResponseBase.prototype._setStatusProperties = function(status){
 
 
 /***/ }),
-/* 190 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61197,7 +61276,7 @@ exports.cleanHeader = function(header, changesOrigin){
 
 
 /***/ }),
-/* 191 */
+/* 192 */
 /***/ (function(module, exports) {
 
 function Agent() {
@@ -61223,7 +61302,7 @@ module.exports = Agent;
 
 
 /***/ }),
-/* 192 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61311,7 +61390,7 @@ var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var technical_error_1 = __webpack_require__(13);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.services.superagent-hornet-plugins");
-var browser = __webpack_require__(193);
+var browser = __webpack_require__(194);
 var HEADER_CSRF_NAME = "x-csrf-token";
 var HEADER_LOGIN_PAGE = "x-is-login-page";
 var HornetPlugin = /** @class */ (function () {
@@ -61472,7 +61551,7 @@ exports.AddParam = AddParam;
 
 
 /***/ }),
-/* 193 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -61547,7 +61626,7 @@ function getNodeVersion() {
   return isNode ? {
     name: 'node',
     version: process.version.slice(1),
-    os: __webpack_require__(62).type().toLowerCase()
+    os: __webpack_require__(64).type().toLowerCase()
   } : null;
 }
 
@@ -61650,7 +61729,7 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 194 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61735,7 +61814,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @license CECILL-2.1
  */
 var hornet_js_utils_1 = __webpack_require__(0);
-var OnionSkin = __webpack_require__(195);
+var OnionSkin = __webpack_require__(196);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.cache.hornet-cache");
 /**
  * Cache de l'application.
@@ -61785,26 +61864,26 @@ exports.HornetCache = HornetCache;
 
 
 /***/ }),
-/* 195 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var OnionSkin = __webpack_require__(196);
+var OnionSkin = __webpack_require__(197);
 OnionSkin.Drivers = {
   Utils: __webpack_require__(34),
   Ephemeral: __webpack_require__(75),
-  LocalStorage: __webpack_require__(198),
-  IndexedDB: __webpack_require__(199)
+  LocalStorage: __webpack_require__(199),
+  IndexedDB: __webpack_require__(200)
 };
 
 module.exports = OnionSkin;
 
 
 /***/ }),
-/* 196 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Item = __webpack_require__(74);
-var Pool = __webpack_require__(197);
+var Pool = __webpack_require__(198);
 var OnionSkin = function (drivers) {
   'use strict';
   return new Pool(drivers);
@@ -61822,7 +61901,7 @@ module.exports = OnionSkin;
 
 
 /***/ }),
-/* 197 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Promise = __webpack_require__(17);
@@ -61891,7 +61970,7 @@ module.exports = Pool;
 
 
 /***/ }),
-/* 198 */
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = LocalStorage;
@@ -61969,7 +62048,7 @@ LocalStorage.prototype.unlock = function (key) {
 
 
 /***/ }),
-/* 199 */
+/* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Promise = __webpack_require__(17);
@@ -62163,14 +62242,14 @@ IndexedDB.prototype._key = function (key) {
 
 
 /***/ }),
-/* 200 */
+/* 201 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer, global, process) {var capability = __webpack_require__(78)
 var inherits = __webpack_require__(11)
 var response = __webpack_require__(79)
 var stream = __webpack_require__(80)
-var toArrayBuffer = __webpack_require__(208)
+var toArrayBuffer = __webpack_require__(209)
 
 var IncomingMessage = response.IncomingMessage
 var rStates = response.readyStates
@@ -62493,7 +62572,7 @@ var unsafeHeaders = [
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(23).Buffer, __webpack_require__(8), __webpack_require__(4)))
 
 /***/ }),
-/* 201 */
+/* 202 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62616,7 +62695,7 @@ function fromByteArray (uint8) {
 
 
 /***/ }),
-/* 202 */
+/* 203 */
 /***/ (function(module, exports) {
 
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -62706,13 +62785,13 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 
 /***/ }),
-/* 203 */
+/* 204 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 204 */
+/* 205 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62721,7 +62800,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Buffer = __webpack_require__(36).Buffer;
-var util = __webpack_require__(205);
+var util = __webpack_require__(206);
 
 function copyBuffer(src, target, offset) {
   src.copy(target, offset);
@@ -62797,13 +62876,13 @@ if (util && util.inspect && util.inspect.custom) {
 }
 
 /***/ }),
-/* 205 */
+/* 206 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 206 */
+/* 207 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -62877,7 +62956,7 @@ function config (name) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
-/* 207 */
+/* 208 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62930,7 +63009,7 @@ PassThrough.prototype._transform = function (chunk, encoding, cb) {
 };
 
 /***/ }),
-/* 208 */
+/* 209 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Buffer = __webpack_require__(23).Buffer
@@ -62963,7 +63042,7 @@ module.exports = function (buf) {
 
 
 /***/ }),
-/* 209 */
+/* 210 */
 /***/ (function(module, exports) {
 
 module.exports = extend
@@ -62988,7 +63067,7 @@ function extend() {
 
 
 /***/ }),
-/* 210 */
+/* 211 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -63058,7 +63137,7 @@ module.exports = {
 
 
 /***/ }),
-/* 211 */
+/* 212 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var http = __webpack_require__(76)
@@ -63095,7 +63174,7 @@ function validateParams (params) {
 
 
 /***/ }),
-/* 212 */
+/* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63171,24 +63250,90 @@ function validateParams (params) {
  *
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(1);
 /**
- * hornet-js-core - Ensemble des composants qui forment le coeur de hornet-js
+ * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
  *
  * @author MEAE - Ministère de l'Europe et des Affaires étrangères
  * @version v5.1.1
  * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
  * @license CECILL-2.1
  */
-var DispositionType;
-(function (DispositionType) {
-    DispositionType["INLINE"] = "inline";
-    DispositionType["ATTACHMENT"] = "attachment";
-})(DispositionType = exports.DispositionType || (exports.DispositionType = {}));
+var hornet_js_utils_1 = __webpack_require__(0);
+var React = __webpack_require__(2);
+var hornet_event_1 = __webpack_require__(7);
+var spinner_component_1 = __webpack_require__(100);
+var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.spinner.spinner");
+/**
+ * Composant affichant une image (par défaut une roue dentée animée) et un texte d'attente
+ * dans une fenêtre modale en attendant la fin d'une action longue.
+ */
+var Spinner = /** @class */ (function (_super) {
+    tslib_1.__extends(Spinner, _super);
+    function Spinner(props, context) {
+        return _super.call(this, props, context) || this;
+    }
+    /**
+     * @inheritDoc
+     */
+    Spinner.prototype.componentDidMount = function () {
+        this.listen(hornet_event_1.ASYNCHRONOUS_REQUEST_EVENT, this.asyncRequestEventTreatment);
+    };
+    /**
+     * @inheritDoc
+     */
+    Spinner.prototype.componentWillUnmount = function () {
+        this.remove(hornet_event_1.ASYNCHRONOUS_REQUEST_EVENT, this.asyncRequestEventTreatment);
+    };
+    /**
+     * @inheritDoc
+     */
+    Spinner.prototype.render = function () {
+        return (this.state.isVisible ? this.renderLoader() : null);
+    };
+    /**
+     * Methode de rendu du loader
+     */
+    Spinner.prototype.renderLoader = function () {
+        return (React.createElement("div", null,
+            React.createElement("div", { className: "loader-overlay" }),
+            React.createElement("div", { className: "loader-page" })));
+    };
+    /**
+     * gestion des compteurs d'affichage/fermeture du spinner
+     */
+    Spinner.prototype.progress = function (inProgress) {
+        if (inProgress) {
+            this.count++;
+            setTimeout(this.openSpinner, this.props.minimalShowTimeInMs);
+        }
+        else {
+            this.count--;
+            if (this.count === 0)
+                this.closeSpinner();
+        }
+    };
+    /**
+     * Affichage Spinner
+     */
+    Spinner.prototype.openSpinner = function () {
+        if (this.count > 0 && !this.state.isVisible)
+            this.setState({ isVisible: true });
+    };
+    /**
+     * Fermeture Spinner
+     */
+    Spinner.prototype.closeSpinner = function () {
+        this.setState({ isVisible: false });
+    };
+    return Spinner;
+}(spinner_component_1.SpinnerComponent));
+exports.Spinner = Spinner;
 
 
 
 /***/ }),
-/* 213 */
+/* 214 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63331,7 +63476,7 @@ exports.HeaderPage = HeaderPage;
 
 
 /***/ }),
-/* 214 */
+/* 215 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63453,7 +63598,7 @@ exports.FooterPage = FooterPage;
 
 
 /***/ }),
-/* 215 */
+/* 216 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63543,8 +63688,8 @@ var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
 var router_client_async_elements_1 = __webpack_require__(19);
 var notification_1 = __webpack_require__(48);
-var bread_crumb_1 = __webpack_require__(227);
-var top_button_1 = __webpack_require__(229);
+var bread_crumb_1 = __webpack_require__(228);
+var top_button_1 = __webpack_require__(230);
 var error_page_1 = __webpack_require__(93);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.component.hornet-content");
 var HornetContent = /** @class */ (function (_super) {
@@ -63621,7 +63766,7 @@ exports.HornetContent = HornetContent;
 
 
 /***/ }),
-/* 216 */
+/* 217 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63857,7 +64002,7 @@ Z.injectIntoDevTools({findFiberByHostInstance:pb,bundleType:0,version:"16.2.0",r
 
 
 /***/ }),
-/* 217 */
+/* 218 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63872,7 +64017,7 @@ Z.injectIntoDevTools({findFiberByHostInstance:pb,bundleType:0,version:"16.2.0",r
  * @typechecks
  */
 
-var isNode = __webpack_require__(218);
+var isNode = __webpack_require__(219);
 
 /**
  * @param {*} object The object to check.
@@ -63885,7 +64030,7 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ }),
-/* 218 */
+/* 219 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63913,7 +64058,7 @@ function isNode(object) {
 module.exports = isNode;
 
 /***/ }),
-/* 219 */
+/* 220 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63947,8 +64092,8 @@ var containsNode = __webpack_require__(91);
 var focusNode = __webpack_require__(92);
 var emptyObject = __webpack_require__(29);
 var checkPropTypes = __webpack_require__(52);
-var hyphenateStyleName = __webpack_require__(220);
-var camelizeStyleName = __webpack_require__(222);
+var hyphenateStyleName = __webpack_require__(221);
+var camelizeStyleName = __webpack_require__(223);
 
 /**
  * WARNING: DO NOT manually require this module.
@@ -79315,7 +79460,7 @@ module.exports = reactDom;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 220 */
+/* 221 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79330,7 +79475,7 @@ module.exports = reactDom;
 
 
 
-var hyphenate = __webpack_require__(221);
+var hyphenate = __webpack_require__(222);
 
 var msPattern = /^ms-/;
 
@@ -79357,7 +79502,7 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 
 /***/ }),
-/* 221 */
+/* 222 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79393,7 +79538,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 222 */
+/* 223 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79408,7 +79553,7 @@ module.exports = hyphenate;
 
 
 
-var camelize = __webpack_require__(223);
+var camelize = __webpack_require__(224);
 
 var msPattern = /^-ms-/;
 
@@ -79436,7 +79581,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 223 */
+/* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79471,7 +79616,7 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 224 */
+/* 225 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79623,7 +79768,7 @@ exports.MessageItem = MessageItem;
 
 
 /***/ }),
-/* 225 */
+/* 226 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79733,7 +79878,7 @@ exports.AccordionHeader = AccordionHeader;
 
 
 /***/ }),
-/* 226 */
+/* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79843,7 +79988,7 @@ exports.AccordionInfo = AccordionInfo;
 
 
 /***/ }),
-/* 227 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79931,7 +80076,7 @@ var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
-var bread_crumb_item_1 = __webpack_require__(228);
+var bread_crumb_item_1 = __webpack_require__(229);
 var navigation_utils_1 = __webpack_require__(20);
 var router_client_async_elements_1 = __webpack_require__(19);
 var _ = __webpack_require__(6);
@@ -80052,7 +80197,7 @@ exports.BreadCrumb = BreadCrumb;
 
 
 /***/ }),
-/* 228 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80211,7 +80356,7 @@ exports.BreadCrumbItem = BreadCrumbItem;
 
 
 /***/ }),
-/* 229 */
+/* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80425,7 +80570,7 @@ exports.TopButton = TopButton;
 
 
 /***/ }),
-/* 230 */
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80597,7 +80742,7 @@ exports.User = User;
 
 
 /***/ }),
-/* 231 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80753,7 +80898,7 @@ exports.DropdownItem = DropdownItem;
 
 
 /***/ }),
-/* 232 */
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80841,12 +80986,12 @@ var tslib_1 = __webpack_require__(1);
 var React = __webpack_require__(2);
 var navigation_utils_1 = __webpack_require__(20);
 var hornet_component_1 = __webpack_require__(3);
-var menu_navigation_1 = __webpack_require__(233);
+var menu_navigation_1 = __webpack_require__(234);
 var _ = __webpack_require__(6);
 var classnames = __webpack_require__(9);
 var classNames = __webpack_require__(9);
 var key_codes_1 = __webpack_require__(10);
-var menu_info_accessibilite_1 = __webpack_require__(234);
+var menu_info_accessibilite_1 = __webpack_require__(235);
 var hornet_js_utils_1 = __webpack_require__(0);
 var layout_switcher_1 = __webpack_require__(24);
 var menu_link_1 = __webpack_require__(94);
@@ -81047,7 +81192,7 @@ exports.Menu = Menu;
 
 
 /***/ }),
-/* 233 */
+/* 234 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -81732,7 +81877,7 @@ exports.MenuNavigation = MenuNavigation;
 
 
 /***/ }),
-/* 234 */
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -81868,151 +82013,6 @@ var MenuInfoAccessibilite = /** @class */ (function (_super) {
     return MenuInfoAccessibilite;
 }(button_info_accessibilite_1.ButtonInfoAccessibilite));
 exports.MenuInfoAccessibilite = MenuInfoAccessibilite;
-
-
-
-/***/ }),
-/* 235 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * Ce logiciel est un programme informatique servant à faciliter la création
- * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
- * <p/>
- * Ce logiciel est régi par la licence CeCILL soumise au droit français et
- * respectant les principes de diffusion des logiciels libres. Vous pouvez
- * utiliser, modifier et/ou redistribuer ce programme sous les conditions
- * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
- * sur le site "http://www.cecill.info".
- * <p/>
- * En contrepartie de l'accessibilité au code source et des droits de copie,
- * de modification et de redistribution accordés par cette licence, il n'est
- * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
- * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
- * titulaire des droits patrimoniaux et les concédants successifs.
- * <p/>
- * A cet égard  l'attention de l'utilisateur est attirée sur les risques
- * associés au chargement,  à l'utilisation,  à la modification et/ou au
- * développement et à la reproduction du logiciel par l'utilisateur étant
- * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
- * manipuler et qui le réserve donc à des développeurs et des professionnels
- * avertis possédant  des  connaissances  informatiques approfondies.  Les
- * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
- * logiciel à leurs besoins dans des conditions permettant d'assurer la
- * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
- * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
- * <p/>
- * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
- * pris connaissance de la licence CeCILL, et que vous en avez accepté les
- * termes.
- * <p/>
- * <p/>
- * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * This software is a computer program whose purpose is to facilitate creation of
- * web application in accordance with french general repositories : RGI, RGS and RGAA.
- * <p/>
- * This software is governed by the CeCILL license under French law and
- * abiding by the rules of distribution of free software.  You can  use,
- * modify and/ or redistribute the software under the terms of the CeCILL
- * license as circulated by CEA, CNRS and INRIA at the following URL
- * "http://www.cecill.info".
- * <p/>
- * As a counterpart to the access to the source code and  rights to copy,
- * modify and redistribute granted by the license, users are provided only
- * with a limited warranty  and the software's author,  the holder of the
- * economic rights,  and the successive licensors  have only  limited
- * liability.
- * <p/>
- * In this respect, the user's attention is drawn to the risks associated
- * with loading,  using,  modifying and/or developing or reproducing the
- * software by the user in light of its specific status of free software,
- * that may mean  that it is complicated to manipulate,  and  that  also
- * therefore means  that it is reserved for developers  and  experienced
- * professionals having in-depth computer knowledge. Users are therefore
- * encouraged to load and test the software's suitability as regards their
- * requirements in conditions enabling the security of their systems and/or
- * data to be ensured and,  more generally, to use and operate it in the
- * same conditions as regards security.
- * <p/>
- * The fact that you are presently reading this means that you have had
- * knowledge of the CeCILL license and that you accept its terms.
- *
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(1);
-/**
- * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
- *
- * @author MEAE - Ministère de l'Europe et des Affaires étrangères
- * @version v5.1.1
- * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
- * @license CECILL-2.1
- */
-var hornet_js_utils_1 = __webpack_require__(0);
-var React = __webpack_require__(2);
-var hornet_component_1 = __webpack_require__(3);
-var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.icon.icon");
-/** Valeur de l'url par défaut lorsque la propriété url est vide */
-exports.EMPTY_URL = "#";
-/**
- * Composant Icône
- */
-var Icon = /** @class */ (function (_super) {
-    tslib_1.__extends(Icon, _super);
-    function Icon() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    /**
-     * Retire le focus de l'élément une fois cliqué de façon à permettre de scroller ou mettre le focus sur les
-     * notifications éventuellement présentées suite à l'action.
-     * @param event évènement
-     * @protected
-     */
-    Icon.prototype.iconOnClick = function (event) {
-        if (event.currentTarget && event.currentTarget.blur) {
-            event.currentTarget.blur();
-        }
-        else {
-            logger.warn("iconOnClick : impossible d'enlever le focus de l'élement");
-        }
-        /* Exécute ensuite la fonction fournie en propriétés */
-        if (this.state.action) {
-            this.state.action();
-        }
-    };
-    /**
-     * @inheritDoc
-     */
-    Icon.prototype.render = function () {
-        var result;
-        if (this.state.url == null || this.state.url == exports.EMPTY_URL) {
-            /* L'URL n'est pas valorisée : le comportement est celui d'un bouton (raccourci clavier : Entrée OU Espace )
-             * (cf. https://www.w3.org/TR/wai-aria-practices/#button > "Keyboard Interaction")  */
-            result = React.createElement("button", { type: "button", title: this.state.title, id: this.state.idLink, className: this.props.classLink, onClick: this.iconOnClick, tabIndex: this.props.tabIndex, "aria-haspopup": this.props.hasPopUp },
-                React.createElement("img", { src: this.state.src, alt: this.state.alt, id: this.state.idImg, className: this.state.classImg }));
-        }
-        else {
-            /* L'URL est valorisée : le comportement est celui d'un lien (raccourci clavier : Entrée uniquement )*/
-            result = React.createElement("a", { href: this.state.url, title: this.state.title, id: this.state.idLink, className: this.props.classLink, onClick: this.iconOnClick, target: this.state.target, tabIndex: this.props.tabIndex },
-                React.createElement("img", { src: this.state.src, alt: this.state.alt, id: this.state.idImg, className: this.state.classImg }));
-        }
-        return result;
-    };
-    Icon.defaultProps = {
-        url: exports.EMPTY_URL
-    };
-    return Icon;
-}(hornet_component_1.HornetComponent));
-exports.Icon = Icon;
 
 
 
@@ -85498,7 +85498,7 @@ var hornet_js_utils_1 = __webpack_require__(0);
 var hornet_component_1 = __webpack_require__(3);
 var hornet_superagent_1 = __webpack_require__(72);
 var wakeup_node_1 = __webpack_require__(243);
-var picto_1 = __webpack_require__(97);
+var picto_1 = __webpack_require__(96);
 var classNames = __webpack_require__(9);
 var moment = __webpack_require__(44);
 moment.duration.fn.format = function () {

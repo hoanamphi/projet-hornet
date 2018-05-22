@@ -17,6 +17,8 @@ var schema = require("src/resources/admin/fvm/validation-form1.json");
 var select_field_1 = require("hornet-js-react-components/src/widget/form/select-field");
 var notification_manager_1 = require("hornet-js-core/src/notification/notification-manager");
 var datasource_config_page_1 = require("hornet-js-core/src/component/datasource/config/service/datasource-config-page");
+var icon_1 = require("hornet-js-react-components/src/widget/icon/icon");
+var picto_1 = require("hornet-js-react-components/src/img/picto");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
 var FormulairePage = /** @class */ (function (_super) {
     tslib_1.__extends(FormulairePage, _super);
@@ -40,9 +42,6 @@ var FormulairePage = /** @class */ (function (_super) {
                 console.error(result.hasError);
                 _this.SequelizeErrors.text = result.hasReason;
                 notification_manager_1.NotificationManager.notify("SequelizeError", "errors", _this.errors, null, null, null, null);
-            }
-            else {
-                console.log(result);
             }
         }).catch(function (reason) {
             console.error(reason);
@@ -75,8 +74,8 @@ var FormulairePage = /** @class */ (function (_super) {
                     React.createElement(select_field_1.SelectField, { dataSource: this.prefectures, label: format.fields.id_prefecture.label, name: "id_prefecture", required: true })),
                 React.createElement(row_1.Row, null,
                     React.createElement(upload_file_field_1.UploadFileField, { name: "copie_note_verbale_maeci", label: format.fields.copie_note_verbale_maeci.label, buttonLabel: format.fields.copie_note_verbale_maeci.buttonLabel, fileSelectedLabel: format.fields.copie_note_verbale_maeci.fileSelectedLabel, required: true })),
+                React.createElement(icon_1.Icon, { src: picto_1.Picto.white.undo, alt: "retour", title: "Retourner \u00E0 la page de s\u00E9lection", action: this.retourPage }),
                 React.createElement(buttons_area_1.ButtonsArea, null,
-                    React.createElement(button_1.Button, { type: "button", onClick: this.retourPage, label: "annuler" }),
                     React.createElement(button_1.Button, { type: "submit", value: "Valider", className: "hornet-button", label: "valider", title: "valider" })))));
     };
     FormulairePage.prototype.retourPage = function () {

@@ -40,7 +40,7 @@ var RecordListPage = /** @class */ (function (_super) {
         });
     };
     RecordListPage.prototype.onSubmit = function (data) {
-        var criteria = { "num_permis": data.num_permis };
+        var criteria = { "numPermis": data.num_permis };
         if (data.nom != null) {
             criteria["nom"] = data.nom;
         }
@@ -48,13 +48,9 @@ var RecordListPage = /** @class */ (function (_super) {
             criteria["prenom"] = data.prenom;
         }
         if (data.date_de_naissance != null) {
-            criteria["date_de_naissance"] = Date.parse(data.date_de_naissance);
+            criteria["dateDeNaissance"] = Date.parse(data.date_de_naissance);
         }
         var subList = this.entries.findAll(criteria);
-        console.log(criteria);
-        subList.forEach(function (result) {
-            console.log(result);
-        });
         this.entries.deleteAll();
         this.entries.add(true, subList);
     };
@@ -68,12 +64,12 @@ var RecordListPage = /** @class */ (function (_super) {
                         React.createElement(action_button_1.ActionButton, { title: "Ajout", srcImg: picto_1.Picto.white.ajouter, displayedWithoutResult: true, action: this.ajouterDossier, priority: true }))),
                 React.createElement(content_1.Content, { dataSource: this.entries },
                     React.createElement(columns_1.Columns, null,
-                        React.createElement(column_1.Column, { keyColumn: "num_permis", title: format.fields.num_permis.label, sortable: false }),
+                        React.createElement(column_1.Column, { keyColumn: "numPermis", title: format.fields.num_permis.label, sortable: false }),
                         React.createElement(column_1.Column, { keyColumn: "nom", title: format.fields.nom.label, sortable: true }),
                         React.createElement(column_1.Column, { keyColumn: "prenom", title: format.fields.prenom.label, sortable: false }),
-                        React.createElement(date_column_1.DateColumn, { keyColumn: "date_de_naissance", title: format.fields.date_de_naissance.label, sortable: false }),
-                        React.createElement(date_column_1.DateColumn, { keyColumn: "date_reception_dossier", title: format.fields.date_reception_dossier.label, sortable: true }),
-                        React.createElement(action_column_1.ActionColumn, { keyColumn: "id_permis", srcImg: picto_1.Picto.black.consulter, url: "/record/:id_permis" }))),
+                        React.createElement(date_column_1.DateColumn, { keyColumn: "dateDeNaissance", title: format.fields.date_de_naissance.label, sortable: false }),
+                        React.createElement(date_column_1.DateColumn, { keyColumn: "dateReceptionDossier", title: format.fields.date_reception_dossier.label, sortable: true }),
+                        React.createElement(action_column_1.ActionColumn, { keyColumn: "idPermis", srcImg: picto_1.Picto.black.consulter, url: "/record/:idPermis" }))),
                 React.createElement(footer_1.Footer, null,
                     React.createElement(pager_1.Pager, { dataSource: this.entries, id: "table-paginate" }))),
             React.createElement("h3", null, " Recherche d'un dossier "),

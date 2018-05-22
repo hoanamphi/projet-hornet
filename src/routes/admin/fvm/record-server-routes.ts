@@ -1,4 +1,5 @@
 import {
+  GetCopiePermis,
   GetDemandeAuthentification, GetDossier,
   GetNoteVerbale,
   GetReleve,
@@ -7,6 +8,8 @@ import {
 import { DataRouteInfos, PUBLIC_ROUTE } from "hornet-js-core/src/routes/abstract-routes";
 import RecordListRoutesClient from "./record-client-routes";
 import {ClientListServiceImpl} from "../../../services/data/admin/fvm/client-list-service-impl-data";
+import {Injector} from "hornet-js-core/src/inject/injector";
+import {Roles} from '../../../utils/roles';
 
 export default class RecordListRoutesServer extends RecordListRoutesClient {
   constructor() {
@@ -40,6 +43,12 @@ export default class RecordListRoutesServer extends RecordListRoutesClient {
       (id) => new DataRouteInfos(GetNoteVerbale, null, ClientListServiceImpl),
       PUBLIC_ROUTE,
       "post"
+    );
+
+    this.addDataRoute("/copiePermis/(\\d+)",
+      (idPermis) => new DataRouteInfos(GetCopiePermis, {"idPermis": idPermis}, ClientListServiceImpl),
+      PUBLIC_ROUTE,
+      "get"
     );
   }
 }

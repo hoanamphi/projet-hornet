@@ -14,6 +14,7 @@ var RecordListRoutesServer = /** @class */ (function (_super) {
         _this.addDataRoute("/detailsDossiers/demandeauthentification", function (id) { return new abstract_routes_1.DataRouteInfos(fvm_action_1.GetDemandeAuthentification, null, client_list_service_impl_data_1.ClientListServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE, "post");
         _this.addDataRoute("/detailsDossiers/releve", function (id) { return new abstract_routes_1.DataRouteInfos(fvm_action_1.GetReleve, null, client_list_service_impl_data_1.ClientListServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE, "post");
         _this.addDataRoute("/detailsDossiers/noteverbale", function (id) { return new abstract_routes_1.DataRouteInfos(fvm_action_1.GetNoteVerbale, null, client_list_service_impl_data_1.ClientListServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE, "post");
+        _this.addDataRoute("/copiePermis/(\\d+)", function (idPermis) { return new abstract_routes_1.DataRouteInfos(fvm_action_1.GetCopiePermis, { "idPermis": idPermis }, client_list_service_impl_data_1.ClientListServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE, "get");
         return _this;
     }
     return RecordListRoutesServer;
