@@ -46,25 +46,34 @@ const logger: Logger = Utils.getLogger("projet-hornet.views.admin.gen-form1-page
 
 export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any> {
 
+  private dossierDatasource;
   private dossier;
-  private demandeauthentification;
-  private releve;
-  private noteverbale;
+  private demandeauthentificationDatasource;
+  private valiseDatasource
+  private releveDatasource;
+  private noteverbaleDatasource;
 
   private tabs = new Tabs<TabsProps>();
 
   constructor(props?: HornetComponentProps, context?: any) {
     super(props, context);
 
-    this.dossier = new DataSource<any>(new DataSourceConfigPage(this, this.getService().getDossier), {},);
+    this.dossierDatasource = new DataSource<any>(new DataSourceConfigPage(this, this.getService().getDossier), {},);
+    this.demandeauthentificationDatasource = new DataSource<any>(new DataSourceConfigPage(this, this.getService().getDemandeAuthentification), {},);
+    this.valiseDatasource = new DataSource<any>(new DataSourceConfigPage(this, this.getService().getListeValise), {},);
   }
 
   prepareClient(): void {
-    this.dossier.fetch(true, this.attributes);
-    this.dossier.on("fetch", (Result)=>{
+    this.dossierDatasource.fetch(true, this.attributes);
+    this.dossierDatasource.on("fetch", (Result)=>{
       this.tabs.addElements(0, this.renderDossierTab(Result[0]));
       this.tabs.removeElementsById("temp");
     });
+    // this.demandeauthentificationDatasource.fetch(true, this.attributes);
+    // this.demandeauthentificationDatasource.on("fetch", (Result)=>{
+    //   this.valiseDatasource.fetch(true);
+    //   this.tabs.addElements(1, this.renderDemandeAuthentificationTab(Result));
+    // });
   }
 
   onSubmit(data: any) {
@@ -88,6 +97,9 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
 
   renderDossierTab(dossier): JSX.Element {
     let format = this.i18n("form");
+
+    this.dossier = dossier;
+
     return (
       <Tab id="tabDossier" title="Dossier">
         <TabContent>
@@ -96,7 +108,7 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
             <Accordion title="Permis" isOpen={false}>
               <Row>
                 <Table id="entrée permis">
-                  <Content dataSource={this.dossier}>
+                  <Content dataSource={this.dossierDatasource}>
                     <Columns>
                       <Column keyColumn="numPermis"
                               title={format.fields.num_permis.label}
@@ -112,7 +124,7 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
                 <div>
                   <b> {format.fields.id_prefecture.label} </b>
                   <Table id="entrée préfecture">
-                    <Content dataSource={this.dossier}>
+                    <Content dataSource={this.dossierDatasource}>
                       <Columns>
                         <Column keyColumn="adresse"
                                 title={format.fields.adresse.label}
@@ -132,7 +144,7 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
                         <Column keyColumn="region"
                                 title={format.fields.region.label}
                                 sortable={false}/>
-                        <DateColumn keyColumn="date_reception_dossier"
+                        <DateColumn keyColumn="dateReceptionDossier"
                                     title={format.fields.date_reception_dossier.label}
                                     sortable={false}/>
                       </Columns>
@@ -143,7 +155,7 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
             </Accordion>
             <Accordion title="Personne titulaire du permis" isOpen={false}>
               <Table id="entrée personne">
-                <Content dataSource={this.dossier}>
+                <Content dataSource={this.dossierDatasource}>
                   <Columns>
                     <Column keyColumn="nom"
                             title={format.fields.nom.label}
@@ -154,10 +166,10 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
                     <DateColumn keyColumn="dateDeNaissance"
                                 title={format.fields.date_de_naissance.label}
                                 sortable={false}/>
-                    <Column keyColumn="ville_de_naissance"
+                    <Column keyColumn="villeDeNaissance"
                             title={format.fields.ville_de_naissance.label}
                             sortable={false}/>
-                    <Column keyColumn="pays_de_naissance"
+                    <Column keyColumn="paysDeNaissance"
                             title={format.fields.pays_de_naissance.label}
                             sortable={false}/>
                   </Columns>
@@ -165,13 +177,20 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
               </Table>
             </Accordion>
             <Accordion title="Annexes" isOpen={false}>
-              <Form id="form" readOnly={true} defaultValues={dossier}>
+              <Form id="fileform" readOnly={true} defaultValues={this.dossier}>
                 <UploadFileField name="copie_permis"
                                  readOnly={true}
                                  label={format.fields.copie_permis.label}
-                                 renderPreviewFile={this.renderCopieNoteVerbaleMAECI}
+                                 renderPreviewFile={this.renderCopiePermis}
                                  buttonLabel={format.fields.copie_permis.buttonLabel}
                                  fileSelectedLabel={format.fields.copie_permis.fileSelectedLabel}
+                />
+                <UploadFileField name="copie_note_verbale_maeci"
+                                 readOnly={true}
+                                 label={format.fields.copie_note_verbale_maeci.label}
+                                 renderPreviewFile={this.renderCopieNoteVerbaleMAECI}
+                                 buttonLabel={format.fields.copie_note_verbale_maeci.buttonLabel}
+                                 fileSelectedLabel={format.fields.copie_note_verbale_maeci.fileSelectedLabel}
                 />
               </Form>
             </Accordion>
@@ -181,22 +200,64 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
     );
   }
 
-  renderCopieNoteVerbaleMAECI(file: UploadedFile): React.ReactElement<any> {
+  renderCopiePermis(file: UploadedFile): React.ReactElement<any> {
     let format = this.i18n("form");
     let fileTag: React.ReactElement<any> = null;
+    console.log(this.dossier.copie_permis);
 
-    let urlfile: string = Utils.buildContextPath("/services/recordserver/copiePermis/"+this.attributes.id);
+    let urlfile: string = Utils.buildContextPath("/services/recordserver/copiePermis/"+this.dossier.copie_permis.idCopiePermis);
 
-    let fileTarget = "newTabForPhoto" + this.attributes.id;
+    let fileTarget = "newTabForCopiePermis" + this.attributes.id;
 
     fileTag =
       <div className="grid-form-field ">
         <div className="">
           <a href={urlfile} data-pass-thru="true"
-             target={fileTarget}>{format.fields.copie_permis.label}</a>
+             target={fileTarget}>{this.dossier.copie_permis.nom}</a>
         </div>
       </div>;
 
     return fileTag;
+  }
+
+  renderCopieNoteVerbaleMAECI(file: UploadedFile): React.ReactElement<any> {
+    let format = this.i18n("form");
+    let fileTag: React.ReactElement<any> = null;
+
+    let urlfile: string = Utils.buildContextPath("/services/recordserver/copieNoteVerbaleMAECI/"+this.dossier.copie_note_verbale_maeci.idCopieNoteVerbaleMAECI);
+
+    let fileTarget = "newTabForCopieNoteVerbaleMAECI" + this.attributes.id;
+
+    fileTag =
+      <div className="grid-form-field ">
+        <div className="">
+          <a href={urlfile} data-pass-thru="true"
+             target={fileTarget}>{this.dossier.copie_note_verbale_maeci.nom}</a>
+        </div>
+      </div>;
+
+    return fileTag;
+  }
+
+  renderDemandeAuthentificationTab(demandeAuthentificationList): JSX.Element {
+    let format = this.i18n("form");
+
+    if(demandeAuthentificationList.length > 0) {
+      return (
+        <Tab id="tabDemandeAuthentification" title="Demande d'Authentification">
+          <TabContent>
+            <p> rien </p>
+          </TabContent>
+        </Tab>
+      );
+    } else {
+      return (
+        <Tab id="tabDemandeAuthentification" title="Demande d'Authentification">
+          <TabContent>
+            <p> Vous n'avez pas encore généré de demande d'authentification pour ce dossier </p>
+          </TabContent>
+        </Tab>
+      );
+    }
   }
 }

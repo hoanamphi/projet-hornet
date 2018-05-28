@@ -10,5 +10,6 @@ export interface ClientListService {
   getReleve(data): Promise<any>;
   getNoteVerbale(data): Promise<any>;
 
-  getCopiePermis(data): Promise<any>;
+  getCopiePermis(idCopiePermis): Promise<any>;
+  getCopieNoteVerbaleMAECI(idCopieNoteVerbaleMAECI): Promise<any>;
 }

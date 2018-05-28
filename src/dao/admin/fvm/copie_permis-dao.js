@@ -26,7 +26,7 @@ var CopiePermisFVMDao = /** @class */ (function (_super) {
         });
     };
     CopiePermisFVMDao.prototype.getNewNom = function (idCopiePermis) {
-        return ("copieNoteVerbaleMAECI" + idCopiePermis + (new Date())).replace(/\s+/g, "_");
+        return ("copiePermis" + idCopiePermis + (new Date())).replace(/\s+/g, "_");
     };
     CopiePermisFVMDao.prototype.getNewIdCopiePermis = function () {
         var _this = this;
@@ -35,7 +35,7 @@ var CopiePermisFVMDao = /** @class */ (function (_super) {
                 return _this.modelDAO.copiePermisFVMEntity.max("idCopiePermis");
             }
             else {
-                return Promise.resolve(0);
+                return Promise.resolve(-1);
             }
         }).then(function (max) {
             return Promise.resolve(max + 1);

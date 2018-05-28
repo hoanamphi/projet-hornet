@@ -6,7 +6,7 @@ import {ClientListService} from "../../../services/page/admin/fvm/client-list-se
 import {ResultDOC} from "hornet-js-core/src/result/result-doc";
 import {ResultFile} from "hornet-js-core/src/result/result-file";
 import {MediaTypes} from "hornet-js-core/src/protocol/media-type";
-import {CopiePermisFVMMetier} from "../../../models/fvm/fvm-mod";
+import {CopieNoteVerbaleMAECIFVMMetier, CopiePermisFVMMetier} from "../../../models/fvm/fvm-mod";
 import {ResultJSON} from "hornet-js-core/src/result/result-json";
 
 const logger: Logger = Utils.getLogger("projet-hornet.actions.admin.permis_actions");
@@ -95,16 +95,30 @@ export class GetNoteVerbale extends RouteActionService<any, ClientListService> {
   }
 }
 
-export class GetCopiePermis extends RouteActionService<{"idPermis": number}, ClientListService> {
+export class GetCopiePermis extends RouteActionService<{"idCopiePermis": number}, ClientListService> {
   execute(): Promise<any> {
     logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
 
-    return this.getService().getCopiePermis(this.attributes.idPermis).then((copiePermis: CopiePermisFVMMetier) => {
+    return this.getService().getCopiePermis(this.attributes.idCopiePermis).then((copiePermis: CopiePermisFVMMetier) => {
       return new ResultFile({"data": copiePermis.data,
           "filename": copiePermis.nom,
           "encoding": copiePermis.encoding,
           "size": copiePermis.size
         }, MediaTypes.fromMime(copiePermis.mimetype));
+    });
+  }
+}
+
+export class GetCopieNoteVerbaleMAECI extends RouteActionService<{"idCopieNoteVerbaleMAECI": number}, ClientListService> {
+  execute(): Promise<any> {
+    logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
+
+    return this.getService().getCopieNoteVerbaleMAECI(this.attributes.idCopieNoteVerbaleMAECI).then((copieNoteVerbaleMAECI: CopieNoteVerbaleMAECIFVMMetier) => {
+      return new ResultFile({"data": copieNoteVerbaleMAECI.data,
+        "filename": copieNoteVerbaleMAECI.nom,
+        "encoding": copieNoteVerbaleMAECI.encoding,
+        "size": copieNoteVerbaleMAECI.size
+      }, MediaTypes.fromMime(copieNoteVerbaleMAECI.mimetype));
     });
   }
 }

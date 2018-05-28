@@ -29,7 +29,7 @@ var DossierFVMDAO = /** @class */ (function (_super) {
                 return _this.modelDAO.dossierFVMEntity.max("idDossier");
             }
             else {
-                return Promise.resolve(0);
+                return Promise.resolve(-1);
             }
         }).then(function (max) {
             return Promise.resolve(max + 1);

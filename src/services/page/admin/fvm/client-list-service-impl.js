@@ -48,13 +48,14 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
         };
         return this.fetch(request);
     };
-    ClientListServiceImpl.prototype.getCopiePermis = function (idPermis) {
-        var request = {
-            method: "post",
-            url: this.buildUrl("/recordserver/copiePermis/" + idPermis)
-        };
-        return this.fetch(request);
+    ClientListServiceImpl.prototype.getCopiePermis = function (idCopiePermis) {
+        return Promise.reject("service uniquement disponible côté serveur");
     };
+    ;
+    ClientListServiceImpl.prototype.getCopieNoteVerbaleMAECI = function (idCopieNoteVerbaleMAECI) {
+        return Promise.reject("service uniquement disponible côté serveur");
+    };
+    ;
     return ClientListServiceImpl;
 }(service_page_1.ServicePage));
 exports.ClientListServiceImpl = ClientListServiceImpl;

@@ -9,6 +9,7 @@ var dossier_dao_1 = require("../../../../dao/admin/fvm/dossier-dao");
 var permis_dao_1 = require("../../../../dao/admin/fvm/permis-dao");
 var copie_permis_dao_1 = require("../../../../dao/admin/fvm/copie_permis-dao");
 var prefecture_dao_1 = require("../../../../dao/prefecture-dao");
+var demande_authentification_dao_1 = require("../../../../dao/admin/fvm/demande_authentification-dao");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.services.data.admin.admin-service-impl-data");
 var ClientListServiceImpl = /** @class */ (function (_super) {
     tslib_1.__extends(ClientListServiceImpl, _super);
@@ -20,6 +21,7 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
         _this.copieNoteVerbaleMAECIDAO = new copie_note_verbale_MAECI_dao_1.CopieNoteVerbaleMAECIFVMDao();
         _this.copiePermisDAO = new copie_permis_dao_1.CopiePermisFVMDao();
         _this.prefectureDAO = new prefecture_dao_1.PrefectureDAO();
+        _this.demandeAuthentificationDAO = new demande_authentification_dao_1.DemandeAuthentificationDAO();
         return _this;
     }
     ClientListServiceImpl.prototype.getListeDossiers = function () {
@@ -81,20 +83,23 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
                 result["dateDeNaissance"] = Date.parse(personne.dateDeNaissance);
                 result["villeDeNaissance"] = personne.villeDeNaissance;
                 result["paysDeNaissance"] = personne.paysDeNaissance;
-                result["dateReceptionDossier"] = Date.parse(dossier.dateReceptionDossier);
                 result["region"] = prefecture.region;
                 result["departement"] = prefecture.departement;
                 result["prefecture"] = prefecture.prefecture;
                 result["adresse"] = prefecture.adresse;
                 result["codePostal"] = prefecture.codePostal;
                 result["ville"] = prefecture.ville;
-                return Promise.resolve([result]);
+                result["dateReceptionDossier"] = Date.parse(dossier.dateReceptionDossier);
+                return _this.copieNoteVerbaleMAECIDAO.getCopieNoteVerbaleMAECI(dossier.idCopieNoteVerbaleMAECI).then(function (values) {
+                    result["copie_note_verbale_maeci"] = values[0];
+                    return Promise.resolve([result]);
+                });
             });
         });
     };
     ClientListServiceImpl.prototype.getDemandeAuthentification = function (data) {
         var idPermis = data["id"];
-        return Promise.resolve([]);
+        return this.demandeAuthentificationDAO.getDemandeAuthentification(idPermis);
     };
     ClientListServiceImpl.prototype.getReleve = function (data) {
         var idPermis = data["id"];
@@ -104,14 +109,14 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
         var idPermis = data["id"];
         return Promise.resolve([]);
     };
-    ClientListServiceImpl.prototype.getCopiePermis = function (idPermis) {
-        var _this = this;
-        console.log(idPermis);
-        return this.permisDAO.getPermis(idPermis).then(function (values) {
-            var permis = values[0];
-            return _this.copiePermisDAO.getCopiePermis(permis.idCopiePermis).then(function (values) {
-                return Promise.resolve(values[0]);
-            });
+    ClientListServiceImpl.prototype.getCopiePermis = function (idCopiePermis) {
+        return this.copiePermisDAO.getCopiePermis(idCopiePermis).then(function (values) {
+            return Promise.resolve(values[0]);
+        });
+    };
+    ClientListServiceImpl.prototype.getCopieNoteVerbaleMAECI = function (idCopieNoteVerbaleMAECI) {
+        return this.copieNoteVerbaleMAECIDAO.getCopieNoteVerbaleMAECI(idCopieNoteVerbaleMAECI).then(function (values) {
+            return Promise.resolve(values[0]);
         });
     };
     return ClientListServiceImpl;

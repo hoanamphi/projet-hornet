@@ -32,7 +32,7 @@ var PersonneFVMDAO = /** @class */ (function (_super) {
                 return _this.modelDAO.personneFVMEntity.max("idPersonne");
             }
             else {
-                return Promise.resolve(0);
+                return Promise.resolve(-1);
             }
         }).then(function (max) {
             return Promise.resolve(max + 1);

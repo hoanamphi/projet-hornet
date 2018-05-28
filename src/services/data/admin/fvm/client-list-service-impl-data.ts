@@ -8,6 +8,7 @@ import {PermisFVMDAO} from "../../../../dao/admin/fvm/permis-dao";
 import {CopiePermisFVMDao} from "../../../../dao/admin/fvm/copie_permis-dao";
 import {PrefectureDAO} from "../../../../dao/prefecture-dao";
 import {ClientListService} from "../../../page/admin/fvm/client-list-service";
+import {DemandeAuthentificationDAO} from "../../../../dao/admin/fvm/demande_authentification-dao";
 
 const logger: Logger = Utils.getLogger("projet-hornet.services.data.admin.admin-service-impl-data");
 
@@ -19,6 +20,7 @@ export class ClientListServiceImpl extends ServiceRequest implements ClientListS
   private copieNoteVerbaleMAECIDAO = new CopieNoteVerbaleMAECIFVMDao();
   private copiePermisDAO = new CopiePermisFVMDao();
   private prefectureDAO = new PrefectureDAO();
+  private demandeAuthentificationDAO = new DemandeAuthentificationDAO();
 
   getListeDossiers(): Promise<any> {
     return this.permisDAO.getAllPermis().then(permisList=>{
@@ -39,7 +41,7 @@ export class ClientListServiceImpl extends ServiceRequest implements ClientListS
 
         let result = [];
         permisList.forEach(permis=>{
-          let obj = {"idPermis":permis.idPermis, "numPermis": null, "nom": null, "prenom": null, "dateDeNaissance": null, "dateReceptionDossier": null};
+          let obj = {"idPermis": permis.idPermis, "numPermis": null, "nom": null, "prenom": null, "dateDeNaissance": null, "dateReceptionDossier": null};
           obj.numPermis = permis.numPermis;
 
           personneList.forEach(personne=>{
@@ -92,9 +94,6 @@ export class ClientListServiceImpl extends ServiceRequest implements ClientListS
         result["villeDeNaissance"] = personne.villeDeNaissance;
         result["paysDeNaissance"] = personne.paysDeNaissance;
 
-
-        result["dateReceptionDossier"] = Date.parse(dossier.dateReceptionDossier);
-
         result["region"] = prefecture.region;
         result["departement"] = prefecture.departement;
         result["prefecture"] = prefecture.prefecture;
@@ -102,14 +101,19 @@ export class ClientListServiceImpl extends ServiceRequest implements ClientListS
         result["codePostal"] = prefecture.codePostal;
         result["ville"] = prefecture.ville;
 
-        return Promise.resolve([result]);
+        result["dateReceptionDossier"] = Date.parse(dossier.dateReceptionDossier);
+
+        return this.copieNoteVerbaleMAECIDAO.getCopieNoteVerbaleMAECI(dossier.idCopieNoteVerbaleMAECI).then(values=>{
+          result["copie_note_verbale_maeci"] = values[0];
+          return Promise.resolve([result]);
+        });
       });
     });
   }
 
   getDemandeAuthentification(data): Promise<any> {
     let idPermis = data["id"];
-    return Promise.resolve([]);
+    return this.demandeAuthentificationDAO.getDemandeAuthentification(idPermis);
   }
 
   getReleve(data): Promise<any> {
@@ -122,14 +126,15 @@ export class ClientListServiceImpl extends ServiceRequest implements ClientListS
     return Promise.resolve([]);
   }
 
-  getCopiePermis(idPermis): Promise<any> {
-    console.log(idPermis);
-    return this.permisDAO.getPermis(idPermis).then(values=>{
-      let permis = values[0];
-
-      return this.copiePermisDAO.getCopiePermis(permis.idCopiePermis).then(values=>{
+  getCopiePermis(idCopiePermis): Promise<any> {
+    return this.copiePermisDAO.getCopiePermis(idCopiePermis).then(values=>{
         return Promise.resolve(values[0]);
-      });
+    });
+  }
+
+  getCopieNoteVerbaleMAECI(idCopieNoteVerbaleMAECI): Promise<any> {
+    return this.copieNoteVerbaleMAECIDAO.getCopieNoteVerbaleMAECI(idCopieNoteVerbaleMAECI).then(values=>{
+      return Promise.resolve(values[0]);
     });
   }
 }

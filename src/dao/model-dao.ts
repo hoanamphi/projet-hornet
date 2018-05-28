@@ -40,6 +40,7 @@ import { injectable, Scope, Side } from "hornet-js-core/src/inject/injectable";
 import { HornetSequelizeModel } from "hornet-js-database/src/sequelize/hornet-sequelize-model";
 import { inject } from "hornet-js-core/src/inject/inject";
 import { HornetSequelizeInstanceModel } from "hornet-js-database/src/sequelize/hornet-sequelize-attributes";
+import {SequelizeUtils} from "hornet-js-database/src/sequelize/sequelize-utils";
 
 const logger: Logger = Utils.getLogger("projet-hornet.src.dao.model-dao");
 
@@ -86,7 +87,7 @@ export class ModelDAO extends HornetSequelizeModel {
   public noteVerbalePermisMVFEntity: HornetSequelizeInstanceModel<NoteVerbalePermisMVFAttributes>;
 
   @Entity("note_verbale_mvf", NoteVerbaleMVFModel)
-  public MVFEntity: HornetSequelizeInstanceModel<NoteVerbaleMVFAttributes>;
+  public noteVerbaleMVFEntity: HornetSequelizeInstanceModel<NoteVerbaleMVFAttributes>;
 
   @Entity("attestation_mvf", AttestationMVFModel)
   public attestationMVFEntity: HornetSequelizeInstanceModel<AttestationMVFAttributes>;

@@ -48,7 +48,8 @@ var RecordListRoutesServer = /** @class */ (function (_super) {
         _this.addDataRoute("/detailsDossiers/demandeauthentification", function (id) { return new abstract_routes_1.DataRouteInfos(fvm_action_1.GetDemandeAuthentification, null, client_list_service_impl_data_1.ClientListServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE, "post");
         _this.addDataRoute("/detailsDossiers/releve", function (id) { return new abstract_routes_1.DataRouteInfos(fvm_action_1.GetReleve, null, client_list_service_impl_data_1.ClientListServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE, "post");
         _this.addDataRoute("/detailsDossiers/noteverbale", function (id) { return new abstract_routes_1.DataRouteInfos(fvm_action_1.GetNoteVerbale, null, client_list_service_impl_data_1.ClientListServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE, "post");
-        _this.addDataRoute("/copiePermis/(\\d+)", function (idPermis) { return new abstract_routes_1.DataRouteInfos(fvm_action_1.GetCopiePermis, { "idPermis": idPermis }, client_list_service_impl_data_1.ClientListServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE, "get");
+        _this.addDataRoute("/copiePermis/(\\d+)", function (idCopiePermis) { return new abstract_routes_1.DataRouteInfos(fvm_action_1.GetCopiePermis, { "idCopiePermis": idCopiePermis }, client_list_service_impl_data_1.ClientListServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE, "get");
+        _this.addDataRoute("/copieNoteVerbaleMAECI/(\\d+)", function (idCopieNoteVerbaleMAECI) { return new abstract_routes_1.DataRouteInfos(fvm_action_1.GetCopieNoteVerbaleMAECI, { "idCopieNoteVerbaleMAECI": idCopieNoteVerbaleMAECI }, client_list_service_impl_data_1.ClientListServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE, "get");
         return _this;
     }
     return RecordListRoutesServer;
@@ -28357,7 +28358,7 @@ var GetCopiePermis = /** @class */ (function (_super) {
     }
     GetCopiePermis.prototype.execute = function () {
         logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
-        return this.getService().getCopiePermis(this.attributes.idPermis).then(function (copiePermis) {
+        return this.getService().getCopiePermis(this.attributes.idCopiePermis).then(function (copiePermis) {
             return new result_file_1.ResultFile({ "data": copiePermis.data,
                 "filename": copiePermis.nom,
                 "encoding": copiePermis.encoding,
@@ -28368,6 +28369,24 @@ var GetCopiePermis = /** @class */ (function (_super) {
     return GetCopiePermis;
 }(abstract_routes_1.RouteActionService));
 exports.GetCopiePermis = GetCopiePermis;
+var GetCopieNoteVerbaleMAECI = /** @class */ (function (_super) {
+    tslib_1.__extends(GetCopieNoteVerbaleMAECI, _super);
+    function GetCopieNoteVerbaleMAECI() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    GetCopieNoteVerbaleMAECI.prototype.execute = function () {
+        logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
+        return this.getService().getCopieNoteVerbaleMAECI(this.attributes.idCopieNoteVerbaleMAECI).then(function (copieNoteVerbaleMAECI) {
+            return new result_file_1.ResultFile({ "data": copieNoteVerbaleMAECI.data,
+                "filename": copieNoteVerbaleMAECI.nom,
+                "encoding": copieNoteVerbaleMAECI.encoding,
+                "size": copieNoteVerbaleMAECI.size
+            }, media_type_1.MediaTypes.fromMime(copieNoteVerbaleMAECI.mimetype));
+        });
+    };
+    return GetCopieNoteVerbaleMAECI;
+}(abstract_routes_1.RouteActionService));
+exports.GetCopieNoteVerbaleMAECI = GetCopieNoteVerbaleMAECI;
 
 
 
@@ -30975,13 +30994,14 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
         };
         return this.fetch(request);
     };
-    ClientListServiceImpl.prototype.getCopiePermis = function (idPermis) {
-        var request = {
-            method: "post",
-            url: this.buildUrl("/recordserver/copiePermis/" + idPermis)
-        };
-        return this.fetch(request);
+    ClientListServiceImpl.prototype.getCopiePermis = function (idCopiePermis) {
+        return Promise.reject("service uniquement disponible côté serveur");
     };
+    ;
+    ClientListServiceImpl.prototype.getCopieNoteVerbaleMAECI = function (idCopieNoteVerbaleMAECI) {
+        return Promise.reject("service uniquement disponible côté serveur");
+    };
+    ;
     return ClientListServiceImpl;
 }(service_page_1.ServicePage));
 exports.ClientListServiceImpl = ClientListServiceImpl;
@@ -31020,16 +31040,23 @@ var RecordDetailsPage = /** @class */ (function (_super) {
     function RecordDetailsPage(props, context) {
         var _this = _super.call(this, props, context) || this;
         _this.tabs = new tabs_1.Tabs();
-        _this.dossier = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getDossier), {});
+        _this.dossierDatasource = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getDossier), {});
+        _this.demandeauthentificationDatasource = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getDemandeAuthentification), {});
+        _this.valiseDatasource = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getListeValise), {});
         return _this;
     }
     RecordDetailsPage.prototype.prepareClient = function () {
         var _this = this;
-        this.dossier.fetch(true, this.attributes);
-        this.dossier.on("fetch", function (Result) {
+        this.dossierDatasource.fetch(true, this.attributes);
+        this.dossierDatasource.on("fetch", function (Result) {
             _this.tabs.addElements(0, _this.renderDossierTab(Result[0]));
             _this.tabs.removeElementsById("temp");
         });
+        // this.demandeauthentificationDatasource.fetch(true, this.attributes);
+        // this.demandeauthentificationDatasource.on("fetch", (Result)=>{
+        //   this.valiseDatasource.fetch(true);
+        //   this.tabs.addElements(1, this.renderDemandeAuthentificationTab(Result));
+        // });
     };
     RecordDetailsPage.prototype.onSubmit = function (data) {
     };
@@ -31044,13 +31071,14 @@ var RecordDetailsPage = /** @class */ (function (_super) {
     };
     RecordDetailsPage.prototype.renderDossierTab = function (dossier) {
         var format = this.i18n("form");
+        this.dossier = dossier;
         return (React.createElement(tab_1.Tab, { id: "tabDossier", title: "Dossier" },
             React.createElement(tab_content_1.TabContent, null,
                 React.createElement(accordions_1.Accordions, { id: "value-accordion", multiSelectable: true },
                     React.createElement(accordion_1.Accordion, { title: "Permis", isOpen: false },
                         React.createElement(row_1.Row, null,
                             React.createElement(table_1.Table, { id: "entr\u00E9e permis" },
-                                React.createElement(content_1.Content, { dataSource: this.dossier },
+                                React.createElement(content_1.Content, { dataSource: this.dossierDatasource },
                                     React.createElement(columns_1.Columns, null,
                                         React.createElement(column_1.Column, { keyColumn: "numPermis", title: format.fields.num_permis.label, sortable: false }),
                                         React.createElement(date_column_1.DateColumn, { keyColumn: "dateDeDelivrance", title: format.fields.date_de_delivrance.label, sortable: false }))))),
@@ -31061,7 +31089,7 @@ var RecordDetailsPage = /** @class */ (function (_super) {
                                     format.fields.id_prefecture.label,
                                     " "),
                                 React.createElement(table_1.Table, { id: "entr\u00E9e pr\u00E9fecture" },
-                                    React.createElement(content_1.Content, { dataSource: this.dossier },
+                                    React.createElement(content_1.Content, { dataSource: this.dossierDatasource },
                                         React.createElement(columns_1.Columns, null,
                                             React.createElement(column_1.Column, { keyColumn: "adresse", title: format.fields.adresse.label, sortable: false }),
                                             React.createElement(column_1.Column, { keyColumn: "code_postal", title: format.fields.code_postal.label, sortable: false }),
@@ -31069,30 +31097,56 @@ var RecordDetailsPage = /** @class */ (function (_super) {
                                             React.createElement(column_1.Column, { keyColumn: "prefecture", title: format.fields.prefecture.label, sortable: false }),
                                             React.createElement(column_1.Column, { keyColumn: "departement", title: format.fields.departement.label, sortable: false }),
                                             React.createElement(column_1.Column, { keyColumn: "region", title: format.fields.region.label, sortable: false }),
-                                            React.createElement(date_column_1.DateColumn, { keyColumn: "date_reception_dossier", title: format.fields.date_reception_dossier.label, sortable: false }))))))),
+                                            React.createElement(date_column_1.DateColumn, { keyColumn: "dateReceptionDossier", title: format.fields.date_reception_dossier.label, sortable: false }))))))),
                     React.createElement(accordion_1.Accordion, { title: "Personne titulaire du permis", isOpen: false },
                         React.createElement(table_1.Table, { id: "entr\u00E9e personne" },
-                            React.createElement(content_1.Content, { dataSource: this.dossier },
+                            React.createElement(content_1.Content, { dataSource: this.dossierDatasource },
                                 React.createElement(columns_1.Columns, null,
                                     React.createElement(column_1.Column, { keyColumn: "nom", title: format.fields.nom.label, sortable: false }),
                                     React.createElement(column_1.Column, { keyColumn: "prenom", title: format.fields.prenom.label, sortable: false }),
                                     React.createElement(date_column_1.DateColumn, { keyColumn: "dateDeNaissance", title: format.fields.date_de_naissance.label, sortable: false }),
-                                    React.createElement(column_1.Column, { keyColumn: "ville_de_naissance", title: format.fields.ville_de_naissance.label, sortable: false }),
-                                    React.createElement(column_1.Column, { keyColumn: "pays_de_naissance", title: format.fields.pays_de_naissance.label, sortable: false }))))),
+                                    React.createElement(column_1.Column, { keyColumn: "villeDeNaissance", title: format.fields.ville_de_naissance.label, sortable: false }),
+                                    React.createElement(column_1.Column, { keyColumn: "paysDeNaissance", title: format.fields.pays_de_naissance.label, sortable: false }))))),
                     React.createElement(accordion_1.Accordion, { title: "Annexes", isOpen: false },
-                        React.createElement(form_1.Form, { id: "form", readOnly: true, defaultValues: dossier },
-                            React.createElement(upload_file_field_1.UploadFileField, { name: "copie_permis", readOnly: true, label: format.fields.copie_permis.label, renderPreviewFile: this.renderCopieNoteVerbaleMAECI, buttonLabel: format.fields.copie_permis.buttonLabel, fileSelectedLabel: format.fields.copie_permis.fileSelectedLabel })))))));
+                        React.createElement(form_1.Form, { id: "fileform", readOnly: true, defaultValues: this.dossier },
+                            React.createElement(upload_file_field_1.UploadFileField, { name: "copie_permis", readOnly: true, label: format.fields.copie_permis.label, renderPreviewFile: this.renderCopiePermis, buttonLabel: format.fields.copie_permis.buttonLabel, fileSelectedLabel: format.fields.copie_permis.fileSelectedLabel }),
+                            React.createElement(upload_file_field_1.UploadFileField, { name: "copie_note_verbale_maeci", readOnly: true, label: format.fields.copie_note_verbale_maeci.label, renderPreviewFile: this.renderCopieNoteVerbaleMAECI, buttonLabel: format.fields.copie_note_verbale_maeci.buttonLabel, fileSelectedLabel: format.fields.copie_note_verbale_maeci.fileSelectedLabel })))))));
+    };
+    RecordDetailsPage.prototype.renderCopiePermis = function (file) {
+        var format = this.i18n("form");
+        var fileTag = null;
+        console.log(this.dossier.copie_permis);
+        var urlfile = hornet_js_utils_1.Utils.buildContextPath("/services/recordserver/copiePermis/" + this.dossier.copie_permis.idCopiePermis);
+        var fileTarget = "newTabForCopiePermis" + this.attributes.id;
+        fileTag =
+            React.createElement("div", { className: "grid-form-field " },
+                React.createElement("div", { className: "" },
+                    React.createElement("a", { href: urlfile, "data-pass-thru": "true", target: fileTarget }, this.dossier.copie_permis.nom)));
+        return fileTag;
     };
     RecordDetailsPage.prototype.renderCopieNoteVerbaleMAECI = function (file) {
         var format = this.i18n("form");
         var fileTag = null;
-        var urlfile = hornet_js_utils_1.Utils.buildContextPath("/services/recordserver/copiePermis/" + this.attributes.id);
-        var fileTarget = "newTabForPhoto" + this.attributes.id;
+        var urlfile = hornet_js_utils_1.Utils.buildContextPath("/services/recordserver/copieNoteVerbaleMAECI/" + this.dossier.copie_note_verbale_maeci.idCopieNoteVerbaleMAECI);
+        var fileTarget = "newTabForCopieNoteVerbaleMAECI" + this.attributes.id;
         fileTag =
             React.createElement("div", { className: "grid-form-field " },
                 React.createElement("div", { className: "" },
-                    React.createElement("a", { href: urlfile, "data-pass-thru": "true", target: fileTarget }, format.fields.copie_permis.label)));
+                    React.createElement("a", { href: urlfile, "data-pass-thru": "true", target: fileTarget }, this.dossier.copie_note_verbale_maeci.nom)));
         return fileTag;
+    };
+    RecordDetailsPage.prototype.renderDemandeAuthentificationTab = function (demandeAuthentificationList) {
+        var format = this.i18n("form");
+        if (demandeAuthentificationList.length > 0) {
+            return (React.createElement(tab_1.Tab, { id: "tabDemandeAuthentification", title: "Demande d'Authentification" },
+                React.createElement(tab_content_1.TabContent, null,
+                    React.createElement("p", null, " rien "))));
+        }
+        else {
+            return (React.createElement(tab_1.Tab, { id: "tabDemandeAuthentification", title: "Demande d'Authentification" },
+                React.createElement(tab_content_1.TabContent, null,
+                    React.createElement("p", null, " Vous n'avez pas encore g\u00E9n\u00E9r\u00E9 de demande d'authentification pour ce dossier "))));
+        }
     };
     return RecordDetailsPage;
 }(hornet_page_1.HornetPage));
@@ -32471,6 +32525,7 @@ var dossier_dao_1 = __webpack_require__(566);
 var permis_dao_1 = __webpack_require__(567);
 var copie_permis_dao_1 = __webpack_require__(568);
 var prefecture_dao_1 = __webpack_require__(569);
+var demande_authentification_dao_1 = __webpack_require__(570);
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.services.data.admin.admin-service-impl-data");
 var ClientListServiceImpl = /** @class */ (function (_super) {
     tslib_1.__extends(ClientListServiceImpl, _super);
@@ -32482,6 +32537,7 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
         _this.copieNoteVerbaleMAECIDAO = new copie_note_verbale_MAECI_dao_1.CopieNoteVerbaleMAECIFVMDao();
         _this.copiePermisDAO = new copie_permis_dao_1.CopiePermisFVMDao();
         _this.prefectureDAO = new prefecture_dao_1.PrefectureDAO();
+        _this.demandeAuthentificationDAO = new demande_authentification_dao_1.DemandeAuthentificationDAO();
         return _this;
     }
     ClientListServiceImpl.prototype.getListeDossiers = function () {
@@ -32543,20 +32599,23 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
                 result["dateDeNaissance"] = Date.parse(personne.dateDeNaissance);
                 result["villeDeNaissance"] = personne.villeDeNaissance;
                 result["paysDeNaissance"] = personne.paysDeNaissance;
-                result["dateReceptionDossier"] = Date.parse(dossier.dateReceptionDossier);
                 result["region"] = prefecture.region;
                 result["departement"] = prefecture.departement;
                 result["prefecture"] = prefecture.prefecture;
                 result["adresse"] = prefecture.adresse;
                 result["codePostal"] = prefecture.codePostal;
                 result["ville"] = prefecture.ville;
-                return Promise.resolve([result]);
+                result["dateReceptionDossier"] = Date.parse(dossier.dateReceptionDossier);
+                return _this.copieNoteVerbaleMAECIDAO.getCopieNoteVerbaleMAECI(dossier.idCopieNoteVerbaleMAECI).then(function (values) {
+                    result["copie_note_verbale_maeci"] = values[0];
+                    return Promise.resolve([result]);
+                });
             });
         });
     };
     ClientListServiceImpl.prototype.getDemandeAuthentification = function (data) {
         var idPermis = data["id"];
-        return Promise.resolve([]);
+        return this.demandeAuthentificationDAO.getDemandeAuthentification(idPermis);
     };
     ClientListServiceImpl.prototype.getReleve = function (data) {
         var idPermis = data["id"];
@@ -32566,14 +32625,14 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
         var idPermis = data["id"];
         return Promise.resolve([]);
     };
-    ClientListServiceImpl.prototype.getCopiePermis = function (idPermis) {
-        var _this = this;
-        console.log(idPermis);
-        return this.permisDAO.getPermis(idPermis).then(function (values) {
-            var permis = values[0];
-            return _this.copiePermisDAO.getCopiePermis(permis.idCopiePermis).then(function (values) {
-                return Promise.resolve(values[0]);
-            });
+    ClientListServiceImpl.prototype.getCopiePermis = function (idCopiePermis) {
+        return this.copiePermisDAO.getCopiePermis(idCopiePermis).then(function (values) {
+            return Promise.resolve(values[0]);
+        });
+    };
+    ClientListServiceImpl.prototype.getCopieNoteVerbaleMAECI = function (idCopieNoteVerbaleMAECI) {
+        return this.copieNoteVerbaleMAECIDAO.getCopieNoteVerbaleMAECI(idCopieNoteVerbaleMAECI).then(function (values) {
+            return Promise.resolve(values[0]);
         });
     };
     return ClientListServiceImpl;
@@ -32621,7 +32680,7 @@ var PersonneFVMDAO = /** @class */ (function (_super) {
                 return _this.modelDAO.personneFVMEntity.max("idPersonne");
             }
             else {
-                return Promise.resolve(0);
+                return Promise.resolve(-1);
             }
         }).then(function (max) {
             return Promise.resolve(max + 1);
@@ -32737,7 +32796,7 @@ var DossierFVMDAO = /** @class */ (function (_super) {
                 return _this.modelDAO.dossierFVMEntity.max("idDossier");
             }
             else {
-                return Promise.resolve(0);
+                return Promise.resolve(-1);
             }
         }).then(function (max) {
             return Promise.resolve(max + 1);
@@ -32795,7 +32854,7 @@ var PermisFVMDAO = /** @class */ (function (_super) {
                 return _this.modelDAO.permisFVMEntity.max("idPermis");
             }
             else {
-                return Promise.resolve(0);
+                return Promise.resolve(-1);
             }
         }).then(function (max) {
             return Promise.resolve(max + 1);
@@ -32850,7 +32909,7 @@ var CopiePermisFVMDao = /** @class */ (function (_super) {
         });
     };
     CopiePermisFVMDao.prototype.getNewNom = function (idCopiePermis) {
-        return ("copieNoteVerbaleMAECI" + idCopiePermis + (new Date())).replace(/\s+/g, "_");
+        return ("copiePermis" + idCopiePermis + (new Date())).replace(/\s+/g, "_");
     };
     CopiePermisFVMDao.prototype.getNewIdCopiePermis = function () {
         var _this = this;
@@ -32859,7 +32918,7 @@ var CopiePermisFVMDao = /** @class */ (function (_super) {
                 return _this.modelDAO.copiePermisFVMEntity.max("idCopiePermis");
             }
             else {
-                return Promise.resolve(0);
+                return Promise.resolve(-1);
             }
         }).then(function (max) {
             return Promise.resolve(max + 1);
@@ -32909,6 +32968,69 @@ var PrefectureDAO = /** @class */ (function (_super) {
     return PrefectureDAO;
 }(entity_dao_1.EntityDAO));
 exports.PrefectureDAO = PrefectureDAO;
+
+
+
+/***/ }),
+/* 570 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(1);
+var hornet_js_utils_1 = __webpack_require__(0);
+var entity_dao_1 = __webpack_require__(49);
+var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.src.dao.utilisateurs-dao");
+var DemandeAuthentificationDAO = /** @class */ (function (_super) {
+    tslib_1.__extends(DemandeAuthentificationDAO, _super);
+    function DemandeAuthentificationDAO() {
+        return _super.call(this) || this;
+    }
+    DemandeAuthentificationDAO.prototype.insererDemandeAuthentification = function (numDemandeAuthentification, idPermis, numValise, dateValise) {
+        var _this = this;
+        return this.getNewIdDemandeAuthentification().then(function (idDemandeAuthentification) {
+            return _this.getDateDuTraitement(dateValise).then(function (dateDuTraitement) {
+                return _this.modelDAO.demandeAuthenthificationFVMEntity.create({
+                    idDemandeAuthentification: idDemandeAuthentification,
+                    numDemandeAuthentification: numDemandeAuthentification,
+                    dateDuTraitement: dateDuTraitement,
+                    idPermis: idPermis,
+                    numValise: numValise
+                }).then(function (result) {
+                    return Promise.resolve();
+                });
+            });
+        });
+    };
+    DemandeAuthentificationDAO.prototype.getDateDuTraitement = function (dateValise) {
+        var temp = new Date();
+        temp.setDate(dateValise.getDate() - 1);
+        return Promise.resolve(temp);
+    };
+    DemandeAuthentificationDAO.prototype.getNewIdDemandeAuthentification = function () {
+        var _this = this;
+        return this.modelDAO.demandeAuthenthificationFVMEntity.count().then(function (count) {
+            if (count > 0) {
+                return _this.modelDAO.demandeAuthenthificationFVMEntity.max("idDossier");
+            }
+            else {
+                return Promise.resolve(-1);
+            }
+        }).then(function (max) {
+            return Promise.resolve(max + 1);
+        });
+    };
+    DemandeAuthentificationDAO.prototype.getDemandeAuthentification = function (idPermis) {
+        return this.modelDAO.demandeAuthenthificationFVMEntity.findAll({
+            where: {
+                idPermis: idPermis
+            }
+        });
+    };
+    return DemandeAuthentificationDAO;
+}(entity_dao_1.EntityDAO));
+exports.DemandeAuthentificationDAO = DemandeAuthentificationDAO;
 
 
 

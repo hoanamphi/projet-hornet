@@ -1,4 +1,5 @@
 import {
+  GetCopieNoteVerbaleMAECI,
   GetCopiePermis,
   GetDemandeAuthentification, GetDossier,
   GetNoteVerbale,
@@ -46,7 +47,13 @@ export default class RecordListRoutesServer extends RecordListRoutesClient {
     );
 
     this.addDataRoute("/copiePermis/(\\d+)",
-      (idPermis) => new DataRouteInfos(GetCopiePermis, {"idPermis": idPermis}, ClientListServiceImpl),
+      (idCopiePermis) => new DataRouteInfos(GetCopiePermis, {"idCopiePermis": idCopiePermis}, ClientListServiceImpl),
+      PUBLIC_ROUTE,
+      "get"
+    );
+
+    this.addDataRoute("/copieNoteVerbaleMAECI/(\\d+)",
+      (idCopieNoteVerbaleMAECI) => new DataRouteInfos(GetCopieNoteVerbaleMAECI, {"idCopieNoteVerbaleMAECI": idCopieNoteVerbaleMAECI}, ClientListServiceImpl),
       PUBLIC_ROUTE,
       "get"
     );

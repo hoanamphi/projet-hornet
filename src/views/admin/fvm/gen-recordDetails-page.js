@@ -25,16 +25,23 @@ var RecordDetailsPage = /** @class */ (function (_super) {
     function RecordDetailsPage(props, context) {
         var _this = _super.call(this, props, context) || this;
         _this.tabs = new tabs_1.Tabs();
-        _this.dossier = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getDossier), {});
+        _this.dossierDatasource = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getDossier), {});
+        _this.demandeauthentificationDatasource = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getDemandeAuthentification), {});
+        _this.valiseDatasource = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getListeValise), {});
         return _this;
     }
     RecordDetailsPage.prototype.prepareClient = function () {
         var _this = this;
-        this.dossier.fetch(true, this.attributes);
-        this.dossier.on("fetch", function (Result) {
+        this.dossierDatasource.fetch(true, this.attributes);
+        this.dossierDatasource.on("fetch", function (Result) {
             _this.tabs.addElements(0, _this.renderDossierTab(Result[0]));
             _this.tabs.removeElementsById("temp");
         });
+        // this.demandeauthentificationDatasource.fetch(true, this.attributes);
+        // this.demandeauthentificationDatasource.on("fetch", (Result)=>{
+        //   this.valiseDatasource.fetch(true);
+        //   this.tabs.addElements(1, this.renderDemandeAuthentificationTab(Result));
+        // });
     };
     RecordDetailsPage.prototype.onSubmit = function (data) {
     };
@@ -49,13 +56,14 @@ var RecordDetailsPage = /** @class */ (function (_super) {
     };
     RecordDetailsPage.prototype.renderDossierTab = function (dossier) {
         var format = this.i18n("form");
+        this.dossier = dossier;
         return (React.createElement(tab_1.Tab, { id: "tabDossier", title: "Dossier" },
             React.createElement(tab_content_1.TabContent, null,
                 React.createElement(accordions_1.Accordions, { id: "value-accordion", multiSelectable: true },
                     React.createElement(accordion_1.Accordion, { title: "Permis", isOpen: false },
                         React.createElement(row_1.Row, null,
                             React.createElement(table_1.Table, { id: "entr\u00E9e permis" },
-                                React.createElement(content_1.Content, { dataSource: this.dossier },
+                                React.createElement(content_1.Content, { dataSource: this.dossierDatasource },
                                     React.createElement(columns_1.Columns, null,
                                         React.createElement(column_1.Column, { keyColumn: "numPermis", title: format.fields.num_permis.label, sortable: false }),
                                         React.createElement(date_column_1.DateColumn, { keyColumn: "dateDeDelivrance", title: format.fields.date_de_delivrance.label, sortable: false }))))),
@@ -66,7 +74,7 @@ var RecordDetailsPage = /** @class */ (function (_super) {
                                     format.fields.id_prefecture.label,
                                     " "),
                                 React.createElement(table_1.Table, { id: "entr\u00E9e pr\u00E9fecture" },
-                                    React.createElement(content_1.Content, { dataSource: this.dossier },
+                                    React.createElement(content_1.Content, { dataSource: this.dossierDatasource },
                                         React.createElement(columns_1.Columns, null,
                                             React.createElement(column_1.Column, { keyColumn: "adresse", title: format.fields.adresse.label, sortable: false }),
                                             React.createElement(column_1.Column, { keyColumn: "code_postal", title: format.fields.code_postal.label, sortable: false }),
@@ -74,30 +82,56 @@ var RecordDetailsPage = /** @class */ (function (_super) {
                                             React.createElement(column_1.Column, { keyColumn: "prefecture", title: format.fields.prefecture.label, sortable: false }),
                                             React.createElement(column_1.Column, { keyColumn: "departement", title: format.fields.departement.label, sortable: false }),
                                             React.createElement(column_1.Column, { keyColumn: "region", title: format.fields.region.label, sortable: false }),
-                                            React.createElement(date_column_1.DateColumn, { keyColumn: "date_reception_dossier", title: format.fields.date_reception_dossier.label, sortable: false }))))))),
+                                            React.createElement(date_column_1.DateColumn, { keyColumn: "dateReceptionDossier", title: format.fields.date_reception_dossier.label, sortable: false }))))))),
                     React.createElement(accordion_1.Accordion, { title: "Personne titulaire du permis", isOpen: false },
                         React.createElement(table_1.Table, { id: "entr\u00E9e personne" },
-                            React.createElement(content_1.Content, { dataSource: this.dossier },
+                            React.createElement(content_1.Content, { dataSource: this.dossierDatasource },
                                 React.createElement(columns_1.Columns, null,
                                     React.createElement(column_1.Column, { keyColumn: "nom", title: format.fields.nom.label, sortable: false }),
                                     React.createElement(column_1.Column, { keyColumn: "prenom", title: format.fields.prenom.label, sortable: false }),
                                     React.createElement(date_column_1.DateColumn, { keyColumn: "dateDeNaissance", title: format.fields.date_de_naissance.label, sortable: false }),
-                                    React.createElement(column_1.Column, { keyColumn: "ville_de_naissance", title: format.fields.ville_de_naissance.label, sortable: false }),
-                                    React.createElement(column_1.Column, { keyColumn: "pays_de_naissance", title: format.fields.pays_de_naissance.label, sortable: false }))))),
+                                    React.createElement(column_1.Column, { keyColumn: "villeDeNaissance", title: format.fields.ville_de_naissance.label, sortable: false }),
+                                    React.createElement(column_1.Column, { keyColumn: "paysDeNaissance", title: format.fields.pays_de_naissance.label, sortable: false }))))),
                     React.createElement(accordion_1.Accordion, { title: "Annexes", isOpen: false },
-                        React.createElement(form_1.Form, { id: "form", readOnly: true, defaultValues: dossier },
-                            React.createElement(upload_file_field_1.UploadFileField, { name: "copie_permis", readOnly: true, label: format.fields.copie_permis.label, renderPreviewFile: this.renderCopieNoteVerbaleMAECI, buttonLabel: format.fields.copie_permis.buttonLabel, fileSelectedLabel: format.fields.copie_permis.fileSelectedLabel })))))));
+                        React.createElement(form_1.Form, { id: "fileform", readOnly: true, defaultValues: this.dossier },
+                            React.createElement(upload_file_field_1.UploadFileField, { name: "copie_permis", readOnly: true, label: format.fields.copie_permis.label, renderPreviewFile: this.renderCopiePermis, buttonLabel: format.fields.copie_permis.buttonLabel, fileSelectedLabel: format.fields.copie_permis.fileSelectedLabel }),
+                            React.createElement(upload_file_field_1.UploadFileField, { name: "copie_note_verbale_maeci", readOnly: true, label: format.fields.copie_note_verbale_maeci.label, renderPreviewFile: this.renderCopieNoteVerbaleMAECI, buttonLabel: format.fields.copie_note_verbale_maeci.buttonLabel, fileSelectedLabel: format.fields.copie_note_verbale_maeci.fileSelectedLabel })))))));
+    };
+    RecordDetailsPage.prototype.renderCopiePermis = function (file) {
+        var format = this.i18n("form");
+        var fileTag = null;
+        console.log(this.dossier.copie_permis);
+        var urlfile = hornet_js_utils_1.Utils.buildContextPath("/services/recordserver/copiePermis/" + this.dossier.copie_permis.idCopiePermis);
+        var fileTarget = "newTabForCopiePermis" + this.attributes.id;
+        fileTag =
+            React.createElement("div", { className: "grid-form-field " },
+                React.createElement("div", { className: "" },
+                    React.createElement("a", { href: urlfile, "data-pass-thru": "true", target: fileTarget }, this.dossier.copie_permis.nom)));
+        return fileTag;
     };
     RecordDetailsPage.prototype.renderCopieNoteVerbaleMAECI = function (file) {
         var format = this.i18n("form");
         var fileTag = null;
-        var urlfile = hornet_js_utils_1.Utils.buildContextPath("/services/recordserver/copiePermis/" + this.attributes.id);
-        var fileTarget = "newTabForPhoto" + this.attributes.id;
+        var urlfile = hornet_js_utils_1.Utils.buildContextPath("/services/recordserver/copieNoteVerbaleMAECI/" + this.dossier.copie_note_verbale_maeci.idCopieNoteVerbaleMAECI);
+        var fileTarget = "newTabForCopieNoteVerbaleMAECI" + this.attributes.id;
         fileTag =
             React.createElement("div", { className: "grid-form-field " },
                 React.createElement("div", { className: "" },
-                    React.createElement("a", { href: urlfile, "data-pass-thru": "true", target: fileTarget }, format.fields.copie_permis.label)));
+                    React.createElement("a", { href: urlfile, "data-pass-thru": "true", target: fileTarget }, this.dossier.copie_note_verbale_maeci.nom)));
         return fileTag;
+    };
+    RecordDetailsPage.prototype.renderDemandeAuthentificationTab = function (demandeAuthentificationList) {
+        var format = this.i18n("form");
+        if (demandeAuthentificationList.length > 0) {
+            return (React.createElement(tab_1.Tab, { id: "tabDemandeAuthentification", title: "Demande d'Authentification" },
+                React.createElement(tab_content_1.TabContent, null,
+                    React.createElement("p", null, " rien "))));
+        }
+        else {
+            return (React.createElement(tab_1.Tab, { id: "tabDemandeAuthentification", title: "Demande d'Authentification" },
+                React.createElement(tab_content_1.TabContent, null,
+                    React.createElement("p", null, " Vous n'avez pas encore g\u00E9n\u00E9r\u00E9 de demande d'authentification pour ce dossier "))));
+        }
     };
     return RecordDetailsPage;
 }(hornet_page_1.HornetPage));

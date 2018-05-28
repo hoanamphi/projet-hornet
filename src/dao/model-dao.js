@@ -96,7 +96,7 @@ var ModelDAO = /** @class */ (function (_super) {
     tslib_1.__decorate([
         dec_seq_entity_1.Entity("note_verbale_mvf", model_noteverbale_2.NoteVerbaleMVFModel),
         tslib_1.__metadata("design:type", Object)
-    ], ModelDAO.prototype, "MVFEntity", void 0);
+    ], ModelDAO.prototype, "noteVerbaleMVFEntity", void 0);
     tslib_1.__decorate([
         dec_seq_entity_1.Entity("attestation_mvf", model_attestation_1.AttestationMVFModel),
         tslib_1.__metadata("design:type", Object)

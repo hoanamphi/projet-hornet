@@ -15,7 +15,6 @@ export class CopiePermisFVMDao extends EntityDAO {
 
   insererCopiePermis(mimetype, encoding, size, data, idPermis): Promise<any> {
     return this.getNewIdCopiePermis().then(idCopiePermis=> {
-
       return this.modelDAO.copiePermisFVMEntity.create({
         idCopiePermis: idCopiePermis,
         nom: this.getNewNom(idCopiePermis),
@@ -31,7 +30,7 @@ export class CopiePermisFVMDao extends EntityDAO {
   }
 
   getNewNom(idCopiePermis): string {
-    return ("copieNoteVerbaleMAECI"+idCopiePermis+(new Date())).replace(/\s+/g, "_");
+    return ("copiePermis"+idCopiePermis+(new Date())).replace(/\s+/g, "_");
   }
 
   getNewIdCopiePermis(): Promise<any> {
@@ -39,7 +38,7 @@ export class CopiePermisFVMDao extends EntityDAO {
       if(count > 0) {
         return this.modelDAO.copiePermisFVMEntity.max("idCopiePermis");
       } else {
-        return Promise.resolve(0);
+        return Promise.resolve(-1);
       }
     }).then(max=>{
       return Promise.resolve(max+1);

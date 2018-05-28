@@ -32,7 +32,7 @@ var PermisFVMDAO = /** @class */ (function (_super) {
                 return _this.modelDAO.permisFVMEntity.max("idPermis");
             }
             else {
-                return Promise.resolve(0);
+                return Promise.resolve(-1);
             }
         }).then(function (max) {
             return Promise.resolve(max + 1);

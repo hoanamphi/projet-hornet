@@ -35,7 +35,7 @@ export class PermisFVMDAO extends EntityDAO {
       if(count > 0) {
         return this.modelDAO.permisFVMEntity.max("idPermis");
       } else {
-        return Promise.resolve(0);
+        return Promise.resolve(-1);
       }
     }).then(max=>{
       return Promise.resolve(max+1);

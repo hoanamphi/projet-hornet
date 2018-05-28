@@ -22148,7 +22148,7 @@ var GetCopiePermis = /** @class */ (function (_super) {
     }
     GetCopiePermis.prototype.execute = function () {
         logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
-        return this.getService().getCopiePermis(this.attributes.idPermis).then(function (copiePermis) {
+        return this.getService().getCopiePermis(this.attributes.idCopiePermis).then(function (copiePermis) {
             return new result_file_1.ResultFile({ "data": copiePermis.data,
                 "filename": copiePermis.nom,
                 "encoding": copiePermis.encoding,
@@ -22159,6 +22159,24 @@ var GetCopiePermis = /** @class */ (function (_super) {
     return GetCopiePermis;
 }(abstract_routes_1.RouteActionService));
 exports.GetCopiePermis = GetCopiePermis;
+var GetCopieNoteVerbaleMAECI = /** @class */ (function (_super) {
+    tslib_1.__extends(GetCopieNoteVerbaleMAECI, _super);
+    function GetCopieNoteVerbaleMAECI() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    GetCopieNoteVerbaleMAECI.prototype.execute = function () {
+        logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
+        return this.getService().getCopieNoteVerbaleMAECI(this.attributes.idCopieNoteVerbaleMAECI).then(function (copieNoteVerbaleMAECI) {
+            return new result_file_1.ResultFile({ "data": copieNoteVerbaleMAECI.data,
+                "filename": copieNoteVerbaleMAECI.nom,
+                "encoding": copieNoteVerbaleMAECI.encoding,
+                "size": copieNoteVerbaleMAECI.size
+            }, media_type_1.MediaTypes.fromMime(copieNoteVerbaleMAECI.mimetype));
+        });
+    };
+    return GetCopieNoteVerbaleMAECI;
+}(abstract_routes_1.RouteActionService));
+exports.GetCopieNoteVerbaleMAECI = GetCopieNoteVerbaleMAECI;
 
 
 
