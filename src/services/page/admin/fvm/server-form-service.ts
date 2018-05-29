@@ -6,4 +6,5 @@
 export interface ServerFormService {
      insererDonnee(data) :Promise<any>;
      getListePrefectures() :Promise<any>;
+     getListeValises(): Promise<any>;
 }

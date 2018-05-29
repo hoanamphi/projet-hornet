@@ -41,6 +41,7 @@ import {Tab, TabProps} from "hornet-js-react-components/src/widget/tab/tab";
 import {TabContent} from "hornet-js-react-components/src/widget/tab/tab-content";
 import {Spinner} from "hornet-js-react-components/src/widget/spinner/spinner";
 import {Icon} from "hornet-js-react-components/src/widget/icon/icon";
+import {TabHeader} from "hornet-js-react-components/src/widget/tab/tab-header";
 
 const logger: Logger = Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
 
@@ -49,7 +50,6 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
   private dossierDatasource;
   private dossier;
   private demandeauthentificationDatasource;
-  private valiseDatasource
   private releveDatasource;
   private noteverbaleDatasource;
 
@@ -60,24 +60,23 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
 
     this.dossierDatasource = new DataSource<any>(new DataSourceConfigPage(this, this.getService().getDossier), {},);
     this.demandeauthentificationDatasource = new DataSource<any>(new DataSourceConfigPage(this, this.getService().getDemandeAuthentification), {},);
-    this.valiseDatasource = new DataSource<any>(new DataSourceConfigPage(this, this.getService().getListeValise), {},);
   }
 
   prepareClient(): void {
     this.dossierDatasource.fetch(true, this.attributes);
+    this.demandeauthentificationDatasource.fetch(true, this.attributes);
+
     this.dossierDatasource.on("fetch", (Result)=>{
-      this.tabs.addElements(0, this.renderDossierTab(Result[0]));
+      this.tabs.addElements(1, this.renderDossierTab(Result[0]));
       this.tabs.removeElementsById("temp");
     });
-    // this.demandeauthentificationDatasource.fetch(true, this.attributes);
-    // this.demandeauthentificationDatasource.on("fetch", (Result)=>{
-    //   this.valiseDatasource.fetch(true);
-    //   this.tabs.addElements(1, this.renderDemandeAuthentificationTab(Result));
-    // });
+    this.demandeauthentificationDatasource.on("fetch", (Result)=>{
+      this.tabs.addElements(2, this.renderDemandeAuthentificationTab(Result));
+    });
   }
 
   onSubmit(data: any) {
-
+    
   }
 
   render(): JSX.Element {
@@ -85,6 +84,7 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
 
     return (
       <div>
+        <Icon src={Picto.blue.previous} alt="Retourner à la page de sélection" title="Retourner à la page de sélection" action={this.retourPage}/>
         <Tabs ref={(tabs)=>{
           this.tabs = tabs;
         }} id="tabs" selectedTabIndex={0}
@@ -129,7 +129,7 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
                         <Column keyColumn="adresse"
                                 title={format.fields.adresse.label}
                                 sortable={false}/>
-                        <Column keyColumn="code_postal"
+                        <Column keyColumn="codePostal"
                                 title={format.fields.code_postal.label}
                                 sortable={false}/>
                         <Column keyColumn="ville"
@@ -203,8 +203,6 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
   renderCopiePermis(file: UploadedFile): React.ReactElement<any> {
     let format = this.i18n("form");
     let fileTag: React.ReactElement<any> = null;
-    console.log(this.dossier.copie_permis);
-
     let urlfile: string = Utils.buildContextPath("/services/recordserver/copiePermis/"+this.dossier.copie_permis.idCopiePermis);
 
     let fileTarget = "newTabForCopiePermis" + this.attributes.id;
@@ -255,9 +253,22 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
         <Tab id="tabDemandeAuthentification" title="Demande d'Authentification">
           <TabContent>
             <p> Vous n'avez pas encore généré de demande d'authentification pour ce dossier </p>
+            <ButtonsArea>
+              <Button type="submit" onClick={this.genererDemande}
+                      value="Valider" className="hornet-button" label="générer une demande d'authentification"
+                      title="valider"/>
+            </ButtonsArea>
           </TabContent>
         </Tab>
       );
     }
+  }
+
+  retourPage(){
+    this.navigateTo("/record", {}, ()=>{});
+  }
+
+  genererDemande() {
+    this.navigateTo("/form2/"+this.attributes.id, {}, ()=>{});
   }
 }

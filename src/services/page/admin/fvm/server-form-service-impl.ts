@@ -32,4 +32,13 @@ export class ServerFormServiceImpl extends ServicePage implements ServerFormServ
 
     return this.fetch(request);
   }
+
+  getListeValises(): Promise<any> {
+    let request: HornetRequest = {
+      method: "post",
+      url: this.buildUrl("/form2server/listValises")
+    };
+
+    return this.fetch(request);
+  }
 }

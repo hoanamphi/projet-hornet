@@ -47,6 +47,14 @@ export class ListePrefecture extends RouteActionService<any, ServerFormService> 
   }
 }
 
+export class ListeValise extends RouteActionService<any, ServerFormService> {
+  execute(): Promise<any> {
+    logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
+
+    return this.getService().getListeValises();
+  }
+}
+
 export class ListeDossiers extends RouteActionService<any, ClientListService> {
   execute(): Promise<any> {
     logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");

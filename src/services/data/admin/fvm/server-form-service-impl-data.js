@@ -11,6 +11,7 @@ var dossier_dao_1 = require("../../../../dao/admin/fvm/dossier-dao");
 var permis_dao_1 = require("../../../../dao/admin/fvm/permis-dao");
 var copie_permis_dao_1 = require("../../../../dao/admin/fvm/copie_permis-dao");
 var prefecture_dao_1 = require("../../../../dao/prefecture-dao");
+var valise_dao_1 = require("../../../../dao/valise-dao");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.services.data.admin.admin-service-impl-data");
 var ServerFormServiceImpl = /** @class */ (function (_super) {
     tslib_1.__extends(ServerFormServiceImpl, _super);
@@ -23,6 +24,7 @@ var ServerFormServiceImpl = /** @class */ (function (_super) {
         _this.copieNoteVerbaleMAECIDAO = new copie_note_verbale_MAECI_dao_1.CopieNoteVerbaleMAECIFVMDao();
         _this.copiePermisDAO = new copie_permis_dao_1.CopiePermisFVMDao();
         _this.prefectureDAO = new prefecture_dao_1.PrefectureDAO();
+        _this.valiseDAO = new valise_dao_1.ValiseDAO();
         return _this;
     }
     ServerFormServiceImpl.prototype.insererDonnee = function (data) {
@@ -50,6 +52,18 @@ var ServerFormServiceImpl = /** @class */ (function (_super) {
     };
     ServerFormServiceImpl.prototype.getListePrefectures = function () {
         return this.prefectureDAO.getListePrefecture();
+    };
+    ServerFormServiceImpl.prototype.getListeValises = function () {
+        return this.valiseDAO.getListeValise().then(function (result) {
+            var arr = new Array();
+            result.forEach(function (elem) {
+                var tmp = {};
+                tmp["numValise"] = elem.numValise;
+                tmp["dateValise"] = Date.parse(elem.dateValise);
+                arr.push(tmp);
+            });
+            return Promise.resolve(arr);
+        });
     };
     tslib_1.__decorate([
         dec_transactional_1.Transactional({ configDatabase: injector_1.Injector.getRegistered("databaseConfigName") }),

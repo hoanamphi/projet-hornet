@@ -20,9 +20,9 @@ var datasource_config_page_1 = require("hornet-js-core/src/component/datasource/
 var icon_1 = require("hornet-js-react-components/src/widget/icon/icon");
 var picto_1 = require("hornet-js-react-components/src/img/picto");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
-var FormulairePage = /** @class */ (function (_super) {
-    tslib_1.__extends(FormulairePage, _super);
-    function FormulairePage(props, context) {
+var FormulaireDossierPage = /** @class */ (function (_super) {
+    tslib_1.__extends(FormulaireDossierPage, _super);
+    function FormulaireDossierPage(props, context) {
         var _this = _super.call(this, props, context) || this;
         _this.prefectures = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getListePrefectures), { "value": "idPrefecture", "label": "prefecture" });
         _this.errors = new notification_manager_1.Notifications();
@@ -31,10 +31,10 @@ var FormulairePage = /** @class */ (function (_super) {
         _this.errors.addNotification(_this.SequelizeErrors);
         return _this;
     }
-    FormulairePage.prototype.prepareClient = function () {
+    FormulaireDossierPage.prototype.prepareClient = function () {
         this.prefectures.fetch(true);
     };
-    FormulairePage.prototype.onSubmit = function (data) {
+    FormulaireDossierPage.prototype.onSubmit = function (data) {
         var _this = this;
         this.getService().insererDonnee(data).then(function (result) {
             if (result.hasError != null) {
@@ -47,10 +47,10 @@ var FormulairePage = /** @class */ (function (_super) {
             console.error(reason);
         });
     };
-    FormulairePage.prototype.render = function () {
+    FormulaireDossierPage.prototype.render = function () {
         var format = this.i18n("form");
         return (React.createElement("div", null,
-            React.createElement("h2", null, "Formulaire d'entr\u00E9e d'une demande d'authentification"),
+            React.createElement("h2", null, "Formulaire d'entr\u00E9e d'un dossier"),
             React.createElement(notification_1.Notification, { id: "errors" }),
             React.createElement(notification_1.Notification, { id: "notif" }),
             React.createElement(form_1.Form, { id: "form1", schema: schema, onSubmit: this.onSubmit, formMessages: format },
@@ -74,15 +74,15 @@ var FormulairePage = /** @class */ (function (_super) {
                     React.createElement(select_field_1.SelectField, { dataSource: this.prefectures, label: format.fields.id_prefecture.label, name: "id_prefecture", required: true })),
                 React.createElement(row_1.Row, null,
                     React.createElement(upload_file_field_1.UploadFileField, { name: "copie_note_verbale_maeci", label: format.fields.copie_note_verbale_maeci.label, buttonLabel: format.fields.copie_note_verbale_maeci.buttonLabel, fileSelectedLabel: format.fields.copie_note_verbale_maeci.fileSelectedLabel, required: true })),
-                React.createElement(icon_1.Icon, { src: picto_1.Picto.white.undo, alt: "retour", title: "Retourner \u00E0 la page de s\u00E9lection", action: this.retourPage }),
                 React.createElement(buttons_area_1.ButtonsArea, null,
+                    React.createElement(icon_1.Icon, { src: picto_1.Picto.blue.previous, alt: "Retourner \u00E0 la page de s\u00E9lection", title: "Retourner \u00E0 la page de s\u00E9lection", action: this.retourPage }),
                     React.createElement(button_1.Button, { type: "submit", value: "Valider", className: "hornet-button", label: "valider", title: "valider" })))));
     };
-    FormulairePage.prototype.retourPage = function () {
+    FormulaireDossierPage.prototype.retourPage = function () {
         this.navigateTo("/record", {}, function () { });
     };
-    return FormulairePage;
+    return FormulaireDossierPage;
 }(hornet_page_1.HornetPage));
-exports.FormulairePage = FormulairePage;
+exports.FormulaireDossierPage = FormulaireDossierPage;
 
-//# sourceMappingURL=gen-form1-page.js.map
+//# sourceMappingURL=gen-formDossier-page.js.map

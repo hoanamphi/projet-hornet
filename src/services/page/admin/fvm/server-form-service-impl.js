@@ -28,6 +28,13 @@ var ServerFormServiceImpl = /** @class */ (function (_super) {
         };
         return this.fetch(request);
     };
+    ServerFormServiceImpl.prototype.getListeValises = function () {
+        var request = {
+            method: "post",
+            url: this.buildUrl("/form2server/listValises")
+        };
+        return this.fetch(request);
+    };
     return ServerFormServiceImpl;
 }(service_page_1.ServicePage));
 exports.ServerFormServiceImpl = ServerFormServiceImpl;

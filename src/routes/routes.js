@@ -45,12 +45,14 @@ var Routes = /** @class */ (function (_super) {
         // );
         // this.addLazyRoutes("/admin", "admin/admin-client-routes");
         this.addLazyRoutes("/form1", "admin/fvm/form1-client-routes");
+        this.addLazyRoutes("/form2", "admin/fvm/form2-client-routes");
         this.addLazyRoutes("/record", "admin/fvm/record-client-routes");
         // /* Routes lazy */
         // this.addLazyRoutes(URL_CONTACT, "cnt/gen-cnt-client-routes");
     };
     Routes.prototype.addServerRoutes = function () {
         this.addLazyRoutes("/form1server", "admin/fvm/form1-server-routes");
+        this.addLazyRoutes("/form2server", "admin/fvm/form2-server-routes");
         this.addLazyRoutes("/recordserver", "admin/fvm/record-server-routes");
     };
     return Routes;

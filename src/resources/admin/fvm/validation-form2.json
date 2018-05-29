@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "title": "Formulaire d'entrée d'une demande d'authentification",
+  "description": "Validation des données de formulaire",
+  "type": "object",
+  "required": [
+    "selectedItems-selectedLine",
+    "num_demande_authentification"
+  ],
+  "properties": {
+
+  },
+  "definition": {
+    "nom_propre": {
+      "type": "string",
+      "pattern": "^([a-zA-ZÀ-ÿ]+[-]{0,2}[a-zA-ZÀ-ÿ]+ ?)*$"
+    },
+    "date": {
+      "type": "Date",
+      "format": "date"
+    }
+  }
+}

@@ -27,7 +27,7 @@ import {Picto} from "hornet-js-react-components/src/img/picto";
 
 const logger: Logger = Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
 
-export class FormulairePage extends HornetPage<ServerFormService, HornetComponentProps, any> {
+export class FormulaireDossierPage extends HornetPage<ServerFormService, HornetComponentProps, any> {
 
   private prefectures;
   private errors;
@@ -67,7 +67,7 @@ export class FormulairePage extends HornetPage<ServerFormService, HornetComponen
 
     return (
       <div>
-        <h2>Formulaire d'entrée d'une demande d'authentification</h2>
+        <h2>Formulaire d'entrée d'un dossier</h2>
         <Notification id="errors"/>
         <Notification id="notif"/>
         <Form
@@ -135,8 +135,8 @@ export class FormulairePage extends HornetPage<ServerFormService, HornetComponen
                              required={true}
             />
           </Row>
-          <Icon src={Picto.white.undo} alt="retour" title="Retourner à la page de sélection" action={this.retourPage}/>
           <ButtonsArea>
+            <Icon src={Picto.blue.previous} alt="Retourner à la page de sélection" title="Retourner à la page de sélection" action={this.retourPage}/>
             <Button type="submit"
                 value="Valider" className="hornet-button" label="valider"
                 title="valider"/>

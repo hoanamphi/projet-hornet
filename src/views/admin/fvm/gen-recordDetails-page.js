@@ -6,8 +6,11 @@ var React = require("react");
 var hornet_page_1 = require("hornet-js-react-components/src/widget/component/hornet-page");
 var form_1 = require("hornet-js-react-components/src/widget/form/form");
 var row_1 = require("hornet-js-react-components/src/widget/form/row");
+var button_1 = require("hornet-js-react-components/src/widget/button/button");
+var buttons_area_1 = require("hornet-js-react-components/src/widget/form/buttons-area");
 var datasource_config_page_1 = require("hornet-js-core/src/component/datasource/config/service/datasource-config-page");
 var table_1 = require("hornet-js-react-components/src/widget/table/table");
+var picto_1 = require("hornet-js-react-components/src/img/picto");
 var content_1 = require("hornet-js-react-components/src/widget/table/content");
 var column_1 = require("hornet-js-react-components/src/widget/table/column");
 var columns_1 = require("hornet-js-react-components/src/widget/table/columns");
@@ -19,6 +22,7 @@ var upload_file_field_1 = require("hornet-js-react-components/src/widget/form/up
 var tabs_1 = require("hornet-js-react-components/src/widget/tab/tabs");
 var tab_1 = require("hornet-js-react-components/src/widget/tab/tab");
 var tab_content_1 = require("hornet-js-react-components/src/widget/tab/tab-content");
+var icon_1 = require("hornet-js-react-components/src/widget/icon/icon");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
 var RecordDetailsPage = /** @class */ (function (_super) {
     tslib_1.__extends(RecordDetailsPage, _super);
@@ -27,21 +31,19 @@ var RecordDetailsPage = /** @class */ (function (_super) {
         _this.tabs = new tabs_1.Tabs();
         _this.dossierDatasource = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getDossier), {});
         _this.demandeauthentificationDatasource = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getDemandeAuthentification), {});
-        _this.valiseDatasource = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getListeValise), {});
         return _this;
     }
     RecordDetailsPage.prototype.prepareClient = function () {
         var _this = this;
         this.dossierDatasource.fetch(true, this.attributes);
+        this.demandeauthentificationDatasource.fetch(true, this.attributes);
         this.dossierDatasource.on("fetch", function (Result) {
-            _this.tabs.addElements(0, _this.renderDossierTab(Result[0]));
+            _this.tabs.addElements(1, _this.renderDossierTab(Result[0]));
             _this.tabs.removeElementsById("temp");
         });
-        // this.demandeauthentificationDatasource.fetch(true, this.attributes);
-        // this.demandeauthentificationDatasource.on("fetch", (Result)=>{
-        //   this.valiseDatasource.fetch(true);
-        //   this.tabs.addElements(1, this.renderDemandeAuthentificationTab(Result));
-        // });
+        this.demandeauthentificationDatasource.on("fetch", function (Result) {
+            _this.tabs.addElements(2, _this.renderDemandeAuthentificationTab(Result));
+        });
     };
     RecordDetailsPage.prototype.onSubmit = function (data) {
     };
@@ -49,6 +51,7 @@ var RecordDetailsPage = /** @class */ (function (_super) {
         var _this = this;
         var format = this.i18n("form");
         return (React.createElement("div", null,
+            React.createElement(icon_1.Icon, { src: picto_1.Picto.blue.previous, alt: "Retourner \u00E0 la page de s\u00E9lection", title: "Retourner \u00E0 la page de s\u00E9lection", action: this.retourPage }),
             React.createElement(tabs_1.Tabs, { ref: function (tabs) {
                     _this.tabs = tabs;
                 }, id: "tabs", selectedTabIndex: 0 },
@@ -77,7 +80,7 @@ var RecordDetailsPage = /** @class */ (function (_super) {
                                     React.createElement(content_1.Content, { dataSource: this.dossierDatasource },
                                         React.createElement(columns_1.Columns, null,
                                             React.createElement(column_1.Column, { keyColumn: "adresse", title: format.fields.adresse.label, sortable: false }),
-                                            React.createElement(column_1.Column, { keyColumn: "code_postal", title: format.fields.code_postal.label, sortable: false }),
+                                            React.createElement(column_1.Column, { keyColumn: "codePostal", title: format.fields.code_postal.label, sortable: false }),
                                             React.createElement(column_1.Column, { keyColumn: "ville", title: format.fields.ville.label, sortable: false }),
                                             React.createElement(column_1.Column, { keyColumn: "prefecture", title: format.fields.prefecture.label, sortable: false }),
                                             React.createElement(column_1.Column, { keyColumn: "departement", title: format.fields.departement.label, sortable: false }),
@@ -100,7 +103,6 @@ var RecordDetailsPage = /** @class */ (function (_super) {
     RecordDetailsPage.prototype.renderCopiePermis = function (file) {
         var format = this.i18n("form");
         var fileTag = null;
-        console.log(this.dossier.copie_permis);
         var urlfile = hornet_js_utils_1.Utils.buildContextPath("/services/recordserver/copiePermis/" + this.dossier.copie_permis.idCopiePermis);
         var fileTarget = "newTabForCopiePermis" + this.attributes.id;
         fileTag =
@@ -130,8 +132,16 @@ var RecordDetailsPage = /** @class */ (function (_super) {
         else {
             return (React.createElement(tab_1.Tab, { id: "tabDemandeAuthentification", title: "Demande d'Authentification" },
                 React.createElement(tab_content_1.TabContent, null,
-                    React.createElement("p", null, " Vous n'avez pas encore g\u00E9n\u00E9r\u00E9 de demande d'authentification pour ce dossier "))));
+                    React.createElement("p", null, " Vous n'avez pas encore g\u00E9n\u00E9r\u00E9 de demande d'authentification pour ce dossier "),
+                    React.createElement(buttons_area_1.ButtonsArea, null,
+                        React.createElement(button_1.Button, { type: "submit", onClick: this.genererDemande, value: "Valider", className: "hornet-button", label: "g\u00E9n\u00E9rer une demande d'authentification", title: "valider" })))));
         }
+    };
+    RecordDetailsPage.prototype.retourPage = function () {
+        this.navigateTo("/record", {}, function () { });
+    };
+    RecordDetailsPage.prototype.genererDemande = function () {
+        this.navigateTo("/form2/" + this.attributes.id, {}, function () { });
     };
     return RecordDetailsPage;
 }(hornet_page_1.HornetPage));

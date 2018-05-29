@@ -4,7 +4,7 @@ import { EntityDAO } from "src/dao/entity-dao";
 
 const logger: Logger = Utils.getLogger("projet-hornet.src.dao.utilisateurs-dao");
 
-export class PrefectureDAO extends EntityDAO {
+export class ValiseDAO extends EntityDAO {
 
   constructor() {
     super();

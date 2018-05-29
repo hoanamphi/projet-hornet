@@ -10,6 +10,8 @@ import {DossierFVMDAO} from "../../../../dao/admin/fvm/dossier-dao";
 import {PermisFVMDAO} from "../../../../dao/admin/fvm/permis-dao";
 import {CopiePermisFVMDao} from "../../../../dao/admin/fvm/copie_permis-dao";
 import {PrefectureDAO} from "../../../../dao/prefecture-dao";
+import {ValiseDAO} from "../../../../dao/valise-dao";
+import forEach = require("lodash/forEach");
 
 const logger: Logger = Utils.getLogger("projet-hornet.services.data.admin.admin-service-impl-data");
 
@@ -23,6 +25,7 @@ export class ServerFormServiceImpl extends ServiceRequest implements ServerFormS
   private copieNoteVerbaleMAECIDAO = new CopieNoteVerbaleMAECIFVMDao();
   private copiePermisDAO = new CopiePermisFVMDao();
   private prefectureDAO = new PrefectureDAO();
+  private valiseDAO = new ValiseDAO();
 
   @Transactional({configDatabase: Injector.getRegistered("databaseConfigName")})
   insererDonnee(data): Promise<any> {
@@ -58,5 +61,18 @@ export class ServerFormServiceImpl extends ServiceRequest implements ServerFormS
 
   getListePrefectures(): Promise<any>{
     return this.prefectureDAO.getListePrefecture();
+  }
+
+  getListeValises(): Promise<any>{
+    return this.valiseDAO.getListeValise().then(result=>{
+      let arr = new Array<any>();
+      result.forEach(elem=>{
+        let tmp = {};
+        tmp["numValise"] = elem.numValise;
+        tmp["dateValise"] = Date.parse(elem.dateValise);
+        arr.push(tmp);
+      });
+      return Promise.resolve(arr);
+    });
   }
 }
