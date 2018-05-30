@@ -11,7 +11,7 @@ import {ResultJSON} from "hornet-js-core/src/result/result-json";
 
 const logger: Logger = Utils.getLogger("projet-hornet.actions.admin.permis_actions");
 
-export class Inser extends RouteActionService<any, ServerFormService> {
+export class InserDossier extends RouteActionService<any, ServerFormService> {
   execute(): Promise<any> {
     logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
 
@@ -36,6 +36,16 @@ export class Inser extends RouteActionService<any, ServerFormService> {
     }
 
     return this.getService().insererDonnee(data);
+  }
+}
+
+export class InserValise extends RouteActionService<any, ServerFormService> {
+  execute(): Promise<any> {
+    logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
+
+    let data = this.req.body;
+    
+    return this.getService().insererValise(data);
   }
 }
 

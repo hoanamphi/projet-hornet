@@ -6,12 +6,12 @@ var abstract_routes_1 = require("hornet-js-core/src/routes/abstract-routes");
 var result_file_1 = require("hornet-js-core/src/result/result-file");
 var media_type_1 = require("hornet-js-core/src/protocol/media-type");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.actions.admin.permis_actions");
-var Inser = /** @class */ (function (_super) {
-    tslib_1.__extends(Inser, _super);
-    function Inser() {
+var InserDossier = /** @class */ (function (_super) {
+    tslib_1.__extends(InserDossier, _super);
+    function InserDossier() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    Inser.prototype.execute = function () {
+    InserDossier.prototype.execute = function () {
         logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
         var data = this.req.body;
         if (this.req.files[0] != null) {
@@ -32,9 +32,22 @@ var Inser = /** @class */ (function (_super) {
         }
         return this.getService().insererDonnee(data);
     };
-    return Inser;
+    return InserDossier;
 }(abstract_routes_1.RouteActionService));
-exports.Inser = Inser;
+exports.InserDossier = InserDossier;
+var InserValise = /** @class */ (function (_super) {
+    tslib_1.__extends(InserValise, _super);
+    function InserValise() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    InserValise.prototype.execute = function () {
+        logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
+        var data = this.req.body;
+        return this.getService().insererValise(data);
+    };
+    return InserValise;
+}(abstract_routes_1.RouteActionService));
+exports.InserValise = InserValise;
 var ListePrefecture = /** @class */ (function (_super) {
     tslib_1.__extends(ListePrefecture, _super);
     function ListePrefecture() {

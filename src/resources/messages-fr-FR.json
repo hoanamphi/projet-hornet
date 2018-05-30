@@ -368,10 +368,14 @@
         "required": "Veuillez sélectionner une valise dans le tableau."
       },
       "num_valise": {
-        "label": "Numéro de la valise"
+        "label": "Numéro de la valise",
+        "invalid": "Le format du champ « Numéro de la valise » est incorrect"
       },
       "date_valise": {
-        "label": "Date d'envoi de la valise"
+        "label": "Date d'envoi de la valise",
+        "title": "Calendrier",
+        "dateFormat": "DD/MM/YYYY",
+        "invalid": "Le format du champ « Date d'envoi de la valise » est incorrect"
       },
       "num_demande_authentification": {
         "label": "Numéro de la demande d'authentification",

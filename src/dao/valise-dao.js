@@ -9,9 +9,22 @@ var ValiseDAO = /** @class */ (function (_super) {
     function ValiseDAO() {
         return _super.call(this) || this;
     }
+    ValiseDAO.prototype.insererValise = function (numValise, dateValise) {
+        return this.modelDAO.valiseEntity.create({
+            numValise: numValise,
+            dateValise: dateValise
+        }).then(function (result) {
+            return Promise.resolve(numValise);
+        });
+    };
     ValiseDAO.prototype.getListeValise = function () {
         return this.modelDAO.valiseEntity.findAll({
-            attributes: ["numValise", "dateValise"]
+            attributes: ["numValise", "dateValise"],
+            where: {
+                dateValise: {
+                    $gt: (new Date()).setDate((new Date()).getDate() + 1)
+                }
+            }
         });
     };
     ValiseDAO.prototype.getValise = function (numValise) {

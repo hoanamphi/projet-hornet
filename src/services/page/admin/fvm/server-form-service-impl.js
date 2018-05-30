@@ -21,6 +21,15 @@ var ServerFormServiceImpl = /** @class */ (function (_super) {
         request.attach.push({ field: "copie_note_verbale_maeci", file: data["copie_note_verbale_maeci"], fileName: data["copie_note_verbale_maeci"].name });
         return this.fetch(request);
     };
+    ServerFormServiceImpl.prototype.insererValise = function (data) {
+        logger.trace("SERVICES - list : ", data);
+        var request = {
+            method: "post",
+            url: this.buildUrl("/form2server/insertValise"),
+            data: data
+        };
+        return this.fetch(request);
+    };
     ServerFormServiceImpl.prototype.getListePrefectures = function () {
         var request = {
             method: "post",

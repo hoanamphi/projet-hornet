@@ -50,12 +50,20 @@ var ServerFormServiceImpl = /** @class */ (function (_super) {
             return _this.Error;
         });
     };
+    ServerFormServiceImpl.prototype.insererValise = function (data) {
+        var _this = this;
+        return this.valiseDAO.insererValise(data["num_valise"], data["date_valise"]).catch(function (error) {
+            _this.Error.hasError = error;
+            _this.Error.hasReason = error.toString();
+            return _this.Error;
+        });
+    };
     ServerFormServiceImpl.prototype.getListePrefectures = function () {
         return this.prefectureDAO.getListePrefecture();
     };
     ServerFormServiceImpl.prototype.getListeValises = function () {
         return this.valiseDAO.getListeValise().then(function (result) {
-            var arr = new Array();
+            var arr = [];
             result.forEach(function (elem) {
                 var tmp = {};
                 tmp["numValise"] = elem.numValise;

@@ -248,7 +248,7 @@ if (typeof window !== "undefined" && window["Mode"]) {
 //cette surcharge est destinée à disparaitre lorsque les hornet-js-bean-converteurs seront créés
 Date.prototype.toJSON = function () { return this.getTime(); };
 var common_register_1 = __webpack_require__(15);
-var date_utils_1 = __webpack_require__(104);
+var date_utils_1 = __webpack_require__(102);
 var config_lib_1 = __webpack_require__(123);
 var app_shared_props_1 = __webpack_require__(124);
 var continuation_local_storage_1 = __webpack_require__(125);
@@ -28541,6 +28541,75 @@ module.exports = invariant;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+
+
+
+var emptyFunction = __webpack_require__(14);
+
+/**
+ * Similar to invariant but only logs a warning if the condition is not met.
+ * This can be used to log issues in development environments in critical
+ * paths. Removing the logging code for production environments will keep the
+ * same logic and follow the same code paths.
+ */
+
+var warning = emptyFunction;
+
+if (process.env.NODE_ENV !== 'production') {
+  var printWarning = function printWarning(format) {
+    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      args[_key - 1] = arguments[_key];
+    }
+
+    var argIndex = 0;
+    var message = 'Warning: ' + format.replace(/%s/g, function () {
+      return args[argIndex++];
+    });
+    if (typeof console !== 'undefined') {
+      console.error(message);
+    }
+    try {
+      // --- Welcome to debugging React ---
+      // This error was thrown as a convenience so that you can use this stack
+      // to find the callsite that caused this warning to fire.
+      throw new Error(message);
+    } catch (x) {}
+  };
+
+  warning = function warning(condition, format) {
+    if (format === undefined) {
+      throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
+    }
+
+    if (format.indexOf('Failed Composite propType: ') === 0) {
+      return; // Ignore CompositeComponent proptype check.
+    }
+
+    if (!condition) {
+      for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
+        args[_key2 - 2] = arguments[_key2];
+      }
+
+      printWarning.apply(undefined, [format].concat(args));
+    }
+  };
+}
+
+module.exports = warning;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 
 /**
  * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
@@ -28953,75 +29022,6 @@ var Dropdown = /** @class */ (function (_super) {
 exports.Dropdown = Dropdown;
 
 
-
-/***/ }),
-/* 39 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
-
-var emptyFunction = __webpack_require__(14);
-
-/**
- * Similar to invariant but only logs a warning if the condition is not met.
- * This can be used to log issues in development environments in critical
- * paths. Removing the logging code for production environments will keep the
- * same logic and follow the same code paths.
- */
-
-var warning = emptyFunction;
-
-if (process.env.NODE_ENV !== 'production') {
-  var printWarning = function printWarning(format) {
-    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      args[_key - 1] = arguments[_key];
-    }
-
-    var argIndex = 0;
-    var message = 'Warning: ' + format.replace(/%s/g, function () {
-      return args[argIndex++];
-    });
-    if (typeof console !== 'undefined') {
-      console.error(message);
-    }
-    try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
-      throw new Error(message);
-    } catch (x) {}
-  };
-
-  warning = function warning(condition, format) {
-    if (format === undefined) {
-      throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
-    }
-
-    if (format.indexOf('Failed Composite propType: ') === 0) {
-      return; // Ignore CompositeComponent proptype check.
-    }
-
-    if (!condition) {
-      for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
-        args[_key2 - 2] = arguments[_key2];
-      }
-
-      printWarning.apply(undefined, [format].concat(args));
-    }
-  };
-}
-
-module.exports = warning;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
 /* 40 */
@@ -31207,8 +31207,8 @@ exports.HornetPage = HornetPage;
 
 if (process.env.NODE_ENV !== 'production') {
   var invariant = __webpack_require__(37);
-  var warning = __webpack_require__(39);
-  var ReactPropTypesSecret = __webpack_require__(100);
+  var warning = __webpack_require__(38);
+  var ReactPropTypesSecret = __webpack_require__(99);
   var loggedTypeFailures = {};
 }
 
@@ -39871,203 +39871,6 @@ exports.AbstractRoutes = AbstractRoutes;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-/**
- * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * Ce logiciel est un programme informatique servant à faciliter la création
- * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
- * <p/>
- * Ce logiciel est régi par la licence CeCILL soumise au droit français et
- * respectant les principes de diffusion des logiciels libres. Vous pouvez
- * utiliser, modifier et/ou redistribuer ce programme sous les conditions
- * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
- * sur le site "http://www.cecill.info".
- * <p/>
- * En contrepartie de l'accessibilité au code source et des droits de copie,
- * de modification et de redistribution accordés par cette licence, il n'est
- * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
- * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
- * titulaire des droits patrimoniaux et les concédants successifs.
- * <p/>
- * A cet égard  l'attention de l'utilisateur est attirée sur les risques
- * associés au chargement,  à l'utilisation,  à la modification et/ou au
- * développement et à la reproduction du logiciel par l'utilisateur étant
- * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
- * manipuler et qui le réserve donc à des développeurs et des professionnels
- * avertis possédant  des  connaissances  informatiques approfondies.  Les
- * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
- * logiciel à leurs besoins dans des conditions permettant d'assurer la
- * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
- * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
- * <p/>
- * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
- * pris connaissance de la licence CeCILL, et que vous en avez accepté les
- * termes.
- * <p/>
- * <p/>
- * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * This software is a computer program whose purpose is to facilitate creation of
- * web application in accordance with french general repositories : RGI, RGS and RGAA.
- * <p/>
- * This software is governed by the CeCILL license under French law and
- * abiding by the rules of distribution of free software.  You can  use,
- * modify and/ or redistribute the software under the terms of the CeCILL
- * license as circulated by CEA, CNRS and INRIA at the following URL
- * "http://www.cecill.info".
- * <p/>
- * As a counterpart to the access to the source code and  rights to copy,
- * modify and redistribute granted by the license, users are provided only
- * with a limited warranty  and the software's author,  the holder of the
- * economic rights,  and the successive licensors  have only  limited
- * liability.
- * <p/>
- * In this respect, the user's attention is drawn to the risks associated
- * with loading,  using,  modifying and/or developing or reproducing the
- * software by the user in light of its specific status of free software,
- * that may mean  that it is complicated to manipulate,  and  that  also
- * therefore means  that it is reserved for developers  and  experienced
- * professionals having in-depth computer knowledge. Users are therefore
- * encouraged to load and test the software's suitability as regards their
- * requirements in conditions enabling the security of their systems and/or
- * data to be ensured and,  more generally, to use and operate it in the
- * same conditions as regards security.
- * <p/>
- * The fact that you are presently reading this means that you have had
- * knowledge of the CeCILL license and that you accept its terms.
- *
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(1);
-/**
- * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
- *
- * @author MEAE - Ministère de l'Europe et des Affaires étrangères
- * @version v5.1.1
- * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
- * @license CECILL-2.1
- */
-var hornet_js_utils_1 = __webpack_require__(0);
-var React = __webpack_require__(2);
-var hornet_component_1 = __webpack_require__(3);
-var hornet_event_1 = __webpack_require__(7);
-var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.spinner.spinner-component");
-/**
- * Composant affichant une image (par défaut une roue dentée animée) et un texte d'attente
- * dans une fenêtre modale en attendant la fin d'une action longue.
- */
-var SpinnerComponent = /** @class */ (function (_super) {
-    tslib_1.__extends(SpinnerComponent, _super);
-    function SpinnerComponent(props, context) {
-        var _this = _super.call(this, props, context) || this;
-        /** Décompte le nombre d'évènements en attente de terminaison */
-        _this.count = 0;
-        _this.copyInitialPropsToState({ isVisible: props.isVisible ? props.isVisible : false }, _this.state);
-        return _this;
-    }
-    /**
-     * @inheritDoc
-     */
-    SpinnerComponent.prototype.componentDidMount = function () {
-        this.listen(hornet_event_1.ASYNCHRONOUS_REQUEST_EVENT_COMPONENT, this.asyncRequestEventTreatment);
-    };
-    /**
-     * @inheritDoc
-     */
-    SpinnerComponent.prototype.componentWillUnmount = function () {
-        this.remove(hornet_event_1.ASYNCHRONOUS_REQUEST_EVENT_COMPONENT, this.asyncRequestEventTreatment);
-    };
-    SpinnerComponent.prototype.asyncRequestEventTreatment = function (ev) {
-        this.progress(ev.detail.inProgress);
-    };
-    /**
-     * @inheritDoc
-     */
-    SpinnerComponent.prototype.shouldComponentUpdate = function (nextProps, nextState) {
-        return this.state.isVisible !== nextState.isVisible;
-    };
-    /**
-     * gestion des compteurs d'affichage/fermeture du spinner
-     */
-    SpinnerComponent.prototype.progress = function (inProgress) {
-        logger.trace("spinnerCount", this.count, "inProgressFlag", inProgress);
-        if (inProgress) {
-            this.count++;
-            this.openSpinner();
-        }
-        else {
-            this.count--;
-            if (this.count === 0)
-                this.closeSpinner();
-        }
-    };
-    /**
-     * Affichage Spinner
-     */
-    SpinnerComponent.prototype.openSpinner = function () {
-        if (this.count > 0) {
-            this.setState({ isVisible: true });
-        }
-    };
-    /**
-     * Fermeture Spinner
-     */
-    SpinnerComponent.prototype.closeSpinner = function () {
-        this.setState({ isVisible: false });
-    };
-    /**
-     * @inheritDoc
-     */
-    SpinnerComponent.prototype.render = function () {
-        return ((this.state.isVisible && this.count > 0) ?
-            React.createElement("div", { className: "component-spinner" },
-                React.createElement("div", null, this.getLoadingText()),
-                React.createElement("img", { src: this.getSpinnerImage(), alt: this.getLoadingTitle() })) : React.createElement("div", null));
-    };
-    /**
-     * Return l'url de l'image spinner
-     * @returns Url image spinner
-     * @protected
-     */
-    SpinnerComponent.prototype.getSpinnerImage = function () {
-        return this.props.imageLoadingUrl || hornet_component_1.HornetComponent.genUrlTheme("/components/img/spinner/spinner.gif");
-    };
-    /**
-     * Extrait le libelle loadingText passé dans les propriétés du composant ou indique un libellé par défaut
-     * @returns Titre
-     * @protected
-     */
-    SpinnerComponent.prototype.getLoadingText = function () {
-        return this.props.loadingText || this.i18n("spinner.loadingText");
-    };
-    /**
-     * Extrait le libelle loadingTitle passé dans les propriétés du composant ou indique un libellé par défaut
-     * @returns Titre
-     * @protected
-     */
-    SpinnerComponent.prototype.getLoadingTitle = function () {
-        return this.props.loadingTitle || this.i18n("spinner.loadingTitle");
-    };
-    /**delay permettant de decaler dans le temps les demandes d'affichage du spinner fixé à 500ms (optimisation)*/
-    SpinnerComponent.defaultProps = {
-        minimalShowTimeInMs: 500
-    };
-    return SpinnerComponent;
-}(hornet_component_1.HornetComponent));
-exports.SpinnerComponent = SpinnerComponent;
-
-
-
-/***/ }),
-/* 100 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -40083,7 +39886,7 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 101 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40312,29 +40115,7 @@ exports.Modal = Modal;
 
 
 /***/ }),
-/* 102 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* jshint node:true */
-
-
-
-var IntlMessageFormat = __webpack_require__(172)['default'];
-
-// Add all locale data to `IntlMessageFormat`. This module will be ignored when
-// bundling for the browser with Browserify/Webpack.
-__webpack_require__(179);
-
-// Re-export `IntlMessageFormat` as the CommonJS default exports with all the
-// locale data registered, and with English set as the default locale. Define
-// the `default` prop for use with other compiled ES6 Modules.
-exports = module.exports = IntlMessageFormat;
-exports['default'] = exports;
-
-
-/***/ }),
-/* 103 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40422,64 +40203,116 @@ var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
-var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.icon.icon");
-/** Valeur de l'url par défaut lorsque la propriété url est vide */
-exports.EMPTY_URL = "#";
+var hornet_event_1 = __webpack_require__(7);
+var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.spinner.spinner-component");
 /**
- * Composant Icône
+ * Composant affichant une image (par défaut une roue dentée animée) et un texte d'attente
+ * dans une fenêtre modale en attendant la fin d'une action longue.
  */
-var Icon = /** @class */ (function (_super) {
-    tslib_1.__extends(Icon, _super);
-    function Icon() {
-        return _super !== null && _super.apply(this, arguments) || this;
+var SpinnerComponent = /** @class */ (function (_super) {
+    tslib_1.__extends(SpinnerComponent, _super);
+    function SpinnerComponent(props, context) {
+        var _this = _super.call(this, props, context) || this;
+        /** Décompte le nombre d'évènements en attente de terminaison */
+        _this.count = 0;
+        _this.copyInitialPropsToState({ isVisible: props.isVisible ? props.isVisible : false }, _this.state);
+        return _this;
     }
     /**
-     * Retire le focus de l'élément une fois cliqué de façon à permettre de scroller ou mettre le focus sur les
-     * notifications éventuellement présentées suite à l'action.
-     * @param event évènement
-     * @protected
+     * @inheritDoc
      */
-    Icon.prototype.iconOnClick = function (event) {
-        if (event.currentTarget && event.currentTarget.blur) {
-            event.currentTarget.blur();
-        }
-        else {
-            logger.warn("iconOnClick : impossible d'enlever le focus de l'élement");
-        }
-        /* Exécute ensuite la fonction fournie en propriétés */
-        if (this.state.action) {
-            this.state.action();
-        }
+    SpinnerComponent.prototype.componentDidMount = function () {
+        this.listen(hornet_event_1.ASYNCHRONOUS_REQUEST_EVENT_COMPONENT, this.asyncRequestEventTreatment);
     };
     /**
      * @inheritDoc
      */
-    Icon.prototype.render = function () {
-        var result;
-        if (this.state.url == null || this.state.url == exports.EMPTY_URL) {
-            /* L'URL n'est pas valorisée : le comportement est celui d'un bouton (raccourci clavier : Entrée OU Espace )
-             * (cf. https://www.w3.org/TR/wai-aria-practices/#button > "Keyboard Interaction")  */
-            result = React.createElement("button", { type: "button", title: this.state.title, id: this.state.idLink, className: this.props.classLink, onClick: this.iconOnClick, tabIndex: this.props.tabIndex, "aria-haspopup": this.props.hasPopUp },
-                React.createElement("img", { src: this.state.src, alt: this.state.alt, id: this.state.idImg, className: this.state.classImg }));
+    SpinnerComponent.prototype.componentWillUnmount = function () {
+        this.remove(hornet_event_1.ASYNCHRONOUS_REQUEST_EVENT_COMPONENT, this.asyncRequestEventTreatment);
+    };
+    SpinnerComponent.prototype.asyncRequestEventTreatment = function (ev) {
+        this.progress(ev.detail.inProgress);
+    };
+    /**
+     * @inheritDoc
+     */
+    SpinnerComponent.prototype.shouldComponentUpdate = function (nextProps, nextState) {
+        return this.state.isVisible !== nextState.isVisible;
+    };
+    /**
+     * gestion des compteurs d'affichage/fermeture du spinner
+     */
+    SpinnerComponent.prototype.progress = function (inProgress) {
+        logger.trace("spinnerCount", this.count, "inProgressFlag", inProgress);
+        if (inProgress) {
+            this.count++;
+            this.openSpinner();
         }
         else {
-            /* L'URL est valorisée : le comportement est celui d'un lien (raccourci clavier : Entrée uniquement )*/
-            result = React.createElement("a", { href: this.state.url, title: this.state.title, id: this.state.idLink, className: this.props.classLink, onClick: this.iconOnClick, target: this.state.target, tabIndex: this.props.tabIndex },
-                React.createElement("img", { src: this.state.src, alt: this.state.alt, id: this.state.idImg, className: this.state.classImg }));
+            this.count--;
+            if (this.count === 0)
+                this.closeSpinner();
         }
-        return result;
     };
-    Icon.defaultProps = {
-        url: exports.EMPTY_URL
+    /**
+     * Affichage Spinner
+     */
+    SpinnerComponent.prototype.openSpinner = function () {
+        if (this.count > 0) {
+            this.setState({ isVisible: true });
+        }
     };
-    return Icon;
+    /**
+     * Fermeture Spinner
+     */
+    SpinnerComponent.prototype.closeSpinner = function () {
+        this.setState({ isVisible: false });
+    };
+    /**
+     * @inheritDoc
+     */
+    SpinnerComponent.prototype.render = function () {
+        return ((this.state.isVisible && this.count > 0) ?
+            React.createElement("div", { className: "component-spinner" },
+                React.createElement("div", null, this.getLoadingText()),
+                React.createElement("img", { src: this.getSpinnerImage(), alt: this.getLoadingTitle() })) : React.createElement("div", null));
+    };
+    /**
+     * Return l'url de l'image spinner
+     * @returns Url image spinner
+     * @protected
+     */
+    SpinnerComponent.prototype.getSpinnerImage = function () {
+        return this.props.imageLoadingUrl || hornet_component_1.HornetComponent.genUrlTheme("/components/img/spinner/spinner.gif");
+    };
+    /**
+     * Extrait le libelle loadingText passé dans les propriétés du composant ou indique un libellé par défaut
+     * @returns Titre
+     * @protected
+     */
+    SpinnerComponent.prototype.getLoadingText = function () {
+        return this.props.loadingText || this.i18n("spinner.loadingText");
+    };
+    /**
+     * Extrait le libelle loadingTitle passé dans les propriétés du composant ou indique un libellé par défaut
+     * @returns Titre
+     * @protected
+     */
+    SpinnerComponent.prototype.getLoadingTitle = function () {
+        return this.props.loadingTitle || this.i18n("spinner.loadingTitle");
+    };
+    /**delay permettant de decaler dans le temps les demandes d'affichage du spinner fixé à 500ms (optimisation)*/
+    SpinnerComponent.defaultProps = {
+        minimalShowTimeInMs: 500
+    };
+    return SpinnerComponent;
 }(hornet_component_1.HornetComponent));
-exports.Icon = Icon;
+exports.SpinnerComponent = SpinnerComponent;
 
 
 
 /***/ }),
-/* 104 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40809,7 +40642,29 @@ var DateDiffUnit;
 
 
 /***/ }),
-/* 105 */
+/* 103 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* jshint node:true */
+
+
+
+var IntlMessageFormat = __webpack_require__(172)['default'];
+
+// Add all locale data to `IntlMessageFormat`. This module will be ignored when
+// bundling for the browser with Browserify/Webpack.
+__webpack_require__(179);
+
+// Re-export `IntlMessageFormat` as the CommonJS default exports with all the
+// locale data registered, and with English set as the default locale. Define
+// the `default` prop for use with other compiled ES6 Modules.
+exports = module.exports = IntlMessageFormat;
+exports['default'] = exports;
+
+
+/***/ }),
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40898,8 +40753,8 @@ var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var ReactDOM = __webpack_require__(22);
 var hornet_component_1 = __webpack_require__(3);
-var icon_1 = __webpack_require__(103);
-var modal_1 = __webpack_require__(101);
+var icon_1 = __webpack_require__(105);
+var modal_1 = __webpack_require__(100);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.table.button-info-accessibilite");
 /**
  * Bouton et modale d'information sur l'accessibilité clavier du composant Table
@@ -40965,6 +40820,151 @@ var ButtonInfoAccessibilite = /** @class */ (function (_super) {
     return ButtonInfoAccessibilite;
 }(hornet_component_1.HornetComponent));
 exports.ButtonInfoAccessibilite = ButtonInfoAccessibilite;
+
+
+
+/***/ }),
+/* 105 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * Ce logiciel est un programme informatique servant à faciliter la création
+ * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
+ * <p/>
+ * Ce logiciel est régi par la licence CeCILL soumise au droit français et
+ * respectant les principes de diffusion des logiciels libres. Vous pouvez
+ * utiliser, modifier et/ou redistribuer ce programme sous les conditions
+ * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
+ * sur le site "http://www.cecill.info".
+ * <p/>
+ * En contrepartie de l'accessibilité au code source et des droits de copie,
+ * de modification et de redistribution accordés par cette licence, il n'est
+ * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
+ * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
+ * titulaire des droits patrimoniaux et les concédants successifs.
+ * <p/>
+ * A cet égard  l'attention de l'utilisateur est attirée sur les risques
+ * associés au chargement,  à l'utilisation,  à la modification et/ou au
+ * développement et à la reproduction du logiciel par l'utilisateur étant
+ * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
+ * manipuler et qui le réserve donc à des développeurs et des professionnels
+ * avertis possédant  des  connaissances  informatiques approfondies.  Les
+ * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
+ * logiciel à leurs besoins dans des conditions permettant d'assurer la
+ * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
+ * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
+ * <p/>
+ * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
+ * pris connaissance de la licence CeCILL, et que vous en avez accepté les
+ * termes.
+ * <p/>
+ * <p/>
+ * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * This software is a computer program whose purpose is to facilitate creation of
+ * web application in accordance with french general repositories : RGI, RGS and RGAA.
+ * <p/>
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software.  You can  use,
+ * modify and/ or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ * <p/>
+ * As a counterpart to the access to the source code and  rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty  and the software's author,  the holder of the
+ * economic rights,  and the successive licensors  have only  limited
+ * liability.
+ * <p/>
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading,  using,  modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean  that it is complicated to manipulate,  and  that  also
+ * therefore means  that it is reserved for developers  and  experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and,  more generally, to use and operate it in the
+ * same conditions as regards security.
+ * <p/>
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(1);
+/**
+ * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
+ *
+ * @author MEAE - Ministère de l'Europe et des Affaires étrangères
+ * @version v5.1.1
+ * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
+ * @license CECILL-2.1
+ */
+var hornet_js_utils_1 = __webpack_require__(0);
+var React = __webpack_require__(2);
+var hornet_component_1 = __webpack_require__(3);
+var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.icon.icon");
+/** Valeur de l'url par défaut lorsque la propriété url est vide */
+exports.EMPTY_URL = "#";
+/**
+ * Composant Icône
+ */
+var Icon = /** @class */ (function (_super) {
+    tslib_1.__extends(Icon, _super);
+    function Icon() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /**
+     * Retire le focus de l'élément une fois cliqué de façon à permettre de scroller ou mettre le focus sur les
+     * notifications éventuellement présentées suite à l'action.
+     * @param event évènement
+     * @protected
+     */
+    Icon.prototype.iconOnClick = function (event) {
+        if (event.currentTarget && event.currentTarget.blur) {
+            event.currentTarget.blur();
+        }
+        else {
+            logger.warn("iconOnClick : impossible d'enlever le focus de l'élement");
+        }
+        /* Exécute ensuite la fonction fournie en propriétés */
+        if (this.state.action) {
+            this.state.action();
+        }
+    };
+    /**
+     * @inheritDoc
+     */
+    Icon.prototype.render = function () {
+        var result;
+        if (this.state.url == null || this.state.url == exports.EMPTY_URL) {
+            /* L'URL n'est pas valorisée : le comportement est celui d'un bouton (raccourci clavier : Entrée OU Espace )
+             * (cf. https://www.w3.org/TR/wai-aria-practices/#button > "Keyboard Interaction")  */
+            result = React.createElement("button", { type: "button", title: this.state.title, id: this.state.idLink, className: this.props.classLink, onClick: this.iconOnClick, tabIndex: this.props.tabIndex, "aria-haspopup": this.props.hasPopUp },
+                React.createElement("img", { src: this.state.src, alt: this.state.alt, id: this.state.idImg, className: this.state.classImg }));
+        }
+        else {
+            /* L'URL est valorisée : le comportement est celui d'un lien (raccourci clavier : Entrée uniquement )*/
+            result = React.createElement("a", { href: this.state.url, title: this.state.title, id: this.state.idLink, className: this.props.classLink, onClick: this.iconOnClick, target: this.state.target, tabIndex: this.props.tabIndex },
+                React.createElement("img", { src: this.state.src, alt: this.state.alt, id: this.state.idImg, className: this.state.classImg }));
+        }
+        return result;
+    };
+    Icon.defaultProps = {
+        url: exports.EMPTY_URL
+    };
+    return Icon;
+}(hornet_component_1.HornetComponent));
+exports.Icon = Icon;
 
 
 
@@ -41082,16 +41082,16 @@ __webpack_require__(246);
         logger.info("routeLoaderClient(" + name + ")");
         // [AUTO GENERATED] DO NOT EDIT THIS FUNCTION DIRECTLY
 if (name === 'admin/fvm/form1-client-routes') { 
-__webpack_require__.e/* require */(3).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(247)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+__webpack_require__.e/* require */(5).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(247)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 }
 else if (name === 'admin/fvm/form1-server-routes') { 
-__webpack_require__.e/* require */(2).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(252)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+__webpack_require__.e/* require */(4).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(252)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 }
 else if (name === 'admin/fvm/form2-client-routes') { 
-__webpack_require__.e/* require */(5).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(248)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+__webpack_require__.e/* require */(3).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(248)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 }
 else if (name === 'admin/fvm/form2-server-routes') { 
-__webpack_require__.e/* require */(4).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(253)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+__webpack_require__.e/* require */(2).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(253)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 }
 else if (name === 'admin/fvm/record-client-routes') { 
 __webpack_require__.e/* require */(1).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(249)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
@@ -54215,7 +54215,7 @@ var user_1 = __webpack_require__(231);
 var menu_1 = __webpack_require__(233);
 var layout_switcher_1 = __webpack_require__(24);
 var change_language_1 = __webpack_require__(240);
-var dropdown_1 = __webpack_require__(38);
+var dropdown_1 = __webpack_require__(39);
 var ChangeLanguageService = __webpack_require__(241);
 var navigation_utils_1 = __webpack_require__(20);
 var notification_session_footer_1 = __webpack_require__(242);
@@ -54422,7 +54422,7 @@ if (process.env.NODE_ENV !== "production") {
 var _assign = __webpack_require__(28);
 var emptyObject = __webpack_require__(29);
 var invariant = __webpack_require__(37);
-var warning = __webpack_require__(39);
+var warning = __webpack_require__(38);
 var emptyFunction = __webpack_require__(14);
 var checkPropTypes = __webpack_require__(52);
 
@@ -55941,7 +55941,7 @@ var index_1 = __webpack_require__(0);
 //                patch intl-messageformat afin de ne pas échouer si un paramètre est manquant              //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 var src$utils$$ = __webpack_require__(46);
-var IntlMessageFormat = __webpack_require__(102);
+var IntlMessageFormat = __webpack_require__(103);
 IntlMessageFormat.prototype._format = function (pattern, values) {
     var result = "", i, len, part, id, value;
     for (i = 0, len = pattern.length; i < len; i += 1) {
@@ -63270,7 +63270,7 @@ var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var hornet_event_1 = __webpack_require__(7);
-var spinner_component_1 = __webpack_require__(99);
+var spinner_component_1 = __webpack_require__(101);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.spinner.spinner");
 /**
  * Composant affichant une image (par défaut une roue dentée animée) et un texte d'attente
@@ -64089,7 +64089,7 @@ if (process.env.NODE_ENV !== "production") {
 
 var React = __webpack_require__(2);
 var invariant = __webpack_require__(37);
-var warning = __webpack_require__(39);
+var warning = __webpack_require__(38);
 var ExecutionEnvironment = __webpack_require__(87);
 var _assign = __webpack_require__(28);
 var emptyFunction = __webpack_require__(14);
@@ -80667,7 +80667,7 @@ var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
 var hornet_js_utils_1 = __webpack_require__(0);
 var key_codes_1 = __webpack_require__(10);
-var dropdown_1 = __webpack_require__(38);
+var dropdown_1 = __webpack_require__(39);
 /**
  * Composant User
  */
@@ -81972,7 +81972,7 @@ var tslib_1 = __webpack_require__(1);
  */
 var hornet_js_utils_1 = __webpack_require__(0);
 var hornet_component_1 = __webpack_require__(3);
-var button_info_accessibilite_1 = __webpack_require__(105);
+var button_info_accessibilite_1 = __webpack_require__(104);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.navigation.menu-info-accessibilite");
 /**
  * Bouton et modale d'information sur l'accessibilité clavier du composant Menu
@@ -85317,7 +85317,7 @@ var tslib_1 = __webpack_require__(1);
 var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
 var hornet_js_utils_1 = __webpack_require__(0);
-var dropdown_1 = __webpack_require__(38);
+var dropdown_1 = __webpack_require__(39);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.language.change-language");
 /**
  * Composant ChangeLanguage

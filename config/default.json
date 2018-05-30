@@ -174,7 +174,7 @@
     "config": {
       "uri": "postgres://hornetjs@localhost:5432/projet-hornetDB",
       "options": {
-        "operatorsAliases": false,
+        "operatorsAliases": true,
         "pool": {
           "max": 5,
           "min": 0,

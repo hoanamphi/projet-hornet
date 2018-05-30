@@ -24,6 +24,18 @@ export class ServerFormServiceImpl extends ServicePage implements ServerFormServ
     return this.fetch(request);
   }
 
+  insererValise(data: any): Promise<any> {
+    logger.trace("SERVICES - list : ", data);
+
+    let request: HornetRequest = {
+      method: "post",
+      url: this.buildUrl("/form2server/insertValise"),
+      data: data
+    };
+
+    return this.fetch(request);
+  }
+
   getListePrefectures(): Promise<any> {
     let request: HornetRequest = {
       method: "post",

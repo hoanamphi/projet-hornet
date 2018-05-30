@@ -29,6 +29,11 @@ var FormulaireDossierPage = /** @class */ (function (_super) {
         _this.SequelizeErrors = new notification_manager_1.NotificationType();
         _this.SequelizeErrors.id = "SequelizeError";
         _this.errors.addNotification(_this.SequelizeErrors);
+        _this.success = new notification_manager_1.Notifications();
+        _this.SequelizeSuccess = new notification_manager_1.NotificationType();
+        _this.SequelizeSuccess.id = "SequelizeSuccess";
+        _this.SequelizeSuccess.text = "Opération réussie";
+        _this.success.addNotification(_this.SequelizeSuccess);
         return _this;
     }
     FormulaireDossierPage.prototype.prepareClient = function () {
@@ -42,6 +47,9 @@ var FormulaireDossierPage = /** @class */ (function (_super) {
                 console.error(result.hasError);
                 _this.SequelizeErrors.text = result.hasReason;
                 notification_manager_1.NotificationManager.notify("SequelizeError", "errors", _this.errors, null, null, null, null);
+            }
+            else {
+                notification_manager_1.NotificationManager.notify("SequelizeSuccess", "notif", null, _this.success, null, null, null);
             }
         }).catch(function (reason) {
             console.error(reason);

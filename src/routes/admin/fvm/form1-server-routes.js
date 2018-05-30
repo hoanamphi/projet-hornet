@@ -10,7 +10,7 @@ var Form1RoutesServer = /** @class */ (function (_super) {
     tslib_1.__extends(Form1RoutesServer, _super);
     function Form1RoutesServer() {
         var _this = _super.call(this) || this;
-        _this.addDataRoute("/", function () { return new abstract_routes_1.DataRouteInfos(fvm_action_1.Inser, null, server_form_service_impl_data_1.ServerFormServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE, "post");
+        _this.addDataRoute("/", function () { return new abstract_routes_1.DataRouteInfos(fvm_action_1.InserDossier, null, server_form_service_impl_data_1.ServerFormServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE, "post");
         _this.addDataRoute("/listPrefectures", function () { return new abstract_routes_1.DataRouteInfos(fvm_action_2.ListePrefecture, null, server_form_service_impl_data_1.ServerFormServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE, "post");
         return _this;
     }

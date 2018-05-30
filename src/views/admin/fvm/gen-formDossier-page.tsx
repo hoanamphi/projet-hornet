@@ -32,6 +32,8 @@ export class FormulaireDossierPage extends HornetPage<ServerFormService, HornetC
   private prefectures;
   private errors;
   private SequelizeErrors;
+  private success;
+  private SequelizeSuccess;
 
   constructor(props?: HornetComponentProps, context?: any) {
     super(props, context);
@@ -41,6 +43,12 @@ export class FormulaireDossierPage extends HornetPage<ServerFormService, HornetC
     this.SequelizeErrors = new NotificationType();
     this.SequelizeErrors.id = "SequelizeError";
     this.errors.addNotification(this.SequelizeErrors);
+
+    this.success =  new Notifications();
+    this.SequelizeSuccess = new NotificationType();
+    this.SequelizeSuccess.id = "SequelizeSuccess";
+    this.SequelizeSuccess.text = "Opération réussie";
+    this.success.addNotification(this.SequelizeSuccess);
   }
 
   prepareClient(): void {
@@ -55,6 +63,8 @@ export class FormulaireDossierPage extends HornetPage<ServerFormService, HornetC
 
         this.SequelizeErrors.text = result.hasReason;
         NotificationManager.notify("SequelizeError","errors", this.errors, null, null, null, null);
+      } else {
+        NotificationManager.notify("SequelizeSuccess","notif", null, this.success, null, null, null);
       }
     }).catch(reason=>{
       console.error(reason);

@@ -4,13 +4,23 @@
   "description": "Validation des données de formulaire",
   "type": "object",
   "required": [
-    "selectedItems-selectedLine",
-    "num_demande_authentification"
+//    "selectedItems-selectedLine",
+//    "num_demande_authentification",
+    "num_valise",
+    "date_valise"
   ],
   "properties": {
-
+    "num_valise": {
+      "$ref": "#/definition/nombre"
+    },
+    "date_valise": {
+      "$ref": "#/definition/date"
+    }
   },
   "definition": {
+    "nombre": {
+      "type": "number"
+    },
     "nom_propre": {
       "type": "string",
       "pattern": "^([a-zA-ZÀ-ÿ]+[-]{0,2}[a-zA-ZÀ-ÿ]+ ?)*$"

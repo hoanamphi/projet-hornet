@@ -59,13 +59,21 @@ export class ServerFormServiceImpl extends ServiceRequest implements ServerFormS
     });
   }
 
+  insererValise(data): Promise<any> {
+    return this.valiseDAO.insererValise(data["num_valise"], data["date_valise"]).catch(error=>{
+      this.Error.hasError = error;
+      this.Error.hasReason = error.toString();
+      return this.Error;
+    });
+  }
+
   getListePrefectures(): Promise<any>{
     return this.prefectureDAO.getListePrefecture();
   }
 
   getListeValises(): Promise<any>{
     return this.valiseDAO.getListeValise().then(result=>{
-      let arr = new Array<any>();
+      let arr = [];
       result.forEach(elem=>{
         let tmp = {};
         tmp["numValise"] = elem.numValise;

@@ -10,9 +10,23 @@ export class ValiseDAO extends EntityDAO {
     super();
   }
 
+  insererValise(numValise, dateValise): Promise<any> {
+    return this.modelDAO.valiseEntity.create({
+      numValise: numValise,
+      dateValise: dateValise
+    }).then(result=>{
+      return Promise.resolve(numValise);
+    });
+  }
+
   getListeValise(): Promise<any> {
     return this.modelDAO.valiseEntity.findAll({
-      attributes: ["numValise", "dateValise"]
+      attributes: ["numValise", "dateValise"],
+      where: {
+        dateValise: {
+          $gt: (new Date()).setDate((new Date()).getDate()+1)
+        }
+      }
     });
   }
 
