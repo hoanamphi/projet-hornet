@@ -6,6 +6,8 @@ var React = require("react");
 var hornet_page_1 = require("hornet-js-react-components/src/widget/component/hornet-page");
 var form_1 = require("hornet-js-react-components/src/widget/form/form");
 var row_1 = require("hornet-js-react-components/src/widget/form/row");
+var input_field_1 = require("hornet-js-react-components/src/widget/form/input-field");
+var calendar_field_1 = require("hornet-js-react-components/src/widget/form/calendar-field");
 var button_1 = require("hornet-js-react-components/src/widget/button/button");
 var buttons_area_1 = require("hornet-js-react-components/src/widget/form/buttons-area");
 var datasource_config_page_1 = require("hornet-js-core/src/component/datasource/config/service/datasource-config-page");
@@ -125,14 +127,27 @@ var RecordDetailsPage = /** @class */ (function (_super) {
     RecordDetailsPage.prototype.renderDemandeAuthentificationTab = function (demandeAuthentificationList) {
         var format = this.i18n("form");
         if (demandeAuthentificationList.length > 0) {
-            return (React.createElement(tab_1.Tab, { id: "tabDemandeAuthentification", title: "Demande d'Authentification" },
-                React.createElement(tab_content_1.TabContent, null,
-                    React.createElement("p", null, " rien "))));
+            var fileTag = null;
+            var urlfile = hornet_js_utils_1.Utils.buildContextPath("/services/recordserver/pdfMake/demandeAuthentification/" + this.attributes.id);
+            var fileTarget = "newTabForDemandeAuthentification" + this.attributes.id;
+            fileTag =
+                React.createElement(tab_1.Tab, { id: "tabDemandeAuthentification", title: "Demande d'Authentification" },
+                    React.createElement(tab_content_1.TabContent, null,
+                        React.createElement("h6", null, " Vous avez g\u00E9n\u00E9r\u00E9 une demande d'authentification pour ce dossier "),
+                        React.createElement(form_1.Form, { id: "demandeAuthentificationForm", readOnly: true, defaultValues: demandeAuthentificationList[0] },
+                            React.createElement(input_field_1.InputField, { name: "numDemandeAuthentification", label: format.fields.num_demande_authentification.label, readOnly: true }),
+                            React.createElement(calendar_field_1.CalendarField, { name: "dateDeCreation", label: format.fields.date_de_creation.label, readOnly: true }),
+                            React.createElement(input_field_1.InputField, { name: "numValise", label: format.fields.num_demande_authentification.label, readOnly: true }),
+                            React.createElement(calendar_field_1.CalendarField, { name: "dateDuTraitement", label: format.fields.date_du_traitement.label, readOnly: true })),
+                        React.createElement("div", { className: "grid-form-field " },
+                            React.createElement("div", { className: "" },
+                                React.createElement("a", { href: urlfile, "data-pass-thru": "true", target: fileTarget }, "Demande d'authentification générée")))));
+            return fileTag;
         }
         else {
             return (React.createElement(tab_1.Tab, { id: "tabDemandeAuthentification", title: "Demande d'Authentification" },
                 React.createElement(tab_content_1.TabContent, null,
-                    React.createElement("p", null, " Vous n'avez pas encore g\u00E9n\u00E9r\u00E9 de demande d'authentification pour ce dossier "),
+                    React.createElement("h6", null, " Vous n'avez pas encore g\u00E9n\u00E9r\u00E9 de demande d'authentification pour ce dossier "),
                     React.createElement(buttons_area_1.ButtonsArea, null,
                         React.createElement(button_1.Button, { type: "submit", onClick: this.genererDemande, value: "Valider", className: "hornet-button", label: "g\u00E9n\u00E9rer une demande d'authentification", title: "valider" })))));
         }

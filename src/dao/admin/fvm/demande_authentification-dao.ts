@@ -5,7 +5,7 @@ import {serializeUser} from "passport";
 
 const logger: Logger = Utils.getLogger("projet-hornet.src.dao.utilisateurs-dao");
 
-export class DemandeAuthentificationDAO extends EntityDAO {
+export class DemandeAuthentificationFVMDAO extends EntityDAO {
 
   constructor() {
     super();
@@ -18,6 +18,7 @@ export class DemandeAuthentificationDAO extends EntityDAO {
         return this.modelDAO.demandeAuthenthificationFVMEntity.create({
           idDemandeAuthentification: idDemandeAuthentification,
           numDemandeAuthentification: numDemandeAuthentification,
+          dateDeCreation: new Date(),
           dateDuTraitement: dateDuTraitement,
           idPermis: idPermis,
           numValise: numValise
@@ -29,15 +30,15 @@ export class DemandeAuthentificationDAO extends EntityDAO {
   }
 
   getDateDuTraitement(dateValise): Promise<any> {
-    let temp = new Date();
-    temp.setDate(dateValise.getDate()-1);
+    let temp = new Date(dateValise);
+    temp.setDate(temp.getDate()-1);
     return Promise.resolve(temp);
   }
 
   getNewIdDemandeAuthentification(): Promise<any> {
     return this.modelDAO.demandeAuthenthificationFVMEntity.count().then(count=>{
       if(count > 0) {
-        return this.modelDAO.demandeAuthenthificationFVMEntity.max("idDossier");
+        return this.modelDAO.demandeAuthenthificationFVMEntity.max("idDemandeAuthentification");
       } else {
         return Promise.resolve(-1);
       }

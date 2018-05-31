@@ -8,6 +8,9 @@ import {ResultFile} from "hornet-js-core/src/result/result-file";
 import {MediaTypes} from "hornet-js-core/src/protocol/media-type";
 import {CopieNoteVerbaleMAECIFVMMetier, CopiePermisFVMMetier} from "../../../models/fvm/fvm-mod";
 import {ResultJSON} from "hornet-js-core/src/result/result-json";
+import {ResultPDF} from "hornet-js-core/src/result/result-pdf";
+import merge = require("lodash/merge");
+import mergeWith = require("lodash/mergeWith");
 
 const logger: Logger = Utils.getLogger("projet-hornet.actions.admin.permis_actions");
 
@@ -36,6 +39,16 @@ export class InserDossier extends RouteActionService<any, ServerFormService> {
     }
 
     return this.getService().insererDonnee(data);
+  }
+}
+
+export class InserDemandeAuthentification extends RouteActionService<any, ServerFormService> {
+  execute(): Promise<any> {
+    logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
+
+    let data = this.req.body;
+
+    return this.getService().insererDemandeAuthentification(data);
   }
 }
 
@@ -138,5 +151,46 @@ export class GetCopieNoteVerbaleMAECI extends RouteActionService<{"idCopieNoteVe
         "size": copieNoteVerbaleMAECI.size
       }, MediaTypes.fromMime(copieNoteVerbaleMAECI.mimetype));
     });
+  }
+}
+
+export class GetPDFDemandeAuthentification extends RouteActionService<{"idPermis": number}, ClientListService> {
+  execute(): Promise<any> {
+    logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
+
+    // return Promise.resolve(new ResultPDF({
+    //   definition: [
+    //     {
+    //       pageSize: "A4",
+    //       content: [
+    //         {text: "test"}
+    //       ]
+    //     },
+    //     {
+    //       pageSize: "A4",
+    //       content: [
+    //         {text: "test2"}
+    //       ]
+    //     }
+    //   ]
+    // }));
+
+    return Promise.resolve(new ResultPDF({
+      definition: {
+        pageSize: "A4",
+        content: [
+          {text: "test"},
+          {text:"test", pageBreak:'before'}
+        ]
+      }
+    }));
+
+    // return this.getService().getPDFDemandeAuthentification(this.attributes.idPermis).then((copieNoteVerbaleMAECI: CopieNoteVerbaleMAECIFVMMetier) => {
+    //   return new ResultFile({"data": copieNoteVerbaleMAECI.data,
+    //     "filename": copieNoteVerbaleMAECI.nom,
+    //     "encoding": copieNoteVerbaleMAECI.encoding,
+    //     "size": copieNoteVerbaleMAECI.size
+    //   }, MediaTypes.fromMime(copieNoteVerbaleMAECI.mimetype));
+    // });
   }
 }

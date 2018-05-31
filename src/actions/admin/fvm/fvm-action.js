@@ -5,6 +5,7 @@ var hornet_js_utils_1 = require("hornet-js-utils");
 var abstract_routes_1 = require("hornet-js-core/src/routes/abstract-routes");
 var result_file_1 = require("hornet-js-core/src/result/result-file");
 var media_type_1 = require("hornet-js-core/src/protocol/media-type");
+var result_pdf_1 = require("hornet-js-core/src/result/result-pdf");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.actions.admin.permis_actions");
 var InserDossier = /** @class */ (function (_super) {
     tslib_1.__extends(InserDossier, _super);
@@ -35,6 +36,19 @@ var InserDossier = /** @class */ (function (_super) {
     return InserDossier;
 }(abstract_routes_1.RouteActionService));
 exports.InserDossier = InserDossier;
+var InserDemandeAuthentification = /** @class */ (function (_super) {
+    tslib_1.__extends(InserDemandeAuthentification, _super);
+    function InserDemandeAuthentification() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    InserDemandeAuthentification.prototype.execute = function () {
+        logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
+        var data = this.req.body;
+        return this.getService().insererDemandeAuthentification(data);
+    };
+    return InserDemandeAuthentification;
+}(abstract_routes_1.RouteActionService));
+exports.InserDemandeAuthentification = InserDemandeAuthentification;
 var InserValise = /** @class */ (function (_super) {
     tslib_1.__extends(InserValise, _super);
     function InserValise() {
@@ -172,5 +186,48 @@ var GetCopieNoteVerbaleMAECI = /** @class */ (function (_super) {
     return GetCopieNoteVerbaleMAECI;
 }(abstract_routes_1.RouteActionService));
 exports.GetCopieNoteVerbaleMAECI = GetCopieNoteVerbaleMAECI;
+var GetPDFDemandeAuthentification = /** @class */ (function (_super) {
+    tslib_1.__extends(GetPDFDemandeAuthentification, _super);
+    function GetPDFDemandeAuthentification() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    GetPDFDemandeAuthentification.prototype.execute = function () {
+        logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
+        // return Promise.resolve(new ResultPDF({
+        //   definition: [
+        //     {
+        //       pageSize: "A4",
+        //       content: [
+        //         {text: "test"}
+        //       ]
+        //     },
+        //     {
+        //       pageSize: "A4",
+        //       content: [
+        //         {text: "test2"}
+        //       ]
+        //     }
+        //   ]
+        // }));
+        return Promise.resolve(new result_pdf_1.ResultPDF({
+            definition: {
+                pageSize: "A4",
+                content: [
+                    { text: "test" },
+                    { text: "test", pageBreak: 'before' }
+                ]
+            }
+        }));
+        // return this.getService().getPDFDemandeAuthentification(this.attributes.idPermis).then((copieNoteVerbaleMAECI: CopieNoteVerbaleMAECIFVMMetier) => {
+        //   return new ResultFile({"data": copieNoteVerbaleMAECI.data,
+        //     "filename": copieNoteVerbaleMAECI.nom,
+        //     "encoding": copieNoteVerbaleMAECI.encoding,
+        //     "size": copieNoteVerbaleMAECI.size
+        //   }, MediaTypes.fromMime(copieNoteVerbaleMAECI.mimetype));
+        // });
+    };
+    return GetPDFDemandeAuthentification;
+}(abstract_routes_1.RouteActionService));
+exports.GetPDFDemandeAuthentification = GetPDFDemandeAuthentification;
 
 //# sourceMappingURL=fvm-action.js.map

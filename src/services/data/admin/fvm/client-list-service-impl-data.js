@@ -10,6 +10,7 @@ var permis_dao_1 = require("../../../../dao/admin/fvm/permis-dao");
 var copie_permis_dao_1 = require("../../../../dao/admin/fvm/copie_permis-dao");
 var prefecture_dao_1 = require("../../../../dao/prefecture-dao");
 var demande_authentification_dao_1 = require("../../../../dao/admin/fvm/demande_authentification-dao");
+var valise_dao_1 = require("../../../../dao/valise-dao");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.services.data.admin.admin-service-impl-data");
 var ClientListServiceImpl = /** @class */ (function (_super) {
     tslib_1.__extends(ClientListServiceImpl, _super);
@@ -21,7 +22,8 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
         _this.copieNoteVerbaleMAECIDAO = new copie_note_verbale_MAECI_dao_1.CopieNoteVerbaleMAECIFVMDao();
         _this.copiePermisDAO = new copie_permis_dao_1.CopiePermisFVMDao();
         _this.prefectureDAO = new prefecture_dao_1.PrefectureDAO();
-        _this.demandeAuthentificationDAO = new demande_authentification_dao_1.DemandeAuthentificationDAO();
+        _this.demandeAuthentificationDAO = new demande_authentification_dao_1.DemandeAuthentificationFVMDAO();
+        _this.valiseDAO = new valise_dao_1.ValiseDAO();
         return _this;
     }
     ClientListServiceImpl.prototype.getListeDossiers = function () {
@@ -118,6 +120,9 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
         return this.copieNoteVerbaleMAECIDAO.getCopieNoteVerbaleMAECI(idCopieNoteVerbaleMAECI).then(function (values) {
             return Promise.resolve(values[0]);
         });
+    };
+    ClientListServiceImpl.prototype.getPDFDemandeAuthentification = function (idPermis) {
+        return;
     };
     return ClientListServiceImpl;
 }(service_request_1.ServiceRequest));

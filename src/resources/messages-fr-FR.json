@@ -380,6 +380,12 @@
       "num_demande_authentification": {
         "label": "Numéro de la demande d'authentification",
         "required": "Le champ « Numéro de la demande d'authentification » est obligatoire. Veuillez saisir ce champ."
+      },
+      "date_du_traitement": {
+        "label": "Date du traitement de la demande (Date de la valise - 1)"
+      },
+      "date_de_creation": {
+        "label": "Date de création de la demande d'authentification"
       }
     },
     "validTitle": "Validation de la saisie du formulaire de contact",

@@ -38,6 +38,7 @@ import {Pager} from "hornet-js-react-components/src/widget/pager/pager";
 import {PaginateDataSource} from "hornet-js-core/src/component/datasource/paginate-datasource";
 import {ToggleColumnsButton} from "hornet-js-react-components/src/widget/table/toggle-columns-button";
 import {Modal} from "hornet-js-react-components/src/widget/dialog/modal";
+import {ActionColumn} from "hornet-js-react-components/src/widget/table/column/action-column";
 
 const logger: Logger = Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
 
@@ -51,6 +52,7 @@ export class FormulaireDemandeAuthentificationPage extends HornetPage<ServerForm
   private SequelizeSuccess;
 
   private modal: Modal;
+  private input = new InputField();
 
   constructor(props?: HornetComponentProps, context?: any) {
     super(props, context);
@@ -74,18 +76,20 @@ export class FormulaireDemandeAuthentificationPage extends HornetPage<ServerForm
   }
 
   onSubmit(data: any) {
-    console.log(data);
-    // this.getService().insererDonnee(data).then(result=> {
-    //   if(result.hasError != null){
-    //     console.error(result.hasReason);
-    //     console.error(result.hasError);
-    //
-    //     this.SequelizeErrors.text = result.hasReason;
-    //     NotificationManager.notify("SequelizeError","errors", this.errors, null, null, null, null);
-    //   }
-    // }).catch(reason=>{
-    //   console.error(reason);
-    // });
+    data["id_permis"] = this.attributes.id;
+    this.getService().insererDemandeAuthentification(data).then(result=> {
+      if(result.hasError != null){
+        console.error(result.hasReason);
+        console.error(result.hasError);
+
+        this.SequelizeErrors.text = result.hasReason;
+        NotificationManager.notify("SequelizeError","errors", this.errors, null, null, null, null);
+      } else {
+        NotificationManager.notify("SequelizeSuccess","notif", null, this.success, null, null, null);
+      }
+    }).catch(reason=>{
+      console.error(reason);
+    });
   }
 
   render(): JSX.Element {
@@ -139,57 +143,50 @@ export class FormulaireDemandeAuthentificationPage extends HornetPage<ServerForm
                             action={this.ajouterValise} priority={true}/>
             </MenuActions>
           </Header>
-          <Content name="tableContent" dataSource={this.valise} schema={schema} onSubmit={this.onSubmit} notifId="notif">
+          <Content dataSource={this.valise}>
             <Columns>
-              <CheckColumn keyColumn={"selectedLine"}/>
               <Column keyColumn="numValise"
                       title={format.fields.num_valise.label}
                       sortable={false}/>
               <DateColumn keyColumn="dateValise"
                           title={format.fields.date_valise.label}
                           sortable={false}/>
+              <ActionColumn keyColumn="formInput"
+                            title="Remplir le formulaire"
+                            srcImg={Picto.blue.next}
+                            action={this.remplirForm.bind(this)}/>
             </Columns>
           </Content>
         </Table>
 
-          {/*<Table id="liste valise">*/}
-            {/*<Header title={"Valises diplomatiques disponibles"}>*/}
-              {/*<MenuActions>*/}
-                {/*<ActionButton title={"Ajout"}*/}
-                              {/*srcImg={Picto.white.ajouter}*/}
-                              {/*displayedWithoutResult={true}*/}
-                              {/*action={this.ajouterValise} priority={true}/>*/}
-              {/*</MenuActions>*/}
-            {/*</Header>*/}
-            {/*<Content name="test" dataSource={this.valise} schema={schema} onSubmit={this.onSubmit} notifId="notif">*/}
-              {/*<Columns>*/}
-                {/*<Column keyColumn="numValise"*/}
-                        {/*title={format.fields.num_valise.label}*/}
-                        {/*sortable={false} toggleSelectLines={()=>{console.log("test");}}/>*/}
-                {/*<DateColumn keyColumn="dateValise"*/}
-                            {/*title={format.fields.date_valise.label}*/}
-                            {/*sortable={false}/>*/}
-                {/*/!*<InputField name="num_demande_authentification"*!/*/}
-                            {/*/!*label={format.fields.num_demande_authentification.label}*!/*/}
-                            {/*/!*required={true}/>*!/*/}
-              {/*</Columns>*/}
-            {/*</Content>*/}
-          {/*</Table>*/}
-
-        {/*/!*<Form id="form2">*!/*/}
-          {/*<ButtonsArea>*/}
-            {/*<Icon src={Picto.blue.previous} alt="Retourner à la consultation" title="Retourner à la consultation" action={this.retourPage}/>*/}
-            {/*<Button type="submit"*/}
-                    {/*value="Valider" className="hornet-button" label="valider"*/}
-                    {/*title="valider"/>*/}
-          {/*</ButtonsArea>*/}
-        {/*/!*</Form>*!/*/}
+        <Form id={"form2"} onSubmit={this.onSubmit}>
+          <Row>
+            <InputField name="num_valise" ref={(input)=> {this.input = input;}}
+                        label={format.fields.num_valise.label}
+                        required={true}/>
+          </Row>
+          <Row>
+            <InputField name="num_demande_authentification"
+                        label={format.fields.num_demande_authentification.label}
+                        required={true}/>
+          </Row>
+          <ButtonsArea>
+            <Icon src={Picto.blue.previous} alt="Retourner à la consultation" title="Retourner à la consultation" action={this.retourPage}/>
+            <Button type="submit"
+                    value="Valider" className="hornet-button" label="valider"
+                    title="valider"/>
+          </ButtonsArea>
+        </Form>
       </div>
     );
   }
 
   ajouterValise() {
     this.modal.open();
+  }
+
+  remplirForm(lineSelected) {
+    this.input.setCurrentValue(lineSelected.numValise);
   }
 
   submitValise(data: any) {

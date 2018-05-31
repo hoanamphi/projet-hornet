@@ -30760,6 +30760,12 @@ var NotificationContent = /** @class */ (function (_super) {
 
 /***/ }),
 /* 49 */
+/***/ (function(module, exports) {
+
+module.exports = {};
+
+/***/ }),
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30871,12 +30877,6 @@ if (index_1.Utils.isServer) {
 }
 
 
-
-/***/ }),
-/* 50 */
-/***/ (function(module, exports) {
-
-module.exports = {};
 
 /***/ }),
 /* 51 */
@@ -33797,7 +33797,7 @@ var tslib_1 = __webpack_require__(1);
  */
 var events_1 = __webpack_require__(27);
 var hornet_js_utils_1 = __webpack_require__(0);
-var promise_api_1 = __webpack_require__(49);
+var promise_api_1 = __webpack_require__(50);
 var domain = __webpack_require__(161);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.executor.AsyncExecutor");
 var AsyncExecutor = /** @class */ (function (_super) {
@@ -34503,7 +34503,7 @@ var hornet_event_2 = __webpack_require__(7);
 var hornet_event_3 = __webpack_require__(7);
 var base_error_1 = __webpack_require__(16);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.services.hornet-agent");
-var promise_api_1 = __webpack_require__(49);
+var promise_api_1 = __webpack_require__(50);
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // wrap http & https afin de sécuriser l'utilisation de "continuation-local-storage" (perte ou mix de contexte) //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -40751,75 +40751,60 @@ var tslib_1 = __webpack_require__(1);
  */
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
-var ReactDOM = __webpack_require__(22);
 var hornet_component_1 = __webpack_require__(3);
-var icon_1 = __webpack_require__(105);
-var modal_1 = __webpack_require__(100);
-var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.table.button-info-accessibilite");
+var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.icon.icon");
+/** Valeur de l'url par défaut lorsque la propriété url est vide */
+exports.EMPTY_URL = "#";
 /**
- * Bouton et modale d'information sur l'accessibilité clavier du composant Table
+ * Composant Icône
  */
-var ButtonInfoAccessibilite = /** @class */ (function (_super) {
-    tslib_1.__extends(ButtonInfoAccessibilite, _super);
-    function ButtonInfoAccessibilite() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.shortcutsI18n = ButtonInfoAccessibilite.getI18n("shortcuts");
-        return _this;
+var Icon = /** @class */ (function (_super) {
+    tslib_1.__extends(Icon, _super);
+    function Icon() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
+    /**
+     * Retire le focus de l'élément une fois cliqué de façon à permettre de scroller ou mettre le focus sur les
+     * notifications éventuellement présentées suite à l'action.
+     * @param event évènement
+     * @protected
+     */
+    Icon.prototype.iconOnClick = function (event) {
+        if (event.currentTarget && event.currentTarget.blur) {
+            event.currentTarget.blur();
+        }
+        else {
+            logger.warn("iconOnClick : impossible d'enlever le focus de l'élement");
+        }
+        /* Exécute ensuite la fonction fournie en propriétés */
+        if (this.state.action) {
+            this.state.action();
+        }
+    };
     /**
      * @inheritDoc
      */
-    ButtonInfoAccessibilite.prototype.render = function () {
-        var _this = this;
-        return (React.createElement("div", { className: "button-info-accessibilite" },
-            React.createElement(icon_1.Icon, { title: this.state.message.shortcuts ? this.state.message.shortcuts.iconTitle : this.shortcutsI18n.iconTitle, alt: this.state.message.shortcuts ? this.state.message.shortcuts.iconTitle : this.shortcutsI18n.iconTitle, action: this.handleShowInfoModal, url: "#", src: this.props.srcImg || ButtonInfoAccessibilite.genUrlTheme() + "/img/button/icon_info.svg", classLink: "button-info-accessibilite-button button-action", hasPopUp: true, ref: function (icon) { _this.htmlIcon = icon; } }),
-            this.renderModal()));
+    Icon.prototype.render = function () {
+        var result;
+        if (this.state.url == null || this.state.url == exports.EMPTY_URL) {
+            /* L'URL n'est pas valorisée : le comportement est celui d'un bouton (raccourci clavier : Entrée OU Espace )
+             * (cf. https://www.w3.org/TR/wai-aria-practices/#button > "Keyboard Interaction")  */
+            result = React.createElement("button", { type: "button", title: this.state.title, id: this.state.idLink, className: this.props.classLink, onClick: this.iconOnClick, tabIndex: this.props.tabIndex, "aria-haspopup": this.props.hasPopUp },
+                React.createElement("img", { src: this.state.src, alt: this.state.alt, id: this.state.idImg, className: this.state.classImg }));
+        }
+        else {
+            /* L'URL est valorisée : le comportement est celui d'un lien (raccourci clavier : Entrée uniquement )*/
+            result = React.createElement("a", { href: this.state.url, title: this.state.title, id: this.state.idLink, className: this.props.classLink, onClick: this.iconOnClick, target: this.state.target, tabIndex: this.props.tabIndex },
+                React.createElement("img", { src: this.state.src, alt: this.state.alt, id: this.state.idImg, className: this.state.classImg }));
+        }
+        return result;
     };
-    ButtonInfoAccessibilite.prototype.renderModal = function () {
-        return (React.createElement(modal_1.Modal, { ref: "modal", title: this.state.message.shortcuts ? this.state.message.shortcuts.modalTitle : this.shortcutsI18n.modalTitle, onClickClose: this.handleClickClose, className: "modal-shortcuts-content", escapeKeyExits: true },
-            React.createElement("div", { className: "widget-shortcuts-body" },
-                React.createElement("div", { className: "widget-shortcuts-content" },
-                    React.createElement("div", { className: "shortCutsList" },
-                        React.createElement("h4", null, this.state.message.shortcuts ?
-                            this.state.message.shortcuts.modalContentTitle : this.shortcutsI18n.modalContentTitle),
-                        React.createElement("ul", null, this.state.shortcutDescriptions.map(this.renderShortCut.bind(this))))))));
+    Icon.defaultProps = {
+        url: exports.EMPTY_URL
     };
-    ButtonInfoAccessibilite.prototype.renderShortCut = function (item, index) {
-        var separator = (item.and) ? "+" : "/";
-        var shortcuts = [];
-        item.shortcuts.map(function (shortcut, i) {
-            shortcuts.push(React.createElement("kbd", { key: "shortcut-" + shortcut + "-" + i }, shortcut));
-            if ((i + 1) !== item.shortcuts.length) {
-                shortcuts.push(separator);
-            }
-        });
-        return (React.createElement("li", { key: "item-shortcut-" + index },
-            React.createElement("div", null,
-                React.createElement("div", null,
-                    shortcuts,
-                    " :"),
-                React.createElement("div", null, item.description))));
-    };
-    ButtonInfoAccessibilite.prototype.handleShowInfoModal = function () {
-        this.refs.modal.open();
-    };
-    ButtonInfoAccessibilite.prototype.handleClickClose = function (t) {
-        var _this = this;
-        this.refs.modal.close(function () {
-            var el = ReactDOM.findDOMNode(_this.htmlIcon);
-            if (el && el instanceof HTMLElement && el.focus) {
-                el.tabIndex = 0;
-                el.focus();
-            }
-        });
-    };
-    ButtonInfoAccessibilite.defaultProps = {
-        message: "",
-        shortcutDescriptions: []
-    };
-    return ButtonInfoAccessibilite;
+    return Icon;
 }(hornet_component_1.HornetComponent));
-exports.ButtonInfoAccessibilite = ButtonInfoAccessibilite;
+exports.Icon = Icon;
 
 
 
@@ -40911,60 +40896,75 @@ var tslib_1 = __webpack_require__(1);
  */
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
+var ReactDOM = __webpack_require__(22);
 var hornet_component_1 = __webpack_require__(3);
-var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.icon.icon");
-/** Valeur de l'url par défaut lorsque la propriété url est vide */
-exports.EMPTY_URL = "#";
+var icon_1 = __webpack_require__(104);
+var modal_1 = __webpack_require__(100);
+var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.table.button-info-accessibilite");
 /**
- * Composant Icône
+ * Bouton et modale d'information sur l'accessibilité clavier du composant Table
  */
-var Icon = /** @class */ (function (_super) {
-    tslib_1.__extends(Icon, _super);
-    function Icon() {
-        return _super !== null && _super.apply(this, arguments) || this;
+var ButtonInfoAccessibilite = /** @class */ (function (_super) {
+    tslib_1.__extends(ButtonInfoAccessibilite, _super);
+    function ButtonInfoAccessibilite() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.shortcutsI18n = ButtonInfoAccessibilite.getI18n("shortcuts");
+        return _this;
     }
-    /**
-     * Retire le focus de l'élément une fois cliqué de façon à permettre de scroller ou mettre le focus sur les
-     * notifications éventuellement présentées suite à l'action.
-     * @param event évènement
-     * @protected
-     */
-    Icon.prototype.iconOnClick = function (event) {
-        if (event.currentTarget && event.currentTarget.blur) {
-            event.currentTarget.blur();
-        }
-        else {
-            logger.warn("iconOnClick : impossible d'enlever le focus de l'élement");
-        }
-        /* Exécute ensuite la fonction fournie en propriétés */
-        if (this.state.action) {
-            this.state.action();
-        }
-    };
     /**
      * @inheritDoc
      */
-    Icon.prototype.render = function () {
-        var result;
-        if (this.state.url == null || this.state.url == exports.EMPTY_URL) {
-            /* L'URL n'est pas valorisée : le comportement est celui d'un bouton (raccourci clavier : Entrée OU Espace )
-             * (cf. https://www.w3.org/TR/wai-aria-practices/#button > "Keyboard Interaction")  */
-            result = React.createElement("button", { type: "button", title: this.state.title, id: this.state.idLink, className: this.props.classLink, onClick: this.iconOnClick, tabIndex: this.props.tabIndex, "aria-haspopup": this.props.hasPopUp },
-                React.createElement("img", { src: this.state.src, alt: this.state.alt, id: this.state.idImg, className: this.state.classImg }));
-        }
-        else {
-            /* L'URL est valorisée : le comportement est celui d'un lien (raccourci clavier : Entrée uniquement )*/
-            result = React.createElement("a", { href: this.state.url, title: this.state.title, id: this.state.idLink, className: this.props.classLink, onClick: this.iconOnClick, target: this.state.target, tabIndex: this.props.tabIndex },
-                React.createElement("img", { src: this.state.src, alt: this.state.alt, id: this.state.idImg, className: this.state.classImg }));
-        }
-        return result;
+    ButtonInfoAccessibilite.prototype.render = function () {
+        var _this = this;
+        return (React.createElement("div", { className: "button-info-accessibilite" },
+            React.createElement(icon_1.Icon, { title: this.state.message.shortcuts ? this.state.message.shortcuts.iconTitle : this.shortcutsI18n.iconTitle, alt: this.state.message.shortcuts ? this.state.message.shortcuts.iconTitle : this.shortcutsI18n.iconTitle, action: this.handleShowInfoModal, url: "#", src: this.props.srcImg || ButtonInfoAccessibilite.genUrlTheme() + "/img/button/icon_info.svg", classLink: "button-info-accessibilite-button button-action", hasPopUp: true, ref: function (icon) { _this.htmlIcon = icon; } }),
+            this.renderModal()));
     };
-    Icon.defaultProps = {
-        url: exports.EMPTY_URL
+    ButtonInfoAccessibilite.prototype.renderModal = function () {
+        return (React.createElement(modal_1.Modal, { ref: "modal", title: this.state.message.shortcuts ? this.state.message.shortcuts.modalTitle : this.shortcutsI18n.modalTitle, onClickClose: this.handleClickClose, className: "modal-shortcuts-content", escapeKeyExits: true },
+            React.createElement("div", { className: "widget-shortcuts-body" },
+                React.createElement("div", { className: "widget-shortcuts-content" },
+                    React.createElement("div", { className: "shortCutsList" },
+                        React.createElement("h4", null, this.state.message.shortcuts ?
+                            this.state.message.shortcuts.modalContentTitle : this.shortcutsI18n.modalContentTitle),
+                        React.createElement("ul", null, this.state.shortcutDescriptions.map(this.renderShortCut.bind(this))))))));
     };
-    return Icon;
+    ButtonInfoAccessibilite.prototype.renderShortCut = function (item, index) {
+        var separator = (item.and) ? "+" : "/";
+        var shortcuts = [];
+        item.shortcuts.map(function (shortcut, i) {
+            shortcuts.push(React.createElement("kbd", { key: "shortcut-" + shortcut + "-" + i }, shortcut));
+            if ((i + 1) !== item.shortcuts.length) {
+                shortcuts.push(separator);
+            }
+        });
+        return (React.createElement("li", { key: "item-shortcut-" + index },
+            React.createElement("div", null,
+                React.createElement("div", null,
+                    shortcuts,
+                    " :"),
+                React.createElement("div", null, item.description))));
+    };
+    ButtonInfoAccessibilite.prototype.handleShowInfoModal = function () {
+        this.refs.modal.open();
+    };
+    ButtonInfoAccessibilite.prototype.handleClickClose = function (t) {
+        var _this = this;
+        this.refs.modal.close(function () {
+            var el = ReactDOM.findDOMNode(_this.htmlIcon);
+            if (el && el instanceof HTMLElement && el.focus) {
+                el.tabIndex = 0;
+                el.focus();
+            }
+        });
+    };
+    ButtonInfoAccessibilite.defaultProps = {
+        message: "",
+        shortcutDescriptions: []
+    };
+    return ButtonInfoAccessibilite;
 }(hornet_component_1.HornetComponent));
-exports.Icon = Icon;
+exports.ButtonInfoAccessibilite = ButtonInfoAccessibilite;
 
 
 
@@ -44238,7 +44238,7 @@ var ConfigLib = /** @class */ (function () {
         else {
             logger.trace("Chargement de la configuration APPLI en mode DEV", "./config");
         }
-        this._configObj = __webpack_require__(50);
+        this._configObj = __webpack_require__(49);
         logger.trace("Configuration APPLI : ", JSON.stringify(this._configObj));
         var infraFolder = process.env.HORNET_CONFIG_DIR_INFRA;
         if (infraFolder) {
@@ -44636,7 +44636,7 @@ var ContinuationLocalStorage = /** @class */ (function () {
         if (localStorageName === void 0) { localStorageName = "HornetContinuationLocalStorage"; }
         var cls;
         if (common_register_1.Register.isServer) {
-            cls = __webpack_require__(50);
+            cls = __webpack_require__(49);
         }
         else {
             cls = BrowserContinuationLocalStorage;
@@ -81972,7 +81972,7 @@ var tslib_1 = __webpack_require__(1);
  */
 var hornet_js_utils_1 = __webpack_require__(0);
 var hornet_component_1 = __webpack_require__(3);
-var button_info_accessibilite_1 = __webpack_require__(104);
+var button_info_accessibilite_1 = __webpack_require__(105);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.navigation.menu-info-accessibilite");
 /**
  * Bouton et modale d'information sur l'accessibilité clavier du composant Menu

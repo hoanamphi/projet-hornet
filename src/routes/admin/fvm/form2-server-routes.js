@@ -9,6 +9,7 @@ var Form2RoutesServer = /** @class */ (function (_super) {
     tslib_1.__extends(Form2RoutesServer, _super);
     function Form2RoutesServer() {
         var _this = _super.call(this) || this;
+        _this.addDataRoute("/", function () { return new abstract_routes_1.DataRouteInfos(fvm_action_1.InserDemandeAuthentification, null, server_form_service_impl_data_1.ServerFormServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE, "post");
         _this.addDataRoute("/insertValise", function () { return new abstract_routes_1.DataRouteInfos(fvm_action_1.InserValise, null, server_form_service_impl_data_1.ServerFormServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE, "post");
         _this.addDataRoute("/listValises", function () { return new abstract_routes_1.DataRouteInfos(fvm_action_1.ListeValise, null, server_form_service_impl_data_1.ServerFormServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE, "post");
         return _this;

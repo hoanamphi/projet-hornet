@@ -241,18 +241,45 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
     let format = this.i18n("form");
 
     if(demandeAuthentificationList.length > 0) {
-      return (
+      let fileTag: React.ReactElement<any> = null;
+
+      let urlfile: string = Utils.buildContextPath("/services/recordserver/pdfMake/demandeAuthentification/"+this.attributes.id);
+
+      let fileTarget = "newTabForDemandeAuthentification" + this.attributes.id;
+
+      fileTag =
         <Tab id="tabDemandeAuthentification" title="Demande d'Authentification">
           <TabContent>
-            <p> rien </p>
+            <h6> Vous avez généré une demande d'authentification pour ce dossier </h6>
+            <Form id="demandeAuthentificationForm" readOnly={true} defaultValues={demandeAuthentificationList[0]}>
+              <InputField name="numDemandeAuthentification"
+                          label={format.fields.num_demande_authentification.label}
+                          readOnly={true}/>
+              <CalendarField name="dateDeCreation"
+                             label={format.fields.date_de_creation.label}
+                             readOnly={true}/>
+              <InputField name="numValise"
+                          label={format.fields.num_demande_authentification.label}
+                          readOnly={true}/>
+              <CalendarField name="dateDuTraitement"
+                             label={format.fields.date_du_traitement.label}
+                             readOnly={true}/>
+            </Form>
+            <div className="grid-form-field ">
+              <div className="">
+                <a href={urlfile} data-pass-thru="true"
+                   target={fileTarget}>{"Demande d'authentification générée"}</a>
+              </div>
+            </div>
           </TabContent>
-        </Tab>
-      );
+        </Tab>;
+
+      return fileTag;
     } else {
       return (
         <Tab id="tabDemandeAuthentification" title="Demande d'Authentification">
           <TabContent>
-            <p> Vous n'avez pas encore généré de demande d'authentification pour ce dossier </p>
+            <h6> Vous n'avez pas encore généré de demande d'authentification pour ce dossier </h6>
             <ButtonsArea>
               <Button type="submit" onClick={this.genererDemande}
                       value="Valider" className="hornet-button" label="générer une demande d'authentification"

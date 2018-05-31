@@ -14,6 +14,11 @@ exports.DemandeAuthentificationFVMModel = {
         field: "num_demande_authentification",
         allowNull: false
     },
+    "dateDeCreation": {
+        type: Sequelize.DATE,
+        field: "date_de_creation",
+        allowNull: false
+    },
     "dateDuTraitement": {
         type: Sequelize.DATE,
         field: "date_du_traitement",

@@ -56,6 +56,10 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
         return Promise.reject("service uniquement disponible côté serveur");
     };
     ;
+    ClientListServiceImpl.prototype.getPDFDemandeAuthentification = function (idPermis) {
+        return Promise.reject("service uniquement disponible côté serveur");
+    };
+    ;
     return ClientListServiceImpl;
 }(service_page_1.ServicePage));
 exports.ClientListServiceImpl = ClientListServiceImpl;

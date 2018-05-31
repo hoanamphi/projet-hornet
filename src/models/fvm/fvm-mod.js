@@ -136,6 +136,11 @@ var DemandeAuthentificationFVMMetier = /** @class */ (function () {
     ], DemandeAuthentificationFVMMetier.prototype, "num_demande_authentification", void 0);
     tslib_1.__decorate([
         Map_1.default(),
+        Alias_1.default("dateDeCreation"),
+        tslib_1.__metadata("design:type", Date)
+    ], DemandeAuthentificationFVMMetier.prototype, "date_de_creation", void 0);
+    tslib_1.__decorate([
+        Map_1.default(),
         Alias_1.default("dateDuTraitement"),
         tslib_1.__metadata("design:type", Date)
     ], DemandeAuthentificationFVMMetier.prototype, "date_du_traitement", void 0);

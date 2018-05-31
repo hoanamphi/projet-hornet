@@ -65,4 +65,8 @@ export class ClientListServiceImpl extends ServicePage implements ClientListServ
   getCopieNoteVerbaleMAECI(idCopieNoteVerbaleMAECI): Promise<any> {
     return Promise.reject("service uniquement disponible côté serveur");
   };
+
+  getPDFDemandeAuthentification(idPermis): Promise<any> {
+    return Promise.reject("service uniquement disponible côté serveur");
+  };
 }

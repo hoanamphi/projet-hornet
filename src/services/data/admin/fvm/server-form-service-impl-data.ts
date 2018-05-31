@@ -12,6 +12,9 @@ import {CopiePermisFVMDao} from "../../../../dao/admin/fvm/copie_permis-dao";
 import {PrefectureDAO} from "../../../../dao/prefecture-dao";
 import {ValiseDAO} from "../../../../dao/valise-dao";
 import forEach = require("lodash/forEach");
+import {
+  DemandeAuthentificationFVMDAO
+} from "../../../../dao/admin/fvm/demande_authentification-dao";
 
 const logger: Logger = Utils.getLogger("projet-hornet.services.data.admin.admin-service-impl-data");
 
@@ -26,6 +29,7 @@ export class ServerFormServiceImpl extends ServiceRequest implements ServerFormS
   private copiePermisDAO = new CopiePermisFVMDao();
   private prefectureDAO = new PrefectureDAO();
   private valiseDAO = new ValiseDAO();
+  private demandeAuthentificationDAO = new DemandeAuthentificationFVMDAO();
 
   @Transactional({configDatabase: Injector.getRegistered("databaseConfigName")})
   insererDonnee(data): Promise<any> {
@@ -52,6 +56,18 @@ export class ServerFormServiceImpl extends ServiceRequest implements ServerFormS
       let insertPermis = this.permisDAO.insererPermis(content.num_permis, values[3], content.date_de_delivrance, values[2], values[1], content.id_prefecture);
 
       return Promise.all([insertCopieNoteVerbaleMAECI, insertDossier, insertPersonne, insertCopiePermis,insertPermis]);
+    }).catch(error=>{
+      this.Error.hasError = error;
+      this.Error.hasReason = error.toString();
+      return this.Error;
+    });
+  }
+
+  insererDemandeAuthentification(data): Promise<any> {
+    return this.valiseDAO.getValise(data["num_valise"]).then(values=>{
+      let valise = values[0];
+
+      return this.demandeAuthentificationDAO.insererDemandeAuthentification(data["num_demande_authentification"], data["id_permis"], data["num_valise"], valise.dateValise);
     }).catch(error=>{
       this.Error.hasError = error;
       this.Error.hasReason = error.toString();

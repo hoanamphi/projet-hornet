@@ -8,7 +8,8 @@ import {PermisFVMDAO} from "../../../../dao/admin/fvm/permis-dao";
 import {CopiePermisFVMDao} from "../../../../dao/admin/fvm/copie_permis-dao";
 import {PrefectureDAO} from "../../../../dao/prefecture-dao";
 import {ClientListService} from "../../../page/admin/fvm/client-list-service";
-import {DemandeAuthentificationDAO} from "../../../../dao/admin/fvm/demande_authentification-dao";
+import {DemandeAuthentificationFVMDAO} from "../../../../dao/admin/fvm/demande_authentification-dao";
+import {ValiseDAO} from "../../../../dao/valise-dao";
 
 const logger: Logger = Utils.getLogger("projet-hornet.services.data.admin.admin-service-impl-data");
 
@@ -20,7 +21,8 @@ export class ClientListServiceImpl extends ServiceRequest implements ClientListS
   private copieNoteVerbaleMAECIDAO = new CopieNoteVerbaleMAECIFVMDao();
   private copiePermisDAO = new CopiePermisFVMDao();
   private prefectureDAO = new PrefectureDAO();
-  private demandeAuthentificationDAO = new DemandeAuthentificationDAO();
+  private demandeAuthentificationDAO = new DemandeAuthentificationFVMDAO();
+  private valiseDAO = new ValiseDAO();
 
   getListeDossiers(): Promise<any> {
     return this.permisDAO.getAllPermis().then(permisList=>{
@@ -136,5 +138,9 @@ export class ClientListServiceImpl extends ServiceRequest implements ClientListS
     return this.copieNoteVerbaleMAECIDAO.getCopieNoteVerbaleMAECI(idCopieNoteVerbaleMAECI).then(values=>{
       return Promise.resolve(values[0]);
     });
+  }
+
+  getPDFDemandeAuthentification(idPermis): Promise<any> {
+    return
   }
 }

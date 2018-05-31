@@ -94,6 +94,10 @@ export class DemandeAuthentificationFVMMetier {
   num_demande_authentification: string;
 
   @Map()
+  @Alias("dateDeCreation")
+  date_de_creation: Date;
+
+  @Map()
   @Alias("dateDuTraitement")
   date_du_traitement: Date;
 

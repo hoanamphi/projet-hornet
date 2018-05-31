@@ -4,6 +4,7 @@ import { HornetSequelizeAttributes } from "hornet-js-database/src/sequelize/horn
 export interface DemandeAuthentificationFVMAttributes extends HornetSequelizeAttributes {
   idDemandeAuthentification: number;
   numDemandeAuthentification: string;
+  dateDeCreation: Date;
   dateDuTraitement: Date;
   idPermis: number;
   numValise: number;
@@ -20,6 +21,11 @@ export let DemandeAuthentificationFVMModel: Sequelize.DefineAttributes = {
   "numDemandeAuthentification": {
     type: Sequelize.STRING,
     field: "num_demande_authentification",
+    allowNull: false
+  },
+  "dateDeCreation": {
+    type: Sequelize.DATE,
+    field: "date_de_creation",
     allowNull: false
   },
   "dateDuTraitement": {

@@ -2,7 +2,7 @@ import {
   GetCopieNoteVerbaleMAECI,
   GetCopiePermis,
   GetDemandeAuthentification, GetDossier,
-  GetNoteVerbale,
+  GetNoteVerbale, GetPDFDemandeAuthentification,
   GetReleve,
   ListeDossiers
 } from "src/actions/admin/fvm/fvm-action";
@@ -54,6 +54,12 @@ export default class RecordListRoutesServer extends RecordListRoutesClient {
 
     this.addDataRoute("/copieNoteVerbaleMAECI/(\\d+)",
       (idCopieNoteVerbaleMAECI) => new DataRouteInfos(GetCopieNoteVerbaleMAECI, {"idCopieNoteVerbaleMAECI": idCopieNoteVerbaleMAECI}, ClientListServiceImpl),
+      PUBLIC_ROUTE,
+      "get"
+    );
+
+    this.addDataRoute("/pdfMake/demandeAuthentification/(\\d+)",
+      (idPermis) => new DataRouteInfos(GetPDFDemandeAuthentification, {"idPermis": idPermis}, ClientListServiceImpl),
       PUBLIC_ROUTE,
       "get"
     );
