@@ -49,7 +49,7 @@ export class ServerFormServiceImpl extends ServiceRequest implements ServerFormS
 
       let insertDossier = this.dossierDAO.insererDossier(values[0], new Date(), values[4]);
 
-      let insertPersonne = this.personneDAO.insererPersonne(content.nom.toLowerCase(), content.prenom.toLowerCase(), content.date_de_naissance, content.ville_de_naissance, content.pays_de_naissance, values[4]);
+      let insertPersonne = this.personneDAO.insererPersonne(content.nom.toLowerCase(), content.prenom.toLowerCase(), content.date_de_naissance, content.id_sexe, content.ville_de_naissance, content.pays_de_naissance, values[4]);
 
       let insertCopiePermis = this.copiePermisDAO.insererCopiePermis(copie_permis.mimetype, copie_permis.encoding, copie_permis.size, copie_permis.data, values[4]);
 

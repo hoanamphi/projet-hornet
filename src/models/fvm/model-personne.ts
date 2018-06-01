@@ -5,6 +5,7 @@ export interface PersonneFVMAttributes extends HornetSequelizeAttributes {
   idPersonne: number;
   nom: string;
   prenom: string;
+  sexe: string;
   dateDeNaissance: Date;
   villeDeNaissance: string;
   paysDeNaissance: string;
@@ -27,6 +28,11 @@ export let PersonneFVMModel: Sequelize.DefineAttributes = {
   "prenom": {
     type: Sequelize.STRING,
     field: "prenom",
+    allowNull: false
+  },
+  "sexe": {
+    type: Sequelize.STRING,
+    field: "sexe",
     allowNull: false
   },
   "dateDeNaissance": {

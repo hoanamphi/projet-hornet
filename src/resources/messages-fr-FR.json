@@ -283,7 +283,7 @@
   },
 
 
-  "form": {
+  "forms": {
     "fields":{
       "nom": {
         "label": "Nom",

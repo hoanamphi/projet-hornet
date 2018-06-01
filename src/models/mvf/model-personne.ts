@@ -5,6 +5,7 @@ export interface PersonneMVFAttributes extends HornetSequelizeAttributes {
   idPersonne: number;
   nom: string;
   prenom: string;
+  sexe: string;
   dateDeNaissance: Date;
   idPermis: number;
 }
@@ -25,6 +26,11 @@ export let PersonneMVFModel: Sequelize.DefineAttributes = {
   "prenom": {
     type: Sequelize.STRING,
     field: "prenom",
+    allowNull: false
+  },
+  "sexe": {
+    type: Sequelize.STRING,
+    field: "sexe",
     allowNull: false
   },
   "dateDeNaissance": {

@@ -19,6 +19,7 @@ var notification_manager_1 = require("hornet-js-core/src/notification/notificati
 var datasource_config_page_1 = require("hornet-js-core/src/component/datasource/config/service/datasource-config-page");
 var icon_1 = require("hornet-js-react-components/src/widget/icon/icon");
 var picto_1 = require("hornet-js-react-components/src/img/picto");
+var radios_field_1 = require("hornet-js-react-components/src/widget/form/radios-field");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
 var FormulaireDossierPage = /** @class */ (function (_super) {
     tslib_1.__extends(FormulaireDossierPage, _super);
@@ -56,12 +57,18 @@ var FormulaireDossierPage = /** @class */ (function (_super) {
         });
     };
     FormulaireDossierPage.prototype.render = function () {
-        var format = this.i18n("form");
+        var format = this.i18n("forms");
+        var radioData = [
+            { "value": 0, "label": "M" },
+            { "value": 1, "label": "F" }
+        ];
         return (React.createElement("div", null,
             React.createElement("h2", null, "Formulaire d'entr\u00E9e d'un dossier"),
             React.createElement(notification_1.Notification, { id: "errors" }),
             React.createElement(notification_1.Notification, { id: "notif" }),
             React.createElement(form_1.Form, { id: "form1", schema: schema, onSubmit: this.onSubmit, formMessages: format },
+                React.createElement(row_1.Row, null,
+                    React.createElement(radios_field_1.RadiosField, { name: "id_sexe", label: "Sexe", data: radioData, required: true })),
                 React.createElement(row_1.Row, null,
                     React.createElement(input_field_1.InputField, { name: "nom", label: format.fields.nom.label, required: true })),
                 React.createElement(row_1.Row, null,

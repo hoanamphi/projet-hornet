@@ -55,7 +55,7 @@ var RecordListPage = /** @class */ (function (_super) {
         this.entries.add(true, subList);
     };
     RecordListPage.prototype.render = function () {
-        var format = this.i18n("form");
+        var format = this.i18n("forms");
         return (React.createElement("div", null,
             React.createElement(notification_1.Notification, { id: "notif" }),
             React.createElement(table_1.Table, { id: "tableau des entr\u00E9es" },

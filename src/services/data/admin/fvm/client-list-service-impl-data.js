@@ -64,7 +64,7 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
     };
     ClientListServiceImpl.prototype.getDossier = function (data) {
         var _this = this;
-        var idPermis = data["id"];
+        var idPermis = data["idPermis"];
         return this.permisDAO.getPermis(idPermis).then(function (values) {
             var permis = values[0];
             var result = {};
@@ -83,6 +83,7 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
                 result["nom"] = personne.nom;
                 result["prenom"] = personne.prenom;
                 result["dateDeNaissance"] = Date.parse(personne.dateDeNaissance);
+                result["sexe"] = personne.sexe;
                 result["villeDeNaissance"] = personne.villeDeNaissance;
                 result["paysDeNaissance"] = personne.paysDeNaissance;
                 result["region"] = prefecture.region;
@@ -100,15 +101,15 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
         });
     };
     ClientListServiceImpl.prototype.getDemandeAuthentification = function (data) {
-        var idPermis = data["id"];
+        var idPermis = data["idPermis"];
         return this.demandeAuthentificationDAO.getDemandeAuthentification(idPermis);
     };
     ClientListServiceImpl.prototype.getReleve = function (data) {
-        var idPermis = data["id"];
+        var idPermis = data["idPermis"];
         return Promise.resolve([]);
     };
     ClientListServiceImpl.prototype.getNoteVerbale = function (data) {
-        var idPermis = data["id"];
+        var idPermis = data["idPermis"];
         return Promise.resolve([]);
     };
     ClientListServiceImpl.prototype.getCopiePermis = function (idCopiePermis) {
@@ -122,7 +123,15 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
         });
     };
     ClientListServiceImpl.prototype.getPDFDemandeAuthentification = function (idPermis) {
-        return;
+        var _this = this;
+        var result = {};
+        return this.getDossier({ "idPermis": idPermis }).then(function (dossier) {
+            result["dossier"] = dossier;
+            return _this.demandeAuthentificationDAO.getDemandeAuthentification(idPermis).then(function (demandeAuthentification) {
+                result["demandeAuthentification"] = demandeAuthentification;
+                return Promise.resolve(result);
+            });
+        });
     };
     return ClientListServiceImpl;
 }(service_request_1.ServiceRequest));

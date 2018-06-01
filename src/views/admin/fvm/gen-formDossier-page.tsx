@@ -24,6 +24,7 @@ import {
 import {DataSourceConfigPage} from "hornet-js-core/src/component/datasource/config/service/datasource-config-page";
 import {Icon} from "hornet-js-react-components/src/widget/icon/icon";
 import {Picto} from "hornet-js-react-components/src/img/picto";
+import {RadiosField} from "hornet-js-react-components/src/widget/form/radios-field";
 
 const logger: Logger = Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
 
@@ -73,7 +74,12 @@ export class FormulaireDossierPage extends HornetPage<ServerFormService, HornetC
 
   render(): JSX.Element {
 
-    let format = this.i18n("form");
+    let format = this.i18n("forms");
+
+    let radioData = [
+      {"value": 0, "label": "M"},
+      {"value": 1, "label": "F"}
+    ];
 
     return (
       <div>
@@ -86,6 +92,12 @@ export class FormulaireDossierPage extends HornetPage<ServerFormService, HornetC
           onSubmit={this.onSubmit}
           formMessages={format}
         >
+          <Row>
+            <RadiosField name="id_sexe"
+                          label="Sexe"
+                          data={radioData}
+                          required={true}/>
+          </Row>
           <Row>
             <InputField name="nom"
                         label={format.fields.nom.label}

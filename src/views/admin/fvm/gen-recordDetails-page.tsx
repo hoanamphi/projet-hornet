@@ -80,7 +80,7 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
   }
 
   render(): JSX.Element {
-    let format = this.i18n("form");
+    let format = this.i18n("forms");
 
     return (
       <div>
@@ -96,7 +96,7 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
   }
 
   renderDossierTab(dossier): JSX.Element {
-    let format = this.i18n("form");
+    let format = this.i18n("forms");
 
     this.dossier = dossier;
 
@@ -201,11 +201,11 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
   }
 
   renderCopiePermis(file: UploadedFile): React.ReactElement<any> {
-    let format = this.i18n("form");
+    let format = this.i18n("forms");
     let fileTag: React.ReactElement<any> = null;
     let urlfile: string = Utils.buildContextPath("/services/recordserver/copiePermis/"+this.dossier.copie_permis.idCopiePermis);
 
-    let fileTarget = "newTabForCopiePermis" + this.attributes.id;
+    let fileTarget = "newTabForCopiePermis" + this.attributes.idPermis;
 
     fileTag =
       <div className="grid-form-field ">
@@ -219,12 +219,12 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
   }
 
   renderCopieNoteVerbaleMAECI(file: UploadedFile): React.ReactElement<any> {
-    let format = this.i18n("form");
+    let format = this.i18n("forms");
     let fileTag: React.ReactElement<any> = null;
 
     let urlfile: string = Utils.buildContextPath("/services/recordserver/copieNoteVerbaleMAECI/"+this.dossier.copie_note_verbale_maeci.idCopieNoteVerbaleMAECI);
 
-    let fileTarget = "newTabForCopieNoteVerbaleMAECI" + this.attributes.id;
+    let fileTarget = "newTabForCopieNoteVerbaleMAECI" + this.attributes.idPermis;
 
     fileTag =
       <div className="grid-form-field ">
@@ -238,14 +238,14 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
   }
 
   renderDemandeAuthentificationTab(demandeAuthentificationList): JSX.Element {
-    let format = this.i18n("form");
+    let format = this.i18n("forms");
 
     if(demandeAuthentificationList.length > 0) {
       let fileTag: React.ReactElement<any> = null;
 
-      let urlfile: string = Utils.buildContextPath("/services/recordserver/pdfMake/demandeAuthentification/"+this.attributes.id);
+      let urlfile: string = Utils.buildContextPath("/services/recordserver/pdfMake/demandeAuthentification/"+this.attributes.idPermis);
 
-      let fileTarget = "newTabForDemandeAuthentification" + this.attributes.id;
+      let fileTarget = "newTabForDemandeAuthentification" + this.attributes.idPermis;
 
       fileTag =
         <Tab id="tabDemandeAuthentification" title="Demande d'Authentification">
@@ -259,7 +259,7 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
                              label={format.fields.date_de_creation.label}
                              readOnly={true}/>
               <InputField name="numValise"
-                          label={format.fields.num_demande_authentification.label}
+                          label={format.fields.num_valise.label}
                           readOnly={true}/>
               <CalendarField name="dateDuTraitement"
                              label={format.fields.date_du_traitement.label}
@@ -296,6 +296,6 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
   }
 
   genererDemande() {
-    this.navigateTo("/form2/"+this.attributes.id, {}, ()=>{});
+    this.navigateTo("/form2/"+this.attributes.idPermis, {}, ()=>{});
   }
 }

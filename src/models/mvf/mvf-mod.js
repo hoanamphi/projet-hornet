@@ -58,6 +58,11 @@ var PersonneMVFMetier = /** @class */ (function () {
     ], PersonneMVFMetier.prototype, "prenom", void 0);
     tslib_1.__decorate([
         Map_1.default(),
+        Alias_1.default("sexe"),
+        tslib_1.__metadata("design:type", String)
+    ], PersonneMVFMetier.prototype, "sexe", void 0);
+    tslib_1.__decorate([
+        Map_1.default(),
         Alias_1.default("dateDeNaissance"),
         tslib_1.__metadata("design:type", Date)
     ], PersonneMVFMetier.prototype, "date_de_naissance", void 0);

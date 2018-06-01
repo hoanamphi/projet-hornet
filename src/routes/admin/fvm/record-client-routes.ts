@@ -13,7 +13,7 @@ export default class RecordListRoutesClient extends AbstractRoutes {
     );
 
     this.addPageRoute("/(\\d+)",
-      (id) => new PageRouteInfos(RecordDetailsPage, {"id": id}, ClientListServiceImpl),
+      (id) => new PageRouteInfos(RecordDetailsPage, {"idPermis": id}, ClientListServiceImpl),
       PUBLIC_ROUTE
     );
   }

@@ -19,6 +19,11 @@ exports.PersonneMVFModel = {
         field: "prenom",
         allowNull: false
     },
+    "sexe": {
+        type: Sequelize.STRING,
+        field: "sexe",
+        allowNull: false
+    },
     "dateDeNaissance": {
         type: Sequelize.DATE,
         field: "date_de_naissance",

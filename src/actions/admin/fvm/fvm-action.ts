@@ -11,6 +11,8 @@ import {ResultJSON} from "hornet-js-core/src/result/result-json";
 import {ResultPDF} from "hornet-js-core/src/result/result-pdf";
 import merge = require("lodash/merge");
 import mergeWith = require("lodash/mergeWith");
+import {DispositionType} from "hornet-js-core/src/result/disposition-type";
+import {OptionsPDF} from "hornet-js-core/src/result/hornet-result-interface";
 
 const logger: Logger = Utils.getLogger("projet-hornet.actions.admin.permis_actions");
 
@@ -134,7 +136,8 @@ export class GetCopiePermis extends RouteActionService<{"idCopiePermis": number}
       return new ResultFile({"data": copiePermis.data,
           "filename": copiePermis.nom,
           "encoding": copiePermis.encoding,
-          "size": copiePermis.size
+          "size": copiePermis.size,
+          "dispositionType": DispositionType.INLINE
         }, MediaTypes.fromMime(copiePermis.mimetype));
     });
   }
@@ -148,7 +151,8 @@ export class GetCopieNoteVerbaleMAECI extends RouteActionService<{"idCopieNoteVe
       return new ResultFile({"data": copieNoteVerbaleMAECI.data,
         "filename": copieNoteVerbaleMAECI.nom,
         "encoding": copieNoteVerbaleMAECI.encoding,
-        "size": copieNoteVerbaleMAECI.size
+        "size": copieNoteVerbaleMAECI.size,
+        "dispositionType": DispositionType.INLINE
       }, MediaTypes.fromMime(copieNoteVerbaleMAECI.mimetype));
     });
   }
@@ -158,39 +162,89 @@ export class GetPDFDemandeAuthentification extends RouteActionService<{"idPermis
   execute(): Promise<any> {
     logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
 
-    // return Promise.resolve(new ResultPDF({
-    //   definition: [
-    //     {
-    //       pageSize: "A4",
-    //       content: [
-    //         {text: "test"}
-    //       ]
-    //     },
-    //     {
-    //       pageSize: "A4",
-    //       content: [
-    //         {text: "test2"}
-    //       ]
-    //     }
-    //   ]
-    // }));
+    return this.getService().getPDFDemandeAuthentification(this.attributes.idPermis).then(result=>{
+      let dossier = result.dossier[0];
+      let demandeAuthentification = result.demandeAuthentification[0];
 
-    return Promise.resolve(new ResultPDF({
-      definition: {
-        pageSize: "A4",
-        content: [
-          {text: "test"},
-          {text:"test", pageBreak:'before'}
-        ]
-      }
-    }));
-
-    // return this.getService().getPDFDemandeAuthentification(this.attributes.idPermis).then((copieNoteVerbaleMAECI: CopieNoteVerbaleMAECIFVMMetier) => {
-    //   return new ResultFile({"data": copieNoteVerbaleMAECI.data,
-    //     "filename": copieNoteVerbaleMAECI.nom,
-    //     "encoding": copieNoteVerbaleMAECI.encoding,
-    //     "size": copieNoteVerbaleMAECI.size
-    //   }, MediaTypes.fromMime(copieNoteVerbaleMAECI.mimetype));
-    // });
+      return Promise.resolve(new ResultPDF({
+        fonts: {
+          Times_New_Roman: {
+            normal: "src/resources/fonts/Times_New_Roman_Normal.ttf",
+            bold: "src/resources/fonts/Times_New_Roman_Bold.ttf",
+            italics: "src/resources/fonts/Times_New_Roman_Italic.ttf",
+            bolditalics: "src/resources/fonts/Times_New_Roman_BoldItalic.ttf"
+          }
+        },
+        definition: {
+          pageSize: "A4",
+          content: [
+            {
+              columns: [
+                {
+                  width: "30%",
+                  stack: [
+                    {text: "AMBASSADE DE FRANCE AU MAROC", bold: true, fontSize: 11},
+                    {text:"__________", margin: [0,0,0,30]},
+                    {text:"SERVICE COMMUN DE GESTION", margin: [0,0,0,10], bold: true, italics: true, fontSize: 9},
+                    {text: "N°"+demandeAuthentification.numDemandeAuthentification+"/SCG", margin: [0,0,0,30], fontSize: 10},
+                  ],
+                  alignment: "center"
+                },
+                {
+                  width: "80",
+                  image: "src/resources/img/RepubliqueFrancaiseImage.png",
+                  alignment: "center"
+                }
+              ],
+              columnGap: 30
+            },
+            {text:"Service des Permis de Conduire", bold: true, italics: true, fontSize: 10},
+            {text:"Affaire suivie par", bold: true, italics: true, fontSize: 10},
+            {text:"MME ZITOUNI Samah", margin: [5,0,0,0], bold: true, italics: true, fontSize: 10},
+            {text:"Samah.Zitouni@diplomatie.gouv.fr", fontSize: 10},
+            {
+              stack: [
+                {text: dossier.prefecture.toUpperCase()},
+                {text: dossier.adresse.toUpperCase()},
+                {text: (dossier.codePostal+" "+dossier.ville).toUpperCase()}
+              ],
+              margin: [150, 60, 0, 70]
+            },
+            {text: "OBJET : Demande d'authentification d'un permis de conduire", margin: [0,0,0,30]},
+            {
+              stack: [
+                {text: "Madame, Monsieur,", margin: [0, 0, 0, 30]},
+                {text: "Je vous demande de bien vouloir certifier l'authenticité du titre, dont vous trouverez ci-joint copie appartenant à :", margin: [0, 0, 0, 30]},
+                {
+                  stack: [
+                    {text: "Monsieur "+dossier.nom.toUpperCase()+" "+(dossier.prenom[0].toUpperCase()+dossier.prenom.slice(1))},
+                    {text: "Né(e) le "+new Date(dossier.dateDeNaissance).toLocaleDateString()},
+                    {text: "À "+dossier.villeDeNaissance.toUpperCase()+" / "+dossier.paysDeNaissance.toUpperCase()}
+                  ],
+                  margin: [0, 0, 0, 30]
+                },
+                {
+                  stack: [
+                    {text: "À déposé son permis de conduire"},
+                    {text: "N° "+dossier.numPermis},
+                    {text: "Délivré le "+new Date(dossier.dateDeDelivrance).toLocaleDateString()},
+                    {text: "Catégorie(s) mentionnée(s) sur le permis"}
+                  ],
+                  margin: [0, 0, 0, 30]
+                },
+                {text: "En vue d'obtenir un permis Marocain.", margin: [0, 0, 0, 30]},
+                {text: "Je vous prie d'agréer, Madame, Monsieur, l'assurance de ma considération distinguée.", margin: [0, 0, 0, 30]}
+              ],
+              margin: [50, 0, 0, 0]
+            }
+          ],
+          defaultStyle: {
+            font: "Times_New_Roman",
+            alignment: "justify",
+            fontSize: 12
+          }
+        }
+      }));
+    });
   }
 }

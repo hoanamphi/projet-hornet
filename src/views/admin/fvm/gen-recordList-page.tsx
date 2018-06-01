@@ -67,7 +67,7 @@ export class RecordListPage extends HornetPage<any, HornetComponentProps, any> {
   }
 
   render(): JSX.Element {
-    let format = this.i18n("form");
+    let format = this.i18n("forms");
 
     return (
       <div>

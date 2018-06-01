@@ -7,15 +7,15 @@ webpackJsonp([0,1],Array(249).concat([
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var abstract_routes_1 = __webpack_require__(98);
-var gen_recordList_page_1 = __webpack_require__(509);
-var client_list_service_impl_1 = __webpack_require__(511);
-var gen_recordDetails_page_1 = __webpack_require__(512);
+var gen_recordList_page_1 = __webpack_require__(511);
+var client_list_service_impl_1 = __webpack_require__(513);
+var gen_recordDetails_page_1 = __webpack_require__(514);
 var RecordListRoutesClient = /** @class */ (function (_super) {
     tslib_1.__extends(RecordListRoutesClient, _super);
     function RecordListRoutesClient() {
         var _this = _super.call(this) || this;
         _this.addPageRoute("/", function () { return new abstract_routes_1.PageRouteInfos(gen_recordList_page_1.RecordListPage, null, client_list_service_impl_1.ClientListServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE);
-        _this.addPageRoute("/(\\d+)", function (id) { return new abstract_routes_1.PageRouteInfos(gen_recordDetails_page_1.RecordDetailsPage, { "id": id }, client_list_service_impl_1.ClientListServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE);
+        _this.addPageRoute("/(\\d+)", function (id) { return new abstract_routes_1.PageRouteInfos(gen_recordDetails_page_1.RecordDetailsPage, { "idPermis": id }, client_list_service_impl_1.ClientListServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE);
         return _this;
     }
     return RecordListRoutesClient;
@@ -36,10 +36,10 @@ exports.default = RecordListRoutesClient;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
-var fvm_action_1 = __webpack_require__(501);
+var fvm_action_1 = __webpack_require__(502);
 var abstract_routes_1 = __webpack_require__(98);
 var record_client_routes_1 = __webpack_require__(249);
-var client_list_service_impl_data_1 = __webpack_require__(567);
+var client_list_service_impl_data_1 = __webpack_require__(569);
 var RecordListRoutesServer = /** @class */ (function (_super) {
     tslib_1.__extends(RecordListRoutesServer, _super);
     function RecordListRoutesServer() {
@@ -186,9 +186,9 @@ var React = __webpack_require__(2);
 var classNames = __webpack_require__(9);
 var _ = __webpack_require__(6);
 var dom_adapter_1 = __webpack_require__(310);
-var field_error_1 = __webpack_require__(347);
-var html_attributes_1 = __webpack_require__(348);
-var tool_tip_1 = __webpack_require__(350);
+var field_error_1 = __webpack_require__(348);
+var html_attributes_1 = __webpack_require__(349);
+var tool_tip_1 = __webpack_require__(351);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.form.abstract-field");
 var InlineStyle;
 (function (InlineStyle) {
@@ -597,7 +597,7 @@ module.exports = {
   getProperty: getProperty,
   escapeQuotes: escapeQuotes,
   equal: __webpack_require__(285),
-  ucs2length: __webpack_require__(361),
+  ucs2length: __webpack_require__(362),
   varOccurences: varOccurences,
   varReplace: varReplace,
   cleanUpCode: cleanUpCode,
@@ -882,7 +882,7 @@ module.exports = __webpack_require__(264) ? function (object, key, value) {
 
 var anObject = __webpack_require__(270);
 var IE8_DOM_DEFINE = __webpack_require__(326);
-var toPrimitive = __webpack_require__(289);
+var toPrimitive = __webpack_require__(290);
 var dP = Object.defineProperty;
 
 exports.f = __webpack_require__(264) ? Object.defineProperty : function defineProperty(O, P, Attributes) {
@@ -923,7 +923,7 @@ module.exports = !__webpack_require__(271)(function () {
 
 // to indexed object, toObject with fallback for non-array-like ES3 strings
 var IObject = __webpack_require__(329);
-var defined = __webpack_require__(290);
+var defined = __webpack_require__(291);
 module.exports = function (it) {
   return IObject(defined(it));
 };
@@ -968,7 +968,7 @@ module.exports = factory(
 /* 267 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var store = __webpack_require__(293)('wks');
+var store = __webpack_require__(294)('wks');
 var uid = __webpack_require__(277);
 var Symbol = __webpack_require__(257).Symbol;
 var USE_SYMBOL = typeof Symbol == 'function';
@@ -990,7 +990,7 @@ $exports.store = store;
 
 exports.__esModule = true;
 
-var _extends2 = __webpack_require__(288);
+var _extends2 = __webpack_require__(289);
 
 var _extends3 = _interopRequireDefault(_extends2);
 
@@ -1285,7 +1285,7 @@ module.exports = function (bitmap, value) {
 
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
 var $keys = __webpack_require__(328);
-var enumBugKeys = __webpack_require__(294);
+var enumBugKeys = __webpack_require__(295);
 
 module.exports = Object.keys || function keys(O) {
   return $keys(O, enumBugKeys);
@@ -1766,9 +1766,9 @@ var tslib_1 = __webpack_require__(1);
  */
 var hornet_js_utils_1 = __webpack_require__(0);
 var hornet_component_1 = __webpack_require__(3);
-var header_cell_1 = __webpack_require__(489);
-var body_cell_1 = __webpack_require__(490);
-var input_text_in_line_body_cell_1 = __webpack_require__(491);
+var header_cell_1 = __webpack_require__(490);
+var body_cell_1 = __webpack_require__(491);
+var input_text_in_line_body_cell_1 = __webpack_require__(492);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.table.column");
 /**
  * Classe abstraite d'une colonne de tableau
@@ -2140,7 +2140,7 @@ var url = __webpack_require__(41)
   , equal = __webpack_require__(285)
   , util = __webpack_require__(259)
   , SchemaObject = __webpack_require__(316)
-  , traverse = __webpack_require__(362);
+  , traverse = __webpack_require__(363);
 
 module.exports = resolve;
 
@@ -2538,6 +2538,200 @@ function metaSchemaRef(ajv) {
 
 "use strict";
 
+/**
+ * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * Ce logiciel est un programme informatique servant à faciliter la création
+ * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
+ * <p/>
+ * Ce logiciel est régi par la licence CeCILL soumise au droit français et
+ * respectant les principes de diffusion des logiciels libres. Vous pouvez
+ * utiliser, modifier et/ou redistribuer ce programme sous les conditions
+ * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
+ * sur le site "http://www.cecill.info".
+ * <p/>
+ * En contrepartie de l'accessibilité au code source et des droits de copie,
+ * de modification et de redistribution accordés par cette licence, il n'est
+ * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
+ * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
+ * titulaire des droits patrimoniaux et les concédants successifs.
+ * <p/>
+ * A cet égard  l'attention de l'utilisateur est attirée sur les risques
+ * associés au chargement,  à l'utilisation,  à la modification et/ou au
+ * développement et à la reproduction du logiciel par l'utilisateur étant
+ * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
+ * manipuler et qui le réserve donc à des développeurs et des professionnels
+ * avertis possédant  des  connaissances  informatiques approfondies.  Les
+ * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
+ * logiciel à leurs besoins dans des conditions permettant d'assurer la
+ * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
+ * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
+ * <p/>
+ * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
+ * pris connaissance de la licence CeCILL, et que vous en avez accepté les
+ * termes.
+ * <p/>
+ * <p/>
+ * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * This software is a computer program whose purpose is to facilitate creation of
+ * web application in accordance with french general repositories : RGI, RGS and RGAA.
+ * <p/>
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software.  You can  use,
+ * modify and/ or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ * <p/>
+ * As a counterpart to the access to the source code and  rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty  and the software's author,  the holder of the
+ * economic rights,  and the successive licensors  have only  limited
+ * liability.
+ * <p/>
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading,  using,  modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean  that it is complicated to manipulate,  and  that  also
+ * therefore means  that it is reserved for developers  and  experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and,  more generally, to use and operate it in the
+ * same conditions as regards security.
+ * <p/>
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(1);
+/**
+ * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
+ *
+ * @author MEAE - Ministère de l'Europe et des Affaires étrangères
+ * @version v5.1.1
+ * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
+ * @license CECILL-2.1
+ */
+var React = __webpack_require__(2);
+var abstract_field_1 = __webpack_require__(256);
+var picto_1 = __webpack_require__(95);
+var _ = __webpack_require__(6);
+var classNames = __webpack_require__(9);
+var hornet_event_1 = __webpack_require__(7);
+var event_1 = __webpack_require__(324);
+var InputField = /** @class */ (function (_super) {
+    tslib_1.__extends(InputField, _super);
+    function InputField() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /**
+     * Génère le rendu spécifique du champ
+     * @returns {any}
+     * @override
+     */
+    InputField.prototype.renderWidget = function () {
+        var _this = this;
+        var htmlProps = _.cloneDeep(this.getHtmlProps());
+        if (this.state.currentValue != null) {
+            _.assign(htmlProps, { "defaultValue": this.props.currentValue });
+        }
+        var inputClasses = {
+            "has-error": this.hasErrors(),
+            "input": true
+        };
+        if (htmlProps["className"]) {
+            inputClasses[htmlProps["className"]] = true;
+        }
+        if (this.state.alignment) {
+            inputClasses[this.state.alignment] = true;
+        }
+        htmlProps["onChange"] = this.state.resettable ? this.handleChangeInput : htmlProps["onChange"];
+        htmlProps["className"] = classNames(inputClasses);
+        return (React.createElement("div", null,
+            React.createElement("input", tslib_1.__assign({ ref: function (elt) { return _this.registerHtmlElement(elt); } }, htmlProps)),
+            this.state.resettable && this.state.valued && !this.state.readOnly && !this.state.disabled ? this.renderResetButton() :
+                React.createElement("div", null)));
+    };
+    /**
+     * Surcharge de la méthode
+     * @param value
+     * @returns {InputField}
+     */
+    InputField.prototype.setCurrentValue = function (value) {
+        _super.prototype.setCurrentValue.call(this, value);
+        this.setState({ valued: (value !== "" && value) });
+        return this;
+    };
+    InputField.prototype.isValued = function () {
+        return this.state.valued || this.props.value;
+    };
+    /**
+     * rendu html du bouton reset
+     * @returns {any}
+     */
+    InputField.prototype.renderResetButton = function () {
+        var htmlProps = _.cloneDeep(this.getHtmlProps());
+        var hidden = htmlProps["type"] === "hidden";
+        var classList = {
+            "input-reset": true,
+            "input-reset-hidden": (!this.isValued() || hidden)
+        };
+        var aProps = {};
+        if (this.isValued()) {
+            aProps["onClick"] = this.resetValue;
+        }
+        var prefixID = this.props.id || this.props.name;
+        return (React.createElement("span", { className: classNames(classList), role: "button", "aria-hidden": !this.state.valued, id: prefixID + "ResetButton" },
+            React.createElement("a", tslib_1.__assign({}, aProps),
+                React.createElement("img", { src: picto_1.Picto.grey.close, alt: this.i18n("inputField.messageBtn"), title: this.i18n("inputField.messageBtn") }))));
+    };
+    /**
+     * Permet de rendre à null la valeur du champ et de masquer la colonne
+     */
+    InputField.prototype.resetValue = function () {
+        this.htmlElement.value = null;
+        if (this.htmlElement && this.htmlElement.onchange)
+            this.htmlElement.onchange();
+        hornet_event_1.fireHornetEvent(event_1.VALUE_CHANGED_EVENT.withData(this.htmlElement));
+        this.setState({ valued: false });
+    };
+    /**
+     * Action exécutée lors d'un changement de valeur du champ
+     * @param e
+     */
+    InputField.prototype.handleChangeInput = function (e) {
+        if (this.htmlElement && this.htmlElement.value) {
+            if (!this.state.valued) {
+                this.setState({ valued: true });
+            }
+        }
+        else if (this.state.valued) {
+            this.setState({ valued: false });
+        }
+        var htmlProps = this.getHtmlProps();
+        if (_.isFunction(htmlProps["onChange"])) {
+            htmlProps["onChange"](e);
+        }
+    };
+    InputField.defaultProps = _.assign({ type: "text", resettable: true }, abstract_field_1.AbstractField.defaultProps);
+    return InputField;
+}(abstract_field_1.AbstractField));
+exports.InputField = InputField;
+
+
+
+/***/ }),
+/* 289 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 
 exports.__esModule = true;
 
@@ -2562,7 +2756,7 @@ exports.default = _assign2.default || function (target) {
 };
 
 /***/ }),
-/* 289 */
+/* 290 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.1 ToPrimitive(input [, PreferredType])
@@ -2580,7 +2774,7 @@ module.exports = function (it, S) {
 
 
 /***/ }),
-/* 290 */
+/* 291 */
 /***/ (function(module, exports) {
 
 // 7.2.1 RequireObjectCoercible(argument)
@@ -2591,7 +2785,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 291 */
+/* 292 */
 /***/ (function(module, exports) {
 
 // 7.1.4 ToInteger
@@ -2603,10 +2797,10 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 292 */
+/* 293 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var shared = __webpack_require__(293)('keys');
+var shared = __webpack_require__(294)('keys');
 var uid = __webpack_require__(277);
 module.exports = function (key) {
   return shared[key] || (shared[key] = uid(key));
@@ -2614,7 +2808,7 @@ module.exports = function (key) {
 
 
 /***/ }),
-/* 293 */
+/* 294 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(257);
@@ -2626,7 +2820,7 @@ module.exports = function (key) {
 
 
 /***/ }),
-/* 294 */
+/* 295 */
 /***/ (function(module, exports) {
 
 // IE 8- don't enum bug keys
@@ -2636,35 +2830,35 @@ module.exports = (
 
 
 /***/ }),
-/* 295 */
+/* 296 */
 /***/ (function(module, exports) {
 
 exports.f = Object.getOwnPropertySymbols;
 
 
 /***/ }),
-/* 296 */
+/* 297 */
 /***/ (function(module, exports) {
 
 module.exports = true;
 
 
 /***/ }),
-/* 297 */
+/* 298 */
 /***/ (function(module, exports) {
 
 module.exports = {};
 
 
 /***/ }),
-/* 298 */
+/* 299 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 var anObject = __webpack_require__(270);
 var dPs = __webpack_require__(432);
-var enumBugKeys = __webpack_require__(294);
-var IE_PROTO = __webpack_require__(292)('IE_PROTO');
+var enumBugKeys = __webpack_require__(295);
+var IE_PROTO = __webpack_require__(293)('IE_PROTO');
 var Empty = function () { /* empty */ };
 var PROTOTYPE = 'prototype';
 
@@ -2704,7 +2898,7 @@ module.exports = Object.create || function create(O, Properties) {
 
 
 /***/ }),
-/* 299 */
+/* 300 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var def = __webpack_require__(262).f;
@@ -2717,20 +2911,20 @@ module.exports = function (it, tag, stat) {
 
 
 /***/ }),
-/* 300 */
+/* 301 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports.f = __webpack_require__(267);
 
 
 /***/ }),
-/* 301 */
+/* 302 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(257);
 var core = __webpack_require__(260);
-var LIBRARY = __webpack_require__(296);
-var wksExt = __webpack_require__(300);
+var LIBRARY = __webpack_require__(297);
+var wksExt = __webpack_require__(301);
 var defineProperty = __webpack_require__(262).f;
 module.exports = function (name) {
   var $Symbol = core.Symbol || (core.Symbol = LIBRARY ? {} : global.Symbol || {});
@@ -2739,7 +2933,7 @@ module.exports = function (name) {
 
 
 /***/ }),
-/* 302 */
+/* 303 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2900,7 +3094,7 @@ exports.ArrayUtils = ArrayUtils;
 
 
 /***/ }),
-/* 303 */
+/* 304 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2991,8 +3185,8 @@ var promise_api_1 = __webpack_require__(50);
 var technical_error_1 = __webpack_require__(13);
 var codes_error_1 = __webpack_require__(97);
 var object_utils_1 = __webpack_require__(313);
-var datasource_option_1 = __webpack_require__(355);
-var datasource_config_1 = __webpack_require__(356);
+var datasource_option_1 = __webpack_require__(356);
+var datasource_config_1 = __webpack_require__(357);
 var datasource_config_page_1 = __webpack_require__(314);
 var DataSourceStatus;
 (function (DataSourceStatus) {
@@ -3695,200 +3889,6 @@ exports.DataSource = DataSource;
 
 
 /***/ }),
-/* 304 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * Ce logiciel est un programme informatique servant à faciliter la création
- * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
- * <p/>
- * Ce logiciel est régi par la licence CeCILL soumise au droit français et
- * respectant les principes de diffusion des logiciels libres. Vous pouvez
- * utiliser, modifier et/ou redistribuer ce programme sous les conditions
- * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
- * sur le site "http://www.cecill.info".
- * <p/>
- * En contrepartie de l'accessibilité au code source et des droits de copie,
- * de modification et de redistribution accordés par cette licence, il n'est
- * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
- * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
- * titulaire des droits patrimoniaux et les concédants successifs.
- * <p/>
- * A cet égard  l'attention de l'utilisateur est attirée sur les risques
- * associés au chargement,  à l'utilisation,  à la modification et/ou au
- * développement et à la reproduction du logiciel par l'utilisateur étant
- * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
- * manipuler et qui le réserve donc à des développeurs et des professionnels
- * avertis possédant  des  connaissances  informatiques approfondies.  Les
- * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
- * logiciel à leurs besoins dans des conditions permettant d'assurer la
- * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
- * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
- * <p/>
- * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
- * pris connaissance de la licence CeCILL, et que vous en avez accepté les
- * termes.
- * <p/>
- * <p/>
- * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * This software is a computer program whose purpose is to facilitate creation of
- * web application in accordance with french general repositories : RGI, RGS and RGAA.
- * <p/>
- * This software is governed by the CeCILL license under French law and
- * abiding by the rules of distribution of free software.  You can  use,
- * modify and/ or redistribute the software under the terms of the CeCILL
- * license as circulated by CEA, CNRS and INRIA at the following URL
- * "http://www.cecill.info".
- * <p/>
- * As a counterpart to the access to the source code and  rights to copy,
- * modify and redistribute granted by the license, users are provided only
- * with a limited warranty  and the software's author,  the holder of the
- * economic rights,  and the successive licensors  have only  limited
- * liability.
- * <p/>
- * In this respect, the user's attention is drawn to the risks associated
- * with loading,  using,  modifying and/or developing or reproducing the
- * software by the user in light of its specific status of free software,
- * that may mean  that it is complicated to manipulate,  and  that  also
- * therefore means  that it is reserved for developers  and  experienced
- * professionals having in-depth computer knowledge. Users are therefore
- * encouraged to load and test the software's suitability as regards their
- * requirements in conditions enabling the security of their systems and/or
- * data to be ensured and,  more generally, to use and operate it in the
- * same conditions as regards security.
- * <p/>
- * The fact that you are presently reading this means that you have had
- * knowledge of the CeCILL license and that you accept its terms.
- *
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(1);
-/**
- * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
- *
- * @author MEAE - Ministère de l'Europe et des Affaires étrangères
- * @version v5.1.1
- * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
- * @license CECILL-2.1
- */
-var React = __webpack_require__(2);
-var abstract_field_1 = __webpack_require__(256);
-var picto_1 = __webpack_require__(95);
-var _ = __webpack_require__(6);
-var classNames = __webpack_require__(9);
-var hornet_event_1 = __webpack_require__(7);
-var event_1 = __webpack_require__(324);
-var InputField = /** @class */ (function (_super) {
-    tslib_1.__extends(InputField, _super);
-    function InputField() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    /**
-     * Génère le rendu spécifique du champ
-     * @returns {any}
-     * @override
-     */
-    InputField.prototype.renderWidget = function () {
-        var _this = this;
-        var htmlProps = _.cloneDeep(this.getHtmlProps());
-        if (this.state.currentValue != null) {
-            _.assign(htmlProps, { "defaultValue": this.props.currentValue });
-        }
-        var inputClasses = {
-            "has-error": this.hasErrors(),
-            "input": true
-        };
-        if (htmlProps["className"]) {
-            inputClasses[htmlProps["className"]] = true;
-        }
-        if (this.state.alignment) {
-            inputClasses[this.state.alignment] = true;
-        }
-        htmlProps["onChange"] = this.state.resettable ? this.handleChangeInput : htmlProps["onChange"];
-        htmlProps["className"] = classNames(inputClasses);
-        return (React.createElement("div", null,
-            React.createElement("input", tslib_1.__assign({ ref: function (elt) { return _this.registerHtmlElement(elt); } }, htmlProps)),
-            this.state.resettable && this.state.valued && !this.state.readOnly && !this.state.disabled ? this.renderResetButton() :
-                React.createElement("div", null)));
-    };
-    /**
-     * Surcharge de la méthode
-     * @param value
-     * @returns {InputField}
-     */
-    InputField.prototype.setCurrentValue = function (value) {
-        _super.prototype.setCurrentValue.call(this, value);
-        this.setState({ valued: (value !== "" && value) });
-        return this;
-    };
-    InputField.prototype.isValued = function () {
-        return this.state.valued || this.props.value;
-    };
-    /**
-     * rendu html du bouton reset
-     * @returns {any}
-     */
-    InputField.prototype.renderResetButton = function () {
-        var htmlProps = _.cloneDeep(this.getHtmlProps());
-        var hidden = htmlProps["type"] === "hidden";
-        var classList = {
-            "input-reset": true,
-            "input-reset-hidden": (!this.isValued() || hidden)
-        };
-        var aProps = {};
-        if (this.isValued()) {
-            aProps["onClick"] = this.resetValue;
-        }
-        var prefixID = this.props.id || this.props.name;
-        return (React.createElement("span", { className: classNames(classList), role: "button", "aria-hidden": !this.state.valued, id: prefixID + "ResetButton" },
-            React.createElement("a", tslib_1.__assign({}, aProps),
-                React.createElement("img", { src: picto_1.Picto.grey.close, alt: this.i18n("inputField.messageBtn"), title: this.i18n("inputField.messageBtn") }))));
-    };
-    /**
-     * Permet de rendre à null la valeur du champ et de masquer la colonne
-     */
-    InputField.prototype.resetValue = function () {
-        this.htmlElement.value = null;
-        if (this.htmlElement && this.htmlElement.onchange)
-            this.htmlElement.onchange();
-        hornet_event_1.fireHornetEvent(event_1.VALUE_CHANGED_EVENT.withData(this.htmlElement));
-        this.setState({ valued: false });
-    };
-    /**
-     * Action exécutée lors d'un changement de valeur du champ
-     * @param e
-     */
-    InputField.prototype.handleChangeInput = function (e) {
-        if (this.htmlElement && this.htmlElement.value) {
-            if (!this.state.valued) {
-                this.setState({ valued: true });
-            }
-        }
-        else if (this.state.valued) {
-            this.setState({ valued: false });
-        }
-        var htmlProps = this.getHtmlProps();
-        if (_.isFunction(htmlProps["onChange"])) {
-            htmlProps["onChange"](e);
-        }
-    };
-    InputField.defaultProps = _.assign({ type: "text", resettable: true }, abstract_field_1.AbstractField.defaultProps);
-    return InputField;
-}(abstract_field_1.AbstractField));
-exports.InputField = InputField;
-
-
-
-/***/ }),
 /* 305 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4162,24 +4162,24 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var hornet_js_utils_1 = __webpack_require__(0);
-var array_utils_1 = __webpack_require__(302);
+var array_utils_1 = __webpack_require__(303);
 var sort_data_1 = __webpack_require__(283);
 var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
 var confirm_1 = __webpack_require__(476);
-var spinner_table_1 = __webpack_require__(488);
+var spinner_table_1 = __webpack_require__(489);
 var paginate_datasource_1 = __webpack_require__(339);
 var columns_1 = __webpack_require__(340);
 var action_column_1 = __webpack_require__(477);
-var edition_action_column_1 = __webpack_require__(493);
+var edition_action_column_1 = __webpack_require__(494);
 var check_column_1 = __webpack_require__(480);
 var abstract_cell_1 = __webpack_require__(343);
-var cell_coordinates_1 = __webpack_require__(497);
+var cell_coordinates_1 = __webpack_require__(498);
 var table_state_1 = __webpack_require__(279);
 var navigation_direction_1 = __webpack_require__(478);
 var form_1 = __webpack_require__(309);
-var line_before_1 = __webpack_require__(498);
-var line_after_1 = __webpack_require__(499);
+var line_before_1 = __webpack_require__(499);
+var line_after_1 = __webpack_require__(500);
 var classNames = __webpack_require__(9);
 var _ = __webpack_require__(6);
 var hornet_event_1 = __webpack_require__(7);
@@ -5452,14 +5452,14 @@ var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var notification_1 = __webpack_require__(48);
 var abstract_field_1 = __webpack_require__(256);
-var abstract_form_1 = __webpack_require__(351);
+var abstract_form_1 = __webpack_require__(352);
 var upload_file_field_1 = __webpack_require__(341);
 var form_utils_1 = __webpack_require__(311);
 var dom_adapter_1 = __webpack_require__(310);
-var auto_complete_field_1 = __webpack_require__(352);
+var auto_complete_field_1 = __webpack_require__(353);
 var notification_manager_1 = __webpack_require__(96);
-var checkbox_field_1 = __webpack_require__(357);
-var data_validator_1 = __webpack_require__(358);
+var checkbox_field_1 = __webpack_require__(358);
+var data_validator_1 = __webpack_require__(359);
 var classNames = __webpack_require__(9);
 var _ = __webpack_require__(6);
 var select_field_1 = __webpack_require__(345);
@@ -8034,7 +8034,7 @@ module.exports = function (minMax) {
   return function defFunc(ajv) {
     defFunc.definition = {
       type: 'string',
-      inline: __webpack_require__(404),
+      inline: __webpack_require__(405),
       statements: true,
       errors: 'full',
       metaSchema: {
@@ -8177,7 +8177,7 @@ module.exports = function (it) {
 var has = __webpack_require__(258);
 var toIObject = __webpack_require__(265);
 var arrayIndexOf = __webpack_require__(419)(false);
-var IE_PROTO = __webpack_require__(292)('IE_PROTO');
+var IE_PROTO = __webpack_require__(293)('IE_PROTO');
 
 module.exports = function (object, names) {
   var O = toIObject(object);
@@ -8221,7 +8221,7 @@ module.exports = function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.13 ToObject(argument)
-var defined = __webpack_require__(290);
+var defined = __webpack_require__(291);
 module.exports = function (it) {
   return Object(defined(it));
 };
@@ -8260,14 +8260,14 @@ exports.default = typeof _symbol2.default === "function" && _typeof(_iterator2.d
 
 "use strict";
 
-var LIBRARY = __webpack_require__(296);
+var LIBRARY = __webpack_require__(297);
 var $export = __webpack_require__(269);
 var redefine = __webpack_require__(334);
 var hide = __webpack_require__(261);
 var has = __webpack_require__(258);
-var Iterators = __webpack_require__(297);
+var Iterators = __webpack_require__(298);
 var $iterCreate = __webpack_require__(431);
-var setToStringTag = __webpack_require__(299);
+var setToStringTag = __webpack_require__(300);
 var getPrototypeOf = __webpack_require__(434);
 var ITERATOR = __webpack_require__(267)('iterator');
 var BUGGY = !([].keys && 'next' in [].keys()); // Safari has buggy iterators w/o `next`
@@ -8344,7 +8344,7 @@ module.exports = __webpack_require__(261);
 
 // 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
 var $keys = __webpack_require__(328);
-var hiddenKeys = __webpack_require__(294).concat('length', 'prototype');
+var hiddenKeys = __webpack_require__(295).concat('length', 'prototype');
 
 exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
   return $keys(O, hiddenKeys);
@@ -8358,7 +8358,7 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
 var pIE = __webpack_require__(278);
 var createDesc = __webpack_require__(275);
 var toIObject = __webpack_require__(265);
-var toPrimitive = __webpack_require__(289);
+var toPrimitive = __webpack_require__(290);
 var has = __webpack_require__(258);
 var IE8_DOM_DEFINE = __webpack_require__(326);
 var gOPD = Object.getOwnPropertyDescriptor;
@@ -8503,11 +8503,11 @@ var tslib_1 = __webpack_require__(1);
  */
 var _ = __webpack_require__(6);
 var promise_api_1 = __webpack_require__(50);
-var datasource_1 = __webpack_require__(303);
+var datasource_1 = __webpack_require__(304);
 var technical_error_1 = __webpack_require__(13);
 var codes_error_1 = __webpack_require__(97);
 var hornet_js_utils_1 = __webpack_require__(0);
-var array_utils_1 = __webpack_require__(302);
+var array_utils_1 = __webpack_require__(303);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.component.datasource.paginate-datasource");
 exports.ITEMS_PER_PAGE_ALL = 2147483647;
 /**
@@ -10645,42 +10645,398 @@ var tslib_1 = __webpack_require__(1);
  * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
  * @license CECILL-2.1
  */
+var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
-var hornet_component_1 = __webpack_require__(3);
-/**
- * Génère le rendu d'un ou plusieurs message d'erreur de validation au-dessus d'un champ de formulaire
- */
-var FieldError = /** @class */ (function (_super) {
-    tslib_1.__extends(FieldError, _super);
-    function FieldError() {
-        return _super !== null && _super.apply(this, arguments) || this;
+var abstract_field_1 = __webpack_require__(256);
+var modal_1 = __webpack_require__(100);
+var _ = __webpack_require__(6);
+var moment = __webpack_require__(26);
+var date_utils_1 = __webpack_require__(102);
+var input_field_1 = __webpack_require__(288);
+var key_codes_1 = __webpack_require__(10);
+var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.form.calendar-fied");
+var RcCalendar = null;
+var defaultLocale = date_utils_1.DateUtils.default_locale;
+if (!hornet_js_utils_1.Utils.isServer) {
+    logger.trace("Execution sur le CLIENT(NAVIGATEUR)");
+    RcCalendar = __webpack_require__(412);
+    /* Patch de la méthode getTitleString utilisée pour afficher la date correspondant au jour survolé dans le calendrier */
+    var rcCalendarUtil = __webpack_require__(268);
+    if (rcCalendarUtil && rcCalendarUtil.getTitleString) {
+        rcCalendarUtil.getTitleString = function (value) {
+            /* On renvoie une chaîne vide car le formattage de la date dépend de la locale qui est propre à chaque
+             instance de calendar. */
+            return "";
+        };
     }
-    /**
-     * @inheritDoc
-     */
-    FieldError.prototype.render = function () {
-        var _this = this;
-        /* Filtrage des erreurs correspondant au nom du champ*/
-        var fieldErrors;
-        if (this.state.errors) {
-            fieldErrors = this.state.errors.filter(function (error) {
-                return (error.field == this.state.fieldName && !this.state.hideError);
-            }, this);
+}
+else {
+    logger.trace("Execution sur le SERVEUR");
+}
+/**
+ * Composant Calendrier
+ */
+var CalendarField = /** @class */ (function (_super) {
+    tslib_1.__extends(CalendarField, _super);
+    function CalendarField(props, context) {
+        var _this = _super.call(this, props, context) || this;
+        _this.hasKeyPress = false;
+        var calendarLocale = hornet_js_utils_1.Utils.getCls("hornet.internationalization") ?
+            _this.i18n("calendar") : { "dateFormat": "DD/MM/YYYY" };
+        /*récupération de la locale d'internationalisation*/
+        var internationalisation = hornet_js_utils_1.Utils.getCls("hornet.internationalization");
+        var language;
+        if (internationalisation) {
+            language = internationalisation.locale;
         }
         else {
-            fieldErrors = new Array(0);
+            language = defaultLocale;
         }
-        return (fieldErrors.length > 0 ?
-            React.createElement("div", { className: "fielderror-container" }, fieldErrors.map(function (error) {
-                return React.createElement("div", { key: error.id, className: "fielderror-content formmgr-message-text", id: _this.props.fieldName + "-error" }, error.text);
-            })) : null);
+        /* attribut HTML size du champ de saisie */
+        var inputSize = calendarLocale.dateFormat.length;
+        _this.state.isVisible = false;
+        _this.state.calendarLocale = calendarLocale;
+        _this.state.language = language;
+        _this.state.inputSize = inputSize;
+        if (!props.placeHolder) {
+            _this.state.placeHolder = _this.i18n("calendar.placeHolder");
+        }
+        _this.state.currentValue = "";
+        _this.state.messageValidation = _this.i18n("form.validation.format", { field: _this.state.label });
+        return _this;
+    }
+    /**
+     * Récupère le format d'affichage des dates
+     */
+    CalendarField.prototype.getFormat = function () {
+        var internationalisation = hornet_js_utils_1.Utils.getCls("hornet.internationalization");
+        var dateFormat = internationalisation.messages.calendar.dateFormat;
+        return dateFormat;
     };
-    FieldError.defaultProps = {
-        errors: new Array(0)
+    /**
+     * Génère le rendu spécifique du champ : un datePicker
+     * @returns {any}
+     */
+    CalendarField.prototype.renderWidget = function () {
+        var _this = this;
+        logger.trace("render CalendarField");
+        var reactIconTag;
+        var reactCalendarDialogueTag;
+        if (this.state.isDatePicker) {
+            reactIconTag =
+                React.createElement("button", { className: "agenda icon", type: "button", onClick: this.showCalendar, title: this.state.title || this.state.calendarLocale.agendaTitle, disabled: this.state.readOnly || this.state.disabled, "aria-haspopup": true, value: "calendar" },
+                    React.createElement("img", { src: CalendarField.genUrlTheme("/img/calendar/icon_calendar.svg"), alt: this.state.title || this.state.calendarLocale.agendaTitle }));
+            /*RcCalendar prend un Moment en paramètre*/
+            var date = _.clone(this.state.currentValue);
+            var currentDate = void 0;
+            if (!date) {
+                currentDate = moment();
+            }
+            else {
+                currentDate = moment(date, this.state.calendarLocale.dateFormat);
+            }
+            if (!currentDate.isValid()) {
+                currentDate = moment();
+            }
+            currentDate.locale(this.state.language);
+            var format = this.getFormat();
+            if (format instanceof Array) {
+                format = format[0];
+            }
+            reactCalendarDialogueTag =
+                React.createElement(modal_1.Modal, { ref: "maModal", underlayClickExits: true, escapeKeyExits: true, title: this.state.calendarLocale.choiceDate }, !hornet_js_utils_1.Utils.isServer ?
+                    React.createElement(RcCalendar, { formatter: format, defaultValue: currentDate, onSelect: this.setValueAndCloseCalendar, locale: this.state.calendarLocale, format: format, showDateInput: false }) :
+                    null);
+        }
+        var htmlProps = this.getHtmlProps();
+        var formatedValue = this.state.currentValue.length >= 1
+            ? this.state.currentValue
+            : "";
+        htmlProps = _.assign(htmlProps, {
+            type: "text",
+            size: this.state.inputSize,
+            value: formatedValue,
+            onChange: this.handleInputChange,
+            onKeyPress: this.handleInputKeyPress,
+            onBlur: this.handleInputLeave
+        });
+        if (htmlProps.label == htmlProps.title) {
+            htmlProps.title = undefined;
+        }
+        htmlProps.label = undefined;
+        var hasError = this.hasErrors() ? " has-error" : "";
+        var placeHolder = (!this.state.disabled && !this.state.readOnly)
+            ? this.state.placeHolder
+            : null;
+        return (React.createElement("div", { className: "calendar-container" },
+            React.createElement("input", tslib_1.__assign({}, htmlProps, { ref: function (elt) { return _this.registerHtmlElement(elt); }, className: "calendar-input" + hasError, placeholder: placeHolder })),
+            !this.state.readOnly && !this.state.disabled && this.state.currentValue ? this.renderResetButton() : null,
+            reactIconTag,
+            reactCalendarDialogueTag));
     };
-    return FieldError;
-}(hornet_component_1.HornetComponent));
-exports.FieldError = FieldError;
+    /**
+     * @override
+     */
+    CalendarField.prototype.setCurrentValue = function (value) {
+        var _this = this;
+        var res = value || "";
+        if (typeof value === "number") {
+            res = this.formatCalendarDate(value, this.state.calendarLocale);
+        }
+        else if (value instanceof Date) {
+            res = this.formatCalendarDate(value.getTime(), this.state.calendarLocale);
+        }
+        this.setState({ currentValue: res, valued: (value !== "" && value), errors: [] }, function () {
+            if (_this.state.onValueChange)
+                _this.state.onValueChange(_this.state.currentValue);
+        });
+        return this;
+    };
+    /**time
+     * @override
+     */
+    CalendarField.prototype.resetValue = function () {
+        var _this = this;
+        var res = this.formatCalendarDate(null, this.state.calendarLocale);
+        this.setState({ currentValue: res, valued: false }, function () {
+            if (_this.state.onSelect) {
+                if (_this.state.onSelect) {
+                    _this.state.onSelect(res);
+                }
+            }
+            if (_this.state.onChange) {
+                _this.state.onChange(null);
+            }
+            if (_this.state.onValueChange) {
+                _this.state.onValueChange(_this.state.currentValue);
+            }
+            if (_this.htmlElement && _this.htmlElement.onchange) {
+                _this.htmlElement.onchange();
+            }
+        });
+    };
+    /**
+     * Méthode délenchée lors d'une intéraction avec le champ input du composant Calendar
+     * @param e
+     */
+    CalendarField.prototype.handleInputChange = function (e) {
+        var _this = this;
+        /* L'attribut DOM onChange est éventuellement aussi renseigné sur le composant */
+        if (this.state.onChange) {
+            this.state.onChange(e);
+        }
+        var input = e.target;
+        if (input.value && !this.state.valued) {
+            this.setState({ valued: true });
+        }
+        else if (!input.value && this.state.valued) {
+            this.setState({ valued: false });
+        }
+        if (this.state.currentValue != input.value) {
+            this.setState({ currentValue: input.value }, function () {
+                if (_this.state.onValueChange)
+                    _this.state.onValueChange(_this.state.currentValue);
+            });
+        }
+    };
+    /**
+     * Méthode délenchée lorsque l'utilisateur quitte l'input du composant Calendar
+     * @param e
+     */
+    CalendarField.prototype.handleInputLeave = function (e) {
+        var _this = this;
+        /* transforme la date au format définit */
+        var input = e.target;
+        var text = input.value;
+        if (text.length > 0) {
+            var format = this.getFormat();
+            var time = moment(text, format, true);
+            if (time.isValid()) {
+                if (format instanceof Array) {
+                    var newText = time.format(format[0]);
+                    this.setState({ currentValue: newText }, function () {
+                        if (_this.state.onValueChange)
+                            _this.state.onValueChange(_this.state.currentValue);
+                    });
+                }
+                else {
+                    var newText = time.format(format);
+                    this.setState({ currentValue: newText });
+                }
+            }
+            else {
+                if (this.state.valideOnForm) {
+                    this.setState({ currentValue: text }, function () {
+                        if (_this.state.onValueChange)
+                            _this.state.onValueChange(_this.state.currentValue);
+                    });
+                }
+                else {
+                    if (this.hasKeyPress) {
+                        this.setState({ errors: [{ field: this.state.name, text: this.state.messageValidation }] }, function () {
+                            _this.htmlElement.focus();
+                        });
+                        this.hasKeyPress = false;
+                    }
+                    else {
+                        this.setState({ currentValue: "", errors: [] }, function () {
+                            if (_this.state.onValueChange)
+                                _this.state.onValueChange(_this.state.currentValue);
+                        });
+                    }
+                }
+            }
+        }
+        if (this.props.onBlur) {
+            this.props.onBlur(e);
+        }
+    };
+    /**
+     * Controle des touches claviers
+     * @param e
+     */
+    CalendarField.prototype.handleInputKeyPress = function (e) {
+        var _this = this;
+        var text = e.target.value;
+        var time = moment(text, this.getFormat());
+        if (this.state.onKeyPress) {
+            this.state.onKeyPress(event);
+        }
+        var key = e.key;
+        if (key == key_codes_1.KEYNAMES.ArrowDown) {
+            if (time.isValid()) {
+                time.add(1, "days");
+                this.setState({ currentValue: time.toDate() }, function () {
+                    if (_this.state.onValueChange)
+                        _this.state.onValueChange(_this.state.currentValue);
+                });
+            }
+            e.preventDefault();
+        }
+        else if (key == key_codes_1.KEYNAMES.ArrowUp) {
+            if (time.isValid()) {
+                time.add(1, "days");
+                this.setState({ currentValue: time.toDate() }, function () {
+                    if (_this.state.onValueChange)
+                        _this.state.onValueChange(_this.state.currentValue);
+                });
+            }
+            e.preventDefault();
+        }
+        else if (key == key_codes_1.KEYNAMES.Home) {
+            this.setState({ currentValue: new Date() }, function () {
+                if (_this.state.onValueChange)
+                    _this.state.onValueChange(_this.state.currentValue);
+            });
+            e.preventDefault();
+        }
+        else if ((/[-.\/]/.test(key)) || (/\d/.test(key))
+            || ((key.toUpperCase() == "A" || key.toUpperCase() == "C" || key.toUpperCase() == "V" || key.toUpperCase() == "X") && e.ctrlKey)) {
+            if (key != "Tab") {
+                this.hasKeyPress = true;
+            }
+        }
+        else if (key != key_codes_1.KEYNAMES.Enter) {
+            e.stopPropagation();
+            e.preventDefault();
+        }
+    };
+    /**
+     * @param time temps en millisecondes depuis Epoch
+     * @param calendarLocale propriétés localisées du calendrier
+     */
+    CalendarField.prototype.formatCalendarDate = function (time, calendarLocale) {
+        var strValue;
+        try {
+            if (time) {
+                var format = this.getFormat();
+                strValue = moment(time).format(format);
+            }
+        }
+        catch (err) {
+            logger.trace("Erreur pour formater la date suivante:", err);
+        }
+        if (!strValue) {
+            strValue = "";
+        }
+        logger.trace("Date formatée : ", strValue + "  -- à partir de la valeur", time);
+        return strValue;
+    };
+    /**
+     * Met à jour la valeur et déclenche la fermeture de la popup de calendrier
+     * @param value {Moment} instance de Moment
+     */
+    CalendarField.prototype.setValueAndCloseCalendar = function (value) {
+        var _this = this;
+        if (value != null) {
+            this.setState({
+                currentValue: this.formatCalendarDate(value, this.state.calendarLocale),
+                valued: value != ""
+            }, function () {
+                _this.hideCalendar();
+                if (_this.state.onSelect) {
+                    _this.state.onSelect(value);
+                }
+                if (_this.state.onValueChange) {
+                    _this.state.onValueChange(_this.state.currentValue);
+                }
+            });
+        }
+        else {
+            if (this.state.onSelect) {
+                this.state.onSelect(value);
+            }
+            if (this.state.onValueChange) {
+                this.state.onValueChange(value);
+            }
+        }
+    };
+    /**
+     * Permet de mettre à jour la valeur du datePicker
+     * @param value
+     * @returns {this}
+     */
+    CalendarField.prototype.setValue = function (value) {
+        this.setState({
+            currentValue: this.formatCalendarDate(value, this.state.calendarLocale),
+            valued: value != ""
+        });
+        return this;
+    };
+    /**
+     * Permet d'afficher la modal contenant le calendier
+     * @returns {Calendar}
+     */
+    CalendarField.prototype.showCalendar = function () {
+        if (!this.state.disabled && !this.state.readOnly) {
+            this.refs.maModal.open();
+        }
+        return this;
+    };
+    /**
+     * Permet de masquer la modal contenant le calendier
+     * @returns {Calendar}
+     */
+    CalendarField.prototype.hideCalendar = function () {
+        this.refs.maModal.close();
+        return this;
+    };
+    CalendarField.prototype.getCurrentValue = function () {
+        if (this.state.valideOnForm) {
+            return hornet_js_utils_1.Utils.dateUtils.parseInTZ(this.state.currentValue, this.getFormat(), hornet_js_utils_1.Utils.dateUtils.TZ_EUROPE_PARIS) || this.state.currentValue;
+        }
+        else {
+            return hornet_js_utils_1.Utils.dateUtils.parseInTZ(this.state.currentValue, this.getFormat(), hornet_js_utils_1.Utils.dateUtils.TZ_EUROPE_PARIS);
+        }
+    };
+    CalendarField.defaultProps = _.assign(abstract_field_1.AbstractField.defaultProps, {
+        disabled: false,
+        isDatePicker: true,
+        valideOnForm: true
+    });
+    return CalendarField;
+}(input_field_1.InputField));
+exports.CalendarField = CalendarField;
 
 
 
@@ -10761,7 +11117,132 @@ exports.FieldError = FieldError;
  *
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var html_const_attributes_1 = __webpack_require__(349);
+var tslib_1 = __webpack_require__(1);
+/**
+ * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
+ *
+ * @author MEAE - Ministère de l'Europe et des Affaires étrangères
+ * @version v5.1.1
+ * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
+ * @license CECILL-2.1
+ */
+var React = __webpack_require__(2);
+var hornet_component_1 = __webpack_require__(3);
+/**
+ * Génère le rendu d'un ou plusieurs message d'erreur de validation au-dessus d'un champ de formulaire
+ */
+var FieldError = /** @class */ (function (_super) {
+    tslib_1.__extends(FieldError, _super);
+    function FieldError() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /**
+     * @inheritDoc
+     */
+    FieldError.prototype.render = function () {
+        var _this = this;
+        /* Filtrage des erreurs correspondant au nom du champ*/
+        var fieldErrors;
+        if (this.state.errors) {
+            fieldErrors = this.state.errors.filter(function (error) {
+                return (error.field == this.state.fieldName && !this.state.hideError);
+            }, this);
+        }
+        else {
+            fieldErrors = new Array(0);
+        }
+        return (fieldErrors.length > 0 ?
+            React.createElement("div", { className: "fielderror-container" }, fieldErrors.map(function (error) {
+                return React.createElement("div", { key: error.id, className: "fielderror-content formmgr-message-text", id: _this.props.fieldName + "-error" }, error.text);
+            })) : null);
+    };
+    FieldError.defaultProps = {
+        errors: new Array(0)
+    };
+    return FieldError;
+}(hornet_component_1.HornetComponent));
+exports.FieldError = FieldError;
+
+
+
+/***/ }),
+/* 349 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * Ce logiciel est un programme informatique servant à faciliter la création
+ * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
+ * <p/>
+ * Ce logiciel est régi par la licence CeCILL soumise au droit français et
+ * respectant les principes de diffusion des logiciels libres. Vous pouvez
+ * utiliser, modifier et/ou redistribuer ce programme sous les conditions
+ * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
+ * sur le site "http://www.cecill.info".
+ * <p/>
+ * En contrepartie de l'accessibilité au code source et des droits de copie,
+ * de modification et de redistribution accordés par cette licence, il n'est
+ * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
+ * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
+ * titulaire des droits patrimoniaux et les concédants successifs.
+ * <p/>
+ * A cet égard  l'attention de l'utilisateur est attirée sur les risques
+ * associés au chargement,  à l'utilisation,  à la modification et/ou au
+ * développement et à la reproduction du logiciel par l'utilisateur étant
+ * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
+ * manipuler et qui le réserve donc à des développeurs et des professionnels
+ * avertis possédant  des  connaissances  informatiques approfondies.  Les
+ * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
+ * logiciel à leurs besoins dans des conditions permettant d'assurer la
+ * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
+ * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
+ * <p/>
+ * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
+ * pris connaissance de la licence CeCILL, et que vous en avez accepté les
+ * termes.
+ * <p/>
+ * <p/>
+ * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * This software is a computer program whose purpose is to facilitate creation of
+ * web application in accordance with french general repositories : RGI, RGS and RGAA.
+ * <p/>
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software.  You can  use,
+ * modify and/ or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ * <p/>
+ * As a counterpart to the access to the source code and  rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty  and the software's author,  the holder of the
+ * economic rights,  and the successive licensors  have only  limited
+ * liability.
+ * <p/>
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading,  using,  modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean  that it is complicated to manipulate,  and  that  also
+ * therefore means  that it is reserved for developers  and  experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and,  more generally, to use and operate it in the
+ * same conditions as regards security.
+ * <p/>
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var html_const_attributes_1 = __webpack_require__(350);
 var _ = __webpack_require__(6);
 /**
  * Object contenant toutes les propriétés standards HTML définies dans HornetHTMLAttributes.
@@ -10772,7 +11253,7 @@ exports.HTML_ATTRIBUTES = _.assign(html_const_attributes_1.HtmlAttributes.HTML_N
 
 
 /***/ }),
-/* 349 */
+/* 350 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11139,7 +11620,7 @@ exports.HtmlAttributes = HtmlAttributes;
 
 
 /***/ }),
-/* 350 */
+/* 351 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11296,7 +11777,7 @@ exports.ToolTip = ToolTip;
 
 
 /***/ }),
-/* 351 */
+/* 352 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11526,7 +12007,7 @@ exports.AbstractForm = AbstractForm;
 
 
 /***/ }),
-/* 352 */
+/* 353 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11614,11 +12095,11 @@ var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var abstract_field_1 = __webpack_require__(256);
-var auto_complete_selector_1 = __webpack_require__(353);
+var auto_complete_selector_1 = __webpack_require__(354);
 var _ = __webpack_require__(6);
 var key_codes_1 = __webpack_require__(10);
 var auto_complete_state_1 = __webpack_require__(312);
-var datasource_master_1 = __webpack_require__(354);
+var datasource_master_1 = __webpack_require__(355);
 var abstract_field_datasource_1 = __webpack_require__(315);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.form.auto-complete-field");
 var FilterTextType;
@@ -12475,7 +12956,7 @@ exports.AutoCompleteField = AutoCompleteField;
 
 
 /***/ }),
-/* 353 */
+/* 354 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12935,7 +13416,7 @@ exports.AutoCompleteSelector = AutoCompleteSelector;
 
 
 /***/ }),
-/* 354 */
+/* 355 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13020,7 +13501,7 @@ var tslib_1 = __webpack_require__(1);
  * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
  * @license CECILL-2.1
  */
-var datasource_1 = __webpack_require__(303);
+var datasource_1 = __webpack_require__(304);
 var _ = __webpack_require__(6);
 /*
 * @classdesc Classe représentant les datasources de type MASTER-SLAVE
@@ -13079,7 +13560,7 @@ exports.DataSourceMaster = DataSourceMaster;
 
 
 /***/ }),
-/* 355 */
+/* 356 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13340,7 +13821,7 @@ exports.InitAsync = InitAsync;
 
 
 /***/ }),
-/* 356 */
+/* 357 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13433,7 +13914,7 @@ exports.DataSourceConfig = DataSourceConfig;
 
 
 /***/ }),
-/* 357 */
+/* 358 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13622,7 +14103,7 @@ exports.CheckBoxField = CheckBoxField;
 
 
 /***/ }),
-/* 358 */
+/* 359 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13706,7 +14187,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
  * @license CECILL-2.1
  */
-var Ajv = __webpack_require__(359);
+var Ajv = __webpack_require__(360);
 ;
 ;
 /**
@@ -13731,7 +14212,7 @@ var DataValidator = /** @class */ (function () {
         };
         if (this.schema) {
             var ajvInstance = Ajv(this.options);
-            __webpack_require__(392)(ajvInstance);
+            __webpack_require__(393)(ajvInstance);
             result.valid = ajvInstance.validate(this.schema, data);
             result.errors = ajvInstance.errors || [];
         }
@@ -13830,20 +14311,20 @@ exports.DataValidator = DataValidator;
 
 
 /***/ }),
-/* 359 */
+/* 360 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var compileSchema = __webpack_require__(360)
+var compileSchema = __webpack_require__(361)
   , resolve = __webpack_require__(284)
-  , Cache = __webpack_require__(363)
+  , Cache = __webpack_require__(364)
   , SchemaObject = __webpack_require__(316)
   , stableStringify = __webpack_require__(317)
-  , formats = __webpack_require__(364)
-  , rules = __webpack_require__(365)
-  , $dataMetaSchema = __webpack_require__(386)
+  , formats = __webpack_require__(365)
+  , rules = __webpack_require__(366)
+  , $dataMetaSchema = __webpack_require__(387)
   , util = __webpack_require__(259);
 
 module.exports = Ajv;
@@ -13861,8 +14342,8 @@ Ajv.prototype.errorsText = errorsText;
 Ajv.prototype._addSchema = _addSchema;
 Ajv.prototype._compile = _compile;
 
-Ajv.prototype.compileAsync = __webpack_require__(387);
-var customKeyword = __webpack_require__(388);
+Ajv.prototype.compileAsync = __webpack_require__(388);
+var customKeyword = __webpack_require__(389);
 Ajv.prototype.addKeyword = customKeyword.add;
 Ajv.prototype.getKeyword = customKeyword.get;
 Ajv.prototype.removeKeyword = customKeyword.remove;
@@ -14276,11 +14757,11 @@ function addFormat(name, format) {
 function addDraft6MetaSchema(self) {
   var $dataSchema;
   if (self._opts.$data) {
-    $dataSchema = __webpack_require__(390);
+    $dataSchema = __webpack_require__(391);
     self.addMetaSchema($dataSchema, $dataSchema.$id, true);
   }
   if (self._opts.meta === false) return;
-  var metaSchema = __webpack_require__(391);
+  var metaSchema = __webpack_require__(392);
   if (self._opts.$data) metaSchema = $dataMetaSchema(metaSchema, META_SUPPORT_DATA);
   self.addMetaSchema(metaSchema, META_SCHEMA_ID, true);
   self._refs['http://json-schema.org/schema'] = META_SCHEMA_ID;
@@ -14334,7 +14815,7 @@ function noop() {}
 
 
 /***/ }),
-/* 360 */
+/* 361 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14718,7 +15199,7 @@ function vars(arr, statement) {
 
 
 /***/ }),
-/* 361 */
+/* 362 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14745,7 +15226,7 @@ module.exports = function ucs2length(str) {
 
 
 /***/ }),
-/* 362 */
+/* 363 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14833,7 +15314,7 @@ function escapeJsonPtr(str) {
 
 
 /***/ }),
-/* 363 */
+/* 364 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14866,7 +15347,7 @@ Cache.prototype.clear = function Cache_clear() {
 
 
 /***/ }),
-/* 364 */
+/* 365 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15022,13 +15503,13 @@ function regex(str) {
 
 
 /***/ }),
-/* 365 */
+/* 366 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var ruleModules = __webpack_require__(366)
+var ruleModules = __webpack_require__(367)
   , toHash = __webpack_require__(259).toHash;
 
 module.exports = function rules() {
@@ -15095,7 +15576,7 @@ module.exports = function rules() {
 
 
 /***/ }),
-/* 366 */
+/* 367 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15103,17 +15584,17 @@ module.exports = function rules() {
 
 //all requires must be explicit because browserify won't work with dynamic requires
 module.exports = {
-  '$ref': __webpack_require__(367),
-  allOf: __webpack_require__(368),
-  anyOf: __webpack_require__(369),
-  '$comment': __webpack_require__(370),
-  const: __webpack_require__(371),
-  contains: __webpack_require__(372),
-  dependencies: __webpack_require__(373),
-  'enum': __webpack_require__(374),
-  format: __webpack_require__(375),
-  'if': __webpack_require__(376),
-  items: __webpack_require__(377),
+  '$ref': __webpack_require__(368),
+  allOf: __webpack_require__(369),
+  anyOf: __webpack_require__(370),
+  '$comment': __webpack_require__(371),
+  const: __webpack_require__(372),
+  contains: __webpack_require__(373),
+  dependencies: __webpack_require__(374),
+  'enum': __webpack_require__(375),
+  format: __webpack_require__(376),
+  'if': __webpack_require__(377),
+  items: __webpack_require__(378),
   maximum: __webpack_require__(319),
   minimum: __webpack_require__(319),
   maxItems: __webpack_require__(320),
@@ -15122,20 +15603,20 @@ module.exports = {
   minLength: __webpack_require__(321),
   maxProperties: __webpack_require__(322),
   minProperties: __webpack_require__(322),
-  multipleOf: __webpack_require__(378),
-  not: __webpack_require__(379),
-  oneOf: __webpack_require__(380),
-  pattern: __webpack_require__(381),
-  properties: __webpack_require__(382),
-  propertyNames: __webpack_require__(383),
-  required: __webpack_require__(384),
-  uniqueItems: __webpack_require__(385),
+  multipleOf: __webpack_require__(379),
+  not: __webpack_require__(380),
+  oneOf: __webpack_require__(381),
+  pattern: __webpack_require__(382),
+  properties: __webpack_require__(383),
+  propertyNames: __webpack_require__(384),
+  required: __webpack_require__(385),
+  uniqueItems: __webpack_require__(386),
   validate: __webpack_require__(318)
 };
 
 
 /***/ }),
-/* 367 */
+/* 368 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15265,7 +15746,7 @@ module.exports = function generate_ref(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 368 */
+/* 369 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15315,7 +15796,7 @@ module.exports = function generate_allOf(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 369 */
+/* 370 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15395,7 +15876,7 @@ module.exports = function generate_anyOf(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 370 */
+/* 371 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15416,7 +15897,7 @@ module.exports = function generate_comment(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 371 */
+/* 372 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15478,7 +15959,7 @@ module.exports = function generate_const(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 372 */
+/* 373 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15566,7 +16047,7 @@ module.exports = function generate_contains(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 373 */
+/* 374 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15740,7 +16221,7 @@ module.exports = function generate_dependencies(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 374 */
+/* 375 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15812,7 +16293,7 @@ module.exports = function generate_enum(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 375 */
+/* 376 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15968,7 +16449,7 @@ module.exports = function generate_format(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 376 */
+/* 377 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16078,7 +16559,7 @@ module.exports = function generate_if(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 377 */
+/* 378 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16225,7 +16706,7 @@ module.exports = function generate_items(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 378 */
+/* 379 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16308,7 +16789,7 @@ module.exports = function generate_multipleOf(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 379 */
+/* 380 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16398,7 +16879,7 @@ module.exports = function generate_not(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 380 */
+/* 381 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16477,7 +16958,7 @@ module.exports = function generate_oneOf(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 381 */
+/* 382 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16558,7 +17039,7 @@ module.exports = function generate_pattern(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 382 */
+/* 383 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16893,7 +17374,7 @@ module.exports = function generate_properties(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 383 */
+/* 384 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16981,7 +17462,7 @@ module.exports = function generate_propertyNames(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 384 */
+/* 385 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17256,7 +17737,7 @@ module.exports = function generate_required(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 385 */
+/* 386 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17341,7 +17822,7 @@ module.exports = function generate_uniqueItems(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 386 */
+/* 387 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17397,7 +17878,7 @@ module.exports = function (metaSchema, keywordsJsonPointers) {
 
 
 /***/ }),
-/* 387 */
+/* 388 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17494,14 +17975,14 @@ function compileAsync(schema, meta, callback) {
 
 
 /***/ }),
-/* 388 */
+/* 389 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var IDENTIFIER = /^[a-z_$][a-z0-9_$-]*$/i;
-var customRuleCode = __webpack_require__(389);
+var customRuleCode = __webpack_require__(390);
 
 module.exports = {
   add: addKeyword,
@@ -17636,7 +18117,7 @@ function removeKeyword(keyword) {
 
 
 /***/ }),
-/* 389 */
+/* 390 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17869,7 +18350,7 @@ module.exports = function generate_custom(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 390 */
+/* 391 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -17897,7 +18378,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 391 */
+/* 392 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -18143,13 +18624,13 @@ module.exports = {
 };
 
 /***/ }),
-/* 392 */
+/* 393 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var KEYWORDS = __webpack_require__(393);
+var KEYWORDS = __webpack_require__(394);
 
 module.exports = defineKeywords;
 
@@ -18185,32 +18666,32 @@ function get(keyword) {
 
 
 /***/ }),
-/* 393 */
+/* 394 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 module.exports = {
-  'instanceof': __webpack_require__(394),
-  range: __webpack_require__(395),
-  regexp: __webpack_require__(396),
-  'typeof': __webpack_require__(397),
-  dynamicDefaults: __webpack_require__(398),
-  prohibited: __webpack_require__(399),
-  uniqueItemProperties: __webpack_require__(400),
-  deepProperties: __webpack_require__(401),
-  deepRequired: __webpack_require__(402),
-  formatMinimum: __webpack_require__(403),
-  formatMaximum: __webpack_require__(405),
-  patternRequired: __webpack_require__(406),
-  'switch': __webpack_require__(408),
-  select: __webpack_require__(410)
+  'instanceof': __webpack_require__(395),
+  range: __webpack_require__(396),
+  regexp: __webpack_require__(397),
+  'typeof': __webpack_require__(398),
+  dynamicDefaults: __webpack_require__(399),
+  prohibited: __webpack_require__(400),
+  uniqueItemProperties: __webpack_require__(401),
+  deepProperties: __webpack_require__(402),
+  deepRequired: __webpack_require__(403),
+  formatMinimum: __webpack_require__(404),
+  formatMaximum: __webpack_require__(406),
+  patternRequired: __webpack_require__(407),
+  'switch': __webpack_require__(409),
+  select: __webpack_require__(411)
 };
 
 
 /***/ }),
-/* 394 */
+/* 395 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18276,7 +18757,7 @@ module.exports = function defFunc(ajv) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(23).Buffer))
 
 /***/ }),
-/* 395 */
+/* 396 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18319,7 +18800,7 @@ module.exports = function defFunc(ajv) {
 
 
 /***/ }),
-/* 396 */
+/* 397 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18362,7 +18843,7 @@ module.exports = function defFunc(ajv) {
 
 
 /***/ }),
-/* 397 */
+/* 398 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18401,7 +18882,7 @@ module.exports = function defFunc(ajv) {
 
 
 /***/ }),
-/* 398 */
+/* 399 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18476,7 +18957,7 @@ module.exports = function defFunc(ajv) {
 
 
 /***/ }),
-/* 399 */
+/* 400 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18508,7 +18989,7 @@ module.exports = function defFunc(ajv) {
 
 
 /***/ }),
-/* 400 */
+/* 401 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18547,7 +19028,7 @@ module.exports = function defFunc(ajv) {
 
 
 /***/ }),
-/* 401 */
+/* 402 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18608,7 +19089,7 @@ function unescapeJsonPointer(str) {
 
 
 /***/ }),
-/* 402 */
+/* 403 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18672,7 +19153,7 @@ function unescapeJsonPointer(str) {
 
 
 /***/ }),
-/* 403 */
+/* 404 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18682,7 +19163,7 @@ module.exports = __webpack_require__(323)('Minimum');
 
 
 /***/ }),
-/* 404 */
+/* 405 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18865,7 +19346,7 @@ module.exports = function generate__formatLimit(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 405 */
+/* 406 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18875,7 +19356,7 @@ module.exports = __webpack_require__(323)('Maximum');
 
 
 /***/ }),
-/* 406 */
+/* 407 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18884,7 +19365,7 @@ module.exports = __webpack_require__(323)('Maximum');
 module.exports = function defFunc(ajv) {
   defFunc.definition = {
     type: 'object',
-    inline: __webpack_require__(407),
+    inline: __webpack_require__(408),
     statements: true,
     errors: 'full',
     metaSchema: {
@@ -18903,7 +19384,7 @@ module.exports = function defFunc(ajv) {
 
 
 /***/ }),
-/* 407 */
+/* 408 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18968,7 +19449,7 @@ module.exports = function generate_patternRequired(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 408 */
+/* 409 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18982,7 +19463,7 @@ module.exports = function defFunc(ajv) {
   var metaSchemaRef = util.metaSchemaRef(ajv);
 
   defFunc.definition = {
-    inline: __webpack_require__(409),
+    inline: __webpack_require__(410),
     statements: true,
     errors: 'full',
     metaSchema: {
@@ -19013,7 +19494,7 @@ module.exports = function defFunc(ajv) {
 
 
 /***/ }),
-/* 409 */
+/* 410 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19148,7 +19629,7 @@ module.exports = function generate_switch(it, $keyword, $ruleType) {
 
 
 /***/ }),
-/* 410 */
+/* 411 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19234,487 +19715,6 @@ module.exports = function defFunc(ajv) {
 
 
 /***/ }),
-/* 411 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * Ce logiciel est un programme informatique servant à faciliter la création
- * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
- * <p/>
- * Ce logiciel est régi par la licence CeCILL soumise au droit français et
- * respectant les principes de diffusion des logiciels libres. Vous pouvez
- * utiliser, modifier et/ou redistribuer ce programme sous les conditions
- * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
- * sur le site "http://www.cecill.info".
- * <p/>
- * En contrepartie de l'accessibilité au code source et des droits de copie,
- * de modification et de redistribution accordés par cette licence, il n'est
- * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
- * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
- * titulaire des droits patrimoniaux et les concédants successifs.
- * <p/>
- * A cet égard  l'attention de l'utilisateur est attirée sur les risques
- * associés au chargement,  à l'utilisation,  à la modification et/ou au
- * développement et à la reproduction du logiciel par l'utilisateur étant
- * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
- * manipuler et qui le réserve donc à des développeurs et des professionnels
- * avertis possédant  des  connaissances  informatiques approfondies.  Les
- * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
- * logiciel à leurs besoins dans des conditions permettant d'assurer la
- * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
- * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
- * <p/>
- * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
- * pris connaissance de la licence CeCILL, et que vous en avez accepté les
- * termes.
- * <p/>
- * <p/>
- * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * This software is a computer program whose purpose is to facilitate creation of
- * web application in accordance with french general repositories : RGI, RGS and RGAA.
- * <p/>
- * This software is governed by the CeCILL license under French law and
- * abiding by the rules of distribution of free software.  You can  use,
- * modify and/ or redistribute the software under the terms of the CeCILL
- * license as circulated by CEA, CNRS and INRIA at the following URL
- * "http://www.cecill.info".
- * <p/>
- * As a counterpart to the access to the source code and  rights to copy,
- * modify and redistribute granted by the license, users are provided only
- * with a limited warranty  and the software's author,  the holder of the
- * economic rights,  and the successive licensors  have only  limited
- * liability.
- * <p/>
- * In this respect, the user's attention is drawn to the risks associated
- * with loading,  using,  modifying and/or developing or reproducing the
- * software by the user in light of its specific status of free software,
- * that may mean  that it is complicated to manipulate,  and  that  also
- * therefore means  that it is reserved for developers  and  experienced
- * professionals having in-depth computer knowledge. Users are therefore
- * encouraged to load and test the software's suitability as regards their
- * requirements in conditions enabling the security of their systems and/or
- * data to be ensured and,  more generally, to use and operate it in the
- * same conditions as regards security.
- * <p/>
- * The fact that you are presently reading this means that you have had
- * knowledge of the CeCILL license and that you accept its terms.
- *
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(1);
-/**
- * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
- *
- * @author MEAE - Ministère de l'Europe et des Affaires étrangères
- * @version v5.1.1
- * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
- * @license CECILL-2.1
- */
-var hornet_js_utils_1 = __webpack_require__(0);
-var React = __webpack_require__(2);
-var abstract_field_1 = __webpack_require__(256);
-var modal_1 = __webpack_require__(100);
-var _ = __webpack_require__(6);
-var moment = __webpack_require__(26);
-var date_utils_1 = __webpack_require__(102);
-var input_field_1 = __webpack_require__(304);
-var key_codes_1 = __webpack_require__(10);
-var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.form.calendar-fied");
-var RcCalendar = null;
-var defaultLocale = date_utils_1.DateUtils.default_locale;
-if (!hornet_js_utils_1.Utils.isServer) {
-    logger.trace("Execution sur le CLIENT(NAVIGATEUR)");
-    RcCalendar = __webpack_require__(412);
-    /* Patch de la méthode getTitleString utilisée pour afficher la date correspondant au jour survolé dans le calendrier */
-    var rcCalendarUtil = __webpack_require__(268);
-    if (rcCalendarUtil && rcCalendarUtil.getTitleString) {
-        rcCalendarUtil.getTitleString = function (value) {
-            /* On renvoie une chaîne vide car le formattage de la date dépend de la locale qui est propre à chaque
-             instance de calendar. */
-            return "";
-        };
-    }
-}
-else {
-    logger.trace("Execution sur le SERVEUR");
-}
-/**
- * Composant Calendrier
- */
-var CalendarField = /** @class */ (function (_super) {
-    tslib_1.__extends(CalendarField, _super);
-    function CalendarField(props, context) {
-        var _this = _super.call(this, props, context) || this;
-        _this.hasKeyPress = false;
-        var calendarLocale = hornet_js_utils_1.Utils.getCls("hornet.internationalization") ?
-            _this.i18n("calendar") : { "dateFormat": "DD/MM/YYYY" };
-        /*récupération de la locale d'internationalisation*/
-        var internationalisation = hornet_js_utils_1.Utils.getCls("hornet.internationalization");
-        var language;
-        if (internationalisation) {
-            language = internationalisation.locale;
-        }
-        else {
-            language = defaultLocale;
-        }
-        /* attribut HTML size du champ de saisie */
-        var inputSize = calendarLocale.dateFormat.length;
-        _this.state.isVisible = false;
-        _this.state.calendarLocale = calendarLocale;
-        _this.state.language = language;
-        _this.state.inputSize = inputSize;
-        if (!props.placeHolder) {
-            _this.state.placeHolder = _this.i18n("calendar.placeHolder");
-        }
-        _this.state.currentValue = "";
-        _this.state.messageValidation = _this.i18n("form.validation.format", { field: _this.state.label });
-        return _this;
-    }
-    /**
-     * Récupère le format d'affichage des dates
-     */
-    CalendarField.prototype.getFormat = function () {
-        var internationalisation = hornet_js_utils_1.Utils.getCls("hornet.internationalization");
-        var dateFormat = internationalisation.messages.calendar.dateFormat;
-        return dateFormat;
-    };
-    /**
-     * Génère le rendu spécifique du champ : un datePicker
-     * @returns {any}
-     */
-    CalendarField.prototype.renderWidget = function () {
-        var _this = this;
-        logger.trace("render CalendarField");
-        var reactIconTag;
-        var reactCalendarDialogueTag;
-        if (this.state.isDatePicker) {
-            reactIconTag =
-                React.createElement("button", { className: "agenda icon", type: "button", onClick: this.showCalendar, title: this.state.title || this.state.calendarLocale.agendaTitle, disabled: this.state.readOnly || this.state.disabled, "aria-haspopup": true, value: "calendar" },
-                    React.createElement("img", { src: CalendarField.genUrlTheme("/img/calendar/icon_calendar.svg"), alt: this.state.title || this.state.calendarLocale.agendaTitle }));
-            /*RcCalendar prend un Moment en paramètre*/
-            var date = _.clone(this.state.currentValue);
-            var currentDate = void 0;
-            if (!date) {
-                currentDate = moment();
-            }
-            else {
-                currentDate = moment(date, this.state.calendarLocale.dateFormat);
-            }
-            if (!currentDate.isValid()) {
-                currentDate = moment();
-            }
-            currentDate.locale(this.state.language);
-            var format = this.getFormat();
-            if (format instanceof Array) {
-                format = format[0];
-            }
-            reactCalendarDialogueTag =
-                React.createElement(modal_1.Modal, { ref: "maModal", underlayClickExits: true, escapeKeyExits: true, title: this.state.calendarLocale.choiceDate }, !hornet_js_utils_1.Utils.isServer ?
-                    React.createElement(RcCalendar, { formatter: format, defaultValue: currentDate, onSelect: this.setValueAndCloseCalendar, locale: this.state.calendarLocale, format: format, showDateInput: false }) :
-                    null);
-        }
-        var htmlProps = this.getHtmlProps();
-        var formatedValue = this.state.currentValue.length >= 1
-            ? this.state.currentValue
-            : "";
-        htmlProps = _.assign(htmlProps, {
-            type: "text",
-            size: this.state.inputSize,
-            value: formatedValue,
-            onChange: this.handleInputChange,
-            onKeyPress: this.handleInputKeyPress,
-            onBlur: this.handleInputLeave
-        });
-        if (htmlProps.label == htmlProps.title) {
-            htmlProps.title = undefined;
-        }
-        htmlProps.label = undefined;
-        var hasError = this.hasErrors() ? " has-error" : "";
-        var placeHolder = (!this.state.disabled && !this.state.readOnly)
-            ? this.state.placeHolder
-            : null;
-        return (React.createElement("div", { className: "calendar-container" },
-            React.createElement("input", tslib_1.__assign({}, htmlProps, { ref: function (elt) { return _this.registerHtmlElement(elt); }, className: "calendar-input" + hasError, placeholder: placeHolder })),
-            !this.state.readOnly && !this.state.disabled && this.state.currentValue ? this.renderResetButton() : null,
-            reactIconTag,
-            reactCalendarDialogueTag));
-    };
-    /**
-     * @override
-     */
-    CalendarField.prototype.setCurrentValue = function (value) {
-        var _this = this;
-        var res = value || "";
-        if (typeof value === "number") {
-            res = this.formatCalendarDate(value, this.state.calendarLocale);
-        }
-        else if (value instanceof Date) {
-            res = this.formatCalendarDate(value.getTime(), this.state.calendarLocale);
-        }
-        this.setState({ currentValue: res, valued: (value !== "" && value), errors: [] }, function () {
-            if (_this.state.onValueChange)
-                _this.state.onValueChange(_this.state.currentValue);
-        });
-        return this;
-    };
-    /**time
-     * @override
-     */
-    CalendarField.prototype.resetValue = function () {
-        var _this = this;
-        var res = this.formatCalendarDate(null, this.state.calendarLocale);
-        this.setState({ currentValue: res, valued: false }, function () {
-            if (_this.state.onSelect) {
-                if (_this.state.onSelect) {
-                    _this.state.onSelect(res);
-                }
-            }
-            if (_this.state.onChange) {
-                _this.state.onChange(null);
-            }
-            if (_this.state.onValueChange) {
-                _this.state.onValueChange(_this.state.currentValue);
-            }
-            if (_this.htmlElement && _this.htmlElement.onchange) {
-                _this.htmlElement.onchange();
-            }
-        });
-    };
-    /**
-     * Méthode délenchée lors d'une intéraction avec le champ input du composant Calendar
-     * @param e
-     */
-    CalendarField.prototype.handleInputChange = function (e) {
-        var _this = this;
-        /* L'attribut DOM onChange est éventuellement aussi renseigné sur le composant */
-        if (this.state.onChange) {
-            this.state.onChange(e);
-        }
-        var input = e.target;
-        if (input.value && !this.state.valued) {
-            this.setState({ valued: true });
-        }
-        else if (!input.value && this.state.valued) {
-            this.setState({ valued: false });
-        }
-        if (this.state.currentValue != input.value) {
-            this.setState({ currentValue: input.value }, function () {
-                if (_this.state.onValueChange)
-                    _this.state.onValueChange(_this.state.currentValue);
-            });
-        }
-    };
-    /**
-     * Méthode délenchée lorsque l'utilisateur quitte l'input du composant Calendar
-     * @param e
-     */
-    CalendarField.prototype.handleInputLeave = function (e) {
-        var _this = this;
-        /* transforme la date au format définit */
-        var input = e.target;
-        var text = input.value;
-        if (text.length > 0) {
-            var format = this.getFormat();
-            var time = moment(text, format, true);
-            if (time.isValid()) {
-                if (format instanceof Array) {
-                    var newText = time.format(format[0]);
-                    this.setState({ currentValue: newText }, function () {
-                        if (_this.state.onValueChange)
-                            _this.state.onValueChange(_this.state.currentValue);
-                    });
-                }
-                else {
-                    var newText = time.format(format);
-                    this.setState({ currentValue: newText });
-                }
-            }
-            else {
-                if (this.state.valideOnForm) {
-                    this.setState({ currentValue: text }, function () {
-                        if (_this.state.onValueChange)
-                            _this.state.onValueChange(_this.state.currentValue);
-                    });
-                }
-                else {
-                    if (this.hasKeyPress) {
-                        this.setState({ errors: [{ field: this.state.name, text: this.state.messageValidation }] }, function () {
-                            _this.htmlElement.focus();
-                        });
-                        this.hasKeyPress = false;
-                    }
-                    else {
-                        this.setState({ currentValue: "", errors: [] }, function () {
-                            if (_this.state.onValueChange)
-                                _this.state.onValueChange(_this.state.currentValue);
-                        });
-                    }
-                }
-            }
-        }
-        if (this.props.onBlur) {
-            this.props.onBlur(e);
-        }
-    };
-    /**
-     * Controle des touches claviers
-     * @param e
-     */
-    CalendarField.prototype.handleInputKeyPress = function (e) {
-        var _this = this;
-        var text = e.target.value;
-        var time = moment(text, this.getFormat());
-        if (this.state.onKeyPress) {
-            this.state.onKeyPress(event);
-        }
-        var key = e.key;
-        if (key == key_codes_1.KEYNAMES.ArrowDown) {
-            if (time.isValid()) {
-                time.add(1, "days");
-                this.setState({ currentValue: time.toDate() }, function () {
-                    if (_this.state.onValueChange)
-                        _this.state.onValueChange(_this.state.currentValue);
-                });
-            }
-            e.preventDefault();
-        }
-        else if (key == key_codes_1.KEYNAMES.ArrowUp) {
-            if (time.isValid()) {
-                time.add(1, "days");
-                this.setState({ currentValue: time.toDate() }, function () {
-                    if (_this.state.onValueChange)
-                        _this.state.onValueChange(_this.state.currentValue);
-                });
-            }
-            e.preventDefault();
-        }
-        else if (key == key_codes_1.KEYNAMES.Home) {
-            this.setState({ currentValue: new Date() }, function () {
-                if (_this.state.onValueChange)
-                    _this.state.onValueChange(_this.state.currentValue);
-            });
-            e.preventDefault();
-        }
-        else if ((/[-.\/]/.test(key)) || (/\d/.test(key))
-            || ((key.toUpperCase() == "A" || key.toUpperCase() == "C" || key.toUpperCase() == "V" || key.toUpperCase() == "X") && e.ctrlKey)) {
-            if (key != "Tab") {
-                this.hasKeyPress = true;
-            }
-        }
-        else if (key != key_codes_1.KEYNAMES.Enter) {
-            e.stopPropagation();
-            e.preventDefault();
-        }
-    };
-    /**
-     * @param time temps en millisecondes depuis Epoch
-     * @param calendarLocale propriétés localisées du calendrier
-     */
-    CalendarField.prototype.formatCalendarDate = function (time, calendarLocale) {
-        var strValue;
-        try {
-            if (time) {
-                var format = this.getFormat();
-                strValue = moment(time).format(format);
-            }
-        }
-        catch (err) {
-            logger.trace("Erreur pour formater la date suivante:", err);
-        }
-        if (!strValue) {
-            strValue = "";
-        }
-        logger.trace("Date formatée : ", strValue + "  -- à partir de la valeur", time);
-        return strValue;
-    };
-    /**
-     * Met à jour la valeur et déclenche la fermeture de la popup de calendrier
-     * @param value {Moment} instance de Moment
-     */
-    CalendarField.prototype.setValueAndCloseCalendar = function (value) {
-        var _this = this;
-        if (value != null) {
-            this.setState({
-                currentValue: this.formatCalendarDate(value, this.state.calendarLocale),
-                valued: value != ""
-            }, function () {
-                _this.hideCalendar();
-                if (_this.state.onSelect) {
-                    _this.state.onSelect(value);
-                }
-                if (_this.state.onValueChange) {
-                    _this.state.onValueChange(_this.state.currentValue);
-                }
-            });
-        }
-        else {
-            if (this.state.onSelect) {
-                this.state.onSelect(value);
-            }
-            if (this.state.onValueChange) {
-                this.state.onValueChange(value);
-            }
-        }
-    };
-    /**
-     * Permet de mettre à jour la valeur du datePicker
-     * @param value
-     * @returns {this}
-     */
-    CalendarField.prototype.setValue = function (value) {
-        this.setState({
-            currentValue: this.formatCalendarDate(value, this.state.calendarLocale),
-            valued: value != ""
-        });
-        return this;
-    };
-    /**
-     * Permet d'afficher la modal contenant le calendier
-     * @returns {Calendar}
-     */
-    CalendarField.prototype.showCalendar = function () {
-        if (!this.state.disabled && !this.state.readOnly) {
-            this.refs.maModal.open();
-        }
-        return this;
-    };
-    /**
-     * Permet de masquer la modal contenant le calendier
-     * @returns {Calendar}
-     */
-    CalendarField.prototype.hideCalendar = function () {
-        this.refs.maModal.close();
-        return this;
-    };
-    CalendarField.prototype.getCurrentValue = function () {
-        if (this.state.valideOnForm) {
-            return hornet_js_utils_1.Utils.dateUtils.parseInTZ(this.state.currentValue, this.getFormat(), hornet_js_utils_1.Utils.dateUtils.TZ_EUROPE_PARIS) || this.state.currentValue;
-        }
-        else {
-            return hornet_js_utils_1.Utils.dateUtils.parseInTZ(this.state.currentValue, this.getFormat(), hornet_js_utils_1.Utils.dateUtils.TZ_EUROPE_PARIS);
-        }
-    };
-    CalendarField.defaultProps = _.assign(abstract_field_1.AbstractField.defaultProps, {
-        disabled: false,
-        isDatePicker: true,
-        valideOnForm: true
-    });
-    return CalendarField;
-}(input_field_1.InputField));
-exports.CalendarField = CalendarField;
-
-
-
-/***/ }),
 /* 412 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -19741,7 +19741,7 @@ module.exports = exports['default'];
 
 exports.__esModule = true;
 
-var _extends2 = __webpack_require__(288);
+var _extends2 = __webpack_require__(289);
 
 var _extends3 = _interopRequireDefault(_extends2);
 
@@ -20162,7 +20162,7 @@ module.exports = function (it) {
 
 // 19.1.2.1 Object.assign(target, source, ...)
 var getKeys = __webpack_require__(276);
-var gOPS = __webpack_require__(295);
+var gOPS = __webpack_require__(296);
 var pIE = __webpack_require__(278);
 var toObject = __webpack_require__(331);
 var IObject = __webpack_require__(329);
@@ -20229,7 +20229,7 @@ module.exports = function (IS_INCLUDES) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.15 ToLength
-var toInteger = __webpack_require__(291);
+var toInteger = __webpack_require__(292);
 var min = Math.min;
 module.exports = function (it) {
   return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
@@ -20240,7 +20240,7 @@ module.exports = function (it) {
 /* 421 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var toInteger = __webpack_require__(291);
+var toInteger = __webpack_require__(292);
 var max = Math.max;
 var min = Math.min;
 module.exports = function (index, length) {
@@ -21203,7 +21203,7 @@ var warning = __webpack_require__(38);
 var assign = __webpack_require__(28);
 
 var ReactPropTypesSecret = __webpack_require__(99);
-var checkPropTypes = __webpack_require__(52);
+var checkPropTypes = __webpack_require__(53);
 
 module.exports = function(isValidElement, throwOnDirectAccess) {
   /* global Symbol */
@@ -22400,7 +22400,7 @@ module.exports = { "default": __webpack_require__(428), __esModule: true };
 
 __webpack_require__(429);
 __webpack_require__(435);
-module.exports = __webpack_require__(300).f('iterator');
+module.exports = __webpack_require__(301).f('iterator');
 
 
 /***/ }),
@@ -22431,8 +22431,8 @@ __webpack_require__(333)(String, 'String', function (iterated) {
 /* 430 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var toInteger = __webpack_require__(291);
-var defined = __webpack_require__(290);
+var toInteger = __webpack_require__(292);
+var defined = __webpack_require__(291);
 // true  -> String#at
 // false -> String#codePointAt
 module.exports = function (TO_STRING) {
@@ -22456,9 +22456,9 @@ module.exports = function (TO_STRING) {
 
 "use strict";
 
-var create = __webpack_require__(298);
+var create = __webpack_require__(299);
 var descriptor = __webpack_require__(275);
-var setToStringTag = __webpack_require__(299);
+var setToStringTag = __webpack_require__(300);
 var IteratorPrototype = {};
 
 // 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
@@ -22504,7 +22504,7 @@ module.exports = document && document.documentElement;
 // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
 var has = __webpack_require__(258);
 var toObject = __webpack_require__(331);
-var IE_PROTO = __webpack_require__(292)('IE_PROTO');
+var IE_PROTO = __webpack_require__(293)('IE_PROTO');
 var ObjectProto = Object.prototype;
 
 module.exports = Object.getPrototypeOf || function (O) {
@@ -22523,7 +22523,7 @@ module.exports = Object.getPrototypeOf || function (O) {
 __webpack_require__(436);
 var global = __webpack_require__(257);
 var hide = __webpack_require__(261);
-var Iterators = __webpack_require__(297);
+var Iterators = __webpack_require__(298);
 var TO_STRING_TAG = __webpack_require__(267)('toStringTag');
 
 var DOMIterables = ('CSSRuleList,CSSStyleDeclaration,CSSValueList,ClientRectList,DOMRectList,DOMStringList,' +
@@ -22549,7 +22549,7 @@ for (var i = 0; i < DOMIterables.length; i++) {
 
 var addToUnscopables = __webpack_require__(437);
 var step = __webpack_require__(438);
-var Iterators = __webpack_require__(297);
+var Iterators = __webpack_require__(298);
 var toIObject = __webpack_require__(265);
 
 // 22.1.3.4 Array.prototype.entries()
@@ -22629,20 +22629,20 @@ var $export = __webpack_require__(269);
 var redefine = __webpack_require__(334);
 var META = __webpack_require__(442).KEY;
 var $fails = __webpack_require__(271);
-var shared = __webpack_require__(293);
-var setToStringTag = __webpack_require__(299);
+var shared = __webpack_require__(294);
+var setToStringTag = __webpack_require__(300);
 var uid = __webpack_require__(277);
 var wks = __webpack_require__(267);
-var wksExt = __webpack_require__(300);
-var wksDefine = __webpack_require__(301);
+var wksExt = __webpack_require__(301);
+var wksDefine = __webpack_require__(302);
 var enumKeys = __webpack_require__(443);
 var isArray = __webpack_require__(444);
 var anObject = __webpack_require__(270);
 var isObject = __webpack_require__(263);
 var toIObject = __webpack_require__(265);
-var toPrimitive = __webpack_require__(289);
+var toPrimitive = __webpack_require__(290);
 var createDesc = __webpack_require__(275);
-var _create = __webpack_require__(298);
+var _create = __webpack_require__(299);
 var gOPNExt = __webpack_require__(445);
 var $GOPD = __webpack_require__(336);
 var $DP = __webpack_require__(262);
@@ -22771,9 +22771,9 @@ if (!USE_NATIVE) {
   $DP.f = $defineProperty;
   __webpack_require__(335).f = gOPNExt.f = $getOwnPropertyNames;
   __webpack_require__(278).f = $propertyIsEnumerable;
-  __webpack_require__(295).f = $getOwnPropertySymbols;
+  __webpack_require__(296).f = $getOwnPropertySymbols;
 
-  if (DESCRIPTORS && !__webpack_require__(296)) {
+  if (DESCRIPTORS && !__webpack_require__(297)) {
     redefine(ObjectProto, 'propertyIsEnumerable', $propertyIsEnumerable, true);
   }
 
@@ -22921,7 +22921,7 @@ var meta = module.exports = {
 
 // all enumerable object keys, includes symbols
 var getKeys = __webpack_require__(276);
-var gOPS = __webpack_require__(295);
+var gOPS = __webpack_require__(296);
 var pIE = __webpack_require__(278);
 module.exports = function (it) {
   var result = getKeys(it);
@@ -22982,14 +22982,14 @@ module.exports.f = function getOwnPropertyNames(it) {
 /* 447 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(301)('asyncIterator');
+__webpack_require__(302)('asyncIterator');
 
 
 /***/ }),
 /* 448 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(301)('observable');
+__webpack_require__(302)('observable');
 
 
 /***/ }),
@@ -23069,7 +23069,7 @@ module.exports = function create(P, D) {
 
 var $export = __webpack_require__(269);
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
-$export($export.S, 'Object', { create: __webpack_require__(298) });
+$export($export.S, 'Object', { create: __webpack_require__(299) });
 
 
 /***/ }),
@@ -24485,7 +24485,7 @@ module.exports = exports['default'];
 
 exports.__esModule = true;
 
-var _extends2 = __webpack_require__(288);
+var _extends2 = __webpack_require__(289);
 
 var _extends3 = _interopRequireDefault(_extends2);
 
@@ -25346,7 +25346,7 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var hornet_js_utils_1 = __webpack_require__(0);
-var array_utils_1 = __webpack_require__(302);
+var array_utils_1 = __webpack_require__(303);
 var React = __webpack_require__(2);
 var classNames = __webpack_require__(9);
 var hornet_component_1 = __webpack_require__(3);
@@ -25667,7 +25667,7 @@ var hornet_component_1 = __webpack_require__(3);
 var dropdown_1 = __webpack_require__(39);
 var picto_1 = __webpack_require__(95);
 var action_button_1 = __webpack_require__(474);
-var table_button_info_accessibilite_1 = __webpack_require__(487);
+var table_button_info_accessibilite_1 = __webpack_require__(488);
 var _ = __webpack_require__(6);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.table.menu-actions");
 /**
@@ -26593,7 +26593,7 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var column_1 = __webpack_require__(281);
-var action_body_cell_1 = __webpack_require__(492);
+var action_body_cell_1 = __webpack_require__(493);
 var action_header_cell_1 = __webpack_require__(479);
 /**
  * Classe permettant de gérer les colonnes de type date
@@ -26931,8 +26931,8 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var column_1 = __webpack_require__(281);
-var check_body_cell_1 = __webpack_require__(495);
-var check_header_cell_1 = __webpack_require__(496);
+var check_body_cell_1 = __webpack_require__(496);
+var check_header_cell_1 = __webpack_require__(497);
 /**
  * Classe permettant de gérer les colonnes de type CheckBox
  */
@@ -28037,7 +28037,7 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var column_1 = __webpack_require__(281);
-var date_body_cell_1 = __webpack_require__(500);
+var date_body_cell_1 = __webpack_require__(501);
 /**
  * Classe permettant de gérer les colonnes de type date
  */
@@ -28064,8 +28064,128 @@ exports.DateColumn = DateColumn;
 
 
 /***/ }),
-/* 486 */,
-/* 487 */
+/* 486 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(Buffer) {
+/**
+ * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * Ce logiciel est un programme informatique servant à faciliter la création
+ * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
+ * <p/>
+ * Ce logiciel est régi par la licence CeCILL soumise au droit français et
+ * respectant les principes de diffusion des logiciels libres. Vous pouvez
+ * utiliser, modifier et/ou redistribuer ce programme sous les conditions
+ * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
+ * sur le site "http://www.cecill.info".
+ * <p/>
+ * En contrepartie de l'accessibilité au code source et des droits de copie,
+ * de modification et de redistribution accordés par cette licence, il n'est
+ * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
+ * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
+ * titulaire des droits patrimoniaux et les concédants successifs.
+ * <p/>
+ * A cet égard  l'attention de l'utilisateur est attirée sur les risques
+ * associés au chargement,  à l'utilisation,  à la modification et/ou au
+ * développement et à la reproduction du logiciel par l'utilisateur étant
+ * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
+ * manipuler et qui le réserve donc à des développeurs et des professionnels
+ * avertis possédant  des  connaissances  informatiques approfondies.  Les
+ * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
+ * logiciel à leurs besoins dans des conditions permettant d'assurer la
+ * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
+ * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
+ * <p/>
+ * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
+ * pris connaissance de la licence CeCILL, et que vous en avez accepté les
+ * termes.
+ * <p/>
+ * <p/>
+ * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * This software is a computer program whose purpose is to facilitate creation of
+ * web application in accordance with french general repositories : RGI, RGS and RGAA.
+ * <p/>
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software.  You can  use,
+ * modify and/ or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ * <p/>
+ * As a counterpart to the access to the source code and  rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty  and the software's author,  the holder of the
+ * economic rights,  and the successive licensors  have only  limited
+ * liability.
+ * <p/>
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading,  using,  modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean  that it is complicated to manipulate,  and  that  also
+ * therefore means  that it is reserved for developers  and  experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and,  more generally, to use and operate it in the
+ * same conditions as regards security.
+ * <p/>
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(1);
+/**
+ * hornet-js-core - Ensemble des composants qui forment le coeur de hornet-js
+ *
+ * @author MEAE - Ministère de l'Europe et des Affaires étrangères
+ * @version v5.1.1
+ * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
+ * @license CECILL-2.1
+ */
+var hornet_result_1 = __webpack_require__(503);
+var disposition_type_1 = __webpack_require__(104);
+/**
+ * @class
+ * @classdesc HornetResult définit un result de type FILE.
+ */
+var ResultFile = /** @class */ (function (_super) {
+    tslib_1.__extends(ResultFile, _super);
+    function ResultFile(options, mediaType) {
+        var _this = _super.call(this, options, mediaType) || this;
+        options.dispositionType = options.dispositionType || disposition_type_1.DispositionType.ATTACHMENT;
+        return _this;
+    }
+    /*
+     *@inheritdoc
+     */
+    ResultFile.prototype.configure = function (res) {
+        var buffer = this.options.data instanceof Buffer ? this.options.data : new Buffer(this.options.data);
+        var headers = {
+            "Content-Type": this.mediaType.MIME,
+            "Content-Length": buffer.length
+        };
+        headers["Content-Disposition"] = this.options.dispositionType + "; filename=\"" + (this.options.filename || "filename") + "\"";
+        res.writeHead(200, headers);
+        res.end(buffer);
+        return false;
+    };
+    return ResultFile;
+}(hornet_result_1.HornetResult));
+exports.ResultFile = ResultFile;
+
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(23).Buffer))
+
+/***/ }),
+/* 487 */,
+/* 488 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28150,7 +28270,7 @@ var tslib_1 = __webpack_require__(1);
  * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
  * @license CECILL-2.1
  */
-var button_info_accessibilite_1 = __webpack_require__(105);
+var button_info_accessibilite_1 = __webpack_require__(106);
 /**
  * Bouton et modale d'information sur l'accessibilité clavier du composant Table
  */
@@ -28214,7 +28334,7 @@ exports.TableButtonInfoAccessibilite = TableButtonInfoAccessibilite;
 
 
 /***/ }),
-/* 488 */
+/* 489 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28371,7 +28491,7 @@ exports.SpinnerOverlay = SpinnerOverlay;
 
 
 /***/ }),
-/* 489 */
+/* 490 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28559,7 +28679,7 @@ exports.HeaderCell = HeaderCell;
 
 
 /***/ }),
-/* 490 */
+/* 491 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28669,7 +28789,7 @@ exports.BodyCell = BodyCell;
 
 
 /***/ }),
-/* 491 */
+/* 492 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28757,7 +28877,7 @@ var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var abstract_body_cell_1 = __webpack_require__(280);
 var React = __webpack_require__(2);
-var input_field_1 = __webpack_require__(304);
+var input_field_1 = __webpack_require__(288);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.table.input-text-in-line-body-cell");
 var InputTextInLineBodyCell = /** @class */ (function (_super) {
     tslib_1.__extends(InputTextInLineBodyCell, _super);
@@ -28816,7 +28936,7 @@ exports.InputTextInLineBodyCell = InputTextInLineBodyCell;
 
 
 /***/ }),
-/* 492 */
+/* 493 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29034,7 +29154,7 @@ exports.ActionBodyCell = ActionBodyCell;
 
 
 /***/ }),
-/* 493 */
+/* 494 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29120,7 +29240,7 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var column_1 = __webpack_require__(281);
-var edition_action_body_cell_1 = __webpack_require__(494);
+var edition_action_body_cell_1 = __webpack_require__(495);
 var action_header_cell_1 = __webpack_require__(479);
 /**
  * Classe permettant de gérer les colonnes de type edition rapide action
@@ -29155,7 +29275,7 @@ exports.EditionActionColumn = EditionActionColumn;
 
 
 /***/ }),
-/* 494 */
+/* 495 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29394,7 +29514,7 @@ exports.EditionActionBodyCell = EditionActionBodyCell;
 
 
 /***/ }),
-/* 495 */
+/* 496 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29480,7 +29600,7 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var hornet_js_utils_1 = __webpack_require__(0);
-var array_utils_1 = __webpack_require__(302);
+var array_utils_1 = __webpack_require__(303);
 var abstract_body_cell_1 = __webpack_require__(280);
 var checkbox_1 = __webpack_require__(282);
 var React = __webpack_require__(2);
@@ -29599,7 +29719,7 @@ exports.CheckBodyCell = CheckBodyCell;
 
 
 /***/ }),
-/* 496 */
+/* 497 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29688,7 +29808,7 @@ var hornet_js_utils_1 = __webpack_require__(0);
 var abstract_header_cell_1 = __webpack_require__(342);
 var checkbox_1 = __webpack_require__(282);
 var React = __webpack_require__(2);
-var array_utils_1 = __webpack_require__(302);
+var array_utils_1 = __webpack_require__(303);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.table.column.cell.check.check-header-cell");
 var CheckHeaderCell = /** @class */ (function (_super) {
     tslib_1.__extends(CheckHeaderCell, _super);
@@ -29788,7 +29908,7 @@ exports.CheckHeaderCell = CheckHeaderCell;
 
 
 /***/ }),
-/* 497 */
+/* 498 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29895,7 +30015,7 @@ exports.CellCoordinates = CellCoordinates;
 
 
 /***/ }),
-/* 498 */
+/* 499 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29988,7 +30108,7 @@ exports.LineBefore = LineBefore;
 
 
 /***/ }),
-/* 499 */
+/* 500 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30081,7 +30201,7 @@ exports.LineAfter = LineAfter;
 
 
 /***/ }),
-/* 500 */
+/* 501 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30209,7 +30329,7 @@ exports.DateBodyCell = DateBodyCell;
 
 
 /***/ }),
-/* 501 */
+/* 502 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30218,9 +30338,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var abstract_routes_1 = __webpack_require__(98);
-var result_file_1 = __webpack_require__(502);
-var media_type_1 = __webpack_require__(55);
-var result_pdf_1 = __webpack_require__(576);
+var result_file_1 = __webpack_require__(486);
+var media_type_1 = __webpack_require__(52);
+var result_pdf_1 = __webpack_require__(504);
+var disposition_type_1 = __webpack_require__(104);
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.actions.admin.permis_actions");
 var InserDossier = /** @class */ (function (_super) {
     tslib_1.__extends(InserDossier, _super);
@@ -30376,7 +30497,8 @@ var GetCopiePermis = /** @class */ (function (_super) {
             return new result_file_1.ResultFile({ "data": copiePermis.data,
                 "filename": copiePermis.nom,
                 "encoding": copiePermis.encoding,
-                "size": copiePermis.size
+                "size": copiePermis.size,
+                "dispositionType": disposition_type_1.DispositionType.INLINE
             }, media_type_1.MediaTypes.fromMime(copiePermis.mimetype));
         });
     };
@@ -30394,7 +30516,8 @@ var GetCopieNoteVerbaleMAECI = /** @class */ (function (_super) {
             return new result_file_1.ResultFile({ "data": copieNoteVerbaleMAECI.data,
                 "filename": copieNoteVerbaleMAECI.nom,
                 "encoding": copieNoteVerbaleMAECI.encoding,
-                "size": copieNoteVerbaleMAECI.size
+                "size": copieNoteVerbaleMAECI.size,
+                "dispositionType": disposition_type_1.DispositionType.INLINE
             }, media_type_1.MediaTypes.fromMime(copieNoteVerbaleMAECI.mimetype));
         });
     };
@@ -30408,38 +30531,89 @@ var GetPDFDemandeAuthentification = /** @class */ (function (_super) {
     }
     GetPDFDemandeAuthentification.prototype.execute = function () {
         logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
-        // return Promise.resolve(new ResultPDF({
-        //   definition: [
-        //     {
-        //       pageSize: "A4",
-        //       content: [
-        //         {text: "test"}
-        //       ]
-        //     },
-        //     {
-        //       pageSize: "A4",
-        //       content: [
-        //         {text: "test2"}
-        //       ]
-        //     }
-        //   ]
-        // }));
-        return Promise.resolve(new result_pdf_1.ResultPDF({
-            definition: {
-                pageSize: "A4",
-                content: [
-                    { text: "test" },
-                    { text: "test", pageBreak: 'before' }
-                ]
-            }
-        }));
-        // return this.getService().getPDFDemandeAuthentification(this.attributes.idPermis).then((copieNoteVerbaleMAECI: CopieNoteVerbaleMAECIFVMMetier) => {
-        //   return new ResultFile({"data": copieNoteVerbaleMAECI.data,
-        //     "filename": copieNoteVerbaleMAECI.nom,
-        //     "encoding": copieNoteVerbaleMAECI.encoding,
-        //     "size": copieNoteVerbaleMAECI.size
-        //   }, MediaTypes.fromMime(copieNoteVerbaleMAECI.mimetype));
-        // });
+        return this.getService().getPDFDemandeAuthentification(this.attributes.idPermis).then(function (result) {
+            var dossier = result.dossier[0];
+            var demandeAuthentification = result.demandeAuthentification[0];
+            return Promise.resolve(new result_pdf_1.ResultPDF({
+                fonts: {
+                    Times_New_Roman: {
+                        normal: "src/resources/fonts/Times_New_Roman_Normal.ttf",
+                        bold: "src/resources/fonts/Times_New_Roman_Bold.ttf",
+                        italics: "src/resources/fonts/Times_New_Roman_Italic.ttf",
+                        bolditalics: "src/resources/fonts/Times_New_Roman_BoldItalic.ttf"
+                    }
+                },
+                definition: {
+                    pageSize: "A4",
+                    content: [
+                        {
+                            columns: [
+                                {
+                                    width: "30%",
+                                    stack: [
+                                        { text: "AMBASSADE DE FRANCE AU MAROC", bold: true, fontSize: 11 },
+                                        { text: "__________", margin: [0, 0, 0, 30] },
+                                        { text: "SERVICE COMMUN DE GESTION", margin: [0, 0, 0, 10], bold: true, italics: true, fontSize: 9 },
+                                        { text: "N°" + demandeAuthentification.numDemandeAuthentification + "/SCG", margin: [0, 0, 0, 30], fontSize: 10 },
+                                    ],
+                                    alignment: "center"
+                                },
+                                {
+                                    width: "80",
+                                    image: "src/resources/img/RepubliqueFrancaiseImage.png",
+                                    alignment: "center"
+                                }
+                            ],
+                            columnGap: 30
+                        },
+                        { text: "Service des Permis de Conduire", bold: true, italics: true, fontSize: 10 },
+                        { text: "Affaire suivie par", bold: true, italics: true, fontSize: 10 },
+                        { text: "MME ZITOUNI Samah", margin: [5, 0, 0, 0], bold: true, italics: true, fontSize: 10 },
+                        { text: "Samah.Zitouni@diplomatie.gouv.fr", fontSize: 10 },
+                        {
+                            stack: [
+                                { text: dossier.prefecture.toUpperCase() },
+                                { text: dossier.adresse.toUpperCase() },
+                                { text: (dossier.codePostal + " " + dossier.ville).toUpperCase() }
+                            ],
+                            margin: [150, 60, 0, 70]
+                        },
+                        { text: "OBJET : Demande d'authentification d'un permis de conduire", margin: [0, 0, 0, 30] },
+                        {
+                            stack: [
+                                { text: "Madame, Monsieur,", margin: [0, 0, 0, 30] },
+                                { text: "Je vous demande de bien vouloir certifier l'authenticité du titre, dont vous trouverez ci-joint copie appartenant à :", margin: [0, 0, 0, 30] },
+                                {
+                                    stack: [
+                                        { text: "Monsieur " + dossier.nom.toUpperCase() + " " + (dossier.prenom[0].toUpperCase() + dossier.prenom.slice(1)) },
+                                        { text: "Né(e) le " + new Date(dossier.dateDeNaissance).toLocaleDateString() },
+                                        { text: "À " + dossier.villeDeNaissance.toUpperCase() + " / " + dossier.paysDeNaissance.toUpperCase() }
+                                    ],
+                                    margin: [0, 0, 0, 30]
+                                },
+                                {
+                                    stack: [
+                                        { text: "À déposé son permis de conduire" },
+                                        { text: "N° " + dossier.numPermis },
+                                        { text: "Délivré le " + new Date(dossier.dateDeDelivrance).toLocaleDateString() },
+                                        { text: "Catégorie(s) mentionnée(s) sur le permis" }
+                                    ],
+                                    margin: [0, 0, 0, 30]
+                                },
+                                { text: "En vue d'obtenir un permis Marocain.", margin: [0, 0, 0, 30] },
+                                { text: "Je vous prie d'agréer, Madame, Monsieur, l'assurance de ma considération distinguée.", margin: [0, 0, 0, 30] }
+                            ],
+                            margin: [50, 0, 0, 0]
+                        }
+                    ],
+                    defaultStyle: {
+                        font: "Times_New_Roman",
+                        alignment: "justify",
+                        fontSize: 12
+                    }
+                }
+            }));
+        });
     };
     return GetPDFDemandeAuthentification;
 }(abstract_routes_1.RouteActionService));
@@ -30448,11 +30622,152 @@ exports.GetPDFDemandeAuthentification = GetPDFDemandeAuthentification;
 
 
 /***/ }),
-/* 502 */
+/* 503 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(Buffer) {
+
+/**
+ * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * Ce logiciel est un programme informatique servant à faciliter la création
+ * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
+ * <p/>
+ * Ce logiciel est régi par la licence CeCILL soumise au droit français et
+ * respectant les principes de diffusion des logiciels libres. Vous pouvez
+ * utiliser, modifier et/ou redistribuer ce programme sous les conditions
+ * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
+ * sur le site "http://www.cecill.info".
+ * <p/>
+ * En contrepartie de l'accessibilité au code source et des droits de copie,
+ * de modification et de redistribution accordés par cette licence, il n'est
+ * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
+ * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
+ * titulaire des droits patrimoniaux et les concédants successifs.
+ * <p/>
+ * A cet égard  l'attention de l'utilisateur est attirée sur les risques
+ * associés au chargement,  à l'utilisation,  à la modification et/ou au
+ * développement et à la reproduction du logiciel par l'utilisateur étant
+ * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
+ * manipuler et qui le réserve donc à des développeurs et des professionnels
+ * avertis possédant  des  connaissances  informatiques approfondies.  Les
+ * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
+ * logiciel à leurs besoins dans des conditions permettant d'assurer la
+ * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
+ * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
+ * <p/>
+ * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
+ * pris connaissance de la licence CeCILL, et que vous en avez accepté les
+ * termes.
+ * <p/>
+ * <p/>
+ * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * This software is a computer program whose purpose is to facilitate creation of
+ * web application in accordance with french general repositories : RGI, RGS and RGAA.
+ * <p/>
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software.  You can  use,
+ * modify and/ or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ * <p/>
+ * As a counterpart to the access to the source code and  rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty  and the software's author,  the holder of the
+ * economic rights,  and the successive licensors  have only  limited
+ * liability.
+ * <p/>
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading,  using,  modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean  that it is complicated to manipulate,  and  that  also
+ * therefore means  that it is reserved for developers  and  experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and,  more generally, to use and operate it in the
+ * same conditions as regards security.
+ * <p/>
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var service_api_results_1 = __webpack_require__(55);
+/**
+ * @class
+ * @classdesc HornetResult définit un result basique.
+ */
+var HornetResult = /** @class */ (function () {
+    function HornetResult(options, mediaType) {
+        this._options = options;
+        this._mediaType = mediaType;
+    }
+    Object.defineProperty(HornetResult.prototype, "options", {
+        get: function () {
+            return this._options;
+        },
+        set: function (options) {
+            this._options = options;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(HornetResult.prototype, "mediaType", {
+        get: function () {
+            return this._mediaType;
+        },
+        set: function (value) {
+            this._mediaType = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * méthode qui permet d'appliquer un traitement supplémentaire sur les données avant la télé-transmission des data dans la réponse
+     * @returns {Promise} revoie une promise de traitement
+     */
+    HornetResult.prototype.compute = function () {
+        return Promise.resolve(true);
+    };
+    /**
+     * méthode qui permet de parametrer les entêtes et le corps de la réponse HTTP en fonction du type de résult
+     * @vreturns {boolean} true pour envoyer la reponse [response.end]
+     */
+    HornetResult.prototype.configure = function (res) {
+        res.json(service_api_results_1.NodeApiResultBuilder.build(this.options.data));
+        return true;
+    };
+    /**
+     * méthode qui permet d'appeler la chaine des traitements + configuration des la response
+     * @returns {Promise} revoie une promise de traitement
+     */
+    HornetResult.prototype.manageResponse = function (res) {
+        var _this = this;
+        return this.compute().then(function () {
+            if (!res["_headerSent"]) {
+                return _this.configure(res);
+            }
+            return false;
+        });
+    };
+    return HornetResult;
+}());
+exports.HornetResult = HornetResult;
+
+
+
+/***/ }),
+/* 504 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
 /**
  * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
  * <p/>
@@ -30533,183 +30848,629 @@ var tslib_1 = __webpack_require__(1);
  * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
  * @license CECILL-2.1
  */
-var hornet_result_1 = __webpack_require__(503);
-var disposition_type_1 = __webpack_require__(106);
+var _ = __webpack_require__(6);
+var media_type_1 = __webpack_require__(52);
+var hornet_js_utils_1 = __webpack_require__(0);
+var result_file_1 = __webpack_require__(486);
+// ------------------------------------------------------------------------------------------------------------------- //
+//                                      ResultPDF
+// ------------------------------------------------------------------------------------------------------------------- //
 /**
  * @class
- * @classdesc HornetResult définit un result de type FILE.
+ * @classdesc HornetResult définit un result de type PDF. see https://github.com/bpampuch/pdfmake
  */
-var ResultFile = /** @class */ (function (_super) {
-    tslib_1.__extends(ResultFile, _super);
-    function ResultFile(options, mediaType) {
-        var _this = _super.call(this, options, mediaType) || this;
-        options.dispositionType = options.dispositionType || disposition_type_1.DispositionType.ATTACHMENT;
-        return _this;
+var ResultPDF = /** @class */ (function (_super) {
+    tslib_1.__extends(ResultPDF, _super);
+    function ResultPDF(options) {
+        return _super.call(this, options, media_type_1.MediaTypes.PDF) || this;
     }
-    /*
-     *@inheritdoc
-     */
-    ResultFile.prototype.configure = function (res) {
-        var buffer = this.options.data instanceof Buffer ? this.options.data : new Buffer(this.options.data);
-        var headers = {
-            "Content-Type": this.mediaType.MIME,
-            "Content-Length": buffer.length
-        };
-        headers["Content-Disposition"] = this.options.dispositionType + "; filename=\"" + (this.options.filename || "filename") + "\"";
-        res.writeHead(200, headers);
-        res.end(buffer);
-        return false;
-    };
-    return ResultFile;
-}(hornet_result_1.HornetResult));
-exports.ResultFile = ResultFile;
-
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(23).Buffer))
-
-/***/ }),
-/* 503 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * Ce logiciel est un programme informatique servant à faciliter la création
- * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
- * <p/>
- * Ce logiciel est régi par la licence CeCILL soumise au droit français et
- * respectant les principes de diffusion des logiciels libres. Vous pouvez
- * utiliser, modifier et/ou redistribuer ce programme sous les conditions
- * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
- * sur le site "http://www.cecill.info".
- * <p/>
- * En contrepartie de l'accessibilité au code source et des droits de copie,
- * de modification et de redistribution accordés par cette licence, il n'est
- * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
- * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
- * titulaire des droits patrimoniaux et les concédants successifs.
- * <p/>
- * A cet égard  l'attention de l'utilisateur est attirée sur les risques
- * associés au chargement,  à l'utilisation,  à la modification et/ou au
- * développement et à la reproduction du logiciel par l'utilisateur étant
- * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
- * manipuler et qui le réserve donc à des développeurs et des professionnels
- * avertis possédant  des  connaissances  informatiques approfondies.  Les
- * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
- * logiciel à leurs besoins dans des conditions permettant d'assurer la
- * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
- * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
- * <p/>
- * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
- * pris connaissance de la licence CeCILL, et que vous en avez accepté les
- * termes.
- * <p/>
- * <p/>
- * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * This software is a computer program whose purpose is to facilitate creation of
- * web application in accordance with french general repositories : RGI, RGS and RGAA.
- * <p/>
- * This software is governed by the CeCILL license under French law and
- * abiding by the rules of distribution of free software.  You can  use,
- * modify and/ or redistribute the software under the terms of the CeCILL
- * license as circulated by CEA, CNRS and INRIA at the following URL
- * "http://www.cecill.info".
- * <p/>
- * As a counterpart to the access to the source code and  rights to copy,
- * modify and redistribute granted by the license, users are provided only
- * with a limited warranty  and the software's author,  the holder of the
- * economic rights,  and the successive licensors  have only  limited
- * liability.
- * <p/>
- * In this respect, the user's attention is drawn to the risks associated
- * with loading,  using,  modifying and/or developing or reproducing the
- * software by the user in light of its specific status of free software,
- * that may mean  that it is complicated to manipulate,  and  that  also
- * therefore means  that it is reserved for developers  and  experienced
- * professionals having in-depth computer knowledge. Users are therefore
- * encouraged to load and test the software's suitability as regards their
- * requirements in conditions enabling the security of their systems and/or
- * data to be ensured and,  more generally, to use and operate it in the
- * same conditions as regards security.
- * <p/>
- * The fact that you are presently reading this means that you have had
- * knowledge of the CeCILL license and that you accept its terms.
- *
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var service_api_results_1 = __webpack_require__(54);
-/**
- * @class
- * @classdesc HornetResult définit un result basique.
- */
-var HornetResult = /** @class */ (function () {
-    function HornetResult(options, mediaType) {
-        this._options = options;
-        this._mediaType = mediaType;
-    }
-    Object.defineProperty(HornetResult.prototype, "options", {
-        get: function () {
-            return this._options;
-        },
-        set: function (options) {
-            this._options = options;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(HornetResult.prototype, "mediaType", {
-        get: function () {
-            return this._mediaType;
-        },
-        set: function (value) {
-            this._mediaType = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    /**
-     * méthode qui permet d'appliquer un traitement supplémentaire sur les données avant la télé-transmission des data dans la réponse
-     * @returns {Promise} revoie une promise de traitement
-     */
-    HornetResult.prototype.compute = function () {
-        return Promise.resolve(true);
+    ResultPDF.prototype.compute = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            try {
+                var projectRoot = process.cwd() + '/static/' + hornet_js_utils_1.Utils.config.get("themeName");
+                if (_this.options.data && _this.options.data instanceof Array) {
+                    var listValue_1 = _.map(_this.options.data, function (item) {
+                        if (item) {
+                            var arr = [];
+                            for (var _i = 0, _a = _this.options.fields; _i < _a.length; _i++) {
+                                var field = _a[_i];
+                                arr.push(item[field] ? item[field].toString() : '');
+                            }
+                            return arr;
+                        }
+                    });
+                    var header_1 = _.map(_this.options.fieldNames, function (item) {
+                        return { text: item, style: 'tableHeader' };
+                    });
+                    _this.options.definition.content.forEach(function (element) {
+                        if (element.table) {
+                            element.table = _.extend(element.table, {
+                                body: [header_1].concat(listValue_1),
+                                width: _.fill(new Array(_this.options.fields.length), '*')
+                            });
+                        }
+                    });
+                }
+                var pdfMake = __webpack_require__(505);
+                var printer = new pdfMake(_this.options.fonts ? _this.options.fonts : {
+                    Roboto: {
+                        normal: projectRoot + '/fonts/Roboto-Regular.ttf',
+                        bold: projectRoot + '/fonts/Roboto-Medium.ttf',
+                        italics: projectRoot + '/fonts/Roboto-Italic.ttf',
+                        bolditalics: projectRoot + '/fonts/Roboto-Italic.ttf'
+                    }
+                });
+                _this.options.data = printer.createPdfKitDocument(_this.options.definition);
+                resolve(true);
+            }
+            catch (e) {
+                reject(e);
+            }
+        });
     };
     /**
      * méthode qui permet de parametrer les entêtes et le corps de la réponse HTTP en fonction du type de résult
      * @vreturns {boolean} true pour envoyer la reponse [response.end]
      */
-    HornetResult.prototype.configure = function (res) {
-        res.json(service_api_results_1.NodeApiResultBuilder.build(this.options.data));
-        return true;
+    ResultPDF.prototype.configure = function (res) {
+        res.contentType(this.mediaType.MIME);
+        //res.attachment(this.options.filename);
+        res.writeHead(200); //send headers
+        this.options.data.pipe(res);
+        this.options.data.end();
+        return false;
     };
-    /**
-     * méthode qui permet d'appeler la chaine des traitements + configuration des la response
-     * @returns {Promise} revoie une promise de traitement
-     */
-    HornetResult.prototype.manageResponse = function (res) {
-        var _this = this;
-        return this.compute().then(function () {
-            if (!res["_headerSent"]) {
-                return _this.configure(res);
-            }
-            return false;
-        });
-    };
-    return HornetResult;
-}());
-exports.HornetResult = HornetResult;
+    return ResultPDF;
+}(result_file_1.ResultFile));
+exports.ResultPDF = ResultPDF;
 
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+
+/***/ }),
+/* 505 */
+/***/ (function(module, exports) {
+
+/*eslint no-unused-vars: ["error", {"args": "none"}]*/
+'use strict';
+
+var FontProvider = require('./fontProvider');
+var LayoutBuilder = require('./layoutBuilder');
+var PdfKit = require('pdfkit');
+var sizes = require('./standardPageSizes');
+var ImageMeasure = require('./imageMeasure');
+var textDecorator = require('./textDecorator');
+var TextTools = require('./textTools');
+var isFunction = require('./helpers').isFunction;
+var isString = require('./helpers').isString;
+var isNumber = require('./helpers').isNumber;
+var isBoolean = require('./helpers').isBoolean;
+var isArray = require('./helpers').isArray;
+
+////////////////////////////////////////
+// PdfPrinter
+
+/**
+ * @class Creates an instance of a PdfPrinter which turns document definition into a pdf
+ *
+ * @param {Object} fontDescriptors font definition dictionary
+ *
+ * @example
+ * var fontDescriptors = {
+ *	Roboto: {
+ *		normal: 'fonts/Roboto-Regular.ttf',
+ *		bold: 'fonts/Roboto-Medium.ttf',
+ *		italics: 'fonts/Roboto-Italic.ttf',
+ *		bolditalics: 'fonts/Roboto-MediumItalic.ttf'
+ *	}
+ * };
+ *
+ * var printer = new PdfPrinter(fontDescriptors);
+ */
+function PdfPrinter(fontDescriptors) {
+	this.fontDescriptors = fontDescriptors;
+}
+
+/**
+ * Executes layout engine for the specified document and renders it into a pdfkit document
+ * ready to be saved.
+ *
+ * @param {Object} docDefinition document definition
+ * @param {Object} docDefinition.content an array describing the pdf structure (for more information take a look at the examples in the /examples folder)
+ * @param {Object} [docDefinition.defaultStyle] default (implicit) style definition
+ * @param {Object} [docDefinition.styles] dictionary defining all styles which can be used in the document
+ * @param {Object} [docDefinition.pageSize] page size (pdfkit units, A4 dimensions by default)
+ * @param {Number} docDefinition.pageSize.width width
+ * @param {Number} docDefinition.pageSize.height height
+ * @param {Object} [docDefinition.pageMargins] page margins (pdfkit units)
+ * @param {Number} docDefinition.maxPagesNumber maximum number of pages to render
+ *
+ * @example
+ *
+ * var docDefinition = {
+ * 	info: {
+ *		title: 'awesome Document',
+ *		author: 'john doe',
+ *		subject: 'subject of document',
+ *		keywords: 'keywords for document',
+ * 	},
+ *	content: [
+ *		'First paragraph',
+ *		'Second paragraph, this time a little bit longer',
+ *		{ text: 'Third paragraph, slightly bigger font size', fontSize: 20 },
+ *		{ text: 'Another paragraph using a named style', style: 'header' },
+ *		{ text: ['playing with ', 'inlines' ] },
+ *		{ text: ['and ', { text: 'restyling ', bold: true }, 'them'] },
+ *	],
+ *	styles: {
+ *		header: { fontSize: 30, bold: true }
+ *	}
+ * }
+ *
+ * var pdfKitDoc = printer.createPdfKitDocument(docDefinition);
+ *
+ * pdfKitDoc.pipe(fs.createWriteStream('sample.pdf'));
+ * pdfKitDoc.end();
+ *
+ * @return {Object} a pdfKit document object which can be saved or encode to data-url
+ */
+PdfPrinter.prototype.createPdfKitDocument = function (docDefinition, options) {
+	options = options || {};
+
+	var pageSize = fixPageSize(docDefinition.pageSize, docDefinition.pageOrientation);
+	var compressPdf = isBoolean(docDefinition.compress) ? docDefinition.compress : true;
+
+	this.pdfKitDoc = new PdfKit({size: [pageSize.width, pageSize.height], autoFirstPage: false, compress: compressPdf});
+	setMetadata(docDefinition, this.pdfKitDoc);
+
+	this.fontProvider = new FontProvider(this.fontDescriptors, this.pdfKitDoc);
+
+	docDefinition.images = docDefinition.images || {};
+
+	var builder = new LayoutBuilder(pageSize, fixPageMargins(docDefinition.pageMargins || 40), new ImageMeasure(this.pdfKitDoc, docDefinition.images));
+
+	registerDefaultTableLayouts(builder);
+	if (options.tableLayouts) {
+		builder.registerTableLayouts(options.tableLayouts);
+	}
+
+	var pages = builder.layoutDocument(docDefinition.content, this.fontProvider, docDefinition.styles || {}, docDefinition.defaultStyle || {fontSize: 12, font: 'Roboto'}, docDefinition.background, docDefinition.header, docDefinition.footer, docDefinition.images, docDefinition.watermark, docDefinition.pageBreakBefore);
+	var maxNumberPages = docDefinition.maxPagesNumber || -1;
+	if (isNumber(maxNumberPages) && maxNumberPages > -1) {
+		pages = pages.slice(0, maxNumberPages);
+	}
+
+	// if pageSize.height is set to Infinity, calculate the actual height of the page that
+	// was laid out using the height of each of the items in the page.
+	if (pageSize.height === Infinity) {
+		var pageHeight = calculatePageHeight(pages, docDefinition.pageMargins);
+		this.pdfKitDoc.options.size = [pageSize.width, pageHeight];
+	}
+
+	renderPages(pages, this.fontProvider, this.pdfKitDoc, options.progressCallback);
+
+	if (options.autoPrint) {
+		var printActionRef = this.pdfKitDoc.ref({
+			Type: 'Action',
+			S: 'Named',
+			N: 'Print'
+		});
+		this.pdfKitDoc._root.data.OpenAction = printActionRef;
+		printActionRef.end();
+	}
+	return this.pdfKitDoc;
+};
+
+function setMetadata(docDefinition, pdfKitDoc) {
+	// PDF standard has these properties reserved: Title, Author, Subject, Keywords,
+	// Creator, Producer, CreationDate, ModDate, Trapped.
+	// To keep the pdfmake api consistent, the info field are defined lowercase.
+	// Custom properties don't contain a space.
+	function standardizePropertyKey(key) {
+		var standardProperties = ['Title', 'Author', 'Subject', 'Keywords',
+			'Creator', 'Producer', 'CreationDate', 'ModDate', 'Trapped'];
+		var standardizedKey = key.charAt(0).toUpperCase() + key.slice(1);
+		if (standardProperties.indexOf(standardizedKey) !== -1) {
+			return standardizedKey;
+		}
+
+		return key.replace(/\s+/g, '');
+	}
+
+	pdfKitDoc.info.Producer = 'pdfmake';
+	pdfKitDoc.info.Creator = 'pdfmake';
+
+	if (docDefinition.info) {
+		for (var key in docDefinition.info) {
+			var value = docDefinition.info[key];
+			if (value) {
+				key = standardizePropertyKey(key);
+				pdfKitDoc.info[key] = value;
+			}
+		}
+	}
+}
+
+function calculatePageHeight(pages, margins) {
+	function getItemHeight(item) {
+		if (isFunction(item.item.getHeight)) {
+			return item.item.getHeight();
+		} else if (item.item._height) {
+			return item.item._height;
+		} else {
+			// TODO: add support for next item types
+			return 0;
+		}
+	}
+
+	var fixedMargins = fixPageMargins(margins || 40);
+	var height = fixedMargins.top + fixedMargins.bottom;
+	pages.forEach(function (page) {
+		page.items.forEach(function (item) {
+			height += getItemHeight(item);
+		});
+	});
+	return height;
+}
+
+function fixPageSize(pageSize, pageOrientation) {
+	function isNeedSwapPageSizes(pageOrientation) {
+		if (isString(pageOrientation)) {
+			pageOrientation = pageOrientation.toLowerCase();
+			return ((pageOrientation === 'portrait') && (size.width > size.height)) ||
+				((pageOrientation === 'landscape') && (size.width < size.height));
+		}
+		return false;
+	}
+
+	// if pageSize.height is set to auto, set the height to infinity so there are no page breaks.
+	if (pageSize && pageSize.height === 'auto') {
+		pageSize.height = Infinity;
+	}
+
+	var size = pageSize2widthAndHeight(pageSize || 'A4');
+	if (isNeedSwapPageSizes(pageOrientation)) { // swap page sizes
+		size = {width: size.height, height: size.width};
+	}
+	size.orientation = size.width > size.height ? 'landscape' : 'portrait';
+	return size;
+}
+
+function fixPageMargins(margin) {
+	if (!margin) {
+		return null;
+	}
+
+	if (isNumber(margin)) {
+		margin = {left: margin, right: margin, top: margin, bottom: margin};
+	} else if (isArray(margin)) {
+		if (margin.length === 2) {
+			margin = {left: margin[0], top: margin[1], right: margin[0], bottom: margin[1]};
+		} else if (margin.length === 4) {
+			margin = {left: margin[0], top: margin[1], right: margin[2], bottom: margin[3]};
+		} else {
+			throw 'Invalid pageMargins definition';
+		}
+	}
+
+	return margin;
+}
+
+function registerDefaultTableLayouts(layoutBuilder) {
+	layoutBuilder.registerTableLayouts({
+		noBorders: {
+			hLineWidth: function (i) {
+				return 0;
+			},
+			vLineWidth: function (i) {
+				return 0;
+			},
+			paddingLeft: function (i) {
+				return i && 4 || 0;
+			},
+			paddingRight: function (i, node) {
+				return (i < node.table.widths.length - 1) ? 4 : 0;
+			}
+		},
+		headerLineOnly: {
+			hLineWidth: function (i, node) {
+				if (i === 0 || i === node.table.body.length) {
+					return 0;
+				}
+				return (i === node.table.headerRows) ? 2 : 0;
+			},
+			vLineWidth: function (i) {
+				return 0;
+			},
+			paddingLeft: function (i) {
+				return i === 0 ? 0 : 8;
+			},
+			paddingRight: function (i, node) {
+				return (i === node.table.widths.length - 1) ? 0 : 8;
+			}
+		},
+		lightHorizontalLines: {
+			hLineWidth: function (i, node) {
+				if (i === 0 || i === node.table.body.length) {
+					return 0;
+				}
+				return (i === node.table.headerRows) ? 2 : 1;
+			},
+			vLineWidth: function (i) {
+				return 0;
+			},
+			hLineColor: function (i) {
+				return i === 1 ? 'black' : '#aaa';
+			},
+			paddingLeft: function (i) {
+				return i === 0 ? 0 : 8;
+			},
+			paddingRight: function (i, node) {
+				return (i === node.table.widths.length - 1) ? 0 : 8;
+			}
+		}
+	});
+}
+
+function pageSize2widthAndHeight(pageSize) {
+	if (isString(pageSize)) {
+		var size = sizes[pageSize.toUpperCase()];
+		if (!size) {
+			throw 'Page size ' + pageSize + ' not recognized';
+		}
+		return {width: size[0], height: size[1]};
+	}
+
+	return pageSize;
+}
+
+function updatePageOrientationInOptions(currentPage, pdfKitDoc) {
+	var previousPageOrientation = pdfKitDoc.options.size[0] > pdfKitDoc.options.size[1] ? 'landscape' : 'portrait';
+
+	if (currentPage.pageSize.orientation !== previousPageOrientation) {
+		var width = pdfKitDoc.options.size[0];
+		var height = pdfKitDoc.options.size[1];
+		pdfKitDoc.options.size = [height, width];
+	}
+}
+
+function renderPages(pages, fontProvider, pdfKitDoc, progressCallback) {
+	pdfKitDoc._pdfMakePages = pages;
+	pdfKitDoc.addPage();
+
+	var totalItems = 0;
+	if (progressCallback) {
+		pages.forEach(function (page) {
+			totalItems += page.items.length;
+		});
+	}
+
+	var renderedItems = 0;
+	progressCallback = progressCallback || function () {};
+
+	for (var i = 0; i < pages.length; i++) {
+		if (i > 0) {
+			updatePageOrientationInOptions(pages[i], pdfKitDoc);
+			pdfKitDoc.addPage(pdfKitDoc.options);
+		}
+
+		var page = pages[i];
+		for (var ii = 0, il = page.items.length; ii < il; ii++) {
+			var item = page.items[ii];
+			switch (item.type) {
+				case 'vector':
+					renderVector(item.item, pdfKitDoc);
+					break;
+				case 'line':
+					renderLine(item.item, item.item.x, item.item.y, pdfKitDoc);
+					break;
+				case 'image':
+					renderImage(item.item, item.item.x, item.item.y, pdfKitDoc);
+					break;
+				case 'beginClip':
+					beginClip(item.item, pdfKitDoc);
+					break;
+				case 'endClip':
+					endClip(pdfKitDoc);
+					break;
+			}
+			renderedItems++;
+			progressCallback(renderedItems / totalItems);
+		}
+		if (page.watermark) {
+			renderWatermark(page, pdfKitDoc);
+		}
+	}
+}
+
+function renderLine(line, x, y, pdfKitDoc) {
+	if (line._pageNodeRef) {
+		var newWidth;
+		var diffWidth;
+		var textTools = new TextTools(null);
+		var pageNumber = line._pageNodeRef.positions[0].pageNumber.toString();
+
+		line.inlines[0].text = pageNumber;
+		line.inlines[0].linkToPage = pageNumber;
+		newWidth = textTools.widthOfString(line.inlines[0].text, line.inlines[0].font, line.inlines[0].fontSize, line.inlines[0].characterSpacing, line.inlines[0].fontFeatures);
+		diffWidth = line.inlines[0].width - newWidth;
+		line.inlines[0].width = newWidth;
+
+		switch (line.inlines[0].alignment) {
+			case 'right':
+				line.inlines[0].x += diffWidth;
+				break;
+			case 'center':
+				line.inlines[0].x += diffWidth / 2;
+				break;
+		}
+	}
+
+	x = x || 0;
+	y = y || 0;
+
+	var lineHeight = line.getHeight();
+	var ascenderHeight = line.getAscenderHeight();
+	var descent = lineHeight - ascenderHeight;
+
+	textDecorator.drawBackground(line, x, y, pdfKitDoc);
+
+	//TODO: line.optimizeInlines();
+	for (var i = 0, l = line.inlines.length; i < l; i++) {
+		var inline = line.inlines[i];
+		var shiftToBaseline = lineHeight - ((inline.font.ascender / 1000) * inline.fontSize) - descent;
+		var options = {
+			lineBreak: false,
+			textWidth: inline.width,
+			characterSpacing: inline.characterSpacing,
+			wordCount: 1,
+			link: inline.link
+		};
+
+		if (inline.fontFeatures) {
+			options.features = inline.fontFeatures;
+		}
+
+		pdfKitDoc.fill(inline.color || 'black');
+
+		pdfKitDoc._font = inline.font;
+		pdfKitDoc.fontSize(inline.fontSize);
+		pdfKitDoc.text(inline.text, x + inline.x, y + shiftToBaseline, options);
+
+		if (inline.linkToPage) {
+			var _ref = pdfKitDoc.ref({Type: 'Action', S: 'GoTo', D: [inline.linkToPage, 0, 0]}).end();
+			pdfKitDoc.annotate(x + inline.x, y + shiftToBaseline, inline.width, inline.height, {Subtype: 'Link', Dest: [inline.linkToPage - 1, 'XYZ', null, null, null]});
+		}
+
+	}
+
+	textDecorator.drawDecorations(line, x, y, pdfKitDoc);
+}
+
+function renderWatermark(page, pdfKitDoc) {
+	var watermark = page.watermark;
+
+	pdfKitDoc.fill(watermark.color);
+	pdfKitDoc.opacity(watermark.opacity);
+
+	pdfKitDoc.save();
+
+	var angle = Math.atan2(pdfKitDoc.page.height, pdfKitDoc.page.width) * -180 / Math.PI;
+	pdfKitDoc.rotate(angle, {origin: [pdfKitDoc.page.width / 2, pdfKitDoc.page.height / 2]});
+
+	var x = pdfKitDoc.page.width / 2 - watermark.size.size.width / 2;
+	var y = pdfKitDoc.page.height / 2 - watermark.size.size.height / 4;
+
+	pdfKitDoc._font = watermark.font;
+	pdfKitDoc.fontSize(watermark.size.fontSize);
+	pdfKitDoc.text(watermark.text, x, y, {lineBreak: false});
+
+	pdfKitDoc.restore();
+}
+
+function renderVector(vector, pdfKitDoc) {
+	//TODO: pdf optimization (there's no need to write all properties everytime)
+	pdfKitDoc.lineWidth(vector.lineWidth || 1);
+	if (vector.dash) {
+		pdfKitDoc.dash(vector.dash.length, {space: vector.dash.space || vector.dash.length, phase: vector.dash.phase || 0});
+	} else {
+		pdfKitDoc.undash();
+	}
+	pdfKitDoc.lineJoin(vector.lineJoin || 'miter');
+	pdfKitDoc.lineCap(vector.lineCap || 'butt');
+
+	//TODO: clipping
+
+	switch (vector.type) {
+		case 'ellipse':
+			pdfKitDoc.ellipse(vector.x, vector.y, vector.r1, vector.r2);
+			break;
+		case 'rect':
+			if (vector.r) {
+				pdfKitDoc.roundedRect(vector.x, vector.y, vector.w, vector.h, vector.r);
+			} else {
+				pdfKitDoc.rect(vector.x, vector.y, vector.w, vector.h);
+			}
+
+			if (vector.linearGradient) {
+				var gradient = pdfKitDoc.linearGradient(vector.x, vector.y, vector.x + vector.w, vector.y);
+				var step = 1 / (vector.linearGradient.length - 1);
+
+				for (var i = 0; i < vector.linearGradient.length; i++) {
+					gradient.stop(i * step, vector.linearGradient[i]);
+				}
+
+				vector.color = gradient;
+			}
+			break;
+		case 'line':
+			pdfKitDoc.moveTo(vector.x1, vector.y1);
+			pdfKitDoc.lineTo(vector.x2, vector.y2);
+			break;
+		case 'polyline':
+			if (vector.points.length === 0) {
+				break;
+			}
+
+			pdfKitDoc.moveTo(vector.points[0].x, vector.points[0].y);
+			for (var i = 1, l = vector.points.length; i < l; i++) {
+				pdfKitDoc.lineTo(vector.points[i].x, vector.points[i].y);
+			}
+
+			if (vector.points.length > 1) {
+				var p1 = vector.points[0];
+				var pn = vector.points[vector.points.length - 1];
+
+				if (vector.closePath || p1.x === pn.x && p1.y === pn.y) {
+					pdfKitDoc.closePath();
+				}
+			}
+			break;
+		case 'path':
+			pdfKitDoc.path(vector.d);
+			break;
+	}
+
+	if (vector.color && vector.lineColor) {
+		pdfKitDoc.fillColor(vector.color, vector.fillOpacity || 1);
+		pdfKitDoc.strokeColor(vector.lineColor, vector.strokeOpacity || 1);
+		pdfKitDoc.fillAndStroke();
+	} else if (vector.color) {
+		pdfKitDoc.fillColor(vector.color, vector.fillOpacity || 1);
+		pdfKitDoc.fill();
+	} else {
+		pdfKitDoc.strokeColor(vector.lineColor || 'black', vector.strokeOpacity || 1);
+		pdfKitDoc.stroke();
+	}
+}
+
+function renderImage(image, x, y, pdfKitDoc) {
+	pdfKitDoc.image(image.image, image.x, image.y, {width: image._width, height: image._height});
+	if (image.link) {
+		pdfKitDoc.link(image.x, image.y, image._width, image._height, image.link);
+	}
+}
+
+function beginClip(rect, pdfKitDoc) {
+	pdfKitDoc.save();
+	pdfKitDoc.addContent('' + rect.x + ' ' + rect.y + ' ' + rect.width + ' ' + rect.height + ' re');
+	pdfKitDoc.clip();
+}
+
+function endClip(pdfKitDoc) {
+	pdfKitDoc.restore();
+}
+
+module.exports = PdfPrinter;
+
+
+/* temporary browser extension */
+PdfPrinter.prototype.fs = require('fs');
 
 
 /***/ }),
-/* 504 */
+/* 506 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30881,11 +31642,11 @@ exports.Tab = Tab;
 
 
 /***/ }),
-/* 505 */,
-/* 506 */,
 /* 507 */,
 /* 508 */,
-/* 509 */
+/* 509 */,
+/* 510 */,
+/* 511 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30897,12 +31658,12 @@ var React = __webpack_require__(2);
 var hornet_page_1 = __webpack_require__(51);
 var form_1 = __webpack_require__(309);
 var row_1 = __webpack_require__(346);
-var input_field_1 = __webpack_require__(304);
-var calendar_field_1 = __webpack_require__(411);
+var input_field_1 = __webpack_require__(288);
+var calendar_field_1 = __webpack_require__(347);
 var button_1 = __webpack_require__(305);
 var buttons_area_1 = __webpack_require__(307);
 var notification_1 = __webpack_require__(48);
-var schema = __webpack_require__(510);
+var schema = __webpack_require__(512);
 var table_1 = __webpack_require__(482);
 var header_1 = __webpack_require__(472);
 var menu_actions_1 = __webpack_require__(473);
@@ -30946,7 +31707,7 @@ var RecordListPage = /** @class */ (function (_super) {
         this.entries.add(true, subList);
     };
     RecordListPage.prototype.render = function () {
-        var format = this.i18n("form");
+        var format = this.i18n("forms");
         return (React.createElement("div", null,
             React.createElement(notification_1.Notification, { id: "notif" }),
             React.createElement(table_1.Table, { id: "tableau des entr\u00E9es" },
@@ -30991,7 +31752,7 @@ exports.RecordListPage = RecordListPage;
 
 
 /***/ }),
-/* 510 */
+/* 512 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -31026,7 +31787,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 511 */
+/* 513 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31099,7 +31860,7 @@ exports.ClientListServiceImpl = ClientListServiceImpl;
 
 
 /***/ }),
-/* 512 */
+/* 514 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31111,8 +31872,8 @@ var React = __webpack_require__(2);
 var hornet_page_1 = __webpack_require__(51);
 var form_1 = __webpack_require__(309);
 var row_1 = __webpack_require__(346);
-var input_field_1 = __webpack_require__(304);
-var calendar_field_1 = __webpack_require__(411);
+var input_field_1 = __webpack_require__(288);
+var calendar_field_1 = __webpack_require__(347);
 var button_1 = __webpack_require__(305);
 var buttons_area_1 = __webpack_require__(307);
 var datasource_config_page_1 = __webpack_require__(314);
@@ -31122,14 +31883,14 @@ var content_1 = __webpack_require__(306);
 var column_1 = __webpack_require__(281);
 var columns_1 = __webpack_require__(340);
 var date_column_1 = __webpack_require__(485);
-var accordions_1 = __webpack_require__(513);
-var accordion_1 = __webpack_require__(53);
-var datasource_1 = __webpack_require__(303);
+var accordions_1 = __webpack_require__(515);
+var accordion_1 = __webpack_require__(54);
+var datasource_1 = __webpack_require__(304);
 var upload_file_field_1 = __webpack_require__(341);
-var tabs_1 = __webpack_require__(515);
-var tab_1 = __webpack_require__(504);
-var tab_content_1 = __webpack_require__(517);
-var icon_1 = __webpack_require__(104);
+var tabs_1 = __webpack_require__(517);
+var tab_1 = __webpack_require__(506);
+var tab_content_1 = __webpack_require__(519);
+var icon_1 = __webpack_require__(105);
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
 var RecordDetailsPage = /** @class */ (function (_super) {
     tslib_1.__extends(RecordDetailsPage, _super);
@@ -31156,7 +31917,7 @@ var RecordDetailsPage = /** @class */ (function (_super) {
     };
     RecordDetailsPage.prototype.render = function () {
         var _this = this;
-        var format = this.i18n("form");
+        var format = this.i18n("forms");
         return (React.createElement("div", null,
             React.createElement(icon_1.Icon, { src: picto_1.Picto.blue.previous, alt: "Retourner \u00E0 la page de s\u00E9lection", title: "Retourner \u00E0 la page de s\u00E9lection", action: this.retourPage }),
             React.createElement(tabs_1.Tabs, { ref: function (tabs) {
@@ -31165,7 +31926,7 @@ var RecordDetailsPage = /** @class */ (function (_super) {
                 React.createElement(tab_1.Tab, { index: -1, id: "temp" }, " "))));
     };
     RecordDetailsPage.prototype.renderDossierTab = function (dossier) {
-        var format = this.i18n("form");
+        var format = this.i18n("forms");
         this.dossier = dossier;
         return (React.createElement(tab_1.Tab, { id: "tabDossier", title: "Dossier" },
             React.createElement(tab_content_1.TabContent, null,
@@ -31208,10 +31969,10 @@ var RecordDetailsPage = /** @class */ (function (_super) {
                             React.createElement(upload_file_field_1.UploadFileField, { name: "copie_note_verbale_maeci", readOnly: true, label: format.fields.copie_note_verbale_maeci.label, renderPreviewFile: this.renderCopieNoteVerbaleMAECI, buttonLabel: format.fields.copie_note_verbale_maeci.buttonLabel, fileSelectedLabel: format.fields.copie_note_verbale_maeci.fileSelectedLabel })))))));
     };
     RecordDetailsPage.prototype.renderCopiePermis = function (file) {
-        var format = this.i18n("form");
+        var format = this.i18n("forms");
         var fileTag = null;
         var urlfile = hornet_js_utils_1.Utils.buildContextPath("/services/recordserver/copiePermis/" + this.dossier.copie_permis.idCopiePermis);
-        var fileTarget = "newTabForCopiePermis" + this.attributes.id;
+        var fileTarget = "newTabForCopiePermis" + this.attributes.idPermis;
         fileTag =
             React.createElement("div", { className: "grid-form-field " },
                 React.createElement("div", { className: "" },
@@ -31219,10 +31980,10 @@ var RecordDetailsPage = /** @class */ (function (_super) {
         return fileTag;
     };
     RecordDetailsPage.prototype.renderCopieNoteVerbaleMAECI = function (file) {
-        var format = this.i18n("form");
+        var format = this.i18n("forms");
         var fileTag = null;
         var urlfile = hornet_js_utils_1.Utils.buildContextPath("/services/recordserver/copieNoteVerbaleMAECI/" + this.dossier.copie_note_verbale_maeci.idCopieNoteVerbaleMAECI);
-        var fileTarget = "newTabForCopieNoteVerbaleMAECI" + this.attributes.id;
+        var fileTarget = "newTabForCopieNoteVerbaleMAECI" + this.attributes.idPermis;
         fileTag =
             React.createElement("div", { className: "grid-form-field " },
                 React.createElement("div", { className: "" },
@@ -31230,11 +31991,11 @@ var RecordDetailsPage = /** @class */ (function (_super) {
         return fileTag;
     };
     RecordDetailsPage.prototype.renderDemandeAuthentificationTab = function (demandeAuthentificationList) {
-        var format = this.i18n("form");
+        var format = this.i18n("forms");
         if (demandeAuthentificationList.length > 0) {
             var fileTag = null;
-            var urlfile = hornet_js_utils_1.Utils.buildContextPath("/services/recordserver/pdfMake/demandeAuthentification/" + this.attributes.id);
-            var fileTarget = "newTabForDemandeAuthentification" + this.attributes.id;
+            var urlfile = hornet_js_utils_1.Utils.buildContextPath("/services/recordserver/pdfMake/demandeAuthentification/" + this.attributes.idPermis);
+            var fileTarget = "newTabForDemandeAuthentification" + this.attributes.idPermis;
             fileTag =
                 React.createElement(tab_1.Tab, { id: "tabDemandeAuthentification", title: "Demande d'Authentification" },
                     React.createElement(tab_content_1.TabContent, null,
@@ -31242,7 +32003,7 @@ var RecordDetailsPage = /** @class */ (function (_super) {
                         React.createElement(form_1.Form, { id: "demandeAuthentificationForm", readOnly: true, defaultValues: demandeAuthentificationList[0] },
                             React.createElement(input_field_1.InputField, { name: "numDemandeAuthentification", label: format.fields.num_demande_authentification.label, readOnly: true }),
                             React.createElement(calendar_field_1.CalendarField, { name: "dateDeCreation", label: format.fields.date_de_creation.label, readOnly: true }),
-                            React.createElement(input_field_1.InputField, { name: "numValise", label: format.fields.num_demande_authentification.label, readOnly: true }),
+                            React.createElement(input_field_1.InputField, { name: "numValise", label: format.fields.num_valise.label, readOnly: true }),
                             React.createElement(calendar_field_1.CalendarField, { name: "dateDuTraitement", label: format.fields.date_du_traitement.label, readOnly: true })),
                         React.createElement("div", { className: "grid-form-field " },
                             React.createElement("div", { className: "" },
@@ -31261,7 +32022,7 @@ var RecordDetailsPage = /** @class */ (function (_super) {
         this.navigateTo("/record", {}, function () { });
     };
     RecordDetailsPage.prototype.genererDemande = function () {
-        this.navigateTo("/form2/" + this.attributes.id, {}, function () { });
+        this.navigateTo("/form2/" + this.attributes.idPermis, {}, function () { });
     };
     return RecordDetailsPage;
 }(hornet_page_1.HornetPage));
@@ -31270,7 +32031,7 @@ exports.RecordDetailsPage = RecordDetailsPage;
 
 
 /***/ }),
-/* 513 */
+/* 515 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31358,8 +32119,8 @@ var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var classNames = __webpack_require__(9);
-var accordion_1 = __webpack_require__(53);
-var abstract_group_component_1 = __webpack_require__(514);
+var accordion_1 = __webpack_require__(54);
+var abstract_group_component_1 = __webpack_require__(516);
 var _ = __webpack_require__(6);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.accordion.accordions");
 var Accordions = /** @class */ (function (_super) {
@@ -31509,7 +32270,7 @@ exports.Accordions = Accordions;
 
 
 /***/ }),
-/* 514 */
+/* 516 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31612,7 +32373,7 @@ exports.GroupComponent = GroupComponent;
 
 
 /***/ }),
-/* 515 */
+/* 517 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31701,10 +32462,10 @@ var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var classNames = __webpack_require__(9);
 var hornet_component_1 = __webpack_require__(3);
-var tab_1 = __webpack_require__(504);
+var tab_1 = __webpack_require__(506);
 var key_codes_1 = __webpack_require__(10);
 var ReactDOM = __webpack_require__(22);
-var tab_header_1 = __webpack_require__(516);
+var tab_header_1 = __webpack_require__(518);
 var _ = __webpack_require__(6);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.tab.tabs");
 var TabsButtonScrolling;
@@ -32389,7 +33150,7 @@ exports.Tabs = Tabs;
 
 
 /***/ }),
-/* 516 */
+/* 518 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32482,7 +33243,7 @@ exports.TabHeader = TabHeader;
 
 
 /***/ }),
-/* 517 */
+/* 519 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32576,8 +33337,6 @@ exports.TabContent = TabContent;
 
 
 /***/ }),
-/* 518 */,
-/* 519 */,
 /* 520 */,
 /* 521 */,
 /* 522 */,
@@ -32625,7 +33384,9 @@ exports.TabContent = TabContent;
 /* 564 */,
 /* 565 */,
 /* 566 */,
-/* 567 */
+/* 567 */,
+/* 568 */,
+/* 569 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32634,14 +33395,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var service_request_1 = __webpack_require__(40);
-var personne_dao_1 = __webpack_require__(568);
-var copie_note_verbale_MAECI_dao_1 = __webpack_require__(569);
-var dossier_dao_1 = __webpack_require__(570);
-var permis_dao_1 = __webpack_require__(571);
-var copie_permis_dao_1 = __webpack_require__(572);
-var prefecture_dao_1 = __webpack_require__(573);
-var demande_authentification_dao_1 = __webpack_require__(574);
-var valise_dao_1 = __webpack_require__(575);
+var personne_dao_1 = __webpack_require__(570);
+var copie_note_verbale_MAECI_dao_1 = __webpack_require__(571);
+var dossier_dao_1 = __webpack_require__(572);
+var permis_dao_1 = __webpack_require__(573);
+var copie_permis_dao_1 = __webpack_require__(574);
+var prefecture_dao_1 = __webpack_require__(575);
+var demande_authentification_dao_1 = __webpack_require__(576);
+var valise_dao_1 = __webpack_require__(577);
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.services.data.admin.admin-service-impl-data");
 var ClientListServiceImpl = /** @class */ (function (_super) {
     tslib_1.__extends(ClientListServiceImpl, _super);
@@ -32695,7 +33456,7 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
     };
     ClientListServiceImpl.prototype.getDossier = function (data) {
         var _this = this;
-        var idPermis = data["id"];
+        var idPermis = data["idPermis"];
         return this.permisDAO.getPermis(idPermis).then(function (values) {
             var permis = values[0];
             var result = {};
@@ -32714,6 +33475,7 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
                 result["nom"] = personne.nom;
                 result["prenom"] = personne.prenom;
                 result["dateDeNaissance"] = Date.parse(personne.dateDeNaissance);
+                result["sexe"] = personne.sexe;
                 result["villeDeNaissance"] = personne.villeDeNaissance;
                 result["paysDeNaissance"] = personne.paysDeNaissance;
                 result["region"] = prefecture.region;
@@ -32731,15 +33493,15 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
         });
     };
     ClientListServiceImpl.prototype.getDemandeAuthentification = function (data) {
-        var idPermis = data["id"];
+        var idPermis = data["idPermis"];
         return this.demandeAuthentificationDAO.getDemandeAuthentification(idPermis);
     };
     ClientListServiceImpl.prototype.getReleve = function (data) {
-        var idPermis = data["id"];
+        var idPermis = data["idPermis"];
         return Promise.resolve([]);
     };
     ClientListServiceImpl.prototype.getNoteVerbale = function (data) {
-        var idPermis = data["id"];
+        var idPermis = data["idPermis"];
         return Promise.resolve([]);
     };
     ClientListServiceImpl.prototype.getCopiePermis = function (idCopiePermis) {
@@ -32753,7 +33515,15 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
         });
     };
     ClientListServiceImpl.prototype.getPDFDemandeAuthentification = function (idPermis) {
-        return;
+        var _this = this;
+        var result = {};
+        return this.getDossier({ "idPermis": idPermis }).then(function (dossier) {
+            result["dossier"] = dossier;
+            return _this.demandeAuthentificationDAO.getDemandeAuthentification(idPermis).then(function (demandeAuthentification) {
+                result["demandeAuthentification"] = demandeAuthentification;
+                return Promise.resolve(result);
+            });
+        });
     };
     return ClientListServiceImpl;
 }(service_request_1.ServiceRequest));
@@ -32762,7 +33532,7 @@ exports.ClientListServiceImpl = ClientListServiceImpl;
 
 
 /***/ }),
-/* 568 */
+/* 570 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32777,7 +33547,7 @@ var PersonneFVMDAO = /** @class */ (function (_super) {
     function PersonneFVMDAO() {
         return _super.call(this) || this;
     }
-    PersonneFVMDAO.prototype.insererPersonne = function (nom, prenom, dateDeNaissance, villeDeNaissance, paysDeNaissance, idPermis) {
+    PersonneFVMDAO.prototype.insererPersonne = function (nom, prenom, dateDeNaissance, idSexe, villeDeNaissance, paysDeNaissance, idPermis) {
         var _this = this;
         return this.getNewIdPersonne().then(function (idPersonne) {
             return _this.modelDAO.personneFVMEntity.create({
@@ -32785,6 +33555,7 @@ var PersonneFVMDAO = /** @class */ (function (_super) {
                 nom: nom,
                 prenom: prenom,
                 dateDeNaissance: dateDeNaissance,
+                sexe: _this.getSexe(idSexe),
                 villeDeNaissance: villeDeNaissance,
                 paysDeNaissance: paysDeNaissance,
                 idPermis: idPermis
@@ -32792,6 +33563,14 @@ var PersonneFVMDAO = /** @class */ (function (_super) {
                 return Promise.resolve(idPersonne);
             });
         });
+    };
+    PersonneFVMDAO.prototype.getSexe = function (idSexe) {
+        if (idSexe == 0) {
+            return "Monsieur";
+        }
+        else {
+            return "Madame";
+        }
     };
     PersonneFVMDAO.prototype.getNewIdPersonne = function () {
         var _this = this;
@@ -32820,7 +33599,7 @@ exports.PersonneFVMDAO = PersonneFVMDAO;
 
 
 /***/ }),
-/* 569 */
+/* 571 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32881,7 +33660,7 @@ exports.CopieNoteVerbaleMAECIFVMDao = CopieNoteVerbaleMAECIFVMDao;
 
 
 /***/ }),
-/* 570 */
+/* 572 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32936,7 +33715,7 @@ exports.DossierFVMDAO = DossierFVMDAO;
 
 
 /***/ }),
-/* 571 */
+/* 573 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32997,7 +33776,7 @@ exports.PermisFVMDAO = PermisFVMDAO;
 
 
 /***/ }),
-/* 572 */
+/* 574 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33058,7 +33837,7 @@ exports.CopiePermisFVMDao = CopiePermisFVMDao;
 
 
 /***/ }),
-/* 573 */
+/* 575 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33092,7 +33871,7 @@ exports.PrefectureDAO = PrefectureDAO;
 
 
 /***/ }),
-/* 574 */
+/* 576 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33156,7 +33935,7 @@ exports.DemandeAuthentificationFVMDAO = DemandeAuthentificationFVMDAO;
 
 
 /***/ }),
-/* 575 */
+/* 577 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33200,713 +33979,6 @@ var ValiseDAO = /** @class */ (function (_super) {
 }(entity_dao_1.EntityDAO));
 exports.ValiseDAO = ValiseDAO;
 
-
-
-/***/ }),
-/* 576 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-/**
- * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * Ce logiciel est un programme informatique servant à faciliter la création
- * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
- * <p/>
- * Ce logiciel est régi par la licence CeCILL soumise au droit français et
- * respectant les principes de diffusion des logiciels libres. Vous pouvez
- * utiliser, modifier et/ou redistribuer ce programme sous les conditions
- * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
- * sur le site "http://www.cecill.info".
- * <p/>
- * En contrepartie de l'accessibilité au code source et des droits de copie,
- * de modification et de redistribution accordés par cette licence, il n'est
- * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
- * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
- * titulaire des droits patrimoniaux et les concédants successifs.
- * <p/>
- * A cet égard  l'attention de l'utilisateur est attirée sur les risques
- * associés au chargement,  à l'utilisation,  à la modification et/ou au
- * développement et à la reproduction du logiciel par l'utilisateur étant
- * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
- * manipuler et qui le réserve donc à des développeurs et des professionnels
- * avertis possédant  des  connaissances  informatiques approfondies.  Les
- * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
- * logiciel à leurs besoins dans des conditions permettant d'assurer la
- * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
- * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
- * <p/>
- * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
- * pris connaissance de la licence CeCILL, et que vous en avez accepté les
- * termes.
- * <p/>
- * <p/>
- * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * This software is a computer program whose purpose is to facilitate creation of
- * web application in accordance with french general repositories : RGI, RGS and RGAA.
- * <p/>
- * This software is governed by the CeCILL license under French law and
- * abiding by the rules of distribution of free software.  You can  use,
- * modify and/ or redistribute the software under the terms of the CeCILL
- * license as circulated by CEA, CNRS and INRIA at the following URL
- * "http://www.cecill.info".
- * <p/>
- * As a counterpart to the access to the source code and  rights to copy,
- * modify and redistribute granted by the license, users are provided only
- * with a limited warranty  and the software's author,  the holder of the
- * economic rights,  and the successive licensors  have only  limited
- * liability.
- * <p/>
- * In this respect, the user's attention is drawn to the risks associated
- * with loading,  using,  modifying and/or developing or reproducing the
- * software by the user in light of its specific status of free software,
- * that may mean  that it is complicated to manipulate,  and  that  also
- * therefore means  that it is reserved for developers  and  experienced
- * professionals having in-depth computer knowledge. Users are therefore
- * encouraged to load and test the software's suitability as regards their
- * requirements in conditions enabling the security of their systems and/or
- * data to be ensured and,  more generally, to use and operate it in the
- * same conditions as regards security.
- * <p/>
- * The fact that you are presently reading this means that you have had
- * knowledge of the CeCILL license and that you accept its terms.
- *
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(1);
-/**
- * hornet-js-core - Ensemble des composants qui forment le coeur de hornet-js
- *
- * @author MEAE - Ministère de l'Europe et des Affaires étrangères
- * @version v5.1.1
- * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
- * @license CECILL-2.1
- */
-var _ = __webpack_require__(6);
-var media_type_1 = __webpack_require__(55);
-var hornet_js_utils_1 = __webpack_require__(0);
-var result_file_1 = __webpack_require__(502);
-// ------------------------------------------------------------------------------------------------------------------- //
-//                                      ResultPDF
-// ------------------------------------------------------------------------------------------------------------------- //
-/**
- * @class
- * @classdesc HornetResult définit un result de type PDF. see https://github.com/bpampuch/pdfmake
- */
-var ResultPDF = /** @class */ (function (_super) {
-    tslib_1.__extends(ResultPDF, _super);
-    function ResultPDF(options) {
-        return _super.call(this, options, media_type_1.MediaTypes.PDF) || this;
-    }
-    ResultPDF.prototype.compute = function () {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            try {
-                var projectRoot = process.cwd() + '/static/' + hornet_js_utils_1.Utils.config.get("themeName");
-                if (_this.options.data && _this.options.data instanceof Array) {
-                    var listValue_1 = _.map(_this.options.data, function (item) {
-                        if (item) {
-                            var arr = [];
-                            for (var _i = 0, _a = _this.options.fields; _i < _a.length; _i++) {
-                                var field = _a[_i];
-                                arr.push(item[field] ? item[field].toString() : '');
-                            }
-                            return arr;
-                        }
-                    });
-                    var header_1 = _.map(_this.options.fieldNames, function (item) {
-                        return { text: item, style: 'tableHeader' };
-                    });
-                    _this.options.definition.content.forEach(function (element) {
-                        if (element.table) {
-                            element.table = _.extend(element.table, {
-                                body: [header_1].concat(listValue_1),
-                                width: _.fill(new Array(_this.options.fields.length), '*')
-                            });
-                        }
-                    });
-                }
-                var pdfMake = __webpack_require__(577);
-                var printer = new pdfMake(_this.options.fonts ? _this.options.fonts : {
-                    Roboto: {
-                        normal: projectRoot + '/fonts/Roboto-Regular.ttf',
-                        bold: projectRoot + '/fonts/Roboto-Medium.ttf',
-                        italics: projectRoot + '/fonts/Roboto-Italic.ttf',
-                        bolditalics: projectRoot + '/fonts/Roboto-Italic.ttf'
-                    }
-                });
-                _this.options.data = printer.createPdfKitDocument(_this.options.definition);
-                resolve(true);
-            }
-            catch (e) {
-                reject(e);
-            }
-        });
-    };
-    /**
-     * méthode qui permet de parametrer les entêtes et le corps de la réponse HTTP en fonction du type de résult
-     * @vreturns {boolean} true pour envoyer la reponse [response.end]
-     */
-    ResultPDF.prototype.configure = function (res) {
-        res.contentType(this.mediaType.MIME);
-        //res.attachment(this.options.filename);
-        res.writeHead(200); //send headers
-        this.options.data.pipe(res);
-        this.options.data.end();
-        return false;
-    };
-    return ResultPDF;
-}(result_file_1.ResultFile));
-exports.ResultPDF = ResultPDF;
-
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
-
-/***/ }),
-/* 577 */
-/***/ (function(module, exports) {
-
-/*eslint no-unused-vars: ["error", {"args": "none"}]*/
-'use strict';
-
-var FontProvider = require('./fontProvider');
-var LayoutBuilder = require('./layoutBuilder');
-var PdfKit = require('pdfkit');
-var sizes = require('./standardPageSizes');
-var ImageMeasure = require('./imageMeasure');
-var textDecorator = require('./textDecorator');
-var TextTools = require('./textTools');
-var isFunction = require('./helpers').isFunction;
-var isString = require('./helpers').isString;
-var isNumber = require('./helpers').isNumber;
-var isBoolean = require('./helpers').isBoolean;
-var isArray = require('./helpers').isArray;
-
-////////////////////////////////////////
-// PdfPrinter
-
-/**
- * @class Creates an instance of a PdfPrinter which turns document definition into a pdf
- *
- * @param {Object} fontDescriptors font definition dictionary
- *
- * @example
- * var fontDescriptors = {
- *	Roboto: {
- *		normal: 'fonts/Roboto-Regular.ttf',
- *		bold: 'fonts/Roboto-Medium.ttf',
- *		italics: 'fonts/Roboto-Italic.ttf',
- *		bolditalics: 'fonts/Roboto-MediumItalic.ttf'
- *	}
- * };
- *
- * var printer = new PdfPrinter(fontDescriptors);
- */
-function PdfPrinter(fontDescriptors) {
-	this.fontDescriptors = fontDescriptors;
-}
-
-/**
- * Executes layout engine for the specified document and renders it into a pdfkit document
- * ready to be saved.
- *
- * @param {Object} docDefinition document definition
- * @param {Object} docDefinition.content an array describing the pdf structure (for more information take a look at the examples in the /examples folder)
- * @param {Object} [docDefinition.defaultStyle] default (implicit) style definition
- * @param {Object} [docDefinition.styles] dictionary defining all styles which can be used in the document
- * @param {Object} [docDefinition.pageSize] page size (pdfkit units, A4 dimensions by default)
- * @param {Number} docDefinition.pageSize.width width
- * @param {Number} docDefinition.pageSize.height height
- * @param {Object} [docDefinition.pageMargins] page margins (pdfkit units)
- * @param {Number} docDefinition.maxPagesNumber maximum number of pages to render
- *
- * @example
- *
- * var docDefinition = {
- * 	info: {
- *		title: 'awesome Document',
- *		author: 'john doe',
- *		subject: 'subject of document',
- *		keywords: 'keywords for document',
- * 	},
- *	content: [
- *		'First paragraph',
- *		'Second paragraph, this time a little bit longer',
- *		{ text: 'Third paragraph, slightly bigger font size', fontSize: 20 },
- *		{ text: 'Another paragraph using a named style', style: 'header' },
- *		{ text: ['playing with ', 'inlines' ] },
- *		{ text: ['and ', { text: 'restyling ', bold: true }, 'them'] },
- *	],
- *	styles: {
- *		header: { fontSize: 30, bold: true }
- *	}
- * }
- *
- * var pdfKitDoc = printer.createPdfKitDocument(docDefinition);
- *
- * pdfKitDoc.pipe(fs.createWriteStream('sample.pdf'));
- * pdfKitDoc.end();
- *
- * @return {Object} a pdfKit document object which can be saved or encode to data-url
- */
-PdfPrinter.prototype.createPdfKitDocument = function (docDefinition, options) {
-	options = options || {};
-
-	var pageSize = fixPageSize(docDefinition.pageSize, docDefinition.pageOrientation);
-	var compressPdf = isBoolean(docDefinition.compress) ? docDefinition.compress : true;
-
-	this.pdfKitDoc = new PdfKit({size: [pageSize.width, pageSize.height], autoFirstPage: false, compress: compressPdf});
-	setMetadata(docDefinition, this.pdfKitDoc);
-
-	this.fontProvider = new FontProvider(this.fontDescriptors, this.pdfKitDoc);
-
-	docDefinition.images = docDefinition.images || {};
-
-	var builder = new LayoutBuilder(pageSize, fixPageMargins(docDefinition.pageMargins || 40), new ImageMeasure(this.pdfKitDoc, docDefinition.images));
-
-	registerDefaultTableLayouts(builder);
-	if (options.tableLayouts) {
-		builder.registerTableLayouts(options.tableLayouts);
-	}
-
-	var pages = builder.layoutDocument(docDefinition.content, this.fontProvider, docDefinition.styles || {}, docDefinition.defaultStyle || {fontSize: 12, font: 'Roboto'}, docDefinition.background, docDefinition.header, docDefinition.footer, docDefinition.images, docDefinition.watermark, docDefinition.pageBreakBefore);
-	var maxNumberPages = docDefinition.maxPagesNumber || -1;
-	if (isNumber(maxNumberPages) && maxNumberPages > -1) {
-		pages = pages.slice(0, maxNumberPages);
-	}
-
-	// if pageSize.height is set to Infinity, calculate the actual height of the page that
-	// was laid out using the height of each of the items in the page.
-	if (pageSize.height === Infinity) {
-		var pageHeight = calculatePageHeight(pages, docDefinition.pageMargins);
-		this.pdfKitDoc.options.size = [pageSize.width, pageHeight];
-	}
-
-	renderPages(pages, this.fontProvider, this.pdfKitDoc, options.progressCallback);
-
-	if (options.autoPrint) {
-		var printActionRef = this.pdfKitDoc.ref({
-			Type: 'Action',
-			S: 'Named',
-			N: 'Print'
-		});
-		this.pdfKitDoc._root.data.OpenAction = printActionRef;
-		printActionRef.end();
-	}
-	return this.pdfKitDoc;
-};
-
-function setMetadata(docDefinition, pdfKitDoc) {
-	// PDF standard has these properties reserved: Title, Author, Subject, Keywords,
-	// Creator, Producer, CreationDate, ModDate, Trapped.
-	// To keep the pdfmake api consistent, the info field are defined lowercase.
-	// Custom properties don't contain a space.
-	function standardizePropertyKey(key) {
-		var standardProperties = ['Title', 'Author', 'Subject', 'Keywords',
-			'Creator', 'Producer', 'CreationDate', 'ModDate', 'Trapped'];
-		var standardizedKey = key.charAt(0).toUpperCase() + key.slice(1);
-		if (standardProperties.indexOf(standardizedKey) !== -1) {
-			return standardizedKey;
-		}
-
-		return key.replace(/\s+/g, '');
-	}
-
-	pdfKitDoc.info.Producer = 'pdfmake';
-	pdfKitDoc.info.Creator = 'pdfmake';
-
-	if (docDefinition.info) {
-		for (var key in docDefinition.info) {
-			var value = docDefinition.info[key];
-			if (value) {
-				key = standardizePropertyKey(key);
-				pdfKitDoc.info[key] = value;
-			}
-		}
-	}
-}
-
-function calculatePageHeight(pages, margins) {
-	function getItemHeight(item) {
-		if (isFunction(item.item.getHeight)) {
-			return item.item.getHeight();
-		} else if (item.item._height) {
-			return item.item._height;
-		} else {
-			// TODO: add support for next item types
-			return 0;
-		}
-	}
-
-	var fixedMargins = fixPageMargins(margins || 40);
-	var height = fixedMargins.top + fixedMargins.bottom;
-	pages.forEach(function (page) {
-		page.items.forEach(function (item) {
-			height += getItemHeight(item);
-		});
-	});
-	return height;
-}
-
-function fixPageSize(pageSize, pageOrientation) {
-	function isNeedSwapPageSizes(pageOrientation) {
-		if (isString(pageOrientation)) {
-			pageOrientation = pageOrientation.toLowerCase();
-			return ((pageOrientation === 'portrait') && (size.width > size.height)) ||
-				((pageOrientation === 'landscape') && (size.width < size.height));
-		}
-		return false;
-	}
-
-	// if pageSize.height is set to auto, set the height to infinity so there are no page breaks.
-	if (pageSize && pageSize.height === 'auto') {
-		pageSize.height = Infinity;
-	}
-
-	var size = pageSize2widthAndHeight(pageSize || 'A4');
-	if (isNeedSwapPageSizes(pageOrientation)) { // swap page sizes
-		size = {width: size.height, height: size.width};
-	}
-	size.orientation = size.width > size.height ? 'landscape' : 'portrait';
-	return size;
-}
-
-function fixPageMargins(margin) {
-	if (!margin) {
-		return null;
-	}
-
-	if (isNumber(margin)) {
-		margin = {left: margin, right: margin, top: margin, bottom: margin};
-	} else if (isArray(margin)) {
-		if (margin.length === 2) {
-			margin = {left: margin[0], top: margin[1], right: margin[0], bottom: margin[1]};
-		} else if (margin.length === 4) {
-			margin = {left: margin[0], top: margin[1], right: margin[2], bottom: margin[3]};
-		} else {
-			throw 'Invalid pageMargins definition';
-		}
-	}
-
-	return margin;
-}
-
-function registerDefaultTableLayouts(layoutBuilder) {
-	layoutBuilder.registerTableLayouts({
-		noBorders: {
-			hLineWidth: function (i) {
-				return 0;
-			},
-			vLineWidth: function (i) {
-				return 0;
-			},
-			paddingLeft: function (i) {
-				return i && 4 || 0;
-			},
-			paddingRight: function (i, node) {
-				return (i < node.table.widths.length - 1) ? 4 : 0;
-			}
-		},
-		headerLineOnly: {
-			hLineWidth: function (i, node) {
-				if (i === 0 || i === node.table.body.length) {
-					return 0;
-				}
-				return (i === node.table.headerRows) ? 2 : 0;
-			},
-			vLineWidth: function (i) {
-				return 0;
-			},
-			paddingLeft: function (i) {
-				return i === 0 ? 0 : 8;
-			},
-			paddingRight: function (i, node) {
-				return (i === node.table.widths.length - 1) ? 0 : 8;
-			}
-		},
-		lightHorizontalLines: {
-			hLineWidth: function (i, node) {
-				if (i === 0 || i === node.table.body.length) {
-					return 0;
-				}
-				return (i === node.table.headerRows) ? 2 : 1;
-			},
-			vLineWidth: function (i) {
-				return 0;
-			},
-			hLineColor: function (i) {
-				return i === 1 ? 'black' : '#aaa';
-			},
-			paddingLeft: function (i) {
-				return i === 0 ? 0 : 8;
-			},
-			paddingRight: function (i, node) {
-				return (i === node.table.widths.length - 1) ? 0 : 8;
-			}
-		}
-	});
-}
-
-function pageSize2widthAndHeight(pageSize) {
-	if (isString(pageSize)) {
-		var size = sizes[pageSize.toUpperCase()];
-		if (!size) {
-			throw 'Page size ' + pageSize + ' not recognized';
-		}
-		return {width: size[0], height: size[1]};
-	}
-
-	return pageSize;
-}
-
-function updatePageOrientationInOptions(currentPage, pdfKitDoc) {
-	var previousPageOrientation = pdfKitDoc.options.size[0] > pdfKitDoc.options.size[1] ? 'landscape' : 'portrait';
-
-	if (currentPage.pageSize.orientation !== previousPageOrientation) {
-		var width = pdfKitDoc.options.size[0];
-		var height = pdfKitDoc.options.size[1];
-		pdfKitDoc.options.size = [height, width];
-	}
-}
-
-function renderPages(pages, fontProvider, pdfKitDoc, progressCallback) {
-	pdfKitDoc._pdfMakePages = pages;
-	pdfKitDoc.addPage();
-
-	var totalItems = 0;
-	if (progressCallback) {
-		pages.forEach(function (page) {
-			totalItems += page.items.length;
-		});
-	}
-
-	var renderedItems = 0;
-	progressCallback = progressCallback || function () {};
-
-	for (var i = 0; i < pages.length; i++) {
-		if (i > 0) {
-			updatePageOrientationInOptions(pages[i], pdfKitDoc);
-			pdfKitDoc.addPage(pdfKitDoc.options);
-		}
-
-		var page = pages[i];
-		for (var ii = 0, il = page.items.length; ii < il; ii++) {
-			var item = page.items[ii];
-			switch (item.type) {
-				case 'vector':
-					renderVector(item.item, pdfKitDoc);
-					break;
-				case 'line':
-					renderLine(item.item, item.item.x, item.item.y, pdfKitDoc);
-					break;
-				case 'image':
-					renderImage(item.item, item.item.x, item.item.y, pdfKitDoc);
-					break;
-				case 'beginClip':
-					beginClip(item.item, pdfKitDoc);
-					break;
-				case 'endClip':
-					endClip(pdfKitDoc);
-					break;
-			}
-			renderedItems++;
-			progressCallback(renderedItems / totalItems);
-		}
-		if (page.watermark) {
-			renderWatermark(page, pdfKitDoc);
-		}
-	}
-}
-
-function renderLine(line, x, y, pdfKitDoc) {
-	if (line._pageNodeRef) {
-		var newWidth;
-		var diffWidth;
-		var textTools = new TextTools(null);
-		var pageNumber = line._pageNodeRef.positions[0].pageNumber.toString();
-
-		line.inlines[0].text = pageNumber;
-		line.inlines[0].linkToPage = pageNumber;
-		newWidth = textTools.widthOfString(line.inlines[0].text, line.inlines[0].font, line.inlines[0].fontSize, line.inlines[0].characterSpacing, line.inlines[0].fontFeatures);
-		diffWidth = line.inlines[0].width - newWidth;
-		line.inlines[0].width = newWidth;
-
-		switch (line.inlines[0].alignment) {
-			case 'right':
-				line.inlines[0].x += diffWidth;
-				break;
-			case 'center':
-				line.inlines[0].x += diffWidth / 2;
-				break;
-		}
-	}
-
-	x = x || 0;
-	y = y || 0;
-
-	var lineHeight = line.getHeight();
-	var ascenderHeight = line.getAscenderHeight();
-	var descent = lineHeight - ascenderHeight;
-
-	textDecorator.drawBackground(line, x, y, pdfKitDoc);
-
-	//TODO: line.optimizeInlines();
-	for (var i = 0, l = line.inlines.length; i < l; i++) {
-		var inline = line.inlines[i];
-		var shiftToBaseline = lineHeight - ((inline.font.ascender / 1000) * inline.fontSize) - descent;
-		var options = {
-			lineBreak: false,
-			textWidth: inline.width,
-			characterSpacing: inline.characterSpacing,
-			wordCount: 1,
-			link: inline.link
-		};
-
-		if (inline.fontFeatures) {
-			options.features = inline.fontFeatures;
-		}
-
-		pdfKitDoc.fill(inline.color || 'black');
-
-		pdfKitDoc._font = inline.font;
-		pdfKitDoc.fontSize(inline.fontSize);
-		pdfKitDoc.text(inline.text, x + inline.x, y + shiftToBaseline, options);
-
-		if (inline.linkToPage) {
-			var _ref = pdfKitDoc.ref({Type: 'Action', S: 'GoTo', D: [inline.linkToPage, 0, 0]}).end();
-			pdfKitDoc.annotate(x + inline.x, y + shiftToBaseline, inline.width, inline.height, {Subtype: 'Link', Dest: [inline.linkToPage - 1, 'XYZ', null, null, null]});
-		}
-
-	}
-
-	textDecorator.drawDecorations(line, x, y, pdfKitDoc);
-}
-
-function renderWatermark(page, pdfKitDoc) {
-	var watermark = page.watermark;
-
-	pdfKitDoc.fill(watermark.color);
-	pdfKitDoc.opacity(watermark.opacity);
-
-	pdfKitDoc.save();
-
-	var angle = Math.atan2(pdfKitDoc.page.height, pdfKitDoc.page.width) * -180 / Math.PI;
-	pdfKitDoc.rotate(angle, {origin: [pdfKitDoc.page.width / 2, pdfKitDoc.page.height / 2]});
-
-	var x = pdfKitDoc.page.width / 2 - watermark.size.size.width / 2;
-	var y = pdfKitDoc.page.height / 2 - watermark.size.size.height / 4;
-
-	pdfKitDoc._font = watermark.font;
-	pdfKitDoc.fontSize(watermark.size.fontSize);
-	pdfKitDoc.text(watermark.text, x, y, {lineBreak: false});
-
-	pdfKitDoc.restore();
-}
-
-function renderVector(vector, pdfKitDoc) {
-	//TODO: pdf optimization (there's no need to write all properties everytime)
-	pdfKitDoc.lineWidth(vector.lineWidth || 1);
-	if (vector.dash) {
-		pdfKitDoc.dash(vector.dash.length, {space: vector.dash.space || vector.dash.length, phase: vector.dash.phase || 0});
-	} else {
-		pdfKitDoc.undash();
-	}
-	pdfKitDoc.lineJoin(vector.lineJoin || 'miter');
-	pdfKitDoc.lineCap(vector.lineCap || 'butt');
-
-	//TODO: clipping
-
-	switch (vector.type) {
-		case 'ellipse':
-			pdfKitDoc.ellipse(vector.x, vector.y, vector.r1, vector.r2);
-			break;
-		case 'rect':
-			if (vector.r) {
-				pdfKitDoc.roundedRect(vector.x, vector.y, vector.w, vector.h, vector.r);
-			} else {
-				pdfKitDoc.rect(vector.x, vector.y, vector.w, vector.h);
-			}
-
-			if (vector.linearGradient) {
-				var gradient = pdfKitDoc.linearGradient(vector.x, vector.y, vector.x + vector.w, vector.y);
-				var step = 1 / (vector.linearGradient.length - 1);
-
-				for (var i = 0; i < vector.linearGradient.length; i++) {
-					gradient.stop(i * step, vector.linearGradient[i]);
-				}
-
-				vector.color = gradient;
-			}
-			break;
-		case 'line':
-			pdfKitDoc.moveTo(vector.x1, vector.y1);
-			pdfKitDoc.lineTo(vector.x2, vector.y2);
-			break;
-		case 'polyline':
-			if (vector.points.length === 0) {
-				break;
-			}
-
-			pdfKitDoc.moveTo(vector.points[0].x, vector.points[0].y);
-			for (var i = 1, l = vector.points.length; i < l; i++) {
-				pdfKitDoc.lineTo(vector.points[i].x, vector.points[i].y);
-			}
-
-			if (vector.points.length > 1) {
-				var p1 = vector.points[0];
-				var pn = vector.points[vector.points.length - 1];
-
-				if (vector.closePath || p1.x === pn.x && p1.y === pn.y) {
-					pdfKitDoc.closePath();
-				}
-			}
-			break;
-		case 'path':
-			pdfKitDoc.path(vector.d);
-			break;
-	}
-
-	if (vector.color && vector.lineColor) {
-		pdfKitDoc.fillColor(vector.color, vector.fillOpacity || 1);
-		pdfKitDoc.strokeColor(vector.lineColor, vector.strokeOpacity || 1);
-		pdfKitDoc.fillAndStroke();
-	} else if (vector.color) {
-		pdfKitDoc.fillColor(vector.color, vector.fillOpacity || 1);
-		pdfKitDoc.fill();
-	} else {
-		pdfKitDoc.strokeColor(vector.lineColor || 'black', vector.strokeOpacity || 1);
-		pdfKitDoc.stroke();
-	}
-}
-
-function renderImage(image, x, y, pdfKitDoc) {
-	pdfKitDoc.image(image.image, image.x, image.y, {width: image._width, height: image._height});
-	if (image.link) {
-		pdfKitDoc.link(image.x, image.y, image._width, image._height, image.link);
-	}
-}
-
-function beginClip(rect, pdfKitDoc) {
-	pdfKitDoc.save();
-	pdfKitDoc.addContent('' + rect.x + ' ' + rect.y + ' ' + rect.width + ' ' + rect.height + ' re');
-	pdfKitDoc.clip();
-}
-
-function endClip(pdfKitDoc) {
-	pdfKitDoc.restore();
-}
-
-module.exports = PdfPrinter;
-
-
-/* temporary browser extension */
-PdfPrinter.prototype.fs = require('fs');
 
 
 /***/ })

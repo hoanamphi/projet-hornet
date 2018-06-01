@@ -10,7 +10,7 @@ export class PersonneFVMDAO extends EntityDAO {
     super();
   }
 
-  insererPersonne(nom, prenom, dateDeNaissance, villeDeNaissance, paysDeNaissance, idPermis): Promise<any> {
+  insererPersonne(nom, prenom, dateDeNaissance, idSexe, villeDeNaissance, paysDeNaissance, idPermis): Promise<any> {
     return this.getNewIdPersonne().then(idPersonne=>{
 
       return this.modelDAO.personneFVMEntity.create({
@@ -18,6 +18,7 @@ export class PersonneFVMDAO extends EntityDAO {
         nom: nom,
         prenom: prenom,
         dateDeNaissance: dateDeNaissance,
+        sexe: this.getSexe(idSexe),
         villeDeNaissance: villeDeNaissance,
         paysDeNaissance: paysDeNaissance,
         idPermis: idPermis
@@ -25,6 +26,14 @@ export class PersonneFVMDAO extends EntityDAO {
         return Promise.resolve(idPersonne);
       });
     });
+  }
+
+  getSexe(idSexe): string {
+    if(idSexe == 0) {
+      return "Monsieur";
+    } else {
+      return "Madame";
+    }
   }
 
   getNewIdPersonne(): Promise<any> {

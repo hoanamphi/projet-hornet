@@ -30432,7 +30432,7 @@ var ReactDom = __webpack_require__(22);
 var hornet_component_1 = __webpack_require__(3);
 var notification_message_item_1 = __webpack_require__(225);
 var notification_events_1 = __webpack_require__(45);
-var accordion_1 = __webpack_require__(53);
+var accordion_1 = __webpack_require__(54);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.notification.notification");
 /**
  * Type d'erreur
@@ -31196,6 +31196,188 @@ exports.HornetPage = HornetPage;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+/**
+ * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * Ce logiciel est un programme informatique servant à faciliter la création
+ * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
+ * <p/>
+ * Ce logiciel est régi par la licence CeCILL soumise au droit français et
+ * respectant les principes de diffusion des logiciels libres. Vous pouvez
+ * utiliser, modifier et/ou redistribuer ce programme sous les conditions
+ * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
+ * sur le site "http://www.cecill.info".
+ * <p/>
+ * En contrepartie de l'accessibilité au code source et des droits de copie,
+ * de modification et de redistribution accordés par cette licence, il n'est
+ * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
+ * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
+ * titulaire des droits patrimoniaux et les concédants successifs.
+ * <p/>
+ * A cet égard  l'attention de l'utilisateur est attirée sur les risques
+ * associés au chargement,  à l'utilisation,  à la modification et/ou au
+ * développement et à la reproduction du logiciel par l'utilisateur étant
+ * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
+ * manipuler et qui le réserve donc à des développeurs et des professionnels
+ * avertis possédant  des  connaissances  informatiques approfondies.  Les
+ * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
+ * logiciel à leurs besoins dans des conditions permettant d'assurer la
+ * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
+ * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
+ * <p/>
+ * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
+ * pris connaissance de la licence CeCILL, et que vous en avez accepté les
+ * termes.
+ * <p/>
+ * <p/>
+ * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * This software is a computer program whose purpose is to facilitate creation of
+ * web application in accordance with french general repositories : RGI, RGS and RGAA.
+ * <p/>
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software.  You can  use,
+ * modify and/ or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ * <p/>
+ * As a counterpart to the access to the source code and  rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty  and the software's author,  the holder of the
+ * economic rights,  and the successive licensors  have only  limited
+ * liability.
+ * <p/>
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading,  using,  modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean  that it is complicated to manipulate,  and  that  also
+ * therefore means  that it is reserved for developers  and  experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and,  more generally, to use and operate it in the
+ * same conditions as regards security.
+ * <p/>
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * hornet-js-core - Ensemble des composants qui forment le coeur de hornet-js
+ *
+ * @author MEAE - Ministère de l'Europe et des Affaires étrangères
+ * @version v5.1.1
+ * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
+ * @license CECILL-2.1
+ */
+var _ = __webpack_require__(6);
+var MediaTypes = /** @class */ (function () {
+    function MediaTypes() {
+    }
+    MediaTypes._fromShortValue = function (parameter) {
+        var mediaType = null;
+        _.forOwn(MediaTypes, function (value) {
+            if (value && value.SHORT && value.SHORT === parameter) {
+                mediaType = value;
+                return false;
+            }
+        });
+        return mediaType;
+    };
+    MediaTypes._fromMime = function (mimeType) {
+        var mediaType = null;
+        _.forOwn(MediaTypes, function (value) {
+            if (value && value.MIME && value.MIME === mimeType) {
+                mediaType = value;
+                return false;
+            }
+        });
+        return mediaType;
+    };
+    /**
+     * Rerouve la constante MediaType suivant la valeur abrégée
+     * @param {string} shortValue
+     * @return MediaTypes or MediaTypes.JSON si non pris en charge
+     */
+    MediaTypes.fromShortValue = function (shortValue) {
+        return MediaTypes._fromShortValue(shortValue) || MediaTypes.DEFAULT;
+    };
+    /**
+     * Rerouve la constante MediaType suivant la valeur de l'entête Accept
+     * @param {string} shortValue
+     * @return MediaTypes or MediaTypes.JSON si non pris en charge
+     */
+    MediaTypes.fromMime = function (accept) {
+        return MediaTypes._fromMime(accept) || MediaTypes.DEFAULT;
+    };
+    MediaTypes.MEDIATYPE_PARAMETER = "mediaType";
+    MediaTypes.JSON = {
+        SHORT: "json",
+        MIME: "application/json"
+    };
+    MediaTypes.XLS = {
+        SHORT: "xls",
+        MIME: "application/vnd.ms-excel"
+    };
+    MediaTypes.CSV = {
+        SHORT: "csv",
+        MIME: "text/csv"
+    };
+    MediaTypes.PDF = {
+        SHORT: "pdf",
+        MIME: "application/pdf",
+    };
+    MediaTypes.DOC = {
+        SHORT: "doc",
+        MIME: "application/msword"
+    };
+    MediaTypes.TXT = {
+        SHORT: "txt",
+        MIME: "text/plain"
+    };
+    MediaTypes.PNG = {
+        SHORT: "png",
+        MIME: "image/png"
+    };
+    MediaTypes.BMP = {
+        SHORT: "bmp",
+        MIME: "image/x-ms-bmp"
+    };
+    MediaTypes.JPG = {
+        SHORT: "jpg",
+        MIME: "image/jpeg"
+    };
+    MediaTypes.OCTETSTREAM = {
+        SHORT: "octet-stream",
+        MIME: "application/octet-stream"
+    };
+    MediaTypes.ODS = {
+        SHORT: "ods",
+        MIME: "application/vnd.oasis.opendocument.spreadsheet"
+    };
+    MediaTypes.ODT = {
+        SHORT: "odt",
+        MIME: "application/vnd.oasis.opendocument.text"
+    };
+    // Attention à ne pas déclarer le DEFAUT avant sa valeur
+    MediaTypes.DEFAULT = MediaTypes.JSON;
+    return MediaTypes;
+}());
+exports.MediaTypes = MediaTypes;
+
+
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -31259,7 +31441,7 @@ module.exports = checkPropTypes;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31707,7 +31889,7 @@ exports.Accordion = Accordion;
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32069,188 +32251,6 @@ exports.BackendApiError = BackendApiError;
 
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
-
-/***/ }),
-/* 55 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * Ce logiciel est un programme informatique servant à faciliter la création
- * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
- * <p/>
- * Ce logiciel est régi par la licence CeCILL soumise au droit français et
- * respectant les principes de diffusion des logiciels libres. Vous pouvez
- * utiliser, modifier et/ou redistribuer ce programme sous les conditions
- * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
- * sur le site "http://www.cecill.info".
- * <p/>
- * En contrepartie de l'accessibilité au code source et des droits de copie,
- * de modification et de redistribution accordés par cette licence, il n'est
- * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
- * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
- * titulaire des droits patrimoniaux et les concédants successifs.
- * <p/>
- * A cet égard  l'attention de l'utilisateur est attirée sur les risques
- * associés au chargement,  à l'utilisation,  à la modification et/ou au
- * développement et à la reproduction du logiciel par l'utilisateur étant
- * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
- * manipuler et qui le réserve donc à des développeurs et des professionnels
- * avertis possédant  des  connaissances  informatiques approfondies.  Les
- * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
- * logiciel à leurs besoins dans des conditions permettant d'assurer la
- * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
- * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
- * <p/>
- * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
- * pris connaissance de la licence CeCILL, et que vous en avez accepté les
- * termes.
- * <p/>
- * <p/>
- * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * This software is a computer program whose purpose is to facilitate creation of
- * web application in accordance with french general repositories : RGI, RGS and RGAA.
- * <p/>
- * This software is governed by the CeCILL license under French law and
- * abiding by the rules of distribution of free software.  You can  use,
- * modify and/ or redistribute the software under the terms of the CeCILL
- * license as circulated by CEA, CNRS and INRIA at the following URL
- * "http://www.cecill.info".
- * <p/>
- * As a counterpart to the access to the source code and  rights to copy,
- * modify and redistribute granted by the license, users are provided only
- * with a limited warranty  and the software's author,  the holder of the
- * economic rights,  and the successive licensors  have only  limited
- * liability.
- * <p/>
- * In this respect, the user's attention is drawn to the risks associated
- * with loading,  using,  modifying and/or developing or reproducing the
- * software by the user in light of its specific status of free software,
- * that may mean  that it is complicated to manipulate,  and  that  also
- * therefore means  that it is reserved for developers  and  experienced
- * professionals having in-depth computer knowledge. Users are therefore
- * encouraged to load and test the software's suitability as regards their
- * requirements in conditions enabling the security of their systems and/or
- * data to be ensured and,  more generally, to use and operate it in the
- * same conditions as regards security.
- * <p/>
- * The fact that you are presently reading this means that you have had
- * knowledge of the CeCILL license and that you accept its terms.
- *
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * hornet-js-core - Ensemble des composants qui forment le coeur de hornet-js
- *
- * @author MEAE - Ministère de l'Europe et des Affaires étrangères
- * @version v5.1.1
- * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
- * @license CECILL-2.1
- */
-var _ = __webpack_require__(6);
-var MediaTypes = /** @class */ (function () {
-    function MediaTypes() {
-    }
-    MediaTypes._fromShortValue = function (parameter) {
-        var mediaType = null;
-        _.forOwn(MediaTypes, function (value) {
-            if (value && value.SHORT && value.SHORT === parameter) {
-                mediaType = value;
-                return false;
-            }
-        });
-        return mediaType;
-    };
-    MediaTypes._fromMime = function (mimeType) {
-        var mediaType = null;
-        _.forOwn(MediaTypes, function (value) {
-            if (value && value.MIME && value.MIME === mimeType) {
-                mediaType = value;
-                return false;
-            }
-        });
-        return mediaType;
-    };
-    /**
-     * Rerouve la constante MediaType suivant la valeur abrégée
-     * @param {string} shortValue
-     * @return MediaTypes or MediaTypes.JSON si non pris en charge
-     */
-    MediaTypes.fromShortValue = function (shortValue) {
-        return MediaTypes._fromShortValue(shortValue) || MediaTypes.DEFAULT;
-    };
-    /**
-     * Rerouve la constante MediaType suivant la valeur de l'entête Accept
-     * @param {string} shortValue
-     * @return MediaTypes or MediaTypes.JSON si non pris en charge
-     */
-    MediaTypes.fromMime = function (accept) {
-        return MediaTypes._fromMime(accept) || MediaTypes.DEFAULT;
-    };
-    MediaTypes.MEDIATYPE_PARAMETER = "mediaType";
-    MediaTypes.JSON = {
-        SHORT: "json",
-        MIME: "application/json"
-    };
-    MediaTypes.XLS = {
-        SHORT: "xls",
-        MIME: "application/vnd.ms-excel"
-    };
-    MediaTypes.CSV = {
-        SHORT: "csv",
-        MIME: "text/csv"
-    };
-    MediaTypes.PDF = {
-        SHORT: "pdf",
-        MIME: "application/pdf",
-    };
-    MediaTypes.DOC = {
-        SHORT: "doc",
-        MIME: "application/msword"
-    };
-    MediaTypes.TXT = {
-        SHORT: "txt",
-        MIME: "text/plain"
-    };
-    MediaTypes.PNG = {
-        SHORT: "png",
-        MIME: "image/png"
-    };
-    MediaTypes.BMP = {
-        SHORT: "bmp",
-        MIME: "image/x-ms-bmp"
-    };
-    MediaTypes.JPG = {
-        SHORT: "jpg",
-        MIME: "image/jpeg"
-    };
-    MediaTypes.OCTETSTREAM = {
-        SHORT: "octet-stream",
-        MIME: "application/octet-stream"
-    };
-    MediaTypes.ODS = {
-        SHORT: "ods",
-        MIME: "application/vnd.oasis.opendocument.spreadsheet"
-    };
-    MediaTypes.ODT = {
-        SHORT: "odt",
-        MIME: "application/vnd.oasis.opendocument.text"
-    };
-    // Attention à ne pas déclarer le DEFAUT avant sa valeur
-    MediaTypes.DEFAULT = MediaTypes.JSON;
-    return MediaTypes;
-}());
-exports.MediaTypes = MediaTypes;
-
-
 
 /***/ }),
 /* 56 */
@@ -34494,8 +34494,8 @@ var superagent = __webpack_require__(187);
 var hornet_superagent_request_1 = __webpack_require__(33);
 var hornet_event_1 = __webpack_require__(7);
 var superAgentPlugins = __webpack_require__(193);
-var media_type_1 = __webpack_require__(55);
-var service_api_results_1 = __webpack_require__(54);
+var media_type_1 = __webpack_require__(52);
+var service_api_results_1 = __webpack_require__(55);
 var error_manager_1 = __webpack_require__(32);
 var technical_error_1 = __webpack_require__(13);
 var hornet_cache_1 = __webpack_require__(195);
@@ -34509,7 +34509,7 @@ var promise_api_1 = __webpack_require__(50);
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 var http = __webpack_require__(76);
 var https = __webpack_require__(212);
-var disposition_type_1 = __webpack_require__(106);
+var disposition_type_1 = __webpack_require__(104);
 if (http["__old_http_request"] == undefined) {
     http["__old_http_request"] = http.request;
     https["__old_https_reques"] = https.request;
@@ -39671,7 +39671,7 @@ var hornet_js_utils_1 = __webpack_require__(0);
 var _ = __webpack_require__(6);
 var technical_error_1 = __webpack_require__(13);
 var codes_error_1 = __webpack_require__(97);
-var media_type_1 = __webpack_require__(55);
+var media_type_1 = __webpack_require__(52);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.routes.abstract-routes");
 /** Routes type */
 exports.RouteType = {
@@ -40740,71 +40740,19 @@ exports['default'] = exports;
  *
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(1);
 /**
- * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
+ * hornet-js-core - Ensemble des composants qui forment le coeur de hornet-js
  *
  * @author MEAE - Ministère de l'Europe et des Affaires étrangères
  * @version v5.1.1
  * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
  * @license CECILL-2.1
  */
-var hornet_js_utils_1 = __webpack_require__(0);
-var React = __webpack_require__(2);
-var hornet_component_1 = __webpack_require__(3);
-var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.icon.icon");
-/** Valeur de l'url par défaut lorsque la propriété url est vide */
-exports.EMPTY_URL = "#";
-/**
- * Composant Icône
- */
-var Icon = /** @class */ (function (_super) {
-    tslib_1.__extends(Icon, _super);
-    function Icon() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    /**
-     * Retire le focus de l'élément une fois cliqué de façon à permettre de scroller ou mettre le focus sur les
-     * notifications éventuellement présentées suite à l'action.
-     * @param event évènement
-     * @protected
-     */
-    Icon.prototype.iconOnClick = function (event) {
-        if (event.currentTarget && event.currentTarget.blur) {
-            event.currentTarget.blur();
-        }
-        else {
-            logger.warn("iconOnClick : impossible d'enlever le focus de l'élement");
-        }
-        /* Exécute ensuite la fonction fournie en propriétés */
-        if (this.state.action) {
-            this.state.action();
-        }
-    };
-    /**
-     * @inheritDoc
-     */
-    Icon.prototype.render = function () {
-        var result;
-        if (this.state.url == null || this.state.url == exports.EMPTY_URL) {
-            /* L'URL n'est pas valorisée : le comportement est celui d'un bouton (raccourci clavier : Entrée OU Espace )
-             * (cf. https://www.w3.org/TR/wai-aria-practices/#button > "Keyboard Interaction")  */
-            result = React.createElement("button", { type: "button", title: this.state.title, id: this.state.idLink, className: this.props.classLink, onClick: this.iconOnClick, tabIndex: this.props.tabIndex, "aria-haspopup": this.props.hasPopUp },
-                React.createElement("img", { src: this.state.src, alt: this.state.alt, id: this.state.idImg, className: this.state.classImg }));
-        }
-        else {
-            /* L'URL est valorisée : le comportement est celui d'un lien (raccourci clavier : Entrée uniquement )*/
-            result = React.createElement("a", { href: this.state.url, title: this.state.title, id: this.state.idLink, className: this.props.classLink, onClick: this.iconOnClick, target: this.state.target, tabIndex: this.props.tabIndex },
-                React.createElement("img", { src: this.state.src, alt: this.state.alt, id: this.state.idImg, className: this.state.classImg }));
-        }
-        return result;
-    };
-    Icon.defaultProps = {
-        url: exports.EMPTY_URL
-    };
-    return Icon;
-}(hornet_component_1.HornetComponent));
-exports.Icon = Icon;
+var DispositionType;
+(function (DispositionType) {
+    DispositionType["INLINE"] = "inline";
+    DispositionType["ATTACHMENT"] = "attachment";
+})(DispositionType = exports.DispositionType || (exports.DispositionType = {}));
 
 
 
@@ -40896,75 +40844,60 @@ var tslib_1 = __webpack_require__(1);
  */
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
-var ReactDOM = __webpack_require__(22);
 var hornet_component_1 = __webpack_require__(3);
-var icon_1 = __webpack_require__(104);
-var modal_1 = __webpack_require__(100);
-var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.table.button-info-accessibilite");
+var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.icon.icon");
+/** Valeur de l'url par défaut lorsque la propriété url est vide */
+exports.EMPTY_URL = "#";
 /**
- * Bouton et modale d'information sur l'accessibilité clavier du composant Table
+ * Composant Icône
  */
-var ButtonInfoAccessibilite = /** @class */ (function (_super) {
-    tslib_1.__extends(ButtonInfoAccessibilite, _super);
-    function ButtonInfoAccessibilite() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.shortcutsI18n = ButtonInfoAccessibilite.getI18n("shortcuts");
-        return _this;
+var Icon = /** @class */ (function (_super) {
+    tslib_1.__extends(Icon, _super);
+    function Icon() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
+    /**
+     * Retire le focus de l'élément une fois cliqué de façon à permettre de scroller ou mettre le focus sur les
+     * notifications éventuellement présentées suite à l'action.
+     * @param event évènement
+     * @protected
+     */
+    Icon.prototype.iconOnClick = function (event) {
+        if (event.currentTarget && event.currentTarget.blur) {
+            event.currentTarget.blur();
+        }
+        else {
+            logger.warn("iconOnClick : impossible d'enlever le focus de l'élement");
+        }
+        /* Exécute ensuite la fonction fournie en propriétés */
+        if (this.state.action) {
+            this.state.action();
+        }
+    };
     /**
      * @inheritDoc
      */
-    ButtonInfoAccessibilite.prototype.render = function () {
-        var _this = this;
-        return (React.createElement("div", { className: "button-info-accessibilite" },
-            React.createElement(icon_1.Icon, { title: this.state.message.shortcuts ? this.state.message.shortcuts.iconTitle : this.shortcutsI18n.iconTitle, alt: this.state.message.shortcuts ? this.state.message.shortcuts.iconTitle : this.shortcutsI18n.iconTitle, action: this.handleShowInfoModal, url: "#", src: this.props.srcImg || ButtonInfoAccessibilite.genUrlTheme() + "/img/button/icon_info.svg", classLink: "button-info-accessibilite-button button-action", hasPopUp: true, ref: function (icon) { _this.htmlIcon = icon; } }),
-            this.renderModal()));
+    Icon.prototype.render = function () {
+        var result;
+        if (this.state.url == null || this.state.url == exports.EMPTY_URL) {
+            /* L'URL n'est pas valorisée : le comportement est celui d'un bouton (raccourci clavier : Entrée OU Espace )
+             * (cf. https://www.w3.org/TR/wai-aria-practices/#button > "Keyboard Interaction")  */
+            result = React.createElement("button", { type: "button", title: this.state.title, id: this.state.idLink, className: this.props.classLink, onClick: this.iconOnClick, tabIndex: this.props.tabIndex, "aria-haspopup": this.props.hasPopUp },
+                React.createElement("img", { src: this.state.src, alt: this.state.alt, id: this.state.idImg, className: this.state.classImg }));
+        }
+        else {
+            /* L'URL est valorisée : le comportement est celui d'un lien (raccourci clavier : Entrée uniquement )*/
+            result = React.createElement("a", { href: this.state.url, title: this.state.title, id: this.state.idLink, className: this.props.classLink, onClick: this.iconOnClick, target: this.state.target, tabIndex: this.props.tabIndex },
+                React.createElement("img", { src: this.state.src, alt: this.state.alt, id: this.state.idImg, className: this.state.classImg }));
+        }
+        return result;
     };
-    ButtonInfoAccessibilite.prototype.renderModal = function () {
-        return (React.createElement(modal_1.Modal, { ref: "modal", title: this.state.message.shortcuts ? this.state.message.shortcuts.modalTitle : this.shortcutsI18n.modalTitle, onClickClose: this.handleClickClose, className: "modal-shortcuts-content", escapeKeyExits: true },
-            React.createElement("div", { className: "widget-shortcuts-body" },
-                React.createElement("div", { className: "widget-shortcuts-content" },
-                    React.createElement("div", { className: "shortCutsList" },
-                        React.createElement("h4", null, this.state.message.shortcuts ?
-                            this.state.message.shortcuts.modalContentTitle : this.shortcutsI18n.modalContentTitle),
-                        React.createElement("ul", null, this.state.shortcutDescriptions.map(this.renderShortCut.bind(this))))))));
+    Icon.defaultProps = {
+        url: exports.EMPTY_URL
     };
-    ButtonInfoAccessibilite.prototype.renderShortCut = function (item, index) {
-        var separator = (item.and) ? "+" : "/";
-        var shortcuts = [];
-        item.shortcuts.map(function (shortcut, i) {
-            shortcuts.push(React.createElement("kbd", { key: "shortcut-" + shortcut + "-" + i }, shortcut));
-            if ((i + 1) !== item.shortcuts.length) {
-                shortcuts.push(separator);
-            }
-        });
-        return (React.createElement("li", { key: "item-shortcut-" + index },
-            React.createElement("div", null,
-                React.createElement("div", null,
-                    shortcuts,
-                    " :"),
-                React.createElement("div", null, item.description))));
-    };
-    ButtonInfoAccessibilite.prototype.handleShowInfoModal = function () {
-        this.refs.modal.open();
-    };
-    ButtonInfoAccessibilite.prototype.handleClickClose = function (t) {
-        var _this = this;
-        this.refs.modal.close(function () {
-            var el = ReactDOM.findDOMNode(_this.htmlIcon);
-            if (el && el instanceof HTMLElement && el.focus) {
-                el.tabIndex = 0;
-                el.focus();
-            }
-        });
-    };
-    ButtonInfoAccessibilite.defaultProps = {
-        message: "",
-        shortcutDescriptions: []
-    };
-    return ButtonInfoAccessibilite;
+    return Icon;
 }(hornet_component_1.HornetComponent));
-exports.ButtonInfoAccessibilite = ButtonInfoAccessibilite;
+exports.Icon = Icon;
 
 
 
@@ -41045,19 +40978,86 @@ exports.ButtonInfoAccessibilite = ButtonInfoAccessibilite;
  *
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(1);
 /**
- * hornet-js-core - Ensemble des composants qui forment le coeur de hornet-js
+ * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
  *
  * @author MEAE - Ministère de l'Europe et des Affaires étrangères
  * @version v5.1.1
  * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
  * @license CECILL-2.1
  */
-var DispositionType;
-(function (DispositionType) {
-    DispositionType["INLINE"] = "inline";
-    DispositionType["ATTACHMENT"] = "attachment";
-})(DispositionType = exports.DispositionType || (exports.DispositionType = {}));
+var hornet_js_utils_1 = __webpack_require__(0);
+var React = __webpack_require__(2);
+var ReactDOM = __webpack_require__(22);
+var hornet_component_1 = __webpack_require__(3);
+var icon_1 = __webpack_require__(105);
+var modal_1 = __webpack_require__(100);
+var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.table.button-info-accessibilite");
+/**
+ * Bouton et modale d'information sur l'accessibilité clavier du composant Table
+ */
+var ButtonInfoAccessibilite = /** @class */ (function (_super) {
+    tslib_1.__extends(ButtonInfoAccessibilite, _super);
+    function ButtonInfoAccessibilite() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.shortcutsI18n = ButtonInfoAccessibilite.getI18n("shortcuts");
+        return _this;
+    }
+    /**
+     * @inheritDoc
+     */
+    ButtonInfoAccessibilite.prototype.render = function () {
+        var _this = this;
+        return (React.createElement("div", { className: "button-info-accessibilite" },
+            React.createElement(icon_1.Icon, { title: this.state.message.shortcuts ? this.state.message.shortcuts.iconTitle : this.shortcutsI18n.iconTitle, alt: this.state.message.shortcuts ? this.state.message.shortcuts.iconTitle : this.shortcutsI18n.iconTitle, action: this.handleShowInfoModal, url: "#", src: this.props.srcImg || ButtonInfoAccessibilite.genUrlTheme() + "/img/button/icon_info.svg", classLink: "button-info-accessibilite-button button-action", hasPopUp: true, ref: function (icon) { _this.htmlIcon = icon; } }),
+            this.renderModal()));
+    };
+    ButtonInfoAccessibilite.prototype.renderModal = function () {
+        return (React.createElement(modal_1.Modal, { ref: "modal", title: this.state.message.shortcuts ? this.state.message.shortcuts.modalTitle : this.shortcutsI18n.modalTitle, onClickClose: this.handleClickClose, className: "modal-shortcuts-content", escapeKeyExits: true },
+            React.createElement("div", { className: "widget-shortcuts-body" },
+                React.createElement("div", { className: "widget-shortcuts-content" },
+                    React.createElement("div", { className: "shortCutsList" },
+                        React.createElement("h4", null, this.state.message.shortcuts ?
+                            this.state.message.shortcuts.modalContentTitle : this.shortcutsI18n.modalContentTitle),
+                        React.createElement("ul", null, this.state.shortcutDescriptions.map(this.renderShortCut.bind(this))))))));
+    };
+    ButtonInfoAccessibilite.prototype.renderShortCut = function (item, index) {
+        var separator = (item.and) ? "+" : "/";
+        var shortcuts = [];
+        item.shortcuts.map(function (shortcut, i) {
+            shortcuts.push(React.createElement("kbd", { key: "shortcut-" + shortcut + "-" + i }, shortcut));
+            if ((i + 1) !== item.shortcuts.length) {
+                shortcuts.push(separator);
+            }
+        });
+        return (React.createElement("li", { key: "item-shortcut-" + index },
+            React.createElement("div", null,
+                React.createElement("div", null,
+                    shortcuts,
+                    " :"),
+                React.createElement("div", null, item.description))));
+    };
+    ButtonInfoAccessibilite.prototype.handleShowInfoModal = function () {
+        this.refs.modal.open();
+    };
+    ButtonInfoAccessibilite.prototype.handleClickClose = function (t) {
+        var _this = this;
+        this.refs.modal.close(function () {
+            var el = ReactDOM.findDOMNode(_this.htmlIcon);
+            if (el && el instanceof HTMLElement && el.focus) {
+                el.tabIndex = 0;
+                el.focus();
+            }
+        });
+    };
+    ButtonInfoAccessibilite.defaultProps = {
+        message: "",
+        shortcutDescriptions: []
+    };
+    return ButtonInfoAccessibilite;
+}(hornet_component_1.HornetComponent));
+exports.ButtonInfoAccessibilite = ButtonInfoAccessibilite;
 
 
 
@@ -46796,7 +46796,7 @@ var router_client_1 = __webpack_require__(162);
 var router_client_async_elements_1 = __webpack_require__(19);
 var hornet_event_1 = __webpack_require__(7);
 var hornet_event_2 = __webpack_require__(7);
-var service_api_results_1 = __webpack_require__(54);
+var service_api_results_1 = __webpack_require__(55);
 var error_manager_1 = __webpack_require__(32);
 var technical_error_1 = __webpack_require__(13);
 var base_error_1 = __webpack_require__(16);
@@ -54424,7 +54424,7 @@ var emptyObject = __webpack_require__(29);
 var invariant = __webpack_require__(37);
 var warning = __webpack_require__(38);
 var emptyFunction = __webpack_require__(14);
-var checkPropTypes = __webpack_require__(52);
+var checkPropTypes = __webpack_require__(53);
 
 // TODO: this is special because it gets imported during build.
 
@@ -64099,7 +64099,7 @@ var shallowEqual = __webpack_require__(90);
 var containsNode = __webpack_require__(91);
 var focusNode = __webpack_require__(92);
 var emptyObject = __webpack_require__(29);
-var checkPropTypes = __webpack_require__(52);
+var checkPropTypes = __webpack_require__(53);
 var hyphenateStyleName = __webpack_require__(221);
 var camelizeStyleName = __webpack_require__(223);
 
@@ -79712,7 +79712,7 @@ var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
-var accordion_1 = __webpack_require__(53);
+var accordion_1 = __webpack_require__(54);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.notification.notification-message-item");
 /**
  * Composant MessageItem
@@ -81972,7 +81972,7 @@ var tslib_1 = __webpack_require__(1);
  */
 var hornet_js_utils_1 = __webpack_require__(0);
 var hornet_component_1 = __webpack_require__(3);
-var button_info_accessibilite_1 = __webpack_require__(105);
+var button_info_accessibilite_1 = __webpack_require__(106);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.navigation.menu-info-accessibilite");
 /**
  * Bouton et modale d'information sur l'accessibilité clavier du composant Menu

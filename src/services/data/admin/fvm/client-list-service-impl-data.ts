@@ -69,7 +69,7 @@ export class ClientListServiceImpl extends ServiceRequest implements ClientListS
   }
 
   getDossier(data): Promise<any> {
-    let idPermis = data["id"];
+    let idPermis = data["idPermis"];
     return this.permisDAO.getPermis(idPermis).then(values=>{
       let permis = values[0];
 
@@ -93,6 +93,7 @@ export class ClientListServiceImpl extends ServiceRequest implements ClientListS
         result["nom"] = personne.nom;
         result["prenom"] = personne.prenom;
         result["dateDeNaissance"] = Date.parse(personne.dateDeNaissance);
+        result["sexe"] = personne.sexe;
         result["villeDeNaissance"] = personne.villeDeNaissance;
         result["paysDeNaissance"] = personne.paysDeNaissance;
 
@@ -114,17 +115,17 @@ export class ClientListServiceImpl extends ServiceRequest implements ClientListS
   }
 
   getDemandeAuthentification(data): Promise<any> {
-    let idPermis = data["id"];
+    let idPermis = data["idPermis"];
     return this.demandeAuthentificationDAO.getDemandeAuthentification(idPermis);
   }
 
   getReleve(data): Promise<any> {
-    let idPermis = data["id"];
+    let idPermis = data["idPermis"];
     return Promise.resolve([]);
   }
 
   getNoteVerbale(data): Promise<any> {
-    let idPermis = data["id"];
+    let idPermis = data["idPermis"];
     return Promise.resolve([]);
   }
 
@@ -141,6 +142,16 @@ export class ClientListServiceImpl extends ServiceRequest implements ClientListS
   }
 
   getPDFDemandeAuthentification(idPermis): Promise<any> {
-    return
+    let result = {};
+
+    return this.getDossier({"idPermis": idPermis}).then(dossier=>{
+      result["dossier"] = dossier;
+
+      return this.demandeAuthentificationDAO.getDemandeAuthentification(idPermis).then(demandeAuthentification=>{
+        result["demandeAuthentification"] = demandeAuthentification;
+
+        return Promise.resolve(result);
+      });
+    });
   }
 }

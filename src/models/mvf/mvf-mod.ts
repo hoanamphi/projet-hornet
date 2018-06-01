@@ -40,6 +40,10 @@ export class PersonneMVFMetier {
   prenom: string;
 
   @Map()
+  @Alias("sexe")
+  sexe: string;
+
+  @Map()
   @Alias("dateDeNaissance")
   date_de_naissance: Date;
 

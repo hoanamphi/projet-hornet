@@ -51,7 +51,7 @@ var RecordDetailsPage = /** @class */ (function (_super) {
     };
     RecordDetailsPage.prototype.render = function () {
         var _this = this;
-        var format = this.i18n("form");
+        var format = this.i18n("forms");
         return (React.createElement("div", null,
             React.createElement(icon_1.Icon, { src: picto_1.Picto.blue.previous, alt: "Retourner \u00E0 la page de s\u00E9lection", title: "Retourner \u00E0 la page de s\u00E9lection", action: this.retourPage }),
             React.createElement(tabs_1.Tabs, { ref: function (tabs) {
@@ -60,7 +60,7 @@ var RecordDetailsPage = /** @class */ (function (_super) {
                 React.createElement(tab_1.Tab, { index: -1, id: "temp" }, " "))));
     };
     RecordDetailsPage.prototype.renderDossierTab = function (dossier) {
-        var format = this.i18n("form");
+        var format = this.i18n("forms");
         this.dossier = dossier;
         return (React.createElement(tab_1.Tab, { id: "tabDossier", title: "Dossier" },
             React.createElement(tab_content_1.TabContent, null,
@@ -103,10 +103,10 @@ var RecordDetailsPage = /** @class */ (function (_super) {
                             React.createElement(upload_file_field_1.UploadFileField, { name: "copie_note_verbale_maeci", readOnly: true, label: format.fields.copie_note_verbale_maeci.label, renderPreviewFile: this.renderCopieNoteVerbaleMAECI, buttonLabel: format.fields.copie_note_verbale_maeci.buttonLabel, fileSelectedLabel: format.fields.copie_note_verbale_maeci.fileSelectedLabel })))))));
     };
     RecordDetailsPage.prototype.renderCopiePermis = function (file) {
-        var format = this.i18n("form");
+        var format = this.i18n("forms");
         var fileTag = null;
         var urlfile = hornet_js_utils_1.Utils.buildContextPath("/services/recordserver/copiePermis/" + this.dossier.copie_permis.idCopiePermis);
-        var fileTarget = "newTabForCopiePermis" + this.attributes.id;
+        var fileTarget = "newTabForCopiePermis" + this.attributes.idPermis;
         fileTag =
             React.createElement("div", { className: "grid-form-field " },
                 React.createElement("div", { className: "" },
@@ -114,10 +114,10 @@ var RecordDetailsPage = /** @class */ (function (_super) {
         return fileTag;
     };
     RecordDetailsPage.prototype.renderCopieNoteVerbaleMAECI = function (file) {
-        var format = this.i18n("form");
+        var format = this.i18n("forms");
         var fileTag = null;
         var urlfile = hornet_js_utils_1.Utils.buildContextPath("/services/recordserver/copieNoteVerbaleMAECI/" + this.dossier.copie_note_verbale_maeci.idCopieNoteVerbaleMAECI);
-        var fileTarget = "newTabForCopieNoteVerbaleMAECI" + this.attributes.id;
+        var fileTarget = "newTabForCopieNoteVerbaleMAECI" + this.attributes.idPermis;
         fileTag =
             React.createElement("div", { className: "grid-form-field " },
                 React.createElement("div", { className: "" },
@@ -125,11 +125,11 @@ var RecordDetailsPage = /** @class */ (function (_super) {
         return fileTag;
     };
     RecordDetailsPage.prototype.renderDemandeAuthentificationTab = function (demandeAuthentificationList) {
-        var format = this.i18n("form");
+        var format = this.i18n("forms");
         if (demandeAuthentificationList.length > 0) {
             var fileTag = null;
-            var urlfile = hornet_js_utils_1.Utils.buildContextPath("/services/recordserver/pdfMake/demandeAuthentification/" + this.attributes.id);
-            var fileTarget = "newTabForDemandeAuthentification" + this.attributes.id;
+            var urlfile = hornet_js_utils_1.Utils.buildContextPath("/services/recordserver/pdfMake/demandeAuthentification/" + this.attributes.idPermis);
+            var fileTarget = "newTabForDemandeAuthentification" + this.attributes.idPermis;
             fileTag =
                 React.createElement(tab_1.Tab, { id: "tabDemandeAuthentification", title: "Demande d'Authentification" },
                     React.createElement(tab_content_1.TabContent, null,
@@ -137,7 +137,7 @@ var RecordDetailsPage = /** @class */ (function (_super) {
                         React.createElement(form_1.Form, { id: "demandeAuthentificationForm", readOnly: true, defaultValues: demandeAuthentificationList[0] },
                             React.createElement(input_field_1.InputField, { name: "numDemandeAuthentification", label: format.fields.num_demande_authentification.label, readOnly: true }),
                             React.createElement(calendar_field_1.CalendarField, { name: "dateDeCreation", label: format.fields.date_de_creation.label, readOnly: true }),
-                            React.createElement(input_field_1.InputField, { name: "numValise", label: format.fields.num_demande_authentification.label, readOnly: true }),
+                            React.createElement(input_field_1.InputField, { name: "numValise", label: format.fields.num_valise.label, readOnly: true }),
                             React.createElement(calendar_field_1.CalendarField, { name: "dateDuTraitement", label: format.fields.date_du_traitement.label, readOnly: true })),
                         React.createElement("div", { className: "grid-form-field " },
                             React.createElement("div", { className: "" },
@@ -156,7 +156,7 @@ var RecordDetailsPage = /** @class */ (function (_super) {
         this.navigateTo("/record", {}, function () { });
     };
     RecordDetailsPage.prototype.genererDemande = function () {
-        this.navigateTo("/form2/" + this.attributes.id, {}, function () { });
+        this.navigateTo("/form2/" + this.attributes.idPermis, {}, function () { });
     };
     return RecordDetailsPage;
 }(hornet_page_1.HornetPage));

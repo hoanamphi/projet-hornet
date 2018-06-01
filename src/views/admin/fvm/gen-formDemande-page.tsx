@@ -94,7 +94,7 @@ export class FormulaireDemandeAuthentificationPage extends HornetPage<ServerForm
 
   render(): JSX.Element {
 
-    let format = this.i18n("form");
+    let format = this.i18n("forms");
 
     return (
       <div>
@@ -131,8 +131,6 @@ export class FormulaireDemandeAuthentificationPage extends HornetPage<ServerForm
             </Form>
           </div>
         </Modal>
-
-
 
         <Table id="liste valise">
           <Header title={"Valises diplomatiques disponibles"}>

@@ -9,7 +9,7 @@ var PersonneFVMDAO = /** @class */ (function (_super) {
     function PersonneFVMDAO() {
         return _super.call(this) || this;
     }
-    PersonneFVMDAO.prototype.insererPersonne = function (nom, prenom, dateDeNaissance, villeDeNaissance, paysDeNaissance, idPermis) {
+    PersonneFVMDAO.prototype.insererPersonne = function (nom, prenom, dateDeNaissance, idSexe, villeDeNaissance, paysDeNaissance, idPermis) {
         var _this = this;
         return this.getNewIdPersonne().then(function (idPersonne) {
             return _this.modelDAO.personneFVMEntity.create({
@@ -17,6 +17,7 @@ var PersonneFVMDAO = /** @class */ (function (_super) {
                 nom: nom,
                 prenom: prenom,
                 dateDeNaissance: dateDeNaissance,
+                sexe: _this.getSexe(idSexe),
                 villeDeNaissance: villeDeNaissance,
                 paysDeNaissance: paysDeNaissance,
                 idPermis: idPermis
@@ -24,6 +25,14 @@ var PersonneFVMDAO = /** @class */ (function (_super) {
                 return Promise.resolve(idPersonne);
             });
         });
+    };
+    PersonneFVMDAO.prototype.getSexe = function (idSexe) {
+        if (idSexe == 0) {
+            return "Monsieur";
+        }
+        else {
+            return "Madame";
+        }
     };
     PersonneFVMDAO.prototype.getNewIdPersonne = function () {
         var _this = this;

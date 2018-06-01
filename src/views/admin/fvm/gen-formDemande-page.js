@@ -67,7 +67,7 @@ var FormulaireDemandeAuthentificationPage = /** @class */ (function (_super) {
     };
     FormulaireDemandeAuthentificationPage.prototype.render = function () {
         var _this = this;
-        var format = this.i18n("form");
+        var format = this.i18n("forms");
         return (React.createElement("div", null,
             React.createElement("h2", null, "Formulaire d'entr\u00E9e d'une demande d'authentification"),
             React.createElement(notification_1.Notification, { id: "errors" }),

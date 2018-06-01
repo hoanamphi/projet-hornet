@@ -10,7 +10,7 @@ var RecordListRoutesClient = /** @class */ (function (_super) {
     function RecordListRoutesClient() {
         var _this = _super.call(this) || this;
         _this.addPageRoute("/", function () { return new abstract_routes_1.PageRouteInfos(gen_recordList_page_1.RecordListPage, null, client_list_service_impl_1.ClientListServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE);
-        _this.addPageRoute("/(\\d+)", function (id) { return new abstract_routes_1.PageRouteInfos(gen_recordDetails_page_1.RecordDetailsPage, { "id": id }, client_list_service_impl_1.ClientListServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE);
+        _this.addPageRoute("/(\\d+)", function (id) { return new abstract_routes_1.PageRouteInfos(gen_recordDetails_page_1.RecordDetailsPage, { "idPermis": id }, client_list_service_impl_1.ClientListServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE);
         return _this;
     }
     return RecordListRoutesClient;
