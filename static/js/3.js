@@ -7,8 +7,8 @@ webpackJsonp([3],Array(248).concat([
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var abstract_routes_1 = __webpack_require__(98);
-var server_form_service_impl_1 = __webpack_require__(487);
-var gen_formDemande_page_1 = __webpack_require__(509);
+var server_form_service_impl_1 = __webpack_require__(488);
+var gen_formDemande_page_1 = __webpack_require__(510);
 var Form2RoutesClient = /** @class */ (function (_super) {
     tslib_1.__extends(Form2RoutesClient, _super);
     function Form2RoutesClient() {
@@ -153,7 +153,7 @@ var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var classNames = __webpack_require__(9);
 var _ = __webpack_require__(6);
-var dom_adapter_1 = __webpack_require__(310);
+var dom_adapter_1 = __webpack_require__(311);
 var field_error_1 = __webpack_require__(348);
 var html_attributes_1 = __webpack_require__(349);
 var tool_tip_1 = __webpack_require__(351);
@@ -1543,7 +1543,7 @@ var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var abstract_cell_1 = __webpack_require__(343);
-var template_1 = __webpack_require__(308);
+var template_1 = __webpack_require__(309);
 var classNames = __webpack_require__(9);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.table.column.cell.abstract-body-cell");
 /**
@@ -1734,9 +1734,9 @@ var tslib_1 = __webpack_require__(1);
  */
 var hornet_js_utils_1 = __webpack_require__(0);
 var hornet_component_1 = __webpack_require__(3);
-var header_cell_1 = __webpack_require__(490);
-var body_cell_1 = __webpack_require__(491);
-var input_text_in_line_body_cell_1 = __webpack_require__(492);
+var header_cell_1 = __webpack_require__(491);
+var body_cell_1 = __webpack_require__(492);
+var input_text_in_line_body_cell_1 = __webpack_require__(493);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.table.column");
 /**
  * Classe abstraite d'une colonne de tableau
@@ -2986,7 +2986,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @license CECILL-2.1
  */
 var _ = __webpack_require__(6);
-var template_1 = __webpack_require__(308);
+var template_1 = __webpack_require__(309);
 /**
  * Classe utilitaire sur les arrays.
  */
@@ -3152,10 +3152,10 @@ var _ = __webpack_require__(6);
 var promise_api_1 = __webpack_require__(50);
 var technical_error_1 = __webpack_require__(13);
 var codes_error_1 = __webpack_require__(97);
-var object_utils_1 = __webpack_require__(313);
+var object_utils_1 = __webpack_require__(314);
 var datasource_option_1 = __webpack_require__(356);
 var datasource_config_1 = __webpack_require__(357);
-var datasource_config_page_1 = __webpack_require__(314);
+var datasource_config_page_1 = __webpack_require__(315);
 var DataSourceStatus;
 (function (DataSourceStatus) {
     DataSourceStatus[DataSourceStatus["Dummy"] = 0] = "Dummy";
@@ -3942,6 +3942,205 @@ var tslib_1 = __webpack_require__(1);
  * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
  * @license CECILL-2.1
  */
+var hornet_js_utils_1 = __webpack_require__(0);
+var React = __webpack_require__(2);
+var abstract_field_1 = __webpack_require__(256);
+var spinner_component_input_1 = __webpack_require__(344);
+var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.form.abstract-field-datasource");
+/**
+ * Représente un champ de formulaire qui possède un datasource
+ */
+var AbstractFieldDatasource = /** @class */ (function (_super) {
+    tslib_1.__extends(AbstractFieldDatasource, _super);
+    function AbstractFieldDatasource(props, context) {
+        return _super.call(this, props, context) || this;
+    }
+    /**
+     * Méthode qui controle l'affichage et la suppression du spinner
+     * @param flag booléen true pour l'afficher false sinon
+     */
+    AbstractFieldDatasource.prototype.displaySpinner = function (flag) {
+        this.state.inProgress = flag;
+        if (!this.props.hideSpinner) {
+            this.refs.spinnerLoader && this.refs.spinnerLoader.progress(flag);
+            flag ? this.showSpinnerComponent() : this.hideSpinnerComponent();
+        }
+    };
+    /**
+     * @inheritDoc
+     */
+    AbstractFieldDatasource.prototype.componentWillMount = function () {
+        _super.prototype.componentWillMount.call(this);
+        if (this.props.dataSource) {
+            this.setItem();
+        }
+    };
+    /**
+     * @inheritDoc
+     */
+    AbstractFieldDatasource.prototype.componentDidMount = function () {
+        _super.prototype.componentDidMount.call(this);
+        if (this.props.dataSource) {
+            this.props.dataSource.on("fetch", this.setItem);
+            this.props.dataSource.on("init", this.setItem);
+            this.props.dataSource.on("add", this.setItem);
+            this.props.dataSource.on("delete", this.setItem);
+            this.props.dataSource.on("sort", this.setItem);
+            this.props.dataSource.on("filter", this.setItem);
+            this.props.dataSource.on("loadingData", this.displaySpinner);
+        }
+    };
+    /**
+     * @inheritDoc
+     */
+    AbstractFieldDatasource.prototype.componentWillUnmount = function () {
+        _super.prototype.componentWillUnmount.call(this);
+        if (this.props.dataSource) {
+            this.props.dataSource.removeListener("fetch", this.setItem);
+            this.props.dataSource.removeListener("init", this.setItem);
+            this.props.dataSource.removeListener("add", this.setItem);
+            this.props.dataSource.removeListener("delete", this.setItem);
+            this.props.dataSource.removeListener("sort", this.setItem);
+            this.props.dataSource.removeListener("filter", this.setItem);
+            this.props.dataSource.removeListener("loadingData", this.displaySpinner);
+        }
+    };
+    /**
+     * enregistre la liste des choix possibles
+     */
+    AbstractFieldDatasource.prototype.setItem = function () {
+        this.setState({ items: this.props.dataSource.results });
+        /* permet de faire appel a la méthode setCurrentValue de dom-adapter pour cocher les valeurs*/
+        this.setCurrentValue(this.state.currentValue);
+    };
+    /**
+     * Méthode premettant d'afficher le spinner
+     * @returns {Table}
+     */
+    AbstractFieldDatasource.prototype.showSpinnerComponent = function () {
+        this.setState({ spinner: true });
+        return this;
+    };
+    /**
+     * Méthode premettant de masquer le spinner
+     * @returns {Table}
+     */
+    AbstractFieldDatasource.prototype.hideSpinnerComponent = function () {
+        this.setState({ spinner: false });
+        return this;
+    };
+    AbstractFieldDatasource.prototype.setDataSource = function (value, callback) {
+        /** liste des choix disponibles */
+        this.setState({ dataSource: value }, callback);
+        return this;
+    };
+    AbstractFieldDatasource.prototype.updateDataSource = function (value) {
+        this.setDataSource(value);
+    };
+    /**
+     * Génère le rendu des élements assurant la saisie des valeurs
+     * @returns {any}
+     */
+    AbstractFieldDatasource.prototype.renderField = function () {
+        return (React.createElement("div", { className: this.state.fieldClass + " abstractfield-field-content" },
+            React.createElement(spinner_component_input_1.SpinnerComponentInput, { ref: "spinnerLoader", isVisible: this.state.spinner }),
+            this.state.prefix ? React.createElement("span", { className: "abstractfield-field-prefix" }, this.state.prefix) : null,
+            this.renderWidget(),
+            this.state.suffix ? React.createElement("span", { className: "abstractfield-field-suffix" }, this.state.suffix) : null,
+            this.renderErrors()));
+    };
+    return AbstractFieldDatasource;
+}(abstract_field_1.AbstractField));
+exports.AbstractFieldDatasource = AbstractFieldDatasource;
+
+
+
+/***/ }),
+/* 306 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * Ce logiciel est un programme informatique servant à faciliter la création
+ * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
+ * <p/>
+ * Ce logiciel est régi par la licence CeCILL soumise au droit français et
+ * respectant les principes de diffusion des logiciels libres. Vous pouvez
+ * utiliser, modifier et/ou redistribuer ce programme sous les conditions
+ * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
+ * sur le site "http://www.cecill.info".
+ * <p/>
+ * En contrepartie de l'accessibilité au code source et des droits de copie,
+ * de modification et de redistribution accordés par cette licence, il n'est
+ * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
+ * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
+ * titulaire des droits patrimoniaux et les concédants successifs.
+ * <p/>
+ * A cet égard  l'attention de l'utilisateur est attirée sur les risques
+ * associés au chargement,  à l'utilisation,  à la modification et/ou au
+ * développement et à la reproduction du logiciel par l'utilisateur étant
+ * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
+ * manipuler et qui le réserve donc à des développeurs et des professionnels
+ * avertis possédant  des  connaissances  informatiques approfondies.  Les
+ * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
+ * logiciel à leurs besoins dans des conditions permettant d'assurer la
+ * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
+ * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
+ * <p/>
+ * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
+ * pris connaissance de la licence CeCILL, et que vous en avez accepté les
+ * termes.
+ * <p/>
+ * <p/>
+ * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * This software is a computer program whose purpose is to facilitate creation of
+ * web application in accordance with french general repositories : RGI, RGS and RGAA.
+ * <p/>
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software.  You can  use,
+ * modify and/ or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ * <p/>
+ * As a counterpart to the access to the source code and  rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty  and the software's author,  the holder of the
+ * economic rights,  and the successive licensors  have only  limited
+ * liability.
+ * <p/>
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading,  using,  modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean  that it is complicated to manipulate,  and  that  also
+ * therefore means  that it is reserved for developers  and  experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and,  more generally, to use and operate it in the
+ * same conditions as regards security.
+ * <p/>
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(1);
+/**
+ * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
+ *
+ * @author MEAE - Ministère de l'Europe et des Affaires étrangères
+ * @version v5.1.1
+ * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
+ * @license CECILL-2.1
+ */
 var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
 var classNames = __webpack_require__(9);
@@ -4044,7 +4243,7 @@ exports.Button = Button;
 
 
 /***/ }),
-/* 306 */
+/* 307 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4135,19 +4334,19 @@ var sort_data_1 = __webpack_require__(283);
 var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
 var confirm_1 = __webpack_require__(476);
-var spinner_table_1 = __webpack_require__(489);
+var spinner_table_1 = __webpack_require__(490);
 var paginate_datasource_1 = __webpack_require__(339);
 var columns_1 = __webpack_require__(340);
 var action_column_1 = __webpack_require__(477);
-var edition_action_column_1 = __webpack_require__(494);
+var edition_action_column_1 = __webpack_require__(495);
 var check_column_1 = __webpack_require__(480);
 var abstract_cell_1 = __webpack_require__(343);
-var cell_coordinates_1 = __webpack_require__(498);
+var cell_coordinates_1 = __webpack_require__(499);
 var table_state_1 = __webpack_require__(279);
 var navigation_direction_1 = __webpack_require__(478);
-var form_1 = __webpack_require__(309);
-var line_before_1 = __webpack_require__(499);
-var line_after_1 = __webpack_require__(500);
+var form_1 = __webpack_require__(310);
+var line_before_1 = __webpack_require__(500);
+var line_after_1 = __webpack_require__(501);
 var classNames = __webpack_require__(9);
 var _ = __webpack_require__(6);
 var hornet_event_1 = __webpack_require__(7);
@@ -5036,7 +5235,7 @@ exports.Content = Content;
 
 
 /***/ }),
-/* 307 */
+/* 308 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5190,7 +5389,7 @@ exports.ButtonsArea = ButtonsArea;
 
 
 /***/ }),
-/* 308 */
+/* 309 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5331,7 +5530,7 @@ exports.Template = Template;
 
 
 /***/ }),
-/* 309 */
+/* 310 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5422,8 +5621,8 @@ var notification_1 = __webpack_require__(48);
 var abstract_field_1 = __webpack_require__(256);
 var abstract_form_1 = __webpack_require__(352);
 var upload_file_field_1 = __webpack_require__(341);
-var form_utils_1 = __webpack_require__(311);
-var dom_adapter_1 = __webpack_require__(310);
+var form_utils_1 = __webpack_require__(312);
+var dom_adapter_1 = __webpack_require__(311);
 var auto_complete_field_1 = __webpack_require__(353);
 var notification_manager_1 = __webpack_require__(96);
 var checkbox_field_1 = __webpack_require__(358);
@@ -5431,7 +5630,7 @@ var data_validator_1 = __webpack_require__(359);
 var classNames = __webpack_require__(9);
 var _ = __webpack_require__(6);
 var select_field_1 = __webpack_require__(345);
-var buttons_area_1 = __webpack_require__(307);
+var buttons_area_1 = __webpack_require__(308);
 var event_1 = __webpack_require__(324);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.form.form");
 /**
@@ -5963,7 +6162,7 @@ exports.Form = Form;
 
 
 /***/ }),
-/* 310 */
+/* 311 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6041,7 +6240,7 @@ exports.Form = Form;
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var hornet_component_1 = __webpack_require__(3);
-var form_utils_1 = __webpack_require__(311);
+var form_utils_1 = __webpack_require__(312);
 var hornet_js_utils_1 = __webpack_require__(0);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.form.dom-adapter");
 /**
@@ -6306,7 +6505,7 @@ exports.DomAdapter = DomAdapter;
 
 
 /***/ }),
-/* 311 */
+/* 312 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6510,7 +6709,7 @@ exports.FormUtils = FormUtils;
 
 
 /***/ }),
-/* 312 */
+/* 313 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6621,7 +6820,7 @@ exports.AutoCompleteState = AutoCompleteState;
 
 
 /***/ }),
-/* 313 */
+/* 314 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6746,7 +6945,7 @@ exports.ObjectUtils = ObjectUtils;
 
 
 /***/ }),
-/* 314 */
+/* 315 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6835,205 +7034,6 @@ var DataSourceConfigPage = /** @class */ (function () {
     return DataSourceConfigPage;
 }());
 exports.DataSourceConfigPage = DataSourceConfigPage;
-
-
-
-/***/ }),
-/* 315 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * Ce logiciel est un programme informatique servant à faciliter la création
- * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
- * <p/>
- * Ce logiciel est régi par la licence CeCILL soumise au droit français et
- * respectant les principes de diffusion des logiciels libres. Vous pouvez
- * utiliser, modifier et/ou redistribuer ce programme sous les conditions
- * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
- * sur le site "http://www.cecill.info".
- * <p/>
- * En contrepartie de l'accessibilité au code source et des droits de copie,
- * de modification et de redistribution accordés par cette licence, il n'est
- * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
- * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
- * titulaire des droits patrimoniaux et les concédants successifs.
- * <p/>
- * A cet égard  l'attention de l'utilisateur est attirée sur les risques
- * associés au chargement,  à l'utilisation,  à la modification et/ou au
- * développement et à la reproduction du logiciel par l'utilisateur étant
- * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
- * manipuler et qui le réserve donc à des développeurs et des professionnels
- * avertis possédant  des  connaissances  informatiques approfondies.  Les
- * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
- * logiciel à leurs besoins dans des conditions permettant d'assurer la
- * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
- * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
- * <p/>
- * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
- * pris connaissance de la licence CeCILL, et que vous en avez accepté les
- * termes.
- * <p/>
- * <p/>
- * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * This software is a computer program whose purpose is to facilitate creation of
- * web application in accordance with french general repositories : RGI, RGS and RGAA.
- * <p/>
- * This software is governed by the CeCILL license under French law and
- * abiding by the rules of distribution of free software.  You can  use,
- * modify and/ or redistribute the software under the terms of the CeCILL
- * license as circulated by CEA, CNRS and INRIA at the following URL
- * "http://www.cecill.info".
- * <p/>
- * As a counterpart to the access to the source code and  rights to copy,
- * modify and redistribute granted by the license, users are provided only
- * with a limited warranty  and the software's author,  the holder of the
- * economic rights,  and the successive licensors  have only  limited
- * liability.
- * <p/>
- * In this respect, the user's attention is drawn to the risks associated
- * with loading,  using,  modifying and/or developing or reproducing the
- * software by the user in light of its specific status of free software,
- * that may mean  that it is complicated to manipulate,  and  that  also
- * therefore means  that it is reserved for developers  and  experienced
- * professionals having in-depth computer knowledge. Users are therefore
- * encouraged to load and test the software's suitability as regards their
- * requirements in conditions enabling the security of their systems and/or
- * data to be ensured and,  more generally, to use and operate it in the
- * same conditions as regards security.
- * <p/>
- * The fact that you are presently reading this means that you have had
- * knowledge of the CeCILL license and that you accept its terms.
- *
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(1);
-/**
- * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
- *
- * @author MEAE - Ministère de l'Europe et des Affaires étrangères
- * @version v5.1.1
- * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
- * @license CECILL-2.1
- */
-var hornet_js_utils_1 = __webpack_require__(0);
-var React = __webpack_require__(2);
-var abstract_field_1 = __webpack_require__(256);
-var spinner_component_input_1 = __webpack_require__(344);
-var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.form.abstract-field-datasource");
-/**
- * Représente un champ de formulaire qui possède un datasource
- */
-var AbstractFieldDatasource = /** @class */ (function (_super) {
-    tslib_1.__extends(AbstractFieldDatasource, _super);
-    function AbstractFieldDatasource(props, context) {
-        return _super.call(this, props, context) || this;
-    }
-    /**
-     * Méthode qui controle l'affichage et la suppression du spinner
-     * @param flag booléen true pour l'afficher false sinon
-     */
-    AbstractFieldDatasource.prototype.displaySpinner = function (flag) {
-        this.state.inProgress = flag;
-        if (!this.props.hideSpinner) {
-            this.refs.spinnerLoader && this.refs.spinnerLoader.progress(flag);
-            flag ? this.showSpinnerComponent() : this.hideSpinnerComponent();
-        }
-    };
-    /**
-     * @inheritDoc
-     */
-    AbstractFieldDatasource.prototype.componentWillMount = function () {
-        _super.prototype.componentWillMount.call(this);
-        if (this.props.dataSource) {
-            this.setItem();
-        }
-    };
-    /**
-     * @inheritDoc
-     */
-    AbstractFieldDatasource.prototype.componentDidMount = function () {
-        _super.prototype.componentDidMount.call(this);
-        if (this.props.dataSource) {
-            this.props.dataSource.on("fetch", this.setItem);
-            this.props.dataSource.on("init", this.setItem);
-            this.props.dataSource.on("add", this.setItem);
-            this.props.dataSource.on("delete", this.setItem);
-            this.props.dataSource.on("sort", this.setItem);
-            this.props.dataSource.on("filter", this.setItem);
-            this.props.dataSource.on("loadingData", this.displaySpinner);
-        }
-    };
-    /**
-     * @inheritDoc
-     */
-    AbstractFieldDatasource.prototype.componentWillUnmount = function () {
-        _super.prototype.componentWillUnmount.call(this);
-        if (this.props.dataSource) {
-            this.props.dataSource.removeListener("fetch", this.setItem);
-            this.props.dataSource.removeListener("init", this.setItem);
-            this.props.dataSource.removeListener("add", this.setItem);
-            this.props.dataSource.removeListener("delete", this.setItem);
-            this.props.dataSource.removeListener("sort", this.setItem);
-            this.props.dataSource.removeListener("filter", this.setItem);
-            this.props.dataSource.removeListener("loadingData", this.displaySpinner);
-        }
-    };
-    /**
-     * enregistre la liste des choix possibles
-     */
-    AbstractFieldDatasource.prototype.setItem = function () {
-        this.setState({ items: this.props.dataSource.results });
-        /* permet de faire appel a la méthode setCurrentValue de dom-adapter pour cocher les valeurs*/
-        this.setCurrentValue(this.state.currentValue);
-    };
-    /**
-     * Méthode premettant d'afficher le spinner
-     * @returns {Table}
-     */
-    AbstractFieldDatasource.prototype.showSpinnerComponent = function () {
-        this.setState({ spinner: true });
-        return this;
-    };
-    /**
-     * Méthode premettant de masquer le spinner
-     * @returns {Table}
-     */
-    AbstractFieldDatasource.prototype.hideSpinnerComponent = function () {
-        this.setState({ spinner: false });
-        return this;
-    };
-    AbstractFieldDatasource.prototype.setDataSource = function (value, callback) {
-        /** liste des choix disponibles */
-        this.setState({ dataSource: value }, callback);
-        return this;
-    };
-    AbstractFieldDatasource.prototype.updateDataSource = function (value) {
-        this.setDataSource(value);
-    };
-    /**
-     * Génère le rendu des élements assurant la saisie des valeurs
-     * @returns {any}
-     */
-    AbstractFieldDatasource.prototype.renderField = function () {
-        return (React.createElement("div", { className: this.state.fieldClass + " abstractfield-field-content" },
-            React.createElement(spinner_component_input_1.SpinnerComponentInput, { ref: "spinnerLoader", isVisible: this.state.spinner }),
-            this.state.prefix ? React.createElement("span", { className: "abstractfield-field-prefix" }, this.state.prefix) : null,
-            this.renderWidget(),
-            this.state.suffix ? React.createElement("span", { className: "abstractfield-field-suffix" }, this.state.suffix) : null,
-            this.renderErrors()));
-    };
-    return AbstractFieldDatasource;
-}(abstract_field_1.AbstractField));
-exports.AbstractFieldDatasource = AbstractFieldDatasource;
 
 
 
@@ -10237,9 +10237,9 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var React = __webpack_require__(2);
-var abstract_field_datasource_1 = __webpack_require__(315);
+var abstract_field_datasource_1 = __webpack_require__(305);
 var _ = __webpack_require__(6);
-var object_utils_1 = __webpack_require__(313);
+var object_utils_1 = __webpack_require__(314);
 /**
  * Composant liste déroulante
  */
@@ -12066,9 +12066,9 @@ var abstract_field_1 = __webpack_require__(256);
 var auto_complete_selector_1 = __webpack_require__(354);
 var _ = __webpack_require__(6);
 var key_codes_1 = __webpack_require__(10);
-var auto_complete_state_1 = __webpack_require__(312);
+var auto_complete_state_1 = __webpack_require__(313);
 var datasource_master_1 = __webpack_require__(355);
-var abstract_field_datasource_1 = __webpack_require__(315);
+var abstract_field_datasource_1 = __webpack_require__(305);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.form.auto-complete-field");
 var FilterTextType;
 (function (FilterTextType) {
@@ -13014,7 +13014,7 @@ var classNames = __webpack_require__(9);
 var _ = __webpack_require__(6);
 var hornet_component_1 = __webpack_require__(3);
 var checkbox_1 = __webpack_require__(282);
-var auto_complete_state_1 = __webpack_require__(312);
+var auto_complete_state_1 = __webpack_require__(313);
 var React = __webpack_require__(2);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.form.auto-complete-selector");
 /**
@@ -25635,7 +25635,7 @@ var hornet_component_1 = __webpack_require__(3);
 var dropdown_1 = __webpack_require__(39);
 var picto_1 = __webpack_require__(95);
 var action_button_1 = __webpack_require__(474);
-var table_button_info_accessibilite_1 = __webpack_require__(488);
+var table_button_info_accessibilite_1 = __webpack_require__(489);
 var _ = __webpack_require__(6);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.table.menu-actions");
 /**
@@ -25831,7 +25831,7 @@ var tslib_1 = __webpack_require__(1);
  */
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
-var button_1 = __webpack_require__(305);
+var button_1 = __webpack_require__(306);
 var classNames = __webpack_require__(9);
 var _ = __webpack_require__(6);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.table.action-button");
@@ -26342,7 +26342,7 @@ var tslib_1 = __webpack_require__(1);
  */
 var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
-var button_1 = __webpack_require__(305);
+var button_1 = __webpack_require__(306);
 var modal_1 = __webpack_require__(100);
 var notification_1 = __webpack_require__(48);
 var Confirm = /** @class */ (function (_super) {
@@ -26561,7 +26561,7 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var column_1 = __webpack_require__(281);
-var action_body_cell_1 = __webpack_require__(493);
+var action_body_cell_1 = __webpack_require__(494);
 var action_header_cell_1 = __webpack_require__(479);
 /**
  * Classe permettant de gérer les colonnes de type date
@@ -26899,8 +26899,8 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var column_1 = __webpack_require__(281);
-var check_body_cell_1 = __webpack_require__(496);
-var check_header_cell_1 = __webpack_require__(497);
+var check_body_cell_1 = __webpack_require__(497);
+var check_header_cell_1 = __webpack_require__(498);
 /**
  * Classe permettant de gérer les colonnes de type CheckBox
  */
@@ -27131,13 +27131,13 @@ var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
 var header_1 = __webpack_require__(472);
-var content_1 = __webpack_require__(306);
+var content_1 = __webpack_require__(307);
 var columns_1 = __webpack_require__(340);
 var footer_1 = __webpack_require__(483);
 var table_state_1 = __webpack_require__(279);
 var notification_1 = __webpack_require__(48);
 var toggle_columns_button_1 = __webpack_require__(475);
-var content_2 = __webpack_require__(306);
+var content_2 = __webpack_require__(307);
 var check_column_1 = __webpack_require__(480);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-components.widget.table.table");
 /**
@@ -28005,7 +28005,7 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var column_1 = __webpack_require__(281);
-var date_body_cell_1 = __webpack_require__(501);
+var date_body_cell_1 = __webpack_require__(502);
 /**
  * Classe permettant de gérer les colonnes de type date
  */
@@ -28033,7 +28033,8 @@ exports.DateColumn = DateColumn;
 
 /***/ }),
 /* 486 */,
-/* 487 */
+/* 487 */,
+/* 488 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28099,7 +28100,7 @@ exports.ServerFormServiceImpl = ServerFormServiceImpl;
 
 
 /***/ }),
-/* 488 */
+/* 489 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28248,7 +28249,7 @@ exports.TableButtonInfoAccessibilite = TableButtonInfoAccessibilite;
 
 
 /***/ }),
-/* 489 */
+/* 490 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28335,7 +28336,7 @@ var tslib_1 = __webpack_require__(1);
  */
 var React = __webpack_require__(2);
 var spinner_component_1 = __webpack_require__(101);
-var content_1 = __webpack_require__(306);
+var content_1 = __webpack_require__(307);
 var classNames = __webpack_require__(9);
 /**
  * Composant représentant un tableau en cours de chargement
@@ -28405,7 +28406,7 @@ exports.SpinnerOverlay = SpinnerOverlay;
 
 
 /***/ }),
-/* 490 */
+/* 491 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28593,7 +28594,7 @@ exports.HeaderCell = HeaderCell;
 
 
 /***/ }),
-/* 491 */
+/* 492 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28703,7 +28704,7 @@ exports.BodyCell = BodyCell;
 
 
 /***/ }),
-/* 492 */
+/* 493 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28850,7 +28851,7 @@ exports.InputTextInLineBodyCell = InputTextInLineBodyCell;
 
 
 /***/ }),
-/* 493 */
+/* 494 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28938,7 +28939,7 @@ var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var abstract_body_cell_1 = __webpack_require__(280);
 var React = __webpack_require__(2);
-var template_1 = __webpack_require__(308);
+var template_1 = __webpack_require__(309);
 var key_codes_1 = __webpack_require__(10);
 var classNames = __webpack_require__(9);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.table.column.cell.action.action-body-cell");
@@ -29068,7 +29069,7 @@ exports.ActionBodyCell = ActionBodyCell;
 
 
 /***/ }),
-/* 494 */
+/* 495 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29154,7 +29155,7 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var column_1 = __webpack_require__(281);
-var edition_action_body_cell_1 = __webpack_require__(495);
+var edition_action_body_cell_1 = __webpack_require__(496);
 var action_header_cell_1 = __webpack_require__(479);
 /**
  * Classe permettant de gérer les colonnes de type edition rapide action
@@ -29189,7 +29190,7 @@ exports.EditionActionColumn = EditionActionColumn;
 
 
 /***/ }),
-/* 495 */
+/* 496 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29280,7 +29281,7 @@ var React = __webpack_require__(2);
 var notification_manager_1 = __webpack_require__(96);
 var picto_1 = __webpack_require__(95);
 var key_codes_1 = __webpack_require__(10);
-var template_1 = __webpack_require__(308);
+var template_1 = __webpack_require__(309);
 var classNames = __webpack_require__(9);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.table.column.cell.action.edition-action-body-cell");
 var EditionActionBodyCell = /** @class */ (function (_super) {
@@ -29428,7 +29429,7 @@ exports.EditionActionBodyCell = EditionActionBodyCell;
 
 
 /***/ }),
-/* 496 */
+/* 497 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29633,7 +29634,7 @@ exports.CheckBodyCell = CheckBodyCell;
 
 
 /***/ }),
-/* 497 */
+/* 498 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29822,7 +29823,7 @@ exports.CheckHeaderCell = CheckHeaderCell;
 
 
 /***/ }),
-/* 498 */
+/* 499 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29929,7 +29930,7 @@ exports.CellCoordinates = CellCoordinates;
 
 
 /***/ }),
-/* 499 */
+/* 500 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30022,7 +30023,7 @@ exports.LineBefore = LineBefore;
 
 
 /***/ }),
-/* 500 */
+/* 501 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30115,7 +30116,7 @@ exports.LineAfter = LineAfter;
 
 
 /***/ }),
-/* 501 */
+/* 502 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30243,14 +30244,14 @@ exports.DateBodyCell = DateBodyCell;
 
 
 /***/ }),
-/* 502 */,
 /* 503 */,
 /* 504 */,
 /* 505 */,
 /* 506 */,
 /* 507 */,
 /* 508 */,
-/* 509 */
+/* 509 */,
+/* 510 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30260,22 +30261,22 @@ var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var hornet_page_1 = __webpack_require__(51);
-var form_1 = __webpack_require__(309);
+var form_1 = __webpack_require__(310);
 var row_1 = __webpack_require__(346);
 var input_field_1 = __webpack_require__(288);
 var calendar_field_1 = __webpack_require__(347);
-var button_1 = __webpack_require__(305);
-var buttons_area_1 = __webpack_require__(307);
+var button_1 = __webpack_require__(306);
+var buttons_area_1 = __webpack_require__(308);
 var datasource_1 = __webpack_require__(304);
 var notification_1 = __webpack_require__(48);
-var schema = __webpack_require__(510);
+var schema = __webpack_require__(511);
 var notification_manager_1 = __webpack_require__(96);
-var datasource_config_page_1 = __webpack_require__(314);
+var datasource_config_page_1 = __webpack_require__(315);
 var icon_1 = __webpack_require__(105);
 var picto_1 = __webpack_require__(95);
 var table_1 = __webpack_require__(482);
 var columns_1 = __webpack_require__(340);
-var content_1 = __webpack_require__(306);
+var content_1 = __webpack_require__(307);
 var column_1 = __webpack_require__(281);
 var date_column_1 = __webpack_require__(485);
 var header_1 = __webpack_require__(472);
@@ -30389,7 +30390,7 @@ exports.FormulaireDemandeAuthentificationPage = FormulaireDemandeAuthentificatio
 
 
 /***/ }),
-/* 510 */
+/* 511 */
 /***/ (function(module, exports) {
 
 module.exports = {

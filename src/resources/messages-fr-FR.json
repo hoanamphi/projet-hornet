@@ -386,6 +386,21 @@
       },
       "date_de_creation": {
         "label": "Date de création de la demande d'authentification"
+      },
+      "nom_responsable": {
+        "label": "Nom de l'agent responsable"
+      },
+      "prenom_responsable": {
+        "label": "Prénom de l'agent responsable"
+      },
+      "intitule_prefecture": {
+        "label": "Intitulé de la préfecture"
+      },
+      "intitule_service": {
+        "label": "Intitulé du service de gestion des permis de conduire"
+      },
+      "cedex": {
+        "label": "CEDEX"
       }
     },
     "validTitle": "Validation de la saisie du formulaire de contact",

@@ -42,6 +42,7 @@ import {TabContent} from "hornet-js-react-components/src/widget/tab/tab-content"
 import {Spinner} from "hornet-js-react-components/src/widget/spinner/spinner";
 import {Icon} from "hornet-js-react-components/src/widget/icon/icon";
 import {TabHeader} from "hornet-js-react-components/src/widget/tab/tab-header";
+import {RadiosField} from "hornet-js-react-components/src/widget/form/radios-field";
 
 const logger: Logger = Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
 
@@ -54,6 +55,11 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
   private noteverbaleDatasource;
 
   private tabs = new Tabs<TabsProps>();
+  private nom_responsable = new InputField();
+  private prenom_responsable = new InputField();
+  private intitule_prefecture = new InputField();
+  private intitule_service = new InputField();
+  private cedex = new RadiosField({defaultValue: {"value":false, "label": "non"}});
 
   constructor(props?: HornetComponentProps, context?: any) {
     super(props, context);
@@ -64,11 +70,10 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
 
   prepareClient(): void {
     this.dossierDatasource.fetch(true, this.attributes);
-    this.demandeauthentificationDatasource.fetch(true, this.attributes);
-
     this.dossierDatasource.on("fetch", (Result)=>{
       this.tabs.addElements(1, this.renderDossierTab(Result[0]));
       this.tabs.removeElementsById("temp");
+      this.demandeauthentificationDatasource.fetch(true, this.attributes);
     });
     this.demandeauthentificationDatasource.on("fetch", (Result)=>{
       this.tabs.addElements(2, this.renderDemandeAuthentificationTab(Result));
@@ -209,7 +214,7 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
 
     fileTag =
       <div className="grid-form-field ">
-        <div className="">
+        <div className="copiepermis">
           <a href={urlfile} data-pass-thru="true"
              target={fileTarget}>{this.dossier.copie_permis.nom}</a>
         </div>
@@ -222,13 +227,13 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
     let format = this.i18n("forms");
     let fileTag: React.ReactElement<any> = null;
 
-    let urlfile: string = Utils.buildContextPath("/services/recordserver/copieNoteVerbaleMAECI/"+this.dossier.copie_note_verbale_maeci.idCopieNoteVerbaleMAECI);
+    let urlfile: string = encodeURI("/services/recordserver/copieNoteVerbaleMAECI/"+this.dossier.copie_note_verbale_maeci.idCopieNoteVerbaleMAECI);
 
     let fileTarget = "newTabForCopieNoteVerbaleMAECI" + this.attributes.idPermis;
 
     fileTag =
       <div className="grid-form-field ">
-        <div className="">
+        <div className="copienoteverbalemaeci">
           <a href={urlfile} data-pass-thru="true"
              target={fileTarget}>{this.dossier.copie_note_verbale_maeci.nom}</a>
         </div>
@@ -243,7 +248,18 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
     if(demandeAuthentificationList.length > 0) {
       let fileTag: React.ReactElement<any> = null;
 
-      let urlfile: string = Utils.buildContextPath("/services/recordserver/pdfMake/demandeAuthentification/"+this.attributes.idPermis);
+      let dataForm = demandeAuthentificationList[0];
+      dataForm["nom_responsable"] = "Zitouni";
+      dataForm["prenom_responsable"] = "Samah";
+      dataForm["intitule_prefecture"] = "Préfecture de ";
+      dataForm["prefecture"] = this.dossier.prefecture;
+      dataForm["intitule_service"] = "Service des permis de conduire";
+
+      let dataCedex = new DataSource<any>([{"value": "true", "label": "oui"}, {"value": "false", "label": "non"}]);
+
+      let defaultParams = encodeURI(dataForm.nom_responsable+"+"+dataForm.prenom_responsable+"+"+dataForm.intitule_prefecture+"+"+dataForm.intitule_service);
+
+      let urlfile: string = Utils.buildContextPath("/services/recordserver/pdfMake/demandeAuthentification/"+this.attributes.idPermis+"/"+defaultParams);
 
       let fileTarget = "newTabForDemandeAuthentification" + this.attributes.idPermis;
 
@@ -251,7 +267,7 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
         <Tab id="tabDemandeAuthentification" title="Demande d'Authentification">
           <TabContent>
             <h6> Vous avez généré une demande d'authentification pour ce dossier </h6>
-            <Form id="demandeAuthentificationForm" readOnly={true} defaultValues={demandeAuthentificationList[0]}>
+            <Form id="demandeAuthentificationForm" defaultValues={dataForm}>
               <InputField name="numDemandeAuthentification"
                           label={format.fields.num_demande_authentification.label}
                           readOnly={true}/>
@@ -264,9 +280,33 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
               <CalendarField name="dateDuTraitement"
                              label={format.fields.date_du_traitement.label}
                              readOnly={true}/>
+              <Row>
+                <InputField name="nom_responsable" ref={(input)=>{this.nom_responsable = input;}} onChange={this.handleUrl}
+                            label={format.fields.num_valise.label}
+                            readOnly={false}/>
+                <InputField name="prenom_responsable" ref={(input)=>{this.prenom_responsable = input;}} onChange={this.handleUrl}
+                            label={format.fields.num_valise.label}
+                            readOnly={false}/>
+              </Row>
+              <Row>
+                <InputField name="intitule_prefecture" ref={(input)=>{this.intitule_prefecture = input;}} onChange={this.handleUrl}
+                            label={format.fields.intitule_prefecture.label}
+                            readOnly={false}/>
+                <InputField name="prefecture"
+                            label={format.fields.prefecture.label}
+                            readOnly={true}/>
+              </Row>
+              <InputField name="intitule_service" ref={(input)=>{this.intitule_service = input;}} onChange={this.handleUrl}
+                          label={format.fields.intitule_service.label}
+                          readOnly={false}/>
+              <RadiosField name="cedex" ref={(radio)=>{this.cedex = radio;}} onClick={this.handleUrl}
+                          label={format.fields.cedex.label}
+                           defaultValue={{"value": "false"}}
+                           dataSource={dataCedex}
+                          inline={RadiosField.Inline.FIELD}/>
             </Form>
             <div className="grid-form-field ">
-              <div className="">
+              <div className="demandeauthentification">
                 <a href={urlfile} data-pass-thru="true"
                    target={fileTarget}>{"Demande d'authentification générée"}</a>
               </div>
@@ -289,6 +329,13 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
         </Tab>
       );
     }
+  }
+
+  handleUrl() {
+    let params = encodeURI(this.nom_responsable.getCurrentValue()+"+"+this.prenom_responsable.getCurrentValue()+"+"+this.intitule_prefecture.getCurrentValue()+"+"+this.intitule_service.getCurrentValue()+"+"+this.cedex.getCurrentValue());
+    let a : HTMLAnchorElement;
+    a = document.querySelector(".demandeauthentification a");
+    a.href = Utils.buildContextPath("/services/recordserver/pdfMake/demandeAuthentification/"+this.attributes.idPermis+"/"+params);
   }
 
   retourPage(){

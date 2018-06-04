@@ -25,12 +25,18 @@ var tabs_1 = require("hornet-js-react-components/src/widget/tab/tabs");
 var tab_1 = require("hornet-js-react-components/src/widget/tab/tab");
 var tab_content_1 = require("hornet-js-react-components/src/widget/tab/tab-content");
 var icon_1 = require("hornet-js-react-components/src/widget/icon/icon");
+var radios_field_1 = require("hornet-js-react-components/src/widget/form/radios-field");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
 var RecordDetailsPage = /** @class */ (function (_super) {
     tslib_1.__extends(RecordDetailsPage, _super);
     function RecordDetailsPage(props, context) {
         var _this = _super.call(this, props, context) || this;
         _this.tabs = new tabs_1.Tabs();
+        _this.nom_responsable = new input_field_1.InputField();
+        _this.prenom_responsable = new input_field_1.InputField();
+        _this.intitule_prefecture = new input_field_1.InputField();
+        _this.intitule_service = new input_field_1.InputField();
+        _this.cedex = new radios_field_1.RadiosField({ defaultValue: { "value": false, "label": "non" } });
         _this.dossierDatasource = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getDossier), {});
         _this.demandeauthentificationDatasource = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getDemandeAuthentification), {});
         return _this;
@@ -38,10 +44,10 @@ var RecordDetailsPage = /** @class */ (function (_super) {
     RecordDetailsPage.prototype.prepareClient = function () {
         var _this = this;
         this.dossierDatasource.fetch(true, this.attributes);
-        this.demandeauthentificationDatasource.fetch(true, this.attributes);
         this.dossierDatasource.on("fetch", function (Result) {
             _this.tabs.addElements(1, _this.renderDossierTab(Result[0]));
             _this.tabs.removeElementsById("temp");
+            _this.demandeauthentificationDatasource.fetch(true, _this.attributes);
         });
         this.demandeauthentificationDatasource.on("fetch", function (Result) {
             _this.tabs.addElements(2, _this.renderDemandeAuthentificationTab(Result));
@@ -109,38 +115,55 @@ var RecordDetailsPage = /** @class */ (function (_super) {
         var fileTarget = "newTabForCopiePermis" + this.attributes.idPermis;
         fileTag =
             React.createElement("div", { className: "grid-form-field " },
-                React.createElement("div", { className: "" },
+                React.createElement("div", { className: "copiepermis" },
                     React.createElement("a", { href: urlfile, "data-pass-thru": "true", target: fileTarget }, this.dossier.copie_permis.nom)));
         return fileTag;
     };
     RecordDetailsPage.prototype.renderCopieNoteVerbaleMAECI = function (file) {
         var format = this.i18n("forms");
         var fileTag = null;
-        var urlfile = hornet_js_utils_1.Utils.buildContextPath("/services/recordserver/copieNoteVerbaleMAECI/" + this.dossier.copie_note_verbale_maeci.idCopieNoteVerbaleMAECI);
+        var urlfile = encodeURI("/services/recordserver/copieNoteVerbaleMAECI/" + this.dossier.copie_note_verbale_maeci.idCopieNoteVerbaleMAECI);
         var fileTarget = "newTabForCopieNoteVerbaleMAECI" + this.attributes.idPermis;
         fileTag =
             React.createElement("div", { className: "grid-form-field " },
-                React.createElement("div", { className: "" },
+                React.createElement("div", { className: "copienoteverbalemaeci" },
                     React.createElement("a", { href: urlfile, "data-pass-thru": "true", target: fileTarget }, this.dossier.copie_note_verbale_maeci.nom)));
         return fileTag;
     };
     RecordDetailsPage.prototype.renderDemandeAuthentificationTab = function (demandeAuthentificationList) {
+        var _this = this;
         var format = this.i18n("forms");
         if (demandeAuthentificationList.length > 0) {
             var fileTag = null;
-            var urlfile = hornet_js_utils_1.Utils.buildContextPath("/services/recordserver/pdfMake/demandeAuthentification/" + this.attributes.idPermis);
+            var dataForm = demandeAuthentificationList[0];
+            dataForm["nom_responsable"] = "Zitouni";
+            dataForm["prenom_responsable"] = "Samah";
+            dataForm["intitule_prefecture"] = "Préfecture de ";
+            dataForm["prefecture"] = this.dossier.prefecture;
+            dataForm["intitule_service"] = "Service des permis de conduire";
+            var dataCedex = new datasource_1.DataSource([{ "value": "true", "label": "oui" }, { "value": "false", "label": "non" }]);
+            var defaultParams = encodeURI(dataForm.nom_responsable + "+" + dataForm.prenom_responsable + "+" + dataForm.intitule_prefecture + "+" + dataForm.intitule_service);
+            var urlfile = hornet_js_utils_1.Utils.buildContextPath("/services/recordserver/pdfMake/demandeAuthentification/" + this.attributes.idPermis + "/" + defaultParams);
             var fileTarget = "newTabForDemandeAuthentification" + this.attributes.idPermis;
             fileTag =
                 React.createElement(tab_1.Tab, { id: "tabDemandeAuthentification", title: "Demande d'Authentification" },
                     React.createElement(tab_content_1.TabContent, null,
                         React.createElement("h6", null, " Vous avez g\u00E9n\u00E9r\u00E9 une demande d'authentification pour ce dossier "),
-                        React.createElement(form_1.Form, { id: "demandeAuthentificationForm", readOnly: true, defaultValues: demandeAuthentificationList[0] },
+                        React.createElement(form_1.Form, { id: "demandeAuthentificationForm", defaultValues: dataForm },
                             React.createElement(input_field_1.InputField, { name: "numDemandeAuthentification", label: format.fields.num_demande_authentification.label, readOnly: true }),
                             React.createElement(calendar_field_1.CalendarField, { name: "dateDeCreation", label: format.fields.date_de_creation.label, readOnly: true }),
                             React.createElement(input_field_1.InputField, { name: "numValise", label: format.fields.num_valise.label, readOnly: true }),
-                            React.createElement(calendar_field_1.CalendarField, { name: "dateDuTraitement", label: format.fields.date_du_traitement.label, readOnly: true })),
+                            React.createElement(calendar_field_1.CalendarField, { name: "dateDuTraitement", label: format.fields.date_du_traitement.label, readOnly: true }),
+                            React.createElement(row_1.Row, null,
+                                React.createElement(input_field_1.InputField, { name: "nom_responsable", ref: function (input) { _this.nom_responsable = input; }, onChange: this.handleUrl, label: format.fields.num_valise.label, readOnly: false }),
+                                React.createElement(input_field_1.InputField, { name: "prenom_responsable", ref: function (input) { _this.prenom_responsable = input; }, onChange: this.handleUrl, label: format.fields.num_valise.label, readOnly: false })),
+                            React.createElement(row_1.Row, null,
+                                React.createElement(input_field_1.InputField, { name: "intitule_prefecture", ref: function (input) { _this.intitule_prefecture = input; }, onChange: this.handleUrl, label: format.fields.intitule_prefecture.label, readOnly: false }),
+                                React.createElement(input_field_1.InputField, { name: "prefecture", label: format.fields.prefecture.label, readOnly: true })),
+                            React.createElement(input_field_1.InputField, { name: "intitule_service", ref: function (input) { _this.intitule_service = input; }, onChange: this.handleUrl, label: format.fields.intitule_service.label, readOnly: false }),
+                            React.createElement(radios_field_1.RadiosField, { name: "cedex", ref: function (radio) { _this.cedex = radio; }, onClick: this.handleUrl, label: format.fields.cedex.label, defaultValue: { "value": "false" }, dataSource: dataCedex, inline: radios_field_1.RadiosField.Inline.FIELD })),
                         React.createElement("div", { className: "grid-form-field " },
-                            React.createElement("div", { className: "" },
+                            React.createElement("div", { className: "demandeauthentification" },
                                 React.createElement("a", { href: urlfile, "data-pass-thru": "true", target: fileTarget }, "Demande d'authentification générée")))));
             return fileTag;
         }
@@ -151,6 +174,12 @@ var RecordDetailsPage = /** @class */ (function (_super) {
                     React.createElement(buttons_area_1.ButtonsArea, null,
                         React.createElement(button_1.Button, { type: "submit", onClick: this.genererDemande, value: "Valider", className: "hornet-button", label: "g\u00E9n\u00E9rer une demande d'authentification", title: "valider" })))));
         }
+    };
+    RecordDetailsPage.prototype.handleUrl = function () {
+        var params = encodeURI(this.nom_responsable.getCurrentValue() + "+" + this.prenom_responsable.getCurrentValue() + "+" + this.intitule_prefecture.getCurrentValue() + "+" + this.intitule_service.getCurrentValue() + "+" + this.cedex.getCurrentValue());
+        var a;
+        a = document.querySelector(".demandeauthentification a");
+        a.href = hornet_js_utils_1.Utils.buildContextPath("/services/recordserver/pdfMake/demandeAuthentification/" + this.attributes.idPermis + "/" + params);
     };
     RecordDetailsPage.prototype.retourPage = function () {
         this.navigateTo("/record", {}, function () { });

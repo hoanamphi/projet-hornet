@@ -158,9 +158,11 @@ export class GetCopieNoteVerbaleMAECI extends RouteActionService<{"idCopieNoteVe
   }
 }
 
-export class GetPDFDemandeAuthentification extends RouteActionService<{"idPermis": number}, ClientListService> {
+export class GetPDFDemandeAuthentification extends RouteActionService<{"idPermis": number, "data": string}, ClientListService> {
   execute(): Promise<any> {
     logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
+
+    let dataString = this.attributes.data.split("+");
 
     return this.getService().getPDFDemandeAuthentification(this.attributes.idPermis).then(result=>{
       let dossier = result.dossier[0];
@@ -200,13 +202,14 @@ export class GetPDFDemandeAuthentification extends RouteActionService<{"idPermis
             },
             {text:"Service des Permis de Conduire", bold: true, italics: true, fontSize: 10},
             {text:"Affaire suivie par", bold: true, italics: true, fontSize: 10},
-            {text:"MME ZITOUNI Samah", margin: [5,0,0,0], bold: true, italics: true, fontSize: 10},
-            {text:"Samah.Zitouni@diplomatie.gouv.fr", fontSize: 10},
+            {text:"MME "+dataString[0].toUpperCase()+" "+this.capitalize(dataString[1]), margin: [5,0,0,0], bold: true, italics: true, fontSize: 10},
+            {text:this.capitalize(dataString[1])+"."+this.capitalize(dataString[0])+"@diplomatie.gouv.fr", fontSize: 10},
             {
               stack: [
-                {text: dossier.prefecture.toUpperCase()},
+                {text: dataString[2].toUpperCase()+" "+dossier.prefecture.toUpperCase()},
+                {text: dataString[3].toUpperCase()},
                 {text: dossier.adresse.toUpperCase()},
-                {text: (dossier.codePostal+" "+dossier.ville).toUpperCase()}
+                {text: (dossier.codePostal+" "+dossier.ville).toUpperCase()+" "+dataString[4]}
               ],
               margin: [150, 60, 0, 70]
             },
@@ -217,7 +220,7 @@ export class GetPDFDemandeAuthentification extends RouteActionService<{"idPermis
                 {text: "Je vous demande de bien vouloir certifier l'authenticité du titre, dont vous trouverez ci-joint copie appartenant à :", margin: [0, 0, 0, 30]},
                 {
                   stack: [
-                    {text: "Monsieur "+dossier.nom.toUpperCase()+" "+(dossier.prenom[0].toUpperCase()+dossier.prenom.slice(1))},
+                    {text: dossier.sexe+" "+dossier.nom.toUpperCase()+" "+(dossier.prenom[0].toUpperCase()+dossier.prenom.slice(1))},
                     {text: "Né(e) le "+new Date(dossier.dateDeNaissance).toLocaleDateString()},
                     {text: "À "+dossier.villeDeNaissance.toUpperCase()+" / "+dossier.paysDeNaissance.toUpperCase()}
                   ],
@@ -246,5 +249,9 @@ export class GetPDFDemandeAuthentification extends RouteActionService<{"idPermis
         }
       }));
     });
+  }
+
+  capitalize(entry: string): string {
+    return entry[0].toUpperCase()+entry.slice(1).toLowerCase();
   }
 }

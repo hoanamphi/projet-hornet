@@ -7,9 +7,9 @@ webpackJsonp([0,1],Array(249).concat([
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var abstract_routes_1 = __webpack_require__(98);
-var gen_recordList_page_1 = __webpack_require__(511);
-var client_list_service_impl_1 = __webpack_require__(513);
-var gen_recordDetails_page_1 = __webpack_require__(514);
+var gen_recordList_page_1 = __webpack_require__(512);
+var client_list_service_impl_1 = __webpack_require__(514);
+var gen_recordDetails_page_1 = __webpack_require__(515);
 var RecordListRoutesClient = /** @class */ (function (_super) {
     tslib_1.__extends(RecordListRoutesClient, _super);
     function RecordListRoutesClient() {
@@ -36,10 +36,10 @@ exports.default = RecordListRoutesClient;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
-var fvm_action_1 = __webpack_require__(502);
+var fvm_action_1 = __webpack_require__(503);
 var abstract_routes_1 = __webpack_require__(98);
 var record_client_routes_1 = __webpack_require__(249);
-var client_list_service_impl_data_1 = __webpack_require__(569);
+var client_list_service_impl_data_1 = __webpack_require__(570);
 var RecordListRoutesServer = /** @class */ (function (_super) {
     tslib_1.__extends(RecordListRoutesServer, _super);
     function RecordListRoutesServer() {
@@ -51,7 +51,7 @@ var RecordListRoutesServer = /** @class */ (function (_super) {
         _this.addDataRoute("/detailsDossiers/noteverbale", function (id) { return new abstract_routes_1.DataRouteInfos(fvm_action_1.GetNoteVerbale, null, client_list_service_impl_data_1.ClientListServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE, "post");
         _this.addDataRoute("/copiePermis/(\\d+)", function (idCopiePermis) { return new abstract_routes_1.DataRouteInfos(fvm_action_1.GetCopiePermis, { "idCopiePermis": idCopiePermis }, client_list_service_impl_data_1.ClientListServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE, "get");
         _this.addDataRoute("/copieNoteVerbaleMAECI/(\\d+)", function (idCopieNoteVerbaleMAECI) { return new abstract_routes_1.DataRouteInfos(fvm_action_1.GetCopieNoteVerbaleMAECI, { "idCopieNoteVerbaleMAECI": idCopieNoteVerbaleMAECI }, client_list_service_impl_data_1.ClientListServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE, "get");
-        _this.addDataRoute("/pdfMake/demandeAuthentification/(\\d+)", function (idPermis) { return new abstract_routes_1.DataRouteInfos(fvm_action_1.GetPDFDemandeAuthentification, { "idPermis": idPermis }, client_list_service_impl_data_1.ClientListServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE, "get");
+        _this.addDataRoute("/pdfMake/demandeAuthentification/(\\d+)/((\\S+|\\s+)+)", function (idPermis, data) { return new abstract_routes_1.DataRouteInfos(fvm_action_1.GetPDFDemandeAuthentification, { "idPermis": idPermis, "data": data }, client_list_service_impl_data_1.ClientListServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE, "get");
         return _this;
     }
     return RecordListRoutesServer;
@@ -185,7 +185,7 @@ var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var classNames = __webpack_require__(9);
 var _ = __webpack_require__(6);
-var dom_adapter_1 = __webpack_require__(310);
+var dom_adapter_1 = __webpack_require__(311);
 var field_error_1 = __webpack_require__(348);
 var html_attributes_1 = __webpack_require__(349);
 var tool_tip_1 = __webpack_require__(351);
@@ -1575,7 +1575,7 @@ var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var abstract_cell_1 = __webpack_require__(343);
-var template_1 = __webpack_require__(308);
+var template_1 = __webpack_require__(309);
 var classNames = __webpack_require__(9);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.table.column.cell.abstract-body-cell");
 /**
@@ -1766,9 +1766,9 @@ var tslib_1 = __webpack_require__(1);
  */
 var hornet_js_utils_1 = __webpack_require__(0);
 var hornet_component_1 = __webpack_require__(3);
-var header_cell_1 = __webpack_require__(490);
-var body_cell_1 = __webpack_require__(491);
-var input_text_in_line_body_cell_1 = __webpack_require__(492);
+var header_cell_1 = __webpack_require__(491);
+var body_cell_1 = __webpack_require__(492);
+var input_text_in_line_body_cell_1 = __webpack_require__(493);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.table.column");
 /**
  * Classe abstraite d'une colonne de tableau
@@ -3018,7 +3018,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @license CECILL-2.1
  */
 var _ = __webpack_require__(6);
-var template_1 = __webpack_require__(308);
+var template_1 = __webpack_require__(309);
 /**
  * Classe utilitaire sur les arrays.
  */
@@ -3184,10 +3184,10 @@ var _ = __webpack_require__(6);
 var promise_api_1 = __webpack_require__(50);
 var technical_error_1 = __webpack_require__(13);
 var codes_error_1 = __webpack_require__(97);
-var object_utils_1 = __webpack_require__(313);
+var object_utils_1 = __webpack_require__(314);
 var datasource_option_1 = __webpack_require__(356);
 var datasource_config_1 = __webpack_require__(357);
-var datasource_config_page_1 = __webpack_require__(314);
+var datasource_config_page_1 = __webpack_require__(315);
 var DataSourceStatus;
 (function (DataSourceStatus) {
     DataSourceStatus[DataSourceStatus["Dummy"] = 0] = "Dummy";
@@ -3974,6 +3974,205 @@ var tslib_1 = __webpack_require__(1);
  * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
  * @license CECILL-2.1
  */
+var hornet_js_utils_1 = __webpack_require__(0);
+var React = __webpack_require__(2);
+var abstract_field_1 = __webpack_require__(256);
+var spinner_component_input_1 = __webpack_require__(344);
+var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.form.abstract-field-datasource");
+/**
+ * Représente un champ de formulaire qui possède un datasource
+ */
+var AbstractFieldDatasource = /** @class */ (function (_super) {
+    tslib_1.__extends(AbstractFieldDatasource, _super);
+    function AbstractFieldDatasource(props, context) {
+        return _super.call(this, props, context) || this;
+    }
+    /**
+     * Méthode qui controle l'affichage et la suppression du spinner
+     * @param flag booléen true pour l'afficher false sinon
+     */
+    AbstractFieldDatasource.prototype.displaySpinner = function (flag) {
+        this.state.inProgress = flag;
+        if (!this.props.hideSpinner) {
+            this.refs.spinnerLoader && this.refs.spinnerLoader.progress(flag);
+            flag ? this.showSpinnerComponent() : this.hideSpinnerComponent();
+        }
+    };
+    /**
+     * @inheritDoc
+     */
+    AbstractFieldDatasource.prototype.componentWillMount = function () {
+        _super.prototype.componentWillMount.call(this);
+        if (this.props.dataSource) {
+            this.setItem();
+        }
+    };
+    /**
+     * @inheritDoc
+     */
+    AbstractFieldDatasource.prototype.componentDidMount = function () {
+        _super.prototype.componentDidMount.call(this);
+        if (this.props.dataSource) {
+            this.props.dataSource.on("fetch", this.setItem);
+            this.props.dataSource.on("init", this.setItem);
+            this.props.dataSource.on("add", this.setItem);
+            this.props.dataSource.on("delete", this.setItem);
+            this.props.dataSource.on("sort", this.setItem);
+            this.props.dataSource.on("filter", this.setItem);
+            this.props.dataSource.on("loadingData", this.displaySpinner);
+        }
+    };
+    /**
+     * @inheritDoc
+     */
+    AbstractFieldDatasource.prototype.componentWillUnmount = function () {
+        _super.prototype.componentWillUnmount.call(this);
+        if (this.props.dataSource) {
+            this.props.dataSource.removeListener("fetch", this.setItem);
+            this.props.dataSource.removeListener("init", this.setItem);
+            this.props.dataSource.removeListener("add", this.setItem);
+            this.props.dataSource.removeListener("delete", this.setItem);
+            this.props.dataSource.removeListener("sort", this.setItem);
+            this.props.dataSource.removeListener("filter", this.setItem);
+            this.props.dataSource.removeListener("loadingData", this.displaySpinner);
+        }
+    };
+    /**
+     * enregistre la liste des choix possibles
+     */
+    AbstractFieldDatasource.prototype.setItem = function () {
+        this.setState({ items: this.props.dataSource.results });
+        /* permet de faire appel a la méthode setCurrentValue de dom-adapter pour cocher les valeurs*/
+        this.setCurrentValue(this.state.currentValue);
+    };
+    /**
+     * Méthode premettant d'afficher le spinner
+     * @returns {Table}
+     */
+    AbstractFieldDatasource.prototype.showSpinnerComponent = function () {
+        this.setState({ spinner: true });
+        return this;
+    };
+    /**
+     * Méthode premettant de masquer le spinner
+     * @returns {Table}
+     */
+    AbstractFieldDatasource.prototype.hideSpinnerComponent = function () {
+        this.setState({ spinner: false });
+        return this;
+    };
+    AbstractFieldDatasource.prototype.setDataSource = function (value, callback) {
+        /** liste des choix disponibles */
+        this.setState({ dataSource: value }, callback);
+        return this;
+    };
+    AbstractFieldDatasource.prototype.updateDataSource = function (value) {
+        this.setDataSource(value);
+    };
+    /**
+     * Génère le rendu des élements assurant la saisie des valeurs
+     * @returns {any}
+     */
+    AbstractFieldDatasource.prototype.renderField = function () {
+        return (React.createElement("div", { className: this.state.fieldClass + " abstractfield-field-content" },
+            React.createElement(spinner_component_input_1.SpinnerComponentInput, { ref: "spinnerLoader", isVisible: this.state.spinner }),
+            this.state.prefix ? React.createElement("span", { className: "abstractfield-field-prefix" }, this.state.prefix) : null,
+            this.renderWidget(),
+            this.state.suffix ? React.createElement("span", { className: "abstractfield-field-suffix" }, this.state.suffix) : null,
+            this.renderErrors()));
+    };
+    return AbstractFieldDatasource;
+}(abstract_field_1.AbstractField));
+exports.AbstractFieldDatasource = AbstractFieldDatasource;
+
+
+
+/***/ }),
+/* 306 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * Ce logiciel est un programme informatique servant à faciliter la création
+ * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
+ * <p/>
+ * Ce logiciel est régi par la licence CeCILL soumise au droit français et
+ * respectant les principes de diffusion des logiciels libres. Vous pouvez
+ * utiliser, modifier et/ou redistribuer ce programme sous les conditions
+ * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
+ * sur le site "http://www.cecill.info".
+ * <p/>
+ * En contrepartie de l'accessibilité au code source et des droits de copie,
+ * de modification et de redistribution accordés par cette licence, il n'est
+ * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
+ * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
+ * titulaire des droits patrimoniaux et les concédants successifs.
+ * <p/>
+ * A cet égard  l'attention de l'utilisateur est attirée sur les risques
+ * associés au chargement,  à l'utilisation,  à la modification et/ou au
+ * développement et à la reproduction du logiciel par l'utilisateur étant
+ * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
+ * manipuler et qui le réserve donc à des développeurs et des professionnels
+ * avertis possédant  des  connaissances  informatiques approfondies.  Les
+ * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
+ * logiciel à leurs besoins dans des conditions permettant d'assurer la
+ * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
+ * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
+ * <p/>
+ * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
+ * pris connaissance de la licence CeCILL, et que vous en avez accepté les
+ * termes.
+ * <p/>
+ * <p/>
+ * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * This software is a computer program whose purpose is to facilitate creation of
+ * web application in accordance with french general repositories : RGI, RGS and RGAA.
+ * <p/>
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software.  You can  use,
+ * modify and/ or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ * <p/>
+ * As a counterpart to the access to the source code and  rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty  and the software's author,  the holder of the
+ * economic rights,  and the successive licensors  have only  limited
+ * liability.
+ * <p/>
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading,  using,  modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean  that it is complicated to manipulate,  and  that  also
+ * therefore means  that it is reserved for developers  and  experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and,  more generally, to use and operate it in the
+ * same conditions as regards security.
+ * <p/>
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(1);
+/**
+ * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
+ *
+ * @author MEAE - Ministère de l'Europe et des Affaires étrangères
+ * @version v5.1.1
+ * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
+ * @license CECILL-2.1
+ */
 var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
 var classNames = __webpack_require__(9);
@@ -4076,7 +4275,7 @@ exports.Button = Button;
 
 
 /***/ }),
-/* 306 */
+/* 307 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4167,19 +4366,19 @@ var sort_data_1 = __webpack_require__(283);
 var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
 var confirm_1 = __webpack_require__(476);
-var spinner_table_1 = __webpack_require__(489);
+var spinner_table_1 = __webpack_require__(490);
 var paginate_datasource_1 = __webpack_require__(339);
 var columns_1 = __webpack_require__(340);
 var action_column_1 = __webpack_require__(477);
-var edition_action_column_1 = __webpack_require__(494);
+var edition_action_column_1 = __webpack_require__(495);
 var check_column_1 = __webpack_require__(480);
 var abstract_cell_1 = __webpack_require__(343);
-var cell_coordinates_1 = __webpack_require__(498);
+var cell_coordinates_1 = __webpack_require__(499);
 var table_state_1 = __webpack_require__(279);
 var navigation_direction_1 = __webpack_require__(478);
-var form_1 = __webpack_require__(309);
-var line_before_1 = __webpack_require__(499);
-var line_after_1 = __webpack_require__(500);
+var form_1 = __webpack_require__(310);
+var line_before_1 = __webpack_require__(500);
+var line_after_1 = __webpack_require__(501);
 var classNames = __webpack_require__(9);
 var _ = __webpack_require__(6);
 var hornet_event_1 = __webpack_require__(7);
@@ -5068,7 +5267,7 @@ exports.Content = Content;
 
 
 /***/ }),
-/* 307 */
+/* 308 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5222,7 +5421,7 @@ exports.ButtonsArea = ButtonsArea;
 
 
 /***/ }),
-/* 308 */
+/* 309 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5363,7 +5562,7 @@ exports.Template = Template;
 
 
 /***/ }),
-/* 309 */
+/* 310 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5454,8 +5653,8 @@ var notification_1 = __webpack_require__(48);
 var abstract_field_1 = __webpack_require__(256);
 var abstract_form_1 = __webpack_require__(352);
 var upload_file_field_1 = __webpack_require__(341);
-var form_utils_1 = __webpack_require__(311);
-var dom_adapter_1 = __webpack_require__(310);
+var form_utils_1 = __webpack_require__(312);
+var dom_adapter_1 = __webpack_require__(311);
 var auto_complete_field_1 = __webpack_require__(353);
 var notification_manager_1 = __webpack_require__(96);
 var checkbox_field_1 = __webpack_require__(358);
@@ -5463,7 +5662,7 @@ var data_validator_1 = __webpack_require__(359);
 var classNames = __webpack_require__(9);
 var _ = __webpack_require__(6);
 var select_field_1 = __webpack_require__(345);
-var buttons_area_1 = __webpack_require__(307);
+var buttons_area_1 = __webpack_require__(308);
 var event_1 = __webpack_require__(324);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.form.form");
 /**
@@ -5995,7 +6194,7 @@ exports.Form = Form;
 
 
 /***/ }),
-/* 310 */
+/* 311 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6073,7 +6272,7 @@ exports.Form = Form;
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var hornet_component_1 = __webpack_require__(3);
-var form_utils_1 = __webpack_require__(311);
+var form_utils_1 = __webpack_require__(312);
 var hornet_js_utils_1 = __webpack_require__(0);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.form.dom-adapter");
 /**
@@ -6338,7 +6537,7 @@ exports.DomAdapter = DomAdapter;
 
 
 /***/ }),
-/* 311 */
+/* 312 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6542,7 +6741,7 @@ exports.FormUtils = FormUtils;
 
 
 /***/ }),
-/* 312 */
+/* 313 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6653,7 +6852,7 @@ exports.AutoCompleteState = AutoCompleteState;
 
 
 /***/ }),
-/* 313 */
+/* 314 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6778,7 +6977,7 @@ exports.ObjectUtils = ObjectUtils;
 
 
 /***/ }),
-/* 314 */
+/* 315 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6867,205 +7066,6 @@ var DataSourceConfigPage = /** @class */ (function () {
     return DataSourceConfigPage;
 }());
 exports.DataSourceConfigPage = DataSourceConfigPage;
-
-
-
-/***/ }),
-/* 315 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * Ce logiciel est un programme informatique servant à faciliter la création
- * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
- * <p/>
- * Ce logiciel est régi par la licence CeCILL soumise au droit français et
- * respectant les principes de diffusion des logiciels libres. Vous pouvez
- * utiliser, modifier et/ou redistribuer ce programme sous les conditions
- * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
- * sur le site "http://www.cecill.info".
- * <p/>
- * En contrepartie de l'accessibilité au code source et des droits de copie,
- * de modification et de redistribution accordés par cette licence, il n'est
- * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
- * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
- * titulaire des droits patrimoniaux et les concédants successifs.
- * <p/>
- * A cet égard  l'attention de l'utilisateur est attirée sur les risques
- * associés au chargement,  à l'utilisation,  à la modification et/ou au
- * développement et à la reproduction du logiciel par l'utilisateur étant
- * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
- * manipuler et qui le réserve donc à des développeurs et des professionnels
- * avertis possédant  des  connaissances  informatiques approfondies.  Les
- * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
- * logiciel à leurs besoins dans des conditions permettant d'assurer la
- * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
- * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
- * <p/>
- * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
- * pris connaissance de la licence CeCILL, et que vous en avez accepté les
- * termes.
- * <p/>
- * <p/>
- * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * This software is a computer program whose purpose is to facilitate creation of
- * web application in accordance with french general repositories : RGI, RGS and RGAA.
- * <p/>
- * This software is governed by the CeCILL license under French law and
- * abiding by the rules of distribution of free software.  You can  use,
- * modify and/ or redistribute the software under the terms of the CeCILL
- * license as circulated by CEA, CNRS and INRIA at the following URL
- * "http://www.cecill.info".
- * <p/>
- * As a counterpart to the access to the source code and  rights to copy,
- * modify and redistribute granted by the license, users are provided only
- * with a limited warranty  and the software's author,  the holder of the
- * economic rights,  and the successive licensors  have only  limited
- * liability.
- * <p/>
- * In this respect, the user's attention is drawn to the risks associated
- * with loading,  using,  modifying and/or developing or reproducing the
- * software by the user in light of its specific status of free software,
- * that may mean  that it is complicated to manipulate,  and  that  also
- * therefore means  that it is reserved for developers  and  experienced
- * professionals having in-depth computer knowledge. Users are therefore
- * encouraged to load and test the software's suitability as regards their
- * requirements in conditions enabling the security of their systems and/or
- * data to be ensured and,  more generally, to use and operate it in the
- * same conditions as regards security.
- * <p/>
- * The fact that you are presently reading this means that you have had
- * knowledge of the CeCILL license and that you accept its terms.
- *
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(1);
-/**
- * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
- *
- * @author MEAE - Ministère de l'Europe et des Affaires étrangères
- * @version v5.1.1
- * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
- * @license CECILL-2.1
- */
-var hornet_js_utils_1 = __webpack_require__(0);
-var React = __webpack_require__(2);
-var abstract_field_1 = __webpack_require__(256);
-var spinner_component_input_1 = __webpack_require__(344);
-var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.form.abstract-field-datasource");
-/**
- * Représente un champ de formulaire qui possède un datasource
- */
-var AbstractFieldDatasource = /** @class */ (function (_super) {
-    tslib_1.__extends(AbstractFieldDatasource, _super);
-    function AbstractFieldDatasource(props, context) {
-        return _super.call(this, props, context) || this;
-    }
-    /**
-     * Méthode qui controle l'affichage et la suppression du spinner
-     * @param flag booléen true pour l'afficher false sinon
-     */
-    AbstractFieldDatasource.prototype.displaySpinner = function (flag) {
-        this.state.inProgress = flag;
-        if (!this.props.hideSpinner) {
-            this.refs.spinnerLoader && this.refs.spinnerLoader.progress(flag);
-            flag ? this.showSpinnerComponent() : this.hideSpinnerComponent();
-        }
-    };
-    /**
-     * @inheritDoc
-     */
-    AbstractFieldDatasource.prototype.componentWillMount = function () {
-        _super.prototype.componentWillMount.call(this);
-        if (this.props.dataSource) {
-            this.setItem();
-        }
-    };
-    /**
-     * @inheritDoc
-     */
-    AbstractFieldDatasource.prototype.componentDidMount = function () {
-        _super.prototype.componentDidMount.call(this);
-        if (this.props.dataSource) {
-            this.props.dataSource.on("fetch", this.setItem);
-            this.props.dataSource.on("init", this.setItem);
-            this.props.dataSource.on("add", this.setItem);
-            this.props.dataSource.on("delete", this.setItem);
-            this.props.dataSource.on("sort", this.setItem);
-            this.props.dataSource.on("filter", this.setItem);
-            this.props.dataSource.on("loadingData", this.displaySpinner);
-        }
-    };
-    /**
-     * @inheritDoc
-     */
-    AbstractFieldDatasource.prototype.componentWillUnmount = function () {
-        _super.prototype.componentWillUnmount.call(this);
-        if (this.props.dataSource) {
-            this.props.dataSource.removeListener("fetch", this.setItem);
-            this.props.dataSource.removeListener("init", this.setItem);
-            this.props.dataSource.removeListener("add", this.setItem);
-            this.props.dataSource.removeListener("delete", this.setItem);
-            this.props.dataSource.removeListener("sort", this.setItem);
-            this.props.dataSource.removeListener("filter", this.setItem);
-            this.props.dataSource.removeListener("loadingData", this.displaySpinner);
-        }
-    };
-    /**
-     * enregistre la liste des choix possibles
-     */
-    AbstractFieldDatasource.prototype.setItem = function () {
-        this.setState({ items: this.props.dataSource.results });
-        /* permet de faire appel a la méthode setCurrentValue de dom-adapter pour cocher les valeurs*/
-        this.setCurrentValue(this.state.currentValue);
-    };
-    /**
-     * Méthode premettant d'afficher le spinner
-     * @returns {Table}
-     */
-    AbstractFieldDatasource.prototype.showSpinnerComponent = function () {
-        this.setState({ spinner: true });
-        return this;
-    };
-    /**
-     * Méthode premettant de masquer le spinner
-     * @returns {Table}
-     */
-    AbstractFieldDatasource.prototype.hideSpinnerComponent = function () {
-        this.setState({ spinner: false });
-        return this;
-    };
-    AbstractFieldDatasource.prototype.setDataSource = function (value, callback) {
-        /** liste des choix disponibles */
-        this.setState({ dataSource: value }, callback);
-        return this;
-    };
-    AbstractFieldDatasource.prototype.updateDataSource = function (value) {
-        this.setDataSource(value);
-    };
-    /**
-     * Génère le rendu des élements assurant la saisie des valeurs
-     * @returns {any}
-     */
-    AbstractFieldDatasource.prototype.renderField = function () {
-        return (React.createElement("div", { className: this.state.fieldClass + " abstractfield-field-content" },
-            React.createElement(spinner_component_input_1.SpinnerComponentInput, { ref: "spinnerLoader", isVisible: this.state.spinner }),
-            this.state.prefix ? React.createElement("span", { className: "abstractfield-field-prefix" }, this.state.prefix) : null,
-            this.renderWidget(),
-            this.state.suffix ? React.createElement("span", { className: "abstractfield-field-suffix" }, this.state.suffix) : null,
-            this.renderErrors()));
-    };
-    return AbstractFieldDatasource;
-}(abstract_field_1.AbstractField));
-exports.AbstractFieldDatasource = AbstractFieldDatasource;
 
 
 
@@ -10269,9 +10269,9 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var React = __webpack_require__(2);
-var abstract_field_datasource_1 = __webpack_require__(315);
+var abstract_field_datasource_1 = __webpack_require__(305);
 var _ = __webpack_require__(6);
-var object_utils_1 = __webpack_require__(313);
+var object_utils_1 = __webpack_require__(314);
 /**
  * Composant liste déroulante
  */
@@ -12098,9 +12098,9 @@ var abstract_field_1 = __webpack_require__(256);
 var auto_complete_selector_1 = __webpack_require__(354);
 var _ = __webpack_require__(6);
 var key_codes_1 = __webpack_require__(10);
-var auto_complete_state_1 = __webpack_require__(312);
+var auto_complete_state_1 = __webpack_require__(313);
 var datasource_master_1 = __webpack_require__(355);
-var abstract_field_datasource_1 = __webpack_require__(315);
+var abstract_field_datasource_1 = __webpack_require__(305);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.form.auto-complete-field");
 var FilterTextType;
 (function (FilterTextType) {
@@ -13046,7 +13046,7 @@ var classNames = __webpack_require__(9);
 var _ = __webpack_require__(6);
 var hornet_component_1 = __webpack_require__(3);
 var checkbox_1 = __webpack_require__(282);
-var auto_complete_state_1 = __webpack_require__(312);
+var auto_complete_state_1 = __webpack_require__(313);
 var React = __webpack_require__(2);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.form.auto-complete-selector");
 /**
@@ -25667,7 +25667,7 @@ var hornet_component_1 = __webpack_require__(3);
 var dropdown_1 = __webpack_require__(39);
 var picto_1 = __webpack_require__(95);
 var action_button_1 = __webpack_require__(474);
-var table_button_info_accessibilite_1 = __webpack_require__(488);
+var table_button_info_accessibilite_1 = __webpack_require__(489);
 var _ = __webpack_require__(6);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.table.menu-actions");
 /**
@@ -25863,7 +25863,7 @@ var tslib_1 = __webpack_require__(1);
  */
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
-var button_1 = __webpack_require__(305);
+var button_1 = __webpack_require__(306);
 var classNames = __webpack_require__(9);
 var _ = __webpack_require__(6);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.table.action-button");
@@ -26374,7 +26374,7 @@ var tslib_1 = __webpack_require__(1);
  */
 var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
-var button_1 = __webpack_require__(305);
+var button_1 = __webpack_require__(306);
 var modal_1 = __webpack_require__(100);
 var notification_1 = __webpack_require__(48);
 var Confirm = /** @class */ (function (_super) {
@@ -26593,7 +26593,7 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var column_1 = __webpack_require__(281);
-var action_body_cell_1 = __webpack_require__(493);
+var action_body_cell_1 = __webpack_require__(494);
 var action_header_cell_1 = __webpack_require__(479);
 /**
  * Classe permettant de gérer les colonnes de type date
@@ -26931,8 +26931,8 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var column_1 = __webpack_require__(281);
-var check_body_cell_1 = __webpack_require__(496);
-var check_header_cell_1 = __webpack_require__(497);
+var check_body_cell_1 = __webpack_require__(497);
+var check_header_cell_1 = __webpack_require__(498);
 /**
  * Classe permettant de gérer les colonnes de type CheckBox
  */
@@ -27163,13 +27163,13 @@ var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
 var header_1 = __webpack_require__(472);
-var content_1 = __webpack_require__(306);
+var content_1 = __webpack_require__(307);
 var columns_1 = __webpack_require__(340);
 var footer_1 = __webpack_require__(483);
 var table_state_1 = __webpack_require__(279);
 var notification_1 = __webpack_require__(48);
 var toggle_columns_button_1 = __webpack_require__(475);
-var content_2 = __webpack_require__(306);
+var content_2 = __webpack_require__(307);
 var check_column_1 = __webpack_require__(480);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-components.widget.table.table");
 /**
@@ -28037,7 +28037,7 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var column_1 = __webpack_require__(281);
-var date_body_cell_1 = __webpack_require__(501);
+var date_body_cell_1 = __webpack_require__(502);
 /**
  * Classe permettant de gérer les colonnes de type date
  */
@@ -28149,7 +28149,7 @@ var tslib_1 = __webpack_require__(1);
  * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
  * @license CECILL-2.1
  */
-var hornet_result_1 = __webpack_require__(503);
+var hornet_result_1 = __webpack_require__(504);
 var disposition_type_1 = __webpack_require__(104);
 /**
  * @class
@@ -28184,8 +28184,270 @@ exports.ResultFile = ResultFile;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(23).Buffer))
 
 /***/ }),
-/* 487 */,
-/* 488 */
+/* 487 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * Ce logiciel est un programme informatique servant à faciliter la création
+ * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
+ * <p/>
+ * Ce logiciel est régi par la licence CeCILL soumise au droit français et
+ * respectant les principes de diffusion des logiciels libres. Vous pouvez
+ * utiliser, modifier et/ou redistribuer ce programme sous les conditions
+ * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
+ * sur le site "http://www.cecill.info".
+ * <p/>
+ * En contrepartie de l'accessibilité au code source et des droits de copie,
+ * de modification et de redistribution accordés par cette licence, il n'est
+ * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
+ * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
+ * titulaire des droits patrimoniaux et les concédants successifs.
+ * <p/>
+ * A cet égard  l'attention de l'utilisateur est attirée sur les risques
+ * associés au chargement,  à l'utilisation,  à la modification et/ou au
+ * développement et à la reproduction du logiciel par l'utilisateur étant
+ * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
+ * manipuler et qui le réserve donc à des développeurs et des professionnels
+ * avertis possédant  des  connaissances  informatiques approfondies.  Les
+ * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
+ * logiciel à leurs besoins dans des conditions permettant d'assurer la
+ * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
+ * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
+ * <p/>
+ * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
+ * pris connaissance de la licence CeCILL, et que vous en avez accepté les
+ * termes.
+ * <p/>
+ * <p/>
+ * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * This software is a computer program whose purpose is to facilitate creation of
+ * web application in accordance with french general repositories : RGI, RGS and RGAA.
+ * <p/>
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software.  You can  use,
+ * modify and/ or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ * <p/>
+ * As a counterpart to the access to the source code and  rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty  and the software's author,  the holder of the
+ * economic rights,  and the successive licensors  have only  limited
+ * liability.
+ * <p/>
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading,  using,  modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean  that it is complicated to manipulate,  and  that  also
+ * therefore means  that it is reserved for developers  and  experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and,  more generally, to use and operate it in the
+ * same conditions as regards security.
+ * <p/>
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(1);
+/**
+ * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
+ *
+ * @author MEAE - Ministère de l'Europe et des Affaires étrangères
+ * @version v5.1.1
+ * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
+ * @license CECILL-2.1
+ */
+var hornet_js_utils_1 = __webpack_require__(0);
+var React = __webpack_require__(2);
+var abstract_field_1 = __webpack_require__(256);
+var _ = __webpack_require__(6);
+var classNames = __webpack_require__(9);
+var abstract_field_datasource_1 = __webpack_require__(305);
+var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.form.radios-field");
+/**
+ * Composant groupe de boutons radio
+ */
+var RadiosField = /** @class */ (function (_super) {
+    tslib_1.__extends(RadiosField, _super);
+    function RadiosField(props, context) {
+        var _this = _super.call(this, props, context) || this;
+        if (_this.state.dataSource && _this.state.data) {
+            throw new Error("Le RadiosField " + _this.state.name + " possède une props dataSource et une props data");
+        }
+        if (!_this.state.id) {
+            _this.state.id = _this.state.name;
+        }
+        if (_this.state.dataSource && _this.state.dataSource.selected
+            && ((_this.isDataSourceSelectedArray() && _this.state.dataSource.selected.length > 0) || !_this.isDataSourceSelectedArray())) {
+            _this.state.selected = _this.state.dataSource.selected;
+        }
+        else {
+            _this.state.selected = _this.props.defaultValue;
+        }
+        if (_this.state.dataSource) {
+            _this.state.dataSource.on("select", function (selectedItems) {
+                _this.setState({ selected: selectedItems });
+            });
+        }
+        return _this;
+    }
+    RadiosField.prototype.setData = function (value) {
+        /** liste des choix disponibles */
+        this.setState({ data: value });
+    };
+    /**
+     * enregistre la liste des choix possibles
+     */
+    RadiosField.prototype.setItem = function () {
+        this.setState({ items: this.props.dataSource.results });
+        /* permet de faire appel a la méthode setCurrentValue de dom-adapter pour cocher les valeurs*/
+        this.setCurrentValue(this.state.currentValue);
+    };
+    RadiosField.prototype.handleClick = function (item) {
+        if (this.props.dataSource) {
+            this.props.dataSource.select(item);
+        }
+        else {
+            this.setState({ selected: item });
+        }
+    };
+    RadiosField.prototype.handleChange = function (event) {
+        return true;
+    };
+    RadiosField.prototype.isDataSourceSelectedArray = function () {
+        return Array.isArray(this.state.dataSource.selected);
+    };
+    /**
+     * Génère le rendu des radio boutons à partir d'un dataSource
+     * @returns {any}
+     */
+    RadiosField.prototype.renderRadioItemdataSource = function () {
+        if (this.state.items && this.state.items.length > 0) {
+            return this.state.items.map(this.renderRadioItem);
+        }
+    };
+    /**
+     * Génère le rendu d'un radio bouton et son libellé
+     * @param choice choix sélectionnable
+     * @param id number position in array
+     * @returns {any}
+     */
+    RadiosField.prototype.renderRadioItem = function (choice, id) {
+        var _this = this;
+        /* On n'inclut pas les propriétés spécifiques ou celles dont on surcharge la valeur */
+        var htmlProps = _.omit(this.getHtmlProps(), [
+            "RadiosField, lié à une datasource (initialisée avec un array)dataSource",
+            "type",
+            "currentValue",
+            "defaultChecked",
+            "value",
+            "id",
+            "data"
+        ]);
+        if (this.state.readOnly && !this.state.disabled) {
+            htmlProps.disabled = true;
+        }
+        var cx = classNames({
+            "fl radio-inline": this.state.inline == abstract_field_1.InlineStyle.ALL || this.state.inline == abstract_field_1.InlineStyle.FIELD
+        });
+        var label = choice[this.state.labelKey] ?
+            choice[this.state.labelKey] :
+            choice[this.state.valueKey];
+        var idInput = this.state.id + "-" + label;
+        var key = idInput + "-" + choice.value;
+        // positioning an input inside a label
+        // see @link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#Usage_notes
+        return (React.createElement("li", { key: key, className: cx },
+            React.createElement("label", { className: "radio-label", htmlFor: idInput },
+                React.createElement("input", tslib_1.__assign({}, htmlProps, { ref: function (elt) { return _this.registerHtmlElement(elt); }, type: "radio", onClick: function () { return _this.handleClick(choice); }, value: choice[this.state.valueKey], id: idInput, checked: this.shouldRadioBeChecked(choice), onChange: this.handleChange })),
+                React.createElement("span", { className: "outer" }),
+                label)));
+    };
+    RadiosField.prototype.shouldRadioBeChecked = function (choice) {
+        if (this.state.selected != undefined) {
+            if (this.state.dataSource) {
+                var mySelected = void 0;
+                if (this.state.selected[this.props.valueKey] != undefined) {
+                    mySelected = this.state.selected[this.props.valueKey];
+                }
+                else {
+                    mySelected = this.state.selected[this.state.dataSource.keysMap[this.props.valueKey]];
+                }
+                return choice[this.state.valueKey] == mySelected;
+            }
+            else {
+                return choice == this.state.selected;
+            }
+        }
+        else {
+            return false;
+        }
+    };
+    /**
+     * @override
+     * Génère le rendu du libellé pour le champ
+     * l'override permet de supprimer le for du label
+     * @param fieldId identifiant du champ
+     * @param fieldName nom du champ
+     * @param label libellé à afficher
+     * @param required indique si le champ est obligatoire
+     * @returns {any}
+     */
+    RadiosField.prototype.renderLabel = function (fieldId, fieldName, label, required) {
+        var hasData = this.state.data && this.state.data.length > 0;
+        var hasDataSource = this.state.dataSource && this.state.dataSource.results && this.state.dataSource.results.length > 0;
+        var id = "";
+        if (hasData) {
+            id = fieldId + "-" + this.state.data[0][this.state.labelKey];
+        }
+        if (hasDataSource) {
+            id = fieldId + "-" + this.state.items[0][this.state.labelKey];
+        }
+        return _super.prototype.renderLabel.call(this, id, fieldName, label, required);
+    };
+    /**
+     * Génère le rendu spécifique du champ : un groupe de boutons radio correspondant au tableau choices
+     * @returns {any}
+     */
+    RadiosField.prototype.renderWidget = function () {
+        var _this = this;
+        var cx = classNames("radio", { "flex-container": this.state.inline }, { "inline": this.state.inline == RadiosField.Inline.ALL });
+        var hasData = this.state.data && this.state.data.length > 0;
+        var hasDataSource = this.state.dataSource && this.state.dataSource.results && this.state.dataSource.results.length > 0;
+        return (React.createElement("ul", { className: cx },
+            hasData ? this.state.data.map(this.renderRadioItem) : null,
+            hasDataSource ? this.renderRadioItemdataSource() : null,
+            !hasData && !hasDataSource ?
+                React.createElement("input", { ref: function (elt) { return _this.registerHtmlElement(elt); }, type: "hidden", name: this.state.name, id: this.state.id }) : null));
+    };
+    RadiosField.defaultProps = _.assign(_.cloneDeep(abstract_field_1.AbstractField.defaultProps), {
+        labelClass: "blocLabelUp",
+        valueKey: "value",
+        labelKey: "label",
+        checkedKey: "defaultChecked",
+        inline: abstract_field_1.InlineStyle.NONE
+    });
+    return RadiosField;
+}(abstract_field_datasource_1.AbstractFieldDatasource));
+exports.RadiosField = RadiosField;
+
+
+
+/***/ }),
+/* 488 */,
+/* 489 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28334,7 +28596,7 @@ exports.TableButtonInfoAccessibilite = TableButtonInfoAccessibilite;
 
 
 /***/ }),
-/* 489 */
+/* 490 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28421,7 +28683,7 @@ var tslib_1 = __webpack_require__(1);
  */
 var React = __webpack_require__(2);
 var spinner_component_1 = __webpack_require__(101);
-var content_1 = __webpack_require__(306);
+var content_1 = __webpack_require__(307);
 var classNames = __webpack_require__(9);
 /**
  * Composant représentant un tableau en cours de chargement
@@ -28491,7 +28753,7 @@ exports.SpinnerOverlay = SpinnerOverlay;
 
 
 /***/ }),
-/* 490 */
+/* 491 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28679,7 +28941,7 @@ exports.HeaderCell = HeaderCell;
 
 
 /***/ }),
-/* 491 */
+/* 492 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28789,7 +29051,7 @@ exports.BodyCell = BodyCell;
 
 
 /***/ }),
-/* 492 */
+/* 493 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28936,7 +29198,7 @@ exports.InputTextInLineBodyCell = InputTextInLineBodyCell;
 
 
 /***/ }),
-/* 493 */
+/* 494 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29024,7 +29286,7 @@ var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var abstract_body_cell_1 = __webpack_require__(280);
 var React = __webpack_require__(2);
-var template_1 = __webpack_require__(308);
+var template_1 = __webpack_require__(309);
 var key_codes_1 = __webpack_require__(10);
 var classNames = __webpack_require__(9);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.table.column.cell.action.action-body-cell");
@@ -29154,7 +29416,7 @@ exports.ActionBodyCell = ActionBodyCell;
 
 
 /***/ }),
-/* 494 */
+/* 495 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29240,7 +29502,7 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var column_1 = __webpack_require__(281);
-var edition_action_body_cell_1 = __webpack_require__(495);
+var edition_action_body_cell_1 = __webpack_require__(496);
 var action_header_cell_1 = __webpack_require__(479);
 /**
  * Classe permettant de gérer les colonnes de type edition rapide action
@@ -29275,7 +29537,7 @@ exports.EditionActionColumn = EditionActionColumn;
 
 
 /***/ }),
-/* 495 */
+/* 496 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29366,7 +29628,7 @@ var React = __webpack_require__(2);
 var notification_manager_1 = __webpack_require__(96);
 var picto_1 = __webpack_require__(95);
 var key_codes_1 = __webpack_require__(10);
-var template_1 = __webpack_require__(308);
+var template_1 = __webpack_require__(309);
 var classNames = __webpack_require__(9);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.table.column.cell.action.edition-action-body-cell");
 var EditionActionBodyCell = /** @class */ (function (_super) {
@@ -29514,7 +29776,7 @@ exports.EditionActionBodyCell = EditionActionBodyCell;
 
 
 /***/ }),
-/* 496 */
+/* 497 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29719,7 +29981,7 @@ exports.CheckBodyCell = CheckBodyCell;
 
 
 /***/ }),
-/* 497 */
+/* 498 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29908,7 +30170,7 @@ exports.CheckHeaderCell = CheckHeaderCell;
 
 
 /***/ }),
-/* 498 */
+/* 499 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30015,7 +30277,7 @@ exports.CellCoordinates = CellCoordinates;
 
 
 /***/ }),
-/* 499 */
+/* 500 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30108,7 +30370,7 @@ exports.LineBefore = LineBefore;
 
 
 /***/ }),
-/* 500 */
+/* 501 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30201,7 +30463,7 @@ exports.LineAfter = LineAfter;
 
 
 /***/ }),
-/* 501 */
+/* 502 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30329,7 +30591,7 @@ exports.DateBodyCell = DateBodyCell;
 
 
 /***/ }),
-/* 502 */
+/* 503 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30340,7 +30602,7 @@ var hornet_js_utils_1 = __webpack_require__(0);
 var abstract_routes_1 = __webpack_require__(98);
 var result_file_1 = __webpack_require__(486);
 var media_type_1 = __webpack_require__(52);
-var result_pdf_1 = __webpack_require__(504);
+var result_pdf_1 = __webpack_require__(505);
 var disposition_type_1 = __webpack_require__(104);
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.actions.admin.permis_actions");
 var InserDossier = /** @class */ (function (_super) {
@@ -30530,7 +30792,9 @@ var GetPDFDemandeAuthentification = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     GetPDFDemandeAuthentification.prototype.execute = function () {
+        var _this = this;
         logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
+        var dataString = this.attributes.data.split("+");
         return this.getService().getPDFDemandeAuthentification(this.attributes.idPermis).then(function (result) {
             var dossier = result.dossier[0];
             var demandeAuthentification = result.demandeAuthentification[0];
@@ -30568,13 +30832,14 @@ var GetPDFDemandeAuthentification = /** @class */ (function (_super) {
                         },
                         { text: "Service des Permis de Conduire", bold: true, italics: true, fontSize: 10 },
                         { text: "Affaire suivie par", bold: true, italics: true, fontSize: 10 },
-                        { text: "MME ZITOUNI Samah", margin: [5, 0, 0, 0], bold: true, italics: true, fontSize: 10 },
-                        { text: "Samah.Zitouni@diplomatie.gouv.fr", fontSize: 10 },
+                        { text: "MME " + dataString[0].toUpperCase() + " " + _this.capitalize(dataString[1]), margin: [5, 0, 0, 0], bold: true, italics: true, fontSize: 10 },
+                        { text: _this.capitalize(dataString[1]) + "." + _this.capitalize(dataString[0]) + "@diplomatie.gouv.fr", fontSize: 10 },
                         {
                             stack: [
-                                { text: dossier.prefecture.toUpperCase() },
+                                { text: dataString[2].toUpperCase() + " " + dossier.prefecture.toUpperCase() },
+                                { text: dataString[3].toUpperCase() },
                                 { text: dossier.adresse.toUpperCase() },
-                                { text: (dossier.codePostal + " " + dossier.ville).toUpperCase() }
+                                { text: (dossier.codePostal + " " + dossier.ville).toUpperCase() + " " + dataString[4] }
                             ],
                             margin: [150, 60, 0, 70]
                         },
@@ -30585,7 +30850,7 @@ var GetPDFDemandeAuthentification = /** @class */ (function (_super) {
                                 { text: "Je vous demande de bien vouloir certifier l'authenticité du titre, dont vous trouverez ci-joint copie appartenant à :", margin: [0, 0, 0, 30] },
                                 {
                                     stack: [
-                                        { text: "Monsieur " + dossier.nom.toUpperCase() + " " + (dossier.prenom[0].toUpperCase() + dossier.prenom.slice(1)) },
+                                        { text: dossier.sexe + " " + dossier.nom.toUpperCase() + " " + (dossier.prenom[0].toUpperCase() + dossier.prenom.slice(1)) },
                                         { text: "Né(e) le " + new Date(dossier.dateDeNaissance).toLocaleDateString() },
                                         { text: "À " + dossier.villeDeNaissance.toUpperCase() + " / " + dossier.paysDeNaissance.toUpperCase() }
                                     ],
@@ -30615,6 +30880,9 @@ var GetPDFDemandeAuthentification = /** @class */ (function (_super) {
             }));
         });
     };
+    GetPDFDemandeAuthentification.prototype.capitalize = function (entry) {
+        return entry[0].toUpperCase() + entry.slice(1).toLowerCase();
+    };
     return GetPDFDemandeAuthentification;
 }(abstract_routes_1.RouteActionService));
 exports.GetPDFDemandeAuthentification = GetPDFDemandeAuthentification;
@@ -30622,7 +30890,7 @@ exports.GetPDFDemandeAuthentification = GetPDFDemandeAuthentification;
 
 
 /***/ }),
-/* 503 */
+/* 504 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30763,7 +31031,7 @@ exports.HornetResult = HornetResult;
 
 
 /***/ }),
-/* 504 */
+/* 505 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30892,7 +31160,7 @@ var ResultPDF = /** @class */ (function (_super) {
                         }
                     });
                 }
-                var pdfMake = __webpack_require__(505);
+                var pdfMake = __webpack_require__(506);
                 var printer = new pdfMake(_this.options.fonts ? _this.options.fonts : {
                     Roboto: {
                         normal: projectRoot + '/fonts/Roboto-Regular.ttf',
@@ -30929,7 +31197,7 @@ exports.ResultPDF = ResultPDF;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 505 */
+/* 506 */
 /***/ (function(module, exports) {
 
 /*eslint no-unused-vars: ["error", {"args": "none"}]*/
@@ -31470,7 +31738,7 @@ PdfPrinter.prototype.fs = require('fs');
 
 
 /***/ }),
-/* 506 */
+/* 507 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31642,11 +31910,11 @@ exports.Tab = Tab;
 
 
 /***/ }),
-/* 507 */,
 /* 508 */,
 /* 509 */,
 /* 510 */,
-/* 511 */
+/* 511 */,
+/* 512 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31656,20 +31924,20 @@ var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var hornet_page_1 = __webpack_require__(51);
-var form_1 = __webpack_require__(309);
+var form_1 = __webpack_require__(310);
 var row_1 = __webpack_require__(346);
 var input_field_1 = __webpack_require__(288);
 var calendar_field_1 = __webpack_require__(347);
-var button_1 = __webpack_require__(305);
-var buttons_area_1 = __webpack_require__(307);
+var button_1 = __webpack_require__(306);
+var buttons_area_1 = __webpack_require__(308);
 var notification_1 = __webpack_require__(48);
-var schema = __webpack_require__(512);
+var schema = __webpack_require__(513);
 var table_1 = __webpack_require__(482);
 var header_1 = __webpack_require__(472);
 var menu_actions_1 = __webpack_require__(473);
 var action_button_1 = __webpack_require__(474);
 var picto_1 = __webpack_require__(95);
-var content_1 = __webpack_require__(306);
+var content_1 = __webpack_require__(307);
 var column_1 = __webpack_require__(281);
 var columns_1 = __webpack_require__(340);
 var date_column_1 = __webpack_require__(485);
@@ -31752,7 +32020,7 @@ exports.RecordListPage = RecordListPage;
 
 
 /***/ }),
-/* 512 */
+/* 513 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -31787,7 +32055,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 513 */
+/* 514 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31860,7 +32128,7 @@ exports.ClientListServiceImpl = ClientListServiceImpl;
 
 
 /***/ }),
-/* 514 */
+/* 515 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31870,33 +32138,39 @@ var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var hornet_page_1 = __webpack_require__(51);
-var form_1 = __webpack_require__(309);
+var form_1 = __webpack_require__(310);
 var row_1 = __webpack_require__(346);
 var input_field_1 = __webpack_require__(288);
 var calendar_field_1 = __webpack_require__(347);
-var button_1 = __webpack_require__(305);
-var buttons_area_1 = __webpack_require__(307);
-var datasource_config_page_1 = __webpack_require__(314);
+var button_1 = __webpack_require__(306);
+var buttons_area_1 = __webpack_require__(308);
+var datasource_config_page_1 = __webpack_require__(315);
 var table_1 = __webpack_require__(482);
 var picto_1 = __webpack_require__(95);
-var content_1 = __webpack_require__(306);
+var content_1 = __webpack_require__(307);
 var column_1 = __webpack_require__(281);
 var columns_1 = __webpack_require__(340);
 var date_column_1 = __webpack_require__(485);
-var accordions_1 = __webpack_require__(515);
+var accordions_1 = __webpack_require__(516);
 var accordion_1 = __webpack_require__(54);
 var datasource_1 = __webpack_require__(304);
 var upload_file_field_1 = __webpack_require__(341);
-var tabs_1 = __webpack_require__(517);
-var tab_1 = __webpack_require__(506);
-var tab_content_1 = __webpack_require__(519);
+var tabs_1 = __webpack_require__(518);
+var tab_1 = __webpack_require__(507);
+var tab_content_1 = __webpack_require__(520);
 var icon_1 = __webpack_require__(105);
+var radios_field_1 = __webpack_require__(487);
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
 var RecordDetailsPage = /** @class */ (function (_super) {
     tslib_1.__extends(RecordDetailsPage, _super);
     function RecordDetailsPage(props, context) {
         var _this = _super.call(this, props, context) || this;
         _this.tabs = new tabs_1.Tabs();
+        _this.nom_responsable = new input_field_1.InputField();
+        _this.prenom_responsable = new input_field_1.InputField();
+        _this.intitule_prefecture = new input_field_1.InputField();
+        _this.intitule_service = new input_field_1.InputField();
+        _this.cedex = new radios_field_1.RadiosField({ defaultValue: { "value": false, "label": "non" } });
         _this.dossierDatasource = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getDossier), {});
         _this.demandeauthentificationDatasource = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getDemandeAuthentification), {});
         return _this;
@@ -31904,10 +32178,10 @@ var RecordDetailsPage = /** @class */ (function (_super) {
     RecordDetailsPage.prototype.prepareClient = function () {
         var _this = this;
         this.dossierDatasource.fetch(true, this.attributes);
-        this.demandeauthentificationDatasource.fetch(true, this.attributes);
         this.dossierDatasource.on("fetch", function (Result) {
             _this.tabs.addElements(1, _this.renderDossierTab(Result[0]));
             _this.tabs.removeElementsById("temp");
+            _this.demandeauthentificationDatasource.fetch(true, _this.attributes);
         });
         this.demandeauthentificationDatasource.on("fetch", function (Result) {
             _this.tabs.addElements(2, _this.renderDemandeAuthentificationTab(Result));
@@ -31975,38 +32249,55 @@ var RecordDetailsPage = /** @class */ (function (_super) {
         var fileTarget = "newTabForCopiePermis" + this.attributes.idPermis;
         fileTag =
             React.createElement("div", { className: "grid-form-field " },
-                React.createElement("div", { className: "" },
+                React.createElement("div", { className: "copiepermis" },
                     React.createElement("a", { href: urlfile, "data-pass-thru": "true", target: fileTarget }, this.dossier.copie_permis.nom)));
         return fileTag;
     };
     RecordDetailsPage.prototype.renderCopieNoteVerbaleMAECI = function (file) {
         var format = this.i18n("forms");
         var fileTag = null;
-        var urlfile = hornet_js_utils_1.Utils.buildContextPath("/services/recordserver/copieNoteVerbaleMAECI/" + this.dossier.copie_note_verbale_maeci.idCopieNoteVerbaleMAECI);
+        var urlfile = encodeURI("/services/recordserver/copieNoteVerbaleMAECI/" + this.dossier.copie_note_verbale_maeci.idCopieNoteVerbaleMAECI);
         var fileTarget = "newTabForCopieNoteVerbaleMAECI" + this.attributes.idPermis;
         fileTag =
             React.createElement("div", { className: "grid-form-field " },
-                React.createElement("div", { className: "" },
+                React.createElement("div", { className: "copienoteverbalemaeci" },
                     React.createElement("a", { href: urlfile, "data-pass-thru": "true", target: fileTarget }, this.dossier.copie_note_verbale_maeci.nom)));
         return fileTag;
     };
     RecordDetailsPage.prototype.renderDemandeAuthentificationTab = function (demandeAuthentificationList) {
+        var _this = this;
         var format = this.i18n("forms");
         if (demandeAuthentificationList.length > 0) {
             var fileTag = null;
-            var urlfile = hornet_js_utils_1.Utils.buildContextPath("/services/recordserver/pdfMake/demandeAuthentification/" + this.attributes.idPermis);
+            var dataForm = demandeAuthentificationList[0];
+            dataForm["nom_responsable"] = "Zitouni";
+            dataForm["prenom_responsable"] = "Samah";
+            dataForm["intitule_prefecture"] = "Préfecture de ";
+            dataForm["prefecture"] = this.dossier.prefecture;
+            dataForm["intitule_service"] = "Service des permis de conduire";
+            var dataCedex = new datasource_1.DataSource([{ "value": "true", "label": "oui" }, { "value": "false", "label": "non" }]);
+            var defaultParams = encodeURI(dataForm.nom_responsable + "+" + dataForm.prenom_responsable + "+" + dataForm.intitule_prefecture + "+" + dataForm.intitule_service);
+            var urlfile = hornet_js_utils_1.Utils.buildContextPath("/services/recordserver/pdfMake/demandeAuthentification/" + this.attributes.idPermis + "/" + defaultParams);
             var fileTarget = "newTabForDemandeAuthentification" + this.attributes.idPermis;
             fileTag =
                 React.createElement(tab_1.Tab, { id: "tabDemandeAuthentification", title: "Demande d'Authentification" },
                     React.createElement(tab_content_1.TabContent, null,
                         React.createElement("h6", null, " Vous avez g\u00E9n\u00E9r\u00E9 une demande d'authentification pour ce dossier "),
-                        React.createElement(form_1.Form, { id: "demandeAuthentificationForm", readOnly: true, defaultValues: demandeAuthentificationList[0] },
+                        React.createElement(form_1.Form, { id: "demandeAuthentificationForm", defaultValues: dataForm },
                             React.createElement(input_field_1.InputField, { name: "numDemandeAuthentification", label: format.fields.num_demande_authentification.label, readOnly: true }),
                             React.createElement(calendar_field_1.CalendarField, { name: "dateDeCreation", label: format.fields.date_de_creation.label, readOnly: true }),
                             React.createElement(input_field_1.InputField, { name: "numValise", label: format.fields.num_valise.label, readOnly: true }),
-                            React.createElement(calendar_field_1.CalendarField, { name: "dateDuTraitement", label: format.fields.date_du_traitement.label, readOnly: true })),
+                            React.createElement(calendar_field_1.CalendarField, { name: "dateDuTraitement", label: format.fields.date_du_traitement.label, readOnly: true }),
+                            React.createElement(row_1.Row, null,
+                                React.createElement(input_field_1.InputField, { name: "nom_responsable", ref: function (input) { _this.nom_responsable = input; }, onChange: this.handleUrl, label: format.fields.num_valise.label, readOnly: false }),
+                                React.createElement(input_field_1.InputField, { name: "prenom_responsable", ref: function (input) { _this.prenom_responsable = input; }, onChange: this.handleUrl, label: format.fields.num_valise.label, readOnly: false })),
+                            React.createElement(row_1.Row, null,
+                                React.createElement(input_field_1.InputField, { name: "intitule_prefecture", ref: function (input) { _this.intitule_prefecture = input; }, onChange: this.handleUrl, label: format.fields.intitule_prefecture.label, readOnly: false }),
+                                React.createElement(input_field_1.InputField, { name: "prefecture", label: format.fields.prefecture.label, readOnly: true })),
+                            React.createElement(input_field_1.InputField, { name: "intitule_service", ref: function (input) { _this.intitule_service = input; }, onChange: this.handleUrl, label: format.fields.intitule_service.label, readOnly: false }),
+                            React.createElement(radios_field_1.RadiosField, { name: "cedex", ref: function (radio) { _this.cedex = radio; }, onClick: this.handleUrl, label: format.fields.cedex.label, defaultValue: { "value": "false" }, dataSource: dataCedex, inline: radios_field_1.RadiosField.Inline.FIELD })),
                         React.createElement("div", { className: "grid-form-field " },
-                            React.createElement("div", { className: "" },
+                            React.createElement("div", { className: "demandeauthentification" },
                                 React.createElement("a", { href: urlfile, "data-pass-thru": "true", target: fileTarget }, "Demande d'authentification générée")))));
             return fileTag;
         }
@@ -32017,6 +32308,12 @@ var RecordDetailsPage = /** @class */ (function (_super) {
                     React.createElement(buttons_area_1.ButtonsArea, null,
                         React.createElement(button_1.Button, { type: "submit", onClick: this.genererDemande, value: "Valider", className: "hornet-button", label: "g\u00E9n\u00E9rer une demande d'authentification", title: "valider" })))));
         }
+    };
+    RecordDetailsPage.prototype.handleUrl = function () {
+        var params = encodeURI(this.nom_responsable.getCurrentValue() + "+" + this.prenom_responsable.getCurrentValue() + "+" + this.intitule_prefecture.getCurrentValue() + "+" + this.intitule_service.getCurrentValue() + "+" + this.cedex.getCurrentValue());
+        var a;
+        a = document.querySelector(".demandeauthentification a");
+        a.href = hornet_js_utils_1.Utils.buildContextPath("/services/recordserver/pdfMake/demandeAuthentification/" + this.attributes.idPermis + "/" + params);
     };
     RecordDetailsPage.prototype.retourPage = function () {
         this.navigateTo("/record", {}, function () { });
@@ -32031,7 +32328,7 @@ exports.RecordDetailsPage = RecordDetailsPage;
 
 
 /***/ }),
-/* 515 */
+/* 516 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32120,7 +32417,7 @@ var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var classNames = __webpack_require__(9);
 var accordion_1 = __webpack_require__(54);
-var abstract_group_component_1 = __webpack_require__(516);
+var abstract_group_component_1 = __webpack_require__(517);
 var _ = __webpack_require__(6);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.accordion.accordions");
 var Accordions = /** @class */ (function (_super) {
@@ -32270,7 +32567,7 @@ exports.Accordions = Accordions;
 
 
 /***/ }),
-/* 516 */
+/* 517 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32373,7 +32670,7 @@ exports.GroupComponent = GroupComponent;
 
 
 /***/ }),
-/* 517 */
+/* 518 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32462,10 +32759,10 @@ var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var classNames = __webpack_require__(9);
 var hornet_component_1 = __webpack_require__(3);
-var tab_1 = __webpack_require__(506);
+var tab_1 = __webpack_require__(507);
 var key_codes_1 = __webpack_require__(10);
 var ReactDOM = __webpack_require__(22);
-var tab_header_1 = __webpack_require__(518);
+var tab_header_1 = __webpack_require__(519);
 var _ = __webpack_require__(6);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.tab.tabs");
 var TabsButtonScrolling;
@@ -33150,7 +33447,7 @@ exports.Tabs = Tabs;
 
 
 /***/ }),
-/* 518 */
+/* 519 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33243,7 +33540,7 @@ exports.TabHeader = TabHeader;
 
 
 /***/ }),
-/* 519 */
+/* 520 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33337,7 +33634,6 @@ exports.TabContent = TabContent;
 
 
 /***/ }),
-/* 520 */,
 /* 521 */,
 /* 522 */,
 /* 523 */,
@@ -33386,7 +33682,8 @@ exports.TabContent = TabContent;
 /* 566 */,
 /* 567 */,
 /* 568 */,
-/* 569 */
+/* 569 */,
+/* 570 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33395,14 +33692,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var service_request_1 = __webpack_require__(40);
-var personne_dao_1 = __webpack_require__(570);
-var copie_note_verbale_MAECI_dao_1 = __webpack_require__(571);
-var dossier_dao_1 = __webpack_require__(572);
-var permis_dao_1 = __webpack_require__(573);
-var copie_permis_dao_1 = __webpack_require__(574);
-var prefecture_dao_1 = __webpack_require__(575);
-var demande_authentification_dao_1 = __webpack_require__(576);
-var valise_dao_1 = __webpack_require__(577);
+var personne_dao_1 = __webpack_require__(571);
+var copie_note_verbale_MAECI_dao_1 = __webpack_require__(572);
+var dossier_dao_1 = __webpack_require__(573);
+var permis_dao_1 = __webpack_require__(574);
+var copie_permis_dao_1 = __webpack_require__(575);
+var prefecture_dao_1 = __webpack_require__(576);
+var demande_authentification_dao_1 = __webpack_require__(577);
+var valise_dao_1 = __webpack_require__(578);
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.services.data.admin.admin-service-impl-data");
 var ClientListServiceImpl = /** @class */ (function (_super) {
     tslib_1.__extends(ClientListServiceImpl, _super);
@@ -33532,7 +33829,7 @@ exports.ClientListServiceImpl = ClientListServiceImpl;
 
 
 /***/ }),
-/* 570 */
+/* 571 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33599,7 +33896,7 @@ exports.PersonneFVMDAO = PersonneFVMDAO;
 
 
 /***/ }),
-/* 571 */
+/* 572 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33660,7 +33957,7 @@ exports.CopieNoteVerbaleMAECIFVMDao = CopieNoteVerbaleMAECIFVMDao;
 
 
 /***/ }),
-/* 572 */
+/* 573 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33715,7 +34012,7 @@ exports.DossierFVMDAO = DossierFVMDAO;
 
 
 /***/ }),
-/* 573 */
+/* 574 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33776,7 +34073,7 @@ exports.PermisFVMDAO = PermisFVMDAO;
 
 
 /***/ }),
-/* 574 */
+/* 575 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33837,7 +34134,7 @@ exports.CopiePermisFVMDao = CopiePermisFVMDao;
 
 
 /***/ }),
-/* 575 */
+/* 576 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33871,7 +34168,7 @@ exports.PrefectureDAO = PrefectureDAO;
 
 
 /***/ }),
-/* 576 */
+/* 577 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33935,7 +34232,7 @@ exports.DemandeAuthentificationFVMDAO = DemandeAuthentificationFVMDAO;
 
 
 /***/ }),
-/* 577 */
+/* 578 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

@@ -58,8 +58,8 @@ export default class RecordListRoutesServer extends RecordListRoutesClient {
       "get"
     );
 
-    this.addDataRoute("/pdfMake/demandeAuthentification/(\\d+)",
-      (idPermis) => new DataRouteInfos(GetPDFDemandeAuthentification, {"idPermis": idPermis}, ClientListServiceImpl),
+    this.addDataRoute("/pdfMake/demandeAuthentification/(\\d+)/((\\S+|\\s+)+)",
+      (idPermis, data) => new DataRouteInfos(GetPDFDemandeAuthentification, {"idPermis": idPermis, "data": data}, ClientListServiceImpl),
       PUBLIC_ROUTE,
       "get"
     );

@@ -16,7 +16,7 @@ var RecordListRoutesServer = /** @class */ (function (_super) {
         _this.addDataRoute("/detailsDossiers/noteverbale", function (id) { return new abstract_routes_1.DataRouteInfos(fvm_action_1.GetNoteVerbale, null, client_list_service_impl_data_1.ClientListServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE, "post");
         _this.addDataRoute("/copiePermis/(\\d+)", function (idCopiePermis) { return new abstract_routes_1.DataRouteInfos(fvm_action_1.GetCopiePermis, { "idCopiePermis": idCopiePermis }, client_list_service_impl_data_1.ClientListServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE, "get");
         _this.addDataRoute("/copieNoteVerbaleMAECI/(\\d+)", function (idCopieNoteVerbaleMAECI) { return new abstract_routes_1.DataRouteInfos(fvm_action_1.GetCopieNoteVerbaleMAECI, { "idCopieNoteVerbaleMAECI": idCopieNoteVerbaleMAECI }, client_list_service_impl_data_1.ClientListServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE, "get");
-        _this.addDataRoute("/pdfMake/demandeAuthentification/(\\d+)", function (idPermis) { return new abstract_routes_1.DataRouteInfos(fvm_action_1.GetPDFDemandeAuthentification, { "idPermis": idPermis }, client_list_service_impl_data_1.ClientListServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE, "get");
+        _this.addDataRoute("/pdfMake/demandeAuthentification/(\\d+)/((\\S+|\\s+)+)", function (idPermis, data) { return new abstract_routes_1.DataRouteInfos(fvm_action_1.GetPDFDemandeAuthentification, { "idPermis": idPermis, "data": data }, client_list_service_impl_data_1.ClientListServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE, "get");
         return _this;
     }
     return RecordListRoutesServer;

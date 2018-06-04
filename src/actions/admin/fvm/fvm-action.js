@@ -195,7 +195,9 @@ var GetPDFDemandeAuthentification = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     GetPDFDemandeAuthentification.prototype.execute = function () {
+        var _this = this;
         logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
+        var dataString = this.attributes.data.split("+");
         return this.getService().getPDFDemandeAuthentification(this.attributes.idPermis).then(function (result) {
             var dossier = result.dossier[0];
             var demandeAuthentification = result.demandeAuthentification[0];
@@ -233,13 +235,14 @@ var GetPDFDemandeAuthentification = /** @class */ (function (_super) {
                         },
                         { text: "Service des Permis de Conduire", bold: true, italics: true, fontSize: 10 },
                         { text: "Affaire suivie par", bold: true, italics: true, fontSize: 10 },
-                        { text: "MME ZITOUNI Samah", margin: [5, 0, 0, 0], bold: true, italics: true, fontSize: 10 },
-                        { text: "Samah.Zitouni@diplomatie.gouv.fr", fontSize: 10 },
+                        { text: "MME " + dataString[0].toUpperCase() + " " + _this.capitalize(dataString[1]), margin: [5, 0, 0, 0], bold: true, italics: true, fontSize: 10 },
+                        { text: _this.capitalize(dataString[1]) + "." + _this.capitalize(dataString[0]) + "@diplomatie.gouv.fr", fontSize: 10 },
                         {
                             stack: [
-                                { text: dossier.prefecture.toUpperCase() },
+                                { text: dataString[2].toUpperCase() + " " + dossier.prefecture.toUpperCase() },
+                                { text: dataString[3].toUpperCase() },
                                 { text: dossier.adresse.toUpperCase() },
-                                { text: (dossier.codePostal + " " + dossier.ville).toUpperCase() }
+                                { text: (dossier.codePostal + " " + dossier.ville).toUpperCase() + " " + dataString[4] }
                             ],
                             margin: [150, 60, 0, 70]
                         },
@@ -250,7 +253,7 @@ var GetPDFDemandeAuthentification = /** @class */ (function (_super) {
                                 { text: "Je vous demande de bien vouloir certifier l'authenticité du titre, dont vous trouverez ci-joint copie appartenant à :", margin: [0, 0, 0, 30] },
                                 {
                                     stack: [
-                                        { text: "Monsieur " + dossier.nom.toUpperCase() + " " + (dossier.prenom[0].toUpperCase() + dossier.prenom.slice(1)) },
+                                        { text: dossier.sexe + " " + dossier.nom.toUpperCase() + " " + (dossier.prenom[0].toUpperCase() + dossier.prenom.slice(1)) },
                                         { text: "Né(e) le " + new Date(dossier.dateDeNaissance).toLocaleDateString() },
                                         { text: "À " + dossier.villeDeNaissance.toUpperCase() + " / " + dossier.paysDeNaissance.toUpperCase() }
                                     ],
@@ -279,6 +282,9 @@ var GetPDFDemandeAuthentification = /** @class */ (function (_super) {
                 }
             }));
         });
+    };
+    GetPDFDemandeAuthentification.prototype.capitalize = function (entry) {
+        return entry[0].toUpperCase() + entry.slice(1).toLowerCase();
     };
     return GetPDFDemandeAuthentification;
 }(abstract_routes_1.RouteActionService));
