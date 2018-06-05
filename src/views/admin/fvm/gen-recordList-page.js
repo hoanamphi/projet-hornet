@@ -25,6 +25,7 @@ var footer_1 = require("hornet-js-react-components/src/widget/table/footer");
 var pager_1 = require("hornet-js-react-components/src/widget/pager/pager");
 var paginate_datasource_1 = require("hornet-js-core/src/component/datasource/paginate-datasource");
 var action_column_1 = require("hornet-js-react-components/src/widget/table/column/action-column");
+var icon_1 = require("hornet-js-react-components/src/widget/icon/icon");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
 var RecordListPage = /** @class */ (function (_super) {
     tslib_1.__extends(RecordListPage, _super);
@@ -57,6 +58,7 @@ var RecordListPage = /** @class */ (function (_super) {
     RecordListPage.prototype.render = function () {
         var format = this.i18n("forms");
         return (React.createElement("div", null,
+            React.createElement(icon_1.Icon, { src: picto_1.Picto.blue.previous, alt: "Retourner \u00E0 la page d'accueil", title: "Retourner \u00E0 la page d'accueil", action: this.retourPage }),
             React.createElement(notification_1.Notification, { id: "notif" }),
             React.createElement(table_1.Table, { id: "tableau des entr\u00E9es" },
                 React.createElement(header_1.Header, { title: "Dossiers entrés dans la base" },
@@ -69,7 +71,8 @@ var RecordListPage = /** @class */ (function (_super) {
                         React.createElement(column_1.Column, { keyColumn: "prenom", title: format.fields.prenom.label, sortable: false }),
                         React.createElement(date_column_1.DateColumn, { keyColumn: "dateDeNaissance", title: format.fields.date_de_naissance.label, sortable: false }),
                         React.createElement(date_column_1.DateColumn, { keyColumn: "dateReceptionDossier", title: format.fields.date_reception_dossier.label, sortable: true }),
-                        React.createElement(action_column_1.ActionColumn, { keyColumn: "idPermis", srcImg: picto_1.Picto.black.consulter, url: "/record/:idPermis" }))),
+                        React.createElement(action_column_1.ActionColumn, { keyColumn: "idPermis", srcImg: picto_1.Picto.black.consulter, url: "/fvmrecord/:idPermis" }),
+                        React.createElement(action_column_1.ActionColumn, { keyColumn: "idPermis", srcImg: picto_1.Picto.black.supprimer, action: this.supprimerDossier }))),
                 React.createElement(footer_1.Footer, null,
                     React.createElement(pager_1.Pager, { dataSource: this.entries, id: "table-paginate" }))),
             React.createElement("h3", null, " Recherche d'un dossier "),
@@ -83,8 +86,17 @@ var RecordListPage = /** @class */ (function (_super) {
                         React.createElement(button_1.Button, { type: "button", onClick: this.reloadData, label: "annuler" }),
                         React.createElement(button_1.Button, { type: "submit", value: "Valider", className: "hornet-button", label: "valider", title: "valider" }))))));
     };
+    RecordListPage.prototype.supprimerDossier = function (lineSelected) {
+        var _this = this;
+        this.getService().deleteDossier(lineSelected.idPermis).then(function () {
+            _this.reloadData();
+        });
+    };
+    RecordListPage.prototype.retourPage = function () {
+        this.navigateTo("/accueil", {}, function () { });
+    };
     RecordListPage.prototype.ajouterDossier = function () {
-        this.navigateTo("/form1", {}, function () { });
+        this.navigateTo("/fvmform1", {}, function () { });
     };
     RecordListPage.prototype.reloadData = function () {
         var _this = this;

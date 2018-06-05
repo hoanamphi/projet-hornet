@@ -1,4 +1,5 @@
 import {
+  DeleteDemandeAuthentification, DeleteDossier,
   GetCopieNoteVerbaleMAECI,
   GetCopiePermis,
   GetDemandeAuthentification, GetDossier,
@@ -22,6 +23,12 @@ export default class RecordListRoutesServer extends RecordListRoutesClient {
       "post"
     );
 
+    this.addDataRoute("/delete",
+      () => new DataRouteInfos(DeleteDossier, null, ClientListServiceImpl),
+      PUBLIC_ROUTE,
+      "post"
+    );
+
     this.addDataRoute("/detailsDossiers/dossier",
       (id) => new DataRouteInfos(GetDossier, null, ClientListServiceImpl),
       PUBLIC_ROUTE,
@@ -30,6 +37,12 @@ export default class RecordListRoutesServer extends RecordListRoutesClient {
 
     this.addDataRoute("/detailsDossiers/demandeauthentification",
       (id) => new DataRouteInfos(GetDemandeAuthentification, null, ClientListServiceImpl),
+      PUBLIC_ROUTE,
+      "post"
+    );
+
+    this.addDataRoute("/detailsDossiers/demandeauthentification/delete",
+      () => new DataRouteInfos(DeleteDemandeAuthentification, null, ClientListServiceImpl),
       PUBLIC_ROUTE,
       "post"
     );

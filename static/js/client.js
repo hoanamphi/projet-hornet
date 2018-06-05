@@ -142,7 +142,7 @@
 /******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 108);
+/******/ 	return __webpack_require__(__webpack_require__.s = 109);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -231,14 +231,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @license CECILL-2.1
  */
 // Inclusion du polyfill pour faire fonctionner firefox et IE
-__webpack_require__(109);
+__webpack_require__(110);
 /* Inclusion du shim object.assign : Firefox < 34 */
 if (!Object["assign"]) {
-    __webpack_require__(110).shim();
+    __webpack_require__(111).shim();
 }
 /* Inclusion du polyfill es6-promise */
 if (typeof Promise === "undefined") {
-    __webpack_require__(117).polyfill();
+    __webpack_require__(118).polyfill();
 }
 // propagation dynamique de la variable NODE_ENV vers le client
 if (typeof window !== "undefined" && window["Mode"]) {
@@ -248,10 +248,10 @@ if (typeof window !== "undefined" && window["Mode"]) {
 //cette surcharge est destinée à disparaitre lorsque les hornet-js-bean-converteurs seront créés
 Date.prototype.toJSON = function () { return this.getTime(); };
 var common_register_1 = __webpack_require__(15);
-var date_utils_1 = __webpack_require__(102);
-var config_lib_1 = __webpack_require__(123);
-var app_shared_props_1 = __webpack_require__(124);
-var continuation_local_storage_1 = __webpack_require__(125);
+var date_utils_1 = __webpack_require__(103);
+var config_lib_1 = __webpack_require__(124);
+var app_shared_props_1 = __webpack_require__(125);
+var continuation_local_storage_1 = __webpack_require__(126);
 var _ = __webpack_require__(6);
 var Utils = /** @class */ (function () {
     function Utils() {
@@ -425,7 +425,7 @@ if (Utils.isServer) {
     Utils.config = Utils.registerGlobal("config", config);
 }
 if (!Utils.isServer) {
-    Utils.log4js = Utils.registerGlobal("log4js", __webpack_require__(126));
+    Utils.log4js = Utils.registerGlobal("log4js", __webpack_require__(127));
 }
 
 
@@ -688,9 +688,9 @@ var __importDefault;
 /* WEBPACK VAR INJECTION */(function(process) {
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(168);
-} else {
   module.exports = __webpack_require__(169);
+} else {
+  module.exports = __webpack_require__(170);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
@@ -785,9 +785,9 @@ var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var _ = __webpack_require__(6);
 var hornet_event_1 = __webpack_require__(7);
-var hornet_component_errors_1 = __webpack_require__(170);
-var i18n_utils_1 = __webpack_require__(171);
-var pathToRegexp = __webpack_require__(180);
+var hornet_component_errors_1 = __webpack_require__(171);
+var i18n_utils_1 = __webpack_require__(172);
+var pathToRegexp = __webpack_require__(181);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.component.hornet-component");
 var Alignment;
 (function (Alignment) {
@@ -18986,7 +18986,7 @@ module.exports = ret;
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), __webpack_require__(43)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), __webpack_require__(44)(module)))
 
 /***/ }),
 /* 7 */
@@ -19736,7 +19736,7 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var base_error_1 = __webpack_require__(16);
-var moment = __webpack_require__(44);
+var moment = __webpack_require__(45);
 var os = __webpack_require__(64);
 var TechnicalError = /** @class */ (function (_super) {
     tslib_1.__extends(TechnicalError, _super);
@@ -20064,7 +20064,7 @@ function noConflict() {
     catch (e) {}
     return bluebird;
 }
-var bluebird = __webpack_require__(129)();
+var bluebird = __webpack_require__(130)();
 bluebird.noConflict = noConflict;
 module.exports = bluebird;
 
@@ -20244,7 +20244,7 @@ var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var async_element_1 = __webpack_require__(69);
 var hornet_event_1 = __webpack_require__(7);
-var security_error_1 = __webpack_require__(165);
+var security_error_1 = __webpack_require__(166);
 var authentication_utils_1 = __webpack_require__(71);
 var error_manager_1 = __webpack_require__(32);
 // ------------------------------------------------------------------------------------------------------------------- //
@@ -20456,7 +20456,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @license CECILL-2.1
  */
 var hornet_js_utils_1 = __webpack_require__(0);
-var MenuConstants = __webpack_require__(47);
+var MenuConstants = __webpack_require__(48);
 var authentication_utils_1 = __webpack_require__(71);
 var _ = __webpack_require__(6);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-component.navigation.utils.navigation-utils");
@@ -20871,9 +20871,9 @@ if (process.env.NODE_ENV === 'production') {
   // DCE check should happen before ReactDOM bundle executes so that
   // DevTools can report bad minification during injection.
   checkDCE();
-  module.exports = __webpack_require__(217);
+  module.exports = __webpack_require__(219);
 } else {
-  module.exports = __webpack_require__(220);
+  module.exports = __webpack_require__(222);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
@@ -20893,8 +20893,8 @@ if (process.env.NODE_ENV === 'production') {
 
 
 
-var base64 = __webpack_require__(202)
-var ieee754 = __webpack_require__(203)
+var base64 = __webpack_require__(203)
+var ieee754 = __webpack_require__(204)
 var isArray = __webpack_require__(77)
 
 exports.Buffer = Buffer
@@ -24773,7 +24773,7 @@ function objectToString(o) {
             try {
                 oldLocale = globalLocale._abbr;
                 var aliasedRequire = require;
-                __webpack_require__(121)("./" + name);
+                __webpack_require__(122)("./" + name);
                 getSetGlobalLocale(oldLocale);
             } catch (e) {}
         }
@@ -27445,7 +27445,7 @@ function objectToString(o) {
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(43)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(44)(module)))
 
 /***/ }),
 /* 27 */
@@ -28693,7 +28693,7 @@ var tslib_1 = __webpack_require__(1);
  */
 var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
-var dropdown_item_1 = __webpack_require__(232);
+var dropdown_item_1 = __webpack_require__(234);
 var classNames = __webpack_require__(9);
 var key_codes_1 = __webpack_require__(10);
 var Position;
@@ -29100,6 +29100,319 @@ exports.Dropdown = Dropdown;
  *
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(1);
+/**
+ * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
+ *
+ * @author MEAE - Ministère de l'Europe et des Affaires étrangères
+ * @version v5.1.1
+ * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
+ * @license CECILL-2.1
+ */
+var hornet_js_utils_1 = __webpack_require__(0);
+var React = __webpack_require__(2);
+var _ = __webpack_require__(6);
+var hornet_component_1 = __webpack_require__(3);
+var hornet_event_1 = __webpack_require__(7);
+var layout_switcher_1 = __webpack_require__(24);
+var router_client_async_elements_1 = __webpack_require__(19);
+var navigation_utils_1 = __webpack_require__(20);
+var hornet_event_2 = __webpack_require__(7);
+var expanding_layout_1 = __webpack_require__(182);
+var layout_switcher_2 = __webpack_require__(24);
+var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.component.hornet-page");
+/**
+ * Composant de haut-niveau : correspond à une page.
+ */
+var HornetPage = /** @class */ (function (_super) {
+    tslib_1.__extends(HornetPage, _super);
+    function HornetPage(props, context) {
+        var _this = _super.call(this, props, context) || this;
+        /**
+         * Service middleware pour le layout
+         */
+        _this.layoutService = new expanding_layout_1.ExpandingLayout();
+        _this.attributes = _.assign({}, _this.getRouteInfos().getAttributes());
+        if (_this.getRouteInfos().getService && _this.getRouteInfos().getService()) {
+            _this.service = new (_this.getRouteInfos().getService())();
+        }
+        if (!_this.props.workingZoneWidth) {
+            _this.copyInitialPropsToState({ workingZoneWidth: "1200px" }, _this.state);
+        }
+        _this.handleStyleAndWidth();
+        return _this;
+    }
+    /**
+     * @returns {any} les informations de routage associées à la page
+     */
+    HornetPage.prototype.getRouteInfos = function () {
+        return hornet_js_utils_1.Utils.getCls("hornet.routeInfos") || {
+            getAttributes: function () {
+                return {};
+            }
+        };
+    };
+    /**
+     * Permet d'effectuer les appels d'API et initialisations éventuellement nécessaires une fois le composant page
+     * monté côté client.
+     */
+    HornetPage.prototype.prepareClient = function () {
+        logger.trace("prepareClient HornetPage.");
+    };
+    /**
+     * Permet d'effectuer les appels d'API et initialisations éventuellement nécessaires une fois le composant page
+     * monté côté client et après le componentDidUpdate.
+     */
+    HornetPage.prototype.updateClient = function () {
+        logger.trace("updateClient HornetPage.");
+    };
+    /**
+     * @override
+     */
+    HornetPage.prototype.componentDidMount = function () {
+        _super.prototype.componentDidMount.call(this);
+        if (!hornet_js_utils_1.Utils.isServer && !this.hasError) {
+            this.prepareClient();
+        }
+    };
+    /**
+     * @override
+     */
+    HornetPage.prototype.componentDidUpdate = function (prevProps, prevState, prevContext) {
+        _super.prototype.componentDidUpdate.call(this, prevProps, prevState, prevContext);
+        if (!hornet_js_utils_1.Utils.isServer && !this.hasError) {
+            this.updateClient();
+        }
+    };
+    HornetPage.prototype.componentWillUpdate = function (nextProps, nextState, nextContext) {
+        _super.prototype.componentWillUpdate.call(this, nextProps, nextState, nextContext);
+    };
+    HornetPage.prototype.componentWillReceiveProps = function (nextProps, nextContext) {
+        _super.prototype.componentWillReceiveProps.call(this, nextProps, nextContext);
+        this.attributes = _.assign({}, this.getRouteInfos().getAttributes());
+    };
+    HornetPage.prototype.componentDidCatch = function (error, info) {
+        this.setState({ hasError: true, error: error });
+        var errorReport = {
+            componentName: this.constructor["name"],
+            method: "render",
+            methodArguments: arguments,
+            props: this.props,
+            state: this.state,
+            error: error
+        };
+        this.getErrorHandler()(errorReport, this.getErrorComponent());
+        // You can also log the error to an error reporting service
+    };
+    HornetPage.prototype.render = function () {
+        if (this.state.hasError) {
+            return React.createElement("h1", null, "Something went wrong.");
+        }
+        return _super.prototype.render.call(this);
+    };
+    /**
+     * renvoie le service de la page
+     */
+    HornetPage.prototype.getService = function () {
+        return this.service;
+    };
+    /**
+     * Ecoute l'évenement UPDATE_PAGE_EXPAND provenant du composant Hornet LayoutSwitcher
+     * @param specifiedMaxWidth
+     */
+    HornetPage.prototype.listenUpdatePageExpandEvent = function () {
+        var _this = this;
+        this.listen(layout_switcher_1.UPDATE_PAGE_EXPAND, function (ev) {
+            _this.layoutService.isExpandedLayout().then(function (retourApi) {
+                var body = retourApi.body;
+                if (body && body.isExpandedLayout) {
+                    _this.fetchHtmlElementsToSetClassBy("mainLayoutClassNameExpanded", "mainLayoutClassName", _this.state.workingZoneWidth);
+                    _this.setIsLayoutExpandedThroughService(false);
+                }
+                else {
+                    _this.fetchHtmlElementsToSetClassBy("mainLayoutClassName", "mainLayoutClassNameExpanded");
+                    _this.setIsLayoutExpandedThroughService(true);
+                }
+            });
+        });
+    };
+    /**
+     *
+     * @param currentClassName
+     * @param newClassName
+     * @param specifiedMaxWidth
+     */
+    HornetPage.prototype.fetchHtmlElementsToSetClassBy = function (currentClassName, newClassName, specifiedMaxWidth) {
+        if (!hornet_js_utils_1.Utils.isServer) {
+            var htmlElements = document.getElementsByClassName(currentClassName);
+            if (htmlElements && htmlElements.length > 0) {
+                for (var i = htmlElements.length - 1; i >= 0; --i) {
+                    this.majCssStyleExpand(htmlElements, i, currentClassName, newClassName, specifiedMaxWidth);
+                }
+            }
+        }
+    };
+    /**
+     *
+     * @param htmlElements
+     * @param i
+     * @param currentClassName
+     * @param newClassName
+     * @param specifiedMaxWidth
+     */
+    HornetPage.prototype.majCssStyleExpand = function (htmlElements, i, currentClassName, newClassName, specifiedMaxWidth) {
+        var element = document.getElementById(htmlElements[i].id);
+        if (element && element.classList) {
+            var elementClasses = element.classList;
+            elementClasses.remove(currentClassName);
+            elementClasses.add(newClassName);
+            if (specifiedMaxWidth) {
+                element.style.maxWidth = specifiedMaxWidth;
+            }
+            else {
+                element.style.maxWidth = "";
+            }
+        }
+    };
+    /**
+     * Méthode permettant à l'écoute du changement d'Url afin de changer le titre de la page
+     */
+    HornetPage.prototype.listenUrlChangeEvent = function () {
+        var _this = this;
+        this.listen(router_client_async_elements_1.URL_CHANGE_EVENT, function (ev) {
+            var currentPath = ev.detail.newPath, title = navigation_utils_1.NavigationUtils.retrievePageTextKey(navigation_utils_1.NavigationUtils.getConfigMenu(), currentPath);
+            navigation_utils_1.NavigationUtils.applyTitlePageOnClient(_this.i18n(title));
+        });
+    };
+    /**
+     *
+     * @param value
+     */
+    HornetPage.prototype.setIsLayoutExpandedThroughService = function (value) {
+        this.layoutService.setExpandedLayout({ isExpandedLayout: value }).then(function (retourApi) {
+            logger.trace("Retour API ExpandingLayoutRequest.setExpandedLayout :", retourApi.body.isExpandedLayout);
+            hornet_js_utils_1.Utils.appSharedProps.set("isExpandedLayout", retourApi.body.isExpandedLayout);
+            hornet_event_2.fireHornetEvent(layout_switcher_2.UPDATE_PAGE_EXPAND_MENU.withData(true));
+        });
+    };
+    /**
+     * Définis le style à positionner dans le state classNameExpanded
+     * et la taille max pour le state currentWorkingZoneWidth
+     * Ces states sont utilisées par le composant LayoutSwitcher
+     * pour étendre les composants
+     */
+    HornetPage.prototype.handleStyleAndWidth = function () {
+        // préparation de la taille pour le layout expanding
+        var maxWidth;
+        var classNameExpanded = "mainLayoutClassNameExpanded";
+        if (!(hornet_js_utils_1.Utils.appSharedProps.get("isExpandedLayout"))) {
+            maxWidth = this.state.workingZoneWidth;
+            classNameExpanded = "mainLayoutClassName";
+        }
+        this.copyInitialPropsToState({
+            currentWorkingZoneWidth: maxWidth,
+            classNameExpanded: classNameExpanded
+        }, this.state);
+    };
+    /**
+     * permet de changer d'url en passant des données à la page suivante
+     * @param {string} url - Url à charger
+     * @param {any} data - données à passer à la page suivante
+     * @param {() => void} cb - callback
+     */
+    HornetPage.prototype.navigateTo = function (url, data, cb) {
+        this.fire(hornet_event_1.CHANGE_URL_WITH_DATA_EVENT.withData({ url: url, data: data, cb: cb }));
+    };
+    /**
+     * Supprime les données de navigation
+     */
+    HornetPage.prototype.deleteNavigateData = function () {
+        hornet_js_utils_1.Utils.setCls("hornet.navigateData", {});
+    };
+    HornetPage.defaultProps = {};
+    return HornetPage;
+}(hornet_component_1.HornetComponent));
+exports.HornetPage = HornetPage;
+
+
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * Ce logiciel est un programme informatique servant à faciliter la création
+ * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
+ * <p/>
+ * Ce logiciel est régi par la licence CeCILL soumise au droit français et
+ * respectant les principes de diffusion des logiciels libres. Vous pouvez
+ * utiliser, modifier et/ou redistribuer ce programme sous les conditions
+ * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
+ * sur le site "http://www.cecill.info".
+ * <p/>
+ * En contrepartie de l'accessibilité au code source et des droits de copie,
+ * de modification et de redistribution accordés par cette licence, il n'est
+ * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
+ * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
+ * titulaire des droits patrimoniaux et les concédants successifs.
+ * <p/>
+ * A cet égard  l'attention de l'utilisateur est attirée sur les risques
+ * associés au chargement,  à l'utilisation,  à la modification et/ou au
+ * développement et à la reproduction du logiciel par l'utilisateur étant
+ * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
+ * manipuler et qui le réserve donc à des développeurs et des professionnels
+ * avertis possédant  des  connaissances  informatiques approfondies.  Les
+ * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
+ * logiciel à leurs besoins dans des conditions permettant d'assurer la
+ * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
+ * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
+ * <p/>
+ * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
+ * pris connaissance de la licence CeCILL, et que vous en avez accepté les
+ * termes.
+ * <p/>
+ * <p/>
+ * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * This software is a computer program whose purpose is to facilitate creation of
+ * web application in accordance with french general repositories : RGI, RGS and RGAA.
+ * <p/>
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software.  You can  use,
+ * modify and/ or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ * <p/>
+ * As a counterpart to the access to the source code and  rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty  and the software's author,  the holder of the
+ * economic rights,  and the successive licensors  have only  limited
+ * liability.
+ * <p/>
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading,  using,  modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean  that it is complicated to manipulate,  and  that  also
+ * therefore means  that it is reserved for developers  and  experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and,  more generally, to use and operate it in the
+ * same conditions as regards security.
+ * <p/>
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * hornet-js-core - Ensemble des composants qui forment le coeur de hornet-js
  *
@@ -29110,7 +29423,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 var hornet_js_utils_1 = __webpack_require__(0);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.services.service-request");
-var Url = __webpack_require__(41);
+var Url = __webpack_require__(42);
 var _ = __webpack_require__(6);
 var hornet_superagent_1 = __webpack_require__(72);
 var ServiceRequest = /** @class */ (function () {
@@ -29183,7 +29496,7 @@ exports.ServiceRequest = ServiceRequest;
 
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29210,8 +29523,8 @@ exports.ServiceRequest = ServiceRequest;
 
 
 
-var punycode = __webpack_require__(182);
-var util = __webpack_require__(183);
+var punycode = __webpack_require__(183);
+var util = __webpack_require__(184);
 
 exports.parse = urlParse;
 exports.resolve = urlResolve;
@@ -29286,7 +29599,7 @@ var protocolPattern = /^([a-z0-9.+-]+:)/i,
       'gopher:': true,
       'file:': true
     },
-    querystring = __webpack_require__(184);
+    querystring = __webpack_require__(185);
 
 function urlParse(url, parseQueryString, slashesDenoteHost) {
   if (url && util.isObject(url) && url instanceof Url) return url;
@@ -29922,7 +30235,7 @@ Url.prototype.parseHost = function() {
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29932,7 +30245,7 @@ Url.prototype.parseHost = function() {
 var has = Object.prototype.hasOwnProperty;
 var toStr = Object.prototype.toString;
 var slice = Array.prototype.slice;
-var isArgs = __webpack_require__(111);
+var isArgs = __webpack_require__(112);
 var isEnumerable = Object.prototype.propertyIsEnumerable;
 var hasDontEnumBug = !isEnumerable.call({ toString: null }, 'toString');
 var hasProtoEnumBug = isEnumerable.call(function () {}, 'prototype');
@@ -30069,7 +30382,7 @@ module.exports = keysShim;
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -30097,15 +30410,15 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var moment = module.exports = __webpack_require__(120);
-moment.tz.load(__webpack_require__(122));
+var moment = module.exports = __webpack_require__(121);
+moment.tz.load(__webpack_require__(123));
 
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30197,7 +30510,7 @@ exports.CLEAN_ALL_NOTIFICATION_EVENT = new hornet_event_1.HornetEvent("CLEAN_ALL
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30235,7 +30548,7 @@ exports.hop = hop;
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30341,7 +30654,7 @@ exports.RIGHT_ARROW_IMG_HOVER = "vertical-menu-submenu-indicator-hover.png";
 
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30430,8 +30743,8 @@ var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var ReactDom = __webpack_require__(22);
 var hornet_component_1 = __webpack_require__(3);
-var notification_message_item_1 = __webpack_require__(225);
-var notification_events_1 = __webpack_require__(45);
+var notification_message_item_1 = __webpack_require__(227);
+var notification_events_1 = __webpack_require__(46);
 var accordion_1 = __webpack_require__(54);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.notification.notification");
 /**
@@ -30759,13 +31072,13 @@ var NotificationContent = /** @class */ (function (_super) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports) {
 
 module.exports = {};
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30856,7 +31169,7 @@ if (index_1.Utils.isServer) {
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // wrap bluebird afin de sécuriser l'utilisation de "continuation-local-storage" (perte ou mix de contexte) //
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    var shimmer = __webpack_require__(160);
+    var shimmer = __webpack_require__(161);
     var proto = Promise && Promise.prototype;
     var ns_1 = index_1.Utils.getContinuationStorage();
     shimmer.wrap(proto, "_addCallbacks", function (_addCallbacks) {
@@ -30875,319 +31188,6 @@ if (index_1.Utils.isServer) {
     });
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }
-
-
-
-/***/ }),
-/* 51 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * Ce logiciel est un programme informatique servant à faciliter la création
- * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
- * <p/>
- * Ce logiciel est régi par la licence CeCILL soumise au droit français et
- * respectant les principes de diffusion des logiciels libres. Vous pouvez
- * utiliser, modifier et/ou redistribuer ce programme sous les conditions
- * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
- * sur le site "http://www.cecill.info".
- * <p/>
- * En contrepartie de l'accessibilité au code source et des droits de copie,
- * de modification et de redistribution accordés par cette licence, il n'est
- * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
- * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
- * titulaire des droits patrimoniaux et les concédants successifs.
- * <p/>
- * A cet égard  l'attention de l'utilisateur est attirée sur les risques
- * associés au chargement,  à l'utilisation,  à la modification et/ou au
- * développement et à la reproduction du logiciel par l'utilisateur étant
- * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
- * manipuler et qui le réserve donc à des développeurs et des professionnels
- * avertis possédant  des  connaissances  informatiques approfondies.  Les
- * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
- * logiciel à leurs besoins dans des conditions permettant d'assurer la
- * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
- * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
- * <p/>
- * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
- * pris connaissance de la licence CeCILL, et que vous en avez accepté les
- * termes.
- * <p/>
- * <p/>
- * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * This software is a computer program whose purpose is to facilitate creation of
- * web application in accordance with french general repositories : RGI, RGS and RGAA.
- * <p/>
- * This software is governed by the CeCILL license under French law and
- * abiding by the rules of distribution of free software.  You can  use,
- * modify and/ or redistribute the software under the terms of the CeCILL
- * license as circulated by CEA, CNRS and INRIA at the following URL
- * "http://www.cecill.info".
- * <p/>
- * As a counterpart to the access to the source code and  rights to copy,
- * modify and redistribute granted by the license, users are provided only
- * with a limited warranty  and the software's author,  the holder of the
- * economic rights,  and the successive licensors  have only  limited
- * liability.
- * <p/>
- * In this respect, the user's attention is drawn to the risks associated
- * with loading,  using,  modifying and/or developing or reproducing the
- * software by the user in light of its specific status of free software,
- * that may mean  that it is complicated to manipulate,  and  that  also
- * therefore means  that it is reserved for developers  and  experienced
- * professionals having in-depth computer knowledge. Users are therefore
- * encouraged to load and test the software's suitability as regards their
- * requirements in conditions enabling the security of their systems and/or
- * data to be ensured and,  more generally, to use and operate it in the
- * same conditions as regards security.
- * <p/>
- * The fact that you are presently reading this means that you have had
- * knowledge of the CeCILL license and that you accept its terms.
- *
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(1);
-/**
- * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
- *
- * @author MEAE - Ministère de l'Europe et des Affaires étrangères
- * @version v5.1.1
- * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
- * @license CECILL-2.1
- */
-var hornet_js_utils_1 = __webpack_require__(0);
-var React = __webpack_require__(2);
-var _ = __webpack_require__(6);
-var hornet_component_1 = __webpack_require__(3);
-var hornet_event_1 = __webpack_require__(7);
-var layout_switcher_1 = __webpack_require__(24);
-var router_client_async_elements_1 = __webpack_require__(19);
-var navigation_utils_1 = __webpack_require__(20);
-var hornet_event_2 = __webpack_require__(7);
-var expanding_layout_1 = __webpack_require__(181);
-var layout_switcher_2 = __webpack_require__(24);
-var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.component.hornet-page");
-/**
- * Composant de haut-niveau : correspond à une page.
- */
-var HornetPage = /** @class */ (function (_super) {
-    tslib_1.__extends(HornetPage, _super);
-    function HornetPage(props, context) {
-        var _this = _super.call(this, props, context) || this;
-        /**
-         * Service middleware pour le layout
-         */
-        _this.layoutService = new expanding_layout_1.ExpandingLayout();
-        _this.attributes = _.assign({}, _this.getRouteInfos().getAttributes());
-        if (_this.getRouteInfos().getService && _this.getRouteInfos().getService()) {
-            _this.service = new (_this.getRouteInfos().getService())();
-        }
-        if (!_this.props.workingZoneWidth) {
-            _this.copyInitialPropsToState({ workingZoneWidth: "1200px" }, _this.state);
-        }
-        _this.handleStyleAndWidth();
-        return _this;
-    }
-    /**
-     * @returns {any} les informations de routage associées à la page
-     */
-    HornetPage.prototype.getRouteInfos = function () {
-        return hornet_js_utils_1.Utils.getCls("hornet.routeInfos") || {
-            getAttributes: function () {
-                return {};
-            }
-        };
-    };
-    /**
-     * Permet d'effectuer les appels d'API et initialisations éventuellement nécessaires une fois le composant page
-     * monté côté client.
-     */
-    HornetPage.prototype.prepareClient = function () {
-        logger.trace("prepareClient HornetPage.");
-    };
-    /**
-     * Permet d'effectuer les appels d'API et initialisations éventuellement nécessaires une fois le composant page
-     * monté côté client et après le componentDidUpdate.
-     */
-    HornetPage.prototype.updateClient = function () {
-        logger.trace("updateClient HornetPage.");
-    };
-    /**
-     * @override
-     */
-    HornetPage.prototype.componentDidMount = function () {
-        _super.prototype.componentDidMount.call(this);
-        if (!hornet_js_utils_1.Utils.isServer && !this.hasError) {
-            this.prepareClient();
-        }
-    };
-    /**
-     * @override
-     */
-    HornetPage.prototype.componentDidUpdate = function (prevProps, prevState, prevContext) {
-        _super.prototype.componentDidUpdate.call(this, prevProps, prevState, prevContext);
-        if (!hornet_js_utils_1.Utils.isServer && !this.hasError) {
-            this.updateClient();
-        }
-    };
-    HornetPage.prototype.componentWillUpdate = function (nextProps, nextState, nextContext) {
-        _super.prototype.componentWillUpdate.call(this, nextProps, nextState, nextContext);
-    };
-    HornetPage.prototype.componentWillReceiveProps = function (nextProps, nextContext) {
-        _super.prototype.componentWillReceiveProps.call(this, nextProps, nextContext);
-        this.attributes = _.assign({}, this.getRouteInfos().getAttributes());
-    };
-    HornetPage.prototype.componentDidCatch = function (error, info) {
-        this.setState({ hasError: true, error: error });
-        var errorReport = {
-            componentName: this.constructor["name"],
-            method: "render",
-            methodArguments: arguments,
-            props: this.props,
-            state: this.state,
-            error: error
-        };
-        this.getErrorHandler()(errorReport, this.getErrorComponent());
-        // You can also log the error to an error reporting service
-    };
-    HornetPage.prototype.render = function () {
-        if (this.state.hasError) {
-            return React.createElement("h1", null, "Something went wrong.");
-        }
-        return _super.prototype.render.call(this);
-    };
-    /**
-     * renvoie le service de la page
-     */
-    HornetPage.prototype.getService = function () {
-        return this.service;
-    };
-    /**
-     * Ecoute l'évenement UPDATE_PAGE_EXPAND provenant du composant Hornet LayoutSwitcher
-     * @param specifiedMaxWidth
-     */
-    HornetPage.prototype.listenUpdatePageExpandEvent = function () {
-        var _this = this;
-        this.listen(layout_switcher_1.UPDATE_PAGE_EXPAND, function (ev) {
-            _this.layoutService.isExpandedLayout().then(function (retourApi) {
-                var body = retourApi.body;
-                if (body && body.isExpandedLayout) {
-                    _this.fetchHtmlElementsToSetClassBy("mainLayoutClassNameExpanded", "mainLayoutClassName", _this.state.workingZoneWidth);
-                    _this.setIsLayoutExpandedThroughService(false);
-                }
-                else {
-                    _this.fetchHtmlElementsToSetClassBy("mainLayoutClassName", "mainLayoutClassNameExpanded");
-                    _this.setIsLayoutExpandedThroughService(true);
-                }
-            });
-        });
-    };
-    /**
-     *
-     * @param currentClassName
-     * @param newClassName
-     * @param specifiedMaxWidth
-     */
-    HornetPage.prototype.fetchHtmlElementsToSetClassBy = function (currentClassName, newClassName, specifiedMaxWidth) {
-        if (!hornet_js_utils_1.Utils.isServer) {
-            var htmlElements = document.getElementsByClassName(currentClassName);
-            if (htmlElements && htmlElements.length > 0) {
-                for (var i = htmlElements.length - 1; i >= 0; --i) {
-                    this.majCssStyleExpand(htmlElements, i, currentClassName, newClassName, specifiedMaxWidth);
-                }
-            }
-        }
-    };
-    /**
-     *
-     * @param htmlElements
-     * @param i
-     * @param currentClassName
-     * @param newClassName
-     * @param specifiedMaxWidth
-     */
-    HornetPage.prototype.majCssStyleExpand = function (htmlElements, i, currentClassName, newClassName, specifiedMaxWidth) {
-        var element = document.getElementById(htmlElements[i].id);
-        if (element && element.classList) {
-            var elementClasses = element.classList;
-            elementClasses.remove(currentClassName);
-            elementClasses.add(newClassName);
-            if (specifiedMaxWidth) {
-                element.style.maxWidth = specifiedMaxWidth;
-            }
-            else {
-                element.style.maxWidth = "";
-            }
-        }
-    };
-    /**
-     * Méthode permettant à l'écoute du changement d'Url afin de changer le titre de la page
-     */
-    HornetPage.prototype.listenUrlChangeEvent = function () {
-        var _this = this;
-        this.listen(router_client_async_elements_1.URL_CHANGE_EVENT, function (ev) {
-            var currentPath = ev.detail.newPath, title = navigation_utils_1.NavigationUtils.retrievePageTextKey(navigation_utils_1.NavigationUtils.getConfigMenu(), currentPath);
-            navigation_utils_1.NavigationUtils.applyTitlePageOnClient(_this.i18n(title));
-        });
-    };
-    /**
-     *
-     * @param value
-     */
-    HornetPage.prototype.setIsLayoutExpandedThroughService = function (value) {
-        this.layoutService.setExpandedLayout({ isExpandedLayout: value }).then(function (retourApi) {
-            logger.trace("Retour API ExpandingLayoutRequest.setExpandedLayout :", retourApi.body.isExpandedLayout);
-            hornet_js_utils_1.Utils.appSharedProps.set("isExpandedLayout", retourApi.body.isExpandedLayout);
-            hornet_event_2.fireHornetEvent(layout_switcher_2.UPDATE_PAGE_EXPAND_MENU.withData(true));
-        });
-    };
-    /**
-     * Définis le style à positionner dans le state classNameExpanded
-     * et la taille max pour le state currentWorkingZoneWidth
-     * Ces states sont utilisées par le composant LayoutSwitcher
-     * pour étendre les composants
-     */
-    HornetPage.prototype.handleStyleAndWidth = function () {
-        // préparation de la taille pour le layout expanding
-        var maxWidth;
-        var classNameExpanded = "mainLayoutClassNameExpanded";
-        if (!(hornet_js_utils_1.Utils.appSharedProps.get("isExpandedLayout"))) {
-            maxWidth = this.state.workingZoneWidth;
-            classNameExpanded = "mainLayoutClassName";
-        }
-        this.copyInitialPropsToState({
-            currentWorkingZoneWidth: maxWidth,
-            classNameExpanded: classNameExpanded
-        }, this.state);
-    };
-    /**
-     * permet de changer d'url en passant des données à la page suivante
-     * @param {string} url - Url à charger
-     * @param {any} data - données à passer à la page suivante
-     * @param {() => void} cb - callback
-     */
-    HornetPage.prototype.navigateTo = function (url, data, cb) {
-        this.fire(hornet_event_1.CHANGE_URL_WITH_DATA_EVENT.withData({ url: url, data: data, cb: cb }));
-    };
-    /**
-     * Supprime les données de navigation
-     */
-    HornetPage.prototype.deleteNavigateData = function () {
-        hornet_js_utils_1.Utils.setCls("hornet.navigateData", {});
-    };
-    HornetPage.defaultProps = {};
-    return HornetPage;
-}(hornet_component_1.HornetComponent));
-exports.HornetPage = HornetPage;
 
 
 
@@ -31390,7 +31390,7 @@ exports.MediaTypes = MediaTypes;
 if (process.env.NODE_ENV !== 'production') {
   var invariant = __webpack_require__(37);
   var warning = __webpack_require__(38);
-  var ReactPropTypesSecret = __webpack_require__(99);
+  var ReactPropTypesSecret = __webpack_require__(100);
   var loggedTypeFailures = {};
 }
 
@@ -31532,9 +31532,9 @@ var classNames = __webpack_require__(9);
 var key_codes_1 = __webpack_require__(10);
 var hornet_component_1 = __webpack_require__(3);
 var hornet_event_1 = __webpack_require__(7);
-var notification_events_1 = __webpack_require__(45);
-var accordion_header_1 = __webpack_require__(226);
-var accordion_info_1 = __webpack_require__(227);
+var notification_events_1 = __webpack_require__(46);
+var accordion_header_1 = __webpack_require__(228);
+var accordion_info_1 = __webpack_require__(229);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.accordion.accordion");
 exports.TAB_ID_NAME = "tab";
 exports.FOCUS_ON_ACCORDION = new hornet_event_1.HornetEvent("FOCUS_ON_ACCORDION");
@@ -32259,8 +32259,8 @@ exports.BackendApiError = BackendApiError;
 "use strict";
 
 
-var keys = __webpack_require__(42);
-var foreach = __webpack_require__(112);
+var keys = __webpack_require__(43);
+var foreach = __webpack_require__(113);
 var hasSymbols = typeof Symbol === 'function' && typeof Symbol() === 'symbol';
 
 var toStr = Object.prototype.toString;
@@ -32323,12 +32323,12 @@ module.exports = defineProperties;
 
 
 // modified from https://github.com/es-shims/es6-shim
-var keys = __webpack_require__(42);
-var bind = __webpack_require__(113);
+var keys = __webpack_require__(43);
+var bind = __webpack_require__(114);
 var canBeObject = function (obj) {
 	return typeof obj !== 'undefined' && obj !== null;
 };
-var hasSymbols = __webpack_require__(115)();
+var hasSymbols = __webpack_require__(116)();
 var toObject = Object;
 var push = bind.call(Function.call, Array.prototype.push);
 var propIsEnumerable = bind.call(Function.call, Object.prototype.propertyIsEnumerable);
@@ -32507,7 +32507,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @license CECILL-2.1
  */
 var _ = __webpack_require__(6);
-var path = __webpack_require__(118);
+var path = __webpack_require__(119);
 var technical_error_1 = __webpack_require__(13);
 var business_error_1 = __webpack_require__(30);
 var business_error_list_1 = __webpack_require__(31);
@@ -33343,7 +33343,7 @@ function isPrimitive(arg) {
 }
 exports.isPrimitive = isPrimitive;
 
-exports.isBuffer = __webpack_require__(119);
+exports.isBuffer = __webpack_require__(120);
 
 function objectToString(o) {
   return Object.prototype.toString.call(o);
@@ -33797,8 +33797,8 @@ var tslib_1 = __webpack_require__(1);
  */
 var events_1 = __webpack_require__(27);
 var hornet_js_utils_1 = __webpack_require__(0);
-var promise_api_1 = __webpack_require__(50);
-var domain = __webpack_require__(161);
+var promise_api_1 = __webpack_require__(51);
+var domain = __webpack_require__(162);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.executor.AsyncExecutor");
 var AsyncExecutor = /** @class */ (function (_super) {
     tslib_1.__extends(AsyncExecutor, _super);
@@ -33951,7 +33951,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(132);
+__webpack_require__(133);
 // On some exotic environments, it's not clear which object `setimmeidate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -34490,26 +34490,26 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 var hornet_js_utils_1 = __webpack_require__(0);
 var _ = __webpack_require__(6);
-var superagent = __webpack_require__(187);
+var superagent = __webpack_require__(188);
 var hornet_superagent_request_1 = __webpack_require__(33);
 var hornet_event_1 = __webpack_require__(7);
-var superAgentPlugins = __webpack_require__(193);
+var superAgentPlugins = __webpack_require__(194);
 var media_type_1 = __webpack_require__(52);
 var service_api_results_1 = __webpack_require__(55);
 var error_manager_1 = __webpack_require__(32);
 var technical_error_1 = __webpack_require__(13);
-var hornet_cache_1 = __webpack_require__(195);
+var hornet_cache_1 = __webpack_require__(196);
 var hornet_event_2 = __webpack_require__(7);
 var hornet_event_3 = __webpack_require__(7);
 var base_error_1 = __webpack_require__(16);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.services.hornet-agent");
-var promise_api_1 = __webpack_require__(50);
+var promise_api_1 = __webpack_require__(51);
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // wrap http & https afin de sécuriser l'utilisation de "continuation-local-storage" (perte ou mix de contexte) //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 var http = __webpack_require__(76);
-var https = __webpack_require__(212);
-var disposition_type_1 = __webpack_require__(104);
+var https = __webpack_require__(213);
+var disposition_type_1 = __webpack_require__(105);
 if (http["__old_http_request"] == undefined) {
     http["__old_http_request"] = http.request;
     https["__old_https_reques"] = https.request;
@@ -35526,11 +35526,11 @@ Ephemeral.prototype._updateLock = function (key, value) {
 /* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {var ClientRequest = __webpack_require__(201)
+/* WEBPACK VAR INJECTION */(function(global) {var ClientRequest = __webpack_require__(202)
 var response = __webpack_require__(79)
-var extend = __webpack_require__(210)
-var statusCodes = __webpack_require__(211)
-var url = __webpack_require__(41)
+var extend = __webpack_require__(211)
+var statusCodes = __webpack_require__(212)
+var url = __webpack_require__(42)
 
 var http = exports
 
@@ -35938,7 +35938,7 @@ exports.Readable = exports;
 exports.Writable = __webpack_require__(84);
 exports.Duplex = __webpack_require__(21);
 exports.Transform = __webpack_require__(86);
-exports.PassThrough = __webpack_require__(208);
+exports.PassThrough = __webpack_require__(209);
 
 
 /***/ }),
@@ -36017,7 +36017,7 @@ util.inherits = __webpack_require__(11);
 /*</replacement>*/
 
 /*<replacement>*/
-var debugUtil = __webpack_require__(204);
+var debugUtil = __webpack_require__(205);
 var debug = void 0;
 if (debugUtil && debugUtil.debuglog) {
   debug = debugUtil.debuglog('stream');
@@ -36026,7 +36026,7 @@ if (debugUtil && debugUtil.debuglog) {
 }
 /*</replacement>*/
 
-var BufferList = __webpack_require__(205);
+var BufferList = __webpack_require__(206);
 var destroyImpl = __webpack_require__(83);
 var StringDecoder;
 
@@ -37131,7 +37131,7 @@ util.inherits = __webpack_require__(11);
 
 /*<replacement>*/
 var internalUtil = {
-  deprecate: __webpack_require__(207)
+  deprecate: __webpack_require__(208)
 };
 /*</replacement>*/
 
@@ -38519,7 +38519,7 @@ module.exports = shallowEqual;
  * 
  */
 
-var isTextNode = __webpack_require__(218);
+var isTextNode = __webpack_require__(220);
 
 /*eslint-disable no-bitwise */
 
@@ -38664,8 +38664,8 @@ var tslib_1 = __webpack_require__(1);
  */
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
-var hornet_page_1 = __webpack_require__(51);
-var notification_1 = __webpack_require__(48);
+var hornet_page_1 = __webpack_require__(40);
+var notification_1 = __webpack_require__(49);
 var business_error_list_1 = __webpack_require__(31);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.component.error-page");
 var ErrorPage = /** @class */ (function (_super) {
@@ -38790,7 +38790,7 @@ var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var navigation_utils_1 = __webpack_require__(20);
 var hornet_component_1 = __webpack_require__(3);
-var menu_constantes_1 = __webpack_require__(47);
+var menu_constantes_1 = __webpack_require__(48);
 var key_codes_1 = __webpack_require__(10);
 var hornet_event_1 = __webpack_require__(7);
 var hornet_event_2 = __webpack_require__(7);
@@ -39340,7 +39340,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
  * @license CECILL-2.1
  */
-var notification_events_1 = __webpack_require__(45);
+var notification_events_1 = __webpack_require__(46);
 var hornet_event_1 = __webpack_require__(7);
 /**
  * Gestionnaire d'évènements de notifications
@@ -39660,6 +39660,193 @@ exports.CodesError = CodesError;
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 /**
+ * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
+ *
+ * @author MEAE - Ministère de l'Europe et des Affaires étrangères
+ * @version v5.1.1
+ * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
+ * @license CECILL-2.1
+ */
+var React = __webpack_require__(2);
+var hornet_component_1 = __webpack_require__(3);
+var classNames = __webpack_require__(9);
+/**
+ * Composant Button
+ */
+var Button = /** @class */ (function (_super) {
+    tslib_1.__extends(Button, _super);
+    function Button(props, context) {
+        var _this = _super.call(this, props, context) || this;
+        _this.state.effect = false;
+        _this.state.css = { dislay: "none" };
+        return _this;
+    }
+    /**
+     * @inheritDoc
+     */
+    Button.prototype.render = function () {
+        return ((this.state.type === "link") ? this.renderLink() : this.renderButton());
+    };
+    /**
+     * Rendu type Button
+     * @returns {any}
+     * @protected
+     */
+    Button.prototype.renderButton = function () {
+        var classes = {};
+        if (this.state.className) {
+            classes[this.state.className] = true;
+        }
+        return (React.createElement("button", { type: this.state.type, id: this.state.id, name: this.state.name, value: this.state.value, onClick: this.handleClick, className: classNames(classes), title: this.state.title, disabled: this.state.disabled, "aria-haspopup": this.props.hasPopUp },
+            this.state.label,
+            this.state.effect ? React.createElement("div", { className: "ripple-effect", style: this.state.css }) : null));
+    };
+    /**
+     * Rendu Type Link
+     * @returns {any}
+     * @protected
+     */
+    Button.prototype.renderLink = function () {
+        var classes = {};
+        if (this.state.className) {
+            classes[this.state.className] = true;
+        }
+        var aProps = {
+            href: this.state.url,
+            className: classNames(classes),
+            title: this.state.title,
+            onClick: this.handleClick,
+            disabled: this.state.disabled
+        };
+        return (React.createElement("a", tslib_1.__assign({}, aProps),
+            this.state.label,
+            this.state.effect ? React.createElement("div", { className: "ripple-effect", style: this.state.css }) : null));
+    };
+    /**
+     * Evènement déclenché lors du clic sur le bouton
+     * @param e
+     * @protected
+     */
+    Button.prototype.handleClick = function (e) {
+        if (this.state.onClick != null) {
+            this.state.onClick(e);
+        }
+        this.rippleEffect(e);
+    };
+    /**
+     * Effet activé lors d'un lcick sur un bouton
+     * @param e
+     */
+    Button.prototype.rippleEffect = function (e) {
+        var _this = this;
+        var xPos = e.pageX - e.target.offsetLeft;
+        var yPos = e.pageY - e.target.offsetTop;
+        var size = e.target.clientHeight;
+        var css = ({
+            top: yPos - (size / 2),
+            left: xPos - (size / 2),
+            height: size + "px",
+            width: size + "px"
+        });
+        this.setState({ effect: true, css: css });
+        setTimeout(function () {
+            if (_this.mounted) {
+                _this.setState({ effect: false });
+            }
+        }, 1500);
+    };
+    Button.prototype.componentWillUnmount = function () {
+        _super.prototype.componentWillUnmount.call(this);
+        this.mounted = false;
+    };
+    Button.defaultProps = {
+        disabled: false
+    };
+    return Button;
+}(hornet_component_1.HornetComponent));
+exports.Button = Button;
+
+
+
+/***/ }),
+/* 99 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * Ce logiciel est un programme informatique servant à faciliter la création
+ * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
+ * <p/>
+ * Ce logiciel est régi par la licence CeCILL soumise au droit français et
+ * respectant les principes de diffusion des logiciels libres. Vous pouvez
+ * utiliser, modifier et/ou redistribuer ce programme sous les conditions
+ * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
+ * sur le site "http://www.cecill.info".
+ * <p/>
+ * En contrepartie de l'accessibilité au code source et des droits de copie,
+ * de modification et de redistribution accordés par cette licence, il n'est
+ * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
+ * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
+ * titulaire des droits patrimoniaux et les concédants successifs.
+ * <p/>
+ * A cet égard  l'attention de l'utilisateur est attirée sur les risques
+ * associés au chargement,  à l'utilisation,  à la modification et/ou au
+ * développement et à la reproduction du logiciel par l'utilisateur étant
+ * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
+ * manipuler et qui le réserve donc à des développeurs et des professionnels
+ * avertis possédant  des  connaissances  informatiques approfondies.  Les
+ * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
+ * logiciel à leurs besoins dans des conditions permettant d'assurer la
+ * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
+ * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
+ * <p/>
+ * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
+ * pris connaissance de la licence CeCILL, et que vous en avez accepté les
+ * termes.
+ * <p/>
+ * <p/>
+ * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * This software is a computer program whose purpose is to facilitate creation of
+ * web application in accordance with french general repositories : RGI, RGS and RGAA.
+ * <p/>
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software.  You can  use,
+ * modify and/ or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ * <p/>
+ * As a counterpart to the access to the source code and  rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty  and the software's author,  the holder of the
+ * economic rights,  and the successive licensors  have only  limited
+ * liability.
+ * <p/>
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading,  using,  modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean  that it is complicated to manipulate,  and  that  also
+ * therefore means  that it is reserved for developers  and  experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and,  more generally, to use and operate it in the
+ * same conditions as regards security.
+ * <p/>
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(1);
+/**
  * hornet-js-core - Ensemble des composants qui forment le coeur de hornet-js
  *
  * @author MEAE - Ministère de l'Europe et des Affaires étrangères
@@ -39867,7 +40054,7 @@ exports.AbstractRoutes = AbstractRoutes;
 
 
 /***/ }),
-/* 99 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39886,7 +40073,7 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 100 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39974,7 +40161,7 @@ var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
-var react_aria_modal_1 = __webpack_require__(236);
+var react_aria_modal_1 = __webpack_require__(238);
 var key_codes_1 = __webpack_require__(10);
 var classNames = __webpack_require__(9);
 var Modal = /** @class */ (function (_super) {
@@ -40115,7 +40302,7 @@ exports.Modal = Modal;
 
 
 /***/ }),
-/* 101 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40312,7 +40499,7 @@ exports.SpinnerComponent = SpinnerComponent;
 
 
 /***/ }),
-/* 102 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40397,7 +40584,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @license CECILL-2.1
  */
 var common_register_1 = __webpack_require__(15);
-var moment = __webpack_require__(44);
+var moment = __webpack_require__(45);
 var logger = common_register_1.Register.getLogger("hornet-js-utils.date-utils");
 var DateUtils = /** @class */ (function () {
     function DateUtils() {
@@ -40642,7 +40829,7 @@ var DateDiffUnit;
 
 
 /***/ }),
-/* 103 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40650,11 +40837,11 @@ var DateDiffUnit;
 
 
 
-var IntlMessageFormat = __webpack_require__(172)['default'];
+var IntlMessageFormat = __webpack_require__(173)['default'];
 
 // Add all locale data to `IntlMessageFormat`. This module will be ignored when
 // bundling for the browser with Browserify/Webpack.
-__webpack_require__(179);
+__webpack_require__(180);
 
 // Re-export `IntlMessageFormat` as the CommonJS default exports with all the
 // locale data registered, and with English set as the default locale. Define
@@ -40664,7 +40851,7 @@ exports['default'] = exports;
 
 
 /***/ }),
-/* 104 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40757,7 +40944,7 @@ var DispositionType;
 
 
 /***/ }),
-/* 105 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40902,7 +41089,7 @@ exports.Icon = Icon;
 
 
 /***/ }),
-/* 106 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40991,8 +41178,8 @@ var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var ReactDOM = __webpack_require__(22);
 var hornet_component_1 = __webpack_require__(3);
-var icon_1 = __webpack_require__(105);
-var modal_1 = __webpack_require__(100);
+var icon_1 = __webpack_require__(106);
+var modal_1 = __webpack_require__(101);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.table.button-info-accessibilite");
 /**
  * Bouton et modale d'information sur l'accessibilité clavier du composant Table
@@ -41062,42 +41249,42 @@ exports.ButtonInfoAccessibilite = ButtonInfoAccessibilite;
 
 
 /***/ }),
-/* 107 */,
-/* 108 */
+/* 108 */,
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var hornet_js_utils_1 = __webpack_require__(0);
-var client_1 = __webpack_require__(127);
-var routes_1 = __webpack_require__(166);
-var hornet_app_1 = __webpack_require__(167);
+var client_1 = __webpack_require__(128);
+var routes_1 = __webpack_require__(167);
+var hornet_app_1 = __webpack_require__(214);
 var error_page_1 = __webpack_require__(93);
-var react_client_1 = __webpack_require__(245);
-__webpack_require__(246);
+var react_client_1 = __webpack_require__(247);
+__webpack_require__(248);
 (function startClient() {
     var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.client");
     function routeLoader(name, callback) {
         logger.info("routeLoaderClient(" + name + ")");
         // [AUTO GENERATED] DO NOT EDIT THIS FUNCTION DIRECTLY
 if (name === 'admin/fvm/form1-client-routes') { 
-__webpack_require__.e/* require */(5).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(247)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+__webpack_require__.e/* require */(5).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(249)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 }
 else if (name === 'admin/fvm/form1-server-routes') { 
-__webpack_require__.e/* require */(4).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(252)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+__webpack_require__.e/* require */(4).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(254)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 }
 else if (name === 'admin/fvm/form2-client-routes') { 
-__webpack_require__.e/* require */(3).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(248)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+__webpack_require__.e/* require */(3).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(250)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 }
 else if (name === 'admin/fvm/form2-server-routes') { 
-__webpack_require__.e/* require */(2).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(253)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+__webpack_require__.e/* require */(2).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(255)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 }
 else if (name === 'admin/fvm/record-client-routes') { 
-__webpack_require__.e/* require */(1).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(249)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+__webpack_require__.e/* require */(1).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(251)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 }
 else if (name === 'admin/fvm/record-server-routes') { 
-__webpack_require__.e/* require */(0).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(254)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+__webpack_require__.e/* require */(0).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(256)]; ((callback).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 }
 else{callback('ERROR: No File with name \''+name+'\' found');}
         return null;
@@ -41138,7 +41325,7 @@ else{callback('ERROR: No File with name \''+name+'\' found');}
 
 
 /***/ }),
-/* 109 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41236,7 +41423,7 @@ else{callback('ERROR: No File with name \''+name+'\' found');}
 })();
 
 /***/ }),
-/* 110 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41246,7 +41433,7 @@ var defineProperties = __webpack_require__(56);
 
 var implementation = __webpack_require__(57);
 var getPolyfill = __webpack_require__(58);
-var shim = __webpack_require__(116);
+var shim = __webpack_require__(117);
 
 var polyfill = getPolyfill();
 
@@ -41260,7 +41447,7 @@ module.exports = polyfill;
 
 
 /***/ }),
-/* 111 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41284,7 +41471,7 @@ module.exports = function isArguments(value) {
 
 
 /***/ }),
-/* 112 */
+/* 113 */
 /***/ (function(module, exports) {
 
 
@@ -41312,19 +41499,19 @@ module.exports = function forEach (obj, fn, ctx) {
 
 
 /***/ }),
-/* 113 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var implementation = __webpack_require__(114);
+var implementation = __webpack_require__(115);
 
 module.exports = Function.prototype.bind || implementation;
 
 
 /***/ }),
-/* 114 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41383,13 +41570,13 @@ module.exports = function bind(that) {
 
 
 /***/ }),
-/* 115 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var keys = __webpack_require__(42);
+var keys = __webpack_require__(43);
 
 module.exports = function hasSymbols() {
 	if (typeof Symbol !== 'function' || typeof Object.getOwnPropertySymbols !== 'function') { return false; }
@@ -41431,7 +41618,7 @@ module.exports = function hasSymbols() {
 
 
 /***/ }),
-/* 116 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41452,7 +41639,7 @@ module.exports = function shimAssign() {
 
 
 /***/ }),
-/* 117 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process, global) {/*!
@@ -42637,7 +42824,7 @@ return Promise$1;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(8)))
 
 /***/ }),
-/* 118 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {// Copyright Joyent, Inc. and other Node contributors.
@@ -42868,7 +43055,7 @@ var substr = 'ab'.substr(-1) === 'b'
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 119 */
+/* 120 */
 /***/ (function(module, exports) {
 
 module.exports = function isBuffer(arg) {
@@ -42879,7 +43066,7 @@ module.exports = function isBuffer(arg) {
 }
 
 /***/ }),
-/* 120 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;//! moment-timezone.js
@@ -43493,7 +43680,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ }),
-/* 121 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -43518,10 +43705,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 121;
+webpackContext.id = 122;
 
 /***/ }),
-/* 122 */
+/* 123 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -44125,7 +44312,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 123 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44238,7 +44425,7 @@ var ConfigLib = /** @class */ (function () {
         else {
             logger.trace("Chargement de la configuration APPLI en mode DEV", "./config");
         }
-        this._configObj = __webpack_require__(49);
+        this._configObj = __webpack_require__(50);
         logger.trace("Configuration APPLI : ", JSON.stringify(this._configObj));
         var infraFolder = process.env.HORNET_CONFIG_DIR_INFRA;
         if (infraFolder) {
@@ -44384,7 +44571,7 @@ exports.ConfigLib = ConfigLib;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 124 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44503,7 +44690,7 @@ exports.AppSharedProps = AppSharedProps;
 
 
 /***/ }),
-/* 125 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44636,7 +44823,7 @@ var ContinuationLocalStorage = /** @class */ (function () {
         if (localStorageName === void 0) { localStorageName = "HornetContinuationLocalStorage"; }
         var cls;
         if (common_register_1.Register.isServer) {
-            cls = __webpack_require__(49);
+            cls = __webpack_require__(50);
         }
         else {
             cls = BrowserContinuationLocalStorage;
@@ -44656,7 +44843,7 @@ exports.ContinuationLocalStorage = ContinuationLocalStorage;
 
 
 /***/ }),
-/* 126 */
+/* 127 */
 /***/ (function(module, exports) {
 
 /*
@@ -46699,7 +46886,7 @@ exports.ContinuationLocalStorage = ContinuationLocalStorage;
 })();
 
 /***/ }),
-/* 127 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46787,12 +46974,12 @@ var hornet_js_utils_1 = __webpack_require__(0);
 hornet_js_utils_1.Utils.setConfigObj(window.Config);
 hornet_js_utils_1.Utils.appSharedProps.rehydrate(window.AppSharedProps);
 var logger_1 = __webpack_require__(59);
-var client_log_1 = __webpack_require__(128);
+var client_log_1 = __webpack_require__(129);
 logger_1.Logger.prototype.buildLogger = client_log_1.ClientLog.getLoggerBuilder(hornet_js_utils_1.Utils.config.getOrDefault("logClient", {}));
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.client");
 var async_executor_1 = __webpack_require__(65);
 var async_element_1 = __webpack_require__(69);
-var router_client_1 = __webpack_require__(162);
+var router_client_1 = __webpack_require__(163);
 var router_client_async_elements_1 = __webpack_require__(19);
 var hornet_event_1 = __webpack_require__(7);
 var hornet_event_2 = __webpack_require__(7);
@@ -46856,10 +47043,10 @@ var Client = /** @class */ (function () {
             logger.warn("Chargement d'une librairie remplacant Intl qui n'est pas supportée par ce navigateur");
             executor.addElement(new async_element_1.AsyncElement(function (next) {
                 __webpack_require__.e/* require.ensure */(6).then((function (require) {
-                    window.Intl = __webpack_require__(107);
-                    __webpack_require__(250);
+                    window.Intl = __webpack_require__(108);
+                    __webpack_require__(252);
                     var locale = window.HornetCLS.i18n.lang || "fr";
-                    __webpack_require__(251)("./" + locale.toLowerCase());
+                    __webpack_require__(253)("./" + locale.toLowerCase());
                     next();
                 }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
             }));
@@ -46915,7 +47102,7 @@ exports.Client = Client;
 
 
 /***/ }),
-/* 128 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47348,7 +47535,7 @@ exports.ClientLog = ClientLog;
 
 
 /***/ }),
-/* 129 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47382,7 +47569,7 @@ if (util.isNode) {
 util.notEnumerableProp(Promise, "_getDomain", getDomain);
 
 var es5 = __webpack_require__(18);
-var Async = __webpack_require__(130);
+var Async = __webpack_require__(131);
 var async = new Async();
 es5.defineProperty(Promise, "_async", {value: async});
 var errors = __webpack_require__(12);
@@ -47396,17 +47583,17 @@ Promise.AggregateError = errors.AggregateError;
 var INTERNAL = function(){};
 var APPLY = {};
 var NEXT_FILTER = {};
-var tryConvertToPromise = __webpack_require__(134)(Promise, INTERNAL);
+var tryConvertToPromise = __webpack_require__(135)(Promise, INTERNAL);
 var PromiseArray =
-    __webpack_require__(135)(Promise, INTERNAL,
+    __webpack_require__(136)(Promise, INTERNAL,
                                tryConvertToPromise, apiRejection, Proxyable);
-var Context = __webpack_require__(136)(Promise);
+var Context = __webpack_require__(137)(Promise);
  /*jshint unused:false*/
 var createContext = Context.create;
-var debug = __webpack_require__(137)(Promise, Context);
+var debug = __webpack_require__(138)(Promise, Context);
 var CapturedTrace = debug.CapturedTrace;
 var PassThroughHandlerContext =
-    __webpack_require__(138)(Promise, tryConvertToPromise, NEXT_FILTER);
+    __webpack_require__(139)(Promise, tryConvertToPromise, NEXT_FILTER);
 var catchFilter = __webpack_require__(67)(NEXT_FILTER);
 var nodebackForPromise = __webpack_require__(68);
 var errorObj = util.errorObj;
@@ -48078,31 +48265,31 @@ util.notEnumerableProp(Promise,
                        "_makeSelfResolutionError",
                        makeSelfResolutionError);
 
-__webpack_require__(139)(Promise, INTERNAL, tryConvertToPromise, apiRejection,
+__webpack_require__(140)(Promise, INTERNAL, tryConvertToPromise, apiRejection,
     debug);
-__webpack_require__(140)(Promise, INTERNAL, tryConvertToPromise, debug);
-__webpack_require__(141)(Promise, PromiseArray, apiRejection, debug);
-__webpack_require__(142)(Promise);
+__webpack_require__(141)(Promise, INTERNAL, tryConvertToPromise, debug);
+__webpack_require__(142)(Promise, PromiseArray, apiRejection, debug);
 __webpack_require__(143)(Promise);
-__webpack_require__(144)(
+__webpack_require__(144)(Promise);
+__webpack_require__(145)(
     Promise, PromiseArray, tryConvertToPromise, INTERNAL, async, getDomain);
 Promise.Promise = Promise;
 Promise.version = "3.5.1";
-__webpack_require__(145)(Promise, PromiseArray, apiRejection, tryConvertToPromise, INTERNAL, debug);
-__webpack_require__(146)(Promise);
-__webpack_require__(147)(Promise, apiRejection, tryConvertToPromise, createContext, INTERNAL, debug);
-__webpack_require__(148)(Promise, INTERNAL, debug);
-__webpack_require__(149)(Promise, apiRejection, INTERNAL, tryConvertToPromise, Proxyable, debug);
-__webpack_require__(150)(Promise);
-__webpack_require__(151)(Promise, INTERNAL);
-__webpack_require__(152)(Promise, PromiseArray, tryConvertToPromise, apiRejection);
-__webpack_require__(153)(Promise, INTERNAL, tryConvertToPromise, apiRejection);
-__webpack_require__(154)(Promise, PromiseArray, apiRejection, tryConvertToPromise, INTERNAL, debug);
-__webpack_require__(155)(Promise, PromiseArray, debug);
-__webpack_require__(156)(Promise, PromiseArray, apiRejection);
-__webpack_require__(157)(Promise, INTERNAL);
+__webpack_require__(146)(Promise, PromiseArray, apiRejection, tryConvertToPromise, INTERNAL, debug);
+__webpack_require__(147)(Promise);
+__webpack_require__(148)(Promise, apiRejection, tryConvertToPromise, createContext, INTERNAL, debug);
+__webpack_require__(149)(Promise, INTERNAL, debug);
+__webpack_require__(150)(Promise, apiRejection, INTERNAL, tryConvertToPromise, Proxyable, debug);
+__webpack_require__(151)(Promise);
+__webpack_require__(152)(Promise, INTERNAL);
+__webpack_require__(153)(Promise, PromiseArray, tryConvertToPromise, apiRejection);
+__webpack_require__(154)(Promise, INTERNAL, tryConvertToPromise, apiRejection);
+__webpack_require__(155)(Promise, PromiseArray, apiRejection, tryConvertToPromise, INTERNAL, debug);
+__webpack_require__(156)(Promise, PromiseArray, debug);
+__webpack_require__(157)(Promise, PromiseArray, apiRejection);
 __webpack_require__(158)(Promise, INTERNAL);
-__webpack_require__(159)(Promise);
+__webpack_require__(159)(Promise, INTERNAL);
+__webpack_require__(160)(Promise);
                                                          
     util.toFastProperties(Promise);                                          
     util.toFastProperties(Promise.prototype);                                
@@ -48131,15 +48318,15 @@ __webpack_require__(159)(Promise);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 130 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 var firstLineError;
 try {throw new Error(); } catch (e) {firstLineError = e;}
-var schedule = __webpack_require__(131);
-var Queue = __webpack_require__(133);
+var schedule = __webpack_require__(132);
+var Queue = __webpack_require__(134);
 var util = __webpack_require__(5);
 
 function Async() {
@@ -48300,7 +48487,7 @@ module.exports.firstLineError = firstLineError;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 131 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48369,7 +48556,7 @@ module.exports = schedule;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), __webpack_require__(4), __webpack_require__(66).setImmediate))
 
 /***/ }),
-/* 132 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -48562,7 +48749,7 @@ module.exports = schedule;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), __webpack_require__(4)))
 
 /***/ }),
-/* 133 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48642,7 +48829,7 @@ module.exports = Queue;
 
 
 /***/ }),
-/* 134 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48735,7 +48922,7 @@ return tryConvertToPromise;
 
 
 /***/ }),
-/* 135 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48927,7 +49114,7 @@ return PromiseArray;
 
 
 /***/ }),
-/* 136 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49003,7 +49190,7 @@ return Context;
 
 
 /***/ }),
-/* 137 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49930,7 +50117,7 @@ return {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 138 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50083,7 +50270,7 @@ return PassThroughHandlerContext;
 
 
 /***/ }),
-/* 139 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50145,7 +50332,7 @@ Promise.prototype._resolveFromSyncValue = function (value) {
 
 
 /***/ }),
-/* 140 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50219,7 +50406,7 @@ Promise.bind = function (thisArg, value) {
 
 
 /***/ }),
-/* 141 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50355,7 +50542,7 @@ Promise.prototype._resultCancelled = function() {
 
 
 /***/ }),
-/* 142 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50408,7 +50595,7 @@ Promise.prototype.catchReturn = function (value) {
 
 
 /***/ }),
-/* 143 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50518,7 +50705,7 @@ Promise.PromiseInspection = PromiseInspection;
 
 
 /***/ }),
-/* 144 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50693,7 +50880,7 @@ Promise.join = function () {
 
 
 /***/ }),
-/* 145 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50868,7 +51055,7 @@ Promise.map = function (promises, fn, options, _filter) {
 
 
 /***/ }),
-/* 146 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50998,7 +51185,7 @@ Promise.prototype.get = function (propertyName) {
 
 
 /***/ }),
-/* 147 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51231,7 +51418,7 @@ module.exports = function (Promise, apiRejection, tryConvertToPromise,
 
 
 /***/ }),
-/* 148 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51331,7 +51518,7 @@ Promise.prototype.timeout = function (ms, message) {
 
 
 /***/ }),
-/* 149 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51561,7 +51748,7 @@ Promise.spawn = function (generatorFunction) {
 
 
 /***/ }),
-/* 150 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51626,7 +51813,7 @@ Promise.prototype.asCallback = Promise.prototype.nodeify = function (nodeback,
 
 
 /***/ }),
-/* 151 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51947,7 +52134,7 @@ Promise.promisifyAll = function (target, options) {
 
 
 /***/ }),
-/* 152 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52072,7 +52259,7 @@ Promise.props = function (promises) {
 
 
 /***/ }),
-/* 153 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52128,7 +52315,7 @@ Promise.prototype.race = function () {
 
 
 /***/ }),
-/* 154 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52307,7 +52494,7 @@ function gotValue(value) {
 
 
 /***/ }),
-/* 155 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52357,7 +52544,7 @@ Promise.prototype.settle = function () {
 
 
 /***/ }),
-/* 156 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52512,7 +52699,7 @@ Promise._SomePromiseArray = SomePromiseArray;
 
 
 /***/ }),
-/* 157 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52531,7 +52718,7 @@ Promise.filter = function (promises, fn, options) {
 
 
 /***/ }),
-/* 158 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52568,7 +52755,7 @@ Promise.mapSeries = PromiseMapSeries;
 
 
 /***/ }),
-/* 159 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52596,7 +52783,7 @@ Promise.prototype.any = function () {
 
 
 /***/ }),
-/* 160 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52724,7 +52911,7 @@ module.exports = shimmer
 
 
 /***/ }),
-/* 161 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52801,7 +52988,7 @@ module.exports = (function () {
 
 
 /***/ }),
-/* 162 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52886,9 +53073,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @license CECILL-2.1
  */
 var hornet_js_utils_1 = __webpack_require__(0);
-var director_1 = __webpack_require__(163);
+var director_1 = __webpack_require__(164);
 var _ = __webpack_require__(6);
-var lazy_class_loader_1 = __webpack_require__(164);
+var lazy_class_loader_1 = __webpack_require__(165);
 var async_executor_1 = __webpack_require__(65);
 var router_client_async_elements_1 = __webpack_require__(19);
 var hornet_event_1 = __webpack_require__(7);
@@ -53179,7 +53366,7 @@ exports.RouterClient = RouterClient;
 
 
 /***/ }),
-/* 163 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -53909,7 +54096,7 @@ Router.prototype.mount = function(routes, path) {
 }( true ? exports : window));
 
 /***/ }),
-/* 164 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54027,7 +54214,7 @@ exports.LazyClassLoader = LazyClassLoader;
 
 
 /***/ }),
-/* 165 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54129,19 +54316,20 @@ exports.SecurityError = SecurityError;
 
 
 /***/ }),
-/* 166 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
-var abstract_routes_1 = __webpack_require__(98);
+var abstract_routes_1 = __webpack_require__(99);
 // import { HomePage } from "src/views/gen/gen-hom-page";
 // import { AidePage } from "src/views/gen/gen-aid-page";
 // import { PlanAppliPage } from "src/views/nav/nav-pap-page";
 // import { AccessibilitePage } from "src/views/gen/gen-acb-page";
 var hornet_js_utils_1 = __webpack_require__(0);
+var gen_hom_page_1 = __webpack_require__(168);
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.routes.routes");
 var Routes = /** @class */ (function (_super) {
     tslib_1.__extends(Routes, _super);
@@ -54158,10 +54346,7 @@ var Routes = /** @class */ (function (_super) {
     }
     Routes.prototype.addClientRoutes = function () {
         // /* Routes des pages */
-        // this.addPageRoute("/accueil",
-        //   () => new PageRouteInfos(HomePage),
-        //   PUBLIC_ROUTE
-        // );
+        this.addPageRoute("/accueil", function () { return new abstract_routes_1.PageRouteInfos(gen_hom_page_1.HomePage); }, abstract_routes_1.PUBLIC_ROUTE);
         // this.addPageRoute("/aide",
         //   () => new PageRouteInfos(AidePage),
         //   PUBLIC_ROUTE
@@ -54179,16 +54364,16 @@ var Routes = /** @class */ (function (_super) {
         //   PUBLIC_ROUTE
         // );
         // this.addLazyRoutes("/admin", "admin/admin-client-routes");
-        this.addLazyRoutes("/form1", "admin/fvm/form1-client-routes");
-        this.addLazyRoutes("/form2", "admin/fvm/form2-client-routes");
-        this.addLazyRoutes("/record", "admin/fvm/record-client-routes");
+        this.addLazyRoutes("/fvmform1", "admin/fvm/form1-client-routes");
+        this.addLazyRoutes("/fvmform2", "admin/fvm/form2-client-routes");
+        this.addLazyRoutes("/fvmrecord", "admin/fvm/record-client-routes");
         // /* Routes lazy */
         // this.addLazyRoutes(URL_CONTACT, "cnt/gen-cnt-client-routes");
     };
     Routes.prototype.addServerRoutes = function () {
-        this.addLazyRoutes("/form1server", "admin/fvm/form1-server-routes");
-        this.addLazyRoutes("/form2server", "admin/fvm/form2-server-routes");
-        this.addLazyRoutes("/recordserver", "admin/fvm/record-server-routes");
+        this.addLazyRoutes("/fvmform1server", "admin/fvm/form1-server-routes");
+        this.addLazyRoutes("/fvmform2server", "admin/fvm/form2-server-routes");
+        this.addLazyRoutes("/fvmrecordserver", "admin/fvm/record-server-routes");
     };
     return Routes;
 }(abstract_routes_1.AbstractRoutes));
@@ -54197,180 +54382,48 @@ exports.Routes = Routes;
 
 
 /***/ }),
-/* 167 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
-var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
-var hornet_page_1 = __webpack_require__(51);
-var spinner_1 = __webpack_require__(213);
-var header_page_1 = __webpack_require__(214);
-var footer_page_1 = __webpack_require__(215);
-var hornet_content_1 = __webpack_require__(216);
-var user_1 = __webpack_require__(231);
-var menu_1 = __webpack_require__(233);
-var layout_switcher_1 = __webpack_require__(24);
-var change_language_1 = __webpack_require__(240);
-var dropdown_1 = __webpack_require__(39);
-var ChangeLanguageService = __webpack_require__(241);
-var navigation_utils_1 = __webpack_require__(20);
-var notification_session_footer_1 = __webpack_require__(242);
-var menu_accessibilite_1 = __webpack_require__(244);
-var _ = __webpack_require__(6);
-var classNames = __webpack_require__(9);
-var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.layouts.hornet-app");
-var HornetApp = /** @class */ (function (_super) {
-    tslib_1.__extends(HornetApp, _super);
-    function HornetApp(props, context) {
-        var _this = _super.call(this, props, context) || this;
-        _this.service = new ChangeLanguageService.ChangeLanguage();
-        _this.listenUrlChangeEvent();
-        return _this;
+var hornet_js_utils_1 = __webpack_require__(0);
+var hornet_page_1 = __webpack_require__(40);
+var button_1 = __webpack_require__(98);
+var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.gen.gen-hom-page");
+/**
+ * Ecran de page d'accueil de l'application
+ */
+var HomePage = /** @class */ (function (_super) {
+    tslib_1.__extends(HomePage, _super);
+    function HomePage() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
-    HornetApp.prototype.componentDidMount = function () {
-        _super.prototype.componentDidMount.call(this);
-        this.listenUpdatePageExpandEvent();
-        if (this.state.error && this.state.error.hasBeenReported) {
-            this.state.error = undefined;
-        }
-        else if (this.state.error) {
-            this.state.error.hasBeenReported = true;
-        }
-    };
-    HornetApp.prototype.componentWillUpdate = function (nextProps, nextState) {
-        if (nextState.error && nextState.error.hasBeenReported) {
-            nextState.error = undefined;
-        }
-    };
-    HornetApp.prototype.prepareClient = function () {
+    HomePage.prototype.prepareClient = function () {
     };
     /**
      * @inheritDoc
      */
-    HornetApp.prototype.render = function () {
-        var _this = this;
-        logger.trace("VIEW HornetApp render");
-        var title = _.concat(this.i18n("header").logoTitle, this.state.applicationTitle).join(" ");
-        var classes = {
-            "mode-fullscreen": this.state.modeFullscreen
-        };
-        var messIntl = this.i18n("header");
-        var applicationTitle = this.i18n("applicationTitle");
-        var lienAide = (this.state.linkHelpVisible) ?
-            React.createElement("li", null,
-                React.createElement("a", { title: messIntl.help + applicationTitle, href: this.genUrl("/aide") }, messIntl.help))
-            : null;
-        var lang = React.createElement(change_language_1.ChangeLanguage, { handleChangeLanguage: this.handleChangeLanguage, position: dropdown_1.Position.BOTTOMRIGHT });
-        var user = hornet_js_utils_1.Utils.config.getOrDefault("fullSpa.enabled", false) && hornet_js_utils_1.Utils.config.getOrDefault("mock.enabled", false) ? React.createElement(dropdown_1.Dropdown, { items: [{ label: "as Admin", action: this.changeUserTo, valueCurrent: "admin", className: "link" },
-                { label: "As User", action: this.changeUserTo, valueCurrent: "user", className: "link" }], title: "mock users", icon: "picto-user", className: "profil-content", id: "dropdown-user-mock" + "-drop", label: "Users", labelClassName: "profil-label", position: dropdown_1.Position.BOTTOMRIGHT }) : React.createElement(user_1.User, null);
-        var langBanner = React.createElement(change_language_1.ChangeLanguage, { id: "Change-Language-banner", handleChangeLanguage: this.handleChangeLanguage, position: dropdown_1.Position.BOTTOMRIGHT });
-        var userBanner = hornet_js_utils_1.Utils.config.getOrDefault("fullSpa.enabled", false) && hornet_js_utils_1.Utils.config.getOrDefault("mock.enabled", false) ? React.createElement(dropdown_1.Dropdown, { items: [{ label: "as Admin", action: this.changeUserTo, valueCurrent: "admin", className: "link" },
-                { label: "As User", action: this.changeUserTo, valueCurrent: "user", className: "link" }], title: "mock users", icon: "picto-user", className: "profil-content", id: "dropdown-user-banner-mock" + "-drop", label: "Users", labelClassName: "profil-label", position: dropdown_1.Position.BOTTOMRIGHT }) : React.createElement(user_1.User, { id: "user-banner" });
-        // todo add to banner
-        var wrappedUserLang = (React.createElement("div", { className: "userlang fr full-height" },
-            userBanner,
-            langBanner,
-            React.createElement(layout_switcher_1.LayoutSwitcher, null)));
-        return (React.createElement("div", { id: "site", className: classNames(classes) },
-            React.createElement(header_page_1.HeaderPage, { scrollHeight: 35 },
-                React.createElement("div", { id: "header" },
-                    React.createElement(menu_accessibilite_1.MenuAccessibilite, null),
-                    React.createElement("div", { id: "header-expanded-zone", className: "inside " + this.state.classNameExpanded, style: { maxWidth: this.state.currentWorkingZoneWidth } },
-                        React.createElement("div", { className: "fl full-height" },
-                            React.createElement("a", { className: "header-link", title: this.i18n("application.headerTitleText"), href: this.state.headerTitleUrl }, this.i18n("application.headerTitle"))),
-                        React.createElement("div", { className: "fr full-height user", style: { display: "inline-flex" } },
-                            user,
-                            lang,
-                            React.createElement(layout_switcher_1.LayoutSwitcher, null)))),
-                React.createElement("div", { id: "banner" },
-                    React.createElement("div", { id: "banner-expanded-zone", className: "inside " + this.state.classNameExpanded, style: { maxWidth: this.state.currentWorkingZoneWidth } },
-                        React.createElement("div", { className: "fl menu-main-conteneur " },
-                            React.createElement(menu_1.Menu, { showIconInfo: true, workingZoneWidth: this.state.currentWorkingZoneWidth, var: function (menu) {
-                                    return _this.menu = menu;
-                                } })),
-                        React.createElement("div", { className: "fl mls" },
-                            React.createElement("a", { className: "sub-header-link", href: this.genUrl(hornet_js_utils_1.Utils.config.getOrDefault("welcomePage", "/")), title: title, id: "img-logo" },
-                                React.createElement("img", { src: this.state.logoUrl, alt: this.i18n("applicationTitle") }))),
-                        React.createElement("div", { className: "fl mls" },
-                            React.createElement("a", { className: "sub-header-link", href: this.genUrl(hornet_js_utils_1.Utils.config.getOrDefault("welcomePage", "/")), title: title },
-                                React.createElement("h1", { id: "app-title" }, this.i18n("applicationTitle")))),
-                        wrappedUserLang),
-                    React.createElement(spinner_1.Spinner, null))),
-            React.createElement(hornet_content_1.HornetContent, { content: this.state.content, workingZoneWidth: this.state.workingZoneWidth, error: this.state.error }),
-            React.createElement(notification_session_footer_1.NotificationSessionFooter, null),
-            React.createElement(footer_page_1.FooterPage, { workingZoneWidth: this.state.currentWorkingZoneWidth },
-                React.createElement("div", { className: "fl mll" },
-                    React.createElement("ul", { className: "footer-links" },
-                        React.createElement("li", null,
-                            React.createElement("a", { href: this.genUrl("/planAppli"), title: messIntl.planTitle + applicationTitle }, messIntl.plan)),
-                        React.createElement("li", null,
-                            React.createElement("a", { href: this.genUrl("/politiqueAccessibilite"), title: messIntl.accessTitle + applicationTitle }, messIntl.access)),
-                        React.createElement("li", null,
-                            React.createElement("a", { href: this.genUrl("/contact"), title: messIntl.contactTitle + applicationTitle }, messIntl.contact)),
-                        lienAide)),
-                React.createElement("div", { className: "fr mrl" },
-                    React.createElement("p", null, applicationTitle + " - v" + hornet_js_utils_1.Utils.appSharedProps.get("appVersion"))))));
+    HomePage.prototype.render = function () {
+        logger.info("VIEW HomePage render");
+        return (React.createElement("div", { id: "pageAccueil" },
+            React.createElement("h2", null, "Accueil"),
+            React.createElement(button_1.Button, { type: "submit", onClick: this.goToFVM, value: "Valider", className: "hornet-button", label: "Equivalence France vers Maroc", title: "Permis Fran\u00E7ais ayant demand\u00E9 une \u00E9quivalence marocaine" })));
     };
-    /**
-     * Méthode permettant de passer en mode plein écran
-     */
-    HornetApp.prototype.onClickLinkFullscreen = function () {
-        this.setState({
-            modeFullscreen: !this.state.modeFullscreen
-        });
+    HomePage.prototype.goToFVM = function () {
+        this.navigateTo("/fvmrecord", {}, function () { });
     };
-    /**
-     * Méthode permettant de changer de langue
-     * @param i18nLocale
-     */
-    HornetApp.prototype.handleChangeLanguage = function (i18nLocale) {
-        this.service.changeLanguage({ "hornetI18n": i18nLocale }).then(function (retourApi) {
-            logger.trace("Retour API PartenaireApi.rechercher :", retourApi.body);
-            hornet_js_utils_1.Utils.setCls("hornet.internationalization", retourApi.body);
-            window.location.reload();
-        });
-    };
-    /**
-     * Méthode permettant de réveiller le serveur node afin de ne pas perdre la session
-     * @param i18nLocale
-     */
-    HornetApp.prototype.handleWakeUpNode = function (i18nLocale) {
-        this.service.changeLanguage({ "hornetI18n": i18nLocale }).then(function (retourApi) {
-            logger.trace("Retour service changeLanguage :", retourApi.body);
-            hornet_js_utils_1.Utils.setCls("hornet.internationalization", retourApi.body);
-            window.location.reload();
-        });
-    };
-    /**
-     *
-     * @param value valeur sélectionnée dans la liste des users mocké
-     */
-    HornetApp.prototype.changeUserTo = function (value) {
-        var _this = this;
-        this.navigateTo("accueil", {}, function () {
-            _this.forceUpdate();
-            _this.menu.forceUpdate();
-            _this.menu.setState({ items: _this.menu.props.configMenu ? navigation_utils_1.NavigationUtils.getFilteredConfigNavigation(_.cloneDeep(_this.menu.props.configMenu), _this.user) : navigation_utils_1.NavigationUtils.getFilteredConfigNavigation(navigation_utils_1.NavigationUtils.getConfigMenu(), hornet_js_utils_1.Utils.getCls("hornet.user")) });
-        });
-    };
-    HornetApp.defaultProps = {
-        composantPage: null,
-        workingZoneWidth: "1200px",
-        logoUrl: hornet_js_utils_1.Utils.buildStaticPath("/img/logoHornet.png"),
-        headerTitleUrl: "http://intranet.diplomatie.gouv.fr/"
-    };
-    return HornetApp;
+    return HomePage;
 }(hornet_page_1.HornetPage));
-exports.HornetApp = HornetApp;
+exports.HomePage = HomePage;
 
 
 
 /***/ }),
-/* 168 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54398,7 +54451,7 @@ isValidElement:K,version:"16.2.0",__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_F
 
 
 /***/ }),
-/* 169 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55763,7 +55816,7 @@ module.exports = react;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 170 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55852,7 +55905,7 @@ exports.DEFAULT_ERROR_HANDLER = function (report, errorPage) {
 
 
 /***/ }),
-/* 171 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55940,8 +55993,8 @@ var index_1 = __webpack_require__(0);
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                patch intl-messageformat afin de ne pas échouer si un paramètre est manquant              //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-var src$utils$$ = __webpack_require__(46);
-var IntlMessageFormat = __webpack_require__(103);
+var src$utils$$ = __webpack_require__(47);
+var IntlMessageFormat = __webpack_require__(104);
 IntlMessageFormat.prototype._format = function (pattern, values) {
     var result = "", i, len, part, id, value;
     for (i = 0, len = pattern.length; i < len; i += 1) {
@@ -56013,14 +56066,14 @@ exports.I18nUtils = I18nUtils;
 
 
 /***/ }),
-/* 172 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* jslint esnext: true */
 
 
-var src$core$$ = __webpack_require__(173), src$en$$ = __webpack_require__(178);
+var src$core$$ = __webpack_require__(174), src$en$$ = __webpack_require__(179);
 
 src$core$$["default"].__addLocaleData(src$en$$["default"]);
 src$core$$["default"].defaultLocale = 'en';
@@ -56030,7 +56083,7 @@ exports["default"] = src$core$$["default"];
 
 
 /***/ }),
-/* 173 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -56043,7 +56096,7 @@ See the accompanying LICENSE file for terms.
 /* jslint esnext: true */
 
 
-var src$utils$$ = __webpack_require__(46), src$es5$$ = __webpack_require__(174), src$compiler$$ = __webpack_require__(175), intl$messageformat$parser$$ = __webpack_require__(176);
+var src$utils$$ = __webpack_require__(47), src$es5$$ = __webpack_require__(175), src$compiler$$ = __webpack_require__(176), intl$messageformat$parser$$ = __webpack_require__(177);
 exports["default"] = MessageFormat;
 
 // -- MessageFormat --------------------------------------------------------
@@ -56313,7 +56366,7 @@ MessageFormat.prototype._resolveLocale = function (locales) {
 
 
 /***/ }),
-/* 174 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -56326,7 +56379,7 @@ See the accompanying LICENSE file for terms.
 /* jslint esnext: true */
 
 
-var src$utils$$ = __webpack_require__(46);
+var src$utils$$ = __webpack_require__(47);
 
 // Purposely using the same implementation as the Intl.js `Intl` polyfill.
 // Copyright 2013 Andy Earnshaw, MIT License
@@ -56369,7 +56422,7 @@ exports.defineProperty = defineProperty, exports.objCreate = objCreate;
 
 
 /***/ }),
-/* 175 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -56584,18 +56637,18 @@ SelectFormat.prototype.getOption = function (value) {
 
 
 /***/ }),
-/* 176 */
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-exports = module.exports = __webpack_require__(177)['default'];
+exports = module.exports = __webpack_require__(178)['default'];
 exports['default'] = exports;
 
 
 /***/ }),
-/* 177 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58002,7 +58055,7 @@ exports["default"] = (function() {
 
 
 /***/ }),
-/* 178 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58013,13 +58066,13 @@ exports["default"] = {"locale":"en","pluralRuleFunction":function (n,ord){var s=
 
 
 /***/ }),
-/* 179 */
+/* 180 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 180 */
+/* 181 */
 /***/ (function(module, exports) {
 
 /**
@@ -58396,7 +58449,7 @@ function pathToRegexp (path, keys, options) {
 
 
 /***/ }),
-/* 181 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58482,7 +58535,7 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var hornet_js_utils_1 = __webpack_require__(0);
-var service_request_1 = __webpack_require__(40);
+var service_request_1 = __webpack_require__(41);
 var hornet_superagent_request_1 = __webpack_require__(33);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.services.layout-through-session-request");
 var ExpandingLayout = /** @class */ (function (_super) {
@@ -58513,7 +58566,7 @@ exports.ExpandingLayout = ExpandingLayout;
 
 
 /***/ }),
-/* 182 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module, global) {var __WEBPACK_AMD_DEFINE_RESULT__;/*! https://mths.be/punycode v1.4.1 by @mathias */
@@ -59049,10 +59102,10 @@ exports.ExpandingLayout = ExpandingLayout;
 
 }(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(43)(module), __webpack_require__(8)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(44)(module), __webpack_require__(8)))
 
 /***/ }),
-/* 183 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59075,18 +59128,18 @@ module.exports = {
 
 
 /***/ }),
-/* 184 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-exports.decode = exports.parse = __webpack_require__(185);
-exports.encode = exports.stringify = __webpack_require__(186);
+exports.decode = exports.parse = __webpack_require__(186);
+exports.encode = exports.stringify = __webpack_require__(187);
 
 
 /***/ }),
-/* 185 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59177,7 +59230,7 @@ var isArray = Array.isArray || function (xs) {
 
 
 /***/ }),
-/* 186 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59269,7 +59322,7 @@ var objectKeys = Object.keys || function (obj) {
 
 
 /***/ }),
-/* 187 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -59286,11 +59339,11 @@ if (typeof window !== 'undefined') { // Browser window
   root = this;
 }
 
-var Emitter = __webpack_require__(188);
-var RequestBase = __webpack_require__(189);
+var Emitter = __webpack_require__(189);
+var RequestBase = __webpack_require__(190);
 var isObject = __webpack_require__(73);
-var ResponseBase = __webpack_require__(190);
-var Agent = __webpack_require__(192);
+var ResponseBase = __webpack_require__(191);
+var Agent = __webpack_require__(193);
 
 /**
  * Noop.
@@ -60195,7 +60248,7 @@ request.put = function(url, data, fn) {
 
 
 /***/ }),
-/* 188 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -60364,7 +60417,7 @@ Emitter.prototype.hasListeners = function(event){
 
 
 /***/ }),
-/* 189 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61065,7 +61118,7 @@ RequestBase.prototype._setTimeouts = function() {
 
 
 /***/ }),
-/* 190 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61075,7 +61128,7 @@ RequestBase.prototype._setTimeouts = function() {
  * Module dependencies.
  */
 
-var utils = __webpack_require__(191);
+var utils = __webpack_require__(192);
 
 /**
  * Expose `ResponseBase`.
@@ -61206,7 +61259,7 @@ ResponseBase.prototype._setStatusProperties = function(status){
 
 
 /***/ }),
-/* 191 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61284,7 +61337,7 @@ exports.cleanHeader = function(header, changesOrigin){
 
 
 /***/ }),
-/* 192 */
+/* 193 */
 /***/ (function(module, exports) {
 
 function Agent() {
@@ -61310,7 +61363,7 @@ module.exports = Agent;
 
 
 /***/ }),
-/* 193 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61398,7 +61451,7 @@ var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var technical_error_1 = __webpack_require__(13);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.services.superagent-hornet-plugins");
-var browser = __webpack_require__(194);
+var browser = __webpack_require__(195);
 var HEADER_CSRF_NAME = "x-csrf-token";
 var HEADER_LOGIN_PAGE = "x-is-login-page";
 var HornetPlugin = /** @class */ (function () {
@@ -61559,7 +61612,7 @@ exports.AddParam = AddParam;
 
 
 /***/ }),
-/* 194 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -61737,7 +61790,7 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 195 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61822,7 +61875,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @license CECILL-2.1
  */
 var hornet_js_utils_1 = __webpack_require__(0);
-var OnionSkin = __webpack_require__(196);
+var OnionSkin = __webpack_require__(197);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.cache.hornet-cache");
 /**
  * Cache de l'application.
@@ -61872,26 +61925,26 @@ exports.HornetCache = HornetCache;
 
 
 /***/ }),
-/* 196 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var OnionSkin = __webpack_require__(197);
+var OnionSkin = __webpack_require__(198);
 OnionSkin.Drivers = {
   Utils: __webpack_require__(34),
   Ephemeral: __webpack_require__(75),
-  LocalStorage: __webpack_require__(199),
-  IndexedDB: __webpack_require__(200)
+  LocalStorage: __webpack_require__(200),
+  IndexedDB: __webpack_require__(201)
 };
 
 module.exports = OnionSkin;
 
 
 /***/ }),
-/* 197 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Item = __webpack_require__(74);
-var Pool = __webpack_require__(198);
+var Pool = __webpack_require__(199);
 var OnionSkin = function (drivers) {
   'use strict';
   return new Pool(drivers);
@@ -61909,7 +61962,7 @@ module.exports = OnionSkin;
 
 
 /***/ }),
-/* 198 */
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Promise = __webpack_require__(17);
@@ -61978,7 +62031,7 @@ module.exports = Pool;
 
 
 /***/ }),
-/* 199 */
+/* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = LocalStorage;
@@ -62056,7 +62109,7 @@ LocalStorage.prototype.unlock = function (key) {
 
 
 /***/ }),
-/* 200 */
+/* 201 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Promise = __webpack_require__(17);
@@ -62250,14 +62303,14 @@ IndexedDB.prototype._key = function (key) {
 
 
 /***/ }),
-/* 201 */
+/* 202 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer, global, process) {var capability = __webpack_require__(78)
 var inherits = __webpack_require__(11)
 var response = __webpack_require__(79)
 var stream = __webpack_require__(80)
-var toArrayBuffer = __webpack_require__(209)
+var toArrayBuffer = __webpack_require__(210)
 
 var IncomingMessage = response.IncomingMessage
 var rStates = response.readyStates
@@ -62580,7 +62633,7 @@ var unsafeHeaders = [
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(23).Buffer, __webpack_require__(8), __webpack_require__(4)))
 
 /***/ }),
-/* 202 */
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62703,7 +62756,7 @@ function fromByteArray (uint8) {
 
 
 /***/ }),
-/* 203 */
+/* 204 */
 /***/ (function(module, exports) {
 
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -62793,13 +62846,13 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 
 /***/ }),
-/* 204 */
+/* 205 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 205 */
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62808,7 +62861,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Buffer = __webpack_require__(36).Buffer;
-var util = __webpack_require__(206);
+var util = __webpack_require__(207);
 
 function copyBuffer(src, target, offset) {
   src.copy(target, offset);
@@ -62884,13 +62937,13 @@ if (util && util.inspect && util.inspect.custom) {
 }
 
 /***/ }),
-/* 206 */
+/* 207 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 207 */
+/* 208 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -62964,7 +63017,7 @@ function config (name) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
-/* 208 */
+/* 209 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63017,7 +63070,7 @@ PassThrough.prototype._transform = function (chunk, encoding, cb) {
 };
 
 /***/ }),
-/* 209 */
+/* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Buffer = __webpack_require__(23).Buffer
@@ -63050,7 +63103,7 @@ module.exports = function (buf) {
 
 
 /***/ }),
-/* 210 */
+/* 211 */
 /***/ (function(module, exports) {
 
 module.exports = extend
@@ -63075,7 +63128,7 @@ function extend() {
 
 
 /***/ }),
-/* 211 */
+/* 212 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -63145,11 +63198,11 @@ module.exports = {
 
 
 /***/ }),
-/* 212 */
+/* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var http = __webpack_require__(76)
-var url = __webpack_require__(41)
+var url = __webpack_require__(42)
 
 var https = module.exports
 
@@ -63182,7 +63235,180 @@ function validateParams (params) {
 
 
 /***/ }),
-/* 213 */
+/* 214 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(1);
+var hornet_js_utils_1 = __webpack_require__(0);
+var React = __webpack_require__(2);
+var hornet_page_1 = __webpack_require__(40);
+var spinner_1 = __webpack_require__(215);
+var header_page_1 = __webpack_require__(216);
+var footer_page_1 = __webpack_require__(217);
+var hornet_content_1 = __webpack_require__(218);
+var user_1 = __webpack_require__(233);
+var menu_1 = __webpack_require__(235);
+var layout_switcher_1 = __webpack_require__(24);
+var change_language_1 = __webpack_require__(242);
+var dropdown_1 = __webpack_require__(39);
+var ChangeLanguageService = __webpack_require__(243);
+var navigation_utils_1 = __webpack_require__(20);
+var notification_session_footer_1 = __webpack_require__(244);
+var menu_accessibilite_1 = __webpack_require__(246);
+var _ = __webpack_require__(6);
+var classNames = __webpack_require__(9);
+var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.layouts.hornet-app");
+var HornetApp = /** @class */ (function (_super) {
+    tslib_1.__extends(HornetApp, _super);
+    function HornetApp(props, context) {
+        var _this = _super.call(this, props, context) || this;
+        _this.service = new ChangeLanguageService.ChangeLanguage();
+        _this.listenUrlChangeEvent();
+        return _this;
+    }
+    HornetApp.prototype.componentDidMount = function () {
+        _super.prototype.componentDidMount.call(this);
+        this.listenUpdatePageExpandEvent();
+        if (this.state.error && this.state.error.hasBeenReported) {
+            this.state.error = undefined;
+        }
+        else if (this.state.error) {
+            this.state.error.hasBeenReported = true;
+        }
+    };
+    HornetApp.prototype.componentWillUpdate = function (nextProps, nextState) {
+        if (nextState.error && nextState.error.hasBeenReported) {
+            nextState.error = undefined;
+        }
+    };
+    HornetApp.prototype.prepareClient = function () {
+    };
+    /**
+     * @inheritDoc
+     */
+    HornetApp.prototype.render = function () {
+        var _this = this;
+        logger.trace("VIEW HornetApp render");
+        var title = _.concat(this.i18n("header").logoTitle, this.state.applicationTitle).join(" ");
+        var classes = {
+            "mode-fullscreen": this.state.modeFullscreen
+        };
+        var messIntl = this.i18n("header");
+        var applicationTitle = this.i18n("applicationTitle");
+        var lienAide = (this.state.linkHelpVisible) ?
+            React.createElement("li", null,
+                React.createElement("a", { title: messIntl.help + applicationTitle, href: this.genUrl("/aide") }, messIntl.help))
+            : null;
+        var lang = React.createElement(change_language_1.ChangeLanguage, { handleChangeLanguage: this.handleChangeLanguage, position: dropdown_1.Position.BOTTOMRIGHT });
+        var user = hornet_js_utils_1.Utils.config.getOrDefault("fullSpa.enabled", false) && hornet_js_utils_1.Utils.config.getOrDefault("mock.enabled", false) ? React.createElement(dropdown_1.Dropdown, { items: [{ label: "as Admin", action: this.changeUserTo, valueCurrent: "admin", className: "link" },
+                { label: "As User", action: this.changeUserTo, valueCurrent: "user", className: "link" }], title: "mock users", icon: "picto-user", className: "profil-content", id: "dropdown-user-mock" + "-drop", label: "Users", labelClassName: "profil-label", position: dropdown_1.Position.BOTTOMRIGHT }) : React.createElement(user_1.User, null);
+        var langBanner = React.createElement(change_language_1.ChangeLanguage, { id: "Change-Language-banner", handleChangeLanguage: this.handleChangeLanguage, position: dropdown_1.Position.BOTTOMRIGHT });
+        var userBanner = hornet_js_utils_1.Utils.config.getOrDefault("fullSpa.enabled", false) && hornet_js_utils_1.Utils.config.getOrDefault("mock.enabled", false) ? React.createElement(dropdown_1.Dropdown, { items: [{ label: "as Admin", action: this.changeUserTo, valueCurrent: "admin", className: "link" },
+                { label: "As User", action: this.changeUserTo, valueCurrent: "user", className: "link" }], title: "mock users", icon: "picto-user", className: "profil-content", id: "dropdown-user-banner-mock" + "-drop", label: "Users", labelClassName: "profil-label", position: dropdown_1.Position.BOTTOMRIGHT }) : React.createElement(user_1.User, { id: "user-banner" });
+        // todo add to banner
+        var wrappedUserLang = (React.createElement("div", { className: "userlang fr full-height" },
+            userBanner,
+            langBanner,
+            React.createElement(layout_switcher_1.LayoutSwitcher, null)));
+        return (React.createElement("div", { id: "site", className: classNames(classes) },
+            React.createElement(header_page_1.HeaderPage, { scrollHeight: 35 },
+                React.createElement("div", { id: "header" },
+                    React.createElement(menu_accessibilite_1.MenuAccessibilite, null),
+                    React.createElement("div", { id: "header-expanded-zone", className: "inside " + this.state.classNameExpanded, style: { maxWidth: this.state.currentWorkingZoneWidth } },
+                        React.createElement("div", { className: "fl full-height" },
+                            React.createElement("a", { className: "header-link", title: this.i18n("application.headerTitleText"), href: this.state.headerTitleUrl }, this.i18n("application.headerTitle"))),
+                        React.createElement("div", { className: "fr full-height user", style: { display: "inline-flex" } },
+                            user,
+                            lang,
+                            React.createElement(layout_switcher_1.LayoutSwitcher, null)))),
+                React.createElement("div", { id: "banner" },
+                    React.createElement("div", { id: "banner-expanded-zone", className: "inside " + this.state.classNameExpanded, style: { maxWidth: this.state.currentWorkingZoneWidth } },
+                        React.createElement("div", { className: "fl menu-main-conteneur " },
+                            React.createElement(menu_1.Menu, { showIconInfo: true, workingZoneWidth: this.state.currentWorkingZoneWidth, var: function (menu) {
+                                    return _this.menu = menu;
+                                } })),
+                        React.createElement("div", { className: "fl mls" },
+                            React.createElement("a", { className: "sub-header-link", href: this.genUrl(hornet_js_utils_1.Utils.config.getOrDefault("welcomePage", "/")), title: title, id: "img-logo" },
+                                React.createElement("img", { src: this.state.logoUrl, alt: this.i18n("applicationTitle") }))),
+                        React.createElement("div", { className: "fl mls" },
+                            React.createElement("a", { className: "sub-header-link", href: this.genUrl(hornet_js_utils_1.Utils.config.getOrDefault("welcomePage", "/")), title: title },
+                                React.createElement("h1", { id: "app-title" }, this.i18n("applicationTitle")))),
+                        wrappedUserLang),
+                    React.createElement(spinner_1.Spinner, null))),
+            React.createElement(hornet_content_1.HornetContent, { content: this.state.content, workingZoneWidth: this.state.workingZoneWidth, error: this.state.error }),
+            React.createElement(notification_session_footer_1.NotificationSessionFooter, null),
+            React.createElement(footer_page_1.FooterPage, { workingZoneWidth: this.state.currentWorkingZoneWidth },
+                React.createElement("div", { className: "fl mll" },
+                    React.createElement("ul", { className: "footer-links" },
+                        React.createElement("li", null,
+                            React.createElement("a", { href: this.genUrl("/planAppli"), title: messIntl.planTitle + applicationTitle }, messIntl.plan)),
+                        React.createElement("li", null,
+                            React.createElement("a", { href: this.genUrl("/politiqueAccessibilite"), title: messIntl.accessTitle + applicationTitle }, messIntl.access)),
+                        React.createElement("li", null,
+                            React.createElement("a", { href: this.genUrl("/contact"), title: messIntl.contactTitle + applicationTitle }, messIntl.contact)),
+                        lienAide)),
+                React.createElement("div", { className: "fr mrl" },
+                    React.createElement("p", null, applicationTitle + " - v" + hornet_js_utils_1.Utils.appSharedProps.get("appVersion"))))));
+    };
+    /**
+     * Méthode permettant de passer en mode plein écran
+     */
+    HornetApp.prototype.onClickLinkFullscreen = function () {
+        this.setState({
+            modeFullscreen: !this.state.modeFullscreen
+        });
+    };
+    /**
+     * Méthode permettant de changer de langue
+     * @param i18nLocale
+     */
+    HornetApp.prototype.handleChangeLanguage = function (i18nLocale) {
+        this.service.changeLanguage({ "hornetI18n": i18nLocale }).then(function (retourApi) {
+            logger.trace("Retour API PartenaireApi.rechercher :", retourApi.body);
+            hornet_js_utils_1.Utils.setCls("hornet.internationalization", retourApi.body);
+            window.location.reload();
+        });
+    };
+    /**
+     * Méthode permettant de réveiller le serveur node afin de ne pas perdre la session
+     * @param i18nLocale
+     */
+    HornetApp.prototype.handleWakeUpNode = function (i18nLocale) {
+        this.service.changeLanguage({ "hornetI18n": i18nLocale }).then(function (retourApi) {
+            logger.trace("Retour service changeLanguage :", retourApi.body);
+            hornet_js_utils_1.Utils.setCls("hornet.internationalization", retourApi.body);
+            window.location.reload();
+        });
+    };
+    /**
+     *
+     * @param value valeur sélectionnée dans la liste des users mocké
+     */
+    HornetApp.prototype.changeUserTo = function (value) {
+        var _this = this;
+        this.navigateTo("accueil", {}, function () {
+            _this.forceUpdate();
+            _this.menu.forceUpdate();
+            _this.menu.setState({ items: _this.menu.props.configMenu ? navigation_utils_1.NavigationUtils.getFilteredConfigNavigation(_.cloneDeep(_this.menu.props.configMenu), _this.user) : navigation_utils_1.NavigationUtils.getFilteredConfigNavigation(navigation_utils_1.NavigationUtils.getConfigMenu(), hornet_js_utils_1.Utils.getCls("hornet.user")) });
+        });
+    };
+    HornetApp.defaultProps = {
+        composantPage: null,
+        workingZoneWidth: "1200px",
+        logoUrl: hornet_js_utils_1.Utils.buildStaticPath("/img/logoHornet.png"),
+        headerTitleUrl: "http://intranet.diplomatie.gouv.fr/"
+    };
+    return HornetApp;
+}(hornet_page_1.HornetPage));
+exports.HornetApp = HornetApp;
+
+
+
+/***/ }),
+/* 215 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63270,7 +63496,7 @@ var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var hornet_event_1 = __webpack_require__(7);
-var spinner_component_1 = __webpack_require__(101);
+var spinner_component_1 = __webpack_require__(102);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.spinner.spinner");
 /**
  * Composant affichant une image (par défaut une roue dentée animée) et un texte d'attente
@@ -63341,7 +63567,7 @@ exports.Spinner = Spinner;
 
 
 /***/ }),
-/* 214 */
+/* 216 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63484,7 +63710,7 @@ exports.HeaderPage = HeaderPage;
 
 
 /***/ }),
-/* 215 */
+/* 217 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63606,7 +63832,7 @@ exports.FooterPage = FooterPage;
 
 
 /***/ }),
-/* 216 */
+/* 218 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63695,9 +63921,9 @@ var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
 var router_client_async_elements_1 = __webpack_require__(19);
-var notification_1 = __webpack_require__(48);
-var bread_crumb_1 = __webpack_require__(228);
-var top_button_1 = __webpack_require__(230);
+var notification_1 = __webpack_require__(49);
+var bread_crumb_1 = __webpack_require__(230);
+var top_button_1 = __webpack_require__(232);
 var error_page_1 = __webpack_require__(93);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.component.hornet-content");
 var HornetContent = /** @class */ (function (_super) {
@@ -63774,7 +64000,7 @@ exports.HornetContent = HornetContent;
 
 
 /***/ }),
-/* 217 */
+/* 219 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64010,7 +64236,7 @@ Z.injectIntoDevTools({findFiberByHostInstance:pb,bundleType:0,version:"16.2.0",r
 
 
 /***/ }),
-/* 218 */
+/* 220 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64025,7 +64251,7 @@ Z.injectIntoDevTools({findFiberByHostInstance:pb,bundleType:0,version:"16.2.0",r
  * @typechecks
  */
 
-var isNode = __webpack_require__(219);
+var isNode = __webpack_require__(221);
 
 /**
  * @param {*} object The object to check.
@@ -64038,7 +64264,7 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ }),
-/* 219 */
+/* 221 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64066,7 +64292,7 @@ function isNode(object) {
 module.exports = isNode;
 
 /***/ }),
-/* 220 */
+/* 222 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64100,8 +64326,8 @@ var containsNode = __webpack_require__(91);
 var focusNode = __webpack_require__(92);
 var emptyObject = __webpack_require__(29);
 var checkPropTypes = __webpack_require__(53);
-var hyphenateStyleName = __webpack_require__(221);
-var camelizeStyleName = __webpack_require__(223);
+var hyphenateStyleName = __webpack_require__(223);
+var camelizeStyleName = __webpack_require__(225);
 
 /**
  * WARNING: DO NOT manually require this module.
@@ -79468,7 +79694,7 @@ module.exports = reactDom;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 221 */
+/* 223 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79483,7 +79709,7 @@ module.exports = reactDom;
 
 
 
-var hyphenate = __webpack_require__(222);
+var hyphenate = __webpack_require__(224);
 
 var msPattern = /^ms-/;
 
@@ -79510,7 +79736,7 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 
 /***/ }),
-/* 222 */
+/* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79546,7 +79772,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 223 */
+/* 225 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79561,7 +79787,7 @@ module.exports = hyphenate;
 
 
 
-var camelize = __webpack_require__(224);
+var camelize = __webpack_require__(226);
 
 var msPattern = /^-ms-/;
 
@@ -79589,7 +79815,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 224 */
+/* 226 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79624,7 +79850,7 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 225 */
+/* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79776,7 +80002,7 @@ exports.MessageItem = MessageItem;
 
 
 /***/ }),
-/* 226 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79886,7 +80112,7 @@ exports.AccordionHeader = AccordionHeader;
 
 
 /***/ }),
-/* 227 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79996,7 +80222,7 @@ exports.AccordionInfo = AccordionInfo;
 
 
 /***/ }),
-/* 228 */
+/* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80084,7 +80310,7 @@ var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
-var bread_crumb_item_1 = __webpack_require__(229);
+var bread_crumb_item_1 = __webpack_require__(231);
 var navigation_utils_1 = __webpack_require__(20);
 var router_client_async_elements_1 = __webpack_require__(19);
 var _ = __webpack_require__(6);
@@ -80205,7 +80431,7 @@ exports.BreadCrumb = BreadCrumb;
 
 
 /***/ }),
-/* 229 */
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80364,7 +80590,7 @@ exports.BreadCrumbItem = BreadCrumbItem;
 
 
 /***/ }),
-/* 230 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80578,7 +80804,7 @@ exports.TopButton = TopButton;
 
 
 /***/ }),
-/* 231 */
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80750,7 +80976,7 @@ exports.User = User;
 
 
 /***/ }),
-/* 232 */
+/* 234 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80906,7 +81132,7 @@ exports.DropdownItem = DropdownItem;
 
 
 /***/ }),
-/* 233 */
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80994,12 +81220,12 @@ var tslib_1 = __webpack_require__(1);
 var React = __webpack_require__(2);
 var navigation_utils_1 = __webpack_require__(20);
 var hornet_component_1 = __webpack_require__(3);
-var menu_navigation_1 = __webpack_require__(234);
+var menu_navigation_1 = __webpack_require__(236);
 var _ = __webpack_require__(6);
 var classnames = __webpack_require__(9);
 var classNames = __webpack_require__(9);
 var key_codes_1 = __webpack_require__(10);
-var menu_info_accessibilite_1 = __webpack_require__(235);
+var menu_info_accessibilite_1 = __webpack_require__(237);
 var hornet_js_utils_1 = __webpack_require__(0);
 var layout_switcher_1 = __webpack_require__(24);
 var menu_link_1 = __webpack_require__(94);
@@ -81200,7 +81426,7 @@ exports.Menu = Menu;
 
 
 /***/ }),
-/* 234 */
+/* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -81287,7 +81513,7 @@ var tslib_1 = __webpack_require__(1);
  */
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
-var menu_constantes_1 = __webpack_require__(47);
+var menu_constantes_1 = __webpack_require__(48);
 var navigation_utils_1 = __webpack_require__(20);
 var hornet_component_1 = __webpack_require__(3);
 var menu_link_1 = __webpack_require__(94);
@@ -81885,7 +82111,7 @@ exports.MenuNavigation = MenuNavigation;
 
 
 /***/ }),
-/* 235 */
+/* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -81972,7 +82198,7 @@ var tslib_1 = __webpack_require__(1);
  */
 var hornet_js_utils_1 = __webpack_require__(0);
 var hornet_component_1 = __webpack_require__(3);
-var button_info_accessibilite_1 = __webpack_require__(106);
+var button_info_accessibilite_1 = __webpack_require__(107);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.navigation.menu-info-accessibilite");
 /**
  * Bouton et modale d'information sur l'accessibilité clavier du composant Menu
@@ -82025,7 +82251,7 @@ exports.MenuInfoAccessibilite = MenuInfoAccessibilite;
 
 
 /***/ }),
-/* 236 */
+/* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -82116,9 +82342,9 @@ var hornet_component_1 = __webpack_require__(3);
 var ReactDOM = __webpack_require__(22);
 var _ = __webpack_require__(6);
 var key_codes_1 = __webpack_require__(10);
-var Draggable = __webpack_require__(237);
-var tabbable = __webpack_require__(238);
-var noScroll = __webpack_require__(239);
+var Draggable = __webpack_require__(239);
+var tabbable = __webpack_require__(240);
+var noScroll = __webpack_require__(241);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.dialog.react-aria-modal");
 var ModalManager = /** @class */ (function () {
     function ModalManager() {
@@ -82409,7 +82635,7 @@ exports.ReactAriaModal = ReactAriaModal;
 
 
 /***/ }),
-/* 237 */
+/* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -85034,7 +85260,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 238 */
+/* 240 */
 /***/ (function(module, exports) {
 
 module.exports = function(el, options) {
@@ -85156,7 +85382,7 @@ function createIsUnavailable(elementDocument) {
 
 
 /***/ }),
-/* 239 */
+/* 241 */
 /***/ (function(module, exports) {
 
 (function(root) {
@@ -85229,7 +85455,7 @@ function createIsUnavailable(elementDocument) {
 
 
 /***/ }),
-/* 240 */
+/* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -85385,7 +85611,7 @@ exports.ChangeLanguage = ChangeLanguage;
 
 
 /***/ }),
-/* 241 */
+/* 243 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -85471,7 +85697,7 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var hornet_js_utils_1 = __webpack_require__(0);
-var service_request_1 = __webpack_require__(40);
+var service_request_1 = __webpack_require__(41);
 var hornet_superagent_request_1 = __webpack_require__(33);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.services.i18n-service-api");
 var ChangeLanguage = /** @class */ (function (_super) {
@@ -85494,7 +85720,7 @@ exports.ChangeLanguage = ChangeLanguage;
 
 
 /***/ }),
-/* 242 */
+/* 244 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -85505,10 +85731,10 @@ var React = __webpack_require__(2);
 var hornet_js_utils_1 = __webpack_require__(0);
 var hornet_component_1 = __webpack_require__(3);
 var hornet_superagent_1 = __webpack_require__(72);
-var wakeup_node_1 = __webpack_require__(243);
+var wakeup_node_1 = __webpack_require__(245);
 var picto_1 = __webpack_require__(95);
 var classNames = __webpack_require__(9);
-var moment = __webpack_require__(44);
+var moment = __webpack_require__(45);
 moment.duration.fn.format = function () {
     var str = "";
     if (this.days() > 1)
@@ -85701,7 +85927,7 @@ exports.NotificationSessionFooter = NotificationSessionFooter;
 
 
 /***/ }),
-/* 243 */
+/* 245 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -85787,7 +86013,7 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var hornet_js_utils_1 = __webpack_require__(0);
-var service_request_1 = __webpack_require__(40);
+var service_request_1 = __webpack_require__(41);
 var hornet_superagent_request_1 = __webpack_require__(33);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.services.wakeup-node-request");
 var WakeUpNode = /** @class */ (function (_super) {
@@ -85809,7 +86035,7 @@ exports.WakeUpNode = WakeUpNode;
 
 
 /***/ }),
-/* 244 */
+/* 246 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -85947,7 +86173,7 @@ exports.MenuAccessibilite = MenuAccessibilite;
 
 
 /***/ }),
-/* 245 */
+/* 247 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -86079,7 +86305,7 @@ exports.ReactClientInitializer = ReactClientInitializer;
 
 
 /***/ }),
-/* 246 */
+/* 248 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

@@ -7,6 +7,7 @@ var abstract_routes_1 = require("hornet-js-core/src/routes/abstract-routes");
 // import { PlanAppliPage } from "src/views/nav/nav-pap-page";
 // import { AccessibilitePage } from "src/views/gen/gen-acb-page";
 var hornet_js_utils_1 = require("hornet-js-utils");
+var gen_hom_page_1 = require("../views/gen/gen-hom-page");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.routes.routes");
 var Routes = /** @class */ (function (_super) {
     tslib_1.__extends(Routes, _super);
@@ -23,10 +24,7 @@ var Routes = /** @class */ (function (_super) {
     }
     Routes.prototype.addClientRoutes = function () {
         // /* Routes des pages */
-        // this.addPageRoute("/accueil",
-        //   () => new PageRouteInfos(HomePage),
-        //   PUBLIC_ROUTE
-        // );
+        this.addPageRoute("/accueil", function () { return new abstract_routes_1.PageRouteInfos(gen_hom_page_1.HomePage); }, abstract_routes_1.PUBLIC_ROUTE);
         // this.addPageRoute("/aide",
         //   () => new PageRouteInfos(AidePage),
         //   PUBLIC_ROUTE
@@ -44,16 +42,16 @@ var Routes = /** @class */ (function (_super) {
         //   PUBLIC_ROUTE
         // );
         // this.addLazyRoutes("/admin", "admin/admin-client-routes");
-        this.addLazyRoutes("/form1", "admin/fvm/form1-client-routes");
-        this.addLazyRoutes("/form2", "admin/fvm/form2-client-routes");
-        this.addLazyRoutes("/record", "admin/fvm/record-client-routes");
+        this.addLazyRoutes("/fvmform1", "admin/fvm/form1-client-routes");
+        this.addLazyRoutes("/fvmform2", "admin/fvm/form2-client-routes");
+        this.addLazyRoutes("/fvmrecord", "admin/fvm/record-client-routes");
         // /* Routes lazy */
         // this.addLazyRoutes(URL_CONTACT, "cnt/gen-cnt-client-routes");
     };
     Routes.prototype.addServerRoutes = function () {
-        this.addLazyRoutes("/form1server", "admin/fvm/form1-server-routes");
-        this.addLazyRoutes("/form2server", "admin/fvm/form2-server-routes");
-        this.addLazyRoutes("/recordserver", "admin/fvm/record-server-routes");
+        this.addLazyRoutes("/fvmform1server", "admin/fvm/form1-server-routes");
+        this.addLazyRoutes("/fvmform2server", "admin/fvm/form2-server-routes");
+        this.addLazyRoutes("/fvmrecordserver", "admin/fvm/record-server-routes");
     };
     return Routes;
 }(abstract_routes_1.AbstractRoutes));

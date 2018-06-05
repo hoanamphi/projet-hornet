@@ -58,17 +58,18 @@ var FormulaireDossierPage = /** @class */ (function (_super) {
     };
     FormulaireDossierPage.prototype.render = function () {
         var format = this.i18n("forms");
-        var radioData = [
+        var radioData = new datasource_1.DataSource([
             { "value": 0, "label": "M" },
             { "value": 1, "label": "F" }
-        ];
+        ]);
         return (React.createElement("div", null,
+            React.createElement(icon_1.Icon, { src: picto_1.Picto.blue.previous, alt: "Retourner \u00E0 la page de s\u00E9lection", title: "Retourner \u00E0 la page de s\u00E9lection", action: this.retourPage }),
             React.createElement("h2", null, "Formulaire d'entr\u00E9e d'un dossier"),
             React.createElement(notification_1.Notification, { id: "errors" }),
             React.createElement(notification_1.Notification, { id: "notif" }),
             React.createElement(form_1.Form, { id: "form1", schema: schema, onSubmit: this.onSubmit, formMessages: format },
                 React.createElement(row_1.Row, null,
-                    React.createElement(radios_field_1.RadiosField, { name: "id_sexe", label: "Sexe", data: radioData, required: true })),
+                    React.createElement(radios_field_1.RadiosField, { name: "id_sexe", label: "Sexe", dataSource: radioData, defaultValue: { "value": 0 } })),
                 React.createElement(row_1.Row, null,
                     React.createElement(input_field_1.InputField, { name: "nom", label: format.fields.nom.label, required: true })),
                 React.createElement(row_1.Row, null,
@@ -90,11 +91,10 @@ var FormulaireDossierPage = /** @class */ (function (_super) {
                 React.createElement(row_1.Row, null,
                     React.createElement(upload_file_field_1.UploadFileField, { name: "copie_note_verbale_maeci", label: format.fields.copie_note_verbale_maeci.label, buttonLabel: format.fields.copie_note_verbale_maeci.buttonLabel, fileSelectedLabel: format.fields.copie_note_verbale_maeci.fileSelectedLabel, required: true })),
                 React.createElement(buttons_area_1.ButtonsArea, null,
-                    React.createElement(icon_1.Icon, { src: picto_1.Picto.blue.previous, alt: "Retourner \u00E0 la page de s\u00E9lection", title: "Retourner \u00E0 la page de s\u00E9lection", action: this.retourPage }),
                     React.createElement(button_1.Button, { type: "submit", value: "Valider", className: "hornet-button", label: "valider", title: "valider" })))));
     };
     FormulaireDossierPage.prototype.retourPage = function () {
-        this.navigateTo("/record", {}, function () { });
+        this.navigateTo("/fvmrecord", {}, function () { });
     };
     return FormulaireDossierPage;
 }(hornet_page_1.HornetPage));

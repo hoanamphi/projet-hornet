@@ -76,13 +76,14 @@ export class FormulaireDossierPage extends HornetPage<ServerFormService, HornetC
 
     let format = this.i18n("forms");
 
-    let radioData = [
+    let radioData = new DataSource<any> ([
       {"value": 0, "label": "M"},
       {"value": 1, "label": "F"}
-    ];
+    ]);
 
     return (
       <div>
+        <Icon src={Picto.blue.previous} alt="Retourner à la page de sélection" title="Retourner à la page de sélection" action={this.retourPage}/>
         <h2>Formulaire d'entrée d'un dossier</h2>
         <Notification id="errors"/>
         <Notification id="notif"/>
@@ -95,8 +96,8 @@ export class FormulaireDossierPage extends HornetPage<ServerFormService, HornetC
           <Row>
             <RadiosField name="id_sexe"
                           label="Sexe"
-                          data={radioData}
-                          required={true}/>
+                          dataSource={radioData}
+                          defaultValue={{"value": 0}}/>
           </Row>
           <Row>
             <InputField name="nom"
@@ -158,7 +159,6 @@ export class FormulaireDossierPage extends HornetPage<ServerFormService, HornetC
             />
           </Row>
           <ButtonsArea>
-            <Icon src={Picto.blue.previous} alt="Retourner à la page de sélection" title="Retourner à la page de sélection" action={this.retourPage}/>
             <Button type="submit"
                 value="Valider" className="hornet-button" label="valider"
                 title="valider"/>
@@ -169,6 +169,6 @@ export class FormulaireDossierPage extends HornetPage<ServerFormService, HornetC
   }
 
   retourPage(){
-    this.navigateTo("/record", {}, ()=>{});
+    this.navigateTo("/fvmrecord", {}, ()=>{});
   }
 }

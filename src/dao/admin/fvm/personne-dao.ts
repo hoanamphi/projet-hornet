@@ -55,4 +55,20 @@ export class PersonneFVMDAO extends EntityDAO {
       }
     });
   }
+
+  getIdPersonneFromPermis(idPermis): Promise<any> {
+    return this.modelDAO.personneFVMEntity.findAll({
+      where: {
+        idPermis: idPermis
+      }
+    });
+  }
+
+  deletePersonne(idPersonne): Promise<any> {
+    return this.modelDAO.personneFVMEntity.destroy({
+      where: {
+        idPersonne: idPersonne
+      }
+    });
+  }
 }

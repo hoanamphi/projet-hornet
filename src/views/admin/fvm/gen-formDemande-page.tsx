@@ -15,6 +15,7 @@ import {DataSource} from "hornet-js-core/src/component/datasource/datasource";
 import {Notification} from "hornet-js-react-components/src/widget/notification/notification";
 
 import * as schema from "src/resources/admin/fvm/validation-form2.json";
+import * as schemaValise from "src/resources/admin/fvm/validation-formvalise.json";
 import {SelectField} from "hornet-js-react-components/src/widget/form/select-field";
 import {
   NotificationManager,
@@ -98,6 +99,7 @@ export class FormulaireDemandeAuthentificationPage extends HornetPage<ServerForm
 
     return (
       <div>
+        <Icon src={Picto.blue.previous} alt="Retourner à la consultation" title="Retourner à la consultation" action={this.retourPage}/>
         <h2>Formulaire d'entrée d'une demande d'authentification</h2>
         <Notification id="errors"/>
         <Notification id="notif"/>
@@ -108,9 +110,9 @@ export class FormulaireDemandeAuthentificationPage extends HornetPage<ServerForm
           <div>
             <Form
               id="formValise"
-              schema={schema}
-              onSubmit={this.submitValise}
+              schema={schemaValise}
               formMessages={format}
+              onSubmit={this.submitValise}
             >
               <Row>
                 <InputField name="num_valise"
@@ -152,12 +154,17 @@ export class FormulaireDemandeAuthentificationPage extends HornetPage<ServerForm
               <ActionColumn keyColumn="formInput"
                             title="Remplir le formulaire"
                             srcImg={Picto.blue.next}
-                            action={this.remplirForm.bind(this)}/>
+                            action={this.remplirForm}/>
             </Columns>
           </Content>
         </Table>
 
-        <Form id={"form2"} onSubmit={this.onSubmit}>
+        <Form
+          id="formValise"
+          schema={schema}
+          formMessages={format}
+          onSubmit={this.onSubmit}
+        >
           <Row>
             <InputField name="num_valise" ref={(input)=> {this.input = input;}}
                         label={format.fields.num_valise.label}
@@ -169,7 +176,6 @@ export class FormulaireDemandeAuthentificationPage extends HornetPage<ServerForm
                         required={true}/>
           </Row>
           <ButtonsArea>
-            <Icon src={Picto.blue.previous} alt="Retourner à la consultation" title="Retourner à la consultation" action={this.retourPage}/>
             <Button type="submit"
                     value="Valider" className="hornet-button" label="valider"
                     title="valider"/>
@@ -204,6 +210,6 @@ export class FormulaireDemandeAuthentificationPage extends HornetPage<ServerForm
   }
 
   retourPage(){
-    this.navigateTo("/record/"+this.attributes.id, {}, ()=>{});
+    this.navigateTo("/fvmrecord/"+this.attributes.id, {}, ()=>{});
   }
 }

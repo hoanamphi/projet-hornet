@@ -31,6 +31,7 @@ import {Footer} from "hornet-js-react-components/src/widget/table/footer";
 import {Pager} from "hornet-js-react-components/src/widget/pager/pager";
 import {PaginateDataSource, Pagination} from "hornet-js-core/src/component/datasource/paginate-datasource";
 import {ActionColumn} from "hornet-js-react-components/src/widget/table/column/action-column";
+import {Icon} from "hornet-js-react-components/src/widget/icon/icon";
 
 const logger: Logger = Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
 
@@ -71,6 +72,7 @@ export class RecordListPage extends HornetPage<any, HornetComponentProps, any> {
 
     return (
       <div>
+        <Icon src={Picto.blue.previous} alt="Retourner à la page d'accueil" title="Retourner à la page d'accueil" action={this.retourPage}/>
         <Notification id="notif"/>
         <Table id="tableau des entrées">
           <Header title={"Dossiers entrés dans la base"}>
@@ -101,7 +103,10 @@ export class RecordListPage extends HornetPage<any, HornetComponentProps, any> {
                           sortable={true}/>
               <ActionColumn keyColumn="idPermis"
                             srcImg={Picto.black.consulter}
-                            url={"/record/:idPermis"}/>
+                            url={"/fvmrecord/:idPermis"}/>
+              <ActionColumn keyColumn="idPermis"
+                            srcImg={Picto.black.supprimer}
+                            action={this.supprimerDossier}/>
             </Columns>
           </Content>
           <Footer>
@@ -141,8 +146,18 @@ export class RecordListPage extends HornetPage<any, HornetComponentProps, any> {
     );
   }
 
+  supprimerDossier(lineSelected) {
+    this.getService().deleteDossier(lineSelected.idPermis).then(()=>{
+      this.reloadData();
+    });
+  }
+
+  retourPage() {
+    this.navigateTo("/accueil", {}, ()=>{});
+  }
+
   ajouterDossier() {
-    this.navigateTo("/form1", {}, ()=>{});
+    this.navigateTo("/fvmform1", {}, ()=>{});
   }
 
   reloadData() {

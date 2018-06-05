@@ -13,7 +13,7 @@ var ServerFormServiceImpl = /** @class */ (function (_super) {
         logger.trace("SERVICES - list : ", data);
         var request = {
             method: "post",
-            url: this.buildUrl("/form1server"),
+            url: this.buildUrl("/fvmform1server"),
             data: data
         };
         request.attach = [];
@@ -25,7 +25,7 @@ var ServerFormServiceImpl = /** @class */ (function (_super) {
         logger.trace("SERVICES - list : ", data);
         var request = {
             method: "post",
-            url: this.buildUrl("/form2server"),
+            url: this.buildUrl("/fvmform2server"),
             data: data
         };
         return this.fetch(request);
@@ -34,7 +34,7 @@ var ServerFormServiceImpl = /** @class */ (function (_super) {
         logger.trace("SERVICES - list : ", data);
         var request = {
             method: "post",
-            url: this.buildUrl("/form2server/insertValise"),
+            url: this.buildUrl("/fvmform2server/insertValise"),
             data: data
         };
         return this.fetch(request);
@@ -42,14 +42,14 @@ var ServerFormServiceImpl = /** @class */ (function (_super) {
     ServerFormServiceImpl.prototype.getListePrefectures = function () {
         var request = {
             method: "post",
-            url: this.buildUrl("/form1server/listPrefectures")
+            url: this.buildUrl("/fvmform1server/listPrefectures")
         };
         return this.fetch(request);
     };
     ServerFormServiceImpl.prototype.getListeValises = function () {
         var request = {
             method: "post",
-            url: this.buildUrl("/form2server/listValises")
+            url: this.buildUrl("/fvmform2server/listValises")
         };
         return this.fetch(request);
     };

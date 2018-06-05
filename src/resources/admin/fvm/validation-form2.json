@@ -15,14 +15,6 @@
   "definition": {
     "nombre": {
       "type": "number"
-    },
-    "nom_propre": {
-      "type": "string",
-      "pattern": "^([a-zA-ZÀ-ÿ]+[-]{0,2}[a-zA-ZÀ-ÿ]+ ?)*$"
-    },
-    "date": {
-      "type": "Date",
-      "format": "date"
     }
   }
 }

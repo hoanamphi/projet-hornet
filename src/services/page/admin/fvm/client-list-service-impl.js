@@ -12,14 +12,14 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
     ClientListServiceImpl.prototype.getListeDossiers = function () {
         var request = {
             method: "post",
-            url: this.buildUrl("/recordserver"),
+            url: this.buildUrl("/fvmrecordserver"),
         };
         return this.fetch(request);
     };
     ClientListServiceImpl.prototype.getDossier = function (data) {
         var request = {
             method: "post",
-            url: this.buildUrl("/recordserver/detailsDossiers/dossier"),
+            url: this.buildUrl("/fvmrecordserver/detailsDossiers/dossier"),
             data: data
         };
         return this.fetch(request);
@@ -27,7 +27,7 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
     ClientListServiceImpl.prototype.getDemandeAuthentification = function (data) {
         var request = {
             method: "post",
-            url: this.buildUrl("/recordserver/detailsDossiers/demandeauthentification"),
+            url: this.buildUrl("/fvmrecordserver/detailsDossiers/demandeauthentification"),
             data: data
         };
         return this.fetch(request);
@@ -35,7 +35,7 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
     ClientListServiceImpl.prototype.getReleve = function (data) {
         var request = {
             method: "post",
-            url: this.buildUrl("/recordserver/detailsDossiers/releve"),
+            url: this.buildUrl("/fvmrecordserver/detailsDossiers/releve"),
             data: data
         };
         return this.fetch(request);
@@ -43,7 +43,7 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
     ClientListServiceImpl.prototype.getNoteVerbale = function (data) {
         var request = {
             method: "post",
-            url: this.buildUrl("/recordserver/detailsDossiers/noteverbale"),
+            url: this.buildUrl("/fvmrecordserver/detailsDossiers/noteverbale"),
             data: data
         };
         return this.fetch(request);
@@ -60,6 +60,22 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
         return Promise.reject("service uniquement disponible côté serveur");
     };
     ;
+    ClientListServiceImpl.prototype.deleteDemandeAuthentification = function (idDemandeAuthentification) {
+        var request = {
+            method: "post",
+            url: this.buildUrl("/fvmrecordserver/detailsDossiers/demandeauthentification/delete"),
+            data: { "idDemandeAuthentification": idDemandeAuthentification }
+        };
+        return this.fetch(request);
+    };
+    ClientListServiceImpl.prototype.deleteDossier = function (idPermis) {
+        var request = {
+            method: "post",
+            url: this.buildUrl("/fvmrecordserver/delete"),
+            data: { "idPermis": idPermis }
+        };
+        return this.fetch(request);
+    };
     return ClientListServiceImpl;
 }(service_page_1.ServicePage));
 exports.ClientListServiceImpl = ClientListServiceImpl;

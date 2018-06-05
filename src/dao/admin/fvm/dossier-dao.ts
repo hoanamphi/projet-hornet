@@ -46,4 +46,20 @@ export class DossierFVMDAO extends EntityDAO {
       }
     });
   }
+
+  getIdDossierFromPermis(idPermis): Promise<any> {
+    return this.modelDAO.dossierFVMEntity.findAll({
+      where: {
+        idPermis: idPermis
+      }
+    });
+  }
+
+  deleteDossier(idDossier): Promise<any> {
+    return this.modelDAO.dossierFVMEntity.destroy({
+      where: {
+        idDossier: idDossier
+      }
+    });
+  }
 }

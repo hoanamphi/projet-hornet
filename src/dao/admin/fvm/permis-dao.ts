@@ -53,4 +53,12 @@ export class PermisFVMDAO extends EntityDAO {
       }
     });
   }
+
+  deletePermis(idPermis): Promise<any> {
+    return this.modelDAO.permisFVMEntity.destroy({
+      where: {
+        idPermis: idPermis
+      }
+    });
+  }
 }

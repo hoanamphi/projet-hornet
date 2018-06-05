@@ -51,6 +51,13 @@ var DemandeAuthentificationFVMDAO = /** @class */ (function (_super) {
             }
         });
     };
+    DemandeAuthentificationFVMDAO.prototype.deleteDemandeAuthentification = function (idDemandeAuthentification) {
+        return this.modelDAO.demandeAuthenthificationFVMEntity.destroy({
+            where: {
+                idDemandeAuthentification: idDemandeAuthentification
+            }
+        });
+    };
     return DemandeAuthentificationFVMDAO;
 }(entity_dao_1.EntityDAO));
 exports.DemandeAuthentificationFVMDAO = DemandeAuthentificationFVMDAO;

@@ -53,4 +53,12 @@ export class CopieNoteVerbaleMAECIFVMDao extends EntityDAO {
       }
     });
   }
+
+  deleteCopieNoteVerbaleMAECIFromDossier(idDossier): Promise<any> {
+    return this.modelDAO.copieNoteVerbaleMAECIFVMEntity.destroy({
+      where: {
+        idDossier: idDossier
+      }
+    });
+  }
 }

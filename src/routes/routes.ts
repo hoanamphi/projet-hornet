@@ -6,6 +6,7 @@ import { AbstractRoutes, PageRouteInfos, PUBLIC_ROUTE } from "hornet-js-core/src
 import { Utils } from "hornet-js-utils";
 // import { DeclarationconformitePage } from "src/views/gen/gen-ddc-page";
 import {Logger} from "hornet-js-utils/src/logger";
+import {HomePage} from "../views/gen/gen-hom-page";
 
 
 const logger: Logger = Utils.getLogger("projet-hornet.routes.routes");
@@ -24,10 +25,10 @@ export class Routes extends AbstractRoutes {
 
   public addClientRoutes(){
     // /* Routes des pages */
-    // this.addPageRoute("/accueil",
-    //   () => new PageRouteInfos(HomePage),
-    //   PUBLIC_ROUTE
-    // );
+    this.addPageRoute("/accueil",
+      () => new PageRouteInfos(HomePage),
+      PUBLIC_ROUTE
+    );
     // this.addPageRoute("/aide",
     //   () => new PageRouteInfos(AidePage),
     //   PUBLIC_ROUTE
@@ -46,18 +47,18 @@ export class Routes extends AbstractRoutes {
     // );
     // this.addLazyRoutes("/admin", "admin/admin-client-routes");
     
-    this.addLazyRoutes("/form1", "admin/fvm/form1-client-routes");
-    this.addLazyRoutes("/form2", "admin/fvm/form2-client-routes");
-    this.addLazyRoutes("/record", "admin/fvm/record-client-routes");
+    this.addLazyRoutes("/fvmform1", "admin/fvm/form1-client-routes");
+    this.addLazyRoutes("/fvmform2", "admin/fvm/form2-client-routes");
+    this.addLazyRoutes("/fvmrecord", "admin/fvm/record-client-routes");
 
     // /* Routes lazy */
     // this.addLazyRoutes(URL_CONTACT, "cnt/gen-cnt-client-routes");
   }
 
   public addServerRoutes(){
-    this.addLazyRoutes("/form1server", "admin/fvm/form1-server-routes");
-    this.addLazyRoutes("/form2server", "admin/fvm/form2-server-routes");
-    this.addLazyRoutes("/recordserver", "admin/fvm/record-server-routes");
+    this.addLazyRoutes("/fvmform1server", "admin/fvm/form1-server-routes");
+    this.addLazyRoutes("/fvmform2server", "admin/fvm/form2-server-routes");
+    this.addLazyRoutes("/fvmrecordserver", "admin/fvm/record-server-routes");
   }
   //   this.addLazyRoutes("/admin", "admin/admin-server-routes");
   //   this.addLazyRoutes("/inser", "admin/admin-inser-routes");

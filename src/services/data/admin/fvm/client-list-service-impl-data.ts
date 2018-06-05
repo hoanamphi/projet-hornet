@@ -15,6 +15,8 @@ const logger: Logger = Utils.getLogger("projet-hornet.services.data.admin.admin-
 
 export class ClientListServiceImpl extends ServiceRequest implements ClientListService {
 
+  private Error = {"hasError": null, "hasReason": null};
+
   private personneDAO = new PersonneFVMDAO();
   private dossierDAO = new DossierFVMDAO();
   private permisDAO = new PermisFVMDAO();
@@ -152,6 +154,40 @@ export class ClientListServiceImpl extends ServiceRequest implements ClientListS
 
         return Promise.resolve(result);
       });
+    });
+  }
+
+  deleteDemandeAuthentification(data): Promise<any> {
+    let idDemandeAuthentification = data.idDemandeAuthentification;
+    return this.demandeAuthentificationDAO.deleteDemandeAuthentification(idDemandeAuthentification).catch(error=>{
+      this.Error.hasError = error;
+      this.Error.hasReason = error.toString();
+      return this.Error;
+    });
+  }
+
+  deleteDossier(data): Promise<any>{
+    let idPermis = data.idPermis;
+
+    let idDossier = this.dossierDAO.getIdDossierFromPermis(idPermis);
+    let idPersonne = this.personneDAO.getIdPersonneFromPermis(idPermis);
+
+    return Promise.all([idDossier, idPersonne]).then(values=>{
+      let deleteCopieNoteVerbaleMAECI = this.copieNoteVerbaleMAECIDAO.deleteCopieNoteVerbaleMAECIFromDossier(values[0][0].idDossier);
+
+      let deleteDossier = this.dossierDAO.deleteDossier(values[0][0].idDossier);
+
+      let deletePersonne = this.personneDAO.deletePersonne(values[1][0].idPersonne);
+
+      let deleteCopiePermis = this.copiePermisDAO.deleteCopiePermisFromPermis(idPermis);
+
+      let deletePermis = this.permisDAO.deletePermis(idPermis);
+
+      return Promise.all([deleteCopieNoteVerbaleMAECI, deleteDossier, deletePersonne, deleteCopiePermis, deletePermis]);
+    }).catch(error=>{
+      this.Error.hasError = error;
+      this.Error.hasReason = error.toString();
+      return this.Error;
     });
   }
 }

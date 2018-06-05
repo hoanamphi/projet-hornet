@@ -13,6 +13,7 @@ var buttons_area_1 = require("hornet-js-react-components/src/widget/form/buttons
 var datasource_1 = require("hornet-js-core/src/component/datasource/datasource");
 var notification_1 = require("hornet-js-react-components/src/widget/notification/notification");
 var schema = require("src/resources/admin/fvm/validation-form2.json");
+var schemaValise = require("src/resources/admin/fvm/validation-formvalise.json");
 var notification_manager_1 = require("hornet-js-core/src/notification/notification-manager");
 var datasource_config_page_1 = require("hornet-js-core/src/component/datasource/config/service/datasource-config-page");
 var icon_1 = require("hornet-js-react-components/src/widget/icon/icon");
@@ -69,6 +70,7 @@ var FormulaireDemandeAuthentificationPage = /** @class */ (function (_super) {
         var _this = this;
         var format = this.i18n("forms");
         return (React.createElement("div", null,
+            React.createElement(icon_1.Icon, { src: picto_1.Picto.blue.previous, alt: "Retourner \u00E0 la consultation", title: "Retourner \u00E0 la consultation", action: this.retourPage }),
             React.createElement("h2", null, "Formulaire d'entr\u00E9e d'une demande d'authentification"),
             React.createElement(notification_1.Notification, { id: "errors" }),
             React.createElement(notification_1.Notification, { id: "notif" }),
@@ -76,7 +78,7 @@ var FormulaireDemandeAuthentificationPage = /** @class */ (function (_super) {
                     _this.modal = modal;
                 }, onClickClose: function () { _this.modal.close(); _this.valise.fetch(true); } },
                 React.createElement("div", null,
-                    React.createElement(form_1.Form, { id: "formValise", schema: schema, onSubmit: this.submitValise, formMessages: format },
+                    React.createElement(form_1.Form, { id: "formValise", schema: schemaValise, formMessages: format, onSubmit: this.submitValise },
                         React.createElement(row_1.Row, null,
                             React.createElement(input_field_1.InputField, { name: "num_valise", label: format.fields.num_valise.label, required: true })),
                         React.createElement(row_1.Row, null,
@@ -91,14 +93,13 @@ var FormulaireDemandeAuthentificationPage = /** @class */ (function (_super) {
                     React.createElement(columns_1.Columns, null,
                         React.createElement(column_1.Column, { keyColumn: "numValise", title: format.fields.num_valise.label, sortable: false }),
                         React.createElement(date_column_1.DateColumn, { keyColumn: "dateValise", title: format.fields.date_valise.label, sortable: false }),
-                        React.createElement(action_column_1.ActionColumn, { keyColumn: "formInput", title: "Remplir le formulaire", srcImg: picto_1.Picto.blue.next, action: this.remplirForm.bind(this) })))),
-            React.createElement(form_1.Form, { id: "form2", onSubmit: this.onSubmit },
+                        React.createElement(action_column_1.ActionColumn, { keyColumn: "formInput", title: "Remplir le formulaire", srcImg: picto_1.Picto.blue.next, action: this.remplirForm })))),
+            React.createElement(form_1.Form, { id: "formValise", schema: schema, formMessages: format, onSubmit: this.onSubmit },
                 React.createElement(row_1.Row, null,
                     React.createElement(input_field_1.InputField, { name: "num_valise", ref: function (input) { _this.input = input; }, label: format.fields.num_valise.label, required: true })),
                 React.createElement(row_1.Row, null,
                     React.createElement(input_field_1.InputField, { name: "num_demande_authentification", label: format.fields.num_demande_authentification.label, required: true })),
                 React.createElement(buttons_area_1.ButtonsArea, null,
-                    React.createElement(icon_1.Icon, { src: picto_1.Picto.blue.previous, alt: "Retourner \u00E0 la consultation", title: "Retourner \u00E0 la consultation", action: this.retourPage }),
                     React.createElement(button_1.Button, { type: "submit", value: "Valider", className: "hornet-button", label: "valider", title: "valider" })))));
     };
     FormulaireDemandeAuthentificationPage.prototype.ajouterValise = function () {
@@ -124,7 +125,7 @@ var FormulaireDemandeAuthentificationPage = /** @class */ (function (_super) {
         });
     };
     FormulaireDemandeAuthentificationPage.prototype.retourPage = function () {
-        this.navigateTo("/record/" + this.attributes.id, {}, function () { });
+        this.navigateTo("/fvmrecord/" + this.attributes.id, {}, function () { });
     };
     return FormulaireDemandeAuthentificationPage;
 }(hornet_page_1.HornetPage));

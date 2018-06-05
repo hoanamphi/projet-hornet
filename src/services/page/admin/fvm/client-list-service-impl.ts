@@ -12,7 +12,7 @@ export class ClientListServiceImpl extends ServicePage implements ClientListServ
   getListeDossiers(): Promise<any> {
     let request: HornetRequest = {
       method: "post",
-      url: this.buildUrl("/recordserver"),
+      url: this.buildUrl("/fvmrecordserver"),
     };
 
     return this.fetch(request);
@@ -21,7 +21,7 @@ export class ClientListServiceImpl extends ServicePage implements ClientListServ
   getDossier(data: any): Promise<any> {
     let request: HornetRequest = {
       method: "post",
-      url: this.buildUrl("/recordserver/detailsDossiers/dossier"),
+      url: this.buildUrl("/fvmrecordserver/detailsDossiers/dossier"),
       data: data
     };
 
@@ -31,7 +31,7 @@ export class ClientListServiceImpl extends ServicePage implements ClientListServ
   getDemandeAuthentification(data: any): Promise<any> {
     let request: HornetRequest = {
       method: "post",
-      url: this.buildUrl("/recordserver/detailsDossiers/demandeauthentification"),
+      url: this.buildUrl("/fvmrecordserver/detailsDossiers/demandeauthentification"),
       data: data
     };
 
@@ -41,7 +41,7 @@ export class ClientListServiceImpl extends ServicePage implements ClientListServ
   getReleve(data: any): Promise<any> {
     let request: HornetRequest = {
       method: "post",
-      url: this.buildUrl("/recordserver/detailsDossiers/releve"),
+      url: this.buildUrl("/fvmrecordserver/detailsDossiers/releve"),
       data: data
     };
 
@@ -51,7 +51,7 @@ export class ClientListServiceImpl extends ServicePage implements ClientListServ
   getNoteVerbale(data: any): Promise<any> {
     let request: HornetRequest = {
       method: "post",
-      url: this.buildUrl("/recordserver/detailsDossiers/noteverbale"),
+      url: this.buildUrl("/fvmrecordserver/detailsDossiers/noteverbale"),
       data: data
     };
 
@@ -69,4 +69,24 @@ export class ClientListServiceImpl extends ServicePage implements ClientListServ
   getPDFDemandeAuthentification(idPermis): Promise<any> {
     return Promise.reject("service uniquement disponible côté serveur");
   };
+
+  deleteDemandeAuthentification(idDemandeAuthentification): Promise<any> {
+    let request: HornetRequest = {
+      method: "post",
+      url: this.buildUrl("/fvmrecordserver/detailsDossiers/demandeauthentification/delete"),
+      data: {"idDemandeAuthentification": idDemandeAuthentification}
+    };
+
+    return this.fetch(request);
+  }
+
+  deleteDossier(idPermis): Promise<any> {
+    let request: HornetRequest = {
+      method: "post",
+      url: this.buildUrl("/fvmrecordserver/delete"),
+      data: {"idPermis": idPermis}
+    };
+
+    return this.fetch(request);
+  }
 }

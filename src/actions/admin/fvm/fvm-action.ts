@@ -163,6 +163,10 @@ export class GetPDFDemandeAuthentification extends RouteActionService<{"idPermis
     logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
 
     let dataString = this.attributes.data.split("+");
+    let cedex = "";
+    if(dataString[4] == "true") {
+      cedex = "CEDEX";
+    }
 
     return this.getService().getPDFDemandeAuthentification(this.attributes.idPermis).then(result=>{
       let dossier = result.dossier[0];
@@ -209,9 +213,10 @@ export class GetPDFDemandeAuthentification extends RouteActionService<{"idPermis
                 {text: dataString[2].toUpperCase()+" "+dossier.prefecture.toUpperCase()},
                 {text: dataString[3].toUpperCase()},
                 {text: dossier.adresse.toUpperCase()},
-                {text: (dossier.codePostal+" "+dossier.ville).toUpperCase()+" "+dataString[4]}
+                {text: (dossier.codePostal+" "+dossier.ville).toUpperCase()+" "+cedex}
               ],
-              margin: [150, 60, 0, 70]
+              margin: [100, 60, 0, 70],
+              alignment: "center"
             },
             {text: "OBJET : Demande d'authentification d'un permis de conduire", margin: [0,0,0,30]},
             {
@@ -253,5 +258,25 @@ export class GetPDFDemandeAuthentification extends RouteActionService<{"idPermis
 
   capitalize(entry: string): string {
     return entry[0].toUpperCase()+entry.slice(1).toLowerCase();
+  }
+}
+
+export class DeleteDemandeAuthentification extends RouteActionService<any, ClientListService> {
+  execute(): Promise<any> {
+    logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
+
+    let data = this.req.body;
+
+    return this.getService().deleteDemandeAuthentification(data);
+  }
+}
+
+export class DeleteDossier extends RouteActionService<any, ClientListService> {
+  execute(): Promise<any> {
+    logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
+
+    let data = this.req.body;
+
+    return this.getService().deleteDossier(data);
   }
 }

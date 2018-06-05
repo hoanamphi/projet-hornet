@@ -42,6 +42,20 @@ var DossierFVMDAO = /** @class */ (function (_super) {
             }
         });
     };
+    DossierFVMDAO.prototype.getIdDossierFromPermis = function (idPermis) {
+        return this.modelDAO.dossierFVMEntity.findAll({
+            where: {
+                idPermis: idPermis
+            }
+        });
+    };
+    DossierFVMDAO.prototype.deleteDossier = function (idDossier) {
+        return this.modelDAO.dossierFVMEntity.destroy({
+            where: {
+                idDossier: idDossier
+            }
+        });
+    };
     return DossierFVMDAO;
 }(entity_dao_1.EntityDAO));
 exports.DossierFVMDAO = DossierFVMDAO;

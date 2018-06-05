@@ -54,4 +54,12 @@ export class DemandeAuthentificationFVMDAO extends EntityDAO {
       }
     });
   }
+
+  deleteDemandeAuthentification(idDemandeAuthentification): Promise<any> {
+    return this.modelDAO.demandeAuthenthificationFVMEntity.destroy({
+      where: {
+        idDemandeAuthentification: idDemandeAuthentification
+      }
+    });
+  }
 }

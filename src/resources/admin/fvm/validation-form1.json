@@ -4,7 +4,6 @@
   "description": "Validation des données de formulaire",
   "type": "object",
   "required": [
-    "idSexe",
     "nom",
     "prenom",
     "date_de_naissance",

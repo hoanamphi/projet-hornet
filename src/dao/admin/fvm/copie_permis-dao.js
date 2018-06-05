@@ -48,6 +48,13 @@ var CopiePermisFVMDao = /** @class */ (function (_super) {
             }
         });
     };
+    CopiePermisFVMDao.prototype.deleteCopiePermisFromPermis = function (idPermis) {
+        return this.modelDAO.copiePermisFVMEntity.destroy({
+            where: {
+                idPermis: idPermis
+            }
+        });
+    };
     return CopiePermisFVMDao;
 }(entity_dao_1.EntityDAO));
 exports.CopiePermisFVMDao = CopiePermisFVMDao;

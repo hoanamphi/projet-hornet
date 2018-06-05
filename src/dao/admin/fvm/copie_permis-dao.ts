@@ -52,4 +52,12 @@ export class CopiePermisFVMDao extends EntityDAO {
       }
     });
   }
+
+  deleteCopiePermisFromPermis(idPermis): Promise<any> {
+    return this.modelDAO.copiePermisFVMEntity.destroy({
+      where: {
+        idPermis: idPermis
+      }
+    });
+  }
 }

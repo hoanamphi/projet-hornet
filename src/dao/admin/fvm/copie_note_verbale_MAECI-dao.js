@@ -48,6 +48,13 @@ var CopieNoteVerbaleMAECIFVMDao = /** @class */ (function (_super) {
             }
         });
     };
+    CopieNoteVerbaleMAECIFVMDao.prototype.deleteCopieNoteVerbaleMAECIFromDossier = function (idDossier) {
+        return this.modelDAO.copieNoteVerbaleMAECIFVMEntity.destroy({
+            where: {
+                idDossier: idDossier
+            }
+        });
+    };
     return CopieNoteVerbaleMAECIFVMDao;
 }(entity_dao_1.EntityDAO));
 exports.CopieNoteVerbaleMAECIFVMDao = CopieNoteVerbaleMAECIFVMDao;

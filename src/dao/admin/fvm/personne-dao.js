@@ -54,6 +54,20 @@ var PersonneFVMDAO = /** @class */ (function (_super) {
             }
         });
     };
+    PersonneFVMDAO.prototype.getIdPersonneFromPermis = function (idPermis) {
+        return this.modelDAO.personneFVMEntity.findAll({
+            where: {
+                idPermis: idPermis
+            }
+        });
+    };
+    PersonneFVMDAO.prototype.deletePersonne = function (idPersonne) {
+        return this.modelDAO.personneFVMEntity.destroy({
+            where: {
+                idPersonne: idPersonne
+            }
+        });
+    };
     return PersonneFVMDAO;
 }(entity_dao_1.EntityDAO));
 exports.PersonneFVMDAO = PersonneFVMDAO;

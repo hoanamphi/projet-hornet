@@ -14,7 +14,7 @@ export class ServerFormServiceImpl extends ServicePage implements ServerFormServ
 
     let request: HornetRequest = {
       method: "post",
-      url: this.buildUrl("/form1server"),
+      url: this.buildUrl("/fvmform1server"),
       data: data
     };
 
@@ -29,7 +29,7 @@ export class ServerFormServiceImpl extends ServicePage implements ServerFormServ
 
     let request: HornetRequest = {
       method: "post",
-      url: this.buildUrl("/form2server"),
+      url: this.buildUrl("/fvmform2server"),
       data: data
     };
 
@@ -42,7 +42,7 @@ export class ServerFormServiceImpl extends ServicePage implements ServerFormServ
 
     let request: HornetRequest = {
       method: "post",
-      url: this.buildUrl("/form2server/insertValise"),
+      url: this.buildUrl("/fvmform2server/insertValise"),
       data: data
     };
 
@@ -52,7 +52,7 @@ export class ServerFormServiceImpl extends ServicePage implements ServerFormServ
   getListePrefectures(): Promise<any> {
     let request: HornetRequest = {
       method: "post",
-      url: this.buildUrl("/form1server/listPrefectures")
+      url: this.buildUrl("/fvmform1server/listPrefectures")
     };
 
     return this.fetch(request);
@@ -61,7 +61,7 @@ export class ServerFormServiceImpl extends ServicePage implements ServerFormServ
   getListeValises(): Promise<any> {
     let request: HornetRequest = {
       method: "post",
-      url: this.buildUrl("/form2server/listValises")
+      url: this.buildUrl("/fvmform2server/listValises")
     };
 
     return this.fetch(request);

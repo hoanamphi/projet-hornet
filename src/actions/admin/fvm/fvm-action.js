@@ -198,6 +198,10 @@ var GetPDFDemandeAuthentification = /** @class */ (function (_super) {
         var _this = this;
         logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
         var dataString = this.attributes.data.split("+");
+        var cedex = "";
+        if (dataString[4] == "true") {
+            cedex = "CEDEX";
+        }
         return this.getService().getPDFDemandeAuthentification(this.attributes.idPermis).then(function (result) {
             var dossier = result.dossier[0];
             var demandeAuthentification = result.demandeAuthentification[0];
@@ -242,9 +246,10 @@ var GetPDFDemandeAuthentification = /** @class */ (function (_super) {
                                 { text: dataString[2].toUpperCase() + " " + dossier.prefecture.toUpperCase() },
                                 { text: dataString[3].toUpperCase() },
                                 { text: dossier.adresse.toUpperCase() },
-                                { text: (dossier.codePostal + " " + dossier.ville).toUpperCase() + " " + dataString[4] }
+                                { text: (dossier.codePostal + " " + dossier.ville).toUpperCase() + " " + cedex }
                             ],
-                            margin: [150, 60, 0, 70]
+                            margin: [100, 60, 0, 70],
+                            alignment: "center"
                         },
                         { text: "OBJET : Demande d'authentification d'un permis de conduire", margin: [0, 0, 0, 30] },
                         {
@@ -289,5 +294,31 @@ var GetPDFDemandeAuthentification = /** @class */ (function (_super) {
     return GetPDFDemandeAuthentification;
 }(abstract_routes_1.RouteActionService));
 exports.GetPDFDemandeAuthentification = GetPDFDemandeAuthentification;
+var DeleteDemandeAuthentification = /** @class */ (function (_super) {
+    tslib_1.__extends(DeleteDemandeAuthentification, _super);
+    function DeleteDemandeAuthentification() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    DeleteDemandeAuthentification.prototype.execute = function () {
+        logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
+        var data = this.req.body;
+        return this.getService().deleteDemandeAuthentification(data);
+    };
+    return DeleteDemandeAuthentification;
+}(abstract_routes_1.RouteActionService));
+exports.DeleteDemandeAuthentification = DeleteDemandeAuthentification;
+var DeleteDossier = /** @class */ (function (_super) {
+    tslib_1.__extends(DeleteDossier, _super);
+    function DeleteDossier() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    DeleteDossier.prototype.execute = function () {
+        logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
+        var data = this.req.body;
+        return this.getService().deleteDossier(data);
+    };
+    return DeleteDossier;
+}(abstract_routes_1.RouteActionService));
+exports.DeleteDossier = DeleteDossier;
 
 //# sourceMappingURL=fvm-action.js.map

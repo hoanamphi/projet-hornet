@@ -48,6 +48,13 @@ var PermisFVMDAO = /** @class */ (function (_super) {
             }
         });
     };
+    PermisFVMDAO.prototype.deletePermis = function (idPermis) {
+        return this.modelDAO.permisFVMEntity.destroy({
+            where: {
+                idPermis: idPermis
+            }
+        });
+    };
     return PermisFVMDAO;
 }(entity_dao_1.EntityDAO));
 exports.PermisFVMDAO = PermisFVMDAO;

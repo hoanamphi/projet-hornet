@@ -13,4 +13,7 @@ export interface ClientListService {
   getCopiePermis(idCopiePermis): Promise<any>;
   getCopieNoteVerbaleMAECI(idCopieNoteVerbaleMAECI): Promise<any>;
   getPDFDemandeAuthentification(idPermis): Promise<any>;
+
+  deleteDemandeAuthentification(idDemandeAuthentification): Promise<any>;
+  deleteDossier(idPermis): Promise<any>;
 }
