@@ -63,7 +63,8 @@ var FormulaireDemandeAuthentificationPage = /** @class */ (function (_super) {
                 notification_manager_1.NotificationManager.notify("SequelizeSuccess", "notif", null, _this.success, null, null, null);
             }
         }).catch(function (reason) {
-            console.error(reason);
+            _this.SequelizeErrors.text = reason;
+            notification_manager_1.NotificationManager.notify("SequelizeError", "errors", _this.errors, null, null, null, null);
         });
     };
     FormulaireDemandeAuthentificationPage.prototype.render = function () {
@@ -121,7 +122,8 @@ var FormulaireDemandeAuthentificationPage = /** @class */ (function (_super) {
                 notification_manager_1.NotificationManager.notify("SequelizeSuccess", "notif", null, _this.success, null, null, null);
             }
         }).catch(function (reason) {
-            console.error(reason);
+            _this.SequelizeErrors.text = reason;
+            notification_manager_1.NotificationManager.notify("SequelizeError", "errors", _this.errors, null, null, null, null);
         });
     };
     FormulaireDemandeAuthentificationPage.prototype.retourPage = function () {

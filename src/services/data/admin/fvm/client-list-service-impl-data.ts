@@ -118,7 +118,7 @@ export class ClientListServiceImpl extends ServiceRequest implements ClientListS
 
   getDemandeAuthentification(data): Promise<any> {
     let idPermis = data["idPermis"];
-    return this.demandeAuthentificationDAO.getDemandeAuthentification(idPermis);
+    return this.demandeAuthentificationDAO.getDemandeAuthentificationFromPermis(idPermis);
   }
 
   getReleve(data): Promise<any> {
@@ -149,7 +149,7 @@ export class ClientListServiceImpl extends ServiceRequest implements ClientListS
     return this.getDossier({"idPermis": idPermis}).then(dossier=>{
       result["dossier"] = dossier;
 
-      return this.demandeAuthentificationDAO.getDemandeAuthentification(idPermis).then(demandeAuthentification=>{
+      return this.demandeAuthentificationDAO.getDemandeAuthentificationFromPermis(idPermis).then(demandeAuthentification=>{
         result["demandeAuthentification"] = demandeAuthentification;
 
         return Promise.resolve(result);
@@ -171,8 +171,9 @@ export class ClientListServiceImpl extends ServiceRequest implements ClientListS
 
     let idDossier = this.dossierDAO.getIdDossierFromPermis(idPermis);
     let idPersonne = this.personneDAO.getIdPersonneFromPermis(idPermis);
+    let idDemandeAuthentification = this.demandeAuthentificationDAO.getDemandeAuthentificationFromPermis(idPermis);
 
-    return Promise.all([idDossier, idPersonne]).then(values=>{
+    return Promise.all([idDossier, idPersonne, idDemandeAuthentification]).then(values=>{
       let deleteCopieNoteVerbaleMAECI = this.copieNoteVerbaleMAECIDAO.deleteCopieNoteVerbaleMAECIFromDossier(values[0][0].idDossier);
 
       let deleteDossier = this.dossierDAO.deleteDossier(values[0][0].idDossier);
@@ -182,6 +183,10 @@ export class ClientListServiceImpl extends ServiceRequest implements ClientListS
       let deleteCopiePermis = this.copiePermisDAO.deleteCopiePermisFromPermis(idPermis);
 
       let deletePermis = this.permisDAO.deletePermis(idPermis);
+
+      if(values[2].length > 0) {
+        let deleteDemandeAuthentification = this.demandeAuthentificationDAO.deleteDemandeAuthentification(values[2][0].idDemandeAuthentification);
+      }
 
       return Promise.all([deleteCopieNoteVerbaleMAECI, deleteDossier, deletePersonne, deleteCopiePermis, deletePermis]);
     }).catch(error=>{

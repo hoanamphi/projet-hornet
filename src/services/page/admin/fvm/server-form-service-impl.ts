@@ -9,6 +9,7 @@ const logger: Logger = Utils.getLogger("projet-hornet.services.page.admin.admin-
 
 export class ServerFormServiceImpl extends ServicePage implements ServerFormService {
 
+
   insererDonnee(data: any): Promise<any> {
     logger.trace("SERVICES - list : ", data);
 
@@ -17,11 +18,13 @@ export class ServerFormServiceImpl extends ServicePage implements ServerFormServ
       url: this.buildUrl("/fvmform1server"),
       data: data
     };
-
     request.attach = [];
     request.attach.push({field: "copie_permis", file: data["copie_permis"], fileName: data["copie_permis"].name});
     request.attach.push({field: "copie_note_verbale_maeci", file: data["copie_note_verbale_maeci"], fileName: data["copie_note_verbale_maeci"].name});
-    return this.fetch(request);
+
+    return this.fetch(request).error(reason=> {
+      return Promise.resolve(reason);
+    });
   }
 
   insererDemandeAuthentification(data: any): Promise<any> {

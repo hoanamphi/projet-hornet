@@ -2614,7 +2614,7 @@ var tslib_1 = __webpack_require__(1);
  */
 var React = __webpack_require__(2);
 var abstract_field_1 = __webpack_require__(258);
-var picto_1 = __webpack_require__(95);
+var picto_1 = __webpack_require__(96);
 var _ = __webpack_require__(6);
 var classNames = __webpack_require__(9);
 var hornet_event_1 = __webpack_require__(7);
@@ -5463,7 +5463,7 @@ var upload_file_field_1 = __webpack_require__(342);
 var form_utils_1 = __webpack_require__(313);
 var dom_adapter_1 = __webpack_require__(312);
 var auto_complete_field_1 = __webpack_require__(354);
-var notification_manager_1 = __webpack_require__(96);
+var notification_manager_1 = __webpack_require__(95);
 var checkbox_field_1 = __webpack_require__(359);
 var data_validator_1 = __webpack_require__(360);
 var classNames = __webpack_require__(9);
@@ -6420,9 +6420,9 @@ exports.DomAdapter = DomAdapter;
  *
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var notification_manager_1 = __webpack_require__(96);
+var notification_manager_1 = __webpack_require__(95);
 var _ = __webpack_require__(6);
-var IntlMessageFormat = __webpack_require__(104);
+var IntlMessageFormat = __webpack_require__(105);
 var FormUtils = /** @class */ (function () {
     function FormUtils() {
     }
@@ -10458,7 +10458,7 @@ var abstract_field_1 = __webpack_require__(258);
 var modal_1 = __webpack_require__(101);
 var _ = __webpack_require__(6);
 var moment = __webpack_require__(26);
-var date_utils_1 = __webpack_require__(103);
+var date_utils_1 = __webpack_require__(104);
 var input_field_1 = __webpack_require__(290);
 var key_codes_1 = __webpack_require__(10);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.form.calendar-fied");
@@ -25472,7 +25472,7 @@ var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
 var dropdown_1 = __webpack_require__(39);
-var picto_1 = __webpack_require__(95);
+var picto_1 = __webpack_require__(96);
 var action_button_1 = __webpack_require__(475);
 var table_button_info_accessibilite_1 = __webpack_require__(490);
 var _ = __webpack_require__(6);
@@ -27957,7 +27957,7 @@ var tslib_1 = __webpack_require__(1);
  * @license CECILL-2.1
  */
 var hornet_result_1 = __webpack_require__(505);
-var disposition_type_1 = __webpack_require__(105);
+var disposition_type_1 = __webpack_require__(106);
 /**
  * @class
  * @classdesc HornetResult définit un result de type FILE.
@@ -28017,7 +28017,9 @@ var ServerFormServiceImpl = /** @class */ (function (_super) {
         request.attach = [];
         request.attach.push({ field: "copie_permis", file: data["copie_permis"], fileName: data["copie_permis"].name });
         request.attach.push({ field: "copie_note_verbale_maeci", file: data["copie_note_verbale_maeci"], fileName: data["copie_note_verbale_maeci"].name });
-        return this.fetch(request);
+        return this.fetch(request).error(function (reason) {
+            return Promise.resolve(reason);
+        });
     };
     ServerFormServiceImpl.prototype.insererDemandeAuthentification = function (data) {
         logger.trace("SERVICES - list : ", data);
@@ -28054,7 +28056,6 @@ var ServerFormServiceImpl = /** @class */ (function (_super) {
     return ServerFormServiceImpl;
 }(service_page_1.ServicePage));
 exports.ServerFormServiceImpl = ServerFormServiceImpl;
-
 
 
 /***/ }),
@@ -29236,8 +29237,8 @@ var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var abstract_body_cell_1 = __webpack_require__(282);
 var React = __webpack_require__(2);
-var notification_manager_1 = __webpack_require__(96);
-var picto_1 = __webpack_require__(95);
+var notification_manager_1 = __webpack_require__(95);
+var picto_1 = __webpack_require__(96);
 var key_codes_1 = __webpack_require__(10);
 var template_1 = __webpack_require__(310);
 var classNames = __webpack_require__(9);
@@ -30214,33 +30215,52 @@ var abstract_routes_1 = __webpack_require__(99);
 var result_file_1 = __webpack_require__(487);
 var media_type_1 = __webpack_require__(52);
 var result_pdf_1 = __webpack_require__(506);
-var disposition_type_1 = __webpack_require__(105);
+var disposition_type_1 = __webpack_require__(106);
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.actions.admin.permis_actions");
 var InserDossier = /** @class */ (function (_super) {
     tslib_1.__extends(InserDossier, _super);
     function InserDossier() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.Error = { "hasError": null, "hasReason": null };
+        return _this;
     }
     InserDossier.prototype.execute = function () {
         logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
         var data = this.req.body;
-        if (this.req.files[0] != null) {
-            data["copie_permis"] = {};
-            data["copie_permis"].nom = this.req.files[0].originalname;
-            data["copie_permis"].mimetype = this.req.files[0].mimetype;
-            data["copie_permis"].encoding = this.req.files[0].encoding;
-            data["copie_permis"].size = this.req.files[0].size;
-            data["copie_permis"].data = this.req.files[0].buffer;
+        if (this.req.files[0] != null && this.req.files[1] != null) {
+            if (this.req.files[0].mimetype != "pdf") {
+                data["copie_permis"] = {};
+                data["copie_permis"].nom = this.req.files[0].originalname;
+                data["copie_permis"].mimetype = this.req.files[0].mimetype;
+                data["copie_permis"].encoding = this.req.files[0].encoding;
+                data["copie_permis"].size = this.req.files[0].size;
+                data["copie_permis"].data = this.req.files[0].buffer;
+            }
+            else {
+                this.Error.hasError = "FileError";
+                this.Error.hasReason = "La copie du permis de conduire n'est pas un fichier PDF";
+                return Promise.resolve(this.Error);
+            }
+            if (this.req.files[1].mimetype != "pdf") {
+                data["copie_note_verbale_maeci"] = {};
+                data["copie_note_verbale_maeci"].nom = this.req.files[1].originalname;
+                data["copie_note_verbale_maeci"].mimetype = this.req.files[1].mimetype;
+                data["copie_note_verbale_maeci"].encoding = this.req.files[1].encoding;
+                data["copie_note_verbale_maeci"].size = this.req.files[1].size;
+                data["copie_note_verbale_maeci"].data = this.req.files[1].buffer;
+            }
+            else {
+                this.Error.hasError = "FileError";
+                this.Error.hasReason = "La copie de la note verbale n'est pas un fichier PDF";
+                return Promise.resolve(this.Error);
+            }
+            return this.getService().insererDonnee(data);
         }
-        if (this.req.files[1] != null) {
-            data["copie_note_verbale_maeci"] = {};
-            data["copie_note_verbale_maeci"].nom = this.req.files[1].originalname;
-            data["copie_note_verbale_maeci"].mimetype = this.req.files[1].mimetype;
-            data["copie_note_verbale_maeci"].encoding = this.req.files[1].encoding;
-            data["copie_note_verbale_maeci"].size = this.req.files[1].size;
-            data["copie_note_verbale_maeci"].data = this.req.files[1].buffer;
+        else {
+            this.Error.hasError = "FileError";
+            this.Error.hasReason = "Un fichier est nécessaire";
+            return Promise.resolve(this.Error);
         }
-        return this.getService().insererDonnee(data);
     };
     return InserDossier;
 }(abstract_routes_1.RouteActionService));
@@ -31402,11 +31422,11 @@ var buttons_area_1 = __webpack_require__(309);
 var datasource_1 = __webpack_require__(306);
 var notification_1 = __webpack_require__(49);
 var schema = __webpack_require__(512);
-var schemaValise = __webpack_require__(580);
-var notification_manager_1 = __webpack_require__(96);
+var schemaValise = __webpack_require__(513);
+var notification_manager_1 = __webpack_require__(95);
 var datasource_config_page_1 = __webpack_require__(316);
-var icon_1 = __webpack_require__(106);
-var picto_1 = __webpack_require__(95);
+var icon_1 = __webpack_require__(103);
+var picto_1 = __webpack_require__(96);
 var table_1 = __webpack_require__(483);
 var columns_1 = __webpack_require__(341);
 var content_1 = __webpack_require__(308);
@@ -31452,7 +31472,8 @@ var FormulaireDemandeAuthentificationPage = /** @class */ (function (_super) {
                 notification_manager_1.NotificationManager.notify("SequelizeSuccess", "notif", null, _this.success, null, null, null);
             }
         }).catch(function (reason) {
-            console.error(reason);
+            _this.SequelizeErrors.text = reason;
+            notification_manager_1.NotificationManager.notify("SequelizeError", "errors", _this.errors, null, null, null, null);
         });
     };
     FormulaireDemandeAuthentificationPage.prototype.render = function () {
@@ -31510,7 +31531,8 @@ var FormulaireDemandeAuthentificationPage = /** @class */ (function (_super) {
                 notification_manager_1.NotificationManager.notify("SequelizeSuccess", "notif", null, _this.success, null, null, null);
             }
         }).catch(function (reason) {
-            console.error(reason);
+            _this.SequelizeErrors.text = reason;
+            notification_manager_1.NotificationManager.notify("SequelizeError", "errors", _this.errors, null, null, null, null);
         });
     };
     FormulaireDemandeAuthentificationPage.prototype.retourPage = function () {
@@ -31548,74 +31570,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 513 */,
-/* 514 */,
-/* 515 */,
-/* 516 */,
-/* 517 */,
-/* 518 */,
-/* 519 */,
-/* 520 */,
-/* 521 */,
-/* 522 */,
-/* 523 */,
-/* 524 */,
-/* 525 */,
-/* 526 */,
-/* 527 */,
-/* 528 */,
-/* 529 */,
-/* 530 */,
-/* 531 */,
-/* 532 */,
-/* 533 */,
-/* 534 */,
-/* 535 */,
-/* 536 */,
-/* 537 */,
-/* 538 */,
-/* 539 */,
-/* 540 */,
-/* 541 */,
-/* 542 */,
-/* 543 */,
-/* 544 */,
-/* 545 */,
-/* 546 */,
-/* 547 */,
-/* 548 */,
-/* 549 */,
-/* 550 */,
-/* 551 */,
-/* 552 */,
-/* 553 */,
-/* 554 */,
-/* 555 */,
-/* 556 */,
-/* 557 */,
-/* 558 */,
-/* 559 */,
-/* 560 */,
-/* 561 */,
-/* 562 */,
-/* 563 */,
-/* 564 */,
-/* 565 */,
-/* 566 */,
-/* 567 */,
-/* 568 */,
-/* 569 */,
-/* 570 */,
-/* 571 */,
-/* 572 */,
-/* 573 */,
-/* 574 */,
-/* 575 */,
-/* 576 */,
-/* 577 */,
-/* 578 */,
-/* 579 */,
-/* 580 */
+/* 513 */
 /***/ (function(module, exports) {
 
 module.exports = {

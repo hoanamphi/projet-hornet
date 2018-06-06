@@ -46,6 +46,11 @@ var RecordDetailsPage = /** @class */ (function (_super) {
         _this.SequelizeErrors = new notification_manager_1.NotificationType();
         _this.SequelizeErrors.id = "SequelizeError";
         _this.errors.addNotification(_this.SequelizeErrors);
+        _this.success = new notification_manager_1.Notifications();
+        _this.SequelizeSuccess = new notification_manager_1.NotificationType();
+        _this.SequelizeSuccess.id = "SequelizeSuccess";
+        _this.SequelizeSuccess.text = "Opération réussie";
+        _this.success.addNotification(_this.SequelizeSuccess);
         return _this;
     }
     RecordDetailsPage.prototype.prepareClient = function () {
@@ -63,8 +68,6 @@ var RecordDetailsPage = /** @class */ (function (_super) {
             _this.tabs.removeElementsByIndex(2);
             _this.tabs.addElements(2, _this.renderDemandeAuthentificationTab());
         });
-    };
-    RecordDetailsPage.prototype.onSubmit = function (data) {
     };
     RecordDetailsPage.prototype.render = function () {
         var _this = this;
@@ -198,9 +201,11 @@ var RecordDetailsPage = /** @class */ (function (_super) {
             }
             else {
                 _this.demandeauthentificationDatasource.fetch(true);
+                notification_manager_1.NotificationManager.notify("SequelizeSuccess", "notif", null, _this.success, null, null, null);
             }
         }).catch(function (reason) {
-            console.error(reason);
+            _this.SequelizeErrors.text = reason;
+            notification_manager_1.NotificationManager.notify("SequelizeError", "errors", _this.errors, null, null, null, null);
         });
     };
     RecordDetailsPage.prototype.handleUrl = function () {

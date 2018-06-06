@@ -25,6 +25,8 @@ import {DataSourceConfigPage} from "hornet-js-core/src/component/datasource/conf
 import {Icon} from "hornet-js-react-components/src/widget/icon/icon";
 import {Picto} from "hornet-js-react-components/src/img/picto";
 import {RadiosField} from "hornet-js-react-components/src/widget/form/radios-field";
+import {ClientAntivirusConnexion} from "hornet-js-core/src/security/client-antivirus-connexion";
+import {SecurityError} from "hornet-js-utils/src/exception/security-error";
 
 const logger: Logger = Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
 
@@ -65,10 +67,12 @@ export class FormulaireDossierPage extends HornetPage<ServerFormService, HornetC
         this.SequelizeErrors.text = result.hasReason;
         NotificationManager.notify("SequelizeError","errors", this.errors, null, null, null, null);
       } else {
+        console.log(result);
         NotificationManager.notify("SequelizeSuccess","notif", null, this.success, null, null, null);
       }
-    }).catch(reason=>{
-      console.error(reason);
+    }).catch(error=>{
+      this.SequelizeErrors.text = error.toString();
+      NotificationManager.notify("SequelizeError","errors", this.errors, null, null, null, null);
     });
   }
 

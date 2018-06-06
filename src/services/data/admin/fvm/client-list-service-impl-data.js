@@ -103,7 +103,7 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
     };
     ClientListServiceImpl.prototype.getDemandeAuthentification = function (data) {
         var idPermis = data["idPermis"];
-        return this.demandeAuthentificationDAO.getDemandeAuthentification(idPermis);
+        return this.demandeAuthentificationDAO.getDemandeAuthentificationFromPermis(idPermis);
     };
     ClientListServiceImpl.prototype.getReleve = function (data) {
         var idPermis = data["idPermis"];
@@ -128,7 +128,7 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
         var result = {};
         return this.getDossier({ "idPermis": idPermis }).then(function (dossier) {
             result["dossier"] = dossier;
-            return _this.demandeAuthentificationDAO.getDemandeAuthentification(idPermis).then(function (demandeAuthentification) {
+            return _this.demandeAuthentificationDAO.getDemandeAuthentificationFromPermis(idPermis).then(function (demandeAuthentification) {
                 result["demandeAuthentification"] = demandeAuthentification;
                 return Promise.resolve(result);
             });
@@ -148,12 +148,16 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
         var idPermis = data.idPermis;
         var idDossier = this.dossierDAO.getIdDossierFromPermis(idPermis);
         var idPersonne = this.personneDAO.getIdPersonneFromPermis(idPermis);
-        return Promise.all([idDossier, idPersonne]).then(function (values) {
+        var idDemandeAuthentification = this.demandeAuthentificationDAO.getDemandeAuthentificationFromPermis(idPermis);
+        return Promise.all([idDossier, idPersonne, idDemandeAuthentification]).then(function (values) {
             var deleteCopieNoteVerbaleMAECI = _this.copieNoteVerbaleMAECIDAO.deleteCopieNoteVerbaleMAECIFromDossier(values[0][0].idDossier);
             var deleteDossier = _this.dossierDAO.deleteDossier(values[0][0].idDossier);
             var deletePersonne = _this.personneDAO.deletePersonne(values[1][0].idPersonne);
             var deleteCopiePermis = _this.copiePermisDAO.deleteCopiePermisFromPermis(idPermis);
             var deletePermis = _this.permisDAO.deletePermis(idPermis);
+            if (values[2].length > 0) {
+                var deleteDemandeAuthentification = _this.demandeAuthentificationDAO.deleteDemandeAuthentification(values[2][0].idDemandeAuthentification);
+            }
             return Promise.all([deleteCopieNoteVerbaleMAECI, deleteDossier, deletePersonne, deleteCopiePermis, deletePermis]);
         }).catch(function (error) {
             _this.Error.hasError = error;

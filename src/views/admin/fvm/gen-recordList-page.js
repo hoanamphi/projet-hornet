@@ -12,6 +12,7 @@ var button_1 = require("hornet-js-react-components/src/widget/button/button");
 var buttons_area_1 = require("hornet-js-react-components/src/widget/form/buttons-area");
 var notification_1 = require("hornet-js-react-components/src/widget/notification/notification");
 var schema = require("src/resources/admin/fvm/validation-recordList.json");
+var notification_manager_1 = require("hornet-js-core/src/notification/notification-manager");
 var table_1 = require("hornet-js-react-components/src/widget/table/table");
 var header_1 = require("hornet-js-react-components/src/widget/table/header");
 var menu_actions_1 = require("hornet-js-react-components/src/widget/table/menu-actions");
@@ -32,6 +33,15 @@ var RecordListPage = /** @class */ (function (_super) {
     function RecordListPage(props, context) {
         var _this = _super.call(this, props, context) || this;
         _this.entries = new paginate_datasource_1.PaginateDataSource([], { itemsPerPage: 10 }, {});
+        _this.errors = new notification_manager_1.Notifications();
+        _this.SequelizeErrors = new notification_manager_1.NotificationType();
+        _this.SequelizeErrors.id = "SequelizeError";
+        _this.errors.addNotification(_this.SequelizeErrors);
+        _this.success = new notification_manager_1.Notifications();
+        _this.SequelizeSuccess = new notification_manager_1.NotificationType();
+        _this.SequelizeSuccess.id = "SequelizeSuccess";
+        _this.SequelizeSuccess.text = "Opération réussie";
+        _this.success.addNotification(_this.SequelizeSuccess);
         return _this;
     }
     RecordListPage.prototype.prepareClient = function () {
@@ -59,6 +69,7 @@ var RecordListPage = /** @class */ (function (_super) {
         var format = this.i18n("forms");
         return (React.createElement("div", null,
             React.createElement(icon_1.Icon, { src: picto_1.Picto.blue.previous, alt: "Retourner \u00E0 la page d'accueil", title: "Retourner \u00E0 la page d'accueil", action: this.retourPage }),
+            React.createElement(notification_1.Notification, { id: "errors" }),
             React.createElement(notification_1.Notification, { id: "notif" }),
             React.createElement(table_1.Table, { id: "tableau des entr\u00E9es" },
                 React.createElement(header_1.Header, { title: "Dossiers entrés dans la base" },
@@ -88,8 +99,20 @@ var RecordListPage = /** @class */ (function (_super) {
     };
     RecordListPage.prototype.supprimerDossier = function (lineSelected) {
         var _this = this;
-        this.getService().deleteDossier(lineSelected.idPermis).then(function () {
-            _this.reloadData();
+        this.getService().deleteDossier(lineSelected.idPermis).then(function (result) {
+            if (result.hasError != null) {
+                console.error(result.hasReason);
+                console.error(result.hasError);
+                _this.SequelizeErrors.text = result.hasReason;
+                notification_manager_1.NotificationManager.notify("SequelizeError", "errors", _this.errors, null, null, null, null);
+            }
+            else {
+                notification_manager_1.NotificationManager.notify("SequelizeSuccess", "notif", null, _this.success, null, null, null);
+                _this.reloadData();
+            }
+        }).catch(function (reason) {
+            _this.SequelizeErrors.text = reason;
+            notification_manager_1.NotificationManager.notify("SequelizeError", "errors", _this.errors, null, null, null, null);
         });
     };
     RecordListPage.prototype.retourPage = function () {

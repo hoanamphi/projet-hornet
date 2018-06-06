@@ -58,6 +58,8 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
 
   private errors;
   private SequelizeErrors;
+  private success;
+  private SequelizeSuccess;
 
   private tabs = new Tabs<TabsProps>();
   private nom_responsable = new InputField();
@@ -76,6 +78,12 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
     this.SequelizeErrors = new NotificationType();
     this.SequelizeErrors.id = "SequelizeError";
     this.errors.addNotification(this.SequelizeErrors);
+
+    this.success =  new Notifications();
+    this.SequelizeSuccess = new NotificationType();
+    this.SequelizeSuccess.id = "SequelizeSuccess";
+    this.SequelizeSuccess.text = "Opération réussie";
+    this.success.addNotification(this.SequelizeSuccess);
   }
 
   prepareClient(): void {
@@ -92,10 +100,6 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
       this.tabs.removeElementsByIndex(2);
       this.tabs.addElements(2, this.renderDemandeAuthentificationTab());
     });
-  }
-
-  onSubmit(data: any) {
-    
   }
 
   render(): JSX.Element {
@@ -355,9 +359,11 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
         NotificationManager.notify("SequelizeError","errors", this.errors, null, null, null, null);
       } else {
         this.demandeauthentificationDatasource.fetch(true);
+        NotificationManager.notify("SequelizeSuccess","notif", null, this.success, null, null, null);
       }
     }).catch(reason=>{
-      console.error(reason);
+      this.SequelizeErrors.text = reason;
+      NotificationManager.notify("SequelizeError","errors", this.errors, null, null, null, null);
     });
   }
 

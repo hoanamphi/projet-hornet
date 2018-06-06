@@ -89,7 +89,8 @@ export class FormulaireDemandeAuthentificationPage extends HornetPage<ServerForm
         NotificationManager.notify("SequelizeSuccess","notif", null, this.success, null, null, null);
       }
     }).catch(reason=>{
-      console.error(reason);
+      this.SequelizeErrors.text = reason;
+      NotificationManager.notify("SequelizeError","errors", this.errors, null, null, null, null);
     });
   }
 
@@ -205,7 +206,8 @@ export class FormulaireDemandeAuthentificationPage extends HornetPage<ServerForm
         NotificationManager.notify("SequelizeSuccess","notif", null, this.success, null, null, null);
       }
     }).catch(reason=>{
-      console.error(reason);
+      this.SequelizeErrors.text = reason;
+      NotificationManager.notify("SequelizeError","errors", this.errors, null, null, null, null);
     });
   }
 

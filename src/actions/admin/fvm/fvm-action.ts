@@ -17,30 +17,47 @@ import {OptionsPDF} from "hornet-js-core/src/result/hornet-result-interface";
 const logger: Logger = Utils.getLogger("projet-hornet.actions.admin.permis_actions");
 
 export class InserDossier extends RouteActionService<any, ServerFormService> {
+  private Error = {"hasError": null, "hasReason": null};
+
   execute(): Promise<any> {
     logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
 
     let data = this.req.body;
 
-    if(this.req.files[0] != null){
-      data["copie_permis"] = {};
-      data["copie_permis"].nom = this.req.files[0].originalname;
-      data["copie_permis"].mimetype = this.req.files[0].mimetype;
-      data["copie_permis"].encoding = this.req.files[0].encoding;
-      data["copie_permis"].size = this.req.files[0].size;
-      data["copie_permis"].data = this.req.files[0].buffer;
-    }
+    if(this.req.files[0] != null && this.req.files[1] != null){
 
-    if(this.req.files[1] != null){
-      data["copie_note_verbale_maeci"] = {};
-      data["copie_note_verbale_maeci"].nom = this.req.files[1].originalname;
-      data["copie_note_verbale_maeci"].mimetype = this.req.files[1].mimetype;
-      data["copie_note_verbale_maeci"].encoding = this.req.files[1].encoding;
-      data["copie_note_verbale_maeci"].size = this.req.files[1].size;
-      data["copie_note_verbale_maeci"].data = this.req.files[1].buffer;
-    }
+      if(this.req.files[0].mimetype != "pdf") {
+        data["copie_permis"] = {};
+        data["copie_permis"].nom = this.req.files[0].originalname;
+        data["copie_permis"].mimetype = this.req.files[0].mimetype;
+        data["copie_permis"].encoding = this.req.files[0].encoding;
+        data["copie_permis"].size = this.req.files[0].size;
+        data["copie_permis"].data = this.req.files[0].buffer;
+      } else {
+        this.Error.hasError = "FileError";
+        this.Error.hasReason = "La copie du permis de conduire n'est pas un fichier PDF";
+        return Promise.resolve(this.Error);
+      }
 
-    return this.getService().insererDonnee(data);
+      if(this.req.files[1].mimetype != "pdf") {
+        data["copie_note_verbale_maeci"] = {};
+        data["copie_note_verbale_maeci"].nom = this.req.files[1].originalname;
+        data["copie_note_verbale_maeci"].mimetype = this.req.files[1].mimetype;
+        data["copie_note_verbale_maeci"].encoding = this.req.files[1].encoding;
+        data["copie_note_verbale_maeci"].size = this.req.files[1].size;
+        data["copie_note_verbale_maeci"].data = this.req.files[1].buffer;
+      } else {
+        this.Error.hasError = "FileError";
+        this.Error.hasReason = "La copie de la note verbale n'est pas un fichier PDF";
+        return Promise.resolve(this.Error);
+      }
+
+      return this.getService().insererDonnee(data);
+    } else {
+      this.Error.hasError = "FileError";
+      this.Error.hasReason = "Un fichier est nécessaire";
+      return Promise.resolve(this.Error);
+    }
   }
 }
 

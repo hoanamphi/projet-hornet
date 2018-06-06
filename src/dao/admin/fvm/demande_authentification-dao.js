@@ -44,7 +44,7 @@ var DemandeAuthentificationFVMDAO = /** @class */ (function (_super) {
             return Promise.resolve(max + 1);
         });
     };
-    DemandeAuthentificationFVMDAO.prototype.getDemandeAuthentification = function (idPermis) {
+    DemandeAuthentificationFVMDAO.prototype.getDemandeAuthentificationFromPermis = function (idPermis) {
         return this.modelDAO.demandeAuthenthificationFVMEntity.findAll({
             where: {
                 idPermis: idPermis

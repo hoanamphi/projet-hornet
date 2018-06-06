@@ -39,10 +39,26 @@ export class RecordListPage extends HornetPage<any, HornetComponentProps, any> {
 
   private entries;
 
+  private errors;
+  private SequelizeErrors;
+  private success;
+  private SequelizeSuccess;
+
   constructor(props?: HornetComponentProps, context?: any) {
     super(props, context);
 
     this.entries = new PaginateDataSource<any> ([], {itemsPerPage: 10}, {});
+
+    this.errors =  new Notifications();
+    this.SequelizeErrors = new NotificationType();
+    this.SequelizeErrors.id = "SequelizeError";
+    this.errors.addNotification(this.SequelizeErrors);
+
+    this.success =  new Notifications();
+    this.SequelizeSuccess = new NotificationType();
+    this.SequelizeSuccess.id = "SequelizeSuccess";
+    this.SequelizeSuccess.text = "Opération réussie";
+    this.success.addNotification(this.SequelizeSuccess);
   }
 
   prepareClient(): void {
@@ -73,7 +89,9 @@ export class RecordListPage extends HornetPage<any, HornetComponentProps, any> {
     return (
       <div>
         <Icon src={Picto.blue.previous} alt="Retourner à la page d'accueil" title="Retourner à la page d'accueil" action={this.retourPage}/>
+        <Notification id="errors"/>
         <Notification id="notif"/>
+
         <Table id="tableau des entrées">
           <Header title={"Dossiers entrés dans la base"}>
             <MenuActions>
@@ -147,8 +165,20 @@ export class RecordListPage extends HornetPage<any, HornetComponentProps, any> {
   }
 
   supprimerDossier(lineSelected) {
-    this.getService().deleteDossier(lineSelected.idPermis).then(()=>{
-      this.reloadData();
+    this.getService().deleteDossier(lineSelected.idPermis).then(result=> {
+      if(result.hasError != null){
+        console.error(result.hasReason);
+        console.error(result.hasError);
+
+        this.SequelizeErrors.text = result.hasReason;
+        NotificationManager.notify("SequelizeError","errors", this.errors, null, null, null, null);
+      } else {
+        NotificationManager.notify("SequelizeSuccess","notif", null, this.success, null, null, null);
+        this.reloadData();
+      }
+    }).catch(reason=>{
+      this.SequelizeErrors.text = reason;
+      NotificationManager.notify("SequelizeError","errors", this.errors, null, null, null, null);
     });
   }
 

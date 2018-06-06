@@ -2049,7 +2049,7 @@ var tslib_1 = __webpack_require__(1);
  */
 var React = __webpack_require__(2);
 var abstract_field_1 = __webpack_require__(258);
-var picto_1 = __webpack_require__(95);
+var picto_1 = __webpack_require__(96);
 var _ = __webpack_require__(6);
 var classNames = __webpack_require__(9);
 var hornet_event_1 = __webpack_require__(7);
@@ -3607,7 +3607,7 @@ var upload_file_field_1 = __webpack_require__(342);
 var form_utils_1 = __webpack_require__(313);
 var dom_adapter_1 = __webpack_require__(312);
 var auto_complete_field_1 = __webpack_require__(354);
-var notification_manager_1 = __webpack_require__(96);
+var notification_manager_1 = __webpack_require__(95);
 var checkbox_field_1 = __webpack_require__(359);
 var data_validator_1 = __webpack_require__(360);
 var classNames = __webpack_require__(9);
@@ -4564,9 +4564,9 @@ exports.DomAdapter = DomAdapter;
  *
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var notification_manager_1 = __webpack_require__(96);
+var notification_manager_1 = __webpack_require__(95);
 var _ = __webpack_require__(6);
-var IntlMessageFormat = __webpack_require__(104);
+var IntlMessageFormat = __webpack_require__(105);
 var FormUtils = /** @class */ (function () {
     function FormUtils() {
     }
@@ -7189,7 +7189,7 @@ var abstract_field_1 = __webpack_require__(258);
 var modal_1 = __webpack_require__(101);
 var _ = __webpack_require__(6);
 var moment = __webpack_require__(26);
-var date_utils_1 = __webpack_require__(103);
+var date_utils_1 = __webpack_require__(104);
 var input_field_1 = __webpack_require__(290);
 var key_codes_1 = __webpack_require__(10);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.form.calendar-fied");
@@ -22100,7 +22100,9 @@ var ServerFormServiceImpl = /** @class */ (function (_super) {
         request.attach = [];
         request.attach.push({ field: "copie_permis", file: data["copie_permis"], fileName: data["copie_permis"].name });
         request.attach.push({ field: "copie_note_verbale_maeci", file: data["copie_note_verbale_maeci"], fileName: data["copie_note_verbale_maeci"].name });
-        return this.fetch(request);
+        return this.fetch(request).error(function (reason) {
+            return Promise.resolve(reason);
+        });
     };
     ServerFormServiceImpl.prototype.insererDemandeAuthentification = function (data) {
         logger.trace("SERVICES - list : ", data);
@@ -22137,7 +22139,6 @@ var ServerFormServiceImpl = /** @class */ (function (_super) {
     return ServerFormServiceImpl;
 }(service_page_1.ServicePage));
 exports.ServerFormServiceImpl = ServerFormServiceImpl;
-
 
 
 /***/ }),
@@ -22181,10 +22182,10 @@ var datasource_1 = __webpack_require__(306);
 var notification_1 = __webpack_require__(49);
 var schema = __webpack_require__(510);
 var select_field_1 = __webpack_require__(343);
-var notification_manager_1 = __webpack_require__(96);
+var notification_manager_1 = __webpack_require__(95);
 var datasource_config_page_1 = __webpack_require__(316);
-var icon_1 = __webpack_require__(106);
-var picto_1 = __webpack_require__(95);
+var icon_1 = __webpack_require__(103);
+var picto_1 = __webpack_require__(96);
 var radios_field_1 = __webpack_require__(488);
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
 var FormulaireDossierPage = /** @class */ (function (_super) {
@@ -22216,10 +22217,12 @@ var FormulaireDossierPage = /** @class */ (function (_super) {
                 notification_manager_1.NotificationManager.notify("SequelizeError", "errors", _this.errors, null, null, null, null);
             }
             else {
+                console.log(result);
                 notification_manager_1.NotificationManager.notify("SequelizeSuccess", "notif", null, _this.success, null, null, null);
             }
-        }).catch(function (reason) {
-            console.error(reason);
+        }).catch(function (error) {
+            _this.SequelizeErrors.text = error.toString();
+            notification_manager_1.NotificationManager.notify("SequelizeError", "errors", _this.errors, null, null, null, null);
         });
     };
     FormulaireDossierPage.prototype.render = function () {

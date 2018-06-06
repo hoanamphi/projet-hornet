@@ -47,7 +47,7 @@ export class DemandeAuthentificationFVMDAO extends EntityDAO {
     });
   }
 
-  getDemandeAuthentification(idPermis): Promise<any> {
+  getDemandeAuthentificationFromPermis(idPermis): Promise<any> {
     return this.modelDAO.demandeAuthenthificationFVMEntity.findAll({
       where: {
         idPermis: idPermis
