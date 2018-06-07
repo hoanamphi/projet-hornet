@@ -21,7 +21,7 @@ export class DossierFVMDAO extends EntityDAO {
         idCopieNoteVerbaleMAECI: idCopieNoteVerbaleMAECI,
         dateReceptionDossier: dateReceptionDossier,
         idPermis: idPermis
-      }).then(result=>{
+      }, {transaction: t}).then(result=>{
         return Promise.resolve(idDossier);
       });
     });

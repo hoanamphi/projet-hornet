@@ -83,7 +83,7 @@ var RecordListPage = /** @class */ (function (_super) {
                         React.createElement(date_column_1.DateColumn, { keyColumn: "dateDeNaissance", title: format.fields.date_de_naissance.label, sortable: false }),
                         React.createElement(date_column_1.DateColumn, { keyColumn: "dateReceptionDossier", title: format.fields.date_reception_dossier.label, sortable: true }),
                         React.createElement(action_column_1.ActionColumn, { keyColumn: "idPermis", srcImg: picto_1.Picto.black.consulter, url: "/fvmrecord/:idPermis" }),
-                        React.createElement(action_column_1.ActionColumn, { keyColumn: "idPermis", srcImg: picto_1.Picto.black.supprimer, action: this.supprimerDossier }))),
+                        React.createElement(action_column_1.ActionColumn, { keyColumn: "idPermis", srcImg: picto_1.Picto.black.supprimer, messageAlert: "Êtes vous sûr de vouloir supprimer ce dossier ?", action: this.supprimerDossier }))),
                 React.createElement(footer_1.Footer, null,
                     React.createElement(pager_1.Pager, { dataSource: this.entries, id: "table-paginate" }))),
             React.createElement("h3", null, " Recherche d'un dossier "),
@@ -95,7 +95,7 @@ var RecordListPage = /** @class */ (function (_super) {
                     React.createElement(calendar_field_1.CalendarField, { name: "date_de_naissance", label: format.fields.date_de_naissance.label, title: format.fields.date_de_naissance.title, required: false }),
                     React.createElement(buttons_area_1.ButtonsArea, null,
                         React.createElement(button_1.Button, { type: "button", onClick: this.reloadData, label: "annuler" }),
-                        React.createElement(button_1.Button, { type: "submit", value: "Valider", className: "hornet-button", label: "valider", title: "valider" }))))));
+                        React.createElement(button_1.Button, { type: "submit", value: "Valider", className: "hornet-button", label: "valider", title: "Effectuer une recherche selon ces crit\u00E8res" }))))));
     };
     RecordListPage.prototype.supprimerDossier = function (lineSelected) {
         var _this = this;

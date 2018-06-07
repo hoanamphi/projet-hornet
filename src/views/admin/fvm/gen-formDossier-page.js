@@ -50,7 +50,6 @@ var FormulaireDossierPage = /** @class */ (function (_super) {
                 notification_manager_1.NotificationManager.notify("SequelizeError", "errors", _this.errors, null, null, null, null);
             }
             else {
-                console.log(result);
                 notification_manager_1.NotificationManager.notify("SequelizeSuccess", "notif", null, _this.success, null, null, null);
             }
         }).catch(function (error) {

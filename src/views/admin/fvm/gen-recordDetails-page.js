@@ -29,6 +29,7 @@ var tab_content_1 = require("hornet-js-react-components/src/widget/tab/tab-conte
 var icon_1 = require("hornet-js-react-components/src/widget/icon/icon");
 var radios_field_1 = require("hornet-js-react-components/src/widget/form/radios-field");
 var select_field_1 = require("hornet-js-react-components/src/widget/form/select-field");
+var alert_1 = require("hornet-js-react-components/src/widget/dialog/alert");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
 var RecordDetailsPage = /** @class */ (function (_super) {
     tslib_1.__extends(RecordDetailsPage, _super);
@@ -40,6 +41,7 @@ var RecordDetailsPage = /** @class */ (function (_super) {
         _this.intitule_prefecture = new input_field_1.InputField();
         _this.intitule_service = new input_field_1.InputField();
         _this.cedex = new select_field_1.SelectField({ "name": "cedex" });
+        _this.alert = new alert_1.Alert();
         _this.dossierDatasource = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getDossier), {});
         _this.demandeauthentificationDatasource = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getDemandeAuthentification), {});
         _this.errors = new notification_manager_1.Notifications();
@@ -162,8 +164,9 @@ var RecordDetailsPage = /** @class */ (function (_super) {
                 React.createElement(tab_1.Tab, { id: "tabDemandeAuthentification", title: "Demande d'Authentification" },
                     React.createElement(tab_content_1.TabContent, { dataSource: this.demandeauthentificationDatasource },
                         React.createElement(notification_1.Notification, { id: "errors" }),
+                        React.createElement(alert_1.Alert, { message: "Êtes vous sûr de vouloir supprimer cette demande ?", ref: function (alert) { _this.alert = alert; }, onClickOk: this.supprimerDemande, onClickClose: this.closeAlert, validTitle: "Supprimer la demande", isVisible: false }),
                         React.createElement("h6", null, " Vous avez g\u00E9n\u00E9r\u00E9 une demande d'authentification pour ce dossier "),
-                        React.createElement(icon_1.Icon, { src: picto_1.Picto.blue.supprimer, alt: "Supprimer la demande d'authentification", title: "Supprimer la demande d'authentification", action: this.supprimerDemande }),
+                        React.createElement(icon_1.Icon, { src: picto_1.Picto.blue.supprimer, alt: "Supprimer la demande d'authentification", title: "Supprimer la demande d'authentification", action: this.openAlert }),
                         React.createElement(form_1.Form, { id: "demandeAuthentificationForm", defaultValues: dataForm },
                             React.createElement(input_field_1.InputField, { name: "numDemandeAuthentification", label: format.fields.num_demande_authentification.label, readOnly: true }),
                             React.createElement(calendar_field_1.CalendarField, { name: "dateDeCreation", label: format.fields.date_de_creation.label, readOnly: true }),
@@ -189,6 +192,12 @@ var RecordDetailsPage = /** @class */ (function (_super) {
                     React.createElement(buttons_area_1.ButtonsArea, null,
                         React.createElement(button_1.Button, { type: "submit", onClick: this.genererDemande, value: "Valider", className: "hornet-button", label: "g\u00E9n\u00E9rer une demande d'authentification", title: "valider" })))));
         }
+    };
+    RecordDetailsPage.prototype.openAlert = function () {
+        this.alert.open();
+    };
+    RecordDetailsPage.prototype.closeAlert = function () {
+        this.alert.close();
     };
     RecordDetailsPage.prototype.supprimerDemande = function () {
         var _this = this;

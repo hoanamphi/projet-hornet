@@ -14,14 +14,12 @@ var ServerFormServiceImpl = /** @class */ (function (_super) {
         var request = {
             method: "post",
             url: this.buildUrl("/fvmform1server"),
-            data: data
+            data: data,
         };
         request.attach = [];
         request.attach.push({ field: "copie_permis", file: data["copie_permis"], fileName: data["copie_permis"].name });
         request.attach.push({ field: "copie_note_verbale_maeci", file: data["copie_note_verbale_maeci"], fileName: data["copie_note_verbale_maeci"].name });
-        return this.fetch(request).error(function (reason) {
-            return Promise.resolve(reason);
-        });
+        return this.fetch(request);
     };
     ServerFormServiceImpl.prototype.insererDemandeAuthentification = function (data) {
         logger.trace("SERVICES - list : ", data);
@@ -58,4 +56,5 @@ var ServerFormServiceImpl = /** @class */ (function (_super) {
     return ServerFormServiceImpl;
 }(service_page_1.ServicePage));
 exports.ServerFormServiceImpl = ServerFormServiceImpl;
+
 //# sourceMappingURL=server-form-service-impl.js.map

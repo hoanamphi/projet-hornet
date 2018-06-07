@@ -17,7 +17,7 @@ var DossierFVMDAO = /** @class */ (function (_super) {
                 idCopieNoteVerbaleMAECI: idCopieNoteVerbaleMAECI,
                 dateReceptionDossier: dateReceptionDossier,
                 idPermis: idPermis
-            }).then(function (result) {
+            }, { transaction: t }).then(function (result) {
                 return Promise.resolve(idDossier);
             });
         });

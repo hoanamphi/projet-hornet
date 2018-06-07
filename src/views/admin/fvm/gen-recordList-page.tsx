@@ -32,6 +32,7 @@ import {Pager} from "hornet-js-react-components/src/widget/pager/pager";
 import {PaginateDataSource, Pagination} from "hornet-js-core/src/component/datasource/paginate-datasource";
 import {ActionColumn} from "hornet-js-react-components/src/widget/table/column/action-column";
 import {Icon} from "hornet-js-react-components/src/widget/icon/icon";
+import {Alert} from "hornet-js-react-components/src/widget/dialog/alert";
 
 const logger: Logger = Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
 
@@ -124,6 +125,7 @@ export class RecordListPage extends HornetPage<any, HornetComponentProps, any> {
                             url={"/fvmrecord/:idPermis"}/>
               <ActionColumn keyColumn="idPermis"
                             srcImg={Picto.black.supprimer}
+                            messageAlert={"Êtes vous sûr de vouloir supprimer ce dossier ?"}
                             action={this.supprimerDossier}/>
             </Columns>
           </Content>
@@ -155,7 +157,7 @@ export class RecordListPage extends HornetPage<any, HornetComponentProps, any> {
               <Button type="button" onClick={this.reloadData} label="annuler"/>
               <Button type="submit"
                       value="Valider" className="hornet-button" label="valider"
-                      title="valider"/>
+                      title="Effectuer une recherche selon ces critères"/>
             </ButtonsArea>
           </Row>
 

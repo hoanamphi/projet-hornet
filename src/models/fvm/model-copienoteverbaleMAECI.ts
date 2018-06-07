@@ -47,7 +47,7 @@ export let CopieNoteVerbaleMAECIFVMModel: Sequelize.DefineAttributes = {
   "idDossier": {
     type: Sequelize.INTEGER,
     field: "id_dossier_fvm",
-    allowNull: false,
+    allowNull: true,
     references: {
       model: "DossierFVMModel",
       key: "idDossier",

@@ -21,12 +21,11 @@ export class InserDossier extends RouteActionService<any, ServerFormService> {
 
   execute(): Promise<any> {
     logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
-
     let data = this.req.body;
 
-    if(this.req.files[0] != null && this.req.files[1] != null){
+    if (this.req.files[0] != null && this.req.files[1] != null) {
 
-      if(this.req.files[0].mimetype != "pdf") {
+      if (this.req.files[0].mimetype != "pdf") {
         data["copie_permis"] = {};
         data["copie_permis"].nom = this.req.files[0].originalname;
         data["copie_permis"].mimetype = this.req.files[0].mimetype;
@@ -39,7 +38,7 @@ export class InserDossier extends RouteActionService<any, ServerFormService> {
         return Promise.resolve(this.Error);
       }
 
-      if(this.req.files[1].mimetype != "pdf") {
+      if (this.req.files[1].mimetype != "pdf") {
         data["copie_note_verbale_maeci"] = {};
         data["copie_note_verbale_maeci"].nom = this.req.files[1].originalname;
         data["copie_note_verbale_maeci"].mimetype = this.req.files[1].mimetype;

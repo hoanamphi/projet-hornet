@@ -37,7 +37,7 @@ exports.CopieNoteVerbaleMAECIFVMModel = {
     "idDossier": {
         type: Sequelize.INTEGER,
         field: "id_dossier_fvm",
-        allowNull: false,
+        allowNull: true,
         references: {
             model: "DossierFVMModel",
             key: "idDossier",

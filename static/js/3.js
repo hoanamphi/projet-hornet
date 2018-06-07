@@ -6,7 +6,7 @@ webpackJsonp([3],Array(250).concat([
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
-var abstract_routes_1 = __webpack_require__(99);
+var abstract_routes_1 = __webpack_require__(100);
 var server_form_service_impl_1 = __webpack_require__(489);
 var gen_formDemande_page_1 = __webpack_require__(511);
 var Form2RoutesClient = /** @class */ (function (_super) {
@@ -3151,7 +3151,7 @@ var events = __webpack_require__(27);
 var _ = __webpack_require__(6);
 var promise_api_1 = __webpack_require__(51);
 var technical_error_1 = __webpack_require__(13);
-var codes_error_1 = __webpack_require__(97);
+var codes_error_1 = __webpack_require__(98);
 var object_utils_1 = __webpack_require__(315);
 var datasource_option_1 = __webpack_require__(357);
 var datasource_config_1 = __webpack_require__(358);
@@ -8286,7 +8286,7 @@ var _ = __webpack_require__(6);
 var promise_api_1 = __webpack_require__(51);
 var datasource_1 = __webpack_require__(306);
 var technical_error_1 = __webpack_require__(13);
-var codes_error_1 = __webpack_require__(97);
+var codes_error_1 = __webpack_require__(98);
 var hornet_js_utils_1 = __webpack_require__(0);
 var array_utils_1 = __webpack_require__(305);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.component.datasource.paginate-datasource");
@@ -10429,7 +10429,7 @@ var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var abstract_field_1 = __webpack_require__(258);
-var modal_1 = __webpack_require__(101);
+var modal_1 = __webpack_require__(99);
 var _ = __webpack_require__(6);
 var moment = __webpack_require__(26);
 var date_utils_1 = __webpack_require__(104);
@@ -13427,7 +13427,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 var sort_data_1 = __webpack_require__(285);
 var technical_error_1 = __webpack_require__(13);
-var codes_error_1 = __webpack_require__(97);
+var codes_error_1 = __webpack_require__(98);
 var hornet_js_utils_1 = __webpack_require__(0);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.component.datasource.options.datasource-option");
 var CompareMethod;
@@ -20983,7 +20983,7 @@ var invariant = __webpack_require__(37);
 var warning = __webpack_require__(38);
 var assign = __webpack_require__(28);
 
-var ReactPropTypesSecret = __webpack_require__(100);
+var ReactPropTypesSecret = __webpack_require__(101);
 var checkPropTypes = __webpack_require__(53);
 
 module.exports = function(isValidElement, throwOnDirectAccess) {
@@ -21530,7 +21530,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
 var emptyFunction = __webpack_require__(14);
 var invariant = __webpack_require__(37);
-var ReactPropTypesSecret = __webpack_require__(100);
+var ReactPropTypesSecret = __webpack_require__(101);
 
 module.exports = function() {
   function shim(props, propName, componentName, location, propFullName, secret) {
@@ -25644,7 +25644,7 @@ var tslib_1 = __webpack_require__(1);
  */
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
-var button_1 = __webpack_require__(98);
+var button_1 = __webpack_require__(97);
 var classNames = __webpack_require__(9);
 var _ = __webpack_require__(6);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.table.action-button");
@@ -26155,8 +26155,8 @@ var tslib_1 = __webpack_require__(1);
  */
 var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
-var button_1 = __webpack_require__(98);
-var modal_1 = __webpack_require__(101);
+var button_1 = __webpack_require__(97);
+var modal_1 = __webpack_require__(99);
 var notification_1 = __webpack_require__(49);
 var Confirm = /** @class */ (function (_super) {
     tslib_1.__extends(Confirm, _super);
@@ -27867,14 +27867,12 @@ var ServerFormServiceImpl = /** @class */ (function (_super) {
         var request = {
             method: "post",
             url: this.buildUrl("/fvmform1server"),
-            data: data
+            data: data,
         };
         request.attach = [];
         request.attach.push({ field: "copie_permis", file: data["copie_permis"], fileName: data["copie_permis"].name });
         request.attach.push({ field: "copie_note_verbale_maeci", file: data["copie_note_verbale_maeci"], fileName: data["copie_note_verbale_maeci"].name });
-        return this.fetch(request).error(function (reason) {
-            return Promise.resolve(reason);
-        });
+        return this.fetch(request);
     };
     ServerFormServiceImpl.prototype.insererDemandeAuthentification = function (data) {
         logger.trace("SERVICES - list : ", data);
@@ -27911,6 +27909,7 @@ var ServerFormServiceImpl = /** @class */ (function (_super) {
     return ServerFormServiceImpl;
 }(service_page_1.ServicePage));
 exports.ServerFormServiceImpl = ServerFormServiceImpl;
+
 
 
 /***/ }),
@@ -30079,7 +30078,7 @@ var form_1 = __webpack_require__(311);
 var row_1 = __webpack_require__(347);
 var input_field_1 = __webpack_require__(290);
 var calendar_field_1 = __webpack_require__(348);
-var button_1 = __webpack_require__(98);
+var button_1 = __webpack_require__(97);
 var buttons_area_1 = __webpack_require__(309);
 var datasource_1 = __webpack_require__(306);
 var notification_1 = __webpack_require__(49);
@@ -30097,7 +30096,7 @@ var date_column_1 = __webpack_require__(486);
 var header_1 = __webpack_require__(473);
 var menu_actions_1 = __webpack_require__(474);
 var action_button_1 = __webpack_require__(475);
-var modal_1 = __webpack_require__(101);
+var modal_1 = __webpack_require__(99);
 var action_column_1 = __webpack_require__(478);
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
 var FormulaireDemandeAuthentificationPage = /** @class */ (function (_super) {

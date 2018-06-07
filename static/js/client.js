@@ -31390,7 +31390,7 @@ exports.MediaTypes = MediaTypes;
 if (process.env.NODE_ENV !== 'production') {
   var invariant = __webpack_require__(37);
   var warning = __webpack_require__(38);
-  var ReactPropTypesSecret = __webpack_require__(100);
+  var ReactPropTypesSecret = __webpack_require__(101);
   var loggedTypeFailures = {};
 }
 
@@ -39501,163 +39501,6 @@ exports.Picto = Picto;
  *
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * hornet-js-utils - Partie commune et utilitaire à tous les composants hornet-js
- *
- * @author MEAE - Ministère de l'Europe et des Affaires étrangères
- * @version v5.1.1
- * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
- * @license CECILL-2.1
- */
-var CodesError = /** @class */ (function () {
-    function CodesError() {
-    }
-    CodesError.DEFAULT_ERROR_MSG = "Erreur inattendue.";
-    /**
-     * codes error SEQUELIZE 10000 - 10099
-     */
-    CodesError.SEQUELIZE_CONNECTION_REFUSED = 10001;
-    CodesError.SEQUELIZE_HOST_NOT_FOUND = 10002;
-    CodesError.SEQUELIZE_HOST_NOT_REACHABLE = 10003;
-    CodesError.SEQUELIZE_INVALID_CONNECTION = 10004;
-    CodesError.SEQUELIZE_CONNECTION = 10005;
-    CodesError.SEQUELIZE_INSTANCE_ERROR = 10006;
-    CodesError.SEQUELIZE_CONNECTION_TIMEOUT = 10007;
-    CodesError.SEQUELIZE_TIMEOUT_ERROR = 10008;
-    CodesError.SEQUELIZE_ACCESSDENIED = 10009;
-    CodesError.SEQUELIZE_CONNECTION_ERROR = 10010;
-    CodesError.SEQUELIZE_EXCLUSION_ERROR = 10011;
-    CodesError.SEQUELIZE_FOREIGN_KEY_ERROR = 10012;
-    CodesError.SEQUELIZE_VALIDATION_ERROR = 10013;
-    CodesError.SEQUELIZE_UNIQUE_ERROR = 10014;
-    CodesError.SEQUELIZE_DATABASE_ERROR = 10015;
-    /**
-     * codes error BINDING 10100 - 10199
-     */
-    CodesError.BINDING_ERROR = 10101;
-    /**
-     * codes error BINDING 10200 - 10299
-     */
-    CodesError.ROUTE_ERROR = 10201;
-    /**
-     * codes error DATASOURCE 10300 - 10399
-     */
-    CodesError.DATASOURCE_FETCH_ERROR = 10301;
-    CodesError.DATASOURCE_SORT_ERROR = 10302;
-    CodesError.DATASOURCE_FILTER_ERROR = 10303;
-    CodesError.DATASOURCE_ADD_ERROR = 10304;
-    CodesError.DATASOURCE_DELETE_ERROR = 10305;
-    CodesError.DATASOURCE_RESPONSE_ERROR = 10306;
-    CodesError.DATASOURCE_SORT_ARGS_ERROR = 10307;
-    CodesError.DATASOURCE_CONFIGURATION_ERROR = 10320;
-    /**
-     * codes error INJECT 10400 - 10499
-     */
-    CodesError.INJECT_ERROR = 10400;
-    CodesError.INJECT_ALREADY_DEFINED_ERROR = 10401;
-    CodesError.INJECT_NOT_DEFINED_ERROR = 10402;
-    /**
-     * codes error NODEMAILER 10500 - 10599
-     */
-    CodesError.NODEMAILER_AUTH_ERROR = 10500;
-    CodesError.NODEMAILER_SERVER_NOTFOUND = 10501;
-    CodesError.NODEMAILER_SERVER_TIMEOUT = 10502;
-    CodesError.NODEMAILER_UNKNOWN = 10599;
-    /**
-     * codes error CLAMAV 10600 - 10699
-     */
-    CodesError.CLAMAV_SCAN_INFECTED = 10600;
-    CodesError.CLAMAV_SCAN_REMOVE = 10601;
-    CodesError.CLAMAV_SCAN_TIMEOUT = 10602;
-    CodesError.CLAMAV_SCAN_RESPONSE_MALFORMED = 10603;
-    CodesError.CLAMAV_SCAN_UNKNOWN = 10604;
-    /**
-     * code error BATCH 10700 - 10799
-     */
-    CodesError.BATCH_OPTIONS_UNDEFINED = 10700;
-    return CodesError;
-}());
-exports.CodesError = CodesError;
-
-
-
-/***/ }),
-/* 98 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * Ce logiciel est un programme informatique servant à faciliter la création
- * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
- * <p/>
- * Ce logiciel est régi par la licence CeCILL soumise au droit français et
- * respectant les principes de diffusion des logiciels libres. Vous pouvez
- * utiliser, modifier et/ou redistribuer ce programme sous les conditions
- * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
- * sur le site "http://www.cecill.info".
- * <p/>
- * En contrepartie de l'accessibilité au code source et des droits de copie,
- * de modification et de redistribution accordés par cette licence, il n'est
- * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
- * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
- * titulaire des droits patrimoniaux et les concédants successifs.
- * <p/>
- * A cet égard  l'attention de l'utilisateur est attirée sur les risques
- * associés au chargement,  à l'utilisation,  à la modification et/ou au
- * développement et à la reproduction du logiciel par l'utilisateur étant
- * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
- * manipuler et qui le réserve donc à des développeurs et des professionnels
- * avertis possédant  des  connaissances  informatiques approfondies.  Les
- * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
- * logiciel à leurs besoins dans des conditions permettant d'assurer la
- * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
- * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
- * <p/>
- * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
- * pris connaissance de la licence CeCILL, et que vous en avez accepté les
- * termes.
- * <p/>
- * <p/>
- * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
- * <p/>
- * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
- * <p/>
- * This software is a computer program whose purpose is to facilitate creation of
- * web application in accordance with french general repositories : RGI, RGS and RGAA.
- * <p/>
- * This software is governed by the CeCILL license under French law and
- * abiding by the rules of distribution of free software.  You can  use,
- * modify and/ or redistribute the software under the terms of the CeCILL
- * license as circulated by CEA, CNRS and INRIA at the following URL
- * "http://www.cecill.info".
- * <p/>
- * As a counterpart to the access to the source code and  rights to copy,
- * modify and redistribute granted by the license, users are provided only
- * with a limited warranty  and the software's author,  the holder of the
- * economic rights,  and the successive licensors  have only  limited
- * liability.
- * <p/>
- * In this respect, the user's attention is drawn to the risks associated
- * with loading,  using,  modifying and/or developing or reproducing the
- * software by the user in light of its specific status of free software,
- * that may mean  that it is complicated to manipulate,  and  that  also
- * therefore means  that it is reserved for developers  and  experienced
- * professionals having in-depth computer knowledge. Users are therefore
- * encouraged to load and test the software's suitability as regards their
- * requirements in conditions enabling the security of their systems and/or
- * data to be ensured and,  more generally, to use and operate it in the
- * same conditions as regards security.
- * <p/>
- * The fact that you are presently reading this means that you have had
- * knowledge of the CeCILL license and that you accept its terms.
- *
- */
-Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 /**
  * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
@@ -39769,7 +39612,7 @@ exports.Button = Button;
 
 
 /***/ }),
-/* 99 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39845,235 +39688,88 @@ exports.Button = Button;
  *
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(1);
 /**
- * hornet-js-core - Ensemble des composants qui forment le coeur de hornet-js
+ * hornet-js-utils - Partie commune et utilitaire à tous les composants hornet-js
  *
  * @author MEAE - Ministère de l'Europe et des Affaires étrangères
  * @version v5.1.1
  * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
  * @license CECILL-2.1
  */
-var hornet_js_utils_1 = __webpack_require__(0);
-var _ = __webpack_require__(6);
-var technical_error_1 = __webpack_require__(13);
-var codes_error_1 = __webpack_require__(97);
-var media_type_1 = __webpack_require__(52);
-var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.routes.abstract-routes");
-/** Routes type */
-exports.RouteType = {
-    PAGE: "PAGE_ROUTE",
-    DATA: "DATA_ROUTE"
-};
-exports.PUBLIC_ROUTE = [];
-exports.PRIVATE_ROUTE = ["*"];
-exports.DEFAULT_AUTHORIZATION = exports.PRIVATE_ROUTE;
-exports.DEFAULT_METHOD = "get";
-var RouteAction = /** @class */ (function () {
-    function RouteAction() {
-        /** Attributs de la route déclenchant l'action */
-        this.attributes = {};
-        /** Utilisateur connecté */
-        this.user = hornet_js_utils_1.Utils.getCls("hornet.user");
+var CodesError = /** @class */ (function () {
+    function CodesError() {
     }
+    CodesError.DEFAULT_ERROR_MSG = "Erreur inattendue.";
     /**
-     * Renvoie l'objet contenant les éléments nécessaires à la validation des données transmises à cette action.
-     * Renvoie null par défaut : à surcharger éventuellement dans la classe action implémentée.
-     * @returns {null} une instance de ActionValidation ou null
+     * codes error SEQUELIZE 10000 - 10099
      */
-    RouteAction.prototype.getDataValidator = function () {
-        return null;
-    };
+    CodesError.SEQUELIZE_CONNECTION_REFUSED = 10001;
+    CodesError.SEQUELIZE_HOST_NOT_FOUND = 10002;
+    CodesError.SEQUELIZE_HOST_NOT_REACHABLE = 10003;
+    CodesError.SEQUELIZE_INVALID_CONNECTION = 10004;
+    CodesError.SEQUELIZE_CONNECTION = 10005;
+    CodesError.SEQUELIZE_INSTANCE_ERROR = 10006;
+    CodesError.SEQUELIZE_CONNECTION_TIMEOUT = 10007;
+    CodesError.SEQUELIZE_TIMEOUT_ERROR = 10008;
+    CodesError.SEQUELIZE_ACCESSDENIED = 10009;
+    CodesError.SEQUELIZE_CONNECTION_ERROR = 10010;
+    CodesError.SEQUELIZE_EXCLUSION_ERROR = 10011;
+    CodesError.SEQUELIZE_FOREIGN_KEY_ERROR = 10012;
+    CodesError.SEQUELIZE_VALIDATION_ERROR = 10013;
+    CodesError.SEQUELIZE_UNIQUE_ERROR = 10014;
+    CodesError.SEQUELIZE_DATABASE_ERROR = 10015;
     /**
-     * Renvoie les données entrantes éventuelles, récupérées par défaut directement dans le corps de la requête.
-     * A sucharger si nécessaire.
-     * @return {any} un objet contenant les données transmises à cette action
+     * codes error BINDING 10100 - 10199
      */
-    RouteAction.prototype.getPayload = function () {
-        return this.req.body;
-    };
+    CodesError.BINDING_ERROR = 10101;
     /**
-     * Renvoie le MediaType issu de l'entête de la requête.
-     * @return {any} un objet contenant les données transmises à cette action
+     * codes error BINDING 10200 - 10299
      */
-    RouteAction.prototype.getMediaType = function () {
-        return media_type_1.MediaTypes.fromMime(this.req.get('Accept'));
-    };
-    return RouteAction;
+    CodesError.ROUTE_ERROR = 10201;
+    /**
+     * codes error DATASOURCE 10300 - 10399
+     */
+    CodesError.DATASOURCE_FETCH_ERROR = 10301;
+    CodesError.DATASOURCE_SORT_ERROR = 10302;
+    CodesError.DATASOURCE_FILTER_ERROR = 10303;
+    CodesError.DATASOURCE_ADD_ERROR = 10304;
+    CodesError.DATASOURCE_DELETE_ERROR = 10305;
+    CodesError.DATASOURCE_RESPONSE_ERROR = 10306;
+    CodesError.DATASOURCE_SORT_ARGS_ERROR = 10307;
+    CodesError.DATASOURCE_CONFIGURATION_ERROR = 10320;
+    /**
+     * codes error INJECT 10400 - 10499
+     */
+    CodesError.INJECT_ERROR = 10400;
+    CodesError.INJECT_ALREADY_DEFINED_ERROR = 10401;
+    CodesError.INJECT_NOT_DEFINED_ERROR = 10402;
+    /**
+     * codes error NODEMAILER 10500 - 10599
+     */
+    CodesError.NODEMAILER_AUTH_ERROR = 10500;
+    CodesError.NODEMAILER_SERVER_NOTFOUND = 10501;
+    CodesError.NODEMAILER_SERVER_TIMEOUT = 10502;
+    CodesError.NODEMAILER_UNKNOWN = 10599;
+    /**
+     * codes error CLAMAV 10600 - 10699
+     */
+    CodesError.CLAMAV_SCAN_INFECTED = 10600;
+    CodesError.CLAMAV_SCAN_REMOVE = 10601;
+    CodesError.CLAMAV_SCAN_TIMEOUT = 10602;
+    CodesError.CLAMAV_SCAN_RESPONSE_MALFORMED = 10603;
+    CodesError.CLAMAV_SCAN_UNKNOWN = 10604;
+    /**
+     * code error BATCH 10700 - 10799
+     */
+    CodesError.BATCH_OPTIONS_UNDEFINED = 10700;
+    return CodesError;
 }());
-exports.RouteAction = RouteAction;
-var RouteActionService = /** @class */ (function (_super) {
-    tslib_1.__extends(RouteActionService, _super);
-    function RouteActionService() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    RouteActionService.prototype.getService = function () {
-        return this.service;
-    };
-    return RouteActionService;
-}(RouteAction));
-exports.RouteActionService = RouteActionService;
-var RouteInfos = /** @class */ (function () {
-    function RouteInfos(type, attributes, service) {
-        if (attributes === void 0) { attributes = {}; }
-        this.attributes = {};
-        this.type = type;
-        _.assign(this.attributes, attributes);
-        if (service) {
-            this.service = service;
-        }
-    }
-    RouteInfos.prototype.getRouteType = function () {
-        return this.type;
-    };
-    RouteInfos.prototype.getAttributes = function () {
-        return this.attributes;
-    };
-    RouteInfos.prototype.getService = function () {
-        return this.service;
-    };
-    return RouteInfos;
-}());
-exports.RouteInfos = RouteInfos;
-var PageRouteInfos = /** @class */ (function (_super) {
-    tslib_1.__extends(PageRouteInfos, _super);
-    function PageRouteInfos(viewComponent, attributes, service) {
-        var _this = _super.call(this, exports.RouteType.PAGE, attributes, service) || this;
-        _this.viewComponent = viewComponent;
-        return _this;
-    }
-    PageRouteInfos.prototype.getViewComponent = function () {
-        return this.viewComponent;
-    };
-    return PageRouteInfos;
-}(RouteInfos));
-exports.PageRouteInfos = PageRouteInfos;
-var DataRouteInfos = /** @class */ (function (_super) {
-    tslib_1.__extends(DataRouteInfos, _super);
-    function DataRouteInfos(action, attributes, service) {
-        var _this = _super.call(this, exports.RouteType.DATA, attributes, service) || this;
-        _this.action = action;
-        return _this;
-    }
-    DataRouteInfos.prototype.getAction = function () {
-        return this.action;
-    };
-    return DataRouteInfos;
-}(RouteInfos));
-exports.DataRouteInfos = DataRouteInfos;
-/** Routes Declaration */
-var AbstractRoutes = /** @class */ (function () {
-    function AbstractRoutes() {
-        this.pageRoutes = {};
-        this.dataRoutes = {};
-        this.lazyRoutes = {};
-        this.subRoutes = {};
-    }
-    AbstractRoutes.prototype.resolveAuthorizationAndMethod = function (authorizationOrMethod, method) {
-        var auth, meth;
-        if (_.isString(authorizationOrMethod)) {
-            auth = exports.DEFAULT_AUTHORIZATION;
-            meth = authorizationOrMethod;
-        }
-        else {
-            if (_.isUndefined(authorizationOrMethod)) {
-                auth = exports.DEFAULT_AUTHORIZATION;
-            }
-            else {
-                auth = authorizationOrMethod;
-            }
-            if (_.isString(method)) {
-                meth = method;
-            }
-            else {
-                meth = exports.DEFAULT_METHOD;
-            }
-        }
-        return { authorization: auth, method: meth };
-    };
-    AbstractRoutes.prototype.addPageRoute = function (path, handler, authorization) {
-        var args = this.resolveAuthorizationAndMethod(authorization, exports.DEFAULT_METHOD);
-        if (!this.pageRoutes[path])
-            this.pageRoutes[path] = {};
-        this.pageRoutes[path][args.method.toLowerCase()] = { authorization: args.authorization, handler: handler };
-    };
-    AbstractRoutes.prototype.addDataRoute = function (path, handler, authorizationOrMethod, method) {
-        var args = this.resolveAuthorizationAndMethod(authorizationOrMethod, method);
-        if (!this.dataRoutes[path])
-            this.dataRoutes[path] = {};
-        this.dataRoutes[path][args.method.toLowerCase()] = { authorization: args.authorization, handler: handler };
-    };
-    AbstractRoutes.prototype.addLazyRoutes = function (path, subRoutesFile) {
-        this.lazyRoutes[path] = subRoutesFile;
-    };
-    AbstractRoutes.prototype.getPageRoutes = function () {
-        return this.pageRoutes;
-    };
-    AbstractRoutes.prototype.getDataRoutes = function () {
-        return this.dataRoutes;
-    };
-    AbstractRoutes.prototype.getLazyRoutes = function () {
-        return this.lazyRoutes;
-    };
-    AbstractRoutes.prototype.addSubRoute = function (path, subRoutesFile) {
-        this.subRoutes[path] = subRoutesFile;
-    };
-    AbstractRoutes.prototype.getSubRoutes = function () {
-        return this.subRoutes;
-    };
-    /**
-     * Permet de charger les routes depuis une liste de répertoires
-     * @param paths
-     * @returns route module
-     */
-    AbstractRoutes.prototype.getDefaultRouteLoader = function (paths) {
-        return function (name) {
-            logger.trace("defaultRouteLoader(" + name + ")");
-            var index = _.findIndex(paths, function (path) {
-                try {
-                    return __webpack_require__.c[__webpack_require__.s].require(path + name);
-                }
-                catch (e) {
-                    // not throw error for module not found (parse all paths)
-                    if (e.code !== "MODULE_NOT_FOUND") {
-                        throw new technical_error_1.TechnicalError('ERR_TECH_' + codes_error_1.CodesError.ROUTE_ERROR, { errorMessage: e.message });
-                    }
-                }
-            });
-            if (index == -1) {
-                logger.error("Unknow route " + name + " in paths " + paths);
-                throw new technical_error_1.TechnicalError('ERR_TECH_' + codes_error_1.CodesError.ROUTE_ERROR, { errorMessage: codes_error_1.CodesError.DEFAULT_ERROR_MSG });
-            }
-            return __webpack_require__.c[__webpack_require__.s].require(paths[index] + name);
-        };
-    };
-    return AbstractRoutes;
-}());
-exports.AbstractRoutes = AbstractRoutes;
+exports.CodesError = CodesError;
 
 
 
 /***/ }),
-/* 100 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-
-
-var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
-
-module.exports = ReactPropTypesSecret;
-
-
-/***/ }),
-/* 101 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40299,6 +39995,310 @@ var Modal = /** @class */ (function (_super) {
 }(hornet_component_1.HornetComponent));
 exports.Modal = Modal;
 
+
+
+/***/ }),
+/* 100 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * Ce logiciel est un programme informatique servant à faciliter la création
+ * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
+ * <p/>
+ * Ce logiciel est régi par la licence CeCILL soumise au droit français et
+ * respectant les principes de diffusion des logiciels libres. Vous pouvez
+ * utiliser, modifier et/ou redistribuer ce programme sous les conditions
+ * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
+ * sur le site "http://www.cecill.info".
+ * <p/>
+ * En contrepartie de l'accessibilité au code source et des droits de copie,
+ * de modification et de redistribution accordés par cette licence, il n'est
+ * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
+ * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
+ * titulaire des droits patrimoniaux et les concédants successifs.
+ * <p/>
+ * A cet égard  l'attention de l'utilisateur est attirée sur les risques
+ * associés au chargement,  à l'utilisation,  à la modification et/ou au
+ * développement et à la reproduction du logiciel par l'utilisateur étant
+ * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
+ * manipuler et qui le réserve donc à des développeurs et des professionnels
+ * avertis possédant  des  connaissances  informatiques approfondies.  Les
+ * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
+ * logiciel à leurs besoins dans des conditions permettant d'assurer la
+ * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
+ * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
+ * <p/>
+ * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
+ * pris connaissance de la licence CeCILL, et que vous en avez accepté les
+ * termes.
+ * <p/>
+ * <p/>
+ * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * This software is a computer program whose purpose is to facilitate creation of
+ * web application in accordance with french general repositories : RGI, RGS and RGAA.
+ * <p/>
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software.  You can  use,
+ * modify and/ or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ * <p/>
+ * As a counterpart to the access to the source code and  rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty  and the software's author,  the holder of the
+ * economic rights,  and the successive licensors  have only  limited
+ * liability.
+ * <p/>
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading,  using,  modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean  that it is complicated to manipulate,  and  that  also
+ * therefore means  that it is reserved for developers  and  experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and,  more generally, to use and operate it in the
+ * same conditions as regards security.
+ * <p/>
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(1);
+/**
+ * hornet-js-core - Ensemble des composants qui forment le coeur de hornet-js
+ *
+ * @author MEAE - Ministère de l'Europe et des Affaires étrangères
+ * @version v5.1.1
+ * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
+ * @license CECILL-2.1
+ */
+var hornet_js_utils_1 = __webpack_require__(0);
+var _ = __webpack_require__(6);
+var technical_error_1 = __webpack_require__(13);
+var codes_error_1 = __webpack_require__(98);
+var media_type_1 = __webpack_require__(52);
+var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.routes.abstract-routes");
+/** Routes type */
+exports.RouteType = {
+    PAGE: "PAGE_ROUTE",
+    DATA: "DATA_ROUTE"
+};
+exports.PUBLIC_ROUTE = [];
+exports.PRIVATE_ROUTE = ["*"];
+exports.DEFAULT_AUTHORIZATION = exports.PRIVATE_ROUTE;
+exports.DEFAULT_METHOD = "get";
+var RouteAction = /** @class */ (function () {
+    function RouteAction() {
+        /** Attributs de la route déclenchant l'action */
+        this.attributes = {};
+        /** Utilisateur connecté */
+        this.user = hornet_js_utils_1.Utils.getCls("hornet.user");
+    }
+    /**
+     * Renvoie l'objet contenant les éléments nécessaires à la validation des données transmises à cette action.
+     * Renvoie null par défaut : à surcharger éventuellement dans la classe action implémentée.
+     * @returns {null} une instance de ActionValidation ou null
+     */
+    RouteAction.prototype.getDataValidator = function () {
+        return null;
+    };
+    /**
+     * Renvoie les données entrantes éventuelles, récupérées par défaut directement dans le corps de la requête.
+     * A sucharger si nécessaire.
+     * @return {any} un objet contenant les données transmises à cette action
+     */
+    RouteAction.prototype.getPayload = function () {
+        return this.req.body;
+    };
+    /**
+     * Renvoie le MediaType issu de l'entête de la requête.
+     * @return {any} un objet contenant les données transmises à cette action
+     */
+    RouteAction.prototype.getMediaType = function () {
+        return media_type_1.MediaTypes.fromMime(this.req.get('Accept'));
+    };
+    return RouteAction;
+}());
+exports.RouteAction = RouteAction;
+var RouteActionService = /** @class */ (function (_super) {
+    tslib_1.__extends(RouteActionService, _super);
+    function RouteActionService() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    RouteActionService.prototype.getService = function () {
+        return this.service;
+    };
+    return RouteActionService;
+}(RouteAction));
+exports.RouteActionService = RouteActionService;
+var RouteInfos = /** @class */ (function () {
+    function RouteInfos(type, attributes, service) {
+        if (attributes === void 0) { attributes = {}; }
+        this.attributes = {};
+        this.type = type;
+        _.assign(this.attributes, attributes);
+        if (service) {
+            this.service = service;
+        }
+    }
+    RouteInfos.prototype.getRouteType = function () {
+        return this.type;
+    };
+    RouteInfos.prototype.getAttributes = function () {
+        return this.attributes;
+    };
+    RouteInfos.prototype.getService = function () {
+        return this.service;
+    };
+    return RouteInfos;
+}());
+exports.RouteInfos = RouteInfos;
+var PageRouteInfos = /** @class */ (function (_super) {
+    tslib_1.__extends(PageRouteInfos, _super);
+    function PageRouteInfos(viewComponent, attributes, service) {
+        var _this = _super.call(this, exports.RouteType.PAGE, attributes, service) || this;
+        _this.viewComponent = viewComponent;
+        return _this;
+    }
+    PageRouteInfos.prototype.getViewComponent = function () {
+        return this.viewComponent;
+    };
+    return PageRouteInfos;
+}(RouteInfos));
+exports.PageRouteInfos = PageRouteInfos;
+var DataRouteInfos = /** @class */ (function (_super) {
+    tslib_1.__extends(DataRouteInfos, _super);
+    function DataRouteInfos(action, attributes, service) {
+        var _this = _super.call(this, exports.RouteType.DATA, attributes, service) || this;
+        _this.action = action;
+        return _this;
+    }
+    DataRouteInfos.prototype.getAction = function () {
+        return this.action;
+    };
+    return DataRouteInfos;
+}(RouteInfos));
+exports.DataRouteInfos = DataRouteInfos;
+/** Routes Declaration */
+var AbstractRoutes = /** @class */ (function () {
+    function AbstractRoutes() {
+        this.pageRoutes = {};
+        this.dataRoutes = {};
+        this.lazyRoutes = {};
+        this.subRoutes = {};
+    }
+    AbstractRoutes.prototype.resolveAuthorizationAndMethod = function (authorizationOrMethod, method) {
+        var auth, meth;
+        if (_.isString(authorizationOrMethod)) {
+            auth = exports.DEFAULT_AUTHORIZATION;
+            meth = authorizationOrMethod;
+        }
+        else {
+            if (_.isUndefined(authorizationOrMethod)) {
+                auth = exports.DEFAULT_AUTHORIZATION;
+            }
+            else {
+                auth = authorizationOrMethod;
+            }
+            if (_.isString(method)) {
+                meth = method;
+            }
+            else {
+                meth = exports.DEFAULT_METHOD;
+            }
+        }
+        return { authorization: auth, method: meth };
+    };
+    AbstractRoutes.prototype.addPageRoute = function (path, handler, authorization) {
+        var args = this.resolveAuthorizationAndMethod(authorization, exports.DEFAULT_METHOD);
+        if (!this.pageRoutes[path])
+            this.pageRoutes[path] = {};
+        this.pageRoutes[path][args.method.toLowerCase()] = { authorization: args.authorization, handler: handler };
+    };
+    AbstractRoutes.prototype.addDataRoute = function (path, handler, authorizationOrMethod, method) {
+        var args = this.resolveAuthorizationAndMethod(authorizationOrMethod, method);
+        if (!this.dataRoutes[path])
+            this.dataRoutes[path] = {};
+        this.dataRoutes[path][args.method.toLowerCase()] = { authorization: args.authorization, handler: handler };
+    };
+    AbstractRoutes.prototype.addLazyRoutes = function (path, subRoutesFile) {
+        this.lazyRoutes[path] = subRoutesFile;
+    };
+    AbstractRoutes.prototype.getPageRoutes = function () {
+        return this.pageRoutes;
+    };
+    AbstractRoutes.prototype.getDataRoutes = function () {
+        return this.dataRoutes;
+    };
+    AbstractRoutes.prototype.getLazyRoutes = function () {
+        return this.lazyRoutes;
+    };
+    AbstractRoutes.prototype.addSubRoute = function (path, subRoutesFile) {
+        this.subRoutes[path] = subRoutesFile;
+    };
+    AbstractRoutes.prototype.getSubRoutes = function () {
+        return this.subRoutes;
+    };
+    /**
+     * Permet de charger les routes depuis une liste de répertoires
+     * @param paths
+     * @returns route module
+     */
+    AbstractRoutes.prototype.getDefaultRouteLoader = function (paths) {
+        return function (name) {
+            logger.trace("defaultRouteLoader(" + name + ")");
+            var index = _.findIndex(paths, function (path) {
+                try {
+                    return __webpack_require__.c[__webpack_require__.s].require(path + name);
+                }
+                catch (e) {
+                    // not throw error for module not found (parse all paths)
+                    if (e.code !== "MODULE_NOT_FOUND") {
+                        throw new technical_error_1.TechnicalError('ERR_TECH_' + codes_error_1.CodesError.ROUTE_ERROR, { errorMessage: e.message });
+                    }
+                }
+            });
+            if (index == -1) {
+                logger.error("Unknow route " + name + " in paths " + paths);
+                throw new technical_error_1.TechnicalError('ERR_TECH_' + codes_error_1.CodesError.ROUTE_ERROR, { errorMessage: codes_error_1.CodesError.DEFAULT_ERROR_MSG });
+            }
+            return __webpack_require__.c[__webpack_require__.s].require(paths[index] + name);
+        };
+    };
+    return AbstractRoutes;
+}());
+exports.AbstractRoutes = AbstractRoutes;
+
+
+
+/***/ }),
+/* 101 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
+
+module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
@@ -41179,7 +41179,7 @@ var React = __webpack_require__(2);
 var ReactDOM = __webpack_require__(22);
 var hornet_component_1 = __webpack_require__(3);
 var icon_1 = __webpack_require__(103);
-var modal_1 = __webpack_require__(101);
+var modal_1 = __webpack_require__(99);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.table.button-info-accessibilite");
 /**
  * Bouton et modale d'information sur l'accessibilité clavier du composant Table
@@ -54323,7 +54323,7 @@ exports.SecurityError = SecurityError;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
-var abstract_routes_1 = __webpack_require__(99);
+var abstract_routes_1 = __webpack_require__(100);
 // import { HomePage } from "src/views/gen/gen-hom-page";
 // import { AidePage } from "src/views/gen/gen-aid-page";
 // import { PlanAppliPage } from "src/views/nav/nav-pap-page";
@@ -54392,7 +54392,7 @@ var tslib_1 = __webpack_require__(1);
 var React = __webpack_require__(2);
 var hornet_js_utils_1 = __webpack_require__(0);
 var hornet_page_1 = __webpack_require__(40);
-var button_1 = __webpack_require__(98);
+var button_1 = __webpack_require__(97);
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.gen.gen-hom-page");
 /**
  * Ecran de page d'accueil de l'application

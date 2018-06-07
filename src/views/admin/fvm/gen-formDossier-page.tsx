@@ -67,7 +67,6 @@ export class FormulaireDossierPage extends HornetPage<ServerFormService, HornetC
         this.SequelizeErrors.text = result.hasReason;
         NotificationManager.notify("SequelizeError","errors", this.errors, null, null, null, null);
       } else {
-        console.log(result);
         NotificationManager.notify("SequelizeSuccess","notif", null, this.success, null, null, null);
       }
     }).catch(error=>{

@@ -15,7 +15,6 @@ export class CopieNoteVerbaleMAECIFVMDao extends EntityDAO {
 
   insererCopieNoteVerbaleMAECI(mimetype, encoding, size, data, idDossier): Promise<any> {
     return this.getNewIdCopieNoteVerbaleMAECI().then(idCopieNoteVerbaleMAECI=> {
-
       return this.modelDAO.copieNoteVerbaleMAECIFVMEntity.create({
         idCopieNoteVerbaleMAECI: idCopieNoteVerbaleMAECI,
         nom: this.getNewNom(idCopieNoteVerbaleMAECI),
@@ -24,7 +23,7 @@ export class CopieNoteVerbaleMAECIFVMDao extends EntityDAO {
         size: size,
         data: data,
         idDossier: idDossier
-      }).then(result=>{
+      }.then(result=>{
         return Promise.resolve(idCopieNoteVerbaleMAECI);
       });
     });

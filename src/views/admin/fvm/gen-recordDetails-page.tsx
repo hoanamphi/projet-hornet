@@ -44,6 +44,7 @@ import {Icon} from "hornet-js-react-components/src/widget/icon/icon";
 import {TabHeader} from "hornet-js-react-components/src/widget/tab/tab-header";
 import {RadiosField} from "hornet-js-react-components/src/widget/form/radios-field";
 import {SelectField} from "hornet-js-react-components/src/widget/form/select-field";
+import {Alert} from "hornet-js-react-components/src/widget/dialog/alert";
 
 const logger: Logger = Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
 
@@ -67,6 +68,7 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
   private intitule_prefecture = new InputField();
   private intitule_service = new InputField();
   private cedex = new SelectField({"name": "cedex"});
+  private alert = new Alert();
 
   constructor(props?: HornetComponentProps, context?: any) {
     super(props, context);
@@ -284,8 +286,15 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
           <TabContent dataSource={this.demandeauthentificationDatasource}>
             <Notification id="errors"/>
 
+            <Alert message={"Êtes vous sûr de vouloir supprimer cette demande ?"}
+                   ref={(alert)=>{this.alert = alert;}}
+                   onClickOk={this.supprimerDemande}
+                   onClickClose={this.closeAlert}
+                   validTitle={"Supprimer la demande"}
+                   isVisible={false}/>
+
             <h6> Vous avez généré une demande d'authentification pour ce dossier </h6>
-            <Icon src={Picto.blue.supprimer} alt="Supprimer la demande d'authentification" title="Supprimer la demande d'authentification" action={this.supprimerDemande}/>
+            <Icon src={Picto.blue.supprimer} alt="Supprimer la demande d'authentification" title="Supprimer la demande d'authentification" action={this.openAlert}/>
             <Form id="demandeAuthentificationForm" defaultValues={dataForm}>
               <InputField name="numDemandeAuthentification"
                           label={format.fields.num_demande_authentification.label}
@@ -347,6 +356,14 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
         </Tab>
       );
     }
+  }
+
+  openAlert() {
+    this.alert.open();
+  }
+
+  closeAlert() {
+    this.alert.close();
   }
 
   supprimerDemande() {

@@ -6,7 +6,7 @@ webpackJsonp([1],Array(251).concat([
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
-var abstract_routes_1 = __webpack_require__(99);
+var abstract_routes_1 = __webpack_require__(100);
 var gen_recordList_page_1 = __webpack_require__(514);
 var client_list_service_impl_1 = __webpack_require__(516);
 var gen_recordDetails_page_1 = __webpack_require__(517);
@@ -3152,7 +3152,7 @@ var events = __webpack_require__(27);
 var _ = __webpack_require__(6);
 var promise_api_1 = __webpack_require__(51);
 var technical_error_1 = __webpack_require__(13);
-var codes_error_1 = __webpack_require__(97);
+var codes_error_1 = __webpack_require__(98);
 var object_utils_1 = __webpack_require__(315);
 var datasource_option_1 = __webpack_require__(357);
 var datasource_config_1 = __webpack_require__(358);
@@ -8287,7 +8287,7 @@ var _ = __webpack_require__(6);
 var promise_api_1 = __webpack_require__(51);
 var datasource_1 = __webpack_require__(306);
 var technical_error_1 = __webpack_require__(13);
-var codes_error_1 = __webpack_require__(97);
+var codes_error_1 = __webpack_require__(98);
 var hornet_js_utils_1 = __webpack_require__(0);
 var array_utils_1 = __webpack_require__(305);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.component.datasource.paginate-datasource");
@@ -10430,7 +10430,7 @@ var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
 var abstract_field_1 = __webpack_require__(258);
-var modal_1 = __webpack_require__(101);
+var modal_1 = __webpack_require__(99);
 var _ = __webpack_require__(6);
 var moment = __webpack_require__(26);
 var date_utils_1 = __webpack_require__(104);
@@ -13428,7 +13428,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 var sort_data_1 = __webpack_require__(285);
 var technical_error_1 = __webpack_require__(13);
-var codes_error_1 = __webpack_require__(97);
+var codes_error_1 = __webpack_require__(98);
 var hornet_js_utils_1 = __webpack_require__(0);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-core.component.datasource.options.datasource-option");
 var CompareMethod;
@@ -20984,7 +20984,7 @@ var invariant = __webpack_require__(37);
 var warning = __webpack_require__(38);
 var assign = __webpack_require__(28);
 
-var ReactPropTypesSecret = __webpack_require__(100);
+var ReactPropTypesSecret = __webpack_require__(101);
 var checkPropTypes = __webpack_require__(53);
 
 module.exports = function(isValidElement, throwOnDirectAccess) {
@@ -21531,7 +21531,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
 var emptyFunction = __webpack_require__(14);
 var invariant = __webpack_require__(37);
-var ReactPropTypesSecret = __webpack_require__(100);
+var ReactPropTypesSecret = __webpack_require__(101);
 
 module.exports = function() {
   function shim(props, propName, componentName, location, propFullName, secret) {
@@ -25645,7 +25645,7 @@ var tslib_1 = __webpack_require__(1);
  */
 var hornet_js_utils_1 = __webpack_require__(0);
 var React = __webpack_require__(2);
-var button_1 = __webpack_require__(98);
+var button_1 = __webpack_require__(97);
 var classNames = __webpack_require__(9);
 var _ = __webpack_require__(6);
 var logger = hornet_js_utils_1.Utils.getLogger("hornet-js-react-components.widget.table.action-button");
@@ -26156,8 +26156,8 @@ var tslib_1 = __webpack_require__(1);
  */
 var React = __webpack_require__(2);
 var hornet_component_1 = __webpack_require__(3);
-var button_1 = __webpack_require__(98);
-var modal_1 = __webpack_require__(101);
+var button_1 = __webpack_require__(97);
+var modal_1 = __webpack_require__(99);
 var notification_1 = __webpack_require__(49);
 var Confirm = /** @class */ (function (_super) {
     tslib_1.__extends(Confirm, _super);
@@ -30449,7 +30449,7 @@ var form_1 = __webpack_require__(311);
 var row_1 = __webpack_require__(347);
 var input_field_1 = __webpack_require__(290);
 var calendar_field_1 = __webpack_require__(348);
-var button_1 = __webpack_require__(98);
+var button_1 = __webpack_require__(97);
 var buttons_area_1 = __webpack_require__(309);
 var notification_1 = __webpack_require__(49);
 var schema = __webpack_require__(515);
@@ -30524,7 +30524,7 @@ var RecordListPage = /** @class */ (function (_super) {
                         React.createElement(date_column_1.DateColumn, { keyColumn: "dateDeNaissance", title: format.fields.date_de_naissance.label, sortable: false }),
                         React.createElement(date_column_1.DateColumn, { keyColumn: "dateReceptionDossier", title: format.fields.date_reception_dossier.label, sortable: true }),
                         React.createElement(action_column_1.ActionColumn, { keyColumn: "idPermis", srcImg: picto_1.Picto.black.consulter, url: "/fvmrecord/:idPermis" }),
-                        React.createElement(action_column_1.ActionColumn, { keyColumn: "idPermis", srcImg: picto_1.Picto.black.supprimer, action: this.supprimerDossier }))),
+                        React.createElement(action_column_1.ActionColumn, { keyColumn: "idPermis", srcImg: picto_1.Picto.black.supprimer, messageAlert: "Êtes vous sûr de vouloir supprimer ce dossier ?", action: this.supprimerDossier }))),
                 React.createElement(footer_1.Footer, null,
                     React.createElement(pager_1.Pager, { dataSource: this.entries, id: "table-paginate" }))),
             React.createElement("h3", null, " Recherche d'un dossier "),
@@ -30536,7 +30536,7 @@ var RecordListPage = /** @class */ (function (_super) {
                     React.createElement(calendar_field_1.CalendarField, { name: "date_de_naissance", label: format.fields.date_de_naissance.label, title: format.fields.date_de_naissance.title, required: false }),
                     React.createElement(buttons_area_1.ButtonsArea, null,
                         React.createElement(button_1.Button, { type: "button", onClick: this.reloadData, label: "annuler" }),
-                        React.createElement(button_1.Button, { type: "submit", value: "Valider", className: "hornet-button", label: "valider", title: "valider" }))))));
+                        React.createElement(button_1.Button, { type: "submit", value: "Valider", className: "hornet-button", label: "valider", title: "Effectuer une recherche selon ces crit\u00E8res" }))))));
     };
     RecordListPage.prototype.supprimerDossier = function (lineSelected) {
         var _this = this;
@@ -30714,7 +30714,7 @@ var form_1 = __webpack_require__(311);
 var row_1 = __webpack_require__(347);
 var input_field_1 = __webpack_require__(290);
 var calendar_field_1 = __webpack_require__(348);
-var button_1 = __webpack_require__(98);
+var button_1 = __webpack_require__(97);
 var buttons_area_1 = __webpack_require__(309);
 var notification_1 = __webpack_require__(49);
 var notification_manager_1 = __webpack_require__(95);
@@ -30735,6 +30735,7 @@ var tab_content_1 = __webpack_require__(522);
 var icon_1 = __webpack_require__(103);
 var radios_field_1 = __webpack_require__(488);
 var select_field_1 = __webpack_require__(343);
+var alert_1 = __webpack_require__(523);
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
 var RecordDetailsPage = /** @class */ (function (_super) {
     tslib_1.__extends(RecordDetailsPage, _super);
@@ -30746,6 +30747,7 @@ var RecordDetailsPage = /** @class */ (function (_super) {
         _this.intitule_prefecture = new input_field_1.InputField();
         _this.intitule_service = new input_field_1.InputField();
         _this.cedex = new select_field_1.SelectField({ "name": "cedex" });
+        _this.alert = new alert_1.Alert();
         _this.dossierDatasource = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getDossier), {});
         _this.demandeauthentificationDatasource = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getDemandeAuthentification), {});
         _this.errors = new notification_manager_1.Notifications();
@@ -30868,8 +30870,9 @@ var RecordDetailsPage = /** @class */ (function (_super) {
                 React.createElement(tab_1.Tab, { id: "tabDemandeAuthentification", title: "Demande d'Authentification" },
                     React.createElement(tab_content_1.TabContent, { dataSource: this.demandeauthentificationDatasource },
                         React.createElement(notification_1.Notification, { id: "errors" }),
+                        React.createElement(alert_1.Alert, { message: "Êtes vous sûr de vouloir supprimer cette demande ?", ref: function (alert) { _this.alert = alert; }, onClickOk: this.supprimerDemande, onClickClose: this.closeAlert, validTitle: "Supprimer la demande", isVisible: false }),
                         React.createElement("h6", null, " Vous avez g\u00E9n\u00E9r\u00E9 une demande d'authentification pour ce dossier "),
-                        React.createElement(icon_1.Icon, { src: picto_1.Picto.blue.supprimer, alt: "Supprimer la demande d'authentification", title: "Supprimer la demande d'authentification", action: this.supprimerDemande }),
+                        React.createElement(icon_1.Icon, { src: picto_1.Picto.blue.supprimer, alt: "Supprimer la demande d'authentification", title: "Supprimer la demande d'authentification", action: this.openAlert }),
                         React.createElement(form_1.Form, { id: "demandeAuthentificationForm", defaultValues: dataForm },
                             React.createElement(input_field_1.InputField, { name: "numDemandeAuthentification", label: format.fields.num_demande_authentification.label, readOnly: true }),
                             React.createElement(calendar_field_1.CalendarField, { name: "dateDeCreation", label: format.fields.date_de_creation.label, readOnly: true }),
@@ -30895,6 +30898,12 @@ var RecordDetailsPage = /** @class */ (function (_super) {
                     React.createElement(buttons_area_1.ButtonsArea, null,
                         React.createElement(button_1.Button, { type: "submit", onClick: this.genererDemande, value: "Valider", className: "hornet-button", label: "g\u00E9n\u00E9rer une demande d'authentification", title: "valider" })))));
         }
+    };
+    RecordDetailsPage.prototype.openAlert = function () {
+        this.alert.open();
+    };
+    RecordDetailsPage.prototype.closeAlert = function () {
+        this.alert.close();
     };
     RecordDetailsPage.prototype.supprimerDemande = function () {
         var _this = this;
@@ -32235,6 +32244,193 @@ var TabContent = /** @class */ (function (_super) {
     return TabContent;
 }(hornet_component_1.HornetComponent));
 exports.TabContent = TabContent;
+
+
+
+/***/ }),
+/* 523 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright ou © ou Copr. Ministère de l'Europe et des Affaires étrangères (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * Ce logiciel est un programme informatique servant à faciliter la création
+ * d'applications Web conformément aux référentiels généraux français : RGI, RGS et RGAA
+ * <p/>
+ * Ce logiciel est régi par la licence CeCILL soumise au droit français et
+ * respectant les principes de diffusion des logiciels libres. Vous pouvez
+ * utiliser, modifier et/ou redistribuer ce programme sous les conditions
+ * de la licence CeCILL telle que diffusée par le CEA, le CNRS et l'INRIA
+ * sur le site "http://www.cecill.info".
+ * <p/>
+ * En contrepartie de l'accessibilité au code source et des droits de copie,
+ * de modification et de redistribution accordés par cette licence, il n'est
+ * offert aux utilisateurs qu'une garantie limitée.  Pour les mêmes raisons,
+ * seule une responsabilité restreinte pèse sur l'auteur du programme,  le
+ * titulaire des droits patrimoniaux et les concédants successifs.
+ * <p/>
+ * A cet égard  l'attention de l'utilisateur est attirée sur les risques
+ * associés au chargement,  à l'utilisation,  à la modification et/ou au
+ * développement et à la reproduction du logiciel par l'utilisateur étant
+ * donné sa spécificité de logiciel libre, qui peut le rendre complexe à
+ * manipuler et qui le réserve donc à des développeurs et des professionnels
+ * avertis possédant  des  connaissances  informatiques approfondies.  Les
+ * utilisateurs sont donc invités à charger  et  tester  l'adéquation  du
+ * logiciel à leurs besoins dans des conditions permettant d'assurer la
+ * sécurité de leurs systèmes et ou de leurs données et, plus généralement,
+ * à l'utiliser et l'exploiter dans les mêmes conditions de sécurité.
+ * <p/>
+ * Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
+ * pris connaissance de la licence CeCILL, et que vous en avez accepté les
+ * termes.
+ * <p/>
+ * <p/>
+ * Copyright or © or Copr. Ministry for Europe and Foreign Affairs (2017)
+ * <p/>
+ * pole-architecture.dga-dsi-psi@diplomatie.gouv.fr
+ * <p/>
+ * This software is a computer program whose purpose is to facilitate creation of
+ * web application in accordance with french general repositories : RGI, RGS and RGAA.
+ * <p/>
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software.  You can  use,
+ * modify and/ or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ * <p/>
+ * As a counterpart to the access to the source code and  rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty  and the software's author,  the holder of the
+ * economic rights,  and the successive licensors  have only  limited
+ * liability.
+ * <p/>
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading,  using,  modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean  that it is complicated to manipulate,  and  that  also
+ * therefore means  that it is reserved for developers  and  experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and,  more generally, to use and operate it in the
+ * same conditions as regards security.
+ * <p/>
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(1);
+/**
+ * hornet-js-react-components - Ensemble des composants web React de base de hornet-js
+ *
+ * @author MEAE - Ministère de l'Europe et des Affaires étrangères
+ * @version v5.1.1
+ * @link git+https://github.com/diplomatiegouvfr/hornet-js.git
+ * @license CECILL-2.1
+ */
+var React = __webpack_require__(2);
+var hornet_component_1 = __webpack_require__(3);
+var button_1 = __webpack_require__(97);
+var modal_1 = __webpack_require__(99);
+var notification_1 = __webpack_require__(49);
+var Alert = /** @class */ (function (_super) {
+    tslib_1.__extends(Alert, _super);
+    function Alert(props, context) {
+        return _super.call(this, props, context) || this;
+    }
+    Alert.prototype.setTitle = function (title, cb) {
+        this.setState({ title: title }, cb);
+        return this;
+    };
+    Alert.prototype.setMessage = function (message, cb) {
+        this.setState({ message: message }, cb);
+        return this;
+    };
+    Alert.prototype.setOnClickOk = function (onClickOk, cb) {
+        this.setState({ onClickOk: onClickOk }, cb);
+        return this;
+    };
+    Alert.prototype.setOnClickCancel = function (onClickCancel, cb) {
+        this.setState({ onClickCancel: onClickCancel }, cb);
+        return this;
+    };
+    Alert.prototype.setOnClickClose = function (onClickClose, cb) {
+        this.setState({ onClickClose: onClickClose }, cb);
+        return this;
+    };
+    Alert.prototype.open = function (cb) {
+        this.setState({ isVisible: true }, cb);
+        return this;
+    };
+    Alert.prototype.close = function (cb) {
+        this.setState({ isVisible: false }, cb);
+        return this;
+    };
+    /**
+     * @inheritDoc
+     */
+    Alert.prototype.render = function () {
+        if (!this.state.isVisible)
+            return null;
+        var notificationId = this.state.notificationId || "nAlert";
+        return (React.createElement(modal_1.Modal, { alert: true, isVisible: true, onClickClose: this.state.onClickClose, underlayClickExits: this.state.underlayClickExits, escapeKeyExits: this.state.escapeKeyExits, title: this.state.title, dialogId: this.state.dialogId },
+            React.createElement(notification_1.Notification, { id: notificationId }),
+            React.createElement("div", { className: "widget-alert-body", "aria-labelledby": "dialogue-title" }, this.state.message),
+            React.createElement("div", { className: "widget-dialogue-footer" }, this.renderButtons())));
+    };
+    /**
+     * Renvoie le/les buttons
+     * @returns {any}
+     */
+    Alert.prototype.renderButtons = function () {
+        return (React.createElement("div", { className: "txtcenter" },
+            React.createElement(button_1.Button, tslib_1.__assign({}, this.configOKButton()))));
+    };
+    /**
+     * Configuration du bouton OK
+     * @returns {{type: string, id: string, name: string, value: string, className: string, label: (boolean|string), onClick: (*|defaultFunction)}}
+     */
+    Alert.prototype.configOKButton = function () {
+        return {
+            type: "button",
+            id: "alertOK",
+            name: "action:validMessage",
+            value: "Valider",
+            className: "hornet-button hornet-alert-button-ok",
+            label: this.getValid(),
+            title: this.getValidTitle(),
+            onClick: this.state.onClickOk
+        };
+    };
+    /**
+     * Extrait le libelle valid passé dans les propriétés du composant ou indique un libellé par défaut
+     * @returns Titre
+     * @protected
+     */
+    Alert.prototype.getValid = function () {
+        return this.state.valid || this.i18n("form.valid");
+    };
+    /**
+     * Extrait le libelle valid passé dans les propriétés du composant ou indique un libellé par défaut
+     * @returns Titre
+     * @protected
+     */
+    Alert.prototype.getValidTitle = function () {
+        return this.state.validTitle || this.i18n("form.validTitle");
+    };
+    Alert.defaultProps = {
+        isVisible: false,
+        underlayClickExits: false,
+        escapeKeyExits: true
+    };
+    return Alert;
+}(hornet_component_1.HornetComponent));
+exports.Alert = Alert;
 
 
 
