@@ -13,20 +13,17 @@ export class PermisFVMDAO extends EntityDAO {
     super();
   }
 
-  insererPermis(numPermis, idCopiePermis, dateDeDelivrance, idPersonne, idDossier, idPrefectureDelivrance): Promise<any> {
-    return this.getNewIdPermis().then(idPermis=>{
-
-      return this.modelDAO.permisFVMEntity.create({
-        idPermis: idPermis,
-        numPermis: numPermis,
-        idCopiePermis: idCopiePermis,
-        dateDeDelivrance: dateDeDelivrance,
-        idPersonne: idPersonne,
-        idDossier: idDossier,
-        idPrefectureDelivrance: idPrefectureDelivrance
-      }).then(result=>{
-        return Promise.resolve(idPermis);
-      });
+  insererPermis(idPermis, numPermis, idCopiePermis, dateDeDelivrance, idPersonne, idDossier, idPrefectureDelivrance): Promise<any> {
+    return this.modelDAO.permisFVMEntity.create({
+      idPermis: idPermis,
+      numPermis: numPermis,
+      idCopiePermis: idCopiePermis,
+      dateDeDelivrance: dateDeDelivrance,
+      idPersonne: idPersonne,
+      idDossier: idDossier,
+      idPrefectureDelivrance: idPrefectureDelivrance
+    }).then(result=>{
+      return Promise.resolve(idPermis);
     });
   }
 

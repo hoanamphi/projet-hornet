@@ -9,17 +9,14 @@ var DossierFVMDAO = /** @class */ (function (_super) {
     function DossierFVMDAO() {
         return _super.call(this) || this;
     }
-    DossierFVMDAO.prototype.insererDossier = function (idCopieNoteVerbaleMAECI, dateReceptionDossier, idPermis) {
-        var _this = this;
-        return this.getNewIdDossier().then(function (idDossier) {
-            return _this.modelDAO.dossierFVMEntity.create({
-                idDossier: idDossier,
-                idCopieNoteVerbaleMAECI: idCopieNoteVerbaleMAECI,
-                dateReceptionDossier: dateReceptionDossier,
-                idPermis: idPermis
-            }, { transaction: t }).then(function (result) {
-                return Promise.resolve(idDossier);
-            });
+    DossierFVMDAO.prototype.insererDossier = function (idDossier, idCopieNoteVerbaleMAECI, dateReceptionDossier, idPermis) {
+        return this.modelDAO.dossierFVMEntity.upsert({
+            idDossier: idDossier,
+            idCopieNoteVerbaleMAECI: idCopieNoteVerbaleMAECI,
+            dateReceptionDossier: dateReceptionDossier,
+            idPermis: idPermis
+        }).then(function (result) {
+            return Promise.resolve(idDossier);
         });
     };
     DossierFVMDAO.prototype.getNewIdDossier = function () {

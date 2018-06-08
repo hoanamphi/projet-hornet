@@ -4,11 +4,13 @@ var tslib_1 = require("tslib");
 var abstract_routes_1 = require("hornet-js-core/src/routes/abstract-routes");
 var server_form_service_impl_1 = require("src/services/page/admin/fvm/server-form-service-impl");
 var gen_formDemande_page_1 = require("../../../views/admin/fvm/gen-formDemande-page");
+var roles_1 = require("../../../utils/roles");
+var injector_1 = require("hornet-js-core/src/inject/injector");
 var Form2RoutesClient = /** @class */ (function (_super) {
     tslib_1.__extends(Form2RoutesClient, _super);
     function Form2RoutesClient() {
         var _this = _super.call(this) || this;
-        _this.addPageRoute("/(\\d+)", function (id) { return new abstract_routes_1.PageRouteInfos(gen_formDemande_page_1.FormulaireDemandeAuthentificationPage, { "id": id }, server_form_service_impl_1.ServerFormServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE);
+        _this.addPageRoute("/(\\d+)", function (id) { return new abstract_routes_1.PageRouteInfos(gen_formDemande_page_1.FormulaireDemandeAuthentificationPage, { "id": id }, injector_1.Injector.getRegistered(server_form_service_impl_1.ServerFormServiceImpl)); }, roles_1.Roles.ADMIN);
         return _this;
     }
     return Form2RoutesClient;

@@ -157,8 +157,11 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
             var deletePermis = _this.permisDAO.deletePermis(idPermis);
             if (values[2].length > 0) {
                 var deleteDemandeAuthentification = _this.demandeAuthentificationDAO.deleteDemandeAuthentification(values[2][0].idDemandeAuthentification);
+                return Promise.all([deleteCopieNoteVerbaleMAECI, deleteDossier, deletePersonne, deleteCopiePermis, deleteDemandeAuthentification, deletePermis]);
             }
-            return Promise.all([deleteCopieNoteVerbaleMAECI, deleteDossier, deletePersonne, deleteCopiePermis, deletePermis]);
+            else {
+                return Promise.all([deleteCopieNoteVerbaleMAECI, deleteDossier, deletePersonne, deleteCopiePermis, deletePermis]);
+            }
         }).catch(function (error) {
             _this.Error.hasError = error;
             _this.Error.hasReason = error.toString();

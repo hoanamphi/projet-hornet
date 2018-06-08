@@ -133,5 +133,16 @@ export class ModelDAO extends HornetSequelizeModel {
 
   constructor(@inject("databaseConfigName")conf?: string) {
     super(conf);
+
+    this.initUtilisateurEntity();
+    this.initRoleEntity();
+  }
+
+  private initUtilisateurEntity(): void {
+    SequelizeUtils.initRelationBelongsToMany({ fromEntity: this.utilisateurEntity, toEntity: this.roleEntity, alias: "listeRole", foreignKey: "id_utilisateur", throughTable: "role_utilisateur" });
+  }
+
+  private initRoleEntity(): void {
+    SequelizeUtils.initRelationBelongsToMany({ fromEntity: this.roleEntity, toEntity: this.utilisateurEntity, alias: "listeUser", foreignKey: "id_role", throughTable: "role_utilisateur" });
   }
 }

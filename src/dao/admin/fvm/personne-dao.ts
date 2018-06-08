@@ -10,21 +10,18 @@ export class PersonneFVMDAO extends EntityDAO {
     super();
   }
 
-  insererPersonne(nom, prenom, dateDeNaissance, idSexe, villeDeNaissance, paysDeNaissance, idPermis): Promise<any> {
-    return this.getNewIdPersonne().then(idPersonne=>{
-
-      return this.modelDAO.personneFVMEntity.create({
-        idPersonne: idPersonne,
-        nom: nom,
-        prenom: prenom,
-        dateDeNaissance: dateDeNaissance,
-        sexe: this.getSexe(idSexe),
-        villeDeNaissance: villeDeNaissance,
-        paysDeNaissance: paysDeNaissance,
-        idPermis: idPermis
-      }).then(result=>{
-        return Promise.resolve(idPersonne);
-      });
+  insererPersonne(idPersonne, nom, prenom, dateDeNaissance, idSexe, villeDeNaissance, paysDeNaissance, idPermis): Promise<any> {
+    return this.modelDAO.personneFVMEntity.upsert({
+      idPersonne: idPersonne,
+      nom: nom,
+      prenom: prenom,
+      dateDeNaissance: dateDeNaissance,
+      sexe: this.getSexe(idSexe),
+      villeDeNaissance: villeDeNaissance,
+      paysDeNaissance: paysDeNaissance,
+      idPermis: idPermis
+    }).then(result=>{
+      return Promise.resolve(idPersonne);
     });
   }
 

@@ -11,11 +11,9 @@ import {PermisFVMDAO} from "../../../../dao/admin/fvm/permis-dao";
 import {CopiePermisFVMDao} from "../../../../dao/admin/fvm/copie_permis-dao";
 import {PrefectureDAO} from "../../../../dao/prefecture-dao";
 import {ValiseDAO} from "../../../../dao/valise-dao";
-import forEach = require("lodash/forEach");
 import {
   DemandeAuthentificationFVMDAO
 } from "../../../../dao/admin/fvm/demande_authentification-dao";
-import {Sequelize, Transaction, TransactionOptions, TransactionTypeDeferred} from "sequelize";
 
 const logger: Logger = Utils.getLogger("projet-hornet.services.data.admin.admin-service-impl-data");
 
@@ -45,25 +43,34 @@ export class ServerFormServiceImpl extends ServiceRequest implements ServerFormS
     let idCopiePermis = this.copiePermisDAO.getNewIdCopiePermis();
     let idPermis = this.permisDAO.getNewIdPermis();
 
-    return Promise.resolve(Sequelize.transaction((t)=> {
-      return Promise.all([idCopieNoteVerbaleMAECI, idDossier, idPersonne, idCopiePermis, idPermis]).then(values=>{
-        let insertCopieNoteVerbaleMAECI = this.copieNoteVerbaleMAECIDAO.insererCopieNoteVerbaleMAECI(copie_note_verbale_maeci.mimetype, copie_note_verbale_maeci.encoding, copie_note_verbale_maeci.size, copie_note_verbale_maeci.data, values[1]);
+    return Promise.all([idCopieNoteVerbaleMAECI, idDossier, idPersonne, idCopiePermis, idPermis]).then(values=>{
+      return this.copieNoteVerbaleMAECIDAO.insererCopieNoteVerbaleMAECI(values[0], copie_note_verbale_maeci.mimetype, copie_note_verbale_maeci.encoding, copie_note_verbale_maeci.size, copie_note_verbale_maeci.data, null).then(()=> {
+        let insertDossier = this.dossierDAO.insererDossier(values[1], values[0], new Date(), null);
 
-        let insertDossier = this.dossierDAO.insererDossier(values[0], new Date(), values[4]);
+        let insertPersonne = this.personneDAO.insererPersonne(values[2], content.nom.toLowerCase(), content.prenom.toLowerCase(), content.date_de_naissance, content.id_sexe, content.ville_de_naissance, content.pays_de_naissance, null);
 
-        let insertPersonne = this.personneDAO.insererPersonne(content.nom.toLowerCase(), content.prenom.toLowerCase(), content.date_de_naissance, content.id_sexe, content.ville_de_naissance, content.pays_de_naissance, values[4]);
+        let insertCopiePermis = this.copiePermisDAO.insererCopiePermis(values[3], copie_permis.mimetype, copie_permis.encoding, copie_permis.size, copie_permis.data, null);
 
-        let insertCopiePermis = this.copiePermisDAO.insererCopiePermis(copie_permis.mimetype, copie_permis.encoding, copie_permis.size, copie_permis.data, values[4]);
+        return Promise.all([insertDossier, insertPersonne, insertCopiePermis]).then(()=> {
 
-        let insertPermis = this.permisDAO.insererPermis(content.num_permis, values[3], content.date_de_delivrance, values[2], values[1], content.id_prefecture);
+          return this.permisDAO.insererPermis(values[4], content.num_permis, values[3], content.date_de_delivrance, values[2], values[1], content.id_prefecture).then(()=> {
+            let updateCopieNoteVerbaleMAECI = this.copieNoteVerbaleMAECIDAO.insererCopieNoteVerbaleMAECI(values[0], copie_note_verbale_maeci.mimetype, copie_note_verbale_maeci.encoding, copie_note_verbale_maeci.size, copie_note_verbale_maeci.data, values[1]);
 
-        return Promise.all([insertCopieNoteVerbaleMAECI, insertDossier, insertPersonne, insertCopiePermis,insertPermis]);
-      }).catch(error=>{
-        this.Error.hasError = error;
-        this.Error.hasReason = error.toString();
-        return this.Error;
+            let updateDossier = this.dossierDAO.insererDossier(values[1], values[0], new Date(), values[4]);
+
+            let updatePersonne = this.personneDAO.insererPersonne(values[2], content.nom.toLowerCase(), content.prenom.toLowerCase(), content.date_de_naissance, content.id_sexe, content.ville_de_naissance, content.pays_de_naissance, values[4]);
+
+            let updateCopiePermis = this.copiePermisDAO.insererCopiePermis(values[3], copie_permis.mimetype, copie_permis.encoding, copie_permis.size, copie_permis.data, values[4]);
+
+            return Promise.all([updateCopieNoteVerbaleMAECI, updateDossier, updatePersonne, updateCopiePermis]);
+          });
+        })
       });
-    })  ;
+    }).catch(error=>{
+      this.Error.hasError = error;
+      this.Error.hasReason = error.toString();
+      return this.Error;
+    });
   }
 
   insererDemandeAuthentification(data): Promise<any> {

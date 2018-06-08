@@ -9,20 +9,17 @@ var CopieNoteVerbaleMAECIFVMDao = /** @class */ (function (_super) {
     function CopieNoteVerbaleMAECIFVMDao() {
         return _super.call(this) || this;
     }
-    CopieNoteVerbaleMAECIFVMDao.prototype.insererCopieNoteVerbaleMAECI = function (mimetype, encoding, size, data, idDossier) {
-        var _this = this;
-        return this.getNewIdCopieNoteVerbaleMAECI().then(function (idCopieNoteVerbaleMAECI) {
-            return _this.modelDAO.copieNoteVerbaleMAECIFVMEntity.create({
-                idCopieNoteVerbaleMAECI: idCopieNoteVerbaleMAECI,
-                nom: _this.getNewNom(idCopieNoteVerbaleMAECI),
-                mimetype: mimetype,
-                encoding: encoding,
-                size: size,
-                data: data,
-                idDossier: idDossier
-            }.then(function (result) {
-                return Promise.resolve(idCopieNoteVerbaleMAECI);
-            }));
+    CopieNoteVerbaleMAECIFVMDao.prototype.insererCopieNoteVerbaleMAECI = function (idCopieNoteVerbaleMAECI, mimetype, encoding, size, data, idDossier) {
+        return this.modelDAO.copieNoteVerbaleMAECIFVMEntity.upsert({
+            idCopieNoteVerbaleMAECI: idCopieNoteVerbaleMAECI,
+            nom: this.getNewNom(idCopieNoteVerbaleMAECI),
+            mimetype: mimetype,
+            encoding: encoding,
+            size: size,
+            data: data,
+            idDossier: idDossier
+        }).then(function (result) {
+            return Promise.resolve(idCopieNoteVerbaleMAECI);
         });
     };
     CopieNoteVerbaleMAECIFVMDao.prototype.getNewNom = function (idCopieNoteVerbaleMAECI) {

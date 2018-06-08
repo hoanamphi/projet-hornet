@@ -13,17 +13,14 @@ export class DossierFVMDAO extends EntityDAO {
     super();
   }
 
-  insererDossier(idCopieNoteVerbaleMAECI, dateReceptionDossier, idPermis): Promise<any> {
-    return this.getNewIdDossier().then(idDossier=> {
-
-      return this.modelDAO.dossierFVMEntity.create({
-        idDossier: idDossier,
-        idCopieNoteVerbaleMAECI: idCopieNoteVerbaleMAECI,
-        dateReceptionDossier: dateReceptionDossier,
-        idPermis: idPermis
-      }, {transaction: t}).then(result=>{
-        return Promise.resolve(idDossier);
-      });
+  insererDossier(idDossier, idCopieNoteVerbaleMAECI, dateReceptionDossier, idPermis): Promise<any> {
+    return this.modelDAO.dossierFVMEntity.upsert({
+      idDossier: idDossier,
+      idCopieNoteVerbaleMAECI: idCopieNoteVerbaleMAECI,
+      dateReceptionDossier: dateReceptionDossier,
+      idPermis: idPermis
+    }).then(result=>{
+      return Promise.resolve(idDossier);
     });
   }
 

@@ -20,11 +20,11 @@ export let DossierFVMModel: Sequelize.DefineAttributes = {
     type: Sequelize.INTEGER,
     field: "id_copie_note_verbale_maeci_fvm",
     allowNull: false,
-    references: {
-      model: "CopieNoteVerbaleMAECIFVMModel",
-      key: "idCopieNoteVerbaleMAECI",
-      deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
-    }
+    // references: {
+    //   model: "CopieNoteVerbaleMAECIFVMModel",
+    //   key: "idCopieNoteVerbaleMAECI",
+    //   deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
+    // }
   },
   "dateReceptionDossier": {
     type: Sequelize.DATE,
@@ -34,7 +34,7 @@ export let DossierFVMModel: Sequelize.DefineAttributes = {
   "idPermis": {
     type: Sequelize.INTEGER,
     field: "id_permis_fvm",
-    allowNull: false,
+    allowNull: true,
     references: {
       model: "PermisFVMModel",
       key: "idPermis",

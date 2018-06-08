@@ -53,10 +53,10 @@ export let PersonneFVMModel: Sequelize.DefineAttributes = {
   "idPermis": {
     type: Sequelize.INTEGER,
     field: "id_permis_fvm",
-    allowNull: false,
+    allowNull: true,
     references: {
       model: "PermisFVMModel",
-      key: "idPersonne",
+      key: "idPermis",
       deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
     }
   }

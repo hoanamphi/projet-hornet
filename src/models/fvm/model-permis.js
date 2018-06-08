@@ -17,7 +17,12 @@ exports.PermisFVMModel = {
     "idCopiePermis": {
         type: Sequelize.INTEGER,
         field: "id_copie_permis_fvm",
-        allowNull: false
+        allowNull: false,
+        references: {
+            model: "CopiePermisFVMModel",
+            key: "idCopiePermis",
+            deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
+        }
     },
     "dateDeDelivrance": {
         type: Sequelize.DATE,

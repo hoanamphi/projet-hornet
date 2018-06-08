@@ -174,6 +174,7 @@ export class ClientListServiceImpl extends ServiceRequest implements ClientListS
     let idDemandeAuthentification = this.demandeAuthentificationDAO.getDemandeAuthentificationFromPermis(idPermis);
 
     return Promise.all([idDossier, idPersonne, idDemandeAuthentification]).then(values=>{
+
       let deleteCopieNoteVerbaleMAECI = this.copieNoteVerbaleMAECIDAO.deleteCopieNoteVerbaleMAECIFromDossier(values[0][0].idDossier);
 
       let deleteDossier = this.dossierDAO.deleteDossier(values[0][0].idDossier);
@@ -186,9 +187,11 @@ export class ClientListServiceImpl extends ServiceRequest implements ClientListS
 
       if(values[2].length > 0) {
         let deleteDemandeAuthentification = this.demandeAuthentificationDAO.deleteDemandeAuthentification(values[2][0].idDemandeAuthentification);
-      }
 
-      return Promise.all([deleteCopieNoteVerbaleMAECI, deleteDossier, deletePersonne, deleteCopiePermis, deletePermis]);
+        return Promise.all([deleteCopieNoteVerbaleMAECI, deleteDossier, deletePersonne, deleteCopiePermis, deleteDemandeAuthentification, deletePermis]);
+      } else {
+        return Promise.all([deleteCopieNoteVerbaleMAECI, deleteDossier, deletePersonne, deleteCopiePermis, deletePermis]);
+      }
     }).catch(error=>{
       this.Error.hasError = error;
       this.Error.hasReason = error.toString();

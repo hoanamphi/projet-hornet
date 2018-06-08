@@ -9,20 +9,17 @@ var PermisFVMDAO = /** @class */ (function (_super) {
     function PermisFVMDAO() {
         return _super.call(this) || this;
     }
-    PermisFVMDAO.prototype.insererPermis = function (numPermis, idCopiePermis, dateDeDelivrance, idPersonne, idDossier, idPrefectureDelivrance) {
-        var _this = this;
-        return this.getNewIdPermis().then(function (idPermis) {
-            return _this.modelDAO.permisFVMEntity.create({
-                idPermis: idPermis,
-                numPermis: numPermis,
-                idCopiePermis: idCopiePermis,
-                dateDeDelivrance: dateDeDelivrance,
-                idPersonne: idPersonne,
-                idDossier: idDossier,
-                idPrefectureDelivrance: idPrefectureDelivrance
-            }).then(function (result) {
-                return Promise.resolve(idPermis);
-            });
+    PermisFVMDAO.prototype.insererPermis = function (idPermis, numPermis, idCopiePermis, dateDeDelivrance, idPersonne, idDossier, idPrefectureDelivrance) {
+        return this.modelDAO.permisFVMEntity.create({
+            idPermis: idPermis,
+            numPermis: numPermis,
+            idCopiePermis: idCopiePermis,
+            dateDeDelivrance: dateDeDelivrance,
+            idPersonne: idPersonne,
+            idDossier: idDossier,
+            idPrefectureDelivrance: idPrefectureDelivrance
+        }).then(function (result) {
+            return Promise.resolve(idPermis);
         });
     };
     PermisFVMDAO.prototype.getNewIdPermis = function () {

@@ -13,19 +13,17 @@ export class CopiePermisFVMDao extends EntityDAO {
     super();
   }
 
-  insererCopiePermis(mimetype, encoding, size, data, idPermis): Promise<any> {
-    return this.getNewIdCopiePermis().then(idCopiePermis=> {
-      return this.modelDAO.copiePermisFVMEntity.create({
-        idCopiePermis: idCopiePermis,
-        nom: this.getNewNom(idCopiePermis),
-        mimetype: mimetype,
-        encoding: encoding,
-        size: size,
-        data: data,
-        idPermis: idPermis
-      }).then(result=>{
-        return Promise.resolve(idCopiePermis);
-      });
+  insererCopiePermis(idCopiePermis, mimetype, encoding, size, data, idPermis): Promise<any> {
+    return this.modelDAO.copiePermisFVMEntity.upsert({
+      idCopiePermis: idCopiePermis,
+      nom: this.getNewNom(idCopiePermis),
+      mimetype: mimetype,
+      encoding: encoding,
+      size: size,
+      data: data,
+      idPermis: idPermis
+    }).then(result=>{
+      return Promise.resolve(idCopiePermis);
     });
   }
 

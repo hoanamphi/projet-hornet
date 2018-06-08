@@ -37,7 +37,7 @@ exports.CopiePermisFVMModel = {
     "idPermis": {
         type: Sequelize.INTEGER,
         field: "id_permis_fvm",
-        allowNull: false,
+        allowNull: true,
         references: {
             model: "PermisFVMModel",
             key: "idPermis",

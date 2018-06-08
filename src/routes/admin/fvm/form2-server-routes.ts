@@ -4,21 +4,23 @@ import { ServerFormServiceImpl } from "src/services/data/admin/fvm/server-form-s
 import Form1RoutesClient from "src/routes/admin/fvm/form1-client-routes";
 import {ListePrefecture} from "../../../actions/admin/fvm/fvm-action";
 import Form2RoutesClient from "./form2-client-routes";
+import {Roles} from "../../../utils/roles";
+import {Injector} from "hornet-js-core/src/inject/injector";
 
 export default class Form2RoutesServer extends Form2RoutesClient {
   constructor() {
     super();
 
     this.addDataRoute("/",
-      () => new DataRouteInfos(InserDemandeAuthentification, null, ServerFormServiceImpl),
-      PUBLIC_ROUTE,
+      () => new DataRouteInfos(InserDemandeAuthentification, null, Injector.getRegistered(ServerFormServiceImpl)),
+      Roles.ADMIN,
       "post"
     );
 
 
     this.addDataRoute("/insertValise",
-      () => new DataRouteInfos(InserValise, null, ServerFormServiceImpl),
-      PUBLIC_ROUTE,
+      () => new DataRouteInfos(InserValise, null, Injector.getRegistered(ServerFormServiceImpl)),
+      Roles.ADMIN,
       "post"
     );
 

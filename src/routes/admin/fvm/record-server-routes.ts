@@ -24,8 +24,8 @@ export default class RecordListRoutesServer extends RecordListRoutesClient {
     );
 
     this.addDataRoute("/delete",
-      () => new DataRouteInfos(DeleteDossier, null, ClientListServiceImpl),
-      PUBLIC_ROUTE,
+      () => new DataRouteInfos(DeleteDossier, null, Injector.getRegistered(ClientListServiceImpl)),
+      Roles.ADMIN,
       "post"
     );
 
@@ -42,8 +42,8 @@ export default class RecordListRoutesServer extends RecordListRoutesClient {
     );
 
     this.addDataRoute("/detailsDossiers/demandeauthentification/delete",
-      () => new DataRouteInfos(DeleteDemandeAuthentification, null, ClientListServiceImpl),
-      PUBLIC_ROUTE,
+      () => new DataRouteInfos(DeleteDemandeAuthentification, null, Injector.getRegistered(ClientListServiceImpl)),
+      Roles.ADMIN,
       "post"
     );
 

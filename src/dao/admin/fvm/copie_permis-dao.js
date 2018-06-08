@@ -9,20 +9,17 @@ var CopiePermisFVMDao = /** @class */ (function (_super) {
     function CopiePermisFVMDao() {
         return _super.call(this) || this;
     }
-    CopiePermisFVMDao.prototype.insererCopiePermis = function (mimetype, encoding, size, data, idPermis) {
-        var _this = this;
-        return this.getNewIdCopiePermis().then(function (idCopiePermis) {
-            return _this.modelDAO.copiePermisFVMEntity.create({
-                idCopiePermis: idCopiePermis,
-                nom: _this.getNewNom(idCopiePermis),
-                mimetype: mimetype,
-                encoding: encoding,
-                size: size,
-                data: data,
-                idPermis: idPermis
-            }).then(function (result) {
-                return Promise.resolve(idCopiePermis);
-            });
+    CopiePermisFVMDao.prototype.insererCopiePermis = function (idCopiePermis, mimetype, encoding, size, data, idPermis) {
+        return this.modelDAO.copiePermisFVMEntity.upsert({
+            idCopiePermis: idCopiePermis,
+            nom: this.getNewNom(idCopiePermis),
+            mimetype: mimetype,
+            encoding: encoding,
+            size: size,
+            data: data,
+            idPermis: idPermis
+        }).then(function (result) {
+            return Promise.resolve(idCopiePermis);
         });
     };
     CopiePermisFVMDao.prototype.getNewNom = function (idCopiePermis) {

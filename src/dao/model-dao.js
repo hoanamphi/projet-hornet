@@ -34,13 +34,23 @@ var dec_seq_entity_1 = require("hornet-js-database/src/decorators/dec-seq-entity
 var injectable_1 = require("hornet-js-core/src/inject/injectable");
 var hornet_sequelize_model_1 = require("hornet-js-database/src/sequelize/hornet-sequelize-model");
 var inject_1 = require("hornet-js-core/src/inject/inject");
+var sequelize_utils_1 = require("hornet-js-database/src/sequelize/sequelize-utils");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.src.dao.model-dao");
 var ModelDAO = /** @class */ (function (_super) {
     tslib_1.__extends(ModelDAO, _super);
     function ModelDAO(conf) {
-        return _super.call(this, conf) || this;
+        var _this = _super.call(this, conf) || this;
+        _this.initUtilisateurEntity();
+        _this.initRoleEntity();
+        return _this;
     }
     ModelDAO_1 = ModelDAO;
+    ModelDAO.prototype.initUtilisateurEntity = function () {
+        sequelize_utils_1.SequelizeUtils.initRelationBelongsToMany({ fromEntity: this.utilisateurEntity, toEntity: this.roleEntity, alias: "listeRole", foreignKey: "id_utilisateur", throughTable: "role_utilisateur" });
+    };
+    ModelDAO.prototype.initRoleEntity = function () {
+        sequelize_utils_1.SequelizeUtils.initRelationBelongsToMany({ fromEntity: this.roleEntity, toEntity: this.utilisateurEntity, alias: "listeUser", foreignKey: "id_role", throughTable: "role_utilisateur" });
+    };
     tslib_1.__decorate([
         dec_seq_entity_1.Entity("prefecture", model_prefecture_1.PrefectureModel),
         tslib_1.__metadata("design:type", Object)

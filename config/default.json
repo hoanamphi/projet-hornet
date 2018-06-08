@@ -16,7 +16,7 @@
     "uploadFileSize": 1000000,
     "uploadAntivirus": true,
     "sessionTimeout": 1800000,
-    "stackTraceLimit": 100,
+    "stackTraceLimit": 1000,
     "bodyParserLimit": "50mb",
     "rethrow": false,
     "notifications": {

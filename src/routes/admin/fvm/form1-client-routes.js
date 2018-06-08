@@ -4,11 +4,13 @@ var tslib_1 = require("tslib");
 var gen_formDossier_page_1 = require("src/views/admin/fvm/gen-formDossier-page");
 var abstract_routes_1 = require("hornet-js-core/src/routes/abstract-routes");
 var server_form_service_impl_1 = require("src/services/page/admin/fvm/server-form-service-impl");
+var roles_1 = require("../../../utils/roles");
+var injector_1 = require("hornet-js-core/src/inject/injector");
 var Form1RoutesClient = /** @class */ (function (_super) {
     tslib_1.__extends(Form1RoutesClient, _super);
     function Form1RoutesClient() {
         var _this = _super.call(this) || this;
-        _this.addPageRoute("/", function () { return new abstract_routes_1.PageRouteInfos(gen_formDossier_page_1.FormulaireDossierPage, null, server_form_service_impl_1.ServerFormServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE);
+        _this.addPageRoute("/", function () { return new abstract_routes_1.PageRouteInfos(gen_formDossier_page_1.FormulaireDossierPage, null, injector_1.Injector.getRegistered(server_form_service_impl_1.ServerFormServiceImpl)); }, roles_1.Roles.ADMIN);
         return _this;
     }
     return Form1RoutesClient;

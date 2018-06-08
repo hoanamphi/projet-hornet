@@ -13,11 +13,6 @@ exports.DossierFVMModel = {
         type: Sequelize.INTEGER,
         field: "id_copie_note_verbale_maeci_fvm",
         allowNull: false,
-        references: {
-            model: "CopieNoteVerbaleMAECIFVMModel",
-            key: "idCopieNoteVerbaleMAECI",
-            deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED
-        }
     },
     "dateReceptionDossier": {
         type: Sequelize.DATE,
@@ -27,7 +22,7 @@ exports.DossierFVMModel = {
     "idPermis": {
         type: Sequelize.INTEGER,
         field: "id_permis_fvm",
-        allowNull: false,
+        allowNull: true,
         references: {
             model: "PermisFVMModel",
             key: "idPermis",

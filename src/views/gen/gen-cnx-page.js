@@ -25,7 +25,7 @@ var ConnexionPage = /** @class */ (function (_super) {
         var fwkTheme = process.env.NODE_ENV === "production" ? "/css/theme-min.css" : "/css/theme.css";
         return (React.createElement("html", { lang: 'fr' },
             React.createElement("head", null,
-                React.createElement("title", null, "Magasin de L'Étang-Salé : Authentification centrale"),
+                React.createElement("title", null, "Application Projet-hornet: Authentification"),
                 React.createElement("meta", { httpEquiv: "Content-Type", content: "text/html; charset=UTF-8" }),
                 React.createElement("link", { rel: "icon", type: "image/png", href: this.genUrlStatic("/img/logoHornet.png") }),
                 React.createElement("link", { rel: "stylesheet", type: "text/css", href: ConnexionPage.genUrlTheme(fwkTheme) }),
@@ -33,7 +33,7 @@ var ConnexionPage = /** @class */ (function (_super) {
             React.createElement("body", { id: "auth" },
                 React.createElement("div", { id: "site" },
                     React.createElement("div", { id: "content" },
-                        React.createElement("h1", { id: "app-name" }, "Magasin de L'étang-salé Authentification centrale."),
+                        React.createElement("h1", { id: "app-name" }, "Application Projet-hornet: Authentification"),
                         React.createElement("form", { id: "fm1", className: "fm-v", method: "post" },
                             React.createElement("div", { id: "login", className: "box" },
                                 React.createElement("h2", null, "Entrez votre identifiant et votre mot de passe."),
