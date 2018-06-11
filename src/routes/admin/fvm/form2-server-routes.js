@@ -6,14 +6,13 @@ var abstract_routes_1 = require("hornet-js-core/src/routes/abstract-routes");
 var server_form_service_impl_data_1 = require("src/services/data/admin/fvm/server-form-service-impl-data");
 var form2_client_routes_1 = require("./form2-client-routes");
 var roles_1 = require("../../../utils/roles");
-var injector_1 = require("hornet-js-core/src/inject/injector");
 var Form2RoutesServer = /** @class */ (function (_super) {
     tslib_1.__extends(Form2RoutesServer, _super);
     function Form2RoutesServer() {
         var _this = _super.call(this) || this;
-        _this.addDataRoute("/", function () { return new abstract_routes_1.DataRouteInfos(fvm_action_1.InserDemandeAuthentification, null, injector_1.Injector.getRegistered(server_form_service_impl_data_1.ServerFormServiceImpl)); }, roles_1.Roles.ADMIN, "post");
-        _this.addDataRoute("/insertValise", function () { return new abstract_routes_1.DataRouteInfos(fvm_action_1.InserValise, null, injector_1.Injector.getRegistered(server_form_service_impl_data_1.ServerFormServiceImpl)); }, roles_1.Roles.ADMIN, "post");
-        _this.addDataRoute("/listValises", function () { return new abstract_routes_1.DataRouteInfos(fvm_action_1.ListeValise, null, server_form_service_impl_data_1.ServerFormServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE, "post");
+        _this.addDataRoute("/", function () { return new abstract_routes_1.DataRouteInfos(fvm_action_1.InserDemandeAuthentification, null, server_form_service_impl_data_1.ServerFormServiceImpl); }, roles_1.Roles.ADMIN, "post");
+        _this.addDataRoute("/insertValise", function () { return new abstract_routes_1.DataRouteInfos(fvm_action_1.InserValise, null, server_form_service_impl_data_1.ServerFormServiceImpl); }, roles_1.Roles.ADMIN, "post");
+        _this.addDataRoute("/listValises", function () { return new abstract_routes_1.DataRouteInfos(fvm_action_1.ListValise, null, server_form_service_impl_data_1.ServerFormServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE, "post");
         return _this;
     }
     return Form2RoutesServer;

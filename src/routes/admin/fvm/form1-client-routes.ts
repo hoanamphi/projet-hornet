@@ -9,8 +9,8 @@ export default class Form1RoutesClient extends AbstractRoutes {
         super();
 
         this.addPageRoute("/",
-            () => new PageRouteInfos(FormulaireDossierPage, null, Injector.getRegistered(ServerFormServiceImpl)),
-            Roles.ADMIN
+            () => new PageRouteInfos(FormulaireDossierPage, null, ServerFormServiceImpl),
+            PUBLIC_ROUTE
         );
     }
 }

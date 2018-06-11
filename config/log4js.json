@@ -1,3 +1,4 @@
+// Fichier de configuration des logs
 {
   "appenders": {
     "console": {

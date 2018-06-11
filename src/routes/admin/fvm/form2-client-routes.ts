@@ -10,7 +10,7 @@ export default class Form2RoutesClient extends AbstractRoutes {
     super();
 
     this.addPageRoute("/(\\d+)",
-      (id) => new PageRouteInfos(FormulaireDemandeAuthentificationPage, {"id": id}, Injector.getRegistered(ServerFormServiceImpl)),
+      (id) => new PageRouteInfos(FormulaireDemandeAuthentificationPage, {"id": id}, ServerFormServiceImpl),
       Roles.ADMIN
     );
   }

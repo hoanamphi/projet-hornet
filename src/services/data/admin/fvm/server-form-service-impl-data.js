@@ -64,7 +64,9 @@ var ServerFormServiceImpl = /** @class */ (function (_super) {
         var _this = this;
         return this.valiseDAO.getValise(data["num_valise"]).then(function (values) {
             var valise = values[0];
-            return _this.demandeAuthentificationDAO.insererDemandeAuthentification(data["num_demande_authentification"], data["id_permis"], data["num_valise"], valise.dateValise);
+            return _this.demandeAuthentificationDAO.getNewIdDemandeAuthentification().then(function (idDemandeAuthentification) {
+                return _this.demandeAuthentificationDAO.insererDemandeAuthentification(idDemandeAuthentification, data["num_demande_authentification"], data["id_permis"], data["num_valise"], valise.dateValise);
+            });
         }).catch(function (error) {
             _this.Error.hasError = error;
             _this.Error.hasReason = error.toString();

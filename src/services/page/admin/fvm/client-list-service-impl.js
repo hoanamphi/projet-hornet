@@ -62,7 +62,7 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
     ;
     ClientListServiceImpl.prototype.deleteDemandeAuthentification = function (idDemandeAuthentification) {
         var request = {
-            method: "post",
+            method: "delete",
             url: this.buildUrl("/fvmrecordserver/detailsDossiers/demandeauthentification/delete"),
             data: { "idDemandeAuthentification": idDemandeAuthentification }
         };
@@ -70,7 +70,7 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
     };
     ClientListServiceImpl.prototype.deleteDossier = function (idPermis) {
         var request = {
-            method: "post",
+            method: "delete",
             url: this.buildUrl("/fvmrecordserver/delete"),
             data: { "idPermis": idPermis }
         };

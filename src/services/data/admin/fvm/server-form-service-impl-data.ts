@@ -76,8 +76,9 @@ export class ServerFormServiceImpl extends ServiceRequest implements ServerFormS
   insererDemandeAuthentification(data): Promise<any> {
     return this.valiseDAO.getValise(data["num_valise"]).then(values=>{
       let valise = values[0];
-
-      return this.demandeAuthentificationDAO.insererDemandeAuthentification(data["num_demande_authentification"], data["id_permis"], data["num_valise"], valise.dateValise);
+      return this.demandeAuthentificationDAO.getNewIdDemandeAuthentification().then(idDemandeAuthentification=> {
+        return this.demandeAuthentificationDAO.insererDemandeAuthentification(idDemandeAuthentification, data["num_demande_authentification"], data["id_permis"], data["num_valise"], valise.dateValise);
+      });
     }).catch(error=>{
       this.Error.hasError = error;
       this.Error.hasReason = error.toString();

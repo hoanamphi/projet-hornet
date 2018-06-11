@@ -13,7 +13,7 @@ export class ServerFormServiceImpl extends ServicePage implements ServerFormServ
 
 
   insererDonnee(data: any): Promise<any> {
-    logger.trace("SERVICES - list : ", data);
+    logger.trace("SERVICES - insert : ", data);
 
     let request: HornetRequest = {
       method: "post",
@@ -29,7 +29,7 @@ export class ServerFormServiceImpl extends ServicePage implements ServerFormServ
   }
 
   insererDemandeAuthentification(data: any): Promise<any> {
-    logger.trace("SERVICES - list : ", data);
+    logger.trace("SERVICES - insert : ", data);
 
     let request: HornetRequest = {
       method: "post",
@@ -42,7 +42,7 @@ export class ServerFormServiceImpl extends ServicePage implements ServerFormServ
 
 
   insererValise(data: any): Promise<any> {
-    logger.trace("SERVICES - list : ", data);
+    logger.trace("SERVICES - insert : ", data);
 
     let request: HornetRequest = {
       method: "post",
@@ -54,6 +54,8 @@ export class ServerFormServiceImpl extends ServicePage implements ServerFormServ
   }
 
   getListePrefectures(): Promise<any> {
+    logger.trace("SERVICES - list");
+
     let request: HornetRequest = {
       method: "post",
       url: this.buildUrl("/fvmform1server/listPrefectures")
@@ -63,6 +65,8 @@ export class ServerFormServiceImpl extends ServicePage implements ServerFormServ
   }
 
   getListeValises(): Promise<any> {
+    logger.trace("SERVICES - list");
+
     let request: HornetRequest = {
       method: "post",
       url: this.buildUrl("/fvmform2server/listValises")

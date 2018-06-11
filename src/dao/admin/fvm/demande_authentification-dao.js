@@ -9,27 +9,22 @@ var DemandeAuthentificationFVMDAO = /** @class */ (function (_super) {
     function DemandeAuthentificationFVMDAO() {
         return _super.call(this) || this;
     }
-    DemandeAuthentificationFVMDAO.prototype.insererDemandeAuthentification = function (numDemandeAuthentification, idPermis, numValise, dateValise) {
-        var _this = this;
-        return this.getNewIdDemandeAuthentification().then(function (idDemandeAuthentification) {
-            return _this.getDateDuTraitement(dateValise).then(function (dateDuTraitement) {
-                return _this.modelDAO.demandeAuthenthificationFVMEntity.create({
-                    idDemandeAuthentification: idDemandeAuthentification,
-                    numDemandeAuthentification: numDemandeAuthentification,
-                    dateDeCreation: new Date(),
-                    dateDuTraitement: dateDuTraitement,
-                    idPermis: idPermis,
-                    numValise: numValise
-                }).then(function (result) {
-                    return Promise.resolve();
-                });
-            });
+    DemandeAuthentificationFVMDAO.prototype.insererDemandeAuthentification = function (idDemandeAuthentification, numDemandeAuthentification, idPermis, numValise, dateValise) {
+        return this.modelDAO.demandeAuthenthificationFVMEntity.create({
+            idDemandeAuthentification: idDemandeAuthentification,
+            numDemandeAuthentification: numDemandeAuthentification,
+            dateDeCreation: new Date(),
+            dateDuTraitement: this.getDateDuTraitement(dateValise),
+            idPermis: idPermis,
+            numValise: numValise
+        }).then(function () {
+            return idDemandeAuthentification;
         });
     };
     DemandeAuthentificationFVMDAO.prototype.getDateDuTraitement = function (dateValise) {
         var temp = new Date(dateValise);
         temp.setDate(temp.getDate() - 1);
-        return Promise.resolve(temp);
+        return temp;
     };
     DemandeAuthentificationFVMDAO.prototype.getNewIdDemandeAuthentification = function () {
         var _this = this;

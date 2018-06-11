@@ -72,7 +72,7 @@ export class ClientListServiceImpl extends ServicePage implements ClientListServ
 
   deleteDemandeAuthentification(idDemandeAuthentification): Promise<any> {
     let request: HornetRequest = {
-      method: "post",
+      method: "delete",
       url: this.buildUrl("/fvmrecordserver/detailsDossiers/demandeauthentification/delete"),
       data: {"idDemandeAuthentification": idDemandeAuthentification}
     };
@@ -82,7 +82,7 @@ export class ClientListServiceImpl extends ServicePage implements ClientListServ
 
   deleteDossier(idPermis): Promise<any> {
     let request: HornetRequest = {
-      method: "post",
+      method: "delete",
       url: this.buildUrl("/fvmrecordserver/delete"),
       data: {"idPermis": idPermis}
     };

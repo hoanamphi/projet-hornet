@@ -1,19 +1,39 @@
 import { Utils } from "hornet-js-utils";
+// Classe gérant les logs
 import { Logger } from "hornet-js-utils/src/logger";
+// Classe parente des Classes de DAO
 import { EntityDAO } from "src/dao/entity-dao";
-import Map from "hornet-js-bean/src/decorators/Map";
-import { PermisFVMMetier } from "src/models/fvm/fvm-mod";
-import {where} from "sequelize";
+// Classe métier de la copie d'un permis de conduire
+import {CopiePermisFVMMetier} from "src/models/fvm/fvm-mod";
 
 const logger: Logger = Utils.getLogger("projet-hornet.src.dao.utilisateurs-dao");
 
+/**
+ * Classe de DAO permettant l'interaction avec la table copie_permis_fvm
+ * @extends {EntityDAO}
+ */
 export class CopiePermisFVMDao extends EntityDAO {
 
+  /**
+   * @constructor
+   */
   constructor() {
     super();
   }
 
-  insererCopiePermis(idCopiePermis, mimetype, encoding, size, data, idPermis): Promise<any> {
+  /**
+   * Méthode insérant une nouvelle copie d'un permis de conduire dans la base
+   * @param {number} idCopiePermis id du nouveau tuple
+   * @param {string} mimetype format de l'entrée
+   * @param {string} encoding encodage de l'entrée
+   * @param {number} size taille de l'entrée
+   * @param {Buffer} data contenu de l'entrée
+   * @param {number} idPermis id du Permis auquel appartient l'entrée
+   * @returns {Promise<any>}
+   */
+  insererCopiePermis(idCopiePermis: number, mimetype: string, encoding: string, size: number, data: Buffer, idPermis: number): Promise<any> {
+    logger.trace("DAO inser - CopiePermis.Inser");
+
     return this.modelDAO.copiePermisFVMEntity.upsert({
       idCopiePermis: idCopiePermis,
       nom: this.getNewNom(idCopiePermis),
@@ -22,36 +42,68 @@ export class CopiePermisFVMDao extends EntityDAO {
       size: size,
       data: data,
       idPermis: idPermis
-    }).then(result=>{
-      return Promise.resolve(idCopiePermis);
+    }).then(()=>{
+      return idCopiePermis;
     });
   }
 
-  getNewNom(idCopiePermis): string {
+  /**
+   * Méthode retournant un nom unique pour chaque nouveau tuple
+   * @param {number} idCopiePermis id du nouveau tuple
+   * @returns {string} nom de l'entrée
+   */
+  getNewNom(idCopiePermis: number): string {
+    logger.trace("DAO get - CopiePermis.GetNewNom");
+
+    // Le nouveau nom est au format : [Type de document][id du nouveau tuple][Date du jour]
     return ("copiePermis"+idCopiePermis+(new Date())).replace(/\s+/g, "_");
   }
 
-  getNewIdCopiePermis(): Promise<any> {
+  /**
+   * Méthode retournant un id unique pour chaque nouveau tuple
+   * @returns {Promise<number>} id du nouveau tuple
+   */
+  getNewIdCopiePermis(): Promise<number> {
+    logger.trace("DAO get - CopiePermis.GetNewId");
+
+    // Compte le nombre de tuples dans la table
     return this.modelDAO.copiePermisFVMEntity.count().then(count=>{
+      // S'il y a déjà des tuples dans la table
       if(count > 0) {
+        //Retourne l'id le plus grand
         return this.modelDAO.copiePermisFVMEntity.max("idCopiePermis");
       } else {
-        return Promise.resolve(-1);
+        return -1;
       }
     }).then(max=>{
-      return Promise.resolve(max+1);
+      // Retourne l'id le plus grand + 1 ==> nouvel id
+      return max+1;
     });
   }
 
-  getCopiePermis(idCopiePermis): Promise<any> {
-    return this.modelDAO.copiePermisFVMEntity.findAll({
+  /**
+   * Méthode retournant une copie d'un permis de conduire
+   * @param {number} idCopiePermis id du tuple à retourner
+   * @returns {Promise<CopiePermisFVMMetier>} Copie d'un permis de conduire
+   */
+  getCopiePermis(idCopiePermis: number): Promise<CopiePermisFVMMetier> {
+    logger.trace("DAO get - CopiePermis.Get");
+
+    return this.modelDAO.copiePermisFVMEntity.find({
       where: {
         idCopiePermis: idCopiePermis
       }
     });
   }
 
-  deleteCopiePermisFromPermis(idPermis): Promise<any> {
+  /**
+   * Méthode supprimant une copie d'un permis de conduire
+   * @param {number} idPermis id du Permis auquel appartient le tuple
+   * @returns {Promise<any>}
+   */
+  deleteCopiePermisFromPermis(idPermis: number): Promise<any> {
+    logger.trace("DAO delete - CopiePermis.Delete");
+
     return this.modelDAO.copiePermisFVMEntity.destroy({
       where: {
         idPermis: idPermis

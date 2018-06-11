@@ -10,7 +10,7 @@ var ServerFormServiceImpl = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     ServerFormServiceImpl.prototype.insererDonnee = function (data) {
-        logger.trace("SERVICES - list : ", data);
+        logger.trace("SERVICES - insert : ", data);
         var request = {
             method: "post",
             url: this.buildUrl("/fvmform1server"),
@@ -22,7 +22,7 @@ var ServerFormServiceImpl = /** @class */ (function (_super) {
         return this.fetch(request);
     };
     ServerFormServiceImpl.prototype.insererDemandeAuthentification = function (data) {
-        logger.trace("SERVICES - list : ", data);
+        logger.trace("SERVICES - insert : ", data);
         var request = {
             method: "post",
             url: this.buildUrl("/fvmform2server"),
@@ -31,7 +31,7 @@ var ServerFormServiceImpl = /** @class */ (function (_super) {
         return this.fetch(request);
     };
     ServerFormServiceImpl.prototype.insererValise = function (data) {
-        logger.trace("SERVICES - list : ", data);
+        logger.trace("SERVICES - insert : ", data);
         var request = {
             method: "post",
             url: this.buildUrl("/fvmform2server/insertValise"),
@@ -40,6 +40,7 @@ var ServerFormServiceImpl = /** @class */ (function (_super) {
         return this.fetch(request);
     };
     ServerFormServiceImpl.prototype.getListePrefectures = function () {
+        logger.trace("SERVICES - list");
         var request = {
             method: "post",
             url: this.buildUrl("/fvmform1server/listPrefectures")
@@ -47,6 +48,7 @@ var ServerFormServiceImpl = /** @class */ (function (_super) {
         return this.fetch(request);
     };
     ServerFormServiceImpl.prototype.getListeValises = function () {
+        logger.trace("SERVICES - list");
         var request = {
             method: "post",
             url: this.buildUrl("/fvmform2server/listValises")

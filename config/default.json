@@ -1,19 +1,31 @@
+// Fichier de configuration général
 {
   "contextPath": "projet-hornet",
   "welcomePage": "/accueil",
+
+  /* Fichier de ressource à utiliser lorsque la langue "fr" est sélectionnée:
+      src/resources/messages-fr-FR.json
+  */
   "localeI18n": {
+    // fin du nom du fichier
     "locale": "fr-FR",
+    // code de la langue
     "lang": "fr"
   },
+
   "server": {
     "route": "js1",
+    // port d'écoute du serveur web (URL: localhost:8888/projet-hornet/)
     "port": 8888,
+    // port sur lequel tourne le serveur web
     "portMonitor": 9999,
     "keepAlive": true,
     "keepAliveTimeout": 15000,
     "maxConnections": 100,
     "timeout": 300000,
+    // taille maximale d'un fichier importé par l'utilisateur (Via un élément UploadFileField)
     "uploadFileSize": 1000000,
+    // activation de l'antivirus et analyse des fichiers importés (avec Clamav)
     "uploadAntivirus": true,
     "sessionTimeout": 1800000,
     "stackTraceLimit": 1000,
@@ -32,6 +44,7 @@
     //ex : openssl req -x509 -sha256 -newkey rsa:2048 -keyout key.pem -out cert.pem -days XXX
     */
   },
+
   /*
   "keystore": {
     // Autorités de certification
@@ -58,11 +71,14 @@
     }
   },
   */
+
   "cookie": {
     "httpOnly": true,
     "secure": true
   },
+
   "themeName": "hornet-themes",
+
   "security": {
     "enabled": true,
     "hpp": true,
@@ -125,6 +141,7 @@
       "enabled": true
     }
   },
+
   "logClient": {
     "remote": false,
     "level": "INFO",
@@ -150,8 +167,10 @@
       }
     }
   },
+
   "database": {
-    /* "config": {
+    /* Configuration de la base de données Sequelize
+     "config": {
       "basename": "sequelize",
       "username": "test",
       "password": "test",
@@ -171,9 +190,17 @@
       },
       "reload": true
     }, */
+    // Configuration de la base de donnée Postgresql
     "config": {
+      /* Uri permettant d'accéder à la base de données :
+          postgres : nom (par défaut) de l'utilisateur (et du serveur) accueillant les bases de données
+          hornetjs : utilisateur ayant des droits d'accès en lecture/écriture à la base
+          5432 : port d'écoute du serveur défini dans les fichiers de configurations postgresql
+          projet-hornetDB : nom de la base
+      */
       "uri": "postgres://hornetjs@localhost:5432/projet-hornetDB",
       "options": {
+        // indique si les alias sont autorisés pour les opérateurs sql Sequelize
         "operatorsAliases": true,
         "pool": {
           "max": 5,
@@ -187,11 +214,14 @@
       }
     }
   },
+
+  // socket d'écoute du service Clamav
   "antivirus": {
     "host": "localhost",
     "port": 3310,
     "timeout": 60000
   },
+
   "mail": {
     "config": {
       "host": "127.0.0.1",
@@ -203,6 +233,8 @@
       }
     }
   },
+
+  // bouchonnage des services et de la base
   "mock": {
     "enabled": false,
     "servicePage": {
@@ -212,14 +244,18 @@
       "enabled": false
     }
   },
+
   "fullSpa": {
     "enabled": false,
     "host": "",
     "name": "/services",
     "staticPath": ""
   },
+
   "authentication": {
+    // route menant à la page d'authentification
     "loginUrl": "/login",
+    // route de déconnexion
     "logoutUrl": "/logout"
     //    "saml": {
     //      "enabled": false,
@@ -237,6 +273,7 @@
     //        ]
     //      }
   },
+
   "request": {
     "cache": {
       "client": {

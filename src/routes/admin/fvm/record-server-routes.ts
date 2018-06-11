@@ -3,9 +3,8 @@ import {
   GetCopieNoteVerbaleMAECI,
   GetCopiePermis,
   GetDemandeAuthentification, GetDossier,
-  GetNoteVerbale, GetPDFDemandeAuthentification,
-  GetReleve,
-  ListeDossiers
+  GetPDFDemandeAuthentification,
+  ListDossier
 } from "src/actions/admin/fvm/fvm-action";
 import { DataRouteInfos, PUBLIC_ROUTE } from "hornet-js-core/src/routes/abstract-routes";
 import RecordListRoutesClient from "./record-client-routes";
@@ -18,15 +17,15 @@ export default class RecordListRoutesServer extends RecordListRoutesClient {
     super();
 
     this.addDataRoute("/",
-      () => new DataRouteInfos(ListeDossiers, null, ClientListServiceImpl),
+      () => new DataRouteInfos(ListDossier, null, ClientListServiceImpl),
       PUBLIC_ROUTE,
       "post"
     );
 
     this.addDataRoute("/delete",
-      () => new DataRouteInfos(DeleteDossier, null, Injector.getRegistered(ClientListServiceImpl)),
+      () => new DataRouteInfos(DeleteDossier, null, ClientListServiceImpl),
       Roles.ADMIN,
-      "post"
+      "delete"
     );
 
     this.addDataRoute("/detailsDossiers/dossier",
@@ -42,11 +41,12 @@ export default class RecordListRoutesServer extends RecordListRoutesClient {
     );
 
     this.addDataRoute("/detailsDossiers/demandeauthentification/delete",
-      () => new DataRouteInfos(DeleteDemandeAuthentification, null, Injector.getRegistered(ClientListServiceImpl)),
+      () => new DataRouteInfos(DeleteDemandeAuthentification, null, ClientListServiceImpl),
       Roles.ADMIN,
-      "post"
+      "delete"
     );
 
+    /* TODO
     this.addDataRoute("/detailsDossiers/releve",
       (id) => new DataRouteInfos(GetReleve, null, ClientListServiceImpl),
       PUBLIC_ROUTE,
@@ -58,6 +58,7 @@ export default class RecordListRoutesServer extends RecordListRoutesClient {
       PUBLIC_ROUTE,
       "post"
     );
+    */
 
     this.addDataRoute("/copiePermis/(\\d+)",
       (idCopiePermis) => new DataRouteInfos(GetCopiePermis, {"idCopiePermis": idCopiePermis}, ClientListServiceImpl),
