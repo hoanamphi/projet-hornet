@@ -1,6 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Sequelize = require("sequelize");
+/**
+ * Objet Sequelize définissant le modèle de la table demande_authentification_fvm
+ * @type {Sequelize.DefineAttributes}
+ */
 exports.DemandeAuthentificationFVMModel = {
     "idDemandeAuthentification": {
         type: Sequelize.INTEGER,
@@ -45,5 +49,4 @@ exports.DemandeAuthentificationFVMModel = {
         }
     }
 };
-
 //# sourceMappingURL=model-demandeauthentification.js.map

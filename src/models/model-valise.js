@@ -1,6 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Sequelize = require("sequelize");
+/**
+ * Objet Sequelize définissant le modèle de la table valise
+ * @type {Sequelize.DefineAttributes}
+ */
 exports.ValiseModel = {
     "numValise": {
         type: Sequelize.INTEGER,
@@ -15,5 +19,4 @@ exports.ValiseModel = {
         allowNull: false
     }
 };
-
 //# sourceMappingURL=model-valise.js.map

@@ -1,6 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Sequelize = require("sequelize");
+/**
+ * Objet Sequelize définissant le modèle de la table note_verbale_releve_fvm
+ * @type {Sequelize.DefineAttributes}
+ */
 exports.NoteVerbaleReleveFVMModel = {
     "idNoteVerbaleReleve": {
         type: Sequelize.INTEGER,
@@ -30,5 +34,4 @@ exports.NoteVerbaleReleveFVMModel = {
         }
     }
 };
-
 //# sourceMappingURL=model-noteverbale-releve.js.map

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
-var hornet_js_utils_1 = require("hornet-js-utils");
+// Classes métiers et Classes modèles des tables de la base de données
 var model_prefecture_1 = require("src/models/model-prefecture");
 var model_valise_1 = require("src/models/model-valise");
 var model_permis_1 = require("src/models/fvm/model-permis");
@@ -11,10 +11,10 @@ var model_demandeauthentification_1 = require("src/models/fvm/model-demandeauthe
 var model_releve_1 = require("src/models/fvm/model-releve");
 var model_noteverbale_releve_1 = require("src/models/fvm/model-noteverbale-releve");
 var model_noteverbale_1 = require("src/models/fvm/model-noteverbale");
-var model_copiepermis_1 = require("../models/fvm/model-copiepermis");
-var model_copienoteverbaleMAECI_1 = require("../models/fvm/model-copienoteverbaleMAECI");
-var model_copiereleve_1 = require("../models/fvm/model-copiereleve");
-var model_copiecourrierprefecture_1 = require("../models/fvm/model-copiecourrierprefecture");
+var model_copiepermis_1 = require("src/models/fvm/model-copiepermis");
+var model_copienoteverbaleMAECI_1 = require("src/models/fvm/model-copienoteverbaleMAECI");
+var model_copiereleve_1 = require("src/models/fvm/model-copiereleve");
+var model_copiecourrierprefecture_1 = require("src/models/fvm/model-copiecourrierprefecture");
 var model_permis_2 = require("src/models/mvf/model-permis");
 var model_personne_2 = require("src/models/mvf/model-personne");
 var model_dossier_2 = require("src/models/mvf/model-dossier");
@@ -23,31 +23,49 @@ var model_noteverbale_2 = require("src/models/mvf/model-noteverbale");
 var model_attestation_1 = require("src/models/mvf/model-attestation");
 var model_bordereau_attestation_1 = require("src/models/mvf/model-bordereau-attestation");
 var model_bordereau_1 = require("src/models/mvf/model-bordereau");
-var model_copiepermis_2 = require("../models/mvf/model-copiepermis");
-var model_copiedemandeprefecture_1 = require("../models/mvf/model-copiedemandeprefecture");
-var model_copieattestation_1 = require("../models/mvf/model-copieattestation");
-var model_copienoteverbaleMAECI_2 = require("../models/mvf/model-copienoteverbaleMAECI");
-var model_role_1 = require("../models/auth/model-role");
-var seq_user_mod_1 = require("../models/auth/seq-user-mod");
-var model_role_utilisateur_1 = require("../models/auth/model-role_utilisateur");
+var model_copiepermis_2 = require("src/models/mvf/model-copiepermis");
+var model_copiedemandeprefecture_1 = require("src/models/mvf/model-copiedemandeprefecture");
+var model_copieattestation_1 = require("src/models/mvf/model-copieattestation");
+var model_copienoteverbaleMAECI_2 = require("src/models/mvf/model-copienoteverbaleMAECI");
+var model_role_1 = require("src/models/auth/model-role");
+var seq_user_mod_1 = require("src/models/auth/seq-user-mod");
+var model_role_utilisateur_1 = require("src/models/auth/model-role_utilisateur");
+// Décorateur définissant une entité de la base de données
 var dec_seq_entity_1 = require("hornet-js-database/src/decorators/dec-seq-entity");
+// Décorateur permettant la connexion à la base de données
 var injectable_1 = require("hornet-js-core/src/inject/injectable");
-var hornet_sequelize_model_1 = require("hornet-js-database/src/sequelize/hornet-sequelize-model");
 var inject_1 = require("hornet-js-core/src/inject/inject");
+// Classe parente des Classes définissant les entités de la DAO
+var hornet_sequelize_model_1 = require("hornet-js-database/src/sequelize/hornet-sequelize-model");
+// Classe permettant d'initialiser des relations entre des tables de la base
 var sequelize_utils_1 = require("hornet-js-database/src/sequelize/sequelize-utils");
-var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.src.dao.model-dao");
+/**
+ * Classe définissant les entités (tables) de la DAO
+ * @extends {HornetSequelizeModel}
+ */
 var ModelDAO = /** @class */ (function (_super) {
     tslib_1.__extends(ModelDAO, _super);
+    /**
+     * @constructor
+     * @param {string} conf chaîne de caractères permettant la connexion à la base
+     */
     function ModelDAO(conf) {
         var _this = _super.call(this, conf) || this;
+        // Initialise les relations entre les tables role et utilisateur
         _this.initUtilisateurEntity();
         _this.initRoleEntity();
         return _this;
     }
     ModelDAO_1 = ModelDAO;
+    /**
+     * Méthode créant une relation One to Many entre la table utilisateur et la table role, au travers de la table role_utilisateur
+     */
     ModelDAO.prototype.initUtilisateurEntity = function () {
         sequelize_utils_1.SequelizeUtils.initRelationBelongsToMany({ fromEntity: this.utilisateurEntity, toEntity: this.roleEntity, alias: "listeRole", foreignKey: "id_utilisateur", throughTable: "role_utilisateur" });
     };
+    /**
+     * Méthode créant une relation One to Many entre la table role et la table utilisateur, au travers de la table role_utilisateur
+     */
     ModelDAO.prototype.initRoleEntity = function () {
         sequelize_utils_1.SequelizeUtils.initRelationBelongsToMany({ fromEntity: this.roleEntity, toEntity: this.utilisateurEntity, alias: "listeUser", foreignKey: "id_role", throughTable: "role_utilisateur" });
     };

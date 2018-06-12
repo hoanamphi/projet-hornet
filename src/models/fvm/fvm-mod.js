@@ -4,6 +4,15 @@ var tslib_1 = require("tslib");
 var Bean_1 = require("hornet-js-bean/src/decorators/Bean");
 var Map_1 = require("hornet-js-bean/src/decorators/Map");
 var Alias_1 = require("hornet-js-bean/src/decorators/Alias");
+/* Classes métiers des objets utilisés dans les Classes de DAO
+   Les attributes de la Classe métier sont définis ainsi :
+    @Map( [Autre Classe métier] ) (si le type de l'attribut est une Classe métier)
+    @Alias( [alias de l'attribut dans la Classe de DAO] )
+    [nom de l'attribut dans la base de données] : [type de l'attribut]
+*/
+/**
+ * Classe métier de la table permis_fvm
+ */
 var PermisFVMMetier = /** @class */ (function () {
     function PermisFVMMetier() {
     }
@@ -48,6 +57,9 @@ var PermisFVMMetier = /** @class */ (function () {
     return PermisFVMMetier;
 }());
 exports.PermisFVMMetier = PermisFVMMetier;
+/**
+ * Classe métier de la table personne_fvm
+ */
 var PersonneFVMMetier = /** @class */ (function () {
     function PersonneFVMMetier() {
     }
@@ -68,9 +80,9 @@ var PersonneFVMMetier = /** @class */ (function () {
     ], PersonneFVMMetier.prototype, "prenom", void 0);
     tslib_1.__decorate([
         Map_1.default(),
-        Alias_1.default("sexe"),
+        Alias_1.default("titre"),
         tslib_1.__metadata("design:type", String)
-    ], PersonneFVMMetier.prototype, "sexe", void 0);
+    ], PersonneFVMMetier.prototype, "titre", void 0);
     tslib_1.__decorate([
         Map_1.default(),
         Alias_1.default("dateDeNaissance"),
@@ -97,6 +109,9 @@ var PersonneFVMMetier = /** @class */ (function () {
     return PersonneFVMMetier;
 }());
 exports.PersonneFVMMetier = PersonneFVMMetier;
+/**
+ * Classe métier de la table dossier_fvm
+ */
 var DossierFVMMetier = /** @class */ (function () {
     function DossierFVMMetier() {
     }
@@ -126,6 +141,9 @@ var DossierFVMMetier = /** @class */ (function () {
     return DossierFVMMetier;
 }());
 exports.DossierFVMMetier = DossierFVMMetier;
+/**
+ * Classe métier de la table demande_authentification_fvm
+ */
 var DemandeAuthentificationFVMMetier = /** @class */ (function () {
     function DemandeAuthentificationFVMMetier() {
     }
@@ -165,6 +183,9 @@ var DemandeAuthentificationFVMMetier = /** @class */ (function () {
     return DemandeAuthentificationFVMMetier;
 }());
 exports.DemandeAuthentificationFVMMetier = DemandeAuthentificationFVMMetier;
+/**
+ * Classe métier de la table releve_fvm
+ */
 var ReleveFVMMetier = /** @class */ (function () {
     function ReleveFVMMetier() {
     }
@@ -199,6 +220,9 @@ var ReleveFVMMetier = /** @class */ (function () {
     return ReleveFVMMetier;
 }());
 exports.ReleveFVMMetier = ReleveFVMMetier;
+/**
+ * Classe métier de la table note_verbale_releve_fvm
+ */
 var NoteVerbaleReleveFVMMetier = /** @class */ (function () {
     function NoteVerbaleReleveFVMMetier() {
     }
@@ -223,6 +247,9 @@ var NoteVerbaleReleveFVMMetier = /** @class */ (function () {
     return NoteVerbaleReleveFVMMetier;
 }());
 exports.NoteVerbaleReleveFVMMetier = NoteVerbaleReleveFVMMetier;
+/**
+ * Classe métier de la table note_verbale_fvm
+ */
 var NoteVerbaleFVMMetier = /** @class */ (function () {
     function NoteVerbaleFVMMetier() {
     }
@@ -247,6 +274,9 @@ var NoteVerbaleFVMMetier = /** @class */ (function () {
     return NoteVerbaleFVMMetier;
 }());
 exports.NoteVerbaleFVMMetier = NoteVerbaleFVMMetier;
+/**
+ * Classe métier de la table copie_permis_fvm
+ */
 var CopiePermisFVMMetier = /** @class */ (function () {
     function CopiePermisFVMMetier() {
     }
@@ -291,6 +321,9 @@ var CopiePermisFVMMetier = /** @class */ (function () {
     return CopiePermisFVMMetier;
 }());
 exports.CopiePermisFVMMetier = CopiePermisFVMMetier;
+/**
+ * Classe métier de la table copie_note_verbale_maeci_fvm
+ */
 var CopieNoteVerbaleMAECIFVMMetier = /** @class */ (function () {
     function CopieNoteVerbaleMAECIFVMMetier() {
     }
@@ -335,6 +368,9 @@ var CopieNoteVerbaleMAECIFVMMetier = /** @class */ (function () {
     return CopieNoteVerbaleMAECIFVMMetier;
 }());
 exports.CopieNoteVerbaleMAECIFVMMetier = CopieNoteVerbaleMAECIFVMMetier;
+/**
+ * Classe métier de la table copie_releve_fvm
+ */
 var CopieReleveFVMMetier = /** @class */ (function () {
     function CopieReleveFVMMetier() {
     }
@@ -379,6 +415,9 @@ var CopieReleveFVMMetier = /** @class */ (function () {
     return CopieReleveFVMMetier;
 }());
 exports.CopieReleveFVMMetier = CopieReleveFVMMetier;
+/**
+ * Classe métier de la table copie_courrier_prefecture_fvm
+ */
 var CopieCourrierPrefectureFVMMetier = /** @class */ (function () {
     function CopieCourrierPrefectureFVMMetier() {
     }
@@ -423,5 +462,4 @@ var CopieCourrierPrefectureFVMMetier = /** @class */ (function () {
     return CopieCourrierPrefectureFVMMetier;
 }());
 exports.CopieCourrierPrefectureFVMMetier = CopieCourrierPrefectureFVMMetier;
-
 //# sourceMappingURL=fvm-mod.js.map

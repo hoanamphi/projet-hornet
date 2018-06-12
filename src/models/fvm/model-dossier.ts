@@ -1,6 +1,10 @@
 import * as Sequelize from "sequelize";
 import { HornetSequelizeAttributes } from "hornet-js-database/src/sequelize/hornet-sequelize-attributes";
 
+/**
+ * Interface définissant les attributs de la table dossier_fvm
+ * @extends {HornetSequelizeAttributes}
+ */
 export interface DossierFVMAttributes extends HornetSequelizeAttributes {
   idDossier: number;
   idCopieNoteVerbaleMAECI: number;
@@ -8,6 +12,10 @@ export interface DossierFVMAttributes extends HornetSequelizeAttributes {
   idPermis: number;
 }
 
+/**
+ * Objet Sequelize définissant le modèle de la table dossier_fvm
+ * @type {Sequelize.DefineAttributes}
+ */
 export let DossierFVMModel: Sequelize.DefineAttributes = {
   "idDossier": {
     type: Sequelize.INTEGER,

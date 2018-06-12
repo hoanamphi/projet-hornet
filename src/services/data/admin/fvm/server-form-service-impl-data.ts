@@ -17,7 +17,7 @@ import {
 
 const logger: Logger = Utils.getLogger("projet-hornet.services.data.admin.admin-service-impl-data");
 
-export class ServerFormServiceImpl extends ServiceRequest implements ServerFormService {
+export class FormServiceImpl extends ServiceRequest implements ServerFormService {
 
   private Error = {"hasError": null, "hasReason": null};
 

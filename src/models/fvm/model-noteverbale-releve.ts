@@ -1,12 +1,20 @@
 import * as Sequelize from "sequelize";
 import { HornetSequelizeAttributes } from "hornet-js-database/src/sequelize/hornet-sequelize-attributes";
 
+/**
+ * Interface définissant les attributs de la table note_verbale_releve_fvm
+ * @extends {HornetSequelizeAttributes}
+ */
 export interface NoteVerbaleReleveFVMAttributes extends HornetSequelizeAttributes {
   idNoteVerbaleReleve: number;
   idReleve: number;
   idNoteVerbale: number;
 }
 
+/**
+ * Objet Sequelize définissant le modèle de la table note_verbale_releve_fvm
+ * @type {Sequelize.DefineAttributes}
+ */
 export let NoteVerbaleReleveFVMModel: Sequelize.DefineAttributes = {
   "idNoteVerbaleReleve": {
     type: Sequelize.INTEGER,

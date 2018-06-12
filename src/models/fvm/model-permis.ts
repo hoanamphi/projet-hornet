@@ -1,6 +1,10 @@
 import * as Sequelize from "sequelize";
 import { HornetSequelizeAttributes } from "hornet-js-database/src/sequelize/hornet-sequelize-attributes";
 
+/**
+ * Interface définissant les attributs de la table permis_fvm
+ * @extends {HornetSequelizeAttributes}
+ */
 export interface PermisFVMAttributes extends HornetSequelizeAttributes {
   idPermis: number;
   numPermis: string;
@@ -11,6 +15,10 @@ export interface PermisFVMAttributes extends HornetSequelizeAttributes {
   idPrefectureDelivrance: number;
 }
 
+/**
+ * Objet Sequelize définissant les attributs de la table permis_fvm
+ * @type {Sequelize.DefineAttributes}
+ */
 export let PermisFVMModel: Sequelize.DefineAttributes = {
   "idPermis": {
     type: Sequelize.INTEGER,

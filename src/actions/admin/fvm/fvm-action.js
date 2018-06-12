@@ -12,7 +12,7 @@ var disposition_type_1 = require("hornet-js-core/src/result/disposition-type");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.actions.admin.fvm_actions");
 /**
  * Classe d'action gérant l'insertion d'un nouveau dossier dans la base
- * @extends {RouteActionService} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, ServerFormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
  */
 var InserDossier = /** @class */ (function (_super) {
     tslib_1.__extends(InserDossier, _super);
@@ -38,7 +38,7 @@ var InserDossier = /** @class */ (function (_super) {
         // Variable : Objet JSON : contient les données à passer en entrée du service
         var data = this.req.body;
         // Si le tableau contient au moins deux fichiers
-        if (this.req.files[0] instanceof File && this.req.files[1] instanceof File) {
+        if (this.req.files[0] != null && this.req.files[1] != null) {
             // Si les fichiers sont des PDF
             if (this.req.files[0].mimetype != "pdf" && this.req.files[1].mimetype != "pdf") {
                 // Concaténer le contenu des objets aux autres données
@@ -75,7 +75,7 @@ var InserDossier = /** @class */ (function (_super) {
 exports.InserDossier = InserDossier;
 /**
  * Classe d'action gérant l'insertion d'une nouvelle demande d'authentification dans la base
- * @extends {RouteActionService} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, ServerFormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
  */
 var InserDemandeAuthentification = /** @class */ (function (_super) {
     tslib_1.__extends(InserDemandeAuthentification, _super);
@@ -100,7 +100,7 @@ var InserDemandeAuthentification = /** @class */ (function (_super) {
 exports.InserDemandeAuthentification = InserDemandeAuthentification;
 /**
  * Classe d'action gérant l'insertion d'une nouvelle valise dans la base
- * @extends {RouteActionService} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, ServerFormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
  */
 var InserValise = /** @class */ (function (_super) {
     tslib_1.__extends(InserValise, _super);
@@ -125,7 +125,7 @@ var InserValise = /** @class */ (function (_super) {
 exports.InserValise = InserValise;
 /**
  * Classe d'action gérant la suppression d'un dossier dans la base
- * @extends {RouteActionService} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, ServerFormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
  */
 var DeleteDossier = /** @class */ (function (_super) {
     tslib_1.__extends(DeleteDossier, _super);
@@ -150,7 +150,7 @@ var DeleteDossier = /** @class */ (function (_super) {
 exports.DeleteDossier = DeleteDossier;
 /**
  * Classe d'action gérant la suppression d'une demande d'authentification dans la base
- * @extends {RouteActionService} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, ServerFormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
  */
 var DeleteDemandeAuthentification = /** @class */ (function (_super) {
     tslib_1.__extends(DeleteDemandeAuthentification, _super);
@@ -175,7 +175,7 @@ var DeleteDemandeAuthentification = /** @class */ (function (_super) {
 exports.DeleteDemandeAuthentification = DeleteDemandeAuthentification;
 /**
  * Classe d'action gérant le listage des préfectures stockées dans la base de données
- * @extends {RouteActionService} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, ServerFormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
  */
 var ListPrefecture = /** @class */ (function (_super) {
     tslib_1.__extends(ListPrefecture, _super);
@@ -195,7 +195,7 @@ var ListPrefecture = /** @class */ (function (_super) {
 exports.ListPrefecture = ListPrefecture;
 /**
  * Classe d'action gérant le listage des valises stockées dans la base
- * @extends {RouteActionService} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, ServerFormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
  */
 var ListValise = /** @class */ (function (_super) {
     tslib_1.__extends(ListValise, _super);
@@ -215,7 +215,7 @@ var ListValise = /** @class */ (function (_super) {
 exports.ListValise = ListValise;
 /**
  * Classe d'action gérant le listage des dossiers stockés dans la base
- * @extends {RouteActionService} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, ServerFormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
  */
 var ListDossier = /** @class */ (function (_super) {
     tslib_1.__extends(ListDossier, _super);
@@ -235,7 +235,7 @@ var ListDossier = /** @class */ (function (_super) {
 exports.ListDossier = ListDossier;
 /**
  * Classe d'action gérant le retour du dossier correspondant aux attributs donnés en entrée
- * @extends {RouteActionService} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, ServerFormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
  */
 var GetDossier = /** @class */ (function (_super) {
     tslib_1.__extends(GetDossier, _super);
@@ -260,7 +260,7 @@ var GetDossier = /** @class */ (function (_super) {
 exports.GetDossier = GetDossier;
 /**
  * Classe d'action gérant le retour de la demande d'authentification correspondant aux attributs donnés en entrée
- * @extends {RouteActionService} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, ServerFormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
  */
 var GetDemandeAuthentification = /** @class */ (function (_super) {
     tslib_1.__extends(GetDemandeAuthentification, _super);
@@ -306,7 +306,7 @@ export class GetNoteVerbale extends RouteActionService<any, ClientListService> {
 */
 /**
  * Classe d'action gérant le retour de la copie d'un permis de conduire
- * @extends {RouteActionService} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, ServerFormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
  */
 var GetCopiePermis = /** @class */ (function (_super) {
     tslib_1.__extends(GetCopiePermis, _super);
@@ -337,7 +337,7 @@ var GetCopiePermis = /** @class */ (function (_super) {
 exports.GetCopiePermis = GetCopiePermis;
 /**
  * Classe d'action gérant le retour de la copie d'une note verbale du MAECI
- * @extends {RouteActionService} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, ServerFormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
  */
 var GetCopieNoteVerbaleMAECI = /** @class */ (function (_super) {
     tslib_1.__extends(GetCopieNoteVerbaleMAECI, _super);
@@ -368,7 +368,7 @@ var GetCopieNoteVerbaleMAECI = /** @class */ (function (_super) {
 exports.GetCopieNoteVerbaleMAECI = GetCopieNoteVerbaleMAECI;
 /**
  * Classe d'action gérant la génération d'un document de demande d'authentification
- * @extends {RouteActionService} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, ServerFormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
  */
 var GetPDFDemandeAuthentification = /** @class */ (function (_super) {
     tslib_1.__extends(GetPDFDemandeAuthentification, _super);
@@ -489,4 +489,5 @@ var GetPDFDemandeAuthentification = /** @class */ (function (_super) {
     return GetPDFDemandeAuthentification;
 }(abstract_routes_1.RouteActionService));
 exports.GetPDFDemandeAuthentification = GetPDFDemandeAuthentification;
+
 //# sourceMappingURL=fvm-action.js.map

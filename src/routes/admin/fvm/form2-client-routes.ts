@@ -1,16 +1,28 @@
-import { FormulaireDossierPage } from "src/views/admin/fvm/gen-formDossier-page";
 import { AbstractRoutes, PageRouteInfos, PUBLIC_ROUTE } from "hornet-js-core/src/routes/abstract-routes";
-import { ServerFormServiceImpl } from "src/services/page/admin/fvm/server-form-service-impl";
-import {FormulaireDemandeAuthentificationPage} from "../../../views/admin/fvm/gen-formDemande-page";
-import {Roles} from "../../../utils/roles";
+// Classe de Page du formulaire d'insertion d'une demande d'authentification
+import {FormulaireDemandeAuthentificationPage} from "src/views/admin/fvm/gen-formDemande-page";
+// Classe du service utilisé par la Classe de Page
+import { FormServiceImpl } from "src/services/page/admin/fvm/form-service-impl";
+// Classes permettant de mettre en place l'authentification
+import {Roles} from "src/utils/roles";
 import {Injector} from "hornet-js-core/src/inject/injector";
 
-export default class Form2RoutesClient extends AbstractRoutes {
+/**
+ * Classe définissant les sous-routes Client de la lazy route "/fvmform2"
+ * @extends {AbstractRoutes}
+ */
+export default class FormulaireDemandeAuthentificationRoutesClient extends AbstractRoutes {
+
+  /**
+   * @constructor
+   */
   constructor() {
     super();
 
+    // Route menant au formulaire d'insertion d'une demande d'authentification
+    // La page prend un service de type FormService en entrée
     this.addPageRoute("/(\\d+)",
-      (id) => new PageRouteInfos(FormulaireDemandeAuthentificationPage, {"id": id}, ServerFormServiceImpl),
+      (id) => new PageRouteInfos(FormulaireDemandeAuthentificationPage, {"idPermis": id}, FormServiceImpl),
       Roles.ADMIN
     );
   }

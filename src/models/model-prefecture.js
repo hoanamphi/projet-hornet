@@ -1,6 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Sequelize = require("sequelize");
+/**
+ * Objet Sequelize définissant le modèle de la table prefecture
+ * @type {Sequelize.DefineAttributes}
+ */
 exports.PrefectureModel = {
     "idPrefecture": {
         type: Sequelize.INTEGER,
@@ -40,5 +44,4 @@ exports.PrefectureModel = {
         allowNull: false
     }
 };
-
 //# sourceMappingURL=model-prefecture.js.map

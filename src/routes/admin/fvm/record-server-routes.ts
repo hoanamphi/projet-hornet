@@ -7,12 +7,12 @@ import {
   ListDossier
 } from "src/actions/admin/fvm/fvm-action";
 import { DataRouteInfos, PUBLIC_ROUTE } from "hornet-js-core/src/routes/abstract-routes";
-import RecordListRoutesClient from "./record-client-routes";
+import RecordRoutesClient from "./record-client-routes";
 import {ClientListServiceImpl} from "../../../services/data/admin/fvm/client-list-service-impl-data";
 import {Injector} from "hornet-js-core/src/inject/injector";
 import {Roles} from '../../../utils/roles';
 
-export default class RecordListRoutesServer extends RecordListRoutesClient {
+export default class RecordListRoutesServer extends RecordRoutesClient {
   constructor() {
     super();
 
@@ -48,13 +48,13 @@ export default class RecordListRoutesServer extends RecordListRoutesClient {
 
     /* TODO
     this.addDataRoute("/detailsDossiers/releve",
-      (id) => new DataRouteInfos(GetReleve, null, ClientListServiceImpl),
+      (id) => new DataRouteInfos(GetReleve, null, PageServiceImpl),
       PUBLIC_ROUTE,
       "post"
     );
 
     this.addDataRoute("/detailsDossiers/noteverbale",
-      (id) => new DataRouteInfos(GetNoteVerbale, null, ClientListServiceImpl),
+      (id) => new DataRouteInfos(GetNoteVerbale, null, PageServiceImpl),
       PUBLIC_ROUTE,
       "post"
     );

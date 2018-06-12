@@ -1,6 +1,10 @@
 import * as Sequelize from "sequelize";
 import { HornetSequelizeAttributes } from "hornet-js-database/src/sequelize/hornet-sequelize-attributes";
 
+/**
+ * Interface définissant les attributs de la table copie_note_verbale_maeci_fvm
+ * @extends {HornetSequelizeAttributes}
+ */
 export interface CopieNoteVerbaleMAECIFVMAttributes extends HornetSequelizeAttributes {
   idCopieNoteVerbaleMAECI: number;
   nom: string;
@@ -11,6 +15,10 @@ export interface CopieNoteVerbaleMAECIFVMAttributes extends HornetSequelizeAttri
   idDossier: number;
 }
 
+/**
+ * Objet Sequelize définissant le modèle de la table copie_note_verbale_maeci_fvm
+ * @type {Sequelize.DefineAttributes}
+ */
 export let CopieNoteVerbaleMAECIFVMModel: Sequelize.DefineAttributes = {
   "idCopieNoteVerbaleMAECI": {
     type: Sequelize.INTEGER,

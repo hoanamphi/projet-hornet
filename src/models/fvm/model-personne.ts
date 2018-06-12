@@ -1,17 +1,25 @@
 import * as Sequelize from "sequelize";
 import { HornetSequelizeAttributes } from "hornet-js-database/src/sequelize/hornet-sequelize-attributes";
 
+/**
+ * Interface définissant les attributs de la table personne_fvm
+ * @extends {HornetSequelizeAttributes}
+ */
 export interface PersonneFVMAttributes extends HornetSequelizeAttributes {
   idPersonne: number;
   nom: string;
   prenom: string;
-  sexe: string;
+  titre: string;
   dateDeNaissance: Date;
   villeDeNaissance: string;
   paysDeNaissance: string;
   idPermis: number;
 }
 
+/**
+ * Objet Sequelize définissant le modèle de la table personne_fvm
+ * @type {Sequelize.DefineAttributes}
+ */
 export let PersonneFVMModel: Sequelize.DefineAttributes = {
   "idPersonne": {
     type: Sequelize.INTEGER,
@@ -30,9 +38,9 @@ export let PersonneFVMModel: Sequelize.DefineAttributes = {
     field: "prenom",
     allowNull: false
   },
-  "sexe": {
+  "titre": {
     type: Sequelize.STRING,
-    field: "sexe",
+    field: "titre",
     allowNull: false
   },
   "dateDeNaissance": {

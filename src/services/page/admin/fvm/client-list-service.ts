@@ -7,8 +7,11 @@ export interface ClientListService {
 
   getDossier(data): Promise<any>;
   getDemandeAuthentification(data): Promise<any>;
+
+  /* TODO
   getReleve(data): Promise<any>;
   getNoteVerbale(data): Promise<any>;
+  */
 
   getCopiePermis(idCopiePermis): Promise<any>;
   getCopieNoteVerbaleMAECI(idCopieNoteVerbaleMAECI): Promise<any>;

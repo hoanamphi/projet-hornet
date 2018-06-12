@@ -2,6 +2,16 @@ import Bean from "hornet-js-bean/src/decorators/Bean";
 import Map from "hornet-js-bean/src/decorators/Map";
 import Alias from "hornet-js-bean/src/decorators/Alias";
 
+/* Classes métiers des objets utilisés dans les Classes de DAO
+   Les attributes de la Classe métier sont définis ainsi :
+    @Map( [Autre Classe métier] ) (si le type de l'attribut est une Classe métier)
+    @Alias( [alias de l'attribut dans la Classe de DAO] )
+    [nom de l'attribut dans la base de données] : [type de l'attribut]
+*/
+
+/**
+ * Classe métier de la table permis_fvm
+ */
 @Bean
 export class PermisFVMMetier {
   @Map()
@@ -33,6 +43,9 @@ export class PermisFVMMetier {
   id_prefecture_delivrance: number;
 }
 
+/**
+ * Classe métier de la table personne_fvm
+ */
 @Bean
 export class PersonneFVMMetier {
   @Map()
@@ -48,8 +61,8 @@ export class PersonneFVMMetier {
   prenom: string;
 
   @Map()
-  @Alias("sexe")
-  sexe: string;
+  @Alias("titre")
+  titre: string;
 
   @Map()
   @Alias("dateDeNaissance")
@@ -68,6 +81,9 @@ export class PersonneFVMMetier {
   id_permis_fvm: number;
 }
 
+/**
+ * Classe métier de la table dossier_fvm
+ */
 @Bean
 export class DossierFVMMetier {
   @Map()
@@ -87,6 +103,9 @@ export class DossierFVMMetier {
   id_permis_fvm: number;
 }
 
+/**
+ * Classe métier de la table demande_authentification_fvm
+ */
 @Bean
 export class DemandeAuthentificationFVMMetier {
   @Map()
@@ -114,6 +133,9 @@ export class DemandeAuthentificationFVMMetier {
   num_valise: number;
 }
 
+/**
+ * Classe métier de la table releve_fvm
+ */
 @Bean
 export class ReleveFVMMetier {
   @Map()
@@ -137,6 +159,9 @@ export class ReleveFVMMetier {
   id_permis_fvm: number;
 }
 
+/**
+ * Classe métier de la table note_verbale_releve_fvm
+ */
 @Bean
 export class NoteVerbaleReleveFVMMetier {
   @Map()
@@ -152,6 +177,9 @@ export class NoteVerbaleReleveFVMMetier {
   id_note_verbale_fvm: number;
 }
 
+/**
+ * Classe métier de la table note_verbale_fvm
+ */
 @Bean
 export class NoteVerbaleFVMMetier {
   @Map()
@@ -167,6 +195,9 @@ export class NoteVerbaleFVMMetier {
   date_envoi_de_la_reponse_au_maeci: Date;
 }
 
+/**
+ * Classe métier de la table copie_permis_fvm
+ */
 @Bean
 export class CopiePermisFVMMetier {
   @Map()
@@ -198,6 +229,9 @@ export class CopiePermisFVMMetier {
   id_permis_fvm: number;
 }
 
+/**
+ * Classe métier de la table copie_note_verbale_maeci_fvm
+ */
 @Bean
 export class CopieNoteVerbaleMAECIFVMMetier {
   @Map()
@@ -229,6 +263,9 @@ export class CopieNoteVerbaleMAECIFVMMetier {
   id_dossier_fvm: number;
 }
 
+/**
+ * Classe métier de la table copie_releve_fvm
+ */
 @Bean
 export class CopieReleveFVMMetier {
   @Map()
@@ -260,6 +297,9 @@ export class CopieReleveFVMMetier {
   id_releve_fvm: number;
 }
 
+/**
+ * Classe métier de la table copie_courrier_prefecture_fvm
+ */
 @Bean
 export class CopieCourrierPrefectureFVMMetier {
   @Map()

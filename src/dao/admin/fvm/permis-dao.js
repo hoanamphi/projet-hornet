@@ -2,15 +2,38 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
 var hornet_js_utils_1 = require("hornet-js-utils");
+// Classe parente des Classes de DAO
 var entity_dao_1 = require("src/dao/entity-dao");
+// Classe métier d'un permis
+var fvm_mod_1 = require("../../../models/fvm/fvm-mod");
+var Map_1 = require("hornet-js-bean/src/decorators/Map");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.src.dao.utilisateurs-dao");
+/**
+ * Classe de DAO permettant l'interaction avec la table permis_fvm
+ * @extends {EntityDAO}
+ */
 var PermisFVMDAO = /** @class */ (function (_super) {
     tslib_1.__extends(PermisFVMDAO, _super);
+    /**
+     * @constructor
+     */
     function PermisFVMDAO() {
         return _super.call(this) || this;
     }
+    /**
+     * Méthode insérant un nouveau permis dans la base
+     * @param {number} idPermis id du nouveau tuple
+     * @param {string} numPermis numéro du permis de conduire
+     * @param {number} idCopiePermis id de la copie du permis de conduire
+     * @param {Date} dateDeDelivrance date de délivrance du permis de conduire
+     * @param {number} idPersonne id de la personne auquel appartient le permis
+     * @param {number} idDossier id du dossier concerné par le permis
+     * @param {number} idPrefectureDelivrance id de la préfecture ayant délivré le permis
+     * @returns {Promise<number>} id du tuple créé
+     */
     PermisFVMDAO.prototype.insererPermis = function (idPermis, numPermis, idCopiePermis, dateDeDelivrance, idPersonne, idDossier, idPrefectureDelivrance) {
-        return this.modelDAO.permisFVMEntity.create({
+        logger.trace("DAO inser - Permis.Inser");
+        return this.modelDAO.permisFVMEntity.upsert({
             idPermis: idPermis,
             numPermis: numPermis,
             idCopiePermis: idCopiePermis,
@@ -18,40 +41,78 @@ var PermisFVMDAO = /** @class */ (function (_super) {
             idPersonne: idPersonne,
             idDossier: idDossier,
             idPrefectureDelivrance: idPrefectureDelivrance
-        }).then(function (result) {
-            return Promise.resolve(idPermis);
+        }).then(function () {
+            return idPermis;
         });
     };
+    /**
+     * Méthode retournant un id unique pour chaque nouveau tuple
+     * @returns {Promise<number>} id du nouveau tuple
+     */
     PermisFVMDAO.prototype.getNewIdPermis = function () {
         var _this = this;
+        logger.trace("DAO get - Permis.GetNewId");
+        // Compte le nombre de tuples dans la table
         return this.modelDAO.permisFVMEntity.count().then(function (count) {
+            // S'il y a déjà des tuples dans la table
             if (count > 0) {
+                // Retourne l'id le plus grand
                 return _this.modelDAO.permisFVMEntity.max("idPermis");
             }
             else {
-                return Promise.resolve(-1);
+                return -1;
             }
         }).then(function (max) {
-            return Promise.resolve(max + 1);
+            // Retourne l'id le plus grand + 1 ==> nouvel id
+            return max + 1;
         });
     };
+    /**
+     * Méthode retournant la liste des permis stockés dans la base
+     * @returns {Promise<Array<PermisFVMMetier>>} Liste des permis stockés dans la base
+     */
     PermisFVMDAO.prototype.getAllPermis = function () {
+        logger.trace("DAO get - Permis.GetAll");
         return this.modelDAO.permisFVMEntity.findAll();
     };
+    /**
+     * Méthode retournant un permis de conduire
+     * @param {number} idPermis id du tuple à retourner
+     * @returns {Promise<PermisFVMMetier>} Permis
+     */
     PermisFVMDAO.prototype.getPermis = function (idPermis) {
-        return this.modelDAO.permisFVMEntity.findAll({
+        logger.trace("DAO get - Permis.Get");
+        return this.modelDAO.permisFVMEntity.find({
             where: {
                 idPermis: idPermis
             }
         });
     };
+    /**
+     * Méthode supprimant un permis de conduire
+     * @param {number} idPermis id du tuple à supprimer
+     * @returns {Promise<any>}
+     */
     PermisFVMDAO.prototype.deletePermis = function (idPermis) {
+        logger.trace("DAO delete - Permis.Delete");
         return this.modelDAO.permisFVMEntity.destroy({
             where: {
                 idPermis: idPermis
             }
         });
     };
+    tslib_1.__decorate([
+        Map_1.default(fvm_mod_1.PermisFVMMetier),
+        tslib_1.__metadata("design:type", Function),
+        tslib_1.__metadata("design:paramtypes", []),
+        tslib_1.__metadata("design:returntype", Promise)
+    ], PermisFVMDAO.prototype, "getAllPermis", null);
+    tslib_1.__decorate([
+        Map_1.default(fvm_mod_1.PermisFVMMetier),
+        tslib_1.__metadata("design:type", Function),
+        tslib_1.__metadata("design:paramtypes", [Number]),
+        tslib_1.__metadata("design:returntype", Promise)
+    ], PermisFVMDAO.prototype, "getPermis", null);
     return PermisFVMDAO;
 }(entity_dao_1.EntityDAO));
 exports.PermisFVMDAO = PermisFVMDAO;

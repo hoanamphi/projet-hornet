@@ -1,6 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Sequelize = require("sequelize");
+/**
+ * Objet Sequelize définissant le modèle de la table copie_permis_fvm
+ * @type {Sequelize.DefineAttributes}
+ */
 exports.CopiePermisFVMModel = {
     "idCopiePermis": {
         type: Sequelize.INTEGER,
@@ -45,5 +49,4 @@ exports.CopiePermisFVMModel = {
         }
     }
 };
-
 //# sourceMappingURL=model-copiepermis.js.map

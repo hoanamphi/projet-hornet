@@ -1,6 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Sequelize = require("sequelize");
+/**
+ * Objet Sequelize définissant le modèle de la table copie_releve_fvm
+ * @type {Sequelize.DefineAttributes}
+ */
 exports.CopieReleveFVMModel = {
     "idCopieReleve": {
         type: Sequelize.INTEGER,
@@ -45,5 +49,4 @@ exports.CopieReleveFVMModel = {
         }
     }
 };
-
 //# sourceMappingURL=model-copiereleve.js.map

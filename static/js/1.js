@@ -30696,7 +30696,7 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
     };
     return ClientListServiceImpl;
 }(service_page_1.ServicePage));
-exports.ClientListServiceImpl = ClientListServiceImpl;
+exports.PageServiceImpl = ClientListServiceImpl;
 
 
 

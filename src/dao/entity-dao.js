@@ -1,12 +1,23 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
-var injectable_1 = require("hornet-js-core/src/inject/injectable");
-var hornet_sequelize_entity_1 = require("hornet-js-database/src/sequelize/hornet-sequelize-entity");
+// Décorateurs permettant la connexion à la base de données
 var inject_1 = require("hornet-js-core/src/inject/inject");
+var injectable_1 = require("hornet-js-core/src/inject/injectable");
+// Classe parente du connecteur à la base de données
+var hornet_sequelize_entity_1 = require("hornet-js-database/src/sequelize/hornet-sequelize-entity");
+// Classe définissant les entités de la DAO
 var model_dao_1 = require("src/dao/model-dao");
+/**
+ * Classe permettant la connexion à la base de données
+ * @extends {HornetSequelizeEntity<ModelDAO>} Classe générique : <Classe définissant les entités de la DAO>
+ */
 var EntityDAO = /** @class */ (function (_super) {
     tslib_1.__extends(EntityDAO, _super);
+    /**
+     * @constructor
+     * @param {ModelDAO} modelDAO Sert d'interface avec la base de donnée et permet d'effectuer des requêtes Sequelize sur celle-ci
+     */
     function EntityDAO(modelDAO) {
         return _super.call(this, modelDAO) || this;
     }

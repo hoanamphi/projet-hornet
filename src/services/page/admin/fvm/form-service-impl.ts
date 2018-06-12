@@ -9,7 +9,7 @@ import {TechnicalError} from "hornet-js-utils/src/exception/technical-error";
 
 const logger: Logger = Utils.getLogger("projet-hornet.services.page.admin.admin-service-impl");
 
-export class ServerFormServiceImpl extends ServicePage implements ServerFormService {
+export class FormServiceImpl extends ServicePage implements ServerFormService {
 
 
   insererDonnee(data: any): Promise<any> {

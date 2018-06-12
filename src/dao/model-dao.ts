@@ -1,6 +1,4 @@
-import { Utils } from "hornet-js-utils";
-import { Logger } from "hornet-js-utils/src/logger";
-
+// Classes métiers et Classes modèles des tables de la base de données
 import { PrefectureAttributes, PrefectureModel } from "src/models/model-prefecture";
 import { ValiseAttributes, ValiseModel } from "src/models/model-valise";
 
@@ -12,10 +10,10 @@ import { ReleveFVMAttributes, ReleveFVMModel } from "src/models/fvm/model-releve
 import { NoteVerbaleReleveFVMAttributes, NoteVerbaleReleveFVMModel } from "src/models/fvm/model-noteverbale-releve";
 import { NoteVerbaleFVMAttributes, NoteVerbaleFVMModel } from "src/models/fvm/model-noteverbale";
 
-import { CopiePermisFVMAttributes, CopiePermisFVMModel } from "../models/fvm/model-copiepermis";
-import { CopieNoteVerbaleMAECIFVMAttributes, CopieNoteVerbaleMAECIFVMModel } from "../models/fvm/model-copienoteverbaleMAECI";
-import { CopieReleveFVMAttributes, CopieReleveFVMModel } from "../models/fvm/model-copiereleve";
-import { CopieCourrierPrefectureFVMAttributes, CopieCourrierPrefectureFVMModel } from "../models/fvm/model-copiecourrierprefecture";
+import { CopiePermisFVMAttributes, CopiePermisFVMModel } from "src/models/fvm/model-copiepermis";
+import { CopieNoteVerbaleMAECIFVMAttributes, CopieNoteVerbaleMAECIFVMModel } from "src/models/fvm/model-copienoteverbaleMAECI";
+import { CopieReleveFVMAttributes, CopieReleveFVMModel } from "src/models/fvm/model-copiereleve";
+import { CopieCourrierPrefectureFVMAttributes, CopieCourrierPrefectureFVMModel } from "src/models/fvm/model-copiecourrierprefecture";
 
 import { PermisMVFAttributes, PermisMVFModel } from "src/models/mvf/model-permis";
 import { PersonneMVFAttributes, PersonneMVFModel } from "src/models/mvf/model-personne";
@@ -26,26 +24,38 @@ import { AttestationMVFAttributes, AttestationMVFModel } from "src/models/mvf/mo
 import { BordereauAttestationMVFAttributes, BordereauAttestationMVFModel } from "src/models/mvf/model-bordereau-attestation";
 import { BordereauMVFAttributes, BordereauMVFModel } from "src/models/mvf/model-bordereau";
 
-import { CopiePermisMVFAttributes, CopiePermisMVFModel } from "../models/mvf/model-copiepermis";
-import { CopieDemandePrefectureMVFAttributes, CopieDemandePrefectureMVFModel } from "../models/mvf/model-copiedemandeprefecture";
-import { CopieAttestationMVFAttributes, CopieAttestationMVFModel } from "../models/mvf/model-copieattestation";
-import { CopieNoteVerbaleMAECIMVFAttributes, CopieNoteVerbaleMAECIMVFModel } from "../models/mvf/model-copienoteverbaleMAECI";
+import { CopiePermisMVFAttributes, CopiePermisMVFModel } from "src/models/mvf/model-copiepermis";
+import { CopieDemandePrefectureMVFAttributes, CopieDemandePrefectureMVFModel } from "src/models/mvf/model-copiedemandeprefecture";
+import { CopieAttestationMVFAttributes, CopieAttestationMVFModel } from "src/models/mvf/model-copieattestation";
+import { CopieNoteVerbaleMAECIMVFAttributes, CopieNoteVerbaleMAECIMVFModel } from "src/models/mvf/model-copienoteverbaleMAECI";
 
-import { RoleAttributes, RoleModel } from "../models/auth/model-role";
-import { UtilisateurAttributes, UtilisateurModel } from "../models/auth/seq-user-mod";
-import { RoleUtilisateurAttributes, RoleUtilisateurModel } from "../models/auth/model-role_utilisateur";
+import { RoleAttributes, RoleModel } from "src/models/auth/model-role";
+import { UtilisateurAttributes, UtilisateurModel } from "src/models/auth/seq-user-mod";
+import { RoleUtilisateurAttributes, RoleUtilisateurModel } from "src/models/auth/model-role_utilisateur";
 
+// Décorateur définissant une entité de la base de données
 import { Entity } from "hornet-js-database/src/decorators/dec-seq-entity";
+// Décorateur permettant la connexion à la base de données
 import { injectable, Scope, Side } from "hornet-js-core/src/inject/injectable";
-import { HornetSequelizeModel } from "hornet-js-database/src/sequelize/hornet-sequelize-model";
 import { inject } from "hornet-js-core/src/inject/inject";
+// Classe parente des Classes définissant les entités de la DAO
+import { HornetSequelizeModel } from "hornet-js-database/src/sequelize/hornet-sequelize-model";
+// Classe des entités de la DAO
 import { HornetSequelizeInstanceModel } from "hornet-js-database/src/sequelize/hornet-sequelize-attributes";
+// Classe permettant d'initialiser des relations entre des tables de la base
 import {SequelizeUtils} from "hornet-js-database/src/sequelize/sequelize-utils";
 
-const logger: Logger = Utils.getLogger("projet-hornet.src.dao.model-dao");
-
+/**
+ * Classe définissant les entités (tables) de la DAO
+ * @extends {HornetSequelizeModel}
+ */
 @injectable(ModelDAO, Scope.SINGLETON, Side.SERVER)
 export class ModelDAO extends HornetSequelizeModel {
+
+  /* Une entité de la DAO est basée sur les tables de la base de données :
+      @Entity( [nom de la table dans la base de données], [Modèle de la table] )
+      public [Entité] : HornetSequelizeInstanceModel<[Attributs de la table]>
+   */
 
   @Entity("prefecture", PrefectureModel)
   public prefectureEntity: HornetSequelizeInstanceModel<PrefectureAttributes>;
@@ -131,17 +141,28 @@ export class ModelDAO extends HornetSequelizeModel {
   @Entity("role_utilisateur", RoleUtilisateurModel)
   public roleUtilisateurEntity: HornetSequelizeInstanceModel<RoleUtilisateurAttributes>;
 
+  /**
+   * @constructor
+   * @param {string} conf chaîne de caractères permettant la connexion à la base
+   */
   constructor(@inject("databaseConfigName")conf?: string) {
     super(conf);
 
+    // Initialise les relations entre les tables role et utilisateur
     this.initUtilisateurEntity();
     this.initRoleEntity();
   }
 
+  /**
+   * Méthode créant une relation One to Many entre la table utilisateur et la table role, au travers de la table role_utilisateur
+   */
   private initUtilisateurEntity(): void {
     SequelizeUtils.initRelationBelongsToMany({ fromEntity: this.utilisateurEntity, toEntity: this.roleEntity, alias: "listeRole", foreignKey: "id_utilisateur", throughTable: "role_utilisateur" });
   }
 
+  /**
+   * Méthode créant une relation One to Many entre la table role et la table utilisateur, au travers de la table role_utilisateur
+   */
   private initRoleEntity(): void {
     SequelizeUtils.initRelationBelongsToMany({ fromEntity: this.roleEntity, toEntity: this.utilisateurEntity, alias: "listeUser", foreignKey: "id_role", throughTable: "role_utilisateur" });
   }

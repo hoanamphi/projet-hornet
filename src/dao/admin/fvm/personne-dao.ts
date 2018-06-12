@@ -1,31 +1,65 @@
 import { Utils } from "hornet-js-utils";
+// Classe gérant les logs
 import { Logger } from "hornet-js-utils/src/logger";
+// Classe parente des Classes de DAO
 import { EntityDAO } from "src/dao/entity-dao";
+// Classe métier d'une Personne
+import {PersonneFVMMetier} from "src/models/fvm/fvm-mod";
+import Map from "hornet-js-bean/src/decorators/Map";
 
 const logger: Logger = Utils.getLogger("projet-hornet.src.dao.utilisateurs-dao");
 
+/**
+ * Classe de DAO permettant l'interaction avec la table personne_fvm
+ * @extends {EntityDAO}
+ */
 export class PersonneFVMDAO extends EntityDAO {
 
+  /**
+   * @constructor
+   */
   constructor() {
     super();
   }
 
-  insererPersonne(idPersonne, nom, prenom, dateDeNaissance, idSexe, villeDeNaissance, paysDeNaissance, idPermis): Promise<any> {
+  /**
+   * Méthode insérant une nouvelle personne dans la base
+   * @param {number} idPersonne id du nouveau tuple
+   * @param {string} nom nom de la personne
+   * @param {string} prenom prenom de la personne
+   * @param {Date} dateDeNaissance date de naissance de la personne
+   * @param {number} idSexe id permettant de connaître le sexe de la personne
+   * @param {string} villeDeNaissance ville de naissance de la personne
+   * @param {string} paysDeNaissance pays de naissance de la personne
+   * @param {number} idPermis id du Permis appartenant à la personne
+   * @returns {Promise<number>} id du tuple créé
+   */
+  insererPersonne(idPersonne: number, nom: string, prenom: string, dateDeNaissance: Date, idSexe: number, villeDeNaissance: string, paysDeNaissance: string, idPermis: number): Promise<number> {
+    logger.trace("DAO inser - Personne.Inser");
+
     return this.modelDAO.personneFVMEntity.upsert({
       idPersonne: idPersonne,
       nom: nom,
       prenom: prenom,
       dateDeNaissance: dateDeNaissance,
-      sexe: this.getSexe(idSexe),
+      titre: this.getTitre(idSexe),
       villeDeNaissance: villeDeNaissance,
       paysDeNaissance: paysDeNaissance,
       idPermis: idPermis
-    }).then(result=>{
-      return Promise.resolve(idPersonne);
+    }).then(()=>{
+      return idPersonne;
     });
   }
 
-  getSexe(idSexe): string {
+  /**
+   * Méthode retournant le titre de civilité correspondant à un sexe
+   * @param {number} idSexe id correspondant à un sexe
+   * @returns {string} le titre de civilité correspondant au sexe (M: Monsieur, F: Madame)
+   */
+  getTitre(idSexe: number): string {
+    logger.trace("DAO get - Personne.GetTitre");
+
+    // Retourne le titre de civilité correspondant au sexe de la personne
     if(idSexe == 0) {
       return "Monsieur";
     } else {
@@ -33,19 +67,53 @@ export class PersonneFVMDAO extends EntityDAO {
     }
   }
 
-  getNewIdPersonne(): Promise<any> {
+  /**
+   * Méthode retournant un id unique pour chaque nouveau tuple
+   * @returns {Promise<number>} id du nouveau tuple
+   */
+  getNewIdPersonne(): Promise<number> {
+    logger.trace("DAO get - Personne.GetNewId");
+
+    // Compte le nombre de tuples dans la table
     return this.modelDAO.personneFVMEntity.count().then(count=>{
+      // S'il y a déjà des tuples dans la table
       if(count > 0) {
+        // Retourne l'id le plus grand
         return this.modelDAO.personneFVMEntity.max("idPersonne");
       } else {
-        return Promise.resolve(-1);
+        return -1;
       }
     }).then(max=>{
-      return Promise.resolve(max+1);
+      // Retourne l'id le plus grand + 1 ==> nouvel id
+      return max+1;
     });
   }
 
-  getPersonne(idPersonne): Promise<any> {
+  /**
+   * Méthode retournant une personne
+   * @param {number} idPersonne id du tuple à retourner
+   * @returns {Promise<PersonneFVMMetier>} Personne
+   */
+  @Map(PersonneFVMMetier)
+  getPersonne(idPersonne: number): Promise<PersonneFVMMetier> {
+    logger.trace("DAO get - Personne.Get");
+
+    return this.modelDAO.personneFVMEntity.find({
+      where: {
+        idPersonne: idPersonne
+      }
+    });
+  }
+
+  /**
+   * Méthode retournant une liste de personnes
+   * @param {Array<number>} idPersonne tableau contenant les ids des tuples à retourner
+   * @returns {Promise<Array<PersonneFVMMetier>>} Liste de personnes
+   */
+  @Map(PersonneFVMMetier)
+  getListePersonne(idPersonne: Array<number>): Promise<Array<PersonneFVMMetier>> {
+    logger.trace("DAO get - Personne.Get");
+
     return this.modelDAO.personneFVMEntity.findAll({
       where: {
         idPersonne: idPersonne
@@ -53,15 +121,32 @@ export class PersonneFVMDAO extends EntityDAO {
     });
   }
 
-  getIdPersonneFromPermis(idPermis): Promise<any> {
-    return this.modelDAO.personneFVMEntity.findAll({
+  /**
+   * Méthode retournant l'id d'une personne correspondant à un Permis
+   * @param {number} idPermis id du Permis auquel appartient le tuple
+   * @returns {Promise<number>} id de la Personne concernée
+   */
+  getIdPersonneFromPermis(idPermis: number): Promise<number> {
+    logger.trace("DAO get - Personne.GetIdFromPermis");
+
+    return this.modelDAO.personneFVMEntity.find({
+      attributes: [
+        "idPersonne"
+      ],
       where: {
         idPermis: idPermis
       }
     });
   }
 
-  deletePersonne(idPersonne): Promise<any> {
+  /**
+   * Méthode supprimant une personne
+   * @param {number} idPersonne id du tuple à supprimer
+   * @returns {Promise<any>}
+   */
+  deletePersonne(idPersonne: number): Promise<any> {
+    logger.trace("DAO delete - Personne.Delete");
+
     return this.modelDAO.personneFVMEntity.destroy({
       where: {
         idPersonne: idPersonne

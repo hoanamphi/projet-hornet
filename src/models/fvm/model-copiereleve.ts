@@ -1,6 +1,10 @@
 import * as Sequelize from "sequelize";
 import { HornetSequelizeAttributes } from "hornet-js-database/src/sequelize/hornet-sequelize-attributes";
 
+/**
+ * Interface définissant les attributs de la table copie_releve_fvm
+ * @extends {HornetSequelizeAttributes}
+ */
 export interface CopieReleveFVMAttributes extends HornetSequelizeAttributes {
   idCopieReleve: number;
   nom: string;
@@ -11,6 +15,10 @@ export interface CopieReleveFVMAttributes extends HornetSequelizeAttributes {
   idReleve: number;
 }
 
+/**
+ * Objet Sequelize définissant le modèle de la table copie_releve_fvm
+ * @type {Sequelize.DefineAttributes}
+ */
 export let CopieReleveFVMModel: Sequelize.DefineAttributes = {
   "idCopieReleve": {
     type: Sequelize.INTEGER,

@@ -1,18 +1,30 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
-var gen_formDossier_page_1 = require("src/views/admin/fvm/gen-formDossier-page");
 var abstract_routes_1 = require("hornet-js-core/src/routes/abstract-routes");
-var server_form_service_impl_1 = require("src/services/page/admin/fvm/server-form-service-impl");
-var Form1RoutesClient = /** @class */ (function (_super) {
-    tslib_1.__extends(Form1RoutesClient, _super);
-    function Form1RoutesClient() {
+// Classe de Page du formulaire d'insertion d'un dossier
+var gen_formDossier_page_1 = require("src/views/admin/fvm/gen-formDossier-page");
+// Classe du service utilisé par la Classe de Page
+var form_service_impl_1 = require("src/services/page/admin/fvm/form-service-impl");
+// Classes permettant de mettre en place l'authentification
+var roles_1 = require("src/utils/roles");
+/**
+ * Classe définissant les sous-routes Client de la lazy route "/fvmform1"
+ * @extends {AbstractRoutes}
+ */
+var FormulaireDossierRoutesClient = /** @class */ (function (_super) {
+    tslib_1.__extends(FormulaireDossierRoutesClient, _super);
+    /**
+     * @constructor
+     */
+    function FormulaireDossierRoutesClient() {
         var _this = _super.call(this) || this;
-        _this.addPageRoute("/", function () { return new abstract_routes_1.PageRouteInfos(gen_formDossier_page_1.FormulaireDossierPage, null, server_form_service_impl_1.ServerFormServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE);
+        // Route menant au formulaire d'insertion d'un dossier
+        // La page prend un service de type FormService en entrée
+        _this.addPageRoute("/", function () { return new abstract_routes_1.PageRouteInfos(gen_formDossier_page_1.FormulaireDossierPage, null, form_service_impl_1.FormServiceImpl); }, roles_1.Roles.ADMIN);
         return _this;
     }
-    return Form1RoutesClient;
+    return FormulaireDossierRoutesClient;
 }(abstract_routes_1.AbstractRoutes));
-exports.default = Form1RoutesClient;
-
+exports.default = FormulaireDossierRoutesClient;
 //# sourceMappingURL=form1-client-routes.js.map

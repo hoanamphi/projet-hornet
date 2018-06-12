@@ -5,6 +5,7 @@ import { Logger } from "hornet-js-utils/src/logger";
 import { EntityDAO } from "src/dao/entity-dao";
 // Classe métier de la copie d'un permis de conduire
 import {CopiePermisFVMMetier} from "src/models/fvm/fvm-mod";
+import Map from "hornet-js-bean/src/decorators/Map";
 
 const logger: Logger = Utils.getLogger("projet-hornet.src.dao.utilisateurs-dao");
 
@@ -24,14 +25,14 @@ export class CopiePermisFVMDao extends EntityDAO {
   /**
    * Méthode insérant une nouvelle copie d'un permis de conduire dans la base
    * @param {number} idCopiePermis id du nouveau tuple
-   * @param {string} mimetype format de l'entrée
-   * @param {string} encoding encodage de l'entrée
-   * @param {number} size taille de l'entrée
-   * @param {Buffer} data contenu de l'entrée
+   * @param {string} mimetype format du fichier
+   * @param {string} encoding encodage du fichier
+   * @param {number} size taille du fichier
+   * @param {Buffer} data contenu du fichier
    * @param {number} idPermis id du Permis auquel appartient l'entrée
-   * @returns {Promise<any>}
+   * @returns {Promise<number>} id du tuple créé
    */
-  insererCopiePermis(idCopiePermis: number, mimetype: string, encoding: string, size: number, data: Buffer, idPermis: number): Promise<any> {
+  insererCopiePermis(idCopiePermis: number, mimetype: string, encoding: string, size: number, data: Buffer, idPermis: number): Promise<number> {
     logger.trace("DAO inser - CopiePermis.Inser");
 
     return this.modelDAO.copiePermisFVMEntity.upsert({
@@ -86,6 +87,7 @@ export class CopiePermisFVMDao extends EntityDAO {
    * @param {number} idCopiePermis id du tuple à retourner
    * @returns {Promise<CopiePermisFVMMetier>} Copie d'un permis de conduire
    */
+  @Map(CopiePermisFVMMetier)
   getCopiePermis(idCopiePermis: number): Promise<CopiePermisFVMMetier> {
     logger.trace("DAO get - CopiePermis.Get");
 

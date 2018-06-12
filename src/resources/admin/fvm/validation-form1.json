@@ -1,8 +1,13 @@
+// Schema de validation du formulaire d'insertion d'un dossier
 {
   "$schema": "http://json-schema.org/schema#",
-  "title": "Formulaire d'entrée d'une demande d'authentification",
+
+  "title": "Formulaire d'entrée d'un dossier",
+
   "description": "Validation des données de formulaire",
+
   "type": "object",
+
   "required": [
     "nom",
     "prenom",
@@ -15,6 +20,7 @@
     "id_prefecture",
     "copie_note_verbale_maeci"
   ],
+
   "properties": {
     "nom": {
       "$ref": "#/definition/nom_propre"
@@ -31,14 +37,24 @@
     "pays_de_naissance": {
       "$ref": "#/definition/nom_propre"
     },
+    "num_permis": {
+      "$ref": "#/definition/numero"
+    },
     "date_de_delivrance": {
       "$ref": "#/definition/date"
     }
   },
+
   "definition": {
+    // Un nom propre ne peux contenir que des lettres latines et éventuellement des tirets
     "nom_propre": {
       "type": "string",
       "pattern": "^([a-zA-ZÀ-ÿ]+[-]{0,2}[a-zA-ZÀ-ÿ]+ ?)*$"
+    },
+    // Le numéro d'un document contient des caractères non espacés
+    "numero": {
+      "type": "string",
+      "pattern": "/\S/"
     },
     "date": {
       "type": "Date",

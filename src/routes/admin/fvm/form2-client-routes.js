@@ -2,18 +2,29 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
 var abstract_routes_1 = require("hornet-js-core/src/routes/abstract-routes");
-var server_form_service_impl_1 = require("src/services/page/admin/fvm/server-form-service-impl");
-var gen_formDemande_page_1 = require("../../../views/admin/fvm/gen-formDemande-page");
-var roles_1 = require("../../../utils/roles");
-var Form2RoutesClient = /** @class */ (function (_super) {
-    tslib_1.__extends(Form2RoutesClient, _super);
-    function Form2RoutesClient() {
+// Classe de Page du formulaire d'insertion d'une demande d'authentification
+var gen_formDemande_page_1 = require("src/views/admin/fvm/gen-formDemande-page");
+// Classe du service utilisé par la Classe de Page
+var form_service_impl_1 = require("src/services/page/admin/fvm/form-service-impl");
+// Classes permettant de mettre en place l'authentification
+var roles_1 = require("src/utils/roles");
+/**
+ * Classe définissant les sous-routes Client de la lazy route "/fvmform2"
+ * @extends {AbstractRoutes}
+ */
+var FormulaireDemandeAuthentificationRoutesClient = /** @class */ (function (_super) {
+    tslib_1.__extends(FormulaireDemandeAuthentificationRoutesClient, _super);
+    /**
+     * @constructor
+     */
+    function FormulaireDemandeAuthentificationRoutesClient() {
         var _this = _super.call(this) || this;
-        _this.addPageRoute("/(\\d+)", function (id) { return new abstract_routes_1.PageRouteInfos(gen_formDemande_page_1.FormulaireDemandeAuthentificationPage, { "id": id }, server_form_service_impl_1.ServerFormServiceImpl); }, roles_1.Roles.ADMIN);
+        // Route menant au formulaire d'insertion d'une demande d'authentification
+        // La page prend un service de type FormService en entrée
+        _this.addPageRoute("/(\\d+)", function (id) { return new abstract_routes_1.PageRouteInfos(gen_formDemande_page_1.FormulaireDemandeAuthentificationPage, { "idPermis": id }, form_service_impl_1.FormServiceImpl); }, roles_1.Roles.ADMIN);
         return _this;
     }
-    return Form2RoutesClient;
+    return FormulaireDemandeAuthentificationRoutesClient;
 }(abstract_routes_1.AbstractRoutes));
-exports.default = Form2RoutesClient;
-
+exports.default = FormulaireDemandeAuthentificationRoutesClient;
 //# sourceMappingURL=form2-client-routes.js.map

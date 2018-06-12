@@ -17,13 +17,13 @@ var RecordListRoutesServer = /** @class */ (function (_super) {
         _this.addDataRoute("/detailsDossiers/demandeauthentification/delete", function () { return new abstract_routes_1.DataRouteInfos(fvm_action_1.DeleteDemandeAuthentification, null, client_list_service_impl_data_1.ClientListServiceImpl); }, roles_1.Roles.ADMIN, "delete");
         /* TODO
         this.addDataRoute("/detailsDossiers/releve",
-          (id) => new DataRouteInfos(GetReleve, null, ClientListServiceImpl),
+          (id) => new DataRouteInfos(GetReleve, null, PageServiceImpl),
           PUBLIC_ROUTE,
           "post"
         );
     
         this.addDataRoute("/detailsDossiers/noteverbale",
-          (id) => new DataRouteInfos(GetNoteVerbale, null, ClientListServiceImpl),
+          (id) => new DataRouteInfos(GetNoteVerbale, null, PageServiceImpl),
           PUBLIC_ROUTE,
           "post"
         );
@@ -36,5 +36,4 @@ var RecordListRoutesServer = /** @class */ (function (_super) {
     return RecordListRoutesServer;
 }(record_client_routes_1.default));
 exports.default = RecordListRoutesServer;
-
 //# sourceMappingURL=record-server-routes.js.map

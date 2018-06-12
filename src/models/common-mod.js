@@ -4,6 +4,15 @@ var tslib_1 = require("tslib");
 var Bean_1 = require("hornet-js-bean/src/decorators/Bean");
 var Map_1 = require("hornet-js-bean/src/decorators/Map");
 var Alias_1 = require("hornet-js-bean/src/decorators/Alias");
+/* Classes métiers des objets utilisés dans les Classes de DAO
+   Les attributes de la Classe métier sont définis ainsi :
+    @Map( [Autre Classe métier] ) (si le type de l'attribut est une Classe métier)
+    @Alias( [alias de l'attribut dans la Classe de DAO] )
+    [nom de l'attribut dans la base de données] : [type de l'attribut]
+*/
+/**
+ * Classe métier de la table prefecture
+ */
 var PrefectureMetier = /** @class */ (function () {
     function PrefectureMetier() {
     }
@@ -48,6 +57,9 @@ var PrefectureMetier = /** @class */ (function () {
     return PrefectureMetier;
 }());
 exports.PrefectureMetier = PrefectureMetier;
+/**
+ * Classe métier de la table valise
+ */
 var ValiseMetier = /** @class */ (function () {
     function ValiseMetier() {
     }
@@ -67,5 +79,4 @@ var ValiseMetier = /** @class */ (function () {
     return ValiseMetier;
 }());
 exports.ValiseMetier = ValiseMetier;
-
 //# sourceMappingURL=common-mod.js.map

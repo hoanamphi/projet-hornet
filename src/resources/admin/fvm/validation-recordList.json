@@ -1,12 +1,21 @@
+// Schema de validation du formulaire de recherche d'une entrée
 {
   "$schema": "http://json-schema.org/schema#",
+
   "title": "Formulaire de recherche d'une entrée",
+
   "description": "Validation des données de formulaire",
+
   "type": "object",
+
   "required": [
     "num_permis"
   ],
+
   "properties": {
+    "num_permis": {
+      "$ref": "#/definition/numero"
+    },
     "nom": {
       "$ref": "#/definition/nom_propre"
     },
@@ -17,10 +26,17 @@
       "$ref": "#/definition/date"
     }
   },
+
   "definition": {
+    // Un nom propre ne peux contenir que des lettres latines et éventuellement des tirets
     "nom_propre": {
       "type": "string",
-      "pattern": "^([a-zÀ-ÿ]+[-]{0,2}[a-zÀ-ÿ]+ ?)*$"
+      "pattern": "^([a-zA-ZÀ-ÿ]+[-]{0,2}[a-zA-ZÀ-ÿ]+ ?)*$"
+    },
+    // Le numéro d'un document contient des caractères non espacés
+    "numero": {
+      "type": "string",
+      "pattern": "/\S/"
     },
     "date": {
       "type": "Date",

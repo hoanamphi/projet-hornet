@@ -7,7 +7,7 @@ import {HornetRequest} from "hornet-js-core/src/services/hornet-superagent-reque
 
 const logger: Logger = Utils.getLogger("projet-hornet.services.page.admin.admin-service-impl");
 
-export class ClientListServiceImpl extends ServicePage implements ClientListService {
+export class PageServiceImpl extends ServicePage implements ClientListService {
 
   getListeDossiers(): Promise<any> {
     let request: HornetRequest = {

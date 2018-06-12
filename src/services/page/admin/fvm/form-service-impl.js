@@ -4,12 +4,12 @@ var tslib_1 = require("tslib");
 var hornet_js_utils_1 = require("hornet-js-utils");
 var service_page_1 = require("hornet-js-core/src/services/service-page");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.services.page.admin.admin-service-impl");
-var ServerFormServiceImpl = /** @class */ (function (_super) {
-    tslib_1.__extends(ServerFormServiceImpl, _super);
-    function ServerFormServiceImpl() {
+var FormServiceImpl = /** @class */ (function (_super) {
+    tslib_1.__extends(FormServiceImpl, _super);
+    function FormServiceImpl() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    ServerFormServiceImpl.prototype.insererDonnee = function (data) {
+    FormServiceImpl.prototype.insererDonnee = function (data) {
         logger.trace("SERVICES - insert : ", data);
         var request = {
             method: "post",
@@ -21,7 +21,7 @@ var ServerFormServiceImpl = /** @class */ (function (_super) {
         request.attach.push({ field: "copie_note_verbale_maeci", file: data["copie_note_verbale_maeci"], fileName: data["copie_note_verbale_maeci"].name });
         return this.fetch(request);
     };
-    ServerFormServiceImpl.prototype.insererDemandeAuthentification = function (data) {
+    FormServiceImpl.prototype.insererDemandeAuthentification = function (data) {
         logger.trace("SERVICES - insert : ", data);
         var request = {
             method: "post",
@@ -30,7 +30,7 @@ var ServerFormServiceImpl = /** @class */ (function (_super) {
         };
         return this.fetch(request);
     };
-    ServerFormServiceImpl.prototype.insererValise = function (data) {
+    FormServiceImpl.prototype.insererValise = function (data) {
         logger.trace("SERVICES - insert : ", data);
         var request = {
             method: "post",
@@ -39,7 +39,7 @@ var ServerFormServiceImpl = /** @class */ (function (_super) {
         };
         return this.fetch(request);
     };
-    ServerFormServiceImpl.prototype.getListePrefectures = function () {
+    FormServiceImpl.prototype.getListePrefectures = function () {
         logger.trace("SERVICES - list");
         var request = {
             method: "post",
@@ -47,7 +47,7 @@ var ServerFormServiceImpl = /** @class */ (function (_super) {
         };
         return this.fetch(request);
     };
-    ServerFormServiceImpl.prototype.getListeValises = function () {
+    FormServiceImpl.prototype.getListeValises = function () {
         logger.trace("SERVICES - list");
         var request = {
             method: "post",
@@ -55,8 +55,7 @@ var ServerFormServiceImpl = /** @class */ (function (_super) {
         };
         return this.fetch(request);
     };
-    return ServerFormServiceImpl;
+    return FormServiceImpl;
 }(service_page_1.ServicePage));
-exports.ServerFormServiceImpl = ServerFormServiceImpl;
-
-//# sourceMappingURL=server-form-service-impl.js.map
+exports.FormServiceImpl = FormServiceImpl;
+//# sourceMappingURL=form-service-impl.js.map

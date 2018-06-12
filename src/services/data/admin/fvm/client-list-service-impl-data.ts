@@ -1,21 +1,20 @@
 import { Utils } from "hornet-js-utils";
 import { Logger } from "hornet-js-utils/src/logger";
 import { ServiceRequest } from "hornet-js-core/src/services/service-request";
-import {PersonneFVMDAO} from "../../../../dao/admin/fvm/personne-dao";
-import {CopieNoteVerbaleMAECIFVMDao} from "../../../../dao/admin/fvm/copie_note_verbale_MAECI-dao";
-import {DossierFVMDAO} from "../../../../dao/admin/fvm/dossier-dao";
-import {PermisFVMDAO} from "../../../../dao/admin/fvm/permis-dao";
-import {CopiePermisFVMDao} from "../../../../dao/admin/fvm/copie_permis-dao";
-import {PrefectureDAO} from "../../../../dao/prefecture-dao";
-import {ClientListService} from "../../../page/admin/fvm/client-list-service";
-import {DemandeAuthentificationFVMDAO} from "../../../../dao/admin/fvm/demande_authentification-dao";
-import {ValiseDAO} from "../../../../dao/valise-dao";
+import {PersonneFVMDAO} from "src/dao/admin/fvm/personne-dao";
+import {CopieNoteVerbaleMAECIFVMDao} from "src/dao/admin/fvm/copie_note_verbale_MAECI-dao";
+import {DossierFVMDAO} from "src/dao/admin/fvm/dossier-dao";
+import {PermisFVMDAO} from "src/dao/admin/fvm/permis-dao";
+import {CopiePermisFVMDao} from "src/dao/admin/fvm/copie_permis-dao";
+import {PrefectureDAO} from "src/dao/prefecture-dao";
+import {ClientListService} from "src/services/page/admin/fvm/client-list-service";
+import {DemandeAuthentificationFVMDAO} from "src/dao/admin/fvm/demande_authentification-dao";
 
 const logger: Logger = Utils.getLogger("projet-hornet.services.data.admin.admin-service-impl-data");
 
 export class ClientListServiceImpl extends ServiceRequest implements ClientListService {
 
-  private Error = {"hasError": null, "hasReason": null};
+  private Error = {"error": null, "reason": null};
 
   private personneDAO = new PersonneFVMDAO();
   private dossierDAO = new DossierFVMDAO();
@@ -24,7 +23,6 @@ export class ClientListServiceImpl extends ServiceRequest implements ClientListS
   private copiePermisDAO = new CopiePermisFVMDao();
   private prefectureDAO = new PrefectureDAO();
   private demandeAuthentificationDAO = new DemandeAuthentificationFVMDAO();
-  private valiseDAO = new ValiseDAO();
 
   getListeDossiers(): Promise<any> {
     return this.permisDAO.getAllPermis().then(permisList=>{
@@ -32,12 +30,12 @@ export class ClientListServiceImpl extends ServiceRequest implements ClientListS
       let idDossierArray = [];
 
       permisList.forEach(permis=>{
-        idPersonneArray.push(permis["idPersonne"]);
-        idDossierArray.push(permis["idDossier"]);
+        idPersonneArray.push(permis.id_personne_fvm);
+        idDossierArray.push(permis.id_dossier_fvm);
       });
 
-      let personne = this.personneDAO.getPersonne(idPersonneArray);
-      let dossier = this.dossierDAO.getDossier(idDossierArray)
+      let personne = this.personneDAO.getListePersonne(idPersonneArray);
+      let dossier = this.dossierDAO.getListeDossier(idDossierArray);
 
       return Promise.all([personne, dossier]).then(values=>{
         let personneList = values[0];
@@ -45,20 +43,20 @@ export class ClientListServiceImpl extends ServiceRequest implements ClientListS
 
         let result = [];
         permisList.forEach(permis=>{
-          let obj = {"idPermis": permis.idPermis, "numPermis": null, "nom": null, "prenom": null, "dateDeNaissance": null, "dateReceptionDossier": null};
-          obj.numPermis = permis.numPermis;
+          let obj = {"idPermis": permis.id_permis_fvm, "numPermis": null, "nom": null, "prenom": null, "dateDeNaissance": null, "dateReceptionDossier": null};
+          obj.numPermis = permis.num_permis;
 
           personneList.forEach(personne=>{
-            if(personne.idPermis == permis.idPermis){
+            if(personne.id_permis_fvm == permis.id_permis_fvm){
               obj.nom = personne.nom;
               obj.prenom = personne.prenom;
-              obj.dateDeNaissance = Date.parse(personne.dateDeNaissance);
+              obj.dateDeNaissance = personne.date_de_naissance;
             }
           });
 
           dossierList.forEach(dossier=>{
-            if(dossier.idPermis == permis.idPermis){
-              obj.dateReceptionDossier = Date.parse(dossier.dateReceptionDossier);
+            if(dossier.id_permis_fvm == permis.id_permis_fvm){
+              obj.dateReceptionDossier = dossier.date_reception_dossier;
             }
           });
 
@@ -72,43 +70,42 @@ export class ClientListServiceImpl extends ServiceRequest implements ClientListS
 
   getDossier(data): Promise<any> {
     let idPermis = data["idPermis"];
-    return this.permisDAO.getPermis(idPermis).then(values=>{
-      let permis = values[0];
+    return this.permisDAO.getPermis(idPermis).then(permis=>{
 
       let result = {};
-      result["numPermis"] = permis.numPermis;
-      result["dateDeDelivrance"] = Date.parse(permis.dateDeDelivrance);
+      result["numPermis"] = permis.num_permis;
+      result["dateDeDelivrance"] = permis.date_de_delivrance;
 
-      let copie_permis = this.copiePermisDAO.getCopiePermis(permis.idCopiePermis);
-      let personne = this.personneDAO.getPersonne(permis.idPersonne);
-      let dossier = this.dossierDAO.getDossier(permis.idDossier);
-      let prefecture_delivrance = this.prefectureDAO.getPrefecture(permis.idPrefectureDelivrance);
+      let copie_permis = this.copiePermisDAO.getCopiePermis(permis.id_copie_permis_fvm);
+      let personne = this.personneDAO.getPersonne(permis.id_personne_fvm);
+      let dossier = this.dossierDAO.getDossier(permis.id_dossier_fvm);
+      let prefecture_delivrance = this.prefectureDAO.getPrefecture(permis.id_prefecture_delivrance);
 
       return Promise.all([copie_permis, personne, dossier, prefecture_delivrance]).then(values=>{
-        let copie_permis = values[0][0];
-        let personne = values[1][0];
-        let dossier = values[2][0];
-        let prefecture = values[3][0];
+        let copie_permis = values[0];
+        let personne = values[1];
+        let dossier = values[2];
+        let prefecture = values[3];
 
         result["copie_permis"] = copie_permis;
 
         result["nom"] = personne.nom;
         result["prenom"] = personne.prenom;
-        result["dateDeNaissance"] = Date.parse(personne.dateDeNaissance);
-        result["sexe"] = personne.sexe;
-        result["villeDeNaissance"] = personne.villeDeNaissance;
-        result["paysDeNaissance"] = personne.paysDeNaissance;
+        result["dateDeNaissance"] = personne.date_de_naissance;
+        result["sexe"] = personne.titre;
+        result["villeDeNaissance"] = personne.ville_de_naissance;
+        result["paysDeNaissance"] = personne.pays_de_naissance;
 
         result["region"] = prefecture.region;
         result["departement"] = prefecture.departement;
         result["prefecture"] = prefecture.prefecture;
         result["adresse"] = prefecture.adresse;
-        result["codePostal"] = prefecture.codePostal;
+        result["codePostal"] = prefecture.code_postal;
         result["ville"] = prefecture.ville;
 
-        result["dateReceptionDossier"] = Date.parse(dossier.dateReceptionDossier);
+        result["dateReceptionDossier"] = dossier.date_reception_dossier;
 
-        return this.copieNoteVerbaleMAECIDAO.getCopieNoteVerbaleMAECI(dossier.idCopieNoteVerbaleMAECI).then(values=>{
+        return this.copieNoteVerbaleMAECIDAO.getCopieNoteVerbaleMAECI(dossier.id_copie_note_verbale_maeci_fvm).then(values=>{
           result["copie_note_verbale_maeci"] = values[0];
           return Promise.resolve([result]);
         });
@@ -117,10 +114,11 @@ export class ClientListServiceImpl extends ServiceRequest implements ClientListS
   }
 
   getDemandeAuthentification(data): Promise<any> {
-    let idPermis = data["idPermis"];
+    let idPermis = data.idPermis;
     return this.demandeAuthentificationDAO.getDemandeAuthentificationFromPermis(idPermis);
   }
-
+  
+  /* TODO
   getReleve(data): Promise<any> {
     let idPermis = data["idPermis"];
     return Promise.resolve([]);
@@ -130,16 +128,17 @@ export class ClientListServiceImpl extends ServiceRequest implements ClientListS
     let idPermis = data["idPermis"];
     return Promise.resolve([]);
   }
+  */
 
   getCopiePermis(idCopiePermis): Promise<any> {
-    return this.copiePermisDAO.getCopiePermis(idCopiePermis).then(values=>{
-        return Promise.resolve(values[0]);
+    return this.copiePermisDAO.getCopiePermis(idCopiePermis).then(copiePermis=>{
+        return copiePermis;
     });
   }
 
   getCopieNoteVerbaleMAECI(idCopieNoteVerbaleMAECI): Promise<any> {
-    return this.copieNoteVerbaleMAECIDAO.getCopieNoteVerbaleMAECI(idCopieNoteVerbaleMAECI).then(values=>{
-      return Promise.resolve(values[0]);
+    return this.copieNoteVerbaleMAECIDAO.getCopieNoteVerbaleMAECI(idCopieNoteVerbaleMAECI).then(copieNoteVerbaleMAECI=>{
+      return copieNoteVerbaleMAECI;
     });
   }
 
@@ -160,8 +159,8 @@ export class ClientListServiceImpl extends ServiceRequest implements ClientListS
   deleteDemandeAuthentification(data): Promise<any> {
     let idDemandeAuthentification = data.idDemandeAuthentification;
     return this.demandeAuthentificationDAO.deleteDemandeAuthentification(idDemandeAuthentification).catch(error=>{
-      this.Error.hasError = error;
-      this.Error.hasReason = error.toString();
+      this.Error.error = error;
+      this.Error.reason = error.toString();
       return this.Error;
     });
   }
@@ -171,30 +170,30 @@ export class ClientListServiceImpl extends ServiceRequest implements ClientListS
 
     let idDossier = this.dossierDAO.getIdDossierFromPermis(idPermis);
     let idPersonne = this.personneDAO.getIdPersonneFromPermis(idPermis);
-    let idDemandeAuthentification = this.demandeAuthentificationDAO.getDemandeAuthentificationFromPermis(idPermis);
+    let demandeAuthentification = this.demandeAuthentificationDAO.getDemandeAuthentificationFromPermis(idPermis);
 
-    return Promise.all([idDossier, idPersonne, idDemandeAuthentification]).then(values=>{
+    return Promise.all([idDossier, idPersonne, demandeAuthentification]).then(values=>{
 
-      let deleteCopieNoteVerbaleMAECI = this.copieNoteVerbaleMAECIDAO.deleteCopieNoteVerbaleMAECIFromDossier(values[0][0].idDossier);
+      let deleteCopieNoteVerbaleMAECI = this.copieNoteVerbaleMAECIDAO.deleteCopieNoteVerbaleMAECIFromDossier(values[0]);
 
-      let deleteDossier = this.dossierDAO.deleteDossier(values[0][0].idDossier);
+      let deleteDossier = this.dossierDAO.deleteDossier(values[0]);
 
-      let deletePersonne = this.personneDAO.deletePersonne(values[1][0].idPersonne);
+      let deletePersonne = this.personneDAO.deletePersonne(values[1]);
 
       let deleteCopiePermis = this.copiePermisDAO.deleteCopiePermisFromPermis(idPermis);
 
       let deletePermis = this.permisDAO.deletePermis(idPermis);
 
-      if(values[2].length > 0) {
-        let deleteDemandeAuthentification = this.demandeAuthentificationDAO.deleteDemandeAuthentification(values[2][0].idDemandeAuthentification);
+      if(values[2] != null) {
+        let deleteDemandeAuthentification = this.demandeAuthentificationDAO.deleteDemandeAuthentification(values[2].id_demande_authentification_fvm);
 
         return Promise.all([deleteCopieNoteVerbaleMAECI, deleteDossier, deletePersonne, deleteCopiePermis, deleteDemandeAuthentification, deletePermis]);
       } else {
         return Promise.all([deleteCopieNoteVerbaleMAECI, deleteDossier, deletePersonne, deleteCopiePermis, deletePermis]);
       }
     }).catch(error=>{
-      this.Error.hasError = error;
-      this.Error.hasReason = error.toString();
+      this.Error.error = error;
+      this.Error.reason = error.toString();
       return this.Error;
     });
   }

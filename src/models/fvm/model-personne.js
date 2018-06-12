@@ -1,6 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Sequelize = require("sequelize");
+/**
+ * Objet Sequelize définissant le modèle de la table personne_fvm
+ * @type {Sequelize.DefineAttributes}
+ */
 exports.PersonneFVMModel = {
     "idPersonne": {
         type: Sequelize.INTEGER,
@@ -19,9 +23,9 @@ exports.PersonneFVMModel = {
         field: "prenom",
         allowNull: false
     },
-    "sexe": {
+    "titre": {
         type: Sequelize.STRING,
-        field: "sexe",
+        field: "titre",
         allowNull: false
     },
     "dateDeNaissance": {
@@ -50,5 +54,4 @@ exports.PersonneFVMModel = {
         }
     }
 };
-
 //# sourceMappingURL=model-personne.js.map

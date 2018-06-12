@@ -4,6 +4,9 @@ var tslib_1 = require("tslib");
 var hornet_js_utils_1 = require("hornet-js-utils");
 // Classe parente des Classes de DAO
 var entity_dao_1 = require("src/dao/entity-dao");
+// Classe métier de la copie d'une note verbale du MAECI
+var fvm_mod_1 = require("src/models/fvm/fvm-mod");
+var Map_1 = require("hornet-js-bean/src/decorators/Map");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.src.dao.utilisateurs-dao");
 /**
  * Classe de DAO permettant l'interaction avec la table copie_note_verbale_maeci_fvm
@@ -20,10 +23,10 @@ var CopieNoteVerbaleMAECIFVMDao = /** @class */ (function (_super) {
     /**
      * Methode insérant une nouvelle copie d'une note verbale du MAECI dans la base
      * @param {number} idCopieNoteVerbaleMAECI id du nouveau tuple
-     * @param {string} mimetype format de l'entrée
-     * @param {string} encoding encodage de l'entrée
-     * @param {number} size taille de l'entrée
-     * @param {Buffer} data contenu de l'entrée
+     * @param {string} mimetype format du fichier
+     * @param {string} encoding encodage du fichier
+     * @param {number} size taille du fichier
+     * @param {Buffer} data contenu du fichier
      * @param {number} idDossier id du Dossier auquel appartient cette entrée
      * @returns {Promise<number>} id du tuple créé
      */
@@ -99,6 +102,12 @@ var CopieNoteVerbaleMAECIFVMDao = /** @class */ (function (_super) {
             }
         });
     };
+    tslib_1.__decorate([
+        Map_1.default(fvm_mod_1.CopieNoteVerbaleMAECIFVMMetier),
+        tslib_1.__metadata("design:type", Function),
+        tslib_1.__metadata("design:paramtypes", [Number]),
+        tslib_1.__metadata("design:returntype", Promise)
+    ], CopieNoteVerbaleMAECIFVMDao.prototype, "getCopieNoteVerbaleMAECI", null);
     return CopieNoteVerbaleMAECIFVMDao;
 }(entity_dao_1.EntityDAO));
 exports.CopieNoteVerbaleMAECIFVMDao = CopieNoteVerbaleMAECIFVMDao;

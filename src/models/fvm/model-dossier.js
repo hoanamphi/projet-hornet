@@ -1,6 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Sequelize = require("sequelize");
+/**
+ * Objet Sequelize définissant le modèle de la table dossier_fvm
+ * @type {Sequelize.DefineAttributes}
+ */
 exports.DossierFVMModel = {
     "idDossier": {
         type: Sequelize.INTEGER,
@@ -30,5 +34,4 @@ exports.DossierFVMModel = {
         }
     }
 };
-
 //# sourceMappingURL=model-dossier.js.map

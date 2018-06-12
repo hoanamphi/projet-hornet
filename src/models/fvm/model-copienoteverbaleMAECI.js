@@ -1,6 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Sequelize = require("sequelize");
+/**
+ * Objet Sequelize définissant le modèle de la table copie_note_verbale_maeci_fvm
+ * @type {Sequelize.DefineAttributes}
+ */
 exports.CopieNoteVerbaleMAECIFVMModel = {
     "idCopieNoteVerbaleMAECI": {
         type: Sequelize.INTEGER,
@@ -45,5 +49,4 @@ exports.CopieNoteVerbaleMAECIFVMModel = {
         }
     }
 };
-
 //# sourceMappingURL=model-copienoteverbaleMAECI.js.map

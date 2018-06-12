@@ -22138,7 +22138,7 @@ var ServerFormServiceImpl = /** @class */ (function (_super) {
     };
     return ServerFormServiceImpl;
 }(service_page_1.ServicePage));
-exports.ServerFormServiceImpl = ServerFormServiceImpl;
+exports.FormServiceImpl = ServerFormServiceImpl;
 
 
 

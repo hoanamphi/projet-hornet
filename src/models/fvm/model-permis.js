@@ -1,6 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Sequelize = require("sequelize");
+/**
+ * Objet Sequelize définissant les attributs de la table permis_fvm
+ * @type {Sequelize.DefineAttributes}
+ */
 exports.PermisFVMModel = {
     "idPermis": {
         type: Sequelize.INTEGER,
@@ -60,5 +64,4 @@ exports.PermisFVMModel = {
         }
     }
 };
-
 //# sourceMappingURL=model-permis.js.map

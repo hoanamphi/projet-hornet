@@ -1,20 +1,41 @@
+// Schema de validation du formulaire d'insertion d'une demande d'authentification
 {
   "$schema": "http://json-schema.org/schema#",
+
   "title": "Formulaire d'entrée d'une demande d'authentification",
+
   "description": "Validation des données de formulaire",
+
   "type": "object",
+
   "required": [
     "num_valise",
     "num_demande_authentification"
   ],
+
   "properties": {
     "num_valise": {
       "$ref": "#/definition/nombre"
+    },
+    "num_demande_authentification": {
+      "$ref": "#/definition/numero"
     }
   },
+
   "definition": {
-    "nombre": {
-      "type": "number"
+    // Un nom propre ne peux contenir que des lettres latines et éventuellement des tirets
+    "nom_propre": {
+      "type": "string",
+      "pattern": "^([a-zA-ZÀ-ÿ]+[-]{0,2}[a-zA-ZÀ-ÿ]+ ?)*$"
+    },
+    // Le numéro d'un document contient des caractères non espacés
+    "numero": {
+      "type": "string",
+      "pattern": "/\S/"
+    },
+    "date": {
+      "type": "Date",
+      "format": "date"
     }
   }
 }

@@ -1,12 +1,18 @@
+// Schema de validation du formulaire d'insertion d'une valise
 {
   "$schema": "http://json-schema.org/schema#",
+
   "title": "Formulaire d'entrée d'une valise",
+
   "description": "Validation des données de formulaire",
+
   "type": "object",
+
   "required": [
     "num_valise",
     "date_valise"
   ],
+
   "properties": {
     "num_valise": {
       "$ref": "#/definition/nombre"
@@ -15,6 +21,7 @@
       "$ref": "#/definition/date"
     }
   },
+
   "definition": {
     "nombre": {
       "type": "number"

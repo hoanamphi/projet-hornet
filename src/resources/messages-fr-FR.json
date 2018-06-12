@@ -11,11 +11,11 @@
   "form": {
     "requiredLabel": "Saisie obligatoire",
     "valid": "Valider",
-    "validTitle": "Valider la saisie du formulaire",
+    "validTitle": "Valider",
     "cancel": "Annuler",
-    "cancelTitle": "Annuler la saisie du formulaire",
+    "cancelTitle": "Annuler",
     "reinit": "Réinitialiser",
-    "reinitTitle": "Réinitialiser les champs de saisie du formulaire",
+    "reinitTitle": "Réinitialiser",
     "search": "Rechercher",
     "searchTitle": "Rechercher à partir des données du formulaire",
     "fillField": "Les champs marqués d'un astérisque (*) doivent être renseignés.",
@@ -32,7 +32,8 @@
       "title": "Aide à la saisie d'un champ d'auto-completion",
       "toolTip": "Commencez la saisie et des propositions vous seront faites. Vous pouvez naviguer dans ces propositions à partir des flèches du clavier",
       "selectedItem": "{count, plural, =0 {aucun item sélectionné } =1 {1 item sélectionné} other {# items sélectionnés}}"
-    },
+    }
+    /*
     "validation": {
       "generic": "La valeur du champ « {field} » est incorrecte.",
       "multipleOf": "La valeur du champ « {field} » est incorrecte.",
@@ -54,7 +55,7 @@
       "formatMinimum": "La valeur du champ « {field} » est inférieure au minimum requis.",
       "formatMaximum": "La valeur du champ « {field} » est supérieure au maximum autorisé.",
       "switch": "La valeur du champ « {field} » est incorrecte."
-    }
+    }*/
   },
   "uploadFile": {
     "selectedFile": "{count} fichier sélectionné",
@@ -314,12 +315,11 @@
       },
       "num_permis": {
         "label": "Numéro de permis",
-        "required": "Le champ « Numéro de permis » est obligatoire. Veuillez saisir ce champ."
+        "required": "Le champ « Numéro de permis » est obligatoire. Veuillez saisir ce champ.",
+        "invalid": "Le format du champ « Numéro de permis » est incorrect"
       },
       "copie_permis": {
         "label": "Copie du permis",
-        "buttonLabel": "Choisir un fichier",
-        "fileSelectedLabel": "Un fichier choisit",
         "required": "Le champ « Copie du permis » est obligatoire. Veuillez saisir ce champ."
       },
       "date_de_delivrance": {
@@ -336,8 +336,6 @@
       },
       "copie_note_verbale_maeci": {
         "label": "Copie de la note verbale du MAECI",
-        "buttonLabel": "Choisir un fichier",
-        "fileSelectedLabel": "Un fichier choisit",
         "required": "Le champ « Copie de la note verbale du MAECI » est obligatoire. Veuillez saisir ce champ."
       },
       "date_reception_dossier": {
@@ -381,7 +379,8 @@
       },
       "num_demande_authentification": {
         "label": "Numéro de la demande d'authentification",
-        "required": "Le champ « Numéro de la demande d'authentification » est obligatoire. Veuillez saisir ce champ."
+        "required": "Le champ « Numéro de la demande d'authentification » est obligatoire. Veuillez saisir ce champ.",
+        "invalid": "Le format du champ « Numéro de la demande d'authentification » est incorrect"
       },
       "date_du_traitement": {
         "label": "Date du traitement de la demande (Date de la valise - 1)"

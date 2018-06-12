@@ -3,20 +3,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
 var hornet_js_utils_1 = require("hornet-js-utils");
 var service_request_1 = require("hornet-js-core/src/services/service-request");
-var personne_dao_1 = require("../../../../dao/admin/fvm/personne-dao");
-var copie_note_verbale_MAECI_dao_1 = require("../../../../dao/admin/fvm/copie_note_verbale_MAECI-dao");
-var dossier_dao_1 = require("../../../../dao/admin/fvm/dossier-dao");
-var permis_dao_1 = require("../../../../dao/admin/fvm/permis-dao");
-var copie_permis_dao_1 = require("../../../../dao/admin/fvm/copie_permis-dao");
-var prefecture_dao_1 = require("../../../../dao/prefecture-dao");
-var demande_authentification_dao_1 = require("../../../../dao/admin/fvm/demande_authentification-dao");
-var valise_dao_1 = require("../../../../dao/valise-dao");
+var personne_dao_1 = require("src/dao/admin/fvm/personne-dao");
+var copie_note_verbale_MAECI_dao_1 = require("src/dao/admin/fvm/copie_note_verbale_MAECI-dao");
+var dossier_dao_1 = require("src/dao/admin/fvm/dossier-dao");
+var permis_dao_1 = require("src/dao/admin/fvm/permis-dao");
+var copie_permis_dao_1 = require("src/dao/admin/fvm/copie_permis-dao");
+var prefecture_dao_1 = require("src/dao/prefecture-dao");
+var demande_authentification_dao_1 = require("src/dao/admin/fvm/demande_authentification-dao");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.services.data.admin.admin-service-impl-data");
 var ClientListServiceImpl = /** @class */ (function (_super) {
     tslib_1.__extends(ClientListServiceImpl, _super);
     function ClientListServiceImpl() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.Error = { "hasError": null, "hasReason": null };
+        _this.Error = { "error": null, "reason": null };
         _this.personneDAO = new personne_dao_1.PersonneFVMDAO();
         _this.dossierDAO = new dossier_dao_1.DossierFVMDAO();
         _this.permisDAO = new permis_dao_1.PermisFVMDAO();
@@ -24,7 +23,6 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
         _this.copiePermisDAO = new copie_permis_dao_1.CopiePermisFVMDao();
         _this.prefectureDAO = new prefecture_dao_1.PrefectureDAO();
         _this.demandeAuthentificationDAO = new demande_authentification_dao_1.DemandeAuthentificationFVMDAO();
-        _this.valiseDAO = new valise_dao_1.ValiseDAO();
         return _this;
     }
     ClientListServiceImpl.prototype.getListeDossiers = function () {
@@ -33,28 +31,28 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
             var idPersonneArray = [];
             var idDossierArray = [];
             permisList.forEach(function (permis) {
-                idPersonneArray.push(permis["idPersonne"]);
-                idDossierArray.push(permis["idDossier"]);
+                idPersonneArray.push(permis.id_personne_fvm);
+                idDossierArray.push(permis.id_dossier_fvm);
             });
-            var personne = _this.personneDAO.getPersonne(idPersonneArray);
-            var dossier = _this.dossierDAO.getDossier(idDossierArray);
+            var personne = _this.personneDAO.getListePersonne(idPersonneArray);
+            var dossier = _this.dossierDAO.getListeDossier(idDossierArray);
             return Promise.all([personne, dossier]).then(function (values) {
                 var personneList = values[0];
                 var dossierList = values[1];
                 var result = [];
                 permisList.forEach(function (permis) {
-                    var obj = { "idPermis": permis.idPermis, "numPermis": null, "nom": null, "prenom": null, "dateDeNaissance": null, "dateReceptionDossier": null };
-                    obj.numPermis = permis.numPermis;
+                    var obj = { "idPermis": permis.id_permis_fvm, "numPermis": null, "nom": null, "prenom": null, "dateDeNaissance": null, "dateReceptionDossier": null };
+                    obj.numPermis = permis.num_permis;
                     personneList.forEach(function (personne) {
-                        if (personne.idPermis == permis.idPermis) {
+                        if (personne.id_permis_fvm == permis.id_permis_fvm) {
                             obj.nom = personne.nom;
                             obj.prenom = personne.prenom;
-                            obj.dateDeNaissance = Date.parse(personne.dateDeNaissance);
+                            obj.dateDeNaissance = personne.date_de_naissance;
                         }
                     });
                     dossierList.forEach(function (dossier) {
-                        if (dossier.idPermis == permis.idPermis) {
-                            obj.dateReceptionDossier = Date.parse(dossier.dateReceptionDossier);
+                        if (dossier.id_permis_fvm == permis.id_permis_fvm) {
+                            obj.dateReceptionDossier = dossier.date_reception_dossier;
                         }
                     });
                     result.push(obj);
@@ -66,35 +64,34 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
     ClientListServiceImpl.prototype.getDossier = function (data) {
         var _this = this;
         var idPermis = data["idPermis"];
-        return this.permisDAO.getPermis(idPermis).then(function (values) {
-            var permis = values[0];
+        return this.permisDAO.getPermis(idPermis).then(function (permis) {
             var result = {};
-            result["numPermis"] = permis.numPermis;
-            result["dateDeDelivrance"] = Date.parse(permis.dateDeDelivrance);
-            var copie_permis = _this.copiePermisDAO.getCopiePermis(permis.idCopiePermis);
-            var personne = _this.personneDAO.getPersonne(permis.idPersonne);
-            var dossier = _this.dossierDAO.getDossier(permis.idDossier);
-            var prefecture_delivrance = _this.prefectureDAO.getPrefecture(permis.idPrefectureDelivrance);
+            result["numPermis"] = permis.num_permis;
+            result["dateDeDelivrance"] = permis.date_de_delivrance;
+            var copie_permis = _this.copiePermisDAO.getCopiePermis(permis.id_copie_permis_fvm);
+            var personne = _this.personneDAO.getPersonne(permis.id_personne_fvm);
+            var dossier = _this.dossierDAO.getDossier(permis.id_dossier_fvm);
+            var prefecture_delivrance = _this.prefectureDAO.getPrefecture(permis.id_prefecture_delivrance);
             return Promise.all([copie_permis, personne, dossier, prefecture_delivrance]).then(function (values) {
-                var copie_permis = values[0][0];
-                var personne = values[1][0];
-                var dossier = values[2][0];
-                var prefecture = values[3][0];
+                var copie_permis = values[0];
+                var personne = values[1];
+                var dossier = values[2];
+                var prefecture = values[3];
                 result["copie_permis"] = copie_permis;
                 result["nom"] = personne.nom;
                 result["prenom"] = personne.prenom;
-                result["dateDeNaissance"] = Date.parse(personne.dateDeNaissance);
-                result["sexe"] = personne.sexe;
-                result["villeDeNaissance"] = personne.villeDeNaissance;
-                result["paysDeNaissance"] = personne.paysDeNaissance;
+                result["dateDeNaissance"] = personne.date_de_naissance;
+                result["sexe"] = personne.titre;
+                result["villeDeNaissance"] = personne.ville_de_naissance;
+                result["paysDeNaissance"] = personne.pays_de_naissance;
                 result["region"] = prefecture.region;
                 result["departement"] = prefecture.departement;
                 result["prefecture"] = prefecture.prefecture;
                 result["adresse"] = prefecture.adresse;
-                result["codePostal"] = prefecture.codePostal;
+                result["codePostal"] = prefecture.code_postal;
                 result["ville"] = prefecture.ville;
-                result["dateReceptionDossier"] = Date.parse(dossier.dateReceptionDossier);
-                return _this.copieNoteVerbaleMAECIDAO.getCopieNoteVerbaleMAECI(dossier.idCopieNoteVerbaleMAECI).then(function (values) {
+                result["dateReceptionDossier"] = dossier.date_reception_dossier;
+                return _this.copieNoteVerbaleMAECIDAO.getCopieNoteVerbaleMAECI(dossier.id_copie_note_verbale_maeci_fvm).then(function (values) {
                     result["copie_note_verbale_maeci"] = values[0];
                     return Promise.resolve([result]);
                 });
@@ -102,25 +99,28 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
         });
     };
     ClientListServiceImpl.prototype.getDemandeAuthentification = function (data) {
-        var idPermis = data["idPermis"];
+        var idPermis = data.idPermis;
         return this.demandeAuthentificationDAO.getDemandeAuthentificationFromPermis(idPermis);
     };
-    ClientListServiceImpl.prototype.getReleve = function (data) {
-        var idPermis = data["idPermis"];
-        return Promise.resolve([]);
-    };
-    ClientListServiceImpl.prototype.getNoteVerbale = function (data) {
-        var idPermis = data["idPermis"];
-        return Promise.resolve([]);
-    };
+    /* TODO
+    getReleve(data): Promise<any> {
+      let idPermis = data["idPermis"];
+      return Promise.resolve([]);
+    }
+  
+    getNoteVerbale(data): Promise<any> {
+      let idPermis = data["idPermis"];
+      return Promise.resolve([]);
+    }
+    */
     ClientListServiceImpl.prototype.getCopiePermis = function (idCopiePermis) {
-        return this.copiePermisDAO.getCopiePermis(idCopiePermis).then(function (values) {
-            return Promise.resolve(values[0]);
+        return this.copiePermisDAO.getCopiePermis(idCopiePermis).then(function (copiePermis) {
+            return copiePermis;
         });
     };
     ClientListServiceImpl.prototype.getCopieNoteVerbaleMAECI = function (idCopieNoteVerbaleMAECI) {
-        return this.copieNoteVerbaleMAECIDAO.getCopieNoteVerbaleMAECI(idCopieNoteVerbaleMAECI).then(function (values) {
-            return Promise.resolve(values[0]);
+        return this.copieNoteVerbaleMAECIDAO.getCopieNoteVerbaleMAECI(idCopieNoteVerbaleMAECI).then(function (copieNoteVerbaleMAECI) {
+            return copieNoteVerbaleMAECI;
         });
     };
     ClientListServiceImpl.prototype.getPDFDemandeAuthentification = function (idPermis) {
@@ -138,8 +138,8 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
         var _this = this;
         var idDemandeAuthentification = data.idDemandeAuthentification;
         return this.demandeAuthentificationDAO.deleteDemandeAuthentification(idDemandeAuthentification).catch(function (error) {
-            _this.Error.hasError = error;
-            _this.Error.hasReason = error.toString();
+            _this.Error.error = error;
+            _this.Error.reason = error.toString();
             return _this.Error;
         });
     };
@@ -148,23 +148,23 @@ var ClientListServiceImpl = /** @class */ (function (_super) {
         var idPermis = data.idPermis;
         var idDossier = this.dossierDAO.getIdDossierFromPermis(idPermis);
         var idPersonne = this.personneDAO.getIdPersonneFromPermis(idPermis);
-        var idDemandeAuthentification = this.demandeAuthentificationDAO.getDemandeAuthentificationFromPermis(idPermis);
-        return Promise.all([idDossier, idPersonne, idDemandeAuthentification]).then(function (values) {
-            var deleteCopieNoteVerbaleMAECI = _this.copieNoteVerbaleMAECIDAO.deleteCopieNoteVerbaleMAECIFromDossier(values[0][0].idDossier);
-            var deleteDossier = _this.dossierDAO.deleteDossier(values[0][0].idDossier);
-            var deletePersonne = _this.personneDAO.deletePersonne(values[1][0].idPersonne);
+        var demandeAuthentification = this.demandeAuthentificationDAO.getDemandeAuthentificationFromPermis(idPermis);
+        return Promise.all([idDossier, idPersonne, demandeAuthentification]).then(function (values) {
+            var deleteCopieNoteVerbaleMAECI = _this.copieNoteVerbaleMAECIDAO.deleteCopieNoteVerbaleMAECIFromDossier(values[0]);
+            var deleteDossier = _this.dossierDAO.deleteDossier(values[0]);
+            var deletePersonne = _this.personneDAO.deletePersonne(values[1]);
             var deleteCopiePermis = _this.copiePermisDAO.deleteCopiePermisFromPermis(idPermis);
             var deletePermis = _this.permisDAO.deletePermis(idPermis);
-            if (values[2].length > 0) {
-                var deleteDemandeAuthentification = _this.demandeAuthentificationDAO.deleteDemandeAuthentification(values[2][0].idDemandeAuthentification);
+            if (values[2] != null) {
+                var deleteDemandeAuthentification = _this.demandeAuthentificationDAO.deleteDemandeAuthentification(values[2].id_demande_authentification_fvm);
                 return Promise.all([deleteCopieNoteVerbaleMAECI, deleteDossier, deletePersonne, deleteCopiePermis, deleteDemandeAuthentification, deletePermis]);
             }
             else {
                 return Promise.all([deleteCopieNoteVerbaleMAECI, deleteDossier, deletePersonne, deleteCopiePermis, deletePermis]);
             }
         }).catch(function (error) {
-            _this.Error.hasError = error;
-            _this.Error.hasReason = error.toString();
+            _this.Error.error = error;
+            _this.Error.reason = error.toString();
             return _this.Error;
         });
     };

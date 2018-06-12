@@ -14,9 +14,9 @@ var prefecture_dao_1 = require("../../../../dao/prefecture-dao");
 var valise_dao_1 = require("../../../../dao/valise-dao");
 var demande_authentification_dao_1 = require("../../../../dao/admin/fvm/demande_authentification-dao");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.services.data.admin.admin-service-impl-data");
-var ServerFormServiceImpl = /** @class */ (function (_super) {
-    tslib_1.__extends(ServerFormServiceImpl, _super);
-    function ServerFormServiceImpl() {
+var FormServiceImpl = /** @class */ (function (_super) {
+    tslib_1.__extends(FormServiceImpl, _super);
+    function FormServiceImpl() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.Error = { "hasError": null, "hasReason": null };
         _this.personneDAO = new personne_dao_1.PersonneFVMDAO();
@@ -29,7 +29,7 @@ var ServerFormServiceImpl = /** @class */ (function (_super) {
         _this.demandeAuthentificationDAO = new demande_authentification_dao_1.DemandeAuthentificationFVMDAO();
         return _this;
     }
-    ServerFormServiceImpl.prototype.insererDonnee = function (data) {
+    FormServiceImpl.prototype.insererDonnee = function (data) {
         var _this = this;
         var content = JSON.parse(data["content"]);
         var copie_permis = data["copie_permis"];
@@ -60,7 +60,7 @@ var ServerFormServiceImpl = /** @class */ (function (_super) {
             return _this.Error;
         });
     };
-    ServerFormServiceImpl.prototype.insererDemandeAuthentification = function (data) {
+    FormServiceImpl.prototype.insererDemandeAuthentification = function (data) {
         var _this = this;
         return this.valiseDAO.getValise(data["num_valise"]).then(function (values) {
             var valise = values[0];
@@ -73,7 +73,7 @@ var ServerFormServiceImpl = /** @class */ (function (_super) {
             return _this.Error;
         });
     };
-    ServerFormServiceImpl.prototype.insererValise = function (data) {
+    FormServiceImpl.prototype.insererValise = function (data) {
         var _this = this;
         return this.valiseDAO.insererValise(data["num_valise"], data["date_valise"]).catch(function (error) {
             _this.Error.hasError = error;
@@ -81,10 +81,10 @@ var ServerFormServiceImpl = /** @class */ (function (_super) {
             return _this.Error;
         });
     };
-    ServerFormServiceImpl.prototype.getListePrefectures = function () {
+    FormServiceImpl.prototype.getListePrefectures = function () {
         return this.prefectureDAO.getListePrefecture();
     };
-    ServerFormServiceImpl.prototype.getListeValises = function () {
+    FormServiceImpl.prototype.getListeValises = function () {
         return this.valiseDAO.getListeValise().then(function (result) {
             var arr = [];
             result.forEach(function (elem) {
@@ -101,9 +101,8 @@ var ServerFormServiceImpl = /** @class */ (function (_super) {
         tslib_1.__metadata("design:type", Function),
         tslib_1.__metadata("design:paramtypes", [Object]),
         tslib_1.__metadata("design:returntype", Promise)
-    ], ServerFormServiceImpl.prototype, "insererDonnee", null);
-    return ServerFormServiceImpl;
+    ], FormServiceImpl.prototype, "insererDonnee", null);
+    return FormServiceImpl;
 }(service_request_1.ServiceRequest));
-exports.ServerFormServiceImpl = ServerFormServiceImpl;
-
+exports.FormServiceImpl = FormServiceImpl;
 //# sourceMappingURL=server-form-service-impl-data.js.map

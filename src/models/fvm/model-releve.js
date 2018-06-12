@@ -1,6 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Sequelize = require("sequelize");
+/**
+ * Objet Sequelize définissant le modèle de la table releve_fvm
+ * @type {Sequelize.DefineAttributes}
+ */
 exports.ReleveFVMModel = {
     "idReleve": {
         type: Sequelize.INTEGER,
@@ -45,5 +49,4 @@ exports.ReleveFVMModel = {
         }
     }
 };
-
 //# sourceMappingURL=model-releve.js.map
