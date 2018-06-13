@@ -2,27 +2,44 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
 var hornet_js_utils_1 = require("hornet-js-utils");
+// Classe parente des Classes de service PAGE
 var service_page_1 = require("hornet-js-core/src/services/service-page");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.services.page.admin.admin-service-impl");
+/**
+ * Classe de service Page utilisée par les formulaires
+ * @extends {ServicePage}
+ * @implements {FormService}
+ */
 var FormServiceImpl = /** @class */ (function (_super) {
     tslib_1.__extends(FormServiceImpl, _super);
     function FormServiceImpl() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    FormServiceImpl.prototype.insererDonnee = function (data) {
-        logger.trace("SERVICES - insert : ", data);
+    /**
+     * Méthode effectuant une requête HTTP permettant l'insertion d'un dossier dans la base de données
+     * @param data données de formulaire
+     * @returns {Promise<any>}
+     */
+    FormServiceImpl.prototype.insererDossier = function (data) {
+        logger.trace("SERVICE PAGE inser - PageService.InserDossier");
         var request = {
             method: "post",
             url: this.buildUrl("/fvmform1server"),
             data: data,
         };
+        // Passer les fichiers uploadés en pièce jointe de la requête
         request.attach = [];
         request.attach.push({ field: "copie_permis", file: data.copie_permis, fileName: data.copie_permis.name });
         request.attach.push({ field: "copie_note_verbale_maeci", file: data.copie_note_verbale_maeci, fileName: data.copie_note_verbale_maeci.name });
         return this.fetch(request);
     };
+    /**
+     * Méthode effectuant une requête HTTP permettant l'insertion d'une demande d'authentification dans la base de données
+     * @param data données de formulaire
+     * @returns {Promise<any>}
+     */
     FormServiceImpl.prototype.insererDemandeAuthentification = function (data) {
-        logger.trace("SERVICES - insert : ", data);
+        logger.trace("SERVICE PAGE inser - PageService.InserDemandeAuthentification");
         var request = {
             method: "post",
             url: this.buildUrl("/fvmform2server"),
@@ -30,8 +47,13 @@ var FormServiceImpl = /** @class */ (function (_super) {
         };
         return this.fetch(request);
     };
+    /**
+     * Méthode effectuant une requête HTTP permettant l'insertion d'une valise dans la base de données
+     * @param data données de formulaire
+     * @returns {Promise<any>}
+     */
     FormServiceImpl.prototype.insererValise = function (data) {
-        logger.trace("SERVICES - insert : ", data);
+        logger.trace("SERVICE PAGE inser - PageService.InserValise");
         var request = {
             method: "post",
             url: this.buildUrl("/fvmform2server/insertValise"),
@@ -39,16 +61,24 @@ var FormServiceImpl = /** @class */ (function (_super) {
         };
         return this.fetch(request);
     };
-    FormServiceImpl.prototype.getListePrefectures = function () {
-        logger.trace("SERVICES - list");
+    /**
+     * Méthode effectuant une requête HTTP permettant la récupération de la liste des préfectures stockées dans la base
+     * @returns {Promise<Array<any>>} Liste des préfectures stockées dans la base
+     */
+    FormServiceImpl.prototype.getListePrefecture = function () {
+        logger.trace("SERVICE PAGE get - PageService.GetListPrefecture");
         var request = {
             method: "post",
             url: this.buildUrl("/fvmform1server/listPrefectures")
         };
         return this.fetch(request);
     };
-    FormServiceImpl.prototype.getListeValises = function () {
-        logger.trace("SERVICES - list");
+    /**
+     * Méthode effectuant une requête HTTP permettant la récupération de la liste des valises stockées dans la base
+     * @returns {Promise<Array<any>>} Liste des valises stockées dans la base
+     */
+    FormServiceImpl.prototype.getListeValise = function () {
+        logger.trace("SERVICE PAGE get - PageService.GetListValise");
         var request = {
             method: "post",
             url: this.buildUrl("/fvmform2server/listValises")

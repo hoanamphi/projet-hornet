@@ -25,7 +25,7 @@ var FormulaireDossierPage = /** @class */ (function (_super) {
     tslib_1.__extends(FormulaireDossierPage, _super);
     function FormulaireDossierPage(props, context) {
         var _this = _super.call(this, props, context) || this;
-        _this.prefectures = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getListePrefectures), { "value": "idPrefecture", "label": "prefecture" });
+        _this.prefectures = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getListePrefecture), { "value": "id_prefecture_fvm", "label": "prefecture" });
         _this.errors = new notification_manager_1.Notifications();
         _this.SequelizeErrors = new notification_manager_1.NotificationType();
         _this.SequelizeErrors.id = "SequelizeError";
@@ -42,11 +42,11 @@ var FormulaireDossierPage = /** @class */ (function (_super) {
     };
     FormulaireDossierPage.prototype.onSubmit = function (data) {
         var _this = this;
-        this.getService().insererDonnee(data).then(function (result) {
-            if (result.hasError != null) {
-                console.error(result.hasReason);
-                console.error(result.hasError);
-                _this.SequelizeErrors.text = result.hasReason;
+        this.getService().insererDossier(data).then(function (result) {
+            if (result.error != null) {
+                console.error(result.reason);
+                console.error(result.error);
+                _this.SequelizeErrors.text = result.reason;
                 notification_manager_1.NotificationManager.notify("SequelizeError", "errors", _this.errors, null, null, null, null);
             }
             else {

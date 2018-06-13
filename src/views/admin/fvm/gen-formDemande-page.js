@@ -34,7 +34,7 @@ var FormulaireDemandeAuthentificationPage = /** @class */ (function (_super) {
     function FormulaireDemandeAuthentificationPage(props, context) {
         var _this = _super.call(this, props, context) || this;
         _this.input = new input_field_1.InputField();
-        _this.valise = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getListeValises), {});
+        _this.valise = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getListeValise), {});
         _this.errors = new notification_manager_1.Notifications();
         _this.SequelizeErrors = new notification_manager_1.NotificationType();
         _this.SequelizeErrors.id = "SequelizeError";
@@ -51,12 +51,12 @@ var FormulaireDemandeAuthentificationPage = /** @class */ (function (_super) {
     };
     FormulaireDemandeAuthentificationPage.prototype.onSubmit = function (data) {
         var _this = this;
-        data["id_permis"] = this.attributes.idPermisPermis;
+        data["id_permis"] = this.attributes.idPermis;
         this.getService().insererDemandeAuthentification(data).then(function (result) {
-            if (result.hasError != null) {
-                console.error(result.hasReason);
-                console.error(result.hasError);
-                _this.SequelizeErrors.text = result.hasReason;
+            if (result.error != null) {
+                console.error(result.reason);
+                console.error(result.error);
+                _this.SequelizeErrors.text = result.reason;
                 notification_manager_1.NotificationManager.notify("SequelizeError", "errors", _this.errors, null, null, null, null);
             }
             else {
@@ -112,10 +112,10 @@ var FormulaireDemandeAuthentificationPage = /** @class */ (function (_super) {
     FormulaireDemandeAuthentificationPage.prototype.submitValise = function (data) {
         var _this = this;
         this.getService().insererValise(data).then(function (result) {
-            if (result.hasError != null) {
-                console.error(result.hasReason);
-                console.error(result.hasError);
-                _this.SequelizeErrors.text = result.hasReason;
+            if (result.error != null) {
+                console.error(result.reason);
+                console.error(result.error);
+                _this.SequelizeErrors.text = result.reason;
                 notification_manager_1.NotificationManager.notify("SequelizeError", "errors", _this.errors, null, null, null, null);
             }
             else {

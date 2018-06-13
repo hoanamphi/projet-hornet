@@ -63,7 +63,7 @@ export class RecordListPage extends HornetPage<any, HornetComponentProps, any> {
   }
 
   prepareClient(): void {
-    this.getService().getListeDossiers().then((all)=>{
+    this.getService().getListeDossier().then((all)=>{
       this.entries.add(true, all);
     });
   }
@@ -194,7 +194,7 @@ export class RecordListPage extends HornetPage<any, HornetComponentProps, any> {
 
   reloadData() {
     this.entries.deleteAll();
-    this.getService().getListeDossiers().then((all)=>{
+    this.getService().getListeDossier().then((all)=>{
       this.entries.add(true, all);
     });
   }

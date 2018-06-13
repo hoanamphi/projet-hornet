@@ -1,7 +1,7 @@
 import { Utils } from "hornet-js-utils";
 // Classe gérant les logs
 import { Logger } from "hornet-js-utils/src/logger";
-// Classe parente des Classes de service
+// Classe parente des Classes de service DATA
 import { ServiceRequest } from "hornet-js-core/src/services/service-request";
 // Interface implémentée par la Classe de service
 import { FormService } from "src/services/page/admin/fvm/form-service";
@@ -20,9 +20,14 @@ import {DemandeAuthentificationFVMDAO} from "src/dao/admin/fvm/demande_authentif
 
 const logger: Logger = Utils.getLogger("projet-hornet.services.data.admin.admin-service-impl-data");
 
+/**
+ * Classe de service Data utilisée par les formulaires
+ * @extends {ServiceRequest}
+ * @implements {FormService}
+ */
 export class FormServiceImpl extends ServiceRequest implements FormService {
 
-  // Objets contenant les erreurs retournées par une insertion ou une suppression
+  // Objets contenant les erreurs retournées par une méthode
   private Error = {"error": null, "reason": null};
 
   private personneDAO = new PersonneFVMDAO();
@@ -34,13 +39,22 @@ export class FormServiceImpl extends ServiceRequest implements FormService {
   private valiseDAO = new ValiseDAO();
   private demandeAuthentificationDAO = new DemandeAuthentificationFVMDAO();
 
+  /**
+   * Méthode effectuant l'insertion d'un dossier dans la base de données
+   * @param data données de formulaire
+   * @returns {Promise<any>}
+   * @method
+   */
   @Transactional({configDatabase: Injector.getRegistered("databaseConfigName")})
-  insererDonnee(data: {"content": any, "copie_permis": any, "copie_note_verbale_maeci": any}): Promise<any> {
+  insererDossier(data: {"content": any, "copie_permis": any, "copie_note_verbale_maeci": any}): Promise<any> {
+    logger.trace("SERVICE DATA inser - FormService.InserDonnee");
 
+    // Récupérer les données de formulaire
     let content = JSON.parse(data.content);
     let copie_permis = data.copie_permis;
     let copie_note_verbale_maeci = data.copie_note_verbale_maeci;
 
+    // Obtenir des ids pour les entrées à insérer
     let idCopieNoteVerbaleMAECI = this.copieNoteVerbaleMAECIDAO.getNewIdCopieNoteVerbaleMAECI();
     let idDossier = this.dossierDAO.getNewIdDossier();
     let idPersonne = this.personneDAO.getNewIdPersonne();
@@ -49,74 +63,120 @@ export class FormServiceImpl extends ServiceRequest implements FormService {
 
     return Promise.all([idCopieNoteVerbaleMAECI, idDossier, idPersonne, idCopiePermis, idPermis]).then(values=>{
 
-      return this.copieNoteVerbaleMAECIDAO.insererCopieNoteVerbaleMAECI(values[0], copie_note_verbale_maeci.mimetype, copie_note_verbale_maeci.encoding, copie_note_verbale_maeci.size, copie_note_verbale_maeci.data, null).then(()=> {
-        let insertDossier = this.dossierDAO.insererDossier(values[1], values[0], null);
+      let idCopieNoteVerbaleMAECI_value = values[0];
+      let idDossier_value = values[1];
+      let idPersonne_value = values[2];
+      let idCopiePermis_value = values[3];
+      let idPermis_value = values[4];
 
-        let insertPersonne = this.personneDAO.insererPersonne(values[2], content.nom.toLowerCase(), content.prenom.toLowerCase(), content.date_de_naissance, content.id_sexe, content.ville_de_naissance, content.pays_de_naissance, null);
+      // Insérer la copie de la note verbale MAECI
+      return this.copieNoteVerbaleMAECIDAO.insererCopieNoteVerbaleMAECI(idCopieNoteVerbaleMAECI_value, copie_note_verbale_maeci.mimetype, copie_note_verbale_maeci.encoding, copie_note_verbale_maeci.size, copie_note_verbale_maeci.data, null).then(()=> {
+        // Si la promesse de résultat est remplie (sans erreurs)
 
-        let insertCopiePermis = this.copiePermisDAO.insererCopiePermis(values[3], copie_permis.mimetype, copie_permis.encoding, copie_permis.size, copie_permis.data, null);
+        // Insérer les autres entrées
+        let insertDossier = this.dossierDAO.insererDossier(idDossier_value, idCopieNoteVerbaleMAECI_value, null);
+        let insertPersonne = this.personneDAO.insererPersonne(idPersonne_value, content.nom.toLowerCase(), content.prenom.toLowerCase(), content.date_de_naissance, content.id_sexe, content.ville_de_naissance, content.pays_de_naissance, null);
+        let insertCopiePermis = this.copiePermisDAO.insererCopiePermis(idCopiePermis_value, copie_permis.mimetype, copie_permis.encoding, copie_permis.size, copie_permis.data, null);
 
         return Promise.all([insertDossier, insertPersonne, insertCopiePermis]).then(()=> {
+          // Si la promesse de résultat est remplie (sans erreurs)
 
-          return this.permisDAO.insererPermis(values[4], content.num_permis, values[3], content.date_de_delivrance, values[2], values[1], content.id_prefecture).then(()=> {
-            let updateCopieNoteVerbaleMAECI = this.copieNoteVerbaleMAECIDAO.insererCopieNoteVerbaleMAECI(values[0], copie_note_verbale_maeci.mimetype, copie_note_verbale_maeci.encoding, copie_note_verbale_maeci.size, copie_note_verbale_maeci.data, values[1]);
+          // Insérer le permis de conduire
+          return this.permisDAO.insererPermis(idPermis_value, content.num_permis, idCopiePermis_value, content.date_de_delivrance, idPersonne_value, idDossier_value, content.id_prefecture).then(()=> {
+            // Toutes les insertions se sont déroulées sans erreur
 
-            let updateDossier = this.dossierDAO.insererDossier(values[1], values[0], values[4]);
-
-            let updatePersonne = this.personneDAO.insererPersonne(values[2], content.nom.toLowerCase(), content.prenom.toLowerCase(), content.date_de_naissance, content.id_sexe, content.ville_de_naissance, content.pays_de_naissance, values[4]);
-
-            let updateCopiePermis = this.copiePermisDAO.insererCopiePermis(values[3], copie_permis.mimetype, copie_permis.encoding, copie_permis.size, copie_permis.data, values[4]);
+            // On met à jour les entrées en ajoutant les clés étrangères
+            let updateCopieNoteVerbaleMAECI = this.copieNoteVerbaleMAECIDAO.insererCopieNoteVerbaleMAECI(idCopieNoteVerbaleMAECI_value, copie_note_verbale_maeci.mimetype, copie_note_verbale_maeci.encoding, copie_note_verbale_maeci.size, copie_note_verbale_maeci.data, idDossier_value);
+            let updateDossier = this.dossierDAO.insererDossier(idDossier_value, idCopieNoteVerbaleMAECI_value, idPermis_value);
+            let updatePersonne = this.personneDAO.insererPersonne(idPersonne_value, content.nom.toLowerCase(), content.prenom.toLowerCase(), content.date_de_naissance, content.id_sexe, content.ville_de_naissance, content.pays_de_naissance, idPermis_value);
+            let updateCopiePermis = this.copiePermisDAO.insererCopiePermis(idCopiePermis_value, copie_permis.mimetype, copie_permis.encoding, copie_permis.size, copie_permis.data, idPermis_value);
 
             return Promise.all([updateCopieNoteVerbaleMAECI, updateDossier, updatePersonne, updateCopiePermis]);
           });
         })
       });
     }).catch(error=>{
+      // Si une erreur est capturée
+
+      // On retourne un Objet contenant la description de l'erreur
       this.Error.error = error;
       this.Error.reason = error.toString();
       return this.Error;
     });
   }
 
-  insererDemandeAuthentification(data: {"num_valise": number, "num_demande_authentification": string, "id_permis": number}): Promise<any> {
+  /**
+   * Méthode effectuant l'insertion d'une demande d'authentification dans la base de données
+   * @param data données de formulaire
+   * @returns {Promise<any>}
+   */
+  insererDemandeAuthentification(data: {"num_valise": number, "num_demande_authentification": any, "id_permis": number}): Promise<any> {
+    logger.trace("SERVICE DATA inser - FormService.InserDemandeAuthentification");
 
+    // Récupérer les informations de la valise diplomatique
     return this.valiseDAO.getValise(data.num_valise).then(values=>{
       let valise = values;
 
+      // Obtenir un id pour l'entrée à insérer
       return this.demandeAuthentificationDAO.getNewIdDemandeAuthentification().then(idDemandeAuthentification=> {
 
+        // Insérer la demande d'authentification
         return this.demandeAuthentificationDAO.insererDemandeAuthentification(idDemandeAuthentification, data.num_demande_authentification, data.id_permis, data.num_valise, valise.date_valise);
       });
     }).catch(error=>{
+      // Si une erreur est capturée
+
+      // On retourne un Objet contenant la description de l'erreur
       this.Error.error = error;
       this.Error.reason = error.toString();
       return this.Error;
     });
   }
 
+  /**
+   * Méthode effectuant l'insertion d'une valise dans la base de données
+   * @param data données de formulaire
+   * @returns {Promise<any>}
+   */
   insererValise(data: {"num_valise": number, "date_valise": Date}): Promise<any> {
+    logger.trace("SERVICE DATA inser - FormService.InserValise");
 
+    // Insérer la valise
     return this.valiseDAO.insererValise(data.num_valise, data.date_valise).catch(error=>{
+      // Si une erreur est capturée
+
+      // On retourne un Objet contenant la description de l'erreur
       this.Error.error = error;
       this.Error.reason = error.toString();
       return this.Error;
     });
   }
 
-  getListePrefectures(): Promise<Array<any>>{
+  /**
+   * Méthode retournant la liste des préfectures stockées dans la base
+   * @returns {Promise<Array<any>>} Liste des préfectures stockées dans la base
+   */
+  getListePrefecture(): Promise<Array<any>>{
+    logger.trace("SERVICE DATA get - FormService.GetListPrefecture");
 
     return this.prefectureDAO.getListePrefecture();
   }
 
-  getListeValises(): Promise<Array<any>>{
+  /**
+   * Méthode retournant la liste des valises stockées dans la base
+   * @returns {Promise<Array<any>>} Liste des valises stockées dans la base
+   */
+  getListeValise(): Promise<Array<any>>{
+    logger.trace("SERVICE DATA get - FormService.GetListValise");
 
     return this.valiseDAO.getListeValise().then(result=>{
       let arr = [];
 
+
       result.forEach(elem=>{
         let tmp = {};
         tmp["numValise"] = elem.num_valise;
-        tmp["dateValise"] = elem.date_valise.getDate();
+        tmp["dateValise"] = elem.date_valise;
         arr.push(tmp);
       });
 

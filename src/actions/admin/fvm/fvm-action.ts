@@ -71,7 +71,7 @@ export class InserDossier extends RouteActionService<any, FormService> {
         return Promise.resolve(this.Error);
       }
       
-      return this.getService().insererDonnee(data);
+      return this.getService().insererDossier(data);
     } else {
       // Retourner une erreur
       this.Error.error = new Error("FileUploadError");
@@ -190,7 +190,7 @@ export class ListPrefecture extends RouteActionService<any, FormService> {
   execute(): Promise<Array<PrefectureMetier>> {
     logger.trace("ACTION list - FormDossierFVMAction.ListPrefecture");
 
-    return this.getService().getListePrefectures();
+    return this.getService().getListePrefecture();
   }
 }
 
@@ -207,7 +207,7 @@ export class ListValise extends RouteActionService<any, FormService> {
   execute(): Promise<Array<ValiseMetier>> {
     logger.trace("ACTION list - FormDemandeAuthentificationFVMAction.ListValise");
 
-    return this.getService().getListeValises();
+    return this.getService().getListeValise();
   }
 }
 
@@ -224,7 +224,7 @@ export class ListDossier extends RouteActionService<any, PageService> {
   execute(): Promise<Array<any>> {
     logger.trace("ACTION list - RecordListFVMAction.ListDossier");
 
-    return this.getService().getListeDossiers();
+    return this.getService().getListeDossier();
   }
 }
 

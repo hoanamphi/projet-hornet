@@ -46,7 +46,7 @@ var RecordListPage = /** @class */ (function (_super) {
     }
     RecordListPage.prototype.prepareClient = function () {
         var _this = this;
-        this.getService().getListeDossiers().then(function (all) {
+        this.getService().getListeDossier().then(function (all) {
             _this.entries.add(true, all);
         });
     };
@@ -124,7 +124,7 @@ var RecordListPage = /** @class */ (function (_super) {
     RecordListPage.prototype.reloadData = function () {
         var _this = this;
         this.entries.deleteAll();
-        this.getService().getListeDossiers().then(function (all) {
+        this.getService().getListeDossier().then(function (all) {
             _this.entries.add(true, all);
         });
     };

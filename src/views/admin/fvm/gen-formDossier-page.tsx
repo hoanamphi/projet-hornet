@@ -41,7 +41,7 @@ export class FormulaireDossierPage extends HornetPage<FormService, HornetCompone
   constructor(props?: HornetComponentProps, context?: any) {
     super(props, context);
 
-    this.prefectures = new DataSource<any> (new DataSourceConfigPage(this, this.getService().getListePrefectures), {"value": "idPrefecture", "label": "prefecture"}, );
+    this.prefectures = new DataSource<any> (new DataSourceConfigPage(this, this.getService().getListePrefecture), {"value": "id_prefecture_fvm", "label": "prefecture"}, );
     this.errors =  new Notifications();
     this.SequelizeErrors = new NotificationType();
     this.SequelizeErrors.id = "SequelizeError";
@@ -59,12 +59,12 @@ export class FormulaireDossierPage extends HornetPage<FormService, HornetCompone
   }
 
   onSubmit(data: any) {
-    this.getService().insererDonnee(data).then(result=> {
-      if(result.hasError != null){
-        console.error(result.hasReason);
-        console.error(result.hasError);
+    this.getService().insererDossier(data).then(result=> {
+      if(result.error != null){
+        console.error(result.reason);
+        console.error(result.error);
 
-        this.SequelizeErrors.text = result.hasReason;
+        this.SequelizeErrors.text = result.reason;
         NotificationManager.notify("SequelizeError","errors", this.errors, null, null, null, null);
       } else {
         NotificationManager.notify("SequelizeSuccess","notif", null, this.success, null, null, null);

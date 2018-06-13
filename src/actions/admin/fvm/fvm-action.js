@@ -61,7 +61,7 @@ var InserDossier = /** @class */ (function (_super) {
                 this.Error.reason = "Les fichiers doivent être des PDF";
                 return Promise.resolve(this.Error);
             }
-            return this.getService().insererDonnee(data);
+            return this.getService().insererDossier(data);
         }
         else {
             // Retourner une erreur
@@ -188,7 +188,7 @@ var ListPrefecture = /** @class */ (function (_super) {
      */
     ListPrefecture.prototype.execute = function () {
         logger.trace("ACTION list - FormDossierFVMAction.ListPrefecture");
-        return this.getService().getListePrefectures();
+        return this.getService().getListePrefecture();
     };
     return ListPrefecture;
 }(abstract_routes_1.RouteActionService));
@@ -208,7 +208,7 @@ var ListValise = /** @class */ (function (_super) {
      */
     ListValise.prototype.execute = function () {
         logger.trace("ACTION list - FormDemandeAuthentificationFVMAction.ListValise");
-        return this.getService().getListeValises();
+        return this.getService().getListeValise();
     };
     return ListValise;
 }(abstract_routes_1.RouteActionService));
@@ -228,7 +228,7 @@ var ListDossier = /** @class */ (function (_super) {
      */
     ListDossier.prototype.execute = function () {
         logger.trace("ACTION list - RecordListFVMAction.ListDossier");
-        return this.getService().getListeDossiers();
+        return this.getService().getListeDossier();
     };
     return ListDossier;
 }(abstract_routes_1.RouteActionService));

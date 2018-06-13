@@ -30555,7 +30555,7 @@ var InserDossier = /** @class */ (function (_super) {
                 this.Error.reason = "Les fichiers doivent être des PDF";
                 return Promise.resolve(this.Error);
             }
-            return this.getService().insererDonnee(data);
+            return this.getService().insererDossier(data);
         }
         else {
             // Retourner une erreur
@@ -30682,7 +30682,7 @@ var ListPrefecture = /** @class */ (function (_super) {
      */
     ListPrefecture.prototype.execute = function () {
         logger.trace("ACTION list - FormDossierFVMAction.ListPrefecture");
-        return this.getService().getListePrefectures();
+        return this.getService().getListePrefecture();
     };
     return ListPrefecture;
 }(abstract_routes_1.RouteActionService));
@@ -30702,7 +30702,7 @@ var ListValise = /** @class */ (function (_super) {
      */
     ListValise.prototype.execute = function () {
         logger.trace("ACTION list - FormDemandeAuthentificationFVMAction.ListValise");
-        return this.getService().getListeValises();
+        return this.getService().getListeValise();
     };
     return ListValise;
 }(abstract_routes_1.RouteActionService));
@@ -30722,7 +30722,7 @@ var ListDossier = /** @class */ (function (_super) {
      */
     ListDossier.prototype.execute = function () {
         logger.trace("ACTION list - RecordListFVMAction.ListDossier");
-        return this.getService().getListeDossiers();
+        return this.getService().getListeDossier();
     };
     return ListDossier;
 }(abstract_routes_1.RouteActionService));
@@ -32064,7 +32064,7 @@ var RecordListPage = /** @class */ (function (_super) {
     }
     RecordListPage.prototype.prepareClient = function () {
         var _this = this;
-        this.getService().getListeDossiers().then(function (all) {
+        this.getService().getListeDossier().then(function (all) {
             _this.entries.add(true, all);
         });
     };
@@ -32142,7 +32142,7 @@ var RecordListPage = /** @class */ (function (_super) {
     RecordListPage.prototype.reloadData = function () {
         var _this = this;
         this.entries.deleteAll();
-        this.getService().getListeDossiers().then(function (all) {
+        this.getService().getListeDossier().then(function (all) {
             _this.entries.add(true, all);
         });
     };
@@ -33938,14 +33938,36 @@ exports.Alert = Alert;
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
+// Classe parente des Classe de service PAGE
 var service_page_1 = __webpack_require__(477);
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.services.page.admin.admin-service-impl");
+/**
+ * Classe de service Page utilisée par les pages
+ * @extends {ServicePage}
+ * @implements {PageService}
+ */
 var PageServiceImpl = /** @class */ (function (_super) {
     tslib_1.__extends(PageServiceImpl, _super);
     function PageServiceImpl() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    PageServiceImpl.prototype.getListeDossiers = function () {
+    PageServiceImpl.prototype.deleteDemandeAuthentification = function (data) {
+        var request = {
+            method: "delete",
+            url: this.buildUrl("/fvmrecordserver/detailsDossiers/demandeauthentification/delete"),
+            data: data
+        };
+        return this.fetch(request);
+    };
+    PageServiceImpl.prototype.deleteDossier = function (data) {
+        var request = {
+            method: "delete",
+            url: this.buildUrl("/fvmrecordserver/delete"),
+            data: data
+        };
+        return this.fetch(request);
+    };
+    PageServiceImpl.prototype.getListeDossier = function () {
         var request = {
             method: "post",
             url: this.buildUrl("/fvmrecordserver"),
@@ -33968,22 +33990,6 @@ var PageServiceImpl = /** @class */ (function (_super) {
         };
         return this.fetch(request);
     };
-    PageServiceImpl.prototype.getReleve = function (data) {
-        var request = {
-            method: "post",
-            url: this.buildUrl("/fvmrecordserver/detailsDossiers/releve"),
-            data: data
-        };
-        return this.fetch(request);
-    };
-    PageServiceImpl.prototype.getNoteVerbale = function (data) {
-        var request = {
-            method: "post",
-            url: this.buildUrl("/fvmrecordserver/detailsDossiers/noteverbale"),
-            data: data
-        };
-        return this.fetch(request);
-    };
     PageServiceImpl.prototype.getCopiePermis = function (idCopiePermis) {
         return Promise.reject("service uniquement disponible côté serveur");
     };
@@ -33996,22 +34002,6 @@ var PageServiceImpl = /** @class */ (function (_super) {
         return Promise.reject("service uniquement disponible côté serveur");
     };
     ;
-    PageServiceImpl.prototype.deleteDemandeAuthentification = function (idDemandeAuthentification) {
-        var request = {
-            method: "delete",
-            url: this.buildUrl("/fvmrecordserver/detailsDossiers/demandeauthentification/delete"),
-            data: { "idDemandeAuthentification": idDemandeAuthentification }
-        };
-        return this.fetch(request);
-    };
-    PageServiceImpl.prototype.deleteDossier = function (idPermis) {
-        var request = {
-            method: "delete",
-            url: this.buildUrl("/fvmrecordserver/delete"),
-            data: { "idPermis": idPermis }
-        };
-        return this.fetch(request);
-    };
     return PageServiceImpl;
 }(service_page_1.ServicePage));
 exports.PageServiceImpl = PageServiceImpl;

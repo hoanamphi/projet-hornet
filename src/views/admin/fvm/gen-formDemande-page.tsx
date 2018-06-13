@@ -10,13 +10,11 @@ import { CalendarField } from "hornet-js-react-components/src/widget/form/calend
 import { Button } from "hornet-js-react-components/src/widget/button/button";
 import { FormService } from "src/services/page/admin/fvm/form-service";
 import { ButtonsArea } from "hornet-js-react-components/src/widget/form/buttons-area";
-import { UploadFileField } from "hornet-js-react-components/src/widget/form/upload-file-field";
 import {DataSource} from "hornet-js-core/src/component/datasource/datasource";
 import {Notification} from "hornet-js-react-components/src/widget/notification/notification";
 
 import * as schema from "src/resources/admin/fvm/validation-form2.json";
 import * as schemaValise from "src/resources/admin/fvm/validation-formvalise.json";
-import {SelectField} from "hornet-js-react-components/src/widget/form/select-field";
 import {
   NotificationManager,
   Notifications,
@@ -32,7 +30,7 @@ import {Column} from "hornet-js-react-components/src/widget/table/column";
 import {DateColumn} from "hornet-js-react-components/src/widget/table/column/date-column";
 import {Header} from "hornet-js-react-components/src/widget/table/header";
 import {MenuActions} from "hornet-js-react-components/src/widget/table/menu-actions";
-import {ActionButton, TypeAction} from "hornet-js-react-components/src/widget/table/action-button";
+import {ActionButton} from "hornet-js-react-components/src/widget/table/action-button";
 import {Modal} from "hornet-js-react-components/src/widget/dialog/modal";
 import {ActionColumn} from "hornet-js-react-components/src/widget/table/column/action-column";
 
@@ -53,7 +51,7 @@ export class FormulaireDemandeAuthentificationPage extends HornetPage<FormServic
   constructor(props?: HornetComponentProps, context?: any) {
     super(props, context);
 
-    this.valise = new DataSource<any> (new DataSourceConfigPage(this, this.getService().getListeValises), {}, );
+    this.valise = new DataSource<any> (new DataSourceConfigPage(this, this.getService().getListeValise), {}, );
 
     this.errors =  new Notifications();
     this.SequelizeErrors = new NotificationType();
@@ -72,13 +70,13 @@ export class FormulaireDemandeAuthentificationPage extends HornetPage<FormServic
   }
 
   onSubmit(data: any) {
-    data["id_permis"] = this.attributes.idPermisPermis;
+    data["id_permis"] = this.attributes.idPermis;
     this.getService().insererDemandeAuthentification(data).then(result=> {
-      if(result.hasError != null){
-        console.error(result.hasReason);
-        console.error(result.hasError);
+      if(result.error != null){
+        console.error(result.reason);
+        console.error(result.error);
 
-        this.SequelizeErrors.text = result.hasReason;
+        this.SequelizeErrors.text = result.reason;
         NotificationManager.notify("SequelizeError","errors", this.errors, null, null, null, null);
       } else {
         NotificationManager.notify("SequelizeSuccess","notif", null, this.success, null, null, null);
@@ -191,11 +189,11 @@ export class FormulaireDemandeAuthentificationPage extends HornetPage<FormServic
 
   submitValise(data: any) {
     this.getService().insererValise(data).then(result=> {
-      if(result.hasError != null){
-        console.error(result.hasReason);
-        console.error(result.hasError);
+      if(result.error != null){
+        console.error(result.reason);
+        console.error(result.error);
 
-        this.SequelizeErrors.text = result.hasReason;
+        this.SequelizeErrors.text = result.reason;
         NotificationManager.notify("SequelizeError","errors", this.errors, null, null, null, null);
       } else {
         NotificationManager.notify("SequelizeSuccess","notif", null, this.success, null, null, null);
