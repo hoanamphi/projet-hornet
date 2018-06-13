@@ -21,10 +21,12 @@ var FormulaireDemandeAuthentificationRoutesClient = /** @class */ (function (_su
         var _this = _super.call(this) || this;
         // Route menant au formulaire d'insertion d'une demande d'authentification
         // La page prend un service de type FormService en entrée
+        // L'attribut "idPermis" est l'id du Permis auquel appartient la demande d'authentification
         _this.addPageRoute("/(\\d+)", function (id) { return new abstract_routes_1.PageRouteInfos(gen_formDemande_page_1.FormulaireDemandeAuthentificationPage, { "idPermis": id }, form_service_impl_1.FormServiceImpl); }, roles_1.Roles.ADMIN);
         return _this;
     }
     return FormulaireDemandeAuthentificationRoutesClient;
 }(abstract_routes_1.AbstractRoutes));
 exports.default = FormulaireDemandeAuthentificationRoutesClient;
+
 //# sourceMappingURL=form2-client-routes.js.map

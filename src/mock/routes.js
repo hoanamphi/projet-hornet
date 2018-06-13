@@ -56,4 +56,5 @@ var BouchonRoutes = /** @class */ (function () {
     return BouchonRoutes;
 }());
 exports.BouchonRoutes = BouchonRoutes;
+
 //# sourceMappingURL=routes.js.map

@@ -21,6 +21,7 @@ export default class FormulaireDemandeAuthentificationRoutesClient extends Abstr
 
     // Route menant au formulaire d'insertion d'une demande d'authentification
     // La page prend un service de type FormService en entrée
+    // L'attribut "idPermis" est l'id du Permis auquel appartient la demande d'authentification
     this.addPageRoute("/(\\d+)",
       (id) => new PageRouteInfos(FormulaireDemandeAuthentificationPage, {"idPermis": id}, FormServiceImpl),
       Roles.ADMIN

@@ -27,4 +27,5 @@ var FormulaireDossierRoutesClient = /** @class */ (function (_super) {
     return FormulaireDossierRoutesClient;
 }(abstract_routes_1.AbstractRoutes));
 exports.default = FormulaireDossierRoutesClient;
+
 //# sourceMappingURL=form1-client-routes.js.map

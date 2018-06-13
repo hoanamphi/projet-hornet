@@ -1,13 +1,13 @@
 import { Utils } from "hornet-js-utils";
 import { Logger } from "hornet-js-utils/src/logger";
 import { ServicePage } from "hornet-js-core/src/services/service-page";
-import { ClientListService } from "src/services/page/admin/fvm/client-list-service";
+import { PageService } from "src/services/page/admin/fvm/page-service";
 import {HornetRequest} from "hornet-js-core/src/services/hornet-superagent-request";
 
 
 const logger: Logger = Utils.getLogger("projet-hornet.services.page.admin.admin-service-impl");
 
-export class PageServiceImpl extends ServicePage implements ClientListService {
+export class PageServiceImpl extends ServicePage implements PageService {
 
   getListeDossiers(): Promise<any> {
     let request: HornetRequest = {
@@ -58,19 +58,19 @@ export class PageServiceImpl extends ServicePage implements ClientListService {
     return this.fetch(request);
   }
 
-  getCopiePermis(idCopiePermis): Promise<any> {
+  getCopiePermis(idCopiePermis: number): Promise<any> {
     return Promise.reject("service uniquement disponible côté serveur");
   };
 
-  getCopieNoteVerbaleMAECI(idCopieNoteVerbaleMAECI): Promise<any> {
+  getCopieNoteVerbaleMAECI(idCopieNoteVerbaleMAECI: number): Promise<any> {
     return Promise.reject("service uniquement disponible côté serveur");
   };
 
-  getPDFDemandeAuthentification(idPermis): Promise<any> {
+  getPDFDemandeAuthentification(idPermis: number): Promise<any> {
     return Promise.reject("service uniquement disponible côté serveur");
   };
 
-  deleteDemandeAuthentification(idDemandeAuthentification): Promise<any> {
+  deleteDemandeAuthentification(idDemandeAuthentification: number): Promise<any> {
     let request: HornetRequest = {
       method: "delete",
       url: this.buildUrl("/fvmrecordserver/detailsDossiers/demandeauthentification/delete"),
@@ -80,7 +80,7 @@ export class PageServiceImpl extends ServicePage implements ClientListService {
     return this.fetch(request);
   }
 
-  deleteDossier(idPermis): Promise<any> {
+  deleteDossier(idPermis: number): Promise<any> {
     let request: HornetRequest = {
       method: "delete",
       url: this.buildUrl("/fvmrecordserver/delete"),

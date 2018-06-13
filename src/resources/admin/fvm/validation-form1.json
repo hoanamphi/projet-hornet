@@ -54,7 +54,7 @@
     // Le numéro d'un document contient des caractères non espacés
     "numero": {
       "type": "string",
-      "pattern": "/\S/"
+      "pattern": "^[^ ]*$"
     },
     "date": {
       "type": "Date",

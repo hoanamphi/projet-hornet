@@ -2,7 +2,7 @@ import { DataRouteInfos, PUBLIC_ROUTE } from "hornet-js-core/src/routes/abstract
 // Classes d'action à effectuer
 import { InserDossier, ListPrefecture } from "src/actions/admin/fvm/fvm-action";
 // Classe du service utilisé par la Classe d'action
-import { FormServiceImpl } from "src/services/data/admin/fvm/server-form-service-impl-data";
+import { FormServiceImpl } from "src/services/data/admin/fvm/form-service-impl-data";
 // Classe de routes client parente de la Classe de routes serveur
 import FormulaireDossierRoutesClient from "src/routes/admin/fvm/form1-client-routes";
 // Classes permettant de mettre en place l'authentification
@@ -10,7 +10,7 @@ import {Roles} from "src/utils/roles";
 import {Injector} from "hornet-js-core/src/inject/injector";
 
 /**
- * Classe définissant les sous-routes Serveur de la lazy route "/fvm/form1server"
+ * Classe définissant les sous-routes Serveur de la lazy route "/fvmform1server"
  * @extends {FormulaireDossierRoutesClient}
  */
 export default class FormulaireDossierRoutesServer extends FormulaireDossierRoutesClient {
@@ -21,7 +21,7 @@ export default class FormulaireDossierRoutesServer extends FormulaireDossierRout
   constructor() {
     super();
 
-    // Route effectuant un action d'insertion d'un dossier
+    // Route effectuant une action d'insertion d'un dossier
     // L'action prend un service de type FormService en entrée
     this.addDataRoute("/",
        () => new DataRouteInfos(InserDossier, null, FormServiceImpl),

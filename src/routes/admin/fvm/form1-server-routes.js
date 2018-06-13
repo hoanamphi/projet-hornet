@@ -5,13 +5,13 @@ var abstract_routes_1 = require("hornet-js-core/src/routes/abstract-routes");
 // Classes d'action à effectuer
 var fvm_action_1 = require("src/actions/admin/fvm/fvm-action");
 // Classe du service utilisé par la Classe d'action
-var server_form_service_impl_data_1 = require("src/services/data/admin/fvm/server-form-service-impl-data");
+var form_service_impl_data_1 = require("src/services/data/admin/fvm/form-service-impl-data");
 // Classe de routes client parente de la Classe de routes serveur
 var form1_client_routes_1 = require("src/routes/admin/fvm/form1-client-routes");
 // Classes permettant de mettre en place l'authentification
 var roles_1 = require("src/utils/roles");
 /**
- * Classe définissant les sous-routes Serveur de la lazy route "/fvm/form1server"
+ * Classe définissant les sous-routes Serveur de la lazy route "/fvmform1server"
  * @extends {FormulaireDossierRoutesClient}
  */
 var FormulaireDossierRoutesServer = /** @class */ (function (_super) {
@@ -21,15 +21,16 @@ var FormulaireDossierRoutesServer = /** @class */ (function (_super) {
      */
     function FormulaireDossierRoutesServer() {
         var _this = _super.call(this) || this;
-        // Route effectuant un action d'insertion d'un dossier
+        // Route effectuant une action d'insertion d'un dossier
         // L'action prend un service de type FormService en entrée
-        _this.addDataRoute("/", function () { return new abstract_routes_1.DataRouteInfos(fvm_action_1.InserDossier, null, server_form_service_impl_data_1.FormServiceImpl); }, roles_1.Roles.ADMIN, "post");
+        _this.addDataRoute("/", function () { return new abstract_routes_1.DataRouteInfos(fvm_action_1.InserDossier, null, form_service_impl_data_1.FormServiceImpl); }, roles_1.Roles.ADMIN, "post");
         // Route effectuant une action de listage des préfectures stockées dans la base
         // L'action prend un service de type FormService en entrée
-        _this.addDataRoute("/listPrefectures", function () { return new abstract_routes_1.DataRouteInfos(fvm_action_1.ListPrefecture, null, server_form_service_impl_data_1.FormServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE, "post");
+        _this.addDataRoute("/listPrefectures", function () { return new abstract_routes_1.DataRouteInfos(fvm_action_1.ListPrefecture, null, form_service_impl_data_1.FormServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE, "post");
         return _this;
     }
     return FormulaireDossierRoutesServer;
 }(form1_client_routes_1.default));
 exports.default = FormulaireDossierRoutesServer;
+
 //# sourceMappingURL=form1-server-routes.js.map

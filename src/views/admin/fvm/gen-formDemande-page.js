@@ -51,7 +51,7 @@ var FormulaireDemandeAuthentificationPage = /** @class */ (function (_super) {
     };
     FormulaireDemandeAuthentificationPage.prototype.onSubmit = function (data) {
         var _this = this;
-        data["id_permis"] = this.attributes.id;
+        data["id_permis"] = this.attributes.idPermisPermis;
         this.getService().insererDemandeAuthentification(data).then(function (result) {
             if (result.hasError != null) {
                 console.error(result.hasReason);
@@ -127,7 +127,7 @@ var FormulaireDemandeAuthentificationPage = /** @class */ (function (_super) {
         });
     };
     FormulaireDemandeAuthentificationPage.prototype.retourPage = function () {
-        this.navigateTo("/fvmrecord/" + this.attributes.id, {}, function () { });
+        this.navigateTo("/fvmrecord/" + this.attributes.idPermis, {}, function () { });
     };
     return FormulaireDemandeAuthentificationPage;
 }(hornet_page_1.HornetPage));

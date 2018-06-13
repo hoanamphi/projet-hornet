@@ -8,7 +8,7 @@ import { Row } from "hornet-js-react-components/src/widget/form/row";
 import { InputField } from "hornet-js-react-components/src/widget/form/input-field";
 import { CalendarField } from "hornet-js-react-components/src/widget/form/calendar-field";
 import { Button } from "hornet-js-react-components/src/widget/button/button";
-import { ServerFormService } from "src/services/page/admin/fvm/server-form-service";
+import { FormService } from "src/services/page/admin/fvm/form-service";
 import { ButtonsArea } from "hornet-js-react-components/src/widget/form/buttons-area";
 import { UploadFileField } from "hornet-js-react-components/src/widget/form/upload-file-field";
 import {DataSource} from "hornet-js-core/src/component/datasource/datasource";
@@ -30,20 +30,15 @@ import {Columns} from "hornet-js-react-components/src/widget/table/columns";
 import {Content} from "hornet-js-react-components/src/widget/table/content";
 import {Column} from "hornet-js-react-components/src/widget/table/column";
 import {DateColumn} from "hornet-js-react-components/src/widget/table/column/date-column";
-import {CheckColumn} from "hornet-js-react-components/src/widget/table/column/check-column";
 import {Header} from "hornet-js-react-components/src/widget/table/header";
 import {MenuActions} from "hornet-js-react-components/src/widget/table/menu-actions";
 import {ActionButton, TypeAction} from "hornet-js-react-components/src/widget/table/action-button";
-import {Footer} from "hornet-js-react-components/src/widget/table/footer";
-import {Pager} from "hornet-js-react-components/src/widget/pager/pager";
-import {PaginateDataSource} from "hornet-js-core/src/component/datasource/paginate-datasource";
-import {ToggleColumnsButton} from "hornet-js-react-components/src/widget/table/toggle-columns-button";
 import {Modal} from "hornet-js-react-components/src/widget/dialog/modal";
 import {ActionColumn} from "hornet-js-react-components/src/widget/table/column/action-column";
 
 const logger: Logger = Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
 
-export class FormulaireDemandeAuthentificationPage extends HornetPage<ServerFormService, HornetComponentProps, any> {
+export class FormulaireDemandeAuthentificationPage extends HornetPage<FormService, HornetComponentProps, any> {
 
   private valise;
 
@@ -77,7 +72,7 @@ export class FormulaireDemandeAuthentificationPage extends HornetPage<ServerForm
   }
 
   onSubmit(data: any) {
-    data["id_permis"] = this.attributes.id;
+    data["id_permis"] = this.attributes.idPermisPermis;
     this.getService().insererDemandeAuthentification(data).then(result=> {
       if(result.hasError != null){
         console.error(result.hasReason);
@@ -212,6 +207,6 @@ export class FormulaireDemandeAuthentificationPage extends HornetPage<ServerForm
   }
 
   retourPage(){
-    this.navigateTo("/fvmrecord/"+this.attributes.id, {}, ()=>{});
+    this.navigateTo("/fvmrecord/"+this.attributes.idPermis, {}, ()=>{});
   }
 }

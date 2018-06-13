@@ -58,4 +58,5 @@ var PrefectureDAO = /** @class */ (function (_super) {
     return PrefectureDAO;
 }(entity_dao_1.EntityDAO));
 exports.PrefectureDAO = PrefectureDAO;
+
 //# sourceMappingURL=prefecture-dao.js.map

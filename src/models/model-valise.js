@@ -19,4 +19,5 @@ exports.ValiseModel = {
         allowNull: false
     }
 };
+
 //# sourceMappingURL=model-valise.js.map

@@ -1,16 +1,12 @@
 import { Utils } from "hornet-js-utils";
 import { Logger } from "hornet-js-utils/src/logger";
 import { ServicePage } from "hornet-js-core/src/services/service-page";
-import { ServerFormService } from "src/services/page/admin/fvm/server-form-service";
+import { FormService } from "src/services/page/admin/fvm/form-service";
 import {HornetRequest} from "hornet-js-core/src/services/hornet-superagent-request";
-import {SecurityError} from "hornet-js-utils/src/exception/security-error";
-import {TechnicalError} from "hornet-js-utils/src/exception/technical-error";
-
 
 const logger: Logger = Utils.getLogger("projet-hornet.services.page.admin.admin-service-impl");
 
-export class FormServiceImpl extends ServicePage implements ServerFormService {
-
+export class FormServiceImpl extends ServicePage implements FormService {
 
   insererDonnee(data: any): Promise<any> {
     logger.trace("SERVICES - insert : ", data);
@@ -22,8 +18,8 @@ export class FormServiceImpl extends ServicePage implements ServerFormService {
     };
 
     request.attach = [];
-    request.attach.push({field: "copie_permis", file: data["copie_permis"], fileName: data["copie_permis"].name});
-    request.attach.push({field: "copie_note_verbale_maeci", file: data["copie_note_verbale_maeci"], fileName: data["copie_note_verbale_maeci"].name});
+    request.attach.push({field: "copie_permis", file: data.copie_permis, fileName: data.copie_permis.name});
+    request.attach.push({field: "copie_note_verbale_maeci", file: data.copie_note_verbale_maeci, fileName: data.copie_note_verbale_maeci.name});
 
     return this.fetch(request);
   }

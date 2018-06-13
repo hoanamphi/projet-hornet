@@ -4,9 +4,9 @@ import { Logger } from "hornet-js-utils/src/logger";
 // Classe générique parent des Classes d'action
 import { RouteActionService } from "hornet-js-core/src/routes/abstract-routes";
 // Classe définissant les services utilisés dans les formulaires
-import { ServerFormService } from "src/services/page/admin/fvm/server-form-service";
+import { FormService } from "src/services/page/admin/fvm/form-service";
 // Classe définissant les services utilisés dans les pages standards
-import {ClientListService} from "src/services/page/admin/fvm/client-list-service";
+import {PageService} from "src/services/page/admin/fvm/page-service";
 // Classes nécessaires pour la génération de pdfs et l'affichage de fichiers
 import {ResultFile} from "hornet-js-core/src/result/result-file";
 import {ResultPDF} from "hornet-js-core/src/result/result-pdf";
@@ -20,9 +20,9 @@ const logger: Logger = Utils.getLogger("projet-hornet.actions.admin.fvm_actions"
 
 /**
  * Classe d'action gérant l'insertion d'un nouveau dossier dans la base
- * @extends {RouteActionService<any, ServerFormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
  */
-export class InserDossier extends RouteActionService<any, ServerFormService> {
+export class InserDossier extends RouteActionService<any, FormService> {
 
   /* Objet JSON contenant deux attributs :
       error : Classe de l'erreur retournée
@@ -83,9 +83,9 @@ export class InserDossier extends RouteActionService<any, ServerFormService> {
 
 /**
  * Classe d'action gérant l'insertion d'une nouvelle demande d'authentification dans la base
- * @extends {RouteActionService<any, ServerFormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
  */
-export class InserDemandeAuthentification extends RouteActionService<any, ServerFormService> {
+export class InserDemandeAuthentification extends RouteActionService<any, FormService> {
 
   /**
    * Méthode exécutant un service d'insertion d'une demande d'authentification dans la base de données
@@ -107,9 +107,9 @@ export class InserDemandeAuthentification extends RouteActionService<any, Server
 
 /**
  * Classe d'action gérant l'insertion d'une nouvelle valise dans la base
- * @extends {RouteActionService<any, ServerFormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
  */
-export class InserValise extends RouteActionService<any, ServerFormService> {
+export class InserValise extends RouteActionService<any, FormService> {
 
   /**
    * Méthode exécutant un service d'insertion d'une valise dans la base de données
@@ -131,9 +131,9 @@ export class InserValise extends RouteActionService<any, ServerFormService> {
 
 /**
  * Classe d'action gérant la suppression d'un dossier dans la base
- * @extends {RouteActionService<any, ServerFormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
  */
-export class DeleteDossier extends RouteActionService<any, ClientListService> {
+export class DeleteDossier extends RouteActionService<any, PageService> {
 
   /**
    * Méthode exécutant un service de suppression d'un dossier dans la base de données
@@ -155,9 +155,9 @@ export class DeleteDossier extends RouteActionService<any, ClientListService> {
 
 /**
  * Classe d'action gérant la suppression d'une demande d'authentification dans la base
- * @extends {RouteActionService<any, ServerFormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
  */
-export class DeleteDemandeAuthentification extends RouteActionService<any, ClientListService> {
+export class DeleteDemandeAuthentification extends RouteActionService<any, PageService> {
 
   /**
    * Méthode exécutant un service de suppression d'une demande d'authentification dans la base de données
@@ -179,9 +179,9 @@ export class DeleteDemandeAuthentification extends RouteActionService<any, Clien
 
 /**
  * Classe d'action gérant le listage des préfectures stockées dans la base de données
- * @extends {RouteActionService<any, ServerFormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
  */
-export class ListPrefecture extends RouteActionService<any, ServerFormService> {
+export class ListPrefecture extends RouteActionService<any, FormService> {
 
   /**
    * Méthode retournant la liste des préfectures stockées dans la base de données
@@ -196,9 +196,9 @@ export class ListPrefecture extends RouteActionService<any, ServerFormService> {
 
 /**
  * Classe d'action gérant le listage des valises stockées dans la base
- * @extends {RouteActionService<any, ServerFormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
  */
-export class ListValise extends RouteActionService<any, ServerFormService> {
+export class ListValise extends RouteActionService<any, FormService> {
 
   /**
    * Méthode retournant la liste des valises stockées dans la base de donénes
@@ -213,9 +213,9 @@ export class ListValise extends RouteActionService<any, ServerFormService> {
 
 /**
  * Classe d'action gérant le listage des dossiers stockés dans la base
- * @extends {RouteActionService<any, ServerFormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
  */
-export class ListDossier extends RouteActionService<any, ClientListService> {
+export class ListDossier extends RouteActionService<any, PageService> {
 
   /**
    * Méthode retournant la liste des dossiers stockés dans la base de données
@@ -230,9 +230,9 @@ export class ListDossier extends RouteActionService<any, ClientListService> {
 
 /**
  * Classe d'action gérant le retour du dossier correspondant aux attributs donnés en entrée
- * @extends {RouteActionService<any, ServerFormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
  */
-export class GetDossier extends RouteActionService<any, ClientListService> {
+export class GetDossier extends RouteActionService<any, PageService> {
 
   /**
    * Méthode retournant le dossier correspondant aux attributs donnés en entrée
@@ -254,9 +254,9 @@ export class GetDossier extends RouteActionService<any, ClientListService> {
 
 /**
  * Classe d'action gérant le retour de la demande d'authentification correspondant aux attributs donnés en entrée
- * @extends {RouteActionService<any, ServerFormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
  */
-export class GetDemandeAuthentification extends RouteActionService<any, ClientListService> {
+export class GetDemandeAuthentification extends RouteActionService<any, PageService> {
 
   /**
    * Méthode retournant la demande d'authentification correspondant aux attributs donnés en entrée
@@ -277,7 +277,7 @@ export class GetDemandeAuthentification extends RouteActionService<any, ClientLi
 }
 
 /* TODO
-export class GetReleve extends RouteActionService<any, ClientListService> {
+export class GetReleve extends RouteActionService<any, PageService> {
   execute(): Promise<any> {
     logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
 
@@ -287,7 +287,7 @@ export class GetReleve extends RouteActionService<any, ClientListService> {
   }
 }
 
-export class GetNoteVerbale extends RouteActionService<any, ClientListService> {
+export class GetNoteVerbale extends RouteActionService<any, PageService> {
   execute(): Promise<any> {
     logger.trace("ACTION list - Appel API : PermisAPI.list - Dispatch PERMIS_LIST");
 
@@ -300,9 +300,9 @@ export class GetNoteVerbale extends RouteActionService<any, ClientListService> {
 
 /**
  * Classe d'action gérant le retour de la copie d'un permis de conduire
- * @extends {RouteActionService<any, ServerFormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
  */
-export class GetCopiePermis extends RouteActionService<{"idCopiePermis": number}, ClientListService> {
+export class GetCopiePermis extends RouteActionService<{"idCopiePermis": number}, PageService> {
 
   /**
    * Méthode retournant la copie d'un permis de conduire
@@ -331,9 +331,9 @@ export class GetCopiePermis extends RouteActionService<{"idCopiePermis": number}
 
 /**
  * Classe d'action gérant le retour de la copie d'une note verbale du MAECI
- * @extends {RouteActionService<any, ServerFormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
  */
-export class GetCopieNoteVerbaleMAECI extends RouteActionService<{"idCopieNoteVerbaleMAECI": number}, ClientListService> {
+export class GetCopieNoteVerbaleMAECI extends RouteActionService<{"idCopieNoteVerbaleMAECI": number}, PageService> {
 
   /**
    * Méthode retournant la copie d'une note verbale du MAECI
@@ -362,9 +362,9 @@ export class GetCopieNoteVerbaleMAECI extends RouteActionService<{"idCopieNoteVe
 
 /**
  * Classe d'action gérant la génération d'un document de demande d'authentification
- * @extends {RouteActionService<any, ServerFormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
  */
-export class GetPDFDemandeAuthentification extends RouteActionService<{"idPermis": number, "data": string}, ClientListService> {
+export class GetPDFDemandeAuthentification extends RouteActionService<{"idPermis": number, "data": string}, PageService> {
 
   /**
    * Méthode générant un document de demande d'authentification

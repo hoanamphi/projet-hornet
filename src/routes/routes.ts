@@ -1,20 +1,24 @@
-import { AbstractRoutes, PageRouteInfos, PUBLIC_ROUTE } from "hornet-js-core/src/routes/abstract-routes";
-// import { HomePage } from "src/views/gen/gen-hom-page";
-// import { AidePage } from "src/views/gen/gen-aid-page";
-// import { PlanAppliPage } from "src/views/nav/nav-pap-page";
-// import { AccessibilitePage } from "src/views/gen/gen-acb-page";
 import { Utils } from "hornet-js-utils";
-// import { DeclarationconformitePage } from "src/views/gen/gen-ddc-page";
-import {Logger} from "hornet-js-utils/src/logger";
-import {HomePage} from "../views/gen/gen-hom-page";
+import { AbstractRoutes, PageRouteInfos, PUBLIC_ROUTE } from "hornet-js-core/src/routes/abstract-routes";
+// Classes de Page des pages principales
+import { HomePage } from "src/views/gen/gen-hom-page";
+import { AidePage } from "src/views/gen/gen-aid-page";
+import { PlanAppliPage } from "src/views/nav/nav-pap-page";
+import { AccessibilitePage } from "src/views/gen/gen-acb-page";
+import { DeclarationconformitePage } from "src/views/gen/gen-ddc-page";
 
-
-const logger: Logger = Utils.getLogger("projet-hornet.routes.routes");
-
+/**
+ * Classe définissant les routes Client et Serveur de l'application
+ * @extends {AbstractRoutes}
+ */
 export class Routes extends AbstractRoutes {
 
+  /**
+   * @constructor
+   */
   constructor() {
     super();
+
     if(Utils.isServer){
       this.addClientRoutes();
       this.addServerRoutes();
@@ -23,45 +27,55 @@ export class Routes extends AbstractRoutes {
     }
   }
 
+  /**
+   * Méthode ajoutant les routes Client de l'application
+   */
   public addClientRoutes(){
-    // /* Routes des pages */
+    // Route menant à la page d'accueil
     this.addPageRoute("/accueil",
       () => new PageRouteInfos(HomePage),
       PUBLIC_ROUTE
     );
-    // this.addPageRoute("/aide",
-    //   () => new PageRouteInfos(AidePage),
-    //   PUBLIC_ROUTE
-    // );
-    // this.addPageRoute("/planAppli",
-    //   () => new PageRouteInfos(PlanAppliPage),
-    //   PUBLIC_ROUTE
-    // );
-    // this.addPageRoute("/politiqueAccessibilite",
-    //   () => new PageRouteInfos(AccessibilitePage),
-    //   PUBLIC_ROUTE
-    // );
-    // this.addPageRoute("/declarationConformite",
-    //   () => new PageRouteInfos(DeclarationconformitePage),
-    //   PUBLIC_ROUTE
-    // );
-    // this.addLazyRoutes("/admin", "admin/admin-client-routes");
-    
-    this.addLazyRoutes("/fvmform1", "admin/fvm/form1-client-routes");
-    this.addLazyRoutes("/fvmform2", "admin/fvm/form2-client-routes");
-    this.addLazyRoutes("/fvmrecord", "admin/fvm/record-client-routes");
+    // Route menant à la page d'aide
+    this.addPageRoute("/aide",
+      () => new PageRouteInfos(AidePage),
+      PUBLIC_ROUTE
+    );
+    // Route menant à la page présentant le plan de l'application
+    this.addPageRoute("/planAppli",
+      () => new PageRouteInfos(PlanAppliPage),
+      PUBLIC_ROUTE
+    );
+    // Route menant à la page présentant la politique d'accessibilité de l'application
+    this.addPageRoute("/politiqueAccessibilite",
+      () => new PageRouteInfos(AccessibilitePage),
+      PUBLIC_ROUTE
+    );
+    // Route menant à la page présentant la déclaration de conformité de l'application
+    this.addPageRoute("/declarationConformite",
+      () => new PageRouteInfos(DeclarationconformitePage),
+      PUBLIC_ROUTE
+    );
 
-    // /* Routes lazy */
-    // this.addLazyRoutes(URL_CONTACT, "cnt/gen-cnt-client-routes");
+    // Lazy routes Client
+    // Formulaire d'insertion d'un dossier
+    this.addLazyRoutes("/fvmform1", "admin/fvm/form1-client-routes");
+    // Formulaire d'insertion d'une demande d'authentification
+    this.addLazyRoutes("/fvmform2", "admin/fvm/form2-client-routes");
+    // Pages permettant de consulter les entrées de la base
+    this.addLazyRoutes("/fvmrecord", "admin/fvm/record-client-routes");
   }
 
+  /**
+   * Méthode ajoutant les routes Serveur de l'application
+   */
   public addServerRoutes(){
+    // Lazy routes serveur
+    // Formulaire d'insertion d'un dossier
     this.addLazyRoutes("/fvmform1server", "admin/fvm/form1-server-routes");
+    // Formulaire d'insertion d'une demande d'authentification
     this.addLazyRoutes("/fvmform2server", "admin/fvm/form2-server-routes");
+    // Pages permettant de consulter les entrées de la base
     this.addLazyRoutes("/fvmrecordserver", "admin/fvm/record-server-routes");
   }
-  //   this.addLazyRoutes("/admin", "admin/admin-server-routes");
-  //   this.addLazyRoutes("/inser", "admin/admin-inser-routes");
-  //   this.addLazyRoutes(URL_CONTACT, "cnt/gen-cnt-server-routes");
-  // }
 }
