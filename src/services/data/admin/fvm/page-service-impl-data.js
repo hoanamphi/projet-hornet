@@ -109,8 +109,8 @@ var PageServiceImpl = /** @class */ (function (_super) {
                 idDossier : id du dossier concerné par le permis
             */
             permisList.forEach(function (permis) {
-                idPersonneArray.push(permis.id_personne_fvm);
-                idDossierArray.push(permis.id_dossier_fvm);
+                idPersonneArray.push(permis.idPersonne);
+                idDossierArray.push(permis.idDossier);
             });
             // Récupérer les listes des personnes et des dossiers stockés dans la base
             var personne = _this.personneDAO.getListePersonne(idPersonneArray);
@@ -121,18 +121,18 @@ var PageServiceImpl = /** @class */ (function (_super) {
                 var result = [];
                 // Concatèner les données relatives à chaque permis
                 permisList.forEach(function (permis) {
-                    var obj = { "idPermis": permis.id_permis_fvm, "numPermis": null, "nom": null, "prenom": null, "dateDeNaissance": null, "dateReceptionDossier": null };
-                    obj.numPermis = permis.num_permis;
+                    var obj = { "idPermis": permis.idPermis, "numPermis": null, "nom": null, "prenom": null, "dateDeNaissance": null, "dateReceptionDossier": null };
+                    obj.numPermis = permis.numPermis;
                     personneList.forEach(function (personne) {
-                        if (personne.id_permis_fvm == permis.id_permis_fvm) {
+                        if (personne.idPermis == permis.idPermis) {
                             obj.nom = personne.nom;
                             obj.prenom = personne.prenom;
-                            obj.dateDeNaissance = personne.date_de_naissance;
+                            obj.dateDeNaissance = Date.parse(personne.dateDeNaissance.toString());
                         }
                     });
                     dossierList.forEach(function (dossier) {
-                        if (dossier.id_permis_fvm == permis.id_permis_fvm) {
-                            obj.dateReceptionDossier = dossier.date_reception_dossier;
+                        if (dossier.idPermis == permis.idPermis) {
+                            obj.dateReceptionDossier = Date.parse(dossier.dateReceptionDossier.toString());
                         }
                     });
                     result.push(obj);
@@ -239,13 +239,13 @@ var PageServiceImpl = /** @class */ (function (_super) {
     /**
      * Méthode retournant les informations nécessaires à la génération d'une demande d'authentification en PDF
      * @param {number} idPermis id du Permis concerné par la demande d'authentification
-     * @returns {Promise<any>} Informations de la demande d'authentification
+     * @returns {Promise<{dossier: any, demande_authentification: any}>} Informations de la demande d'authentification
      */
     PageServiceImpl.prototype.getPDFDemandeAuthentification = function (idPermis) {
         var _this = this;
         logger.trace("SERVICE DATA get - PageService.GetDossier");
         // Concaténer les informations relatives à une demande d'authentification
-        var result = {};
+        var result = { dossier: null, demandeAuthentification: null };
         // Récupérer les informations d'un dossier
         return this.getDossier({ "idPermis": idPermis }).then(function (dossier) {
             result["dossier"] = dossier;

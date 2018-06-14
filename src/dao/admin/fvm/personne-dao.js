@@ -106,7 +106,9 @@ var PersonneFVMDAO = /** @class */ (function (_super) {
         logger.trace("DAO get - Personne.Get");
         return this.modelDAO.personneFVMEntity.findAll({
             where: {
-                idPersonne: idPersonne
+                idPersonne: {
+                    $in: idPersonne
+                }
             }
         });
     };
@@ -145,12 +147,6 @@ var PersonneFVMDAO = /** @class */ (function (_super) {
         tslib_1.__metadata("design:paramtypes", [Number]),
         tslib_1.__metadata("design:returntype", Promise)
     ], PersonneFVMDAO.prototype, "getPersonne", null);
-    tslib_1.__decorate([
-        Map_1.default(fvm_mod_1.PersonneFVMMetier),
-        tslib_1.__metadata("design:type", Function),
-        tslib_1.__metadata("design:paramtypes", [Array]),
-        tslib_1.__metadata("design:returntype", Promise)
-    ], PersonneFVMDAO.prototype, "getListePersonne", null);
     return PersonneFVMDAO;
 }(entity_dao_1.EntityDAO));
 exports.PersonneFVMDAO = PersonneFVMDAO;

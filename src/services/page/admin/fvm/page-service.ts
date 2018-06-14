@@ -61,9 +61,9 @@ export interface PageService {
   /**
    * Méthode retournant les informations nécessaires à la génération d'une demande d'authentification en PDF
    * @param {number} idPermis id du Permis concerné par la demande d'authenitification
-   * @returns {Promise<any>} Informations de la demande d'authentification
+   * @returns {Promise<{dossier: any, demandeAuthentification: any}>} Informations de la demande d'authentification
    */
-  getPDFDemandeAuthentification(idPermis: number): Promise<any>;
+  getPDFDemandeAuthentification(idPermis: number): Promise<{dossier: any, demandeAuthentification: DemandeAuthentificationFVMMetier}>;
 
   /* TODO
   getReleve(data): Promise<any>;

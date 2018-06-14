@@ -40,9 +40,8 @@ var FormServiceImpl = /** @class */ (function (_super) {
     }
     /**
      * Méthode effectuant l'insertion d'un dossier dans la base de données
-     * @param data données de formulaire
+     * @param {{content: any, copie_permis: any, copie_note_verbale_maeci: any}} data données de formulaire
      * @returns {Promise<any>}
-     * @method
      */
     FormServiceImpl.prototype.insererDossier = function (data) {
         var _this = this;
@@ -94,7 +93,7 @@ var FormServiceImpl = /** @class */ (function (_super) {
     };
     /**
      * Méthode effectuant l'insertion d'une demande d'authentification dans la base de données
-     * @param data données de formulaire
+     * @param {{num_valise: number, num_demande_authentification: string, id_permis: number}} data données de formulaire
      * @returns {Promise<any>}
      */
     FormServiceImpl.prototype.insererDemandeAuthentification = function (data) {
@@ -118,7 +117,7 @@ var FormServiceImpl = /** @class */ (function (_super) {
     };
     /**
      * Méthode effectuant l'insertion d'une valise dans la base de données
-     * @param data données de formulaire
+     * @param {{num_valise: number, date_valise: Date}} data données de formulaire
      * @returns {Promise<any>}
      */
     FormServiceImpl.prototype.insererValise = function (data) {
@@ -135,7 +134,7 @@ var FormServiceImpl = /** @class */ (function (_super) {
     };
     /**
      * Méthode retournant la liste des préfectures stockées dans la base
-     * @returns {Promise<Array<any>>} Liste des préfectures stockées dans la base
+     * @returns {Promise<Array<{idPrefecture: number, prefecture: string}>>} Liste des préfectures stockées dans la base
      */
     FormServiceImpl.prototype.getListePrefecture = function () {
         logger.trace("SERVICE DATA get - FormService.GetListPrefecture");
@@ -143,20 +142,11 @@ var FormServiceImpl = /** @class */ (function (_super) {
     };
     /**
      * Méthode retournant la liste des valises stockées dans la base
-     * @returns {Promise<Array<any>>} Liste des valises stockées dans la base
+     * @returns {Promise<Array<ValiseMetier>>} Liste des valises stockées dans la base
      */
     FormServiceImpl.prototype.getListeValise = function () {
         logger.trace("SERVICE DATA get - FormService.GetListValise");
-        return this.valiseDAO.getListeValise().then(function (result) {
-            var arr = [];
-            result.forEach(function (elem) {
-                var tmp = {};
-                tmp["numValise"] = elem.num_valise;
-                tmp["dateValise"] = elem.date_valise;
-                arr.push(tmp);
-            });
-            return arr;
-        });
+        return this.valiseDAO.getListeValise();
     };
     tslib_1.__decorate([
         dec_transactional_1.Transactional({ configDatabase: injector_1.Injector.getRegistered("databaseConfigName") }),

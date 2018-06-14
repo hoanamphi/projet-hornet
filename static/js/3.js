@@ -8,7 +8,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var abstract_routes_1 = __webpack_require__(100);
 // Classe de Page du formulaire d'insertion d'une demande d'authentification
-var gen_formDemande_page_1 = __webpack_require__(517);
+var fvm_formDemande_page_1 = __webpack_require__(580);
 // Classe du service utilisé par la Classe de Page
 var form_service_impl_1 = __webpack_require__(495);
 // Classes permettant de mettre en place l'authentification
@@ -27,7 +27,7 @@ var FormulaireDemandeAuthentificationRoutesClient = /** @class */ (function (_su
         // Route menant au formulaire d'insertion d'une demande d'authentification
         // La page prend un service de type FormService en entrée
         // L'attribut "idPermis" est l'id du Permis auquel appartient la demande d'authentification
-        _this.addPageRoute("/(\\d+)", function (id) { return new abstract_routes_1.PageRouteInfos(gen_formDemande_page_1.FormulaireDemandeAuthentificationPage, { "idPermis": id }, form_service_impl_1.FormServiceImpl); }, roles_1.Roles.ADMIN);
+        _this.addPageRoute("/(\\d+)", function (id) { return new abstract_routes_1.PageRouteInfos(fvm_formDemande_page_1.FormulaireDemandeAuthentificationPage, { "idPermis": id }, form_service_impl_1.FormServiceImpl); }, roles_1.Roles.ADMIN);
         return _this;
     }
     return FormulaireDemandeAuthentificationRoutesClient;
@@ -27926,7 +27926,7 @@ var FormServiceImpl = /** @class */ (function (_super) {
     };
     /**
      * Méthode effectuant une requête HTTP permettant l'insertion d'une demande d'authentification dans la base de données
-     * @param data données de formulaire
+     * @param {{num_valise: number, num_demande_authentification: any, id_permis: number}} data données de formulaire
      * @returns {Promise<any>}
      */
     FormServiceImpl.prototype.insererDemandeAuthentification = function (data) {
@@ -27940,7 +27940,7 @@ var FormServiceImpl = /** @class */ (function (_super) {
     };
     /**
      * Méthode effectuant une requête HTTP permettant l'insertion d'une valise dans la base de données
-     * @param data données de formulaire
+     * @param {{num_valise: number, date_valise: Date}} data données de formulaire
      * @returns {Promise<any>}
      */
     FormServiceImpl.prototype.insererValise = function (data) {
@@ -27954,7 +27954,7 @@ var FormServiceImpl = /** @class */ (function (_super) {
     };
     /**
      * Méthode effectuant une requête HTTP permettant la récupération de la liste des préfectures stockées dans la base
-     * @returns {Promise<Array<any>>} Liste des préfectures stockées dans la base
+     * @returns {Promise<Array<{idPrefecture: number, prefecture: string}>>} Liste des préfectures stockées dans la base
      */
     FormServiceImpl.prototype.getListePrefecture = function () {
         logger.trace("SERVICE PAGE get - PageService.GetListPrefecture");
@@ -27966,7 +27966,7 @@ var FormServiceImpl = /** @class */ (function (_super) {
     };
     /**
      * Méthode effectuant une requête HTTP permettant la récupération de la liste des valises stockées dans la base
-     * @returns {Promise<Array<any>>} Liste des valises stockées dans la base
+     * @returns {Promise<Array<ValiseMetier>>} Liste des valises stockées dans la base
      */
     FormServiceImpl.prototype.getListeValise = function () {
         logger.trace("SERVICE PAGE get - PageService.GetListValise");
@@ -30134,7 +30134,137 @@ exports.DateBodyCell = DateBodyCell;
 /* 514 */,
 /* 515 */,
 /* 516 */,
-/* 517 */
+/* 517 */,
+/* 518 */
+/***/ (function(module, exports) {
+
+module.exports = {
+	"$schema": "http://json-schema.org/schema#",
+	"title": "Formulaire d'entrée d'une demande d'authentification",
+	"description": "Validation des données de formulaire",
+	"type": "object",
+	"required": [
+		"num_valise",
+		"num_demande_authentification"
+	],
+	"properties": {
+		"num_valise": {
+			"$ref": "#/definition/nombre"
+		},
+		"num_demande_authentification": {
+			"$ref": "#/definition/numero"
+		}
+	},
+	"definition": {
+		"nom_propre": {
+			"type": "string",
+			"pattern": "^([a-zA-ZÀ-ÿ]+[-]{0,2}[a-zA-ZÀ-ÿ]+ ?)*$"
+		},
+		"numero": {
+			"type": "string",
+			"pattern": "^[^ ]*$"
+		},
+		"date": {
+			"type": "Date",
+			"format": "date"
+		}
+	}
+};
+
+/***/ }),
+/* 519 */
+/***/ (function(module, exports) {
+
+module.exports = {
+	"$schema": "http://json-schema.org/schema#",
+	"title": "Formulaire d'entrée d'une valise",
+	"description": "Validation des données de formulaire",
+	"type": "object",
+	"required": [
+		"num_valise",
+		"date_valise"
+	],
+	"properties": {
+		"num_valise": {
+			"$ref": "#/definition/nombre"
+		},
+		"date_valise": {
+			"$ref": "#/definition/date"
+		}
+	},
+	"definition": {
+		"nombre": {
+			"type": "number"
+		},
+		"date": {
+			"type": "Date",
+			"format": "date"
+		}
+	}
+};
+
+/***/ }),
+/* 520 */,
+/* 521 */,
+/* 522 */,
+/* 523 */,
+/* 524 */,
+/* 525 */,
+/* 526 */,
+/* 527 */,
+/* 528 */,
+/* 529 */,
+/* 530 */,
+/* 531 */,
+/* 532 */,
+/* 533 */,
+/* 534 */,
+/* 535 */,
+/* 536 */,
+/* 537 */,
+/* 538 */,
+/* 539 */,
+/* 540 */,
+/* 541 */,
+/* 542 */,
+/* 543 */,
+/* 544 */,
+/* 545 */,
+/* 546 */,
+/* 547 */,
+/* 548 */,
+/* 549 */,
+/* 550 */,
+/* 551 */,
+/* 552 */,
+/* 553 */,
+/* 554 */,
+/* 555 */,
+/* 556 */,
+/* 557 */,
+/* 558 */,
+/* 559 */,
+/* 560 */,
+/* 561 */,
+/* 562 */,
+/* 563 */,
+/* 564 */,
+/* 565 */,
+/* 566 */,
+/* 567 */,
+/* 568 */,
+/* 569 */,
+/* 570 */,
+/* 571 */,
+/* 572 */,
+/* 573 */,
+/* 574 */,
+/* 575 */,
+/* 576 */,
+/* 577 */,
+/* 578 */,
+/* 579 */,
+/* 580 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30274,75 +30404,6 @@ var FormulaireDemandeAuthentificationPage = /** @class */ (function (_super) {
 exports.FormulaireDemandeAuthentificationPage = FormulaireDemandeAuthentificationPage;
 
 
-
-/***/ }),
-/* 518 */
-/***/ (function(module, exports) {
-
-module.exports = {
-	"$schema": "http://json-schema.org/schema#",
-	"title": "Formulaire d'entrée d'une demande d'authentification",
-	"description": "Validation des données de formulaire",
-	"type": "object",
-	"required": [
-		"num_valise",
-		"num_demande_authentification"
-	],
-	"properties": {
-		"num_valise": {
-			"$ref": "#/definition/nombre"
-		},
-		"num_demande_authentification": {
-			"$ref": "#/definition/numero"
-		}
-	},
-	"definition": {
-		"nom_propre": {
-			"type": "string",
-			"pattern": "^([a-zA-ZÀ-ÿ]+[-]{0,2}[a-zA-ZÀ-ÿ]+ ?)*$"
-		},
-		"numero": {
-			"type": "string",
-			"pattern": "^[^ ]*$"
-		},
-		"date": {
-			"type": "Date",
-			"format": "date"
-		}
-	}
-};
-
-/***/ }),
-/* 519 */
-/***/ (function(module, exports) {
-
-module.exports = {
-	"$schema": "http://json-schema.org/schema#",
-	"title": "Formulaire d'entrée d'une valise",
-	"description": "Validation des données de formulaire",
-	"type": "object",
-	"required": [
-		"num_valise",
-		"date_valise"
-	],
-	"properties": {
-		"num_valise": {
-			"$ref": "#/definition/nombre"
-		},
-		"date_valise": {
-			"$ref": "#/definition/date"
-		}
-	},
-	"definition": {
-		"nombre": {
-			"type": "number"
-		},
-		"date": {
-			"type": "Date",
-			"format": "date"
-		}
-	}
-};
 
 /***/ })
 ]));

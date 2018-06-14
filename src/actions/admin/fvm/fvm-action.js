@@ -184,7 +184,7 @@ var ListPrefecture = /** @class */ (function (_super) {
     }
     /**
      * Méthode retournant la liste des préfectures stockées dans la base de données
-     * @returns {Promise<Array<PrefectureMetier>>} Liste des préfectures stockées dans la base
+     * @returns {Promise<Array<any>>} Liste des préfectures stockées dans la base
      */
     ListPrefecture.prototype.execute = function () {
         logger.trace("ACTION list - FormDossierFVMAction.ListPrefecture");
@@ -244,7 +244,7 @@ var GetDossier = /** @class */ (function (_super) {
     }
     /**
      * Méthode retournant le dossier correspondant aux attributs donnés en entrée
-     * @returns {Promise<any>} Dossier correspondant aux attributs donnés en entrée
+     * @returns {Promise<Array<any>>} Dossier correspondant aux attributs donnés en entrée (Stocké dans un tableau pour une utilisation dans un dataSource)
      */
     GetDossier.prototype.execute = function () {
         logger.trace("ACTION list - RecordDetailsFVMAction.GetDossier");
@@ -269,7 +269,7 @@ var GetDemandeAuthentification = /** @class */ (function (_super) {
     }
     /**
      * Méthode retournant la demande d'authentification correspondant aux attributs donnés en entrée
-     * @returns {Promise<any>} Demande d'authentification correspondant aux attributs donnés en entrée
+     * @returns {Promise<DemandeAuthentificationFVMMetier>} Demande d'authentification correspondant aux attributs donnés en entrée
      */
     GetDemandeAuthentification.prototype.execute = function () {
         logger.trace("ACTION list - RecordDetailsFVMAction.GetDemandeAuthentification");
@@ -389,8 +389,8 @@ var GetPDFDemandeAuthentification = /** @class */ (function (_super) {
         }
         return this.getService().getPDFDemandeAuthentification(this.attributes.idPermis).then(function (result) {
             // Variables : Objets JSON : paramètres variables dans le modèle de la demande d'authentification
-            var dossier = result.dossier[0];
-            var demandeAuthentification = result.demandeAuthentification[0];
+            var dossier = result.dossier;
+            var demandeAuthentification = result.demandeAuthentification;
             // Réponse de type PDF
             return new result_pdf_1.ResultPDF({
                 fonts: {
@@ -415,7 +415,7 @@ var GetPDFDemandeAuthentification = /** @class */ (function (_super) {
                                         { text: "AMBASSADE DE FRANCE AU MAROC", bold: true, fontSize: 11 },
                                         { text: "__________", margin: [0, 0, 0, 30] },
                                         { text: "SERVICE COMMUN DE GESTION", margin: [0, 0, 0, 10], bold: true, italics: true, fontSize: 9 },
-                                        { text: "N°" + demandeAuthentification.numDemandeAuthentification + "/SCG", margin: [0, 0, 0, 30], fontSize: 10 },
+                                        { text: "N°" + demandeAuthentification.num_demande_authentification + "/SCG", margin: [0, 0, 0, 30], fontSize: 10 },
                                     ],
                                     alignment: "center"
                                 },

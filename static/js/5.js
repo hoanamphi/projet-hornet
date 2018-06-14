@@ -8,7 +8,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(1);
 var abstract_routes_1 = __webpack_require__(100);
 // Classe de Page du formulaire d'insertion d'un dossier
-var gen_formDossier_page_1 = __webpack_require__(515);
+var fvm_formDossier_page_1 = __webpack_require__(579);
 // Classe du service utilisé par la Classe de Page
 var form_service_impl_1 = __webpack_require__(495);
 // Classes permettant de mettre en place l'authentification
@@ -26,7 +26,7 @@ var FormulaireDossierRoutesClient = /** @class */ (function (_super) {
         var _this = _super.call(this) || this;
         // Route menant au formulaire d'insertion d'un dossier
         // La page prend un service de type FormService en entrée
-        _this.addPageRoute("/", function () { return new abstract_routes_1.PageRouteInfos(gen_formDossier_page_1.FormulaireDossierPage, null, form_service_impl_1.FormServiceImpl); }, roles_1.Roles.ADMIN);
+        _this.addPageRoute("/", function () { return new abstract_routes_1.PageRouteInfos(fvm_formDossier_page_1.FormulaireDossierPage, null, form_service_impl_1.FormServiceImpl); }, roles_1.Roles.ADMIN);
         return _this;
     }
     return FormulaireDossierRoutesClient;
@@ -22153,7 +22153,7 @@ var FormServiceImpl = /** @class */ (function (_super) {
     };
     /**
      * Méthode effectuant une requête HTTP permettant l'insertion d'une demande d'authentification dans la base de données
-     * @param data données de formulaire
+     * @param {{num_valise: number, num_demande_authentification: any, id_permis: number}} data données de formulaire
      * @returns {Promise<any>}
      */
     FormServiceImpl.prototype.insererDemandeAuthentification = function (data) {
@@ -22167,7 +22167,7 @@ var FormServiceImpl = /** @class */ (function (_super) {
     };
     /**
      * Méthode effectuant une requête HTTP permettant l'insertion d'une valise dans la base de données
-     * @param data données de formulaire
+     * @param {{num_valise: number, date_valise: Date}} data données de formulaire
      * @returns {Promise<any>}
      */
     FormServiceImpl.prototype.insererValise = function (data) {
@@ -22181,7 +22181,7 @@ var FormServiceImpl = /** @class */ (function (_super) {
     };
     /**
      * Méthode effectuant une requête HTTP permettant la récupération de la liste des préfectures stockées dans la base
-     * @returns {Promise<Array<any>>} Liste des préfectures stockées dans la base
+     * @returns {Promise<Array<{idPrefecture: number, prefecture: string}>>} Liste des préfectures stockées dans la base
      */
     FormServiceImpl.prototype.getListePrefecture = function () {
         logger.trace("SERVICE PAGE get - PageService.GetListPrefecture");
@@ -22193,7 +22193,7 @@ var FormServiceImpl = /** @class */ (function (_super) {
     };
     /**
      * Méthode effectuant une requête HTTP permettant la récupération de la liste des valises stockées dans la base
-     * @returns {Promise<Array<any>>} Liste des valises stockées dans la base
+     * @returns {Promise<Array<ValiseMetier>>} Liste des valises stockées dans la base
      */
     FormServiceImpl.prototype.getListeValise = function () {
         logger.trace("SERVICE PAGE get - PageService.GetListValise");
@@ -22229,7 +22229,130 @@ exports.FormServiceImpl = FormServiceImpl;
 /* 512 */,
 /* 513 */,
 /* 514 */,
-/* 515 */
+/* 515 */,
+/* 516 */
+/***/ (function(module, exports) {
+
+module.exports = {
+	"$schema": "http://json-schema.org/schema#",
+	"title": "Formulaire d'entrée d'un dossier",
+	"description": "Validation des données de formulaire",
+	"type": "object",
+	"required": [
+		"nom",
+		"prenom",
+		"date_de_naissance",
+		"ville_de_naissance",
+		"pays_de_naissance",
+		"num_permis",
+		"copie_permis",
+		"date_de_delivrance",
+		"id_prefecture",
+		"copie_note_verbale_maeci"
+	],
+	"properties": {
+		"nom": {
+			"$ref": "#/definition/nom_propre"
+		},
+		"prenom": {
+			"$ref": "#/definition/nom_propre"
+		},
+		"date_de_naissance": {
+			"$ref": "#/definition/date"
+		},
+		"ville_de_naissance": {
+			"$ref": "#/definition/nom_propre"
+		},
+		"pays_de_naissance": {
+			"$ref": "#/definition/nom_propre"
+		},
+		"num_permis": {
+			"$ref": "#/definition/numero"
+		},
+		"date_de_delivrance": {
+			"$ref": "#/definition/date"
+		}
+	},
+	"definition": {
+		"nom_propre": {
+			"type": "string",
+			"pattern": "^([a-zA-ZÀ-ÿ]+[-]{0,2}[a-zA-ZÀ-ÿ]+ ?)*$"
+		},
+		"numero": {
+			"type": "string",
+			"pattern": "^[^ ]*$"
+		},
+		"date": {
+			"type": "Date",
+			"format": "date"
+		}
+	}
+};
+
+/***/ }),
+/* 517 */,
+/* 518 */,
+/* 519 */,
+/* 520 */,
+/* 521 */,
+/* 522 */,
+/* 523 */,
+/* 524 */,
+/* 525 */,
+/* 526 */,
+/* 527 */,
+/* 528 */,
+/* 529 */,
+/* 530 */,
+/* 531 */,
+/* 532 */,
+/* 533 */,
+/* 534 */,
+/* 535 */,
+/* 536 */,
+/* 537 */,
+/* 538 */,
+/* 539 */,
+/* 540 */,
+/* 541 */,
+/* 542 */,
+/* 543 */,
+/* 544 */,
+/* 545 */,
+/* 546 */,
+/* 547 */,
+/* 548 */,
+/* 549 */,
+/* 550 */,
+/* 551 */,
+/* 552 */,
+/* 553 */,
+/* 554 */,
+/* 555 */,
+/* 556 */,
+/* 557 */,
+/* 558 */,
+/* 559 */,
+/* 560 */,
+/* 561 */,
+/* 562 */,
+/* 563 */,
+/* 564 */,
+/* 565 */,
+/* 566 */,
+/* 567 */,
+/* 568 */,
+/* 569 */,
+/* 570 */,
+/* 571 */,
+/* 572 */,
+/* 573 */,
+/* 574 */,
+/* 575 */,
+/* 576 */,
+/* 577 */,
+/* 578 */,
+/* 579 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22260,7 +22383,7 @@ var FormulaireDossierPage = /** @class */ (function (_super) {
     tslib_1.__extends(FormulaireDossierPage, _super);
     function FormulaireDossierPage(props, context) {
         var _this = _super.call(this, props, context) || this;
-        _this.prefectures = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getListePrefecture), { "value": "id_prefecture_fvm", "label": "prefecture" });
+        _this.prefectures = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getListePrefecture), { "value": "idPrefecture", "label": "prefecture" });
         _this.errors = new notification_manager_1.Notifications();
         _this.SequelizeErrors = new notification_manager_1.NotificationType();
         _this.SequelizeErrors.id = "SequelizeError";
@@ -22337,66 +22460,6 @@ var FormulaireDossierPage = /** @class */ (function (_super) {
 exports.FormulaireDossierPage = FormulaireDossierPage;
 
 
-
-/***/ }),
-/* 516 */
-/***/ (function(module, exports) {
-
-module.exports = {
-	"$schema": "http://json-schema.org/schema#",
-	"title": "Formulaire d'entrée d'un dossier",
-	"description": "Validation des données de formulaire",
-	"type": "object",
-	"required": [
-		"nom",
-		"prenom",
-		"date_de_naissance",
-		"ville_de_naissance",
-		"pays_de_naissance",
-		"num_permis",
-		"copie_permis",
-		"date_de_delivrance",
-		"id_prefecture",
-		"copie_note_verbale_maeci"
-	],
-	"properties": {
-		"nom": {
-			"$ref": "#/definition/nom_propre"
-		},
-		"prenom": {
-			"$ref": "#/definition/nom_propre"
-		},
-		"date_de_naissance": {
-			"$ref": "#/definition/date"
-		},
-		"ville_de_naissance": {
-			"$ref": "#/definition/nom_propre"
-		},
-		"pays_de_naissance": {
-			"$ref": "#/definition/nom_propre"
-		},
-		"num_permis": {
-			"$ref": "#/definition/numero"
-		},
-		"date_de_delivrance": {
-			"$ref": "#/definition/date"
-		}
-	},
-	"definition": {
-		"nom_propre": {
-			"type": "string",
-			"pattern": "^([a-zA-ZÀ-ÿ]+[-]{0,2}[a-zA-ZÀ-ÿ]+ ?)*$"
-		},
-		"numero": {
-			"type": "string",
-			"pattern": "^[^ ]*$"
-		},
-		"date": {
-			"type": "Date",
-			"format": "date"
-		}
-	}
-};
 
 /***/ })
 ]));

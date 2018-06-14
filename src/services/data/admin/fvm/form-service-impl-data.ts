@@ -17,6 +17,7 @@ import {CopiePermisFVMDao} from "src/dao/admin/fvm/copie_permis-dao";
 import {PrefectureDAO} from "src/dao/prefecture-dao";
 import {ValiseDAO} from "src/dao/valise-dao";
 import {DemandeAuthentificationFVMDAO} from "src/dao/admin/fvm/demande_authentification-dao";
+import {ValiseMetier} from "src/models/common-mod";
 
 const logger: Logger = Utils.getLogger("projet-hornet.services.data.admin.admin-service-impl-data");
 
@@ -41,12 +42,11 @@ export class FormServiceImpl extends ServiceRequest implements FormService {
 
   /**
    * Méthode effectuant l'insertion d'un dossier dans la base de données
-   * @param data données de formulaire
+   * @param {{content: any, copie_permis: any, copie_note_verbale_maeci: any}} data données de formulaire
    * @returns {Promise<any>}
-   * @method
    */
   @Transactional({configDatabase: Injector.getRegistered("databaseConfigName")})
-  insererDossier(data: {"content": any, "copie_permis": any, "copie_note_verbale_maeci": any}): Promise<any> {
+  insererDossier(data: {content: any, copie_permis: any, copie_note_verbale_maeci: any}): Promise<any> {
     logger.trace("SERVICE DATA inser - FormService.InserDonnee");
 
     // Récupérer les données de formulaire
@@ -107,10 +107,10 @@ export class FormServiceImpl extends ServiceRequest implements FormService {
 
   /**
    * Méthode effectuant l'insertion d'une demande d'authentification dans la base de données
-   * @param data données de formulaire
+   * @param {{num_valise: number, num_demande_authentification: string, id_permis: number}} data données de formulaire
    * @returns {Promise<any>}
    */
-  insererDemandeAuthentification(data: {"num_valise": number, "num_demande_authentification": any, "id_permis": number}): Promise<any> {
+  insererDemandeAuthentification(data: {num_valise: number, num_demande_authentification: string, id_permis: number}): Promise<any> {
     logger.trace("SERVICE DATA inser - FormService.InserDemandeAuthentification");
 
     // Récupérer les informations de la valise diplomatique
@@ -135,10 +135,10 @@ export class FormServiceImpl extends ServiceRequest implements FormService {
 
   /**
    * Méthode effectuant l'insertion d'une valise dans la base de données
-   * @param data données de formulaire
+   * @param {{num_valise: number, date_valise: Date}} data données de formulaire
    * @returns {Promise<any>}
    */
-  insererValise(data: {"num_valise": number, "date_valise": Date}): Promise<any> {
+  insererValise(data: {num_valise: number, date_valise: Date}): Promise<any> {
     logger.trace("SERVICE DATA inser - FormService.InserValise");
 
     // Insérer la valise
@@ -154,9 +154,9 @@ export class FormServiceImpl extends ServiceRequest implements FormService {
 
   /**
    * Méthode retournant la liste des préfectures stockées dans la base
-   * @returns {Promise<Array<any>>} Liste des préfectures stockées dans la base
+   * @returns {Promise<Array<{idPrefecture: number, prefecture: string}>>} Liste des préfectures stockées dans la base
    */
-  getListePrefecture(): Promise<Array<any>>{
+  getListePrefecture(): Promise<Array<{idPrefecture: number, prefecture: string}>>{
     logger.trace("SERVICE DATA get - FormService.GetListPrefecture");
 
     return this.prefectureDAO.getListePrefecture();
@@ -164,23 +164,11 @@ export class FormServiceImpl extends ServiceRequest implements FormService {
 
   /**
    * Méthode retournant la liste des valises stockées dans la base
-   * @returns {Promise<Array<any>>} Liste des valises stockées dans la base
+   * @returns {Promise<Array<ValiseMetier>>} Liste des valises stockées dans la base
    */
-  getListeValise(): Promise<Array<any>>{
+  getListeValise(): Promise<Array<ValiseMetier>>{
     logger.trace("SERVICE DATA get - FormService.GetListValise");
 
-    return this.valiseDAO.getListeValise().then(result=>{
-      let arr = [];
-
-
-      result.forEach(elem=>{
-        let tmp = {};
-        tmp["numValise"] = elem.num_valise;
-        tmp["dateValise"] = elem.date_valise;
-        arr.push(tmp);
-      });
-
-      return arr;
-    });
+    return this.valiseDAO.getListeValise();
   }
 }

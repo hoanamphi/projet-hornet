@@ -1,8 +1,8 @@
 import { AbstractRoutes, PageRouteInfos, PUBLIC_ROUTE } from "hornet-js-core/src/routes/abstract-routes";
 // Classe de Page de la page présentant la liste des dossiers
-import {RecordListPage} from "src/views/admin/fvm/gen-recordList-page";
+import {RecordListPage} from "src/views/admin/fvm/fvm-recordList-page";
 // Classe de Page de la page présentant les détails d'un dossier
-import {RecordDetailsPage} from "src/views/admin/fvm/gen-recordDetails-page";
+import {RecordDetailsPage} from "src/views/admin/fvm/fvm-recordDetails-page";
 // Classe du service utilisé par la Classe de Page
 import {PageServiceImpl} from "src/services/page/admin/fvm/page-service-impl";
 

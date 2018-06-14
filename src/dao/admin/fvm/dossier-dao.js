@@ -82,7 +82,9 @@ var DossierFVMDAO = /** @class */ (function (_super) {
         logger.trace("DAO get - Dossier.Get");
         return this.modelDAO.dossierFVMEntity.findAll({
             where: {
-                idDossier: idDossier
+                idDossier: {
+                    $in: idDossier
+                }
             }
         });
     };
@@ -121,12 +123,6 @@ var DossierFVMDAO = /** @class */ (function (_super) {
         tslib_1.__metadata("design:paramtypes", [Number]),
         tslib_1.__metadata("design:returntype", Promise)
     ], DossierFVMDAO.prototype, "getDossier", null);
-    tslib_1.__decorate([
-        Map_1.default(fvm_mod_1.DossierFVMMetier),
-        tslib_1.__metadata("design:type", Function),
-        tslib_1.__metadata("design:paramtypes", [Array]),
-        tslib_1.__metadata("design:returntype", Promise)
-    ], DossierFVMDAO.prototype, "getListeDossier", null);
     return DossierFVMDAO;
 }(entity_dao_1.EntityDAO));
 exports.DossierFVMDAO = DossierFVMDAO;

@@ -35,7 +35,7 @@ var FormServiceImpl = /** @class */ (function (_super) {
     };
     /**
      * Méthode effectuant une requête HTTP permettant l'insertion d'une demande d'authentification dans la base de données
-     * @param data données de formulaire
+     * @param {{num_valise: number, num_demande_authentification: any, id_permis: number}} data données de formulaire
      * @returns {Promise<any>}
      */
     FormServiceImpl.prototype.insererDemandeAuthentification = function (data) {
@@ -49,7 +49,7 @@ var FormServiceImpl = /** @class */ (function (_super) {
     };
     /**
      * Méthode effectuant une requête HTTP permettant l'insertion d'une valise dans la base de données
-     * @param data données de formulaire
+     * @param {{num_valise: number, date_valise: Date}} data données de formulaire
      * @returns {Promise<any>}
      */
     FormServiceImpl.prototype.insererValise = function (data) {
@@ -63,7 +63,7 @@ var FormServiceImpl = /** @class */ (function (_super) {
     };
     /**
      * Méthode effectuant une requête HTTP permettant la récupération de la liste des préfectures stockées dans la base
-     * @returns {Promise<Array<any>>} Liste des préfectures stockées dans la base
+     * @returns {Promise<Array<{idPrefecture: number, prefecture: string}>>} Liste des préfectures stockées dans la base
      */
     FormServiceImpl.prototype.getListePrefecture = function () {
         logger.trace("SERVICE PAGE get - PageService.GetListPrefecture");
@@ -75,7 +75,7 @@ var FormServiceImpl = /** @class */ (function (_super) {
     };
     /**
      * Méthode effectuant une requête HTTP permettant la récupération de la liste des valises stockées dans la base
-     * @returns {Promise<Array<any>>} Liste des valises stockées dans la base
+     * @returns {Promise<Array<ValiseMetier>>} Liste des valises stockées dans la base
      */
     FormServiceImpl.prototype.getListeValise = function () {
         logger.trace("SERVICE PAGE get - PageService.GetListValise");

@@ -5,6 +5,7 @@ import { Logger } from "hornet-js-utils/src/logger";
 import { EntityDAO } from "src/dao/entity-dao";
 // Classe métier d'un dossier
 import {DossierFVMMetier} from "src/models/fvm/fvm-mod";
+import {DossierFVMAttributes} from "src/models/fvm/model-dossier";
 import Map from "hornet-js-bean/src/decorators/Map";
 
 const logger: Logger = Utils.getLogger("projet-hornet.src.dao.utilisateurs-dao");
@@ -85,13 +86,14 @@ export class DossierFVMDAO extends EntityDAO {
    * @param {Array<number>} idDossier tableau contenant les ids des tuples à retourner
    * @returns {Promise<Array<DossierFVMMetier>>} Liste de dossiers
    */
-  @Map(DossierFVMMetier)
-  getListeDossier(idDossier: Array<number>): Promise<Array<DossierFVMMetier>> {
+  getListeDossier(idDossier: Array<number>): Promise<Array<DossierFVMAttributes>> {
     logger.trace("DAO get - Dossier.Get");
 
     return this.modelDAO.dossierFVMEntity.findAll({
       where: {
-        idDossier: idDossier
+        idDossier: {
+          $in: idDossier
+        }
       }
     });
   }

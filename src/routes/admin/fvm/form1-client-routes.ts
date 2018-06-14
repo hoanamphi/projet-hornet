@@ -1,6 +1,6 @@
 import { AbstractRoutes, PageRouteInfos, PUBLIC_ROUTE } from "hornet-js-core/src/routes/abstract-routes";
 // Classe de Page du formulaire d'insertion d'un dossier
-import { FormulaireDossierPage } from "src/views/admin/fvm/gen-formDossier-page";
+import { FormulaireDossierPage } from "src/views/admin/fvm/fvm-formDossier-page";
 // Classe du service utilisé par la Classe de Page
 import { FormServiceImpl } from "src/services/page/admin/fvm/form-service-impl";
 // Classes permettant de mettre en place l'authentification

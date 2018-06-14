@@ -13,8 +13,12 @@ import {ResultPDF} from "hornet-js-core/src/result/result-pdf";
 import {MediaTypes} from "hornet-js-core/src/protocol/media-type";
 import {DispositionType} from "hornet-js-core/src/result/disposition-type";
 // Classes métier des données stockées dans la base
-import {CopieNoteVerbaleMAECIFVMMetier, CopiePermisFVMMetier} from "src/models/fvm/fvm-mod";
-import {PrefectureMetier, ValiseMetier} from "src/models/common-mod";
+import {
+  CopieNoteVerbaleMAECIFVMMetier,
+  CopiePermisFVMMetier,
+  DemandeAuthentificationFVMMetier
+} from "src/models/fvm/fvm-mod";
+import {ValiseMetier} from "src/models/common-mod";
 
 const logger: Logger = Utils.getLogger("projet-hornet.actions.admin.fvm_actions");
 
@@ -185,9 +189,9 @@ export class ListPrefecture extends RouteActionService<any, FormService> {
 
   /**
    * Méthode retournant la liste des préfectures stockées dans la base de données
-   * @returns {Promise<Array<PrefectureMetier>>} Liste des préfectures stockées dans la base
+   * @returns {Promise<Array<any>>} Liste des préfectures stockées dans la base
    */
-  execute(): Promise<Array<PrefectureMetier>> {
+  execute(): Promise<Array<{"idPrefecture": number, "prefecture": string}>> {
     logger.trace("ACTION list - FormDossierFVMAction.ListPrefecture");
 
     return this.getService().getListePrefecture();
@@ -236,9 +240,9 @@ export class GetDossier extends RouteActionService<any, PageService> {
 
   /**
    * Méthode retournant le dossier correspondant aux attributs donnés en entrée
-   * @returns {Promise<any>} Dossier correspondant aux attributs donnés en entrée
+   * @returns {Promise<Array<any>>} Dossier correspondant aux attributs donnés en entrée (Stocké dans un tableau pour une utilisation dans un dataSource)
    */
-  execute(): Promise<any> {
+  execute(): Promise<Array<any>> {
     logger.trace("ACTION list - RecordDetailsFVMAction.GetDossier");
 
     /* this.req : Request : contient les attributs de la requête HTTP à l'origine de l'action
@@ -260,9 +264,9 @@ export class GetDemandeAuthentification extends RouteActionService<any, PageServ
 
   /**
    * Méthode retournant la demande d'authentification correspondant aux attributs donnés en entrée
-   * @returns {Promise<any>} Demande d'authentification correspondant aux attributs donnés en entrée
+   * @returns {Promise<DemandeAuthentificationFVMMetier>} Demande d'authentification correspondant aux attributs donnés en entrée
    */
-  execute(): Promise<any> {
+  execute(): Promise<DemandeAuthentificationFVMMetier> {
     logger.trace("ACTION list - RecordDetailsFVMAction.GetDemandeAuthentification");
 
     /* this.req : Request : contient les attributs de la requête HTTP à l'origine de l'action
@@ -381,8 +385,8 @@ export class GetPDFDemandeAuthentification extends RouteActionService<{"idPermis
 
     return this.getService().getPDFDemandeAuthentification(this.attributes.idPermis).then(result=>{
       // Variables : Objets JSON : paramètres variables dans le modèle de la demande d'authentification
-      let dossier = result.dossier[0];
-      let demandeAuthentification = result.demandeAuthentification[0];
+      let dossier = result.dossier;
+      let demandeAuthentification = result.demandeAuthentification;
 
       // Réponse de type PDF
       return new ResultPDF({
@@ -410,7 +414,7 @@ export class GetPDFDemandeAuthentification extends RouteActionService<{"idPermis
                     {text: "AMBASSADE DE FRANCE AU MAROC", bold: true, fontSize: 11},
                     {text:"__________", margin: [0,0,0,30]},
                     {text:"SERVICE COMMUN DE GESTION", margin: [0,0,0,10], bold: true, italics: true, fontSize: 9},
-                    {text: "N°"+demandeAuthentification.numDemandeAuthentification+"/SCG", margin: [0,0,0,30], fontSize: 10},
+                    {text: "N°"+demandeAuthentification.num_demande_authentification+"/SCG", margin: [0,0,0,30], fontSize: 10},
                   ],
                   alignment: "center"
                 },

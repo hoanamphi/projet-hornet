@@ -15,6 +15,11 @@ var PageServiceImpl = /** @class */ (function (_super) {
     function PageServiceImpl() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    /**
+     * Méthode effectuant une requête HTTP permettant la supression d'une demande d'authentification de la base de données
+     * @param {{idDemandeAuthentification: number}} data id de la demande d'authentification à supprimer
+     * @returns {Promise<any>}
+     */
     PageServiceImpl.prototype.deleteDemandeAuthentification = function (data) {
         var request = {
             method: "delete",
@@ -23,6 +28,11 @@ var PageServiceImpl = /** @class */ (function (_super) {
         };
         return this.fetch(request);
     };
+    /**
+     * Méthode effectuant une requête HTTP permettant la supression d'un dossier de la base de données
+     * @param {{idPermis: number}} data id du Permis concerné par le dossier à supprimer
+     * @returns {Promise<any>}
+     */
     PageServiceImpl.prototype.deleteDossier = function (data) {
         var request = {
             method: "delete",
@@ -31,6 +41,10 @@ var PageServiceImpl = /** @class */ (function (_super) {
         };
         return this.fetch(request);
     };
+    /**
+     * Méthode effectuant une requête HTTP retournant la liste des dossiers stockés dans la base
+     * @returns {Promise<Array<any>>} Liste des dossiers stockés dans la base
+     */
     PageServiceImpl.prototype.getListeDossier = function () {
         var request = {
             method: "post",
@@ -38,6 +52,11 @@ var PageServiceImpl = /** @class */ (function (_super) {
         };
         return this.fetch(request);
     };
+    /**
+     * Méthode effectuant une requête HTTP retournant un dossier
+     * @param {{idPermis: number}} data id du Permis relatif au dossier
+     * @returns {Promise<Array<any>>} Informations du dossier (Stockées dans un tableau pour une utilisation dans un dataSource)
+     */
     PageServiceImpl.prototype.getDossier = function (data) {
         var request = {
             method: "post",
@@ -46,6 +65,11 @@ var PageServiceImpl = /** @class */ (function (_super) {
         };
         return this.fetch(request);
     };
+    /**
+     * Méthode effectuant une requête HTTP retournant une demande d'authentification
+     * @param {{idPermis: number}} data id du Permis concerné par la demande d'authentification
+     * @returns {Promise<DemandeAuthentificationFVMMetier>} Demande d'authentification
+     */
     PageServiceImpl.prototype.getDemandeAuthentification = function (data) {
         var request = {
             method: "post",
@@ -54,14 +78,29 @@ var PageServiceImpl = /** @class */ (function (_super) {
         };
         return this.fetch(request);
     };
+    /**
+     * Méthode effectuant une requête HTTP retournant une copie d'un permis de conduire
+     * @param {number} idCopiePermis id de la copie d'un permis de conduire
+     * @returns {Promise<any>} service uniquement disponible côté serveur
+     */
     PageServiceImpl.prototype.getCopiePermis = function (idCopiePermis) {
         return Promise.reject("service uniquement disponible côté serveur");
     };
     ;
+    /**
+     * Méthode effectuant une requête HTTP retournant une copie d'une note verbale du MAECI
+     * @param {number} idCopieNoteVerbaleMAECI id de la copie d'une note verbale du MAECI
+     * @returns {Promise<any>} service uniquement disponible côté serveur
+     */
     PageServiceImpl.prototype.getCopieNoteVerbaleMAECI = function (idCopieNoteVerbaleMAECI) {
         return Promise.reject("service uniquement disponible côté serveur");
     };
     ;
+    /**
+     * Méthode effectuant une requête HTTP retournant les informations nécessaires à la génération d'une demande d'authentification en PDF
+     * @param {number} idPermis id du Permis concerné par la demande d'authentification
+     * @returns {Promise<any>} service uniquement disponible côté serveur
+     */
     PageServiceImpl.prototype.getPDFDemandeAuthentification = function (idPermis) {
         return Promise.reject("service uniquement disponible côté serveur");
     };

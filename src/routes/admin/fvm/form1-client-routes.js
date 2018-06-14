@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
 var abstract_routes_1 = require("hornet-js-core/src/routes/abstract-routes");
 // Classe de Page du formulaire d'insertion d'un dossier
-var gen_formDossier_page_1 = require("src/views/admin/fvm/gen-formDossier-page");
+var fvm_formDossier_page_1 = require("src/views/admin/fvm/fvm-formDossier-page");
 // Classe du service utilisé par la Classe de Page
 var form_service_impl_1 = require("src/services/page/admin/fvm/form-service-impl");
 // Classes permettant de mettre en place l'authentification
@@ -21,7 +21,7 @@ var FormulaireDossierRoutesClient = /** @class */ (function (_super) {
         var _this = _super.call(this) || this;
         // Route menant au formulaire d'insertion d'un dossier
         // La page prend un service de type FormService en entrée
-        _this.addPageRoute("/", function () { return new abstract_routes_1.PageRouteInfos(gen_formDossier_page_1.FormulaireDossierPage, null, form_service_impl_1.FormServiceImpl); }, roles_1.Roles.ADMIN);
+        _this.addPageRoute("/", function () { return new abstract_routes_1.PageRouteInfos(fvm_formDossier_page_1.FormulaireDossierPage, null, form_service_impl_1.FormServiceImpl); }, roles_1.Roles.ADMIN);
         return _this;
     }
     return FormulaireDossierRoutesClient;

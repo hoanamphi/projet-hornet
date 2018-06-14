@@ -7,6 +7,7 @@ import { ServicePage } from "hornet-js-core/src/services/service-page";
 import { FormService } from "src/services/page/admin/fvm/form-service";
 // Classe permettant d'effectuer des requêtes HTTP sur le serveur
 import {HornetRequest} from "hornet-js-core/src/services/hornet-superagent-request";
+import {ValiseMetier} from "../../../../models/common-mod";
 
 const logger: Logger = Utils.getLogger("projet-hornet.services.page.admin.admin-service-impl");
 
@@ -41,10 +42,10 @@ export class FormServiceImpl extends ServicePage implements FormService {
 
   /**
    * Méthode effectuant une requête HTTP permettant l'insertion d'une demande d'authentification dans la base de données
-   * @param data données de formulaire
+   * @param {{num_valise: number, num_demande_authentification: any, id_permis: number}} data données de formulaire
    * @returns {Promise<any>}
    */
-  insererDemandeAuthentification(data: {"num_valise": number, "num_demande_authentification": any, "id_permis": number}): Promise<any> {
+  insererDemandeAuthentification(data: {num_valise: number, num_demande_authentification: any, id_permis: number}): Promise<any> {
     logger.trace("SERVICE PAGE inser - PageService.InserDemandeAuthentification");
 
     let request: HornetRequest = {
@@ -58,10 +59,10 @@ export class FormServiceImpl extends ServicePage implements FormService {
 
   /**
    * Méthode effectuant une requête HTTP permettant l'insertion d'une valise dans la base de données
-   * @param data données de formulaire
+   * @param {{num_valise: number, date_valise: Date}} data données de formulaire
    * @returns {Promise<any>}
    */
-  insererValise(data: {"num_valise": number, "date_valise": Date}): Promise<any> {
+  insererValise(data: {num_valise: number, date_valise: Date}): Promise<any> {
     logger.trace("SERVICE PAGE inser - PageService.InserValise");
 
     let request: HornetRequest = {
@@ -75,9 +76,9 @@ export class FormServiceImpl extends ServicePage implements FormService {
 
   /**
    * Méthode effectuant une requête HTTP permettant la récupération de la liste des préfectures stockées dans la base
-   * @returns {Promise<Array<any>>} Liste des préfectures stockées dans la base
+   * @returns {Promise<Array<{idPrefecture: number, prefecture: string}>>} Liste des préfectures stockées dans la base
    */
-  getListePrefecture(): Promise<Array<any>> {
+  getListePrefecture(): Promise<Array<{idPrefecture: number, prefecture: string}>> {
     logger.trace("SERVICE PAGE get - PageService.GetListPrefecture");
 
     let request: HornetRequest = {
@@ -90,9 +91,9 @@ export class FormServiceImpl extends ServicePage implements FormService {
 
   /**
    * Méthode effectuant une requête HTTP permettant la récupération de la liste des valises stockées dans la base
-   * @returns {Promise<Array<any>>} Liste des valises stockées dans la base
+   * @returns {Promise<Array<ValiseMetier>>} Liste des valises stockées dans la base
    */
-  getListeValise(): Promise<Array<any>> {
+  getListeValise(): Promise<Array<ValiseMetier>> {
     logger.trace("SERVICE PAGE get - PageService.GetListValise");
 
     let request: HornetRequest = {

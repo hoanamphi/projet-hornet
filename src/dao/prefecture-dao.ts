@@ -24,10 +24,9 @@ export class PrefectureDAO extends EntityDAO {
 
   /**
    * Méthode retournant la liste des préfectures stockées dans la base
-   * @returns {Promise<Array<any>>} Liste des préfectures stockées dans la base
+   * @returns {Promise<Array<{idPrefecture: number, prefecture: string}>>} Liste des préfectures stockées dans la base
    */
-  @Map(PrefectureMetier)
-  getListePrefecture(): Promise<Array<any>> {
+  getListePrefecture(): Promise<Array<{idPrefecture: number, prefecture: string}>> {
     logger.trace("DAO get - Prefecture.GetListe");
 
     return this.modelDAO.prefectureEntity.findAll({

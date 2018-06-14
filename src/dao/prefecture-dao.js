@@ -22,7 +22,7 @@ var PrefectureDAO = /** @class */ (function (_super) {
     }
     /**
      * Méthode retournant la liste des préfectures stockées dans la base
-     * @returns {Promise<Array<any>>} Liste des préfectures stockées dans la base
+     * @returns {Promise<Array<{idPrefecture: number, prefecture: string}>>} Liste des préfectures stockées dans la base
      */
     PrefectureDAO.prototype.getListePrefecture = function () {
         logger.trace("DAO get - Prefecture.GetListe");
@@ -43,12 +43,6 @@ var PrefectureDAO = /** @class */ (function (_super) {
             }
         });
     };
-    tslib_1.__decorate([
-        Map_1.default(common_mod_1.PrefectureMetier),
-        tslib_1.__metadata("design:type", Function),
-        tslib_1.__metadata("design:paramtypes", []),
-        tslib_1.__metadata("design:returntype", Promise)
-    ], PrefectureDAO.prototype, "getListePrefecture", null);
     tslib_1.__decorate([
         Map_1.default(common_mod_1.PrefectureMetier),
         tslib_1.__metadata("design:type", Function),

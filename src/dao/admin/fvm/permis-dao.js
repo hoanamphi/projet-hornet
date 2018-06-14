@@ -5,7 +5,7 @@ var hornet_js_utils_1 = require("hornet-js-utils");
 // Classe parente des Classes de DAO
 var entity_dao_1 = require("src/dao/entity-dao");
 // Classe métier d'un permis
-var fvm_mod_1 = require("../../../models/fvm/fvm-mod");
+var fvm_mod_1 = require("src/models/fvm/fvm-mod");
 var Map_1 = require("hornet-js-bean/src/decorators/Map");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.src.dao.utilisateurs-dao");
 /**
@@ -69,7 +69,7 @@ var PermisFVMDAO = /** @class */ (function (_super) {
     };
     /**
      * Méthode retournant la liste des permis stockés dans la base
-     * @returns {Promise<Array<PermisFVMMetier>>} Liste des permis stockés dans la base
+     * @returns {Promise<Array<PermisFVMAttributes>>} Liste des permis stockés dans la base
      */
     PermisFVMDAO.prototype.getAllPermis = function () {
         logger.trace("DAO get - Permis.GetAll");
@@ -101,12 +101,6 @@ var PermisFVMDAO = /** @class */ (function (_super) {
             }
         });
     };
-    tslib_1.__decorate([
-        Map_1.default(fvm_mod_1.PermisFVMMetier),
-        tslib_1.__metadata("design:type", Function),
-        tslib_1.__metadata("design:paramtypes", []),
-        tslib_1.__metadata("design:returntype", Promise)
-    ], PermisFVMDAO.prototype, "getAllPermis", null);
     tslib_1.__decorate([
         Map_1.default(fvm_mod_1.PermisFVMMetier),
         tslib_1.__metadata("design:type", Function),

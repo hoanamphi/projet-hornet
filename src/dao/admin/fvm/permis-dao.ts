@@ -4,7 +4,8 @@ import { Logger } from "hornet-js-utils/src/logger";
 // Classe parente des Classes de DAO
 import { EntityDAO } from "src/dao/entity-dao";
 // Classe métier d'un permis
-import {PermisFVMMetier} from "../../../models/fvm/fvm-mod";
+import {PermisFVMMetier} from "src/models/fvm/fvm-mod";
+import {PermisFVMAttributes} from "src/models/fvm/model-permis";
 import Map from "hornet-js-bean/src/decorators/Map";
 
 const logger: Logger = Utils.getLogger("projet-hornet.src.dao.utilisateurs-dao");
@@ -73,10 +74,9 @@ export class PermisFVMDAO extends EntityDAO {
 
   /**
    * Méthode retournant la liste des permis stockés dans la base
-   * @returns {Promise<Array<PermisFVMMetier>>} Liste des permis stockés dans la base
+   * @returns {Promise<Array<PermisFVMAttributes>>} Liste des permis stockés dans la base
    */
-  @Map(PermisFVMMetier)
-  getAllPermis(): Promise<Array<PermisFVMMetier>> {
+  getAllPermis(): Promise<Array<PermisFVMAttributes>> {
     logger.trace("DAO get - Permis.GetAll");
 
     return this.modelDAO.permisFVMEntity.findAll();

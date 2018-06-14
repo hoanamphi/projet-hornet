@@ -129,8 +129,8 @@ export class PageServiceImpl extends ServiceRequest implements PageService {
           idDossier : id du dossier concerné par le permis
       */
       permisList.forEach(permis=>{
-        idPersonneArray.push(permis.id_personne_fvm);
-        idDossierArray.push(permis.id_dossier_fvm);
+        idPersonneArray.push(permis.idPersonne);
+        idDossierArray.push(permis.idDossier);
       });
       
       // Récupérer les listes des personnes et des dossiers stockés dans la base
@@ -145,20 +145,20 @@ export class PageServiceImpl extends ServiceRequest implements PageService {
         
         // Concatèner les données relatives à chaque permis
         permisList.forEach(permis=>{
-          let obj = {"idPermis": permis.id_permis_fvm, "numPermis": null, "nom": null, "prenom": null, "dateDeNaissance": null, "dateReceptionDossier": null};
-          obj.numPermis = permis.num_permis;
+          let obj = {"idPermis": permis.idPermis, "numPermis": null, "nom": null, "prenom": null, "dateDeNaissance": null, "dateReceptionDossier": null};
+          obj.numPermis = permis.numPermis;
 
           personneList.forEach(personne=>{
-            if(personne.id_permis_fvm == permis.id_permis_fvm){
+            if(personne.idPermis == permis.idPermis){
               obj.nom = personne.nom;
               obj.prenom = personne.prenom;
-              obj.dateDeNaissance = personne.date_de_naissance;
+              obj.dateDeNaissance = Date.parse(personne.dateDeNaissance.toString());
             }
           });
 
           dossierList.forEach(dossier=>{
-            if(dossier.id_permis_fvm == permis.id_permis_fvm){
-              obj.dateReceptionDossier = dossier.date_reception_dossier;
+            if(dossier.idPermis == permis.idPermis){
+              obj.dateReceptionDossier = Date.parse(dossier.dateReceptionDossier.toString());
             }
           });
 
@@ -289,13 +289,13 @@ export class PageServiceImpl extends ServiceRequest implements PageService {
   /**
    * Méthode retournant les informations nécessaires à la génération d'une demande d'authentification en PDF
    * @param {number} idPermis id du Permis concerné par la demande d'authentification
-   * @returns {Promise<any>} Informations de la demande d'authentification
+   * @returns {Promise<{dossier: any, demande_authentification: any}>} Informations de la demande d'authentification
    */
-  getPDFDemandeAuthentification(idPermis: number): Promise<any> {
+  getPDFDemandeAuthentification(idPermis: number): Promise<{dossier: any, demandeAuthentification: DemandeAuthentificationFVMMetier}> {
     logger.trace("SERVICE DATA get - PageService.GetDossier");
 
     // Concaténer les informations relatives à une demande d'authentification
-    let result = {};
+    let result = {dossier: null, demandeAuthentification: null};
 
     // Récupérer les informations d'un dossier
     return this.getDossier({"idPermis": idPermis}).then(dossier=>{
