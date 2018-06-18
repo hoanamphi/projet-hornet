@@ -22122,7 +22122,7 @@ var tslib_1 = __webpack_require__(1);
 var hornet_js_utils_1 = __webpack_require__(0);
 // Classe parente des Classes de service PAGE
 var service_page_1 = __webpack_require__(472);
-var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.services.page.admin.admin-service-impl");
+var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.services.page.admin.fvm.form-service-impl");
 /**
  * Classe de service Page utilisée par les formulaires
  * @extends {ServicePage}
@@ -22255,7 +22255,7 @@ var datasource_config_page_1 = __webpack_require__(316);
 var icon_1 = __webpack_require__(103);
 var picto_1 = __webpack_require__(96);
 var radios_field_1 = __webpack_require__(489);
-var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
+var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.admin.fvm.fvm-formDossier-page");
 var FormulaireDossierPage = /** @class */ (function (_super) {
     tslib_1.__extends(FormulaireDossierPage, _super);
     function FormulaireDossierPage(props, context) {

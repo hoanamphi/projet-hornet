@@ -20,7 +20,7 @@ var datasource_config_page_1 = require("hornet-js-core/src/component/datasource/
 var icon_1 = require("hornet-js-react-components/src/widget/icon/icon");
 var picto_1 = require("hornet-js-react-components/src/img/picto");
 var radios_field_1 = require("hornet-js-react-components/src/widget/form/radios-field");
-var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
+var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.admin.fvm.fvm-formDossier-page");
 var FormulaireDossierPage = /** @class */ (function (_super) {
     tslib_1.__extends(FormulaireDossierPage, _super);
     function FormulaireDossierPage(props, context) {

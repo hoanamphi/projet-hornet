@@ -28,13 +28,23 @@ var menu_actions_1 = require("hornet-js-react-components/src/widget/table/menu-a
 var action_button_1 = require("hornet-js-react-components/src/widget/table/action-button");
 var modal_1 = require("hornet-js-react-components/src/widget/dialog/modal");
 var action_column_1 = require("hornet-js-react-components/src/widget/table/column/action-column");
-var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
+var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.admin.fvm.fvm-formDemande-page");
+/**
+ * Page de formulaire permettant de créer une demande d'authentification
+ * @extends {HornetPage<FormService, HornetComponentProps, any>} Classe générique : <Interface de la Classe de service, Props de la page, Context>
+ */
 var FormulaireDemandeAuthentificationPage = /** @class */ (function (_super) {
     tslib_1.__extends(FormulaireDemandeAuthentificationPage, _super);
+    /**
+     * @constructor
+     * @param {module:hornet-js-components/src/component/ihornet-component.HornetComponentProps} props
+     * @param context
+     */
     function FormulaireDemandeAuthentificationPage(props, context) {
         var _this = _super.call(this, props, context) || this;
-        _this.input = new input_field_1.InputField();
-        _this.valise = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getListeValise), {});
+        // InputField contenant le numéro de la valise de la demande d'authentification
+        _this.numValiseInput = new input_field_1.InputField();
+        _this.listeValiseDataSource = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getListeValise), {});
         _this.errors = new notification_manager_1.Notifications();
         _this.SequelizeErrors = new notification_manager_1.NotificationType();
         _this.SequelizeErrors.id = "SequelizeError";
@@ -46,9 +56,16 @@ var FormulaireDemandeAuthentificationPage = /** @class */ (function (_super) {
         _this.success.addNotification(_this.SequelizeSuccess);
         return _this;
     }
+    /**
+     * Méthode permettant d'effectuer les appels d'API. Elle est appelée au moment où la Page est montée.
+     */
     FormulaireDemandeAuthentificationPage.prototype.prepareClient = function () {
-        this.valise.fetch(true);
+        this.listeValiseDataSource.fetch(true);
     };
+    /**
+     * Méthode appelée à la soumission du formulaire d'insertion d'une
+     * @param data données de formulaire
+     */
     FormulaireDemandeAuthentificationPage.prototype.onSubmit = function (data) {
         var _this = this;
         data["id_permis"] = this.attributes.idPermis;
@@ -76,8 +93,8 @@ var FormulaireDemandeAuthentificationPage = /** @class */ (function (_super) {
             React.createElement(notification_1.Notification, { id: "errors" }),
             React.createElement(notification_1.Notification, { id: "notif" }),
             React.createElement(modal_1.Modal, { ref: function (modal) {
-                    _this.modal = modal;
-                }, onClickClose: function () { _this.modal.close(); _this.valise.fetch(true); } },
+                    _this.formValiseModal = modal;
+                }, onClickClose: function () { _this.formValiseModal.close(); _this.listeValiseDataSource.fetch(true); } },
                 React.createElement("div", null,
                     React.createElement(form_1.Form, { id: "formValise", schema: schemaValise, formMessages: format, onSubmit: this.submitValise },
                         React.createElement(row_1.Row, null,
@@ -90,24 +107,24 @@ var FormulaireDemandeAuthentificationPage = /** @class */ (function (_super) {
                 React.createElement(header_1.Header, { title: "Valises diplomatiques disponibles" },
                     React.createElement(menu_actions_1.MenuActions, null,
                         React.createElement(action_button_1.ActionButton, { title: "Ajout", srcImg: picto_1.Picto.white.ajouter, displayedWithoutResult: true, action: this.ajouterValise, priority: true }))),
-                React.createElement(content_1.Content, { dataSource: this.valise },
+                React.createElement(content_1.Content, { dataSource: this.listeValiseDataSource },
                     React.createElement(columns_1.Columns, null,
                         React.createElement(column_1.Column, { keyColumn: "numValise", title: format.fields.num_valise.label, sortable: false }),
                         React.createElement(date_column_1.DateColumn, { keyColumn: "dateValise", title: format.fields.date_valise.label, sortable: false }),
                         React.createElement(action_column_1.ActionColumn, { keyColumn: "formInput", title: "Remplir le formulaire", srcImg: picto_1.Picto.blue.next, action: this.remplirForm })))),
             React.createElement(form_1.Form, { id: "formValise", schema: schema, formMessages: format, onSubmit: this.onSubmit },
                 React.createElement(row_1.Row, null,
-                    React.createElement(input_field_1.InputField, { name: "num_valise", ref: function (input) { _this.input = input; }, label: format.fields.num_valise.label, required: true })),
+                    React.createElement(input_field_1.InputField, { name: "num_valise", ref: function (input) { _this.numValiseInput = input; }, label: format.fields.num_valise.label, required: true })),
                 React.createElement(row_1.Row, null,
                     React.createElement(input_field_1.InputField, { name: "num_demande_authentification", label: format.fields.num_demande_authentification.label, required: true })),
                 React.createElement(buttons_area_1.ButtonsArea, null,
                     React.createElement(button_1.Button, { type: "submit", value: "Valider", className: "hornet-button", label: "valider", title: "valider" })))));
     };
     FormulaireDemandeAuthentificationPage.prototype.ajouterValise = function () {
-        this.modal.open();
+        this.formValiseModal.open();
     };
     FormulaireDemandeAuthentificationPage.prototype.remplirForm = function (lineSelected) {
-        this.input.setCurrentValue(lineSelected.numValise);
+        this.numValiseInput.setCurrentValue(lineSelected.numValise);
     };
     FormulaireDemandeAuthentificationPage.prototype.submitValise = function (data) {
         var _this = this;

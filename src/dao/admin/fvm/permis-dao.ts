@@ -6,7 +6,7 @@ import { EntityDAO } from "src/dao/entity-dao";
 // Classe métier d'un permis
 import {PermisFVMAttributes} from "src/models/fvm/model-permis";
 
-const logger: Logger = Utils.getLogger("projet-hornet.src.dao.utilisateurs-dao");
+const logger: Logger = Utils.getLogger("projet-hornet.src.dao.admin.fvm.permis-dao");
 
 /**
  * Classe de DAO permettant l'interaction avec la table permis_fvm

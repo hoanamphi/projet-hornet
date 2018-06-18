@@ -10,8 +10,6 @@ import { CalendarField } from "hornet-js-react-components/src/widget/form/calend
 import { Button } from "hornet-js-react-components/src/widget/button/button";
 import { ButtonsArea } from "hornet-js-react-components/src/widget/form/buttons-area";
 import {Notification} from "hornet-js-react-components/src/widget/notification/notification";
-
-import * as schema from "src/resources/admin/fvm/validation-recordList.json";
 import {
   NotificationManager,
   Notifications,
@@ -19,34 +17,24 @@ import {
 } from "hornet-js-core/src/notification/notification-manager";
 import {DataSourceConfigPage} from "hornet-js-core/src/component/datasource/config/service/datasource-config-page";
 import {Table} from "hornet-js-react-components/src/widget/table/table";
-import {Header} from "hornet-js-react-components/src/widget/table/header";
-import {MenuActions} from "hornet-js-react-components/src/widget/table/menu-actions";
-import {ActionButton} from "hornet-js-react-components/src/widget/table/action-button";
 import {Picto} from "hornet-js-react-components/src/img/picto";
 import {Content} from "hornet-js-react-components/src/widget/table/content";
 import {Column} from "hornet-js-react-components/src/widget/table/column";
 import {Columns} from "hornet-js-react-components/src/widget/table/columns";
 import {DateColumn} from "hornet-js-react-components/src/widget/table/column/date-column";
-import {Footer} from "hornet-js-react-components/src/widget/table/footer";
-import {Pager} from "hornet-js-react-components/src/widget/pager/pager";
-import {PaginateDataSource, Pagination} from "hornet-js-core/src/component/datasource/paginate-datasource";
-import {ActionColumn} from "hornet-js-react-components/src/widget/table/column/action-column";
 import {Accordions} from "hornet-js-react-components/src/widget/accordion/accordions";
 import {Accordion} from "hornet-js-react-components/src/widget/accordion/accordion";
 import {DataSource} from "hornet-js-core/src/component/datasource/datasource";
 import {UploadFileField} from "hornet-js-react-components/src/widget/form/upload-file-field";
-import {UploadedFile} from "hornet-js-core/src/data/file";
 import {Tabs, TabsProps} from "hornet-js-react-components/src/widget/tab/tabs";
-import {Tab, TabProps} from "hornet-js-react-components/src/widget/tab/tab";
+import {Tab} from "hornet-js-react-components/src/widget/tab/tab";
 import {TabContent} from "hornet-js-react-components/src/widget/tab/tab-content";
-import {Spinner} from "hornet-js-react-components/src/widget/spinner/spinner";
 import {Icon} from "hornet-js-react-components/src/widget/icon/icon";
-import {TabHeader} from "hornet-js-react-components/src/widget/tab/tab-header";
 import {RadiosField} from "hornet-js-react-components/src/widget/form/radios-field";
 import {SelectField} from "hornet-js-react-components/src/widget/form/select-field";
 import {Alert} from "hornet-js-react-components/src/widget/dialog/alert";
 
-const logger: Logger = Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
+const logger: Logger = Utils.getLogger("projet-hornet.views.admin.fvm.fvm-recordDetails-page");
 
 export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any> {
 
@@ -103,7 +91,6 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
   }
 
   render(): JSX.Element {
-    let format = this.i18n("forms");
 
     return (
       <div>
@@ -221,9 +208,8 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
     );
   }
 
-  renderCopiePermis(file: UploadedFile): React.ReactElement<any> {
-    let format = this.i18n("forms");
-    let fileTag: React.ReactElement<any> = null;
+  renderCopiePermis(): React.ReactElement<any> {
+    let fileTag: React.ReactElement<any>;
     let urlfile: string = Utils.buildContextPath("/services/fvmrecordserver/copiePermis/"+this.dossier.copie_permis.idCopiePermis);
 
     let fileTarget = "newTabForCopiePermis" + this.attributes.idPermis;
@@ -239,9 +225,8 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
     return fileTag;
   }
 
-  renderCopieNoteVerbaleMAECI(file: UploadedFile): React.ReactElement<any> {
-    let format = this.i18n("forms");
-    let fileTag: React.ReactElement<any> = null;
+  renderCopieNoteVerbaleMAECI(): React.ReactElement<any> {
+    let fileTag: React.ReactElement<any>;
 
     let urlfile: string = Utils.buildContextPath("/services/fvmrecordserver/copieNoteVerbaleMAECI/"+this.dossier.copie_note_verbale_maeci.idCopieNoteVerbaleMAECI);
 
@@ -262,7 +247,7 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
     let format = this.i18n("forms");
 
     if(this.demandeAuthentification != null) {
-      let fileTag: React.ReactElement<any> = null;
+      let fileTag: React.ReactElement<any>;
 
       let dataForm = this.demandeAuthentification;
       dataForm["nom_responsable"] = "Zitouni";

@@ -6,7 +6,7 @@ import { EntityDAO } from "src/dao/entity-dao";
 // Classe métier de la copie d'une note verbale du MAECI
 import {CopieNoteVerbaleMAECIFVMAttributes} from "src/models/fvm/model-copienoteverbaleMAECI";
 
-const logger: Logger = Utils.getLogger("projet-hornet.src.dao.utilisateurs-dao");
+const logger: Logger = Utils.getLogger("projet-hornet.src.dao.admin.fvm.copie_note_verbale_maeci-dao");
 
 /**
  * Classe de DAO permettant l'interaction avec la table copie_note_verbale_maeci_fvm

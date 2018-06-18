@@ -5,9 +5,8 @@ import { Logger } from "hornet-js-utils/src/logger";
 import { EntityDAO } from "src/dao/entity-dao";
 // Classe métier d'une préfecture
 import {PrefectureAttributes} from "src/models/model-prefecture";
-import Map from "hornet-js-bean/src/decorators/Map";
 
-const logger: Logger = Utils.getLogger("projet-hornet.src.dao.utilisateurs-dao");
+const logger: Logger = Utils.getLogger("projet-hornet.src.dao.prefecture-dao");
 
 /**
  * Méthode permettant l'interaction avec la table prefecture

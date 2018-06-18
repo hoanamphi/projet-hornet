@@ -17,7 +17,6 @@ import {
   Notifications,
   NotificationType
 } from "hornet-js-core/src/notification/notification-manager";
-import {DataSourceConfigPage} from "hornet-js-core/src/component/datasource/config/service/datasource-config-page";
 import {Table} from "hornet-js-react-components/src/widget/table/table";
 import {Header} from "hornet-js-react-components/src/widget/table/header";
 import {MenuActions} from "hornet-js-react-components/src/widget/table/menu-actions";
@@ -29,12 +28,11 @@ import {Columns} from "hornet-js-react-components/src/widget/table/columns";
 import {DateColumn} from "hornet-js-react-components/src/widget/table/column/date-column";
 import {Footer} from "hornet-js-react-components/src/widget/table/footer";
 import {Pager} from "hornet-js-react-components/src/widget/pager/pager";
-import {PaginateDataSource, Pagination} from "hornet-js-core/src/component/datasource/paginate-datasource";
+import {PaginateDataSource} from "hornet-js-core/src/component/datasource/paginate-datasource";
 import {ActionColumn} from "hornet-js-react-components/src/widget/table/column/action-column";
 import {Icon} from "hornet-js-react-components/src/widget/icon/icon";
-import {Alert} from "hornet-js-react-components/src/widget/dialog/alert";
 
-const logger: Logger = Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
+const logger: Logger = Utils.getLogger("projet-hornet.views.admin.fvm.fvm-recordList-page");
 
 export class RecordListPage extends HornetPage<any, HornetComponentProps, any> {
 

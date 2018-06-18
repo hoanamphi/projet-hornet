@@ -6,7 +6,7 @@ import { EntityDAO } from "src/dao/entity-dao";
 // Classe métier d'une Personne
 import {PersonneFVMAttributes} from "src/models/fvm/model-personne";
 
-const logger: Logger = Utils.getLogger("projet-hornet.src.dao.utilisateurs-dao");
+const logger: Logger = Utils.getLogger("projet-hornet.src.dao.admin.fvm.personne-dao");
 
 /**
  * Classe de DAO permettant l'interaction avec la table personne_fvm

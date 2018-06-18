@@ -6,7 +6,7 @@ import { EntityDAO } from "src/dao/entity-dao";
 // Classe métier d'une demande d'authentification
 import {DemandeAuthentificationFVMAttributes} from "src/models/fvm/model-demandeauthentification";
 
-const logger: Logger = Utils.getLogger("projet-hornet.src.dao.utilisateurs-dao");
+const logger: Logger = Utils.getLogger("projet-hornet.src.dao.admin.fvm.demande_authentification-dao");
 
 /**
  * Classe de DAO permettant l'interaction avec la table demande_authentification_fvm

@@ -27,7 +27,7 @@ var pager_1 = require("hornet-js-react-components/src/widget/pager/pager");
 var paginate_datasource_1 = require("hornet-js-core/src/component/datasource/paginate-datasource");
 var action_column_1 = require("hornet-js-react-components/src/widget/table/column/action-column");
 var icon_1 = require("hornet-js-react-components/src/widget/icon/icon");
-var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
+var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.admin.fvm.fvm-recordList-page");
 var RecordListPage = /** @class */ (function (_super) {
     tslib_1.__extends(RecordListPage, _super);
     function RecordListPage(props, context) {

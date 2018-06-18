@@ -10,7 +10,7 @@ import {HornetRequest} from "hornet-js-core/src/services/hornet-superagent-reque
 // Classes métier
 import {DemandeAuthentificationFVMAttributes} from "src/models/fvm/model-demandeauthentification";
 
-const logger: Logger = Utils.getLogger("projet-hornet.services.page.admin.admin-service-impl");
+const logger: Logger = Utils.getLogger("projet-hornet.services.page.admin.fvm.page-service-impl");
 
 /**
  * Classe de service Page utilisée par les pages

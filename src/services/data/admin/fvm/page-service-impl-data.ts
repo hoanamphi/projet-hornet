@@ -21,7 +21,7 @@ import {CopiePermisFVMAttributes} from "src/models/fvm/model-copiepermis";
 import {CopieNoteVerbaleMAECIFVMAttributes} from "src/models/fvm/model-copienoteverbaleMAECI";
 import {DemandeAuthentificationFVMAttributes} from "src/models/fvm/model-demandeauthentification";
 
-const logger: Logger = Utils.getLogger("projet-hornet.services.data.admin.admin-service-impl-data");
+const logger: Logger = Utils.getLogger("projet-hornet.services.data.admin.fvm.page-service-impl-data");
 
 /**
  * Classe de service Data utilisée par les pages

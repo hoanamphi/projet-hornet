@@ -16,7 +16,7 @@ var copie_permis_dao_1 = require("src/dao/admin/fvm/copie_permis-dao");
 var prefecture_dao_1 = require("src/dao/prefecture-dao");
 var valise_dao_1 = require("src/dao/valise-dao");
 var demande_authentification_dao_1 = require("src/dao/admin/fvm/demande_authentification-dao");
-var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.services.data.admin.admin-service-impl-data");
+var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.services.data.admin.fvm.form-service-impl-data");
 /**
  * Classe de service Data utilisée par les formulaires
  * @extends {ServiceRequest}

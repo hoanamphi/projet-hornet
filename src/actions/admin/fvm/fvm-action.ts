@@ -18,7 +18,7 @@ import {CopieNoteVerbaleMAECIFVMAttributes} from "src/models/fvm/model-copienote
 import {DemandeAuthentificationFVMAttributes} from "src/models/fvm/model-demandeauthentification";
 import {ValiseAttributes} from "src/models/model-valise";
 
-const logger: Logger = Utils.getLogger("projet-hornet.actions.admin.fvm_actions");
+const logger: Logger = Utils.getLogger("projet-hornet.actions.admin.fvm.fvm_action");
 
 /**
  * Classe d'action gérant l'insertion d'un nouveau dossier dans la base

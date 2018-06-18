@@ -9,7 +9,7 @@ var result_file_1 = require("hornet-js-core/src/result/result-file");
 var result_pdf_1 = require("hornet-js-core/src/result/result-pdf");
 var media_type_1 = require("hornet-js-core/src/protocol/media-type");
 var disposition_type_1 = require("hornet-js-core/src/result/disposition-type");
-var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.actions.admin.fvm_actions");
+var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.actions.admin.fvm.fvm_action");
 /**
  * Classe d'action gérant l'insertion d'un nouveau dossier dans la base
  * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>

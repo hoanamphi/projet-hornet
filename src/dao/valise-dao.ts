@@ -5,9 +5,8 @@ import { Logger } from "hornet-js-utils/src/logger";
 import { EntityDAO } from "src/dao/entity-dao";
 // Classe métier d'une valise diplomatique
 import {ValiseAttributes} from "src/models/model-valise";
-import Map from "hornet-js-bean/src/decorators/Map";
 
-const logger: Logger = Utils.getLogger("projet-hornet.src.dao.utilisateurs-dao");
+const logger: Logger = Utils.getLogger("projet-hornet.src.dao.valise-dao");
 
 /**
  * Classe de DAO permettant d'interagir avec la table valise

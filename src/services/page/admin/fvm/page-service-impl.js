@@ -4,7 +4,7 @@ var tslib_1 = require("tslib");
 var hornet_js_utils_1 = require("hornet-js-utils");
 // Classe parente des Classe de service PAGE
 var service_page_1 = require("hornet-js-core/src/services/service-page");
-var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.services.page.admin.admin-service-impl");
+var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.services.page.admin.fvm.page-service-impl");
 /**
  * Classe de service Page utilisée par les pages
  * @extends {ServicePage}

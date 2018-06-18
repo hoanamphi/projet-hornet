@@ -20,7 +20,7 @@ import {DemandeAuthentificationFVMDAO} from "src/dao/admin/fvm/demande_authentif
 // Classes métier
 import {ValiseAttributes} from "src/models/model-valise";
 
-const logger: Logger = Utils.getLogger("projet-hornet.services.data.admin.admin-service-impl-data");
+const logger: Logger = Utils.getLogger("projet-hornet.services.data.admin.fvm.form-service-impl-data");
 
 /**
  * Classe de service Data utilisée par les formulaires

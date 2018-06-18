@@ -4,7 +4,7 @@ var tslib_1 = require("tslib");
 var hornet_js_utils_1 = require("hornet-js-utils");
 // Classe parents des Classes de DAO
 var entity_dao_1 = require("src/dao/entity-dao");
-var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.src.dao.utilisateurs-dao");
+var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.src.dao.valise-dao");
 /**
  * Classe de DAO permettant d'interagir avec la table valise
  * @extends {EntityDAO}

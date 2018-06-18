@@ -30,7 +30,7 @@ var icon_1 = require("hornet-js-react-components/src/widget/icon/icon");
 var radios_field_1 = require("hornet-js-react-components/src/widget/form/radios-field");
 var select_field_1 = require("hornet-js-react-components/src/widget/form/select-field");
 var alert_1 = require("hornet-js-react-components/src/widget/dialog/alert");
-var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
+var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.admin.fvm.fvm-recordDetails-page");
 var RecordDetailsPage = /** @class */ (function (_super) {
     tslib_1.__extends(RecordDetailsPage, _super);
     function RecordDetailsPage(props, context) {
@@ -73,7 +73,6 @@ var RecordDetailsPage = /** @class */ (function (_super) {
     };
     RecordDetailsPage.prototype.render = function () {
         var _this = this;
-        var format = this.i18n("forms");
         return (React.createElement("div", null,
             React.createElement(icon_1.Icon, { src: picto_1.Picto.blue.previous, alt: "Retourner \u00E0 la page de s\u00E9lection", title: "Retourner \u00E0 la page de s\u00E9lection", action: this.retourPage }),
             React.createElement(tabs_1.Tabs, { ref: function (tabs) {
@@ -123,9 +122,8 @@ var RecordDetailsPage = /** @class */ (function (_super) {
                             React.createElement(upload_file_field_1.UploadFileField, { name: "copie_permis", readOnly: true, label: format.fields.copie_permis.label, renderPreviewFile: this.renderCopiePermis, buttonLabel: format.fields.copie_permis.buttonLabel, fileSelectedLabel: format.fields.copie_permis.fileSelectedLabel }),
                             React.createElement(upload_file_field_1.UploadFileField, { name: "copie_note_verbale_maeci", readOnly: true, label: format.fields.copie_note_verbale_maeci.label, renderPreviewFile: this.renderCopieNoteVerbaleMAECI, buttonLabel: format.fields.copie_note_verbale_maeci.buttonLabel, fileSelectedLabel: format.fields.copie_note_verbale_maeci.fileSelectedLabel })))))));
     };
-    RecordDetailsPage.prototype.renderCopiePermis = function (file) {
-        var format = this.i18n("forms");
-        var fileTag = null;
+    RecordDetailsPage.prototype.renderCopiePermis = function () {
+        var fileTag;
         var urlfile = hornet_js_utils_1.Utils.buildContextPath("/services/fvmrecordserver/copiePermis/" + this.dossier.copie_permis.idCopiePermis);
         var fileTarget = "newTabForCopiePermis" + this.attributes.idPermis;
         fileTag =
@@ -134,9 +132,8 @@ var RecordDetailsPage = /** @class */ (function (_super) {
                     React.createElement("a", { href: urlfile, "data-pass-thru": "true", target: fileTarget }, this.dossier.copie_permis.nom)));
         return fileTag;
     };
-    RecordDetailsPage.prototype.renderCopieNoteVerbaleMAECI = function (file) {
-        var format = this.i18n("forms");
-        var fileTag = null;
+    RecordDetailsPage.prototype.renderCopieNoteVerbaleMAECI = function () {
+        var fileTag;
         var urlfile = hornet_js_utils_1.Utils.buildContextPath("/services/fvmrecordserver/copieNoteVerbaleMAECI/" + this.dossier.copie_note_verbale_maeci.idCopieNoteVerbaleMAECI);
         var fileTarget = "newTabForCopieNoteVerbaleMAECI" + this.attributes.idPermis;
         fileTag =
@@ -149,7 +146,7 @@ var RecordDetailsPage = /** @class */ (function (_super) {
         var _this = this;
         var format = this.i18n("forms");
         if (this.demandeAuthentification != null) {
-            var fileTag = null;
+            var fileTag = void 0;
             var dataForm = this.demandeAuthentification;
             dataForm["nom_responsable"] = "Zitouni";
             dataForm["prenom_responsable"] = "Samah";

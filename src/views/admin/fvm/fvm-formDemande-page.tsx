@@ -34,24 +34,37 @@ import {ActionButton} from "hornet-js-react-components/src/widget/table/action-b
 import {Modal} from "hornet-js-react-components/src/widget/dialog/modal";
 import {ActionColumn} from "hornet-js-react-components/src/widget/table/column/action-column";
 
-const logger: Logger = Utils.getLogger("projet-hornet.views.admin.gen-form1-page");
+const logger: Logger = Utils.getLogger("projet-hornet.views.admin.fvm.fvm-formDemande-page");
 
+/**
+ * Page de formulaire permettant de créer une demande d'authentification
+ * @extends {HornetPage<FormService, HornetComponentProps, any>} Classe générique : <Interface de la Classe de service, Props de la page, Context>
+ */
 export class FormulaireDemandeAuthentificationPage extends HornetPage<FormService, HornetComponentProps, any> {
 
-  private valise;
+  private listeValiseDataSource: DataSource<any>;
 
-  private errors;
-  private SequelizeErrors;
-  private success;
-  private SequelizeSuccess;
+  // Objets permettant l'affichage d'erreurs
+  private errors: Notifications;
+  private SequelizeErrors: NotificationType;
+  // Objets permettant l'affichage de messages
+  private success: Notifications;
+  private SequelizeSuccess: NotificationType;
 
-  private modal: Modal;
-  private input = new InputField();
+  // Popin permettant de créer une valise diplomatique
+  private formValiseModal: Modal;
+  // InputField contenant le numéro de la valise de la demande d'authentification
+  private numValiseInput = new InputField();
 
+  /**
+   * @constructor
+   * @param {module:hornet-js-components/src/component/ihornet-component.HornetComponentProps} props
+   * @param context
+   */
   constructor(props?: HornetComponentProps, context?: any) {
     super(props, context);
 
-    this.valise = new DataSource<any> (new DataSourceConfigPage(this, this.getService().getListeValise), {}, );
+    this.listeValiseDataSource = new DataSource<any> (new DataSourceConfigPage(this, this.getService().getListeValise), {}, );
 
     this.errors =  new Notifications();
     this.SequelizeErrors = new NotificationType();
@@ -65,8 +78,11 @@ export class FormulaireDemandeAuthentificationPage extends HornetPage<FormServic
     this.success.addNotification(this.SequelizeSuccess);
   }
 
+  /**
+   * Méthode permettant d'effectuer les appels d'API. Elle est appelée au moment où la Page est montée.
+   */
   prepareClient(): void {
-    this.valise.fetch(true);
+    this.listeValiseDataSource.fetch(true);
   }
 
   onSubmit(data: any) {
@@ -99,8 +115,8 @@ export class FormulaireDemandeAuthentificationPage extends HornetPage<FormServic
         <Notification id="notif"/>
 
         <Modal ref={(modal)=>{
-          this.modal = modal;
-        }} onClickClose={()=>{this.modal.close();this.valise.fetch(true);}}>
+          this.formValiseModal = modal;
+        }} onClickClose={()=>{this.formValiseModal.close();this.listeValiseDataSource.fetch(true);}}>
           <div>
             <Form
               id="formValise"
@@ -137,7 +153,7 @@ export class FormulaireDemandeAuthentificationPage extends HornetPage<FormServic
                             action={this.ajouterValise} priority={true}/>
             </MenuActions>
           </Header>
-          <Content dataSource={this.valise}>
+          <Content dataSource={this.listeValiseDataSource}>
             <Columns>
               <Column keyColumn="numValise"
                       title={format.fields.num_valise.label}
@@ -160,7 +176,7 @@ export class FormulaireDemandeAuthentificationPage extends HornetPage<FormServic
           onSubmit={this.onSubmit}
         >
           <Row>
-            <InputField name="num_valise" ref={(input)=> {this.input = input;}}
+            <InputField name="num_valise" ref={(input)=> {this.numValiseInput = input;}}
                         label={format.fields.num_valise.label}
                         required={true}/>
           </Row>
@@ -180,11 +196,11 @@ export class FormulaireDemandeAuthentificationPage extends HornetPage<FormServic
   }
 
   ajouterValise() {
-    this.modal.open();
+    this.formValiseModal.open();
   }
 
   remplirForm(lineSelected) {
-    this.input.setCurrentValue(lineSelected.numValise);
+    this.numValiseInput.setCurrentValue(lineSelected.numValise);
   }
 
   submitValise(data: any) {

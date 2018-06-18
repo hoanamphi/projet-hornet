@@ -4,7 +4,7 @@ var tslib_1 = require("tslib");
 var hornet_js_utils_1 = require("hornet-js-utils");
 // Classe parente des Classes de DAO
 var entity_dao_1 = require("src/dao/entity-dao");
-var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.src.dao.utilisateurs-dao");
+var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.src.dao.admin.fvm.copie_permis-dao");
 /**
  * Classe de DAO permettant l'interaction avec la table copie_permis_fvm
  * @extends {EntityDAO}

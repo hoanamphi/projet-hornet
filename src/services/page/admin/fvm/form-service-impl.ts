@@ -9,7 +9,7 @@ import { FormService } from "src/services/page/admin/fvm/form-service";
 import {HornetRequest} from "hornet-js-core/src/services/hornet-superagent-request";
 import {ValiseAttributes} from "src/models/model-valise";
 
-const logger: Logger = Utils.getLogger("projet-hornet.services.page.admin.admin-service-impl");
+const logger: Logger = Utils.getLogger("projet-hornet.services.page.admin.fvm.form-service-impl");
 
 /**
  * Classe de service Page utilisée par les formulaires
