@@ -204,7 +204,7 @@ var ListValise = /** @class */ (function (_super) {
     }
     /**
      * Méthode retournant la liste des valises stockées dans la base de donénes
-     * @returns {Promise<Array<ValiseMetier>>} Liste des valises stockées dans la base
+     * @returns {Promise<Array<ValiseAttributes>>} Liste des valises stockées dans la base
      */
     ListValise.prototype.execute = function () {
         logger.trace("ACTION list - FormDemandeAuthentificationFVMAction.ListValise");
@@ -269,7 +269,7 @@ var GetDemandeAuthentification = /** @class */ (function (_super) {
     }
     /**
      * Méthode retournant la demande d'authentification correspondant aux attributs donnés en entrée
-     * @returns {Promise<DemandeAuthentificationFVMMetier>} Demande d'authentification correspondant aux attributs donnés en entrée
+     * @returns {Promise<DemandeAuthentificationFVMAttributes>} Demande d'authentification correspondant aux attributs donnés en entrée
      */
     GetDemandeAuthentification.prototype.execute = function () {
         logger.trace("ACTION list - RecordDetailsFVMAction.GetDemandeAuthentification");
@@ -415,7 +415,7 @@ var GetPDFDemandeAuthentification = /** @class */ (function (_super) {
                                         { text: "AMBASSADE DE FRANCE AU MAROC", bold: true, fontSize: 11 },
                                         { text: "__________", margin: [0, 0, 0, 30] },
                                         { text: "SERVICE COMMUN DE GESTION", margin: [0, 0, 0, 10], bold: true, italics: true, fontSize: 9 },
-                                        { text: "N°" + demandeAuthentification.num_demande_authentification + "/SCG", margin: [0, 0, 0, 30], fontSize: 10 },
+                                        { text: "N°" + demandeAuthentification.numDemandeAuthentification + "/SCG", margin: [0, 0, 0, 30], fontSize: 10 },
                                     ],
                                     alignment: "center"
                                 },

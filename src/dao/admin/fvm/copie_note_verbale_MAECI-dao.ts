@@ -4,8 +4,7 @@ import { Logger } from "hornet-js-utils/src/logger";
 // Classe parente des Classes de DAO
 import { EntityDAO } from "src/dao/entity-dao";
 // Classe métier de la copie d'une note verbale du MAECI
-import {CopieNoteVerbaleMAECIFVMMetier} from "src/models/fvm/fvm-mod";
-import Map from "hornet-js-bean/src/decorators/Map";
+import {CopieNoteVerbaleMAECIFVMAttributes} from "src/models/fvm/model-copienoteverbaleMAECI";
 
 const logger: Logger = Utils.getLogger("projet-hornet.src.dao.utilisateurs-dao");
 
@@ -85,10 +84,9 @@ export class CopieNoteVerbaleMAECIFVMDao extends EntityDAO {
   /**
    * Méthode retournant une copie d'une note verbale du MAECI
    * @param {number} idCopieNoteVerbaleMAECI id du tuple à retourner
-   * @returns {Promise<CopieNoteVerbaleMAECIFVMMetier>} Copie d'une note verbale du MAECI
+   * @returns {Promise<CopieNoteVerbaleMAECIFVMAttributes>} Copie d'une note verbale du MAECI
    */
-  @Map(CopieNoteVerbaleMAECIFVMMetier)
-  getCopieNoteVerbaleMAECI(idCopieNoteVerbaleMAECI: number): Promise<CopieNoteVerbaleMAECIFVMMetier> {
+  getCopieNoteVerbaleMAECI(idCopieNoteVerbaleMAECI: number): Promise<CopieNoteVerbaleMAECIFVMAttributes> {
     logger.trace("DAO get - CopieNoteVerbaleMAECIDAO.Get");
 
     return this.modelDAO.copieNoteVerbaleMAECIFVMEntity.find({

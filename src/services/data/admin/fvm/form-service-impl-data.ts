@@ -17,7 +17,8 @@ import {CopiePermisFVMDao} from "src/dao/admin/fvm/copie_permis-dao";
 import {PrefectureDAO} from "src/dao/prefecture-dao";
 import {ValiseDAO} from "src/dao/valise-dao";
 import {DemandeAuthentificationFVMDAO} from "src/dao/admin/fvm/demande_authentification-dao";
-import {ValiseMetier} from "src/models/common-mod";
+// Classes métier
+import {ValiseAttributes} from "src/models/model-valise";
 
 const logger: Logger = Utils.getLogger("projet-hornet.services.data.admin.admin-service-impl-data");
 
@@ -121,7 +122,7 @@ export class FormServiceImpl extends ServiceRequest implements FormService {
       return this.demandeAuthentificationDAO.getNewIdDemandeAuthentification().then(idDemandeAuthentification=> {
 
         // Insérer la demande d'authentification
-        return this.demandeAuthentificationDAO.insererDemandeAuthentification(idDemandeAuthentification, data.num_demande_authentification, data.id_permis, data.num_valise, valise.date_valise);
+        return this.demandeAuthentificationDAO.insererDemandeAuthentification(idDemandeAuthentification, data.num_demande_authentification, data.id_permis, data.num_valise, new Date(valise.dateValise.toString()));
       });
     }).catch(error=>{
       // Si une erreur est capturée
@@ -164,11 +165,19 @@ export class FormServiceImpl extends ServiceRequest implements FormService {
 
   /**
    * Méthode retournant la liste des valises stockées dans la base
-   * @returns {Promise<Array<ValiseMetier>>} Liste des valises stockées dans la base
+   * @returns {Promise<Array<ValiseAttributes>>} Liste des valises stockées dans la base
    */
-  getListeValise(): Promise<Array<ValiseMetier>>{
+  getListeValise(): Promise<Array<ValiseAttributes>>{
     logger.trace("SERVICE DATA get - FormService.GetListValise");
 
-    return this.valiseDAO.getListeValise();
+    return this.valiseDAO.getListeValise().then(valiseList=> {
+      let tmp = [];
+
+      valiseList.forEach(valise=> {
+        tmp.push({numValise: valise.numValise, dateValise: Date.parse(valise.dateValise.toString())});
+      });
+
+      return tmp;
+    });
   }
 }

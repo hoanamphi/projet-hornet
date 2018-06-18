@@ -4,8 +4,7 @@ import { Logger } from "hornet-js-utils/src/logger";
 // Classe parent des Classes de DAO
 import { EntityDAO } from "src/dao/entity-dao";
 // Classe métier d'une demande d'authentification
-import {DemandeAuthentificationFVMMetier} from "src/models/fvm/fvm-mod";
-import Map from "hornet-js-bean/src/decorators/Map";
+import {DemandeAuthentificationFVMAttributes} from "src/models/fvm/model-demandeauthentification";
 
 const logger: Logger = Utils.getLogger("projet-hornet.src.dao.utilisateurs-dao");
 
@@ -85,10 +84,9 @@ export class DemandeAuthentificationFVMDAO extends EntityDAO {
   /**
    * Méthode retournant une demande d'authentification
    * @param {number} idPermis id du Permis auquel appartient le tuple
-   * @returns {Promise<DemandeAuthentificationFVMMetier>} Demande d'authentification
+   * @returns {Promise<DemandeAuthentificationFVMAttributes>} Demande d'authentification
    */
-  @Map(DemandeAuthentificationFVMMetier)
-  getDemandeAuthentificationFromPermis(idPermis: number): Promise<DemandeAuthentificationFVMMetier> {
+  getDemandeAuthentificationFromPermis(idPermis: number): Promise<DemandeAuthentificationFVMAttributes> {
     logger.trace("DAO get - DemandeAuthentification.Get");
 
     return this.modelDAO.demandeAuthenthificationFVMEntity.find({

@@ -7,7 +7,7 @@ import { ServicePage } from "hornet-js-core/src/services/service-page";
 import { FormService } from "src/services/page/admin/fvm/form-service";
 // Classe permettant d'effectuer des requêtes HTTP sur le serveur
 import {HornetRequest} from "hornet-js-core/src/services/hornet-superagent-request";
-import {ValiseMetier} from "../../../../models/common-mod";
+import {ValiseAttributes} from "src/models/model-valise";
 
 const logger: Logger = Utils.getLogger("projet-hornet.services.page.admin.admin-service-impl");
 
@@ -24,7 +24,7 @@ export class FormServiceImpl extends ServicePage implements FormService {
    * @returns {Promise<any>}
    */
   insererDossier(data: any): Promise<any> {
-    logger.trace("SERVICE PAGE inser - PageService.InserDossier");
+    logger.trace("SERVICE PAGE inser - FormService.InserDossier");
 
     let request: HornetRequest = {
       method: "post",
@@ -46,7 +46,7 @@ export class FormServiceImpl extends ServicePage implements FormService {
    * @returns {Promise<any>}
    */
   insererDemandeAuthentification(data: {num_valise: number, num_demande_authentification: any, id_permis: number}): Promise<any> {
-    logger.trace("SERVICE PAGE inser - PageService.InserDemandeAuthentification");
+    logger.trace("SERVICE PAGE inser - FormService.InserDemandeAuthentification");
 
     let request: HornetRequest = {
       method: "post",
@@ -63,7 +63,7 @@ export class FormServiceImpl extends ServicePage implements FormService {
    * @returns {Promise<any>}
    */
   insererValise(data: {num_valise: number, date_valise: Date}): Promise<any> {
-    logger.trace("SERVICE PAGE inser - PageService.InserValise");
+    logger.trace("SERVICE PAGE inser - FormService.InserValise");
 
     let request: HornetRequest = {
       method: "post",
@@ -79,7 +79,7 @@ export class FormServiceImpl extends ServicePage implements FormService {
    * @returns {Promise<Array<{idPrefecture: number, prefecture: string}>>} Liste des préfectures stockées dans la base
    */
   getListePrefecture(): Promise<Array<{idPrefecture: number, prefecture: string}>> {
-    logger.trace("SERVICE PAGE get - PageService.GetListPrefecture");
+    logger.trace("SERVICE PAGE get - FormService.GetListPrefecture");
 
     let request: HornetRequest = {
       method: "post",
@@ -91,10 +91,10 @@ export class FormServiceImpl extends ServicePage implements FormService {
 
   /**
    * Méthode effectuant une requête HTTP permettant la récupération de la liste des valises stockées dans la base
-   * @returns {Promise<Array<ValiseMetier>>} Liste des valises stockées dans la base
+   * @returns {Promise<Array<ValiseAttributes>>} Liste des valises stockées dans la base
    */
-  getListeValise(): Promise<Array<ValiseMetier>> {
-    logger.trace("SERVICE PAGE get - PageService.GetListValise");
+  getListeValise(): Promise<Array<ValiseAttributes>> {
+    logger.trace("SERVICE PAGE get - FormService.GetListValise");
 
     let request: HornetRequest = {
       method: "post",

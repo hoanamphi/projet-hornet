@@ -4,6 +4,9 @@ var tslib_1 = require("tslib");
 var hornet_js_utils_1 = require("hornet-js-utils");
 // Classe parente des Classes de service DATA
 var service_request_1 = require("hornet-js-core/src/services/service-request");
+// Décorateur permettant d'effectuer des transactions sur la base de données
+var dec_transactional_1 = require("hornet-js-database/src/decorators/dec-transactional");
+var injector_1 = require("hornet-js-core/src/inject/injector");
 // Classes de DAO
 var personne_dao_1 = require("src/dao/admin/fvm/personne-dao");
 var copie_note_verbale_MAECI_dao_1 = require("src/dao/admin/fvm/copie_note_verbale_MAECI-dao");
@@ -79,7 +82,7 @@ var PageServiceImpl = /** @class */ (function (_super) {
             // Si une demande d'authentification a été générée pour ce permis
             if (demandeAuthentification_value != null) {
                 // Supprimer la demande d'authentification
-                var deleteDemandeAuthentification = _this.demandeAuthentificationDAO.deleteDemandeAuthentification(demandeAuthentification_value.id_demande_authentification_fvm);
+                var deleteDemandeAuthentification = _this.demandeAuthentificationDAO.deleteDemandeAuthentification(demandeAuthentification_value.idDemandeAuthentification);
                 return Promise.all([deleteCopieNoteVerbaleMAECI, deleteDossier, deletePersonne, deleteCopiePermis, deleteDemandeAuthentification, deletePermis]);
             }
             else {
@@ -155,18 +158,18 @@ var PageServiceImpl = /** @class */ (function (_super) {
         // Récupérer les informations d'un permis de conduire
         return this.permisDAO.getPermis(idPermis).then(function (permis) {
             var result = {};
-            result["numPermis"] = permis.num_permis;
-            result["dateDeDelivrance"] = permis.date_de_delivrance;
+            result["numPermis"] = permis.numPermis;
+            result["dateDeDelivrance"] = Date.parse(permis.dateDeDelivrance.toString());
             /* Récupérer les informations relatives à un permis :
                 Copie du permis de conduire
                 Personne à qui appartient le permis
                 Dossier concerné par le permis
                 Préfecture ayant délivré le permis
             */
-            var copie_permis = _this.copiePermisDAO.getCopiePermis(permis.id_copie_permis_fvm);
-            var personne = _this.personneDAO.getPersonne(permis.id_personne_fvm);
-            var dossier = _this.dossierDAO.getDossier(permis.id_dossier_fvm);
-            var prefecture_delivrance = _this.prefectureDAO.getPrefecture(permis.id_prefecture_delivrance);
+            var copie_permis = _this.copiePermisDAO.getCopiePermis(permis.idCopiePermis);
+            var personne = _this.personneDAO.getPersonne(permis.idPersonne);
+            var dossier = _this.dossierDAO.getDossier(permis.idDossier);
+            var prefecture_delivrance = _this.prefectureDAO.getPrefecture(permis.idPrefectureDelivrance);
             return Promise.all([copie_permis, personne, dossier, prefecture_delivrance]).then(function (values) {
                 var copie_permis_value = values[0];
                 var personne_value = values[1];
@@ -176,19 +179,19 @@ var PageServiceImpl = /** @class */ (function (_super) {
                 result["copie_permis"] = copie_permis_value;
                 result["nom"] = personne_value.nom;
                 result["prenom"] = personne_value.prenom;
-                result["dateDeNaissance"] = personne_value.date_de_naissance;
+                result["dateDeNaissance"] = Date.parse(personne_value.dateDeNaissance.toString());
                 result["sexe"] = personne_value.titre;
-                result["villeDeNaissance"] = personne_value.ville_de_naissance;
-                result["paysDeNaissance"] = personne_value.pays_de_naissance;
+                result["villeDeNaissance"] = personne_value.villeDeNaissance;
+                result["paysDeNaissance"] = personne_value.paysDeNaissance;
                 result["region"] = prefecture_value.region;
                 result["departement"] = prefecture_value.departement;
                 result["prefecture"] = prefecture_value.prefecture;
                 result["adresse"] = prefecture_value.adresse;
-                result["codePostal"] = prefecture_value.code_postal;
+                result["codePostal"] = prefecture_value.codePostal;
                 result["ville"] = prefecture_value.ville;
-                result["dateReceptionDossier"] = dossier_value.date_reception_dossier;
+                result["dateReceptionDossier"] = Date.parse(dossier_value.dateReceptionDossier.toString());
                 // Récupérer la copie de la note verbale du MAECI
-                return _this.copieNoteVerbaleMAECIDAO.getCopieNoteVerbaleMAECI(dossier_value.id_copie_note_verbale_maeci_fvm).then(function (values) {
+                return _this.copieNoteVerbaleMAECIDAO.getCopieNoteVerbaleMAECI(dossier_value.idCopieNoteVerbaleMAECI).then(function (values) {
                     // Concaténer la copie aux autres informations relatives à un permis
                     result["copie_note_verbale_maeci"] = values;
                     return [result];
@@ -199,7 +202,7 @@ var PageServiceImpl = /** @class */ (function (_super) {
     /**
      * Méthode retournant une demande d'authentification
      * @param {{idPermis: number}} data id du Permis concerné par la demande d'authentification
-     * @returns {Promise<DemandeAuthentificationFVMMetier>} Demande d'authentification
+     * @returns {Promise<DemandeAuthentificationFVMAttributes>} Demande d'authentification
      */
     PageServiceImpl.prototype.getDemandeAuthentification = function (data) {
         logger.trace("SERVICE DATA get - PageService.GetDemandeAuthentification");
@@ -221,7 +224,7 @@ var PageServiceImpl = /** @class */ (function (_super) {
     /**
      * Méthode retournant la copie d'un permis de conduire
      * @param {number} idCopiePermis id de la copie du permis de conduire
-     * @returns {Promise<CopiePermisFVMMetier>} Copie d'un permis de conduire
+     * @returns {Promise<CopiePermisFVMAttributes>} Copie d'un permis de conduire
      */
     PageServiceImpl.prototype.getCopiePermis = function (idCopiePermis) {
         logger.trace("SERVICE DATA get - PageService.GetCopiePermis");
@@ -230,7 +233,7 @@ var PageServiceImpl = /** @class */ (function (_super) {
     /**
      * Méthode retournant la copie d'une note verbale du MAECI
      * @param {number} idCopieNoteVerbaleMAECI id de la copie de la note verbale du MAECI
-     * @returns {Promise<CopieNoteVerbaleMAECIFVMMetier>} Copie d'une note verbale du MAECI
+     * @returns {Promise<CopieNoteVerbaleMAECIFVMAttributes>} Copie d'une note verbale du MAECI
      */
     PageServiceImpl.prototype.getCopieNoteVerbaleMAECI = function (idCopieNoteVerbaleMAECI) {
         logger.trace("SERVICE DATA get - PageService.GetCopieNoteVerbaleMAECI");
@@ -239,7 +242,7 @@ var PageServiceImpl = /** @class */ (function (_super) {
     /**
      * Méthode retournant les informations nécessaires à la génération d'une demande d'authentification en PDF
      * @param {number} idPermis id du Permis concerné par la demande d'authentification
-     * @returns {Promise<{dossier: any, demande_authentification: any}>} Informations de la demande d'authentification
+     * @returns {Promise<{dossier: any, demande_authentification: DemandeAuthentificationFVMAttributes}>} Informations de la demande d'authentification
      */
     PageServiceImpl.prototype.getPDFDemandeAuthentification = function (idPermis) {
         var _this = this;
@@ -248,7 +251,7 @@ var PageServiceImpl = /** @class */ (function (_super) {
         var result = { dossier: null, demandeAuthentification: null };
         // Récupérer les informations d'un dossier
         return this.getDossier({ "idPermis": idPermis }).then(function (dossier) {
-            result["dossier"] = dossier;
+            result["dossier"] = dossier[0];
             // Récupérer la demande d'authentification
             return _this.demandeAuthentificationDAO.getDemandeAuthentificationFromPermis(idPermis).then(function (demandeAuthentification) {
                 result["demandeAuthentification"] = demandeAuthentification;
@@ -256,6 +259,12 @@ var PageServiceImpl = /** @class */ (function (_super) {
             });
         });
     };
+    tslib_1.__decorate([
+        dec_transactional_1.Transactional({ configDatabase: injector_1.Injector.getRegistered("databaseConfigName") }),
+        tslib_1.__metadata("design:type", Function),
+        tslib_1.__metadata("design:paramtypes", [Object]),
+        tslib_1.__metadata("design:returntype", Promise)
+    ], PageServiceImpl.prototype, "deleteDossier", null);
     return PageServiceImpl;
 }(service_request_1.ServiceRequest));
 exports.PageServiceImpl = PageServiceImpl;

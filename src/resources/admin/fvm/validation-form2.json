@@ -23,19 +23,18 @@
   },
 
   "definition": {
-    // Un nom propre ne peux contenir que des lettres latines et éventuellement des tirets
-    "nom_propre": {
-      "type": "string",
-      "pattern": "^([a-zA-ZÀ-ÿ]+[-]{0,2}[a-zA-ZÀ-ÿ]+ ?)*$"
-    },
     // Le numéro d'un document contient des caractères non espacés
     "numero": {
       "type": "string",
       "pattern": "^[^ ]*$"
     },
+    "nombre": {
+      "type": "number"
+    },
     "date": {
       "type": "Date",
       "format": "date"
     }
+
   }
 }

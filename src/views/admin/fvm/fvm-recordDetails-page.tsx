@@ -54,8 +54,6 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
   private dossier;
   private demandeauthentificationDatasource;
   private demandeAuthentification;
-  private releveDatasource;
-  private noteverbaleDatasource;
 
   private errors;
   private SequelizeErrors;
@@ -97,8 +95,8 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
       this.tabs.showPanel(1);
       this.demandeauthentificationDatasource.fetch(true, this.attributes);
     });
-    this.demandeauthentificationDatasource.on("fetch", (Result)=>{
-      this.demandeAuthentification = Result;
+    this.demandeauthentificationDatasource.on("fetch", result=>{
+      this.demandeAuthentification = result[0];
       this.tabs.removeElementsByIndex(2);
       this.tabs.addElements(2, this.renderDemandeAuthentificationTab());
     });
@@ -263,10 +261,10 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
   renderDemandeAuthentificationTab(): JSX.Element {
     let format = this.i18n("forms");
 
-    if(this.demandeAuthentification.length > 0) {
+    if(this.demandeAuthentification != null) {
       let fileTag: React.ReactElement<any> = null;
 
-      let dataForm = this.demandeAuthentification[0];
+      let dataForm = this.demandeAuthentification;
       dataForm["nom_responsable"] = "Zitouni";
       dataForm["prenom_responsable"] = "Samah";
       dataForm["intitule_prefecture"] = "Préfecture de ";
@@ -367,7 +365,7 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
   }
 
   supprimerDemande() {
-    this.getService().deleteDemandeAuthentification(this.demandeAuthentification[0].idDemandeAuthentification).then(result=> {
+    this.getService().deleteDemandeAuthentification({idDemandeAuthentification: this.demandeAuthentification.idDemandeAuthentification}).then(result=> {
       if(result.hasError != null){
         console.error(result.hasReason);
         console.error(result.hasError);

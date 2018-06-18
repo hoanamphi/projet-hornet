@@ -4,7 +4,7 @@ import { Logger } from "hornet-js-utils/src/logger";
 // Classe parents des Classes de DAO
 import { EntityDAO } from "src/dao/entity-dao";
 // Classe métier d'une valise diplomatique
-import {ValiseMetier} from "src/models/common-mod";
+import {ValiseAttributes} from "src/models/model-valise";
 import Map from "hornet-js-bean/src/decorators/Map";
 
 const logger: Logger = Utils.getLogger("projet-hornet.src.dao.utilisateurs-dao");
@@ -41,10 +41,9 @@ export class ValiseDAO extends EntityDAO {
 
   /**
    * Méthode retournant la liste des valises diplomatiques stockées dans la base
-   * @returns {Promise<Array<ValiseMetier>>} Liste des valises diplomatiques stockées dans la base
+   * @returns {Promise<Array<ValiseAttributes>>} Liste des valises diplomatiques stockées dans la base
    */
-  @Map(ValiseMetier)
-  getListeValise(): Promise<Array<ValiseMetier>> {
+  getListeValise(): Promise<Array<ValiseAttributes>> {
     logger.trace("DAO get - Valise.GetListe");
 
     return this.modelDAO.valiseEntity.findAll();
@@ -52,10 +51,9 @@ export class ValiseDAO extends EntityDAO {
 
   /**
    * Méthode retournant la liste des valises diplomatiques récentes stockées dans la base
-   * @returns {Promise<Array<ValiseMetier>>} Liste des valises diplomatiques récentes stockées dans la base (Date de la valise > Date du jour + 1)
+   * @returns {Promise<Array<ValiseAttributes>>} Liste des valises diplomatiques récentes stockées dans la base (Date de la valise > Date du jour + 1)
    */
-  @Map(ValiseMetier)
-  getListeValiseRecent(): Promise<Array<ValiseMetier>> {
+  getListeValiseRecent(): Promise<Array<ValiseAttributes>> {
     logger.trace("DAO get - Valise.GetListeRecent");
 
     return this.modelDAO.valiseEntity.findAll({
@@ -71,10 +69,9 @@ export class ValiseDAO extends EntityDAO {
   /**
    * Méthode retournant une valise diplomatique
    * @param {number} numValise numéro de la valise diplomatique à retourner
-   * @returns {Promise<ValiseMetier>} Valise
+   * @returns {Promise<ValiseAttributes>} Valise
    */
-  @Map(ValiseMetier)
-  getValise(numValise: number): Promise<ValiseMetier> {
+  getValise(numValise: number): Promise<ValiseAttributes> {
     logger.trace("DAO get - Valise.Get");
 
     return this.modelDAO.valiseEntity.find({

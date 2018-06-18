@@ -21,7 +21,7 @@ var FormServiceImpl = /** @class */ (function (_super) {
      * @returns {Promise<any>}
      */
     FormServiceImpl.prototype.insererDossier = function (data) {
-        logger.trace("SERVICE PAGE inser - PageService.InserDossier");
+        logger.trace("SERVICE PAGE inser - FormService.InserDossier");
         var request = {
             method: "post",
             url: this.buildUrl("/fvmform1server"),
@@ -39,7 +39,7 @@ var FormServiceImpl = /** @class */ (function (_super) {
      * @returns {Promise<any>}
      */
     FormServiceImpl.prototype.insererDemandeAuthentification = function (data) {
-        logger.trace("SERVICE PAGE inser - PageService.InserDemandeAuthentification");
+        logger.trace("SERVICE PAGE inser - FormService.InserDemandeAuthentification");
         var request = {
             method: "post",
             url: this.buildUrl("/fvmform2server"),
@@ -53,7 +53,7 @@ var FormServiceImpl = /** @class */ (function (_super) {
      * @returns {Promise<any>}
      */
     FormServiceImpl.prototype.insererValise = function (data) {
-        logger.trace("SERVICE PAGE inser - PageService.InserValise");
+        logger.trace("SERVICE PAGE inser - FormService.InserValise");
         var request = {
             method: "post",
             url: this.buildUrl("/fvmform2server/insertValise"),
@@ -66,7 +66,7 @@ var FormServiceImpl = /** @class */ (function (_super) {
      * @returns {Promise<Array<{idPrefecture: number, prefecture: string}>>} Liste des préfectures stockées dans la base
      */
     FormServiceImpl.prototype.getListePrefecture = function () {
-        logger.trace("SERVICE PAGE get - PageService.GetListPrefecture");
+        logger.trace("SERVICE PAGE get - FormService.GetListPrefecture");
         var request = {
             method: "post",
             url: this.buildUrl("/fvmform1server/listPrefectures")
@@ -75,10 +75,10 @@ var FormServiceImpl = /** @class */ (function (_super) {
     };
     /**
      * Méthode effectuant une requête HTTP permettant la récupération de la liste des valises stockées dans la base
-     * @returns {Promise<Array<ValiseMetier>>} Liste des valises stockées dans la base
+     * @returns {Promise<Array<ValiseAttributes>>} Liste des valises stockées dans la base
      */
     FormServiceImpl.prototype.getListeValise = function () {
-        logger.trace("SERVICE PAGE get - PageService.GetListValise");
+        logger.trace("SERVICE PAGE get - FormService.GetListValise");
         var request = {
             method: "post",
             url: this.buildUrl("/fvmform2server/listValises")

@@ -64,7 +64,6 @@ export class RecordListPage extends HornetPage<any, HornetComponentProps, any> {
 
   prepareClient(): void {
     this.getService().getListeDossier().then((all)=>{
-      console.log(all[0]);
       this.entries.add(true, all);
     });
   }
@@ -168,7 +167,7 @@ export class RecordListPage extends HornetPage<any, HornetComponentProps, any> {
   }
 
   supprimerDossier(lineSelected) {
-    this.getService().deleteDossier(lineSelected.idPermis).then(result=> {
+    this.getService().deleteDossier({idPermis: lineSelected.idPermis}).then(result=> {
       if(result.hasError != null){
         console.error(result.hasReason);
         console.error(result.hasError);
@@ -176,8 +175,8 @@ export class RecordListPage extends HornetPage<any, HornetComponentProps, any> {
         this.SequelizeErrors.text = result.hasReason;
         NotificationManager.notify("SequelizeError","errors", this.errors, null, null, null, null);
       } else {
-        NotificationManager.notify("SequelizeSuccess","notif", null, this.success, null, null, null);
         this.reloadData();
+        NotificationManager.notify("SequelizeSuccess","notif", null, this.success, null, null, null);
       }
     }).catch(reason=>{
       this.SequelizeErrors.text = reason;

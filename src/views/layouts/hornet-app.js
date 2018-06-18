@@ -57,10 +57,6 @@ var HornetApp = /** @class */ (function (_super) {
         };
         var messIntl = this.i18n("header");
         var applicationTitle = this.i18n("applicationTitle");
-        var lienAide = (this.state.linkHelpVisible) ?
-            React.createElement("li", null,
-                React.createElement("a", { title: messIntl.help + applicationTitle, href: this.genUrl("/aide") }, messIntl.help))
-            : null;
         var lang = React.createElement(change_language_1.ChangeLanguage, { handleChangeLanguage: this.handleChangeLanguage, position: dropdown_1.Position.BOTTOMRIGHT });
         var user = hornet_js_utils_1.Utils.config.getOrDefault("fullSpa.enabled", false) && hornet_js_utils_1.Utils.config.getOrDefault("mock.enabled", false) ? React.createElement(dropdown_1.Dropdown, { items: [{ label: "as Admin", action: this.changeUserTo, valueCurrent: "admin", className: "link" },
                 { label: "As User", action: this.changeUserTo, valueCurrent: "user", className: "link" }], title: "mock users", icon: "picto-user", className: "profil-content", id: "dropdown-user-mock" + "-drop", label: "Users", labelClassName: "profil-label", position: dropdown_1.Position.BOTTOMRIGHT }) : React.createElement(user_1.User, null);
@@ -100,15 +96,6 @@ var HornetApp = /** @class */ (function (_super) {
             React.createElement(hornet_content_1.HornetContent, { content: this.state.content, workingZoneWidth: this.state.workingZoneWidth, error: this.state.error }),
             React.createElement(notification_session_footer_1.NotificationSessionFooter, null),
             React.createElement(footer_page_1.FooterPage, { workingZoneWidth: this.state.currentWorkingZoneWidth },
-                React.createElement("div", { className: "fl mll" },
-                    React.createElement("ul", { className: "footer-links" },
-                        React.createElement("li", null,
-                            React.createElement("a", { href: this.genUrl("/planAppli"), title: messIntl.planTitle + applicationTitle }, messIntl.plan)),
-                        React.createElement("li", null,
-                            React.createElement("a", { href: this.genUrl("/politiqueAccessibilite"), title: messIntl.accessTitle + applicationTitle }, messIntl.access)),
-                        React.createElement("li", null,
-                            React.createElement("a", { href: this.genUrl("/contact"), title: messIntl.contactTitle + applicationTitle }, messIntl.contact)),
-                        lienAide)),
                 React.createElement("div", { className: "fr mrl" },
                     React.createElement("p", null, applicationTitle + " - v" + hornet_js_utils_1.Utils.appSharedProps.get("appVersion"))))));
     };

@@ -13,12 +13,10 @@ import {ResultPDF} from "hornet-js-core/src/result/result-pdf";
 import {MediaTypes} from "hornet-js-core/src/protocol/media-type";
 import {DispositionType} from "hornet-js-core/src/result/disposition-type";
 // Classes métier des données stockées dans la base
-import {
-  CopieNoteVerbaleMAECIFVMMetier,
-  CopiePermisFVMMetier,
-  DemandeAuthentificationFVMMetier
-} from "src/models/fvm/fvm-mod";
-import {ValiseMetier} from "src/models/common-mod";
+import {CopiePermisFVMAttributes} from "src/models/fvm/model-copiepermis";
+import {CopieNoteVerbaleMAECIFVMAttributes} from "src/models/fvm/model-copienoteverbaleMAECI";
+import {DemandeAuthentificationFVMAttributes} from "src/models/fvm/model-demandeauthentification";
+import {ValiseAttributes} from "src/models/model-valise";
 
 const logger: Logger = Utils.getLogger("projet-hornet.actions.admin.fvm_actions");
 
@@ -206,9 +204,9 @@ export class ListValise extends RouteActionService<any, FormService> {
 
   /**
    * Méthode retournant la liste des valises stockées dans la base de donénes
-   * @returns {Promise<Array<ValiseMetier>>} Liste des valises stockées dans la base
+   * @returns {Promise<Array<ValiseAttributes>>} Liste des valises stockées dans la base
    */
-  execute(): Promise<Array<ValiseMetier>> {
+  execute(): Promise<Array<ValiseAttributes>> {
     logger.trace("ACTION list - FormDemandeAuthentificationFVMAction.ListValise");
 
     return this.getService().getListeValise();
@@ -264,9 +262,9 @@ export class GetDemandeAuthentification extends RouteActionService<any, PageServ
 
   /**
    * Méthode retournant la demande d'authentification correspondant aux attributs donnés en entrée
-   * @returns {Promise<DemandeAuthentificationFVMMetier>} Demande d'authentification correspondant aux attributs donnés en entrée
+   * @returns {Promise<DemandeAuthentificationFVMAttributes>} Demande d'authentification correspondant aux attributs donnés en entrée
    */
-  execute(): Promise<DemandeAuthentificationFVMMetier> {
+  execute(): Promise<DemandeAuthentificationFVMAttributes> {
     logger.trace("ACTION list - RecordDetailsFVMAction.GetDemandeAuthentification");
 
     /* this.req : Request : contient les attributs de la requête HTTP à l'origine de l'action
@@ -315,7 +313,7 @@ export class GetCopiePermis extends RouteActionService<{"idCopiePermis": number}
   execute(): Promise<ResultFile> {
     logger.trace("ACTION file - RecordDetailsFVMAction.GetCopiePermis");
 
-    return this.getService().getCopiePermis(this.attributes.idCopiePermis).then((copiePermis: CopiePermisFVMMetier) => {
+    return this.getService().getCopiePermis(this.attributes.idCopiePermis).then((copiePermis: CopiePermisFVMAttributes) => {
 
       // Réponse de type fichier joint
       return new ResultFile(
@@ -346,7 +344,7 @@ export class GetCopieNoteVerbaleMAECI extends RouteActionService<{"idCopieNoteVe
   execute(): Promise<ResultFile> {
     logger.trace("ACTION file - RecordDetailsFVMAction.getCopieNoteVerbaleMAECI");
 
-    return this.getService().getCopieNoteVerbaleMAECI(this.attributes.idCopieNoteVerbaleMAECI).then((copieNoteVerbaleMAECI: CopieNoteVerbaleMAECIFVMMetier) => {
+    return this.getService().getCopieNoteVerbaleMAECI(this.attributes.idCopieNoteVerbaleMAECI).then((copieNoteVerbaleMAECI: CopieNoteVerbaleMAECIFVMAttributes) => {
 
       // Réponse de type fichier joint
       return new ResultFile(
@@ -414,7 +412,7 @@ export class GetPDFDemandeAuthentification extends RouteActionService<{"idPermis
                     {text: "AMBASSADE DE FRANCE AU MAROC", bold: true, fontSize: 11},
                     {text:"__________", margin: [0,0,0,30]},
                     {text:"SERVICE COMMUN DE GESTION", margin: [0,0,0,10], bold: true, italics: true, fontSize: 9},
-                    {text: "N°"+demandeAuthentification.num_demande_authentification+"/SCG", margin: [0,0,0,30], fontSize: 10},
+                    {text: "N°"+demandeAuthentification.numDemandeAuthentification+"/SCG", margin: [0,0,0,30], fontSize: 10},
                   ],
                   alignment: "center"
                 },

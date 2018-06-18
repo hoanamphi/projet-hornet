@@ -8,11 +8,7 @@ import { PageService } from "src/services/page/admin/fvm/page-service";
 // Classe permettant d'effectuer des requêtes HTTP sur le serveur
 import {HornetRequest} from "hornet-js-core/src/services/hornet-superagent-request";
 // Classes métier
-import {
-  CopieNoteVerbaleMAECIFVMMetier,
-  CopiePermisFVMMetier,
-  DemandeAuthentificationFVMMetier
-} from "src/models/fvm/fvm-mod";
+import {DemandeAuthentificationFVMAttributes} from "src/models/fvm/model-demandeauthentification";
 
 const logger: Logger = Utils.getLogger("projet-hornet.services.page.admin.admin-service-impl");
 
@@ -29,6 +25,8 @@ export class PageServiceImpl extends ServicePage implements PageService {
    * @returns {Promise<any>}
    */
   deleteDemandeAuthentification(data: {"idDemandeAuthentification": number}): Promise<any> {
+    logger.trace("SERVICE PAGE delete - PageService.DeleteDemandeAuthentification");
+
     let request: HornetRequest = {
       method: "delete",
       url: this.buildUrl("/fvmrecordserver/detailsDossiers/demandeauthentification/delete"),
@@ -44,6 +42,8 @@ export class PageServiceImpl extends ServicePage implements PageService {
    * @returns {Promise<any>}
    */
   deleteDossier(data: {"idPermis": number}): Promise<any> {
+    logger.trace("SERVICE PAGE delete - PageService.DeleteDossier");
+
     let request: HornetRequest = {
       method: "delete",
       url: this.buildUrl("/fvmrecordserver/delete"),
@@ -58,6 +58,8 @@ export class PageServiceImpl extends ServicePage implements PageService {
    * @returns {Promise<Array<any>>} Liste des dossiers stockés dans la base
    */
   getListeDossier(): Promise<Array<any>> {
+    logger.trace("SERVICE PAGE get - PageService.GetListeDossier");
+
     let request: HornetRequest = {
       method: "post",
       url: this.buildUrl("/fvmrecordserver"),
@@ -72,6 +74,8 @@ export class PageServiceImpl extends ServicePage implements PageService {
    * @returns {Promise<Array<any>>} Informations du dossier (Stockées dans un tableau pour une utilisation dans un dataSource)
    */
   getDossier(data: {"idPermis": number}): Promise<Array<any>> {
+    logger.trace("SERVICE PAGE get - PageService.GetDossier");
+
     let request: HornetRequest = {
       method: "post",
       url: this.buildUrl("/fvmrecordserver/detailsDossiers/dossier"),
@@ -84,9 +88,11 @@ export class PageServiceImpl extends ServicePage implements PageService {
   /**
    * Méthode effectuant une requête HTTP retournant une demande d'authentification
    * @param {{idPermis: number}} data id du Permis concerné par la demande d'authentification
-   * @returns {Promise<DemandeAuthentificationFVMMetier>} Demande d'authentification
+   * @returns {Promise<DemandeAuthentificationFVMAttributes>} Demande d'authentification
    */
-  getDemandeAuthentification(data: {"idPermis": number}): Promise<DemandeAuthentificationFVMMetier> {
+  getDemandeAuthentification(data: {"idPermis": number}): Promise<DemandeAuthentificationFVMAttributes> {
+    logger.trace("SERVICE PAGE get - PageService.GetDemandeAuthentification");
+
     let request: HornetRequest = {
       method: "post",
       url: this.buildUrl("/fvmrecordserver/detailsDossiers/demandeauthentification"),
@@ -102,6 +108,8 @@ export class PageServiceImpl extends ServicePage implements PageService {
    * @returns {Promise<any>} service uniquement disponible côté serveur
    */
   getCopiePermis(idCopiePermis: number): Promise<any> {
+    logger.trace("SERVICE PAGE get - PageService.GetCopiePermis");
+
     return Promise.reject("service uniquement disponible côté serveur");
   };
 
@@ -111,6 +119,8 @@ export class PageServiceImpl extends ServicePage implements PageService {
    * @returns {Promise<any>} service uniquement disponible côté serveur
    */
   getCopieNoteVerbaleMAECI(idCopieNoteVerbaleMAECI: number): Promise<any> {
+    logger.trace("SERVICE PAGE get - PageService.GetCopieNoteVerbaleMAECI");
+
     return Promise.reject("service uniquement disponible côté serveur");
   };
 
@@ -120,6 +130,8 @@ export class PageServiceImpl extends ServicePage implements PageService {
    * @returns {Promise<any>} service uniquement disponible côté serveur
    */
   getPDFDemandeAuthentification(idPermis: number): Promise<any> {
+    logger.trace("SERVICE PAGE get - PageService.GetPDFDemandeAuthentification");
+
     return Promise.reject("service uniquement disponible côté serveur");
   };
 

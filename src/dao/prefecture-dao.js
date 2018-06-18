@@ -4,9 +4,6 @@ var tslib_1 = require("tslib");
 var hornet_js_utils_1 = require("hornet-js-utils");
 // Classe parente des Classes de DAO
 var entity_dao_1 = require("src/dao/entity-dao");
-// Classe métier d'une préfecture
-var common_mod_1 = require("src/models/common-mod");
-var Map_1 = require("hornet-js-bean/src/decorators/Map");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.src.dao.utilisateurs-dao");
 /**
  * Méthode permettant l'interaction avec la table prefecture
@@ -33,7 +30,7 @@ var PrefectureDAO = /** @class */ (function (_super) {
     /**
      * Méthode retournant une préfecture
      * @param {number} idPrefecture id du tuple à retourner
-     * @returns {Promise<PrefectureMetier>} Préfecture
+     * @returns {Promise<PrefectureAttributes>} Préfecture
      */
     PrefectureDAO.prototype.getPrefecture = function (idPrefecture) {
         logger.trace("DAO get - Prefecture.Get");
@@ -43,12 +40,6 @@ var PrefectureDAO = /** @class */ (function (_super) {
             }
         });
     };
-    tslib_1.__decorate([
-        Map_1.default(common_mod_1.PrefectureMetier),
-        tslib_1.__metadata("design:type", Function),
-        tslib_1.__metadata("design:paramtypes", [Number]),
-        tslib_1.__metadata("design:returntype", Promise)
-    ], PrefectureDAO.prototype, "getPrefecture", null);
     return PrefectureDAO;
 }(entity_dao_1.EntityDAO));
 exports.PrefectureDAO = PrefectureDAO;

@@ -4,7 +4,7 @@ import { Logger } from "hornet-js-utils/src/logger";
 // Classe parente des Classes de DAO
 import { EntityDAO } from "src/dao/entity-dao";
 // Classe métier d'une préfecture
-import {PrefectureMetier} from "src/models/common-mod";
+import {PrefectureAttributes} from "src/models/model-prefecture";
 import Map from "hornet-js-bean/src/decorators/Map";
 
 const logger: Logger = Utils.getLogger("projet-hornet.src.dao.utilisateurs-dao");
@@ -37,10 +37,9 @@ export class PrefectureDAO extends EntityDAO {
   /**
    * Méthode retournant une préfecture
    * @param {number} idPrefecture id du tuple à retourner
-   * @returns {Promise<PrefectureMetier>} Préfecture
+   * @returns {Promise<PrefectureAttributes>} Préfecture
    */
-  @Map(PrefectureMetier)
-  getPrefecture(idPrefecture: number): Promise<PrefectureMetier> {
+  getPrefecture(idPrefecture: number): Promise<PrefectureAttributes> {
     logger.trace("DAO get - Prefecture.Get");
 
     return this.modelDAO.prefectureEntity.find({

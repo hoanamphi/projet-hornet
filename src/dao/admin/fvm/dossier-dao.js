@@ -4,9 +4,6 @@ var tslib_1 = require("tslib");
 var hornet_js_utils_1 = require("hornet-js-utils");
 // Classe parente des Classes de DAO
 var entity_dao_1 = require("src/dao/entity-dao");
-// Classe métier d'un dossier
-var fvm_mod_1 = require("src/models/fvm/fvm-mod");
-var Map_1 = require("hornet-js-bean/src/decorators/Map");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.src.dao.utilisateurs-dao");
 /**
  * Classe de DAO permettant l'interaction avec la table dossier_fvm
@@ -63,7 +60,7 @@ var DossierFVMDAO = /** @class */ (function (_super) {
     /**
      * Méthode retournant un dossier
      * @param {number} idDossier id du tuple à retourner
-     * @returns {Promise<DossierFVMMetier>} Dossier
+     * @returns {Promise<DossierFVMAttributes>} Dossier
      */
     DossierFVMDAO.prototype.getDossier = function (idDossier) {
         logger.trace("DAO get - Dossier.Get");
@@ -76,7 +73,7 @@ var DossierFVMDAO = /** @class */ (function (_super) {
     /**
      * Méthode retournant une liste de dossier
      * @param {Array<number>} idDossier tableau contenant les ids des tuples à retourner
-     * @returns {Promise<Array<DossierFVMMetier>>} Liste de dossiers
+     * @returns {Promise<Array<DossierFVMAttributes>>} Liste de dossiers
      */
     DossierFVMDAO.prototype.getListeDossier = function (idDossier) {
         logger.trace("DAO get - Dossier.Get");
@@ -117,12 +114,6 @@ var DossierFVMDAO = /** @class */ (function (_super) {
             }
         });
     };
-    tslib_1.__decorate([
-        Map_1.default(fvm_mod_1.DossierFVMMetier),
-        tslib_1.__metadata("design:type", Function),
-        tslib_1.__metadata("design:paramtypes", [Number]),
-        tslib_1.__metadata("design:returntype", Promise)
-    ], DossierFVMDAO.prototype, "getDossier", null);
     return DossierFVMDAO;
 }(entity_dao_1.EntityDAO));
 exports.DossierFVMDAO = DossierFVMDAO;

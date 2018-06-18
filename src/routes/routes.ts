@@ -2,10 +2,6 @@ import { Utils } from "hornet-js-utils";
 import { AbstractRoutes, PageRouteInfos, PUBLIC_ROUTE } from "hornet-js-core/src/routes/abstract-routes";
 // Classes de Page des pages principales
 import { HomePage } from "src/views/gen/gen-hom-page";
-import { AidePage } from "src/views/gen/gen-aid-page";
-import { PlanAppliPage } from "src/views/nav/nav-pap-page";
-import { AccessibilitePage } from "src/views/gen/gen-acb-page";
-import { DeclarationconformitePage } from "src/views/gen/gen-ddc-page";
 
 /**
  * Classe définissant les routes Client et Serveur de l'application
@@ -34,26 +30,6 @@ export class Routes extends AbstractRoutes {
     // Route menant à la page d'accueil
     this.addPageRoute("/accueil",
       () => new PageRouteInfos(HomePage),
-      PUBLIC_ROUTE
-    );
-    // Route menant à la page d'aide
-    this.addPageRoute("/aide",
-      () => new PageRouteInfos(AidePage),
-      PUBLIC_ROUTE
-    );
-    // Route menant à la page présentant le plan de l'application
-    this.addPageRoute("/planAppli",
-      () => new PageRouteInfos(PlanAppliPage),
-      PUBLIC_ROUTE
-    );
-    // Route menant à la page présentant la politique d'accessibilité de l'application
-    this.addPageRoute("/politiqueAccessibilite",
-      () => new PageRouteInfos(AccessibilitePage),
-      PUBLIC_ROUTE
-    );
-    // Route menant à la page présentant la déclaration de conformité de l'application
-    this.addPageRoute("/declarationConformite",
-      () => new PageRouteInfos(DeclarationconformitePage),
       PUBLIC_ROUTE
     );
 

@@ -5,6 +5,9 @@ import { Logger } from "hornet-js-utils/src/logger";
 import { ServiceRequest } from "hornet-js-core/src/services/service-request";
 // Interface implémentée par la classe de service
 import {PageService} from "src/services/page/admin/fvm/page-service";
+// Décorateur permettant d'effectuer des transactions sur la base de données
+import { Transactional } from "hornet-js-database/src/decorators/dec-transactional";
+import { Injector } from "hornet-js-core/src/inject/injector";
 // Classes de DAO
 import {PersonneFVMDAO} from "src/dao/admin/fvm/personne-dao";
 import {CopieNoteVerbaleMAECIFVMDao} from "src/dao/admin/fvm/copie_note_verbale_MAECI-dao";
@@ -14,7 +17,9 @@ import {CopiePermisFVMDao} from "src/dao/admin/fvm/copie_permis-dao";
 import {PrefectureDAO} from "src/dao/prefecture-dao";
 import {DemandeAuthentificationFVMDAO} from "src/dao/admin/fvm/demande_authentification-dao";
 // Classes métier
-import {CopieNoteVerbaleMAECIFVMMetier, CopiePermisFVMMetier, DemandeAuthentificationFVMMetier} from "src/models/fvm/fvm-mod";
+import {CopiePermisFVMAttributes} from "src/models/fvm/model-copiepermis";
+import {CopieNoteVerbaleMAECIFVMAttributes} from "src/models/fvm/model-copienoteverbaleMAECI";
+import {DemandeAuthentificationFVMAttributes} from "src/models/fvm/model-demandeauthentification";
 
 const logger: Logger = Utils.getLogger("projet-hornet.services.data.admin.admin-service-impl-data");
 
@@ -62,6 +67,7 @@ export class PageServiceImpl extends ServiceRequest implements PageService {
    * @param {{idPermis: number}} data id du Permis concerné par la suppression
    * @returns {Promise<any>}
    */
+  @Transactional({configDatabase: Injector.getRegistered("databaseConfigName")})
   deleteDossier(data: {"idPermis": number}): Promise<any>{
     logger.trace("SERVICE DATA delete - PageService.DeleteDemandeAuthentification");
 
@@ -95,7 +101,7 @@ export class PageServiceImpl extends ServiceRequest implements PageService {
       // Si une demande d'authentification a été générée pour ce permis
       if(demandeAuthentification_value != null) {
         // Supprimer la demande d'authentification
-        let deleteDemandeAuthentification = this.demandeAuthentificationDAO.deleteDemandeAuthentification(demandeAuthentification_value.id_demande_authentification_fvm);
+        let deleteDemandeAuthentification = this.demandeAuthentificationDAO.deleteDemandeAuthentification(demandeAuthentification_value.idDemandeAuthentification);
 
         return Promise.all([deleteCopieNoteVerbaleMAECI, deleteDossier, deletePersonne, deleteCopiePermis, deleteDemandeAuthentification, deletePermis]);
       } else {
@@ -187,8 +193,8 @@ export class PageServiceImpl extends ServiceRequest implements PageService {
       
       let result = {};
       
-      result["numPermis"] = permis.num_permis;
-      result["dateDeDelivrance"] = permis.date_de_delivrance;
+      result["numPermis"] = permis.numPermis;
+      result["dateDeDelivrance"] = Date.parse(permis.dateDeDelivrance.toString());
       
       /* Récupérer les informations relatives à un permis :
           Copie du permis de conduire
@@ -196,10 +202,10 @@ export class PageServiceImpl extends ServiceRequest implements PageService {
           Dossier concerné par le permis
           Préfecture ayant délivré le permis
       */
-      let copie_permis = this.copiePermisDAO.getCopiePermis(permis.id_copie_permis_fvm);
-      let personne = this.personneDAO.getPersonne(permis.id_personne_fvm);
-      let dossier = this.dossierDAO.getDossier(permis.id_dossier_fvm);
-      let prefecture_delivrance = this.prefectureDAO.getPrefecture(permis.id_prefecture_delivrance);
+      let copie_permis = this.copiePermisDAO.getCopiePermis(permis.idCopiePermis);
+      let personne = this.personneDAO.getPersonne(permis.idPersonne);
+      let dossier = this.dossierDAO.getDossier(permis.idDossier);
+      let prefecture_delivrance = this.prefectureDAO.getPrefecture(permis.idPrefectureDelivrance);
 
       return Promise.all([copie_permis, personne, dossier, prefecture_delivrance]).then(values=>{
         
@@ -213,22 +219,22 @@ export class PageServiceImpl extends ServiceRequest implements PageService {
 
         result["nom"] = personne_value.nom;
         result["prenom"] = personne_value.prenom;
-        result["dateDeNaissance"] = personne_value.date_de_naissance;
+        result["dateDeNaissance"] = Date.parse(personne_value.dateDeNaissance.toString());
         result["sexe"] = personne_value.titre;
-        result["villeDeNaissance"] = personne_value.ville_de_naissance;
-        result["paysDeNaissance"] = personne_value.pays_de_naissance;
+        result["villeDeNaissance"] = personne_value.villeDeNaissance;
+        result["paysDeNaissance"] = personne_value.paysDeNaissance;
 
         result["region"] = prefecture_value.region;
         result["departement"] = prefecture_value.departement;
         result["prefecture"] = prefecture_value.prefecture;
         result["adresse"] = prefecture_value.adresse;
-        result["codePostal"] = prefecture_value.code_postal;
+        result["codePostal"] = prefecture_value.codePostal;
         result["ville"] = prefecture_value.ville;
 
-        result["dateReceptionDossier"] = dossier_value.date_reception_dossier;
+        result["dateReceptionDossier"] = Date.parse(dossier_value.dateReceptionDossier.toString());
 
         // Récupérer la copie de la note verbale du MAECI
-        return this.copieNoteVerbaleMAECIDAO.getCopieNoteVerbaleMAECI(dossier_value.id_copie_note_verbale_maeci_fvm).then(values=>{
+        return this.copieNoteVerbaleMAECIDAO.getCopieNoteVerbaleMAECI(dossier_value.idCopieNoteVerbaleMAECI).then(values=>{
           // Concaténer la copie aux autres informations relatives à un permis
           result["copie_note_verbale_maeci"] = values;
 
@@ -241,9 +247,9 @@ export class PageServiceImpl extends ServiceRequest implements PageService {
   /**
    * Méthode retournant une demande d'authentification
    * @param {{idPermis: number}} data id du Permis concerné par la demande d'authentification
-   * @returns {Promise<DemandeAuthentificationFVMMetier>} Demande d'authentification
+   * @returns {Promise<DemandeAuthentificationFVMAttributes>} Demande d'authentification
    */
-  getDemandeAuthentification(data: {"idPermis": number}): Promise<DemandeAuthentificationFVMMetier> {
+  getDemandeAuthentification(data: {"idPermis": number}): Promise<DemandeAuthentificationFVMAttributes> {
     logger.trace("SERVICE DATA get - PageService.GetDemandeAuthentification");
 
     // Récupérer les données de formulaire
@@ -267,9 +273,9 @@ export class PageServiceImpl extends ServiceRequest implements PageService {
   /**
    * Méthode retournant la copie d'un permis de conduire
    * @param {number} idCopiePermis id de la copie du permis de conduire
-   * @returns {Promise<CopiePermisFVMMetier>} Copie d'un permis de conduire
+   * @returns {Promise<CopiePermisFVMAttributes>} Copie d'un permis de conduire
    */
-  getCopiePermis(idCopiePermis: number): Promise<CopiePermisFVMMetier> {
+  getCopiePermis(idCopiePermis: number): Promise<CopiePermisFVMAttributes> {
     logger.trace("SERVICE DATA get - PageService.GetCopiePermis");
 
     return this.copiePermisDAO.getCopiePermis(idCopiePermis);
@@ -278,9 +284,9 @@ export class PageServiceImpl extends ServiceRequest implements PageService {
   /**
    * Méthode retournant la copie d'une note verbale du MAECI
    * @param {number} idCopieNoteVerbaleMAECI id de la copie de la note verbale du MAECI
-   * @returns {Promise<CopieNoteVerbaleMAECIFVMMetier>} Copie d'une note verbale du MAECI
+   * @returns {Promise<CopieNoteVerbaleMAECIFVMAttributes>} Copie d'une note verbale du MAECI
    */
-  getCopieNoteVerbaleMAECI(idCopieNoteVerbaleMAECI: number): Promise<CopieNoteVerbaleMAECIFVMMetier> {
+  getCopieNoteVerbaleMAECI(idCopieNoteVerbaleMAECI: number): Promise<CopieNoteVerbaleMAECIFVMAttributes> {
     logger.trace("SERVICE DATA get - PageService.GetCopieNoteVerbaleMAECI");
 
     return this.copieNoteVerbaleMAECIDAO.getCopieNoteVerbaleMAECI(idCopieNoteVerbaleMAECI);
@@ -289,9 +295,9 @@ export class PageServiceImpl extends ServiceRequest implements PageService {
   /**
    * Méthode retournant les informations nécessaires à la génération d'une demande d'authentification en PDF
    * @param {number} idPermis id du Permis concerné par la demande d'authentification
-   * @returns {Promise<{dossier: any, demande_authentification: any}>} Informations de la demande d'authentification
+   * @returns {Promise<{dossier: any, demande_authentification: DemandeAuthentificationFVMAttributes}>} Informations de la demande d'authentification
    */
-  getPDFDemandeAuthentification(idPermis: number): Promise<{dossier: any, demandeAuthentification: DemandeAuthentificationFVMMetier}> {
+  getPDFDemandeAuthentification(idPermis: number): Promise<{dossier: any, demandeAuthentification: DemandeAuthentificationFVMAttributes}> {
     logger.trace("SERVICE DATA get - PageService.GetDossier");
 
     // Concaténer les informations relatives à une demande d'authentification
@@ -299,7 +305,7 @@ export class PageServiceImpl extends ServiceRequest implements PageService {
 
     // Récupérer les informations d'un dossier
     return this.getDossier({"idPermis": idPermis}).then(dossier=>{
-      result["dossier"] = dossier;
+      result["dossier"] = dossier[0];
 
       // Récupérer la demande d'authentification
       return this.demandeAuthentificationDAO.getDemandeAuthentificationFromPermis(idPermis).then(demandeAuthentification=>{

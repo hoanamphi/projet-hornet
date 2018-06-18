@@ -47,7 +47,6 @@ var RecordListPage = /** @class */ (function (_super) {
     RecordListPage.prototype.prepareClient = function () {
         var _this = this;
         this.getService().getListeDossier().then(function (all) {
-            console.log(all[0]);
             _this.entries.add(true, all);
         });
     };
@@ -100,7 +99,7 @@ var RecordListPage = /** @class */ (function (_super) {
     };
     RecordListPage.prototype.supprimerDossier = function (lineSelected) {
         var _this = this;
-        this.getService().deleteDossier(lineSelected.idPermis).then(function (result) {
+        this.getService().deleteDossier({ idPermis: lineSelected.idPermis }).then(function (result) {
             if (result.hasError != null) {
                 console.error(result.hasReason);
                 console.error(result.hasError);
@@ -108,8 +107,8 @@ var RecordListPage = /** @class */ (function (_super) {
                 notification_manager_1.NotificationManager.notify("SequelizeError", "errors", _this.errors, null, null, null, null);
             }
             else {
-                notification_manager_1.NotificationManager.notify("SequelizeSuccess", "notif", null, _this.success, null, null, null);
                 _this.reloadData();
+                notification_manager_1.NotificationManager.notify("SequelizeSuccess", "notif", null, _this.success, null, null, null);
             }
         }).catch(function (reason) {
             _this.SequelizeErrors.text = reason;

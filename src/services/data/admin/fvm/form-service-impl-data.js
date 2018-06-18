@@ -105,7 +105,7 @@ var FormServiceImpl = /** @class */ (function (_super) {
             // Obtenir un id pour l'entrée à insérer
             return _this.demandeAuthentificationDAO.getNewIdDemandeAuthentification().then(function (idDemandeAuthentification) {
                 // Insérer la demande d'authentification
-                return _this.demandeAuthentificationDAO.insererDemandeAuthentification(idDemandeAuthentification, data.num_demande_authentification, data.id_permis, data.num_valise, valise.date_valise);
+                return _this.demandeAuthentificationDAO.insererDemandeAuthentification(idDemandeAuthentification, data.num_demande_authentification, data.id_permis, data.num_valise, new Date(valise.dateValise.toString()));
             });
         }).catch(function (error) {
             // Si une erreur est capturée
@@ -142,11 +142,17 @@ var FormServiceImpl = /** @class */ (function (_super) {
     };
     /**
      * Méthode retournant la liste des valises stockées dans la base
-     * @returns {Promise<Array<ValiseMetier>>} Liste des valises stockées dans la base
+     * @returns {Promise<Array<ValiseAttributes>>} Liste des valises stockées dans la base
      */
     FormServiceImpl.prototype.getListeValise = function () {
         logger.trace("SERVICE DATA get - FormService.GetListValise");
-        return this.valiseDAO.getListeValise();
+        return this.valiseDAO.getListeValise().then(function (valiseList) {
+            var tmp = [];
+            valiseList.forEach(function (valise) {
+                tmp.push({ numValise: valise.numValise, dateValise: Date.parse(valise.dateValise.toString()) });
+            });
+            return tmp;
+        });
     };
     tslib_1.__decorate([
         dec_transactional_1.Transactional({ configDatabase: injector_1.Injector.getRegistered("databaseConfigName") }),

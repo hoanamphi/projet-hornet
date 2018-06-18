@@ -5,10 +5,6 @@ var hornet_js_utils_1 = require("hornet-js-utils");
 var abstract_routes_1 = require("hornet-js-core/src/routes/abstract-routes");
 // Classes de Page des pages principales
 var gen_hom_page_1 = require("src/views/gen/gen-hom-page");
-var gen_aid_page_1 = require("src/views/gen/gen-aid-page");
-var nav_pap_page_1 = require("src/views/nav/nav-pap-page");
-var gen_acb_page_1 = require("src/views/gen/gen-acb-page");
-var gen_ddc_page_1 = require("src/views/gen/gen-ddc-page");
 /**
  * Classe définissant les routes Client et Serveur de l'application
  * @extends {AbstractRoutes}
@@ -35,14 +31,6 @@ var Routes = /** @class */ (function (_super) {
     Routes.prototype.addClientRoutes = function () {
         // Route menant à la page d'accueil
         this.addPageRoute("/accueil", function () { return new abstract_routes_1.PageRouteInfos(gen_hom_page_1.HomePage); }, abstract_routes_1.PUBLIC_ROUTE);
-        // Route menant à la page d'aide
-        this.addPageRoute("/aide", function () { return new abstract_routes_1.PageRouteInfos(gen_aid_page_1.AidePage); }, abstract_routes_1.PUBLIC_ROUTE);
-        // Route menant à la page présentant le plan de l'application
-        this.addPageRoute("/planAppli", function () { return new abstract_routes_1.PageRouteInfos(nav_pap_page_1.PlanAppliPage); }, abstract_routes_1.PUBLIC_ROUTE);
-        // Route menant à la page présentant la politique d'accessibilité de l'application
-        this.addPageRoute("/politiqueAccessibilite", function () { return new abstract_routes_1.PageRouteInfos(gen_acb_page_1.AccessibilitePage); }, abstract_routes_1.PUBLIC_ROUTE);
-        // Route menant à la page présentant la déclaration de conformité de l'application
-        this.addPageRoute("/declarationConformite", function () { return new abstract_routes_1.PageRouteInfos(gen_ddc_page_1.DeclarationconformitePage); }, abstract_routes_1.PUBLIC_ROUTE);
         // Lazy routes Client
         // Formulaire d'insertion d'un dossier
         this.addLazyRoutes("/fvmform1", "admin/fvm/form1-client-routes");

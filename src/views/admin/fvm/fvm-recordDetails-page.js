@@ -65,8 +65,8 @@ var RecordDetailsPage = /** @class */ (function (_super) {
             _this.tabs.showPanel(1);
             _this.demandeauthentificationDatasource.fetch(true, _this.attributes);
         });
-        this.demandeauthentificationDatasource.on("fetch", function (Result) {
-            _this.demandeAuthentification = Result;
+        this.demandeauthentificationDatasource.on("fetch", function (result) {
+            _this.demandeAuthentification = result[0];
             _this.tabs.removeElementsByIndex(2);
             _this.tabs.addElements(2, _this.renderDemandeAuthentificationTab());
         });
@@ -148,9 +148,9 @@ var RecordDetailsPage = /** @class */ (function (_super) {
     RecordDetailsPage.prototype.renderDemandeAuthentificationTab = function () {
         var _this = this;
         var format = this.i18n("forms");
-        if (this.demandeAuthentification.length > 0) {
+        if (this.demandeAuthentification != null) {
             var fileTag = null;
-            var dataForm = this.demandeAuthentification[0];
+            var dataForm = this.demandeAuthentification;
             dataForm["nom_responsable"] = "Zitouni";
             dataForm["prenom_responsable"] = "Samah";
             dataForm["intitule_prefecture"] = "Préfecture de ";
@@ -201,7 +201,7 @@ var RecordDetailsPage = /** @class */ (function (_super) {
     };
     RecordDetailsPage.prototype.supprimerDemande = function () {
         var _this = this;
-        this.getService().deleteDemandeAuthentification(this.demandeAuthentification[0].idDemandeAuthentification).then(function (result) {
+        this.getService().deleteDemandeAuthentification({ idDemandeAuthentification: this.demandeAuthentification.idDemandeAuthentification }).then(function (result) {
             if (result.hasError != null) {
                 console.error(result.hasReason);
                 console.error(result.hasError);

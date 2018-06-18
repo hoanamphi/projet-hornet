@@ -4,9 +4,6 @@ var tslib_1 = require("tslib");
 var hornet_js_utils_1 = require("hornet-js-utils");
 // Classe parent des Classes de DAO
 var entity_dao_1 = require("src/dao/entity-dao");
-// Classe métier d'une demande d'authentification
-var fvm_mod_1 = require("src/models/fvm/fvm-mod");
-var Map_1 = require("hornet-js-bean/src/decorators/Map");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.src.dao.utilisateurs-dao");
 /**
  * Classe de DAO permettant l'interaction avec la table demande_authentification_fvm
@@ -79,7 +76,7 @@ var DemandeAuthentificationFVMDAO = /** @class */ (function (_super) {
     /**
      * Méthode retournant une demande d'authentification
      * @param {number} idPermis id du Permis auquel appartient le tuple
-     * @returns {Promise<DemandeAuthentificationFVMMetier>} Demande d'authentification
+     * @returns {Promise<DemandeAuthentificationFVMAttributes>} Demande d'authentification
      */
     DemandeAuthentificationFVMDAO.prototype.getDemandeAuthentificationFromPermis = function (idPermis) {
         logger.trace("DAO get - DemandeAuthentification.Get");
@@ -102,12 +99,6 @@ var DemandeAuthentificationFVMDAO = /** @class */ (function (_super) {
             }
         });
     };
-    tslib_1.__decorate([
-        Map_1.default(fvm_mod_1.DemandeAuthentificationFVMMetier),
-        tslib_1.__metadata("design:type", Function),
-        tslib_1.__metadata("design:paramtypes", [Number]),
-        tslib_1.__metadata("design:returntype", Promise)
-    ], DemandeAuthentificationFVMDAO.prototype, "getDemandeAuthentificationFromPermis", null);
     return DemandeAuthentificationFVMDAO;
 }(entity_dao_1.EntityDAO));
 exports.DemandeAuthentificationFVMDAO = DemandeAuthentificationFVMDAO;

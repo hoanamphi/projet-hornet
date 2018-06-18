@@ -4,9 +4,6 @@ var tslib_1 = require("tslib");
 var hornet_js_utils_1 = require("hornet-js-utils");
 // Classe parents des Classes de DAO
 var entity_dao_1 = require("src/dao/entity-dao");
-// Classe métier d'une valise diplomatique
-var common_mod_1 = require("src/models/common-mod");
-var Map_1 = require("hornet-js-bean/src/decorators/Map");
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.src.dao.utilisateurs-dao");
 /**
  * Classe de DAO permettant d'interagir avec la table valise
@@ -37,7 +34,7 @@ var ValiseDAO = /** @class */ (function (_super) {
     };
     /**
      * Méthode retournant la liste des valises diplomatiques stockées dans la base
-     * @returns {Promise<Array<ValiseMetier>>} Liste des valises diplomatiques stockées dans la base
+     * @returns {Promise<Array<ValiseAttributes>>} Liste des valises diplomatiques stockées dans la base
      */
     ValiseDAO.prototype.getListeValise = function () {
         logger.trace("DAO get - Valise.GetListe");
@@ -45,7 +42,7 @@ var ValiseDAO = /** @class */ (function (_super) {
     };
     /**
      * Méthode retournant la liste des valises diplomatiques récentes stockées dans la base
-     * @returns {Promise<Array<ValiseMetier>>} Liste des valises diplomatiques récentes stockées dans la base (Date de la valise > Date du jour + 1)
+     * @returns {Promise<Array<ValiseAttributes>>} Liste des valises diplomatiques récentes stockées dans la base (Date de la valise > Date du jour + 1)
      */
     ValiseDAO.prototype.getListeValiseRecent = function () {
         logger.trace("DAO get - Valise.GetListeRecent");
@@ -61,7 +58,7 @@ var ValiseDAO = /** @class */ (function (_super) {
     /**
      * Méthode retournant une valise diplomatique
      * @param {number} numValise numéro de la valise diplomatique à retourner
-     * @returns {Promise<ValiseMetier>} Valise
+     * @returns {Promise<ValiseAttributes>} Valise
      */
     ValiseDAO.prototype.getValise = function (numValise) {
         logger.trace("DAO get - Valise.Get");
@@ -71,24 +68,6 @@ var ValiseDAO = /** @class */ (function (_super) {
             }
         });
     };
-    tslib_1.__decorate([
-        Map_1.default(common_mod_1.ValiseMetier),
-        tslib_1.__metadata("design:type", Function),
-        tslib_1.__metadata("design:paramtypes", []),
-        tslib_1.__metadata("design:returntype", Promise)
-    ], ValiseDAO.prototype, "getListeValise", null);
-    tslib_1.__decorate([
-        Map_1.default(common_mod_1.ValiseMetier),
-        tslib_1.__metadata("design:type", Function),
-        tslib_1.__metadata("design:paramtypes", []),
-        tslib_1.__metadata("design:returntype", Promise)
-    ], ValiseDAO.prototype, "getListeValiseRecent", null);
-    tslib_1.__decorate([
-        Map_1.default(common_mod_1.ValiseMetier),
-        tslib_1.__metadata("design:type", Function),
-        tslib_1.__metadata("design:paramtypes", [Number]),
-        tslib_1.__metadata("design:returntype", Promise)
-    ], ValiseDAO.prototype, "getValise", null);
     return ValiseDAO;
 }(entity_dao_1.EntityDAO));
 exports.ValiseDAO = ValiseDAO;

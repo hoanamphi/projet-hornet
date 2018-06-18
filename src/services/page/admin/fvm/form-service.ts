@@ -1,5 +1,5 @@
 // Classe métier
-import {ValiseMetier} from "src/models/common-mod";
+import {ValiseAttributes} from "src/models/model-valise";
 
 /**
  * Interface des services utilisés par les formulaires
@@ -35,7 +35,7 @@ export interface FormService {
 
   /**
    * Méthode retournant la liste des valises stockées dans la base
-   * @returns {Promise<Array<ValiseMetier>>} Liste des valises stockées dans la base
+   * @returns {Promise<Array<ValiseAttributes>>} Liste des valises stockées dans la base
    */
-  getListeValise(): Promise<Array<ValiseMetier>>;
+  getListeValise(): Promise<Array<ValiseAttributes>>;
 }

@@ -21,6 +21,7 @@ var PageServiceImpl = /** @class */ (function (_super) {
      * @returns {Promise<any>}
      */
     PageServiceImpl.prototype.deleteDemandeAuthentification = function (data) {
+        logger.trace("SERVICE PAGE delete - PageService.DeleteDemandeAuthentification");
         var request = {
             method: "delete",
             url: this.buildUrl("/fvmrecordserver/detailsDossiers/demandeauthentification/delete"),
@@ -34,6 +35,7 @@ var PageServiceImpl = /** @class */ (function (_super) {
      * @returns {Promise<any>}
      */
     PageServiceImpl.prototype.deleteDossier = function (data) {
+        logger.trace("SERVICE PAGE delete - PageService.DeleteDossier");
         var request = {
             method: "delete",
             url: this.buildUrl("/fvmrecordserver/delete"),
@@ -46,6 +48,7 @@ var PageServiceImpl = /** @class */ (function (_super) {
      * @returns {Promise<Array<any>>} Liste des dossiers stockés dans la base
      */
     PageServiceImpl.prototype.getListeDossier = function () {
+        logger.trace("SERVICE PAGE get - PageService.GetListeDossier");
         var request = {
             method: "post",
             url: this.buildUrl("/fvmrecordserver"),
@@ -58,6 +61,7 @@ var PageServiceImpl = /** @class */ (function (_super) {
      * @returns {Promise<Array<any>>} Informations du dossier (Stockées dans un tableau pour une utilisation dans un dataSource)
      */
     PageServiceImpl.prototype.getDossier = function (data) {
+        logger.trace("SERVICE PAGE get - PageService.GetDossier");
         var request = {
             method: "post",
             url: this.buildUrl("/fvmrecordserver/detailsDossiers/dossier"),
@@ -68,9 +72,10 @@ var PageServiceImpl = /** @class */ (function (_super) {
     /**
      * Méthode effectuant une requête HTTP retournant une demande d'authentification
      * @param {{idPermis: number}} data id du Permis concerné par la demande d'authentification
-     * @returns {Promise<DemandeAuthentificationFVMMetier>} Demande d'authentification
+     * @returns {Promise<DemandeAuthentificationFVMAttributes>} Demande d'authentification
      */
     PageServiceImpl.prototype.getDemandeAuthentification = function (data) {
+        logger.trace("SERVICE PAGE get - PageService.GetDemandeAuthentification");
         var request = {
             method: "post",
             url: this.buildUrl("/fvmrecordserver/detailsDossiers/demandeauthentification"),
@@ -84,6 +89,7 @@ var PageServiceImpl = /** @class */ (function (_super) {
      * @returns {Promise<any>} service uniquement disponible côté serveur
      */
     PageServiceImpl.prototype.getCopiePermis = function (idCopiePermis) {
+        logger.trace("SERVICE PAGE get - PageService.GetCopiePermis");
         return Promise.reject("service uniquement disponible côté serveur");
     };
     ;
@@ -93,6 +99,7 @@ var PageServiceImpl = /** @class */ (function (_super) {
      * @returns {Promise<any>} service uniquement disponible côté serveur
      */
     PageServiceImpl.prototype.getCopieNoteVerbaleMAECI = function (idCopieNoteVerbaleMAECI) {
+        logger.trace("SERVICE PAGE get - PageService.GetCopieNoteVerbaleMAECI");
         return Promise.reject("service uniquement disponible côté serveur");
     };
     ;
@@ -102,6 +109,7 @@ var PageServiceImpl = /** @class */ (function (_super) {
      * @returns {Promise<any>} service uniquement disponible côté serveur
      */
     PageServiceImpl.prototype.getPDFDemandeAuthentification = function (idPermis) {
+        logger.trace("SERVICE PAGE get - PageService.GetPDFDemandeAuthentification");
         return Promise.reject("service uniquement disponible côté serveur");
     };
     ;
