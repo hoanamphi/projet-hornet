@@ -88,9 +88,6 @@ export class HornetApp extends HornetPage<any, HornetAppProps, any> {
 
         let applicationTitle = this.i18n("applicationTitle");
 
-        let lienAide = (this.state.linkHelpVisible) ?
-            <li><a title={messIntl.help + applicationTitle} href={this.genUrl("/aide")}>{messIntl.help}</a></li>
-            : null;
         let lang = <ChangeLanguage handleChangeLanguage={this.handleChangeLanguage} position={Position.BOTTOMRIGHT} />;
         let user = Utils.config.getOrDefault("fullSpa.enabled", false) && Utils.config.getOrDefault("mock.enabled", false) ? <Dropdown
             items={[ { label: "as Admin", action: this.changeUserTo, valueCurrent: "admin", className: "link" },
@@ -176,22 +173,6 @@ export class HornetApp extends HornetPage<any, HornetAppProps, any> {
                     error={this.state.error} />
                 <NotificationSessionFooter />
                 <FooterPage workingZoneWidth={this.state.currentWorkingZoneWidth}>
-                    <div className="fl mll">
-                        <ul className="footer-links">
-                            <li>
-                                <a href={this.genUrl("/planAppli")}
-                                    title={messIntl.planTitle + applicationTitle}>{messIntl.plan}</a>
-                            </li>
-                            <li>
-                                <a href={this.genUrl("/politiqueAccessibilite")}
-                                    title={messIntl.accessTitle + applicationTitle}>{messIntl.access}</a>
-                            </li>
-                            <li><a href={this.genUrl("/contact")}
-                                title={messIntl.contactTitle + applicationTitle}>{messIntl.contact}</a>
-                            </li>
-                            {lienAide}
-                        </ul>
-                    </div>
                     <div className="fr mrl">
                         <p>{applicationTitle + " - v" + Utils.appSharedProps.get("appVersion")}</p>
                     </div>

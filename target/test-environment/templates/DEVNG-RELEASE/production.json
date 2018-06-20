@@ -1,0 +1,87 @@
+{
+  "contextPath": "projet-hornet",
+  "cookie": {
+    "httpOnly": true,
+    "secure": false
+  },
+  "security": {
+    "enabled": true,
+    "hpp": true,
+    "ieNoOpen": true,
+    "noSniff": true,
+    "csp": {
+      "enabled": true
+    },
+    "frameguard": {
+      "enabled": true
+    },
+    "xss": {
+      "enabled": true
+    },
+    "hpkp": {
+      "enabled": true
+    },
+    "hsts": {
+      "enabled": false
+    },
+    "csrf": {
+      "enabled": true
+    }
+  },
+  "logClient": {
+    "remote": false,
+    "level": "INFO",
+    "appenders": {
+      "BrowserConsole": {
+        "type": "BrowserConsole",
+        "layout": {
+          "type": "THIN"
+        }
+      }
+    }
+  },
+  "database": {
+    "config": {
+      "uri": "postgres://projet-hornet_dvlt_00_usr:pwd_usr@localhost:5432/projet-hornet_dvlt_00",
+      "options" : {
+        "pool" : {
+          "max" : 15,
+          "min" : 0,
+          "idle" : 1000
+        },
+        "define": {
+          "timestamps" : false
+        },
+        "loggingLevel" : "INFO"
+      }
+    }
+  },
+  "antivirus" : {
+    "host" : "127.0.0.1",
+    "port" : 53310,
+    "timeout" : 60000
+  },
+  "mail": {
+    "config": {
+      "host": "127.0.0.1",
+      "port": 25,
+      "secure": false,
+      "connectionTimeout": 20000,
+      "tls": {
+        "rejectUnauthorized": false
+      }
+    },
+  },
+  "request": {
+    "cache": {
+      "client": {
+        "enabled": true,
+        "timetolive": 60
+      },
+      "server": {
+        "enabled": true,
+        "timetolive": 120
+      }
+    }
+  }
+}

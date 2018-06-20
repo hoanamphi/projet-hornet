@@ -1,0 +1,992 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/services/data/admin/fvm/page-service-impl-data.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../../index.html">all files</a> / <a href="index.html">src/services/data/admin/fvm/</a> page-service-impl-data.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0.7% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>1/143</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/9</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/24</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0.7% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>1/143</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+<span class="cstat-no" title="statement not covered" >Object.defineProperty(exports, "__esModule", { value: true });</span>
+<span class="cstat-no" title="statement not covered" >var tslib_1 = require("tslib");</span>
+<span class="cstat-no" title="statement not covered" >var hornet_js_utils_1 = require("hornet-js-utils");</span>
+// Classe parente des Classes de service DATA
+<span class="cstat-no" title="statement not covered" >var service_request_1 = require("hornet-js-core/src/services/service-request");</span>
+// Décorateur permettant d'effectuer des transactions sur la base de données
+<span class="cstat-no" title="statement not covered" >var dec_transactional_1 = require("hornet-js-database/src/decorators/dec-transactional");</span>
+<span class="cstat-no" title="statement not covered" >var injector_1 = require("hornet-js-core/src/inject/injector");</span>
+// Classes de DAO
+<span class="cstat-no" title="statement not covered" >var personne_dao_1 = require("src/dao/admin/fvm/personne-dao");</span>
+<span class="cstat-no" title="statement not covered" >var copie_note_verbale_MAECI_dao_1 = require("src/dao/admin/fvm/copie_note_verbale_MAECI-dao");</span>
+<span class="cstat-no" title="statement not covered" >var dossier_dao_1 = require("src/dao/admin/fvm/dossier-dao");</span>
+<span class="cstat-no" title="statement not covered" >var permis_dao_1 = require("src/dao/admin/fvm/permis-dao");</span>
+<span class="cstat-no" title="statement not covered" >var copie_permis_dao_1 = require("src/dao/admin/fvm/copie_permis-dao");</span>
+<span class="cstat-no" title="statement not covered" >var prefecture_dao_1 = require("src/dao/prefecture-dao");</span>
+<span class="cstat-no" title="statement not covered" >var demande_authentification_dao_1 = require("src/dao/admin/fvm/demande_authentification-dao");</span>
+<span class="cstat-no" title="statement not covered" >var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.services.data.admin.fvm.page-service-impl-data");</span>
+/**
+ * Classe de service Data utilisée par les pages
+ * @extends {ServiceRequest}
+ * @implements {PageService}
+ */
+<span class="cstat-no" title="statement not covered" >var PageServiceImplData = /** @class */ (<span class="fstat-no" title="function not covered" >function (_super) {</span></span>
+<span class="cstat-no" title="statement not covered" >    tslib_1.__extends(PageServiceImplData, _super);</span>
+<span class="fstat-no" title="function not covered" >    function PageServiceImplData() {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = _super !== null &amp;&amp; _super.apply(this, arguments) || this;</span>
+        /**
+         * Objet JSON contenant deux attributs : error : Classe de l'erreur retournée, reason : Motif de l'erreur
+         * @type {{error: null, reason: null}}
+         */
+<span class="cstat-no" title="statement not covered" >        _this.Error = { "error": null, "reason": null };</span>
+        /**
+         * Classe de DAO de la table personne_fvm
+         * @type {PersonneFVMDAO}
+         */
+<span class="cstat-no" title="statement not covered" >        _this.personneDAO = new personne_dao_1.PersonneFVMDAO();</span>
+        /**
+         * Classe de DAO de la table dossier_fvm
+         * @type {DossierFVMDAO}
+         */
+<span class="cstat-no" title="statement not covered" >        _this.dossierDAO = new dossier_dao_1.DossierFVMDAO();</span>
+        /**
+         * Classe de DAO de la table permis_fvm
+         * @type {PermisFVMDAO}
+         */
+<span class="cstat-no" title="statement not covered" >        _this.permisDAO = new permis_dao_1.PermisFVMDAO();</span>
+        /**
+         * Classe de DAO de la table copie_note_verbale_maeci_fvm
+         * @type {CopieNoteVerbaleMAECIFVMDao}
+         */
+<span class="cstat-no" title="statement not covered" >        _this.copieNoteVerbaleMAECIDAO = new copie_note_verbale_MAECI_dao_1.CopieNoteVerbaleMAECIFVMDao();</span>
+        /**
+         * Classe de DAO de la table copie_permis_fvm
+         * @type {CopiePermisFVMDao}
+         */
+<span class="cstat-no" title="statement not covered" >        _this.copiePermisDAO = new copie_permis_dao_1.CopiePermisFVMDao();</span>
+        /**
+         * Classe de DAO de la table demande_authentification_fvm
+         * @type {DemandeAuthentificationFVMDAO}
+         */
+<span class="cstat-no" title="statement not covered" >        _this.demandeAuthentificationDAO = new demande_authentification_dao_1.DemandeAuthentificationFVMDAO();</span>
+        /**
+         * Classe de DAO de la table prefecture
+         * @type {PrefectureDAO}
+         */
+<span class="cstat-no" title="statement not covered" >        _this.prefectureDAO = new prefecture_dao_1.PrefectureDAO();</span>
+<span class="cstat-no" title="statement not covered" >        return _this;</span>
+    }
+    /**
+     * Méthode supprimant une demande d'authentification de la base de données
+     * @param {{idDemandeAuthentification: number}} data - id de la demande d'authentification à supprimer
+     * @returns {Promise&lt;any&gt;}
+     */
+<span class="cstat-no" title="statement not covered" >    PageServiceImplData.prototype.deleteDemandeAuthentification = <span class="fstat-no" title="function not covered" >function (data) {</span></span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        logger.trace("SERVICE DATA delete - PageService.DeleteDemandeAuthentification");</span>
+        // Récupérer les données de formulaire
+<span class="cstat-no" title="statement not covered" >        var idDemandeAuthentification = data.idDemandeAuthentification;</span>
+<span class="cstat-no" title="statement not covered" >        return this.demandeAuthentificationDAO.deleteDemandeAuthentification(idDemandeAuthentification).catch(<span class="fstat-no" title="function not covered" >function (error) {</span></span>
+            // Si une erreur est capturée
+            // On retourne un Objet contenant la description de l'erreur
+<span class="cstat-no" title="statement not covered" >            _this.Error.error = error;</span>
+<span class="cstat-no" title="statement not covered" >            _this.Error.reason = error.toString();</span>
+<span class="cstat-no" title="statement not covered" >            return _this.Error;</span>
+        });
+    };
+    /**
+     * Méthode supprimant un dossier de la base de données
+     * @param {{idPermis: number}} data - id du Permis concerné par la suppression
+     * @returns {Promise&lt;any&gt;}
+     */
+<span class="cstat-no" title="statement not covered" >    PageServiceImplData.prototype.deleteDossier = <span class="fstat-no" title="function not covered" >function (data) {</span></span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        logger.trace("SERVICE DATA delete - PageService.DeleteDemandeAuthentification");</span>
+        // Récupérer les données de formulaire
+<span class="cstat-no" title="statement not covered" >        var idPermis = data.idPermis;</span>
+        // Récupérer les ids des entrées relatives à un permis de conduire
+<span class="cstat-no" title="statement not covered" >        var idDossier = this.dossierDAO.getIdDossierFromPermis(idPermis);</span>
+<span class="cstat-no" title="statement not covered" >        var idPersonne = this.personneDAO.getIdPersonneFromPermis(idPermis);</span>
+        // Récupérer la demande d'authentification du permis
+<span class="cstat-no" title="statement not covered" >        var demandeAuthentification = this.demandeAuthentificationDAO.getDemandeAuthentificationFromPermis(idPermis);</span>
+<span class="cstat-no" title="statement not covered" >        return Promise.all([idDossier, idPersonne, demandeAuthentification]).then(<span class="fstat-no" title="function not covered" >function (values) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var idDossier_value = values[0];</span>
+<span class="cstat-no" title="statement not covered" >            var idPersonne_value = values[1];</span>
+<span class="cstat-no" title="statement not covered" >            var demandeAuthentification_value = values[2];</span>
+            // Supprimer les entrées relatives à un permis de conduire
+<span class="cstat-no" title="statement not covered" >            var deleteCopieNoteVerbaleMAECI = _this.copieNoteVerbaleMAECIDAO.deleteCopieNoteVerbaleMAECIFromDossier(idDossier_value);</span>
+<span class="cstat-no" title="statement not covered" >            var deleteDossier = _this.dossierDAO.deleteDossier(idDossier_value);</span>
+<span class="cstat-no" title="statement not covered" >            var deletePersonne = _this.personneDAO.deletePersonne(idPersonne_value);</span>
+<span class="cstat-no" title="statement not covered" >            var deleteCopiePermis = _this.copiePermisDAO.deleteCopiePermisFromPermis(idPermis);</span>
+<span class="cstat-no" title="statement not covered" >            var deletePermis = _this.permisDAO.deletePermis(idPermis);</span>
+            // Si une demande d'authentification a été générée pour ce permis
+<span class="cstat-no" title="statement not covered" >            if (demandeAuthentification_value != null) {</span>
+                // Supprimer la demande d'authentification
+<span class="cstat-no" title="statement not covered" >                var deleteDemandeAuthentification = _this.demandeAuthentificationDAO.deleteDemandeAuthentification(demandeAuthentification_value.idDemandeAuthentification);</span>
+<span class="cstat-no" title="statement not covered" >                return Promise.all([deleteCopieNoteVerbaleMAECI, deleteDossier, deletePersonne, deleteCopiePermis, deleteDemandeAuthentification, deletePermis]);</span>
+            }
+            else {
+<span class="cstat-no" title="statement not covered" >                return Promise.all([deleteCopieNoteVerbaleMAECI, deleteDossier, deletePersonne, deleteCopiePermis, deletePermis]);</span>
+            }
+        }).catch(<span class="fstat-no" title="function not covered" >function (error) {</span>
+            // Si une erreur est capturée
+            // On retourne un Objet contenant la description de l'erreur
+<span class="cstat-no" title="statement not covered" >            _this.Error.error = error;</span>
+<span class="cstat-no" title="statement not covered" >            _this.Error.reason = error.toString();</span>
+<span class="cstat-no" title="statement not covered" >            return _this.Error;</span>
+        });
+    };
+    /**
+     * Méthode retournant la liste des dossiers stockés dans la base
+     * @returns {Promise&lt;Array&lt;any&gt;&gt;} Liste des dossiers stockés dans la base
+     */
+<span class="cstat-no" title="statement not covered" >    PageServiceImplData.prototype.getListeDossier = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        logger.trace("SERVICE DATA get - PageService.GetListDossier");</span>
+        // Récupérer tous les permis de conduires stockés dans la base
+<span class="cstat-no" title="statement not covered" >        return this.permisDAO.getAllPermis().then(<span class="fstat-no" title="function not covered" >function (permisList) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var idPersonneArray = [];</span>
+<span class="cstat-no" title="statement not covered" >            var idDossierArray = [];</span>
+            /* Pour chaque permis de conduire :
+                idPersonne : id de la personne auquel appartient le permis
+                idDossier : id du dossier concerné par le permis
+            */
+<span class="cstat-no" title="statement not covered" >            permisList.forEach(<span class="fstat-no" title="function not covered" >function (permis) {</span></span>
+<span class="cstat-no" title="statement not covered" >                idPersonneArray.push(permis.idPersonne);</span>
+<span class="cstat-no" title="statement not covered" >                idDossierArray.push(permis.idDossier);</span>
+            });
+            // Récupérer les listes des personnes et des dossiers stockés dans la base
+<span class="cstat-no" title="statement not covered" >            var personne = _this.personneDAO.getListePersonne(idPersonneArray);</span>
+<span class="cstat-no" title="statement not covered" >            var dossier = _this.dossierDAO.getListeDossier(idDossierArray);</span>
+<span class="cstat-no" title="statement not covered" >            return Promise.all([personne, dossier]).then(<span class="fstat-no" title="function not covered" >function (values) {</span></span>
+<span class="cstat-no" title="statement not covered" >                var personneList = values[0];</span>
+<span class="cstat-no" title="statement not covered" >                var dossierList = values[1];</span>
+<span class="cstat-no" title="statement not covered" >                var result = [];</span>
+                // Concatèner les données relatives à chaque permis
+<span class="cstat-no" title="statement not covered" >                permisList.forEach(<span class="fstat-no" title="function not covered" >function (permis) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    var obj = { "idPermis": permis.idPermis, "numPermis": null, "nom": null, "prenom": null, "dateDeNaissance": null, "dateReceptionDossier": null };</span>
+<span class="cstat-no" title="statement not covered" >                    obj.numPermis = permis.numPermis;</span>
+<span class="cstat-no" title="statement not covered" >                    personneList.forEach(<span class="fstat-no" title="function not covered" >function (personne) {</span></span>
+<span class="cstat-no" title="statement not covered" >                        if (personne.idPermis == permis.idPermis) {</span>
+<span class="cstat-no" title="statement not covered" >                            obj.nom = personne.nom;</span>
+<span class="cstat-no" title="statement not covered" >                            obj.prenom = personne.prenom;</span>
+<span class="cstat-no" title="statement not covered" >                            obj.dateDeNaissance = Date.parse(personne.dateDeNaissance.toString());</span>
+                        }
+                    });
+<span class="cstat-no" title="statement not covered" >                    dossierList.forEach(<span class="fstat-no" title="function not covered" >function (dossier) {</span></span>
+<span class="cstat-no" title="statement not covered" >                        if (dossier.idPermis == permis.idPermis) {</span>
+<span class="cstat-no" title="statement not covered" >                            obj.dateReceptionDossier = Date.parse(dossier.dateReceptionDossier.toString());</span>
+                        }
+                    });
+<span class="cstat-no" title="statement not covered" >                    result.push(obj);</span>
+                });
+                // Retourne le tableau contenant la liste des données correspondant à chaque permis
+<span class="cstat-no" title="statement not covered" >                return result;</span>
+            });
+        });
+    };
+    /**
+     * Méthode retournant un dossier
+     * @param {{idPermis: number}} data - id du Permis relatif au dossier
+     * @returns {Promise&lt;Array&lt;any&gt;&gt;} Informations du dossier (Stockées dans un tableau pour une utilisation dans un dataSource)
+     */
+<span class="cstat-no" title="statement not covered" >    PageServiceImplData.prototype.getDossier = <span class="fstat-no" title="function not covered" >function (data) {</span></span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        logger.trace("SERVICE DATA get - PageService.GetDossier");</span>
+        // Récupérer les données de formulaire
+<span class="cstat-no" title="statement not covered" >        var idPermis = data.idPermis;</span>
+        // Récupérer les informations d'un permis de conduire
+<span class="cstat-no" title="statement not covered" >        return this.permisDAO.getPermis(idPermis).then(<span class="fstat-no" title="function not covered" >function (permis) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var result = {};</span>
+<span class="cstat-no" title="statement not covered" >            result["numPermis"] = permis.numPermis;</span>
+<span class="cstat-no" title="statement not covered" >            result["dateDeDelivrance"] = Date.parse(permis.dateDeDelivrance.toString());</span>
+            /* Récupérer les informations relatives à un permis :
+                Copie du permis de conduire
+                Personne à qui appartient le permis
+                Dossier concerné par le permis
+                Préfecture ayant délivré le permis
+            */
+<span class="cstat-no" title="statement not covered" >            var copie_permis = _this.copiePermisDAO.getCopiePermis(permis.idCopiePermis);</span>
+<span class="cstat-no" title="statement not covered" >            var personne = _this.personneDAO.getPersonne(permis.idPersonne);</span>
+<span class="cstat-no" title="statement not covered" >            var dossier = _this.dossierDAO.getDossier(permis.idDossier);</span>
+<span class="cstat-no" title="statement not covered" >            var prefecture_delivrance = _this.prefectureDAO.getPrefecture(permis.idPrefectureDelivrance);</span>
+<span class="cstat-no" title="statement not covered" >            return Promise.all([copie_permis, personne, dossier, prefecture_delivrance]).then(<span class="fstat-no" title="function not covered" >function (values) {</span></span>
+<span class="cstat-no" title="statement not covered" >                var copie_permis_value = values[0];</span>
+<span class="cstat-no" title="statement not covered" >                var personne_value = values[1];</span>
+<span class="cstat-no" title="statement not covered" >                var dossier_value = values[2];</span>
+<span class="cstat-no" title="statement not covered" >                var prefecture_value = values[3];</span>
+                // Concaténer les données relatives à un permis
+<span class="cstat-no" title="statement not covered" >                result["copie_permis"] = copie_permis_value;</span>
+<span class="cstat-no" title="statement not covered" >                result["nom"] = personne_value.nom;</span>
+<span class="cstat-no" title="statement not covered" >                result["prenom"] = personne_value.prenom;</span>
+<span class="cstat-no" title="statement not covered" >                result["dateDeNaissance"] = Date.parse(personne_value.dateDeNaissance.toString());</span>
+<span class="cstat-no" title="statement not covered" >                result["sexe"] = personne_value.titre;</span>
+<span class="cstat-no" title="statement not covered" >                result["villeDeNaissance"] = personne_value.villeDeNaissance;</span>
+<span class="cstat-no" title="statement not covered" >                result["paysDeNaissance"] = personne_value.paysDeNaissance;</span>
+<span class="cstat-no" title="statement not covered" >                result["region"] = prefecture_value.region;</span>
+<span class="cstat-no" title="statement not covered" >                result["departement"] = prefecture_value.departement;</span>
+<span class="cstat-no" title="statement not covered" >                result["prefecture"] = prefecture_value.prefecture;</span>
+<span class="cstat-no" title="statement not covered" >                result["adresse"] = prefecture_value.adresse;</span>
+<span class="cstat-no" title="statement not covered" >                result["codePostal"] = prefecture_value.codePostal;</span>
+<span class="cstat-no" title="statement not covered" >                result["ville"] = prefecture_value.ville;</span>
+<span class="cstat-no" title="statement not covered" >                result["dateReceptionDossier"] = Date.parse(dossier_value.dateReceptionDossier.toString());</span>
+                // Récupérer la copie de la note verbale du MAECI
+<span class="cstat-no" title="statement not covered" >                return _this.copieNoteVerbaleMAECIDAO.getCopieNoteVerbaleMAECI(dossier_value.idCopieNoteVerbaleMAECI).then(<span class="fstat-no" title="function not covered" >function (values) {</span></span>
+                    // Concaténer la copie aux autres informations relatives à un permis
+<span class="cstat-no" title="statement not covered" >                    result["copie_note_verbale_maeci"] = values;</span>
+<span class="cstat-no" title="statement not covered" >                    return [result];</span>
+                });
+            });
+        });
+    };
+    /**
+     * Méthode retournant une demande d'authentification
+     * @param {{idPermis: number}} data - id du Permis concerné par la demande d'authentification
+     * @returns {Promise&lt;DemandeAuthentificationFVMAttributes&gt;} Demande d'authentification
+     */
+<span class="cstat-no" title="statement not covered" >    PageServiceImplData.prototype.getDemandeAuthentification = <span class="fstat-no" title="function not covered" >function (data) {</span></span>
+<span class="cstat-no" title="statement not covered" >        logger.trace("SERVICE DATA get - PageService.GetDemandeAuthentification");</span>
+        // Récupérer les données de formulaire
+<span class="cstat-no" title="statement not covered" >        var idPermis = data.idPermis;</span>
+<span class="cstat-no" title="statement not covered" >        return this.demandeAuthentificationDAO.getDemandeAuthentificationFromPermis(idPermis);</span>
+    };
+    /* TODO
+    getReleve(data): Promise&lt;any&gt; {
+      let idPermis = data["idPermis"];
+      return Promise.resolve([]);
+    }
+  
+    getNoteVerbale(data): Promise&lt;any&gt; {
+      let idPermis = data["idPermis"];
+      return Promise.resolve([]);
+    }
+    */
+    /**
+     * Méthode retournant la copie d'un permis de conduire
+     * @param {number} idCopiePermis - id de la copie du permis de conduire
+     * @returns {Promise&lt;CopiePermisFVMAttributes&gt;} Copie d'un permis de conduire
+     */
+<span class="cstat-no" title="statement not covered" >    PageServiceImplData.prototype.getCopiePermis = <span class="fstat-no" title="function not covered" >function (idCopiePermis) {</span></span>
+<span class="cstat-no" title="statement not covered" >        logger.trace("SERVICE DATA get - PageService.GetCopiePermis");</span>
+<span class="cstat-no" title="statement not covered" >        return this.copiePermisDAO.getCopiePermis(idCopiePermis);</span>
+    };
+    /**
+     * Méthode retournant la copie d'une note verbale du MAECI
+     * @param {number} idCopieNoteVerbaleMAECI - id de la copie de la note verbale du MAECI
+     * @returns {Promise&lt;CopieNoteVerbaleMAECIFVMAttributes&gt;} Copie d'une note verbale du MAECI
+     */
+<span class="cstat-no" title="statement not covered" >    PageServiceImplData.prototype.getCopieNoteVerbaleMAECI = <span class="fstat-no" title="function not covered" >function (idCopieNoteVerbaleMAECI) {</span></span>
+<span class="cstat-no" title="statement not covered" >        logger.trace("SERVICE DATA get - PageService.GetCopieNoteVerbaleMAECI");</span>
+<span class="cstat-no" title="statement not covered" >        return this.copieNoteVerbaleMAECIDAO.getCopieNoteVerbaleMAECI(idCopieNoteVerbaleMAECI);</span>
+    };
+    /**
+     * Méthode retournant les informations nécessaires à la génération d'une demande d'authentification en PDF
+     * @param {number} idPermis - id du Permis concerné par la demande d'authentification
+     * @returns {Promise&lt;{dossier: any, demande_authentification: DemandeAuthentificationFVMAttributes}&gt;} Informations de la demande d'authentification
+     */
+<span class="cstat-no" title="statement not covered" >    PageServiceImplData.prototype.getPDFDemandeAuthentification = <span class="fstat-no" title="function not covered" >function (idPermis) {</span></span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        logger.trace("SERVICE DATA get - PageService.GetDossier");</span>
+        // Concaténer les informations relatives à une demande d'authentification
+<span class="cstat-no" title="statement not covered" >        var result = { dossier: null, demandeAuthentification: null };</span>
+        // Récupérer les informations d'un dossier
+<span class="cstat-no" title="statement not covered" >        return this.getDossier({ "idPermis": idPermis }).then(<span class="fstat-no" title="function not covered" >function (dossier) {</span></span>
+<span class="cstat-no" title="statement not covered" >            result["dossier"] = dossier[0];</span>
+            // Récupérer la demande d'authentification
+<span class="cstat-no" title="statement not covered" >            return _this.demandeAuthentificationDAO.getDemandeAuthentificationFromPermis(idPermis).then(<span class="fstat-no" title="function not covered" >function (demandeAuthentification) {</span></span>
+<span class="cstat-no" title="statement not covered" >                result["demandeAuthentification"] = demandeAuthentification;</span>
+<span class="cstat-no" title="statement not covered" >                return result;</span>
+            });
+        });
+    };
+<span class="cstat-no" title="statement not covered" >    tslib_1.__decorate([</span>
+        dec_transactional_1.Transactional({ configDatabase: injector_1.Injector.getRegistered("databaseConfigName") }),
+        tslib_1.__metadata("design:type", Function),
+        tslib_1.__metadata("design:paramtypes", [Object]),
+        tslib_1.__metadata("design:returntype", Promise)
+    ], PageServiceImplData.prototype, "deleteDemandeAuthentification", null);
+<span class="cstat-no" title="statement not covered" >    tslib_1.__decorate([</span>
+        dec_transactional_1.Transactional({ configDatabase: injector_1.Injector.getRegistered("databaseConfigName") }),
+        tslib_1.__metadata("design:type", Function),
+        tslib_1.__metadata("design:paramtypes", [Object]),
+        tslib_1.__metadata("design:returntype", Promise)
+    ], PageServiceImplData.prototype, "deleteDossier", null);
+<span class="cstat-no" title="statement not covered" >    return PageServiceImplData;</span>
+}(service_request_1.ServiceRequest));
+<span class="cstat-no" title="statement not covered" >exports.PageServiceImplData = PageServiceImplData;</span>
+&nbsp;
+//# sourceMappingURL=page-service-impl-data.js.map
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jun 20 2018 19:19:12 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../sorter.js"></script>
+</body>
+</html>

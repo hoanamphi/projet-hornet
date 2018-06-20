@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/server.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">src/</a> server.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">2.78% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>2/72</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/19</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">2.9% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>2/69</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+<span class="cstat-no" title="statement not covered" >Object.defineProperty(exports, "__esModule", { value: true });</span>
+<span class="cstat-no" title="statement not covered" >var tslib_1 = require("tslib");</span>
+// L'import de hornet-js-utils doit être fait le plus tôt possible
+<span class="cstat-no" title="statement not covered" >var hornet_js_utils_1 = require("hornet-js-utils");</span>
+<span class="cstat-no" title="statement not covered" >var fs = require("fs");</span>
+<span class="cstat-no" title="statement not covered" >var app_i18n_loader_1 = require("./i18n/app-i18n-loader");</span>
+<span class="cstat-no" title="statement not covered" >var HornetServer = require("hornet-js-core/src/server");</span>
+<span class="cstat-no" title="statement not covered" >var hornet_app_1 = require("./views/layouts/hornet-app");</span>
+<span class="cstat-no" title="statement not covered" >var hornet_layout_1 = require("./views/layouts/hornet-layout");</span>
+<span class="cstat-no" title="statement not covered" >var error_page_1 = require("hornet-js-react-components/src/widget/component/error-page");</span>
+// import { AuthenticationAPIMiddleware } from "src/middleware/authentication-api";
+<span class="cstat-no" title="statement not covered" >var routes_1 = require("./routes/routes");</span>
+<span class="cstat-no" title="statement not covered" >var component_middleware_1 = require("hornet-js-react-components/src/middleware/component-middleware");</span>
+<span class="cstat-no" title="statement not covered" >var HornetMiddlewares = require("hornet-js-core/src/middleware/middlewares");</span>
+<span class="cstat-no" title="statement not covered" >var DataBaseMiddlewares = require("hornet-js-database/src/middleware/middleware");</span>
+// Authent passport
+<span class="cstat-no" title="statement not covered" >var passport_authentication_1 = require("hornet-js-passport/src/passport-authentication");</span>
+<span class="cstat-no" title="statement not covered" >var authentication_configuration_1 = require("hornet-js-passport/src/authentication-configuration");</span>
+// Saml
+<span class="cstat-no" title="statement not covered" >var saml_configuration_1 = require("hornet-js-passport/src/strategy/saml/saml-configuration");</span>
+<span class="cstat-no" title="statement not covered" >var saml_strategy_1 = require("hornet-js-passport/src/strategy/saml/saml-strategy");</span>
+<span class="cstat-no" title="statement not covered" >var database_1 = require("hornet-js-database/src/sequelize/database");</span>
+<span class="cstat-no" title="statement not covered" >var injector_1 = require("hornet-js-core/src/inject/injector");</span>
+<span class="cstat-no" title="statement not covered" >var Menu = require("src/resources/navigation.json");</span>
+// Mise en place des injections de service
+<span class="cstat-no" title="statement not covered" >var logger = hornet_js_utils_1.Utils.getLogger("hornet-themes.server");</span>
+<span class="fstat-no" title="function not covered" >function initContext() {</span>
+<span class="cstat-no" title="statement not covered" >    return tslib_1.__awaiter(this, void 0, void 0, <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >        return tslib_1.__generator(this, <span class="fstat-no" title="function not covered" >function (_a) {</span></span>
+<span class="cstat-no" title="statement not covered" >            switch (_a.label) {</span>
+                case 0: <span class="cstat-no" title="statement not covered" >return [4 /*yield*/, Promise.resolve().then(<span class="fstat-no" title="function not covered" >function () {</span> <span class="cstat-no" title="statement not covered" >return require("./injector-context-services-data"); </span>})];</span>
+                case 1:
+<span class="cstat-no" title="statement not covered" >                    _a.sent();</span>
+<span class="cstat-no" title="statement not covered" >                    return [4 /*yield*/, Promise.resolve().then(<span class="fstat-no" title="function not covered" >function () {</span> <span class="cstat-no" title="statement not covered" >return require("./injector-context-services-page"); </span>})];</span>
+                case 2:
+<span class="cstat-no" title="statement not covered" >                    _a.sent();</span>
+<span class="cstat-no" title="statement not covered" >                    return [4 /*yield*/, Promise.resolve().then(<span class="fstat-no" title="function not covered" >function () {</span> <span class="cstat-no" title="statement not covered" >return require("./middleware/authentication-api"); </span>})];</span>
+                case 3: <span class="cstat-no" title="statement not covered" >return [2 /*return*/, _a.sent()];</span>
+            }
+        });
+    });
+}
+<span class="cstat-no" title="statement not covered" >var AuthenticationAPIMiddleware;</span>
+/*
+let AuthenticationAPIMiddleware;
+initContext().then(
+    (AuthenticationAPI)=&gt; {
+        AuthenticationAPIMiddleware = AuthenticationAPI
+    });
+*/
+<span class="cstat-no" title="statement not covered" >var Server = /** @class */ (<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="fstat-no" title="function not covered" >    function Server() {</span>
+    }
+<span class="cstat-no" title="statement not covered" >    Server.configure = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >        var configServer = {</span>
+            serverDir: __dirname,
+            staticPath: "../static",
+            appComponent: hornet_app_1.HornetApp,
+            layoutComponent: hornet_layout_1.HornetLayout,
+            errorComponent: error_page_1.ErrorPage,
+            defaultRoutesClass: new routes_1.Routes(),
+            sessionStore: null,
+            routesLoaderPaths: ["src/routes/"],
+            /*Directement un flux JSON &gt;&gt;internationalization:require("./i18n/messages-fr-FR.json"),*/
+            /*Sans utiliser le système clé/valeur&gt;&gt; internationalization:null,*/
+            internationalization: new app_i18n_loader_1.AppliI18nLoader(),
+            menuConfig: Menu.menu,
+            loginUrl: hornet_js_utils_1.Utils.config.get("authentication.loginUrl"),
+            logoutUrl: hornet_js_utils_1.Utils.config.get("authentication.logoutUrl"),
+            welcomePageUrl: hornet_js_utils_1.Utils.config.get("welcomePage"),
+            publicZones: [
+                hornet_js_utils_1.Utils.config.get("welcomePage")
+            ]
+        };
+<span class="cstat-no" title="statement not covered" >        var key = hornet_js_utils_1.Utils.config.getOrDefault("server.https.key", false);</span>
+<span class="cstat-no" title="statement not covered" >        var cert = hornet_js_utils_1.Utils.config.getOrDefault("server.https.cert", false);</span>
+<span class="cstat-no" title="statement not covered" >        if (key &amp;&amp; cert) {</span>
+<span class="cstat-no" title="statement not covered" >            configServer.httpsOptions = {</span>
+                key: fs.readFileSync(key, "utf8"),
+                cert: fs.readFileSync(cert, "utf8"),
+                passphrase: hornet_js_utils_1.Utils.config.get("server.https.passphrase")
+            };
+        }
+<span class="cstat-no" title="statement not covered" >        return configServer;</span>
+    };
+<span class="cstat-no" title="statement not covered" >    Server.middleware = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >        var hornetMiddlewareList = new HornetMiddlewares.HornetMiddlewareList()</span>
+            .addAfter(component_middleware_1.PageRenderingMiddleware, HornetMiddlewares.UserAccessSecurityMiddleware)
+            .addAfter(component_middleware_1.UnmanagedViewErrorMiddleware, HornetMiddlewares.DataRenderingMiddleware)
+            .addBefore(DataBaseMiddlewares.DataBaseErrorMiddleware, HornetMiddlewares.UnmanagedDataErrorMiddleware);
+<span class="cstat-no" title="statement not covered" >        if (hornet_js_utils_1.Utils.config.getOrDefault("authentication.saml.enabled", false)) {</span>
+<span class="cstat-no" title="statement not covered" >            var configAuth = new authentication_configuration_1.AuthenticationtConfiguration(hornet_js_utils_1.Utils.config.get("authentication.loginUrl"), hornet_js_utils_1.Utils.config.get("authentication.logoutUrl"));</span>
+<span class="cstat-no" title="statement not covered" >            var authent = new passport_authentication_1.PassportAuthentication(configAuth);</span>
+<span class="cstat-no" title="statement not covered" >            var configuration = new saml_configuration_1.SamlConfiguration(hornet_js_utils_1.Utils.config.get("authentication.saml.configuration.callbackUrl"), hornet_js_utils_1.Utils.config.get("authentication.saml.configuration.logoutCallbackUrl"), </span>
+            // Page de retour par défaut
+            hornet_js_utils_1.Utils.config.get("authentication.saml.configuration.hostUrlReturnTo"), 
+            // Usually specified as `/shibboleth` from site root
+            hornet_js_utils_1.Utils.config.get("authentication.saml.configuration.issuer"), 
+            // Certificat applicatif
+            fs.readFileSync(__dirname + "/../config/cert/cert.pem", "utf8"), 
+            // Clé privée de décryptage
+            fs.readFileSync(__dirname + "/../config/cert/key.pem", "utf8"), hornet_js_utils_1.Utils.config.get("authentication.saml.configuration.idp"));
+<span class="cstat-no" title="statement not covered" >            authent.initStrategy(new saml_strategy_1.SamlStrategy(configuration));</span>
+<span class="cstat-no" title="statement not covered" >            hornetMiddlewareList.addAfter(authent.getMiddleware(), HornetMiddlewares.ChangeI18nLocaleMiddleware);</span>
+        }
+        else {
+<span class="cstat-no" title="statement not covered" >            hornetMiddlewareList.addAfter(AuthenticationAPIMiddleware, HornetMiddlewares.ChangeI18nLocaleMiddleware);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return hornetMiddlewareList;</span>
+    };
+<span class="cstat-no" title="statement not covered" >    Server.startApplication = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >        initContext().then(<span class="fstat-no" title="function not covered" >function (AuthenticationAPI) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (process.env.NODE_ENV !== "production" &amp;&amp;</span>
+                !hornet_js_utils_1.Utils.config.getOrDefault("mock.enabled", false) &amp;&amp;
+                !hornet_js_utils_1.Utils.config.getOrDefault("mock.serviceData.enabled", false)) {
+<span class="cstat-no" title="statement not covered" >                var files = void 0;</span>
+<span class="cstat-no" title="statement not covered" >                var databaseConfName = injector_1.Injector.getRegistered("databaseConfigName");</span>
+<span class="cstat-no" title="statement not covered" >                if (databaseConfName === "config") {</span>
+<span class="cstat-no" title="statement not covered" >                    files = ["database/01_createTablesSqlite.sql", "database/02_initDataSqlite.sql"];</span>
+                }
+                else <span class="cstat-no" title="statement not covered" >if (databaseConfName === "configPostgres") {</span>
+<span class="cstat-no" title="statement not covered" >                    files = ["database/01_createTablesPostgres.sql", "database/02_initDataPostgres.sql"];</span>
+                }
+<span class="cstat-no" title="statement not covered" >                database_1.Database.runScripts([{</span>
+                        configName: databaseConfName,
+                        files: files
+                    }]).then(<span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >                    Server.start(AuthenticationAPI);</span>
+                });
+            }
+            else {
+<span class="cstat-no" title="statement not covered" >                Server.start(AuthenticationAPI);</span>
+            }
+        });
+    };
+<span class="cstat-no" title="statement not covered" >    Server.start = <span class="fstat-no" title="function not covered" >function (AuthenticationAPI) {</span></span>
+<span class="cstat-no" title="statement not covered" >        AuthenticationAPIMiddleware = AuthenticationAPI.AuthenticationAPIMiddleware;</span>
+<span class="cstat-no" title="statement not covered" >        var server = new HornetServer.Server(Server.configure(), Server.middleware());</span>
+<span class="cstat-no" title="statement not covered" >        server.start();</span>
+    };
+<span class="cstat-no" title="statement not covered" >    return Server;</span>
+}());
+<span class="cstat-no" title="statement not covered" >exports.Server = Server;</span>
+&nbsp;
+//# sourceMappingURL=server.js.map
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jun 20 2018 19:19:06 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/middleware/authentication.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">src/middleware/</a> authentication.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">2.9% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>2/69</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/22</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">2.9% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>2/69</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+<span class="cstat-no" title="statement not covered" >Object.defineProperty(exports, "__esModule", { value: true });</span>
+<span class="cstat-no" title="statement not covered" >var tslib_1 = require("tslib");</span>
+<span class="cstat-no" title="statement not covered" >var hornet_js_utils_1 = require("hornet-js-utils");</span>
+<span class="cstat-no" title="statement not covered" >var sha1 = require("sha1");</span>
+<span class="cstat-no" title="statement not covered" >var flash = require("connect-flash");</span>
+<span class="cstat-no" title="statement not covered" >var ReactDOMServer = require("react-dom/server");</span>
+<span class="cstat-no" title="statement not covered" >var passport = require("passport");</span>
+<span class="cstat-no" title="statement not covered" >var passport_local_1 = require("passport-local");</span>
+<span class="cstat-no" title="statement not covered" >var _ = require("lodash");</span>
+<span class="cstat-no" title="statement not covered" >var gen_cnx_page_1 = require("./../views/gen/gen-cnx-page");</span>
+<span class="cstat-no" title="statement not covered" >var middlewares_1 = require("hornet-js-core/src/middleware/middlewares");</span>
+<span class="cstat-no" title="statement not covered" >var AuthenticationMiddleware = /** @class */ (<span class="fstat-no" title="function not covered" >function (_super) {</span></span>
+<span class="cstat-no" title="statement not covered" >    tslib_1.__extends(AuthenticationMiddleware, _super);</span>
+<span class="fstat-no" title="function not covered" >    function AuthenticationMiddleware() {</span>
+<span class="cstat-no" title="statement not covered" >        return _super !== null &amp;&amp; _super.apply(this, arguments) || this;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    AuthenticationMiddleware.prototype.insertMiddleware = <span class="fstat-no" title="function not covered" >function (app) {</span></span>
+        // init passport
+        /**
+         * Insertion de la stratégie login/mot de passe (= stratégie 'locale', voir doc passport)
+         */
+<span class="cstat-no" title="statement not covered" >        passport.use(new passport_local_1.Strategy(<span class="fstat-no" title="function not covered" >function (_api) {</span></span>
+<span class="cstat-no" title="statement not covered" >            return <span class="fstat-no" title="function not covered" >function (username, password, done) {</span></span>
+<span class="cstat-no" title="statement not covered" >                AuthenticationMiddleware.logger.trace("Tentative d'authentification de l'utilisateur ", username);</span>
+<span class="cstat-no" title="statement not covered" >                var encodedPassword = sha1(password);</span>
+<span class="cstat-no" title="statement not covered" >                _api.auth({</span>
+                    login: username,
+                    password: encodedPassword
+                }).then(<span class="fstat-no" title="function not covered" >function (retourApi) {</span>
+<span class="cstat-no" title="statement not covered" >                    AuthenticationMiddleware.logger.debug("Retour API utilisateur : ", retourApi);</span>
+<span class="cstat-no" title="statement not covered" >                    done(null, retourApi);</span>
+                }).catch(<span class="fstat-no" title="function not covered" >function (err) {</span>
+<span class="cstat-no" title="statement not covered" >                    AuthenticationMiddleware.logger.warn("Retour en erreur:", err);</span>
+<span class="cstat-no" title="statement not covered" >                    if (err.code == "ERR_AUTHENTICATION_FAILED") {</span>
+<span class="cstat-no" title="statement not covered" >                        done(null, false, { message: "Votre identifiant ou votre mot de passe est incorrect" });</span>
+                    }
+                    else {
+<span class="cstat-no" title="statement not covered" >                        done(null, false, { message: "Une erreur technique est survenue : " + err.toString() });</span>
+                    }
+                });
+            };
+        }(this.api)));
+<span class="cstat-no" title="statement not covered" >        passport.serializeUser(<span class="fstat-no" title="function not covered" >function (user, done) {</span></span>
+            // Pour l'appli on sérialise tout l'objet plutot que juste son ID
+<span class="cstat-no" title="statement not covered" >            done(null, user);</span>
+        });
+<span class="cstat-no" title="statement not covered" >        passport.deserializeUser(<span class="fstat-no" title="function not covered" >function (user, done) {</span></span>
+<span class="cstat-no" title="statement not covered" >            done(null, user);</span>
+        });
+        // init middleware
+<span class="cstat-no" title="statement not covered" >        var loginUrl = hornet_js_utils_1.Utils.appSharedProps.get("loginUrl");</span>
+<span class="cstat-no" title="statement not covered" >        var logoutUrl = hornet_js_utils_1.Utils.appSharedProps.get("logoutUrl");</span>
+<span class="cstat-no" title="statement not covered" >        var welcomePageUrl = hornet_js_utils_1.Utils.appSharedProps.get("welcomePageUrl");</span>
+<span class="fstat-no" title="function not covered" >        function ensureAuthenticated(req, res, next) {</span>
+<span class="cstat-no" title="statement not covered" >            if (req.isAuthenticated() || _.startsWith(req.originalUrl, loginUrl)) {</span>
+<span class="cstat-no" title="statement not covered" >                return next();</span>
+            }
+<span class="cstat-no" title="statement not covered" >            req.getSession().setAttribute("previousUrl", hornet_js_utils_1.Utils.buildContextPath(req.originalUrl));</span>
+<span class="cstat-no" title="statement not covered" >            res.redirect(hornet_js_utils_1.Utils.buildContextPath(loginUrl));</span>
+        }
+<span class="cstat-no" title="statement not covered" >        app.use(flash());</span>
+<span class="cstat-no" title="statement not covered" >        app.use(passport.initialize());</span>
+<span class="cstat-no" title="statement not covered" >        app.use(passport.session());</span>
+<span class="cstat-no" title="statement not covered" >        app.post(loginUrl, passport.authenticate("local", { failureRedirect: hornet_js_utils_1.Utils.buildContextPath(loginUrl), failureFlash: true }), <span class="fstat-no" title="function not covered" >function (req, res, next) {</span></span>
+<span class="cstat-no" title="statement not covered" >            AuthenticationMiddleware.logger.trace("Authentification ok, redirection vers la page d'accueil");</span>
+<span class="cstat-no" title="statement not covered" >            var previousUrl = req.body.previousUrl || req.getSession().getAttribute("previousUrl") || hornet_js_utils_1.Utils.buildContextPath(welcomePageUrl);</span>
+<span class="cstat-no" title="statement not covered" >            res.redirect(previousUrl);</span>
+        });
+<span class="cstat-no" title="statement not covered" >        app.all(loginUrl, <span class="fstat-no" title="function not covered" >function (req, res) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var errors = req["flash"]("error");</span>
+<span class="cstat-no" title="statement not covered" >            if (errors.length &gt; 0 &amp;&amp; errors[0] === "Missing credentials") {</span>
+<span class="cstat-no" title="statement not covered" >                errors = ["Votre identifiant ou votre mot de passe est incorrect"];</span>
+            }
+<span class="cstat-no" title="statement not covered" >            var props = {</span>
+                errorMessage: errors,
+                previousUrl: null
+            };
+            // Cas d'un perte de connexion liée à un timeout
+<span class="cstat-no" title="statement not covered" >            if (req.query.previousUrl) {</span>
+<span class="cstat-no" title="statement not covered" >                props.previousUrl = req.query.previousUrl;</span>
+            }
+            // cas d'une perte de connexion liée à un timeout + F5
+<span class="cstat-no" title="statement not covered" >            if (req.getSession().getAttribute("previousUrl") &amp;&amp; !props["previousUrl"]) {</span>
+<span class="cstat-no" title="statement not covered" >                props.previousUrl = req.getSession().getAttribute("previousUrl");</span>
+<span class="cstat-no" title="statement not covered" >                req.getSession().removeAttribute("previousUrl");</span>
+            }
+<span class="cstat-no" title="statement not covered" >            var locales = req.acceptsLanguages();</span>
+<span class="cstat-no" title="statement not covered" >            var htmlApp = ReactDOMServer.renderToStaticMarkup(new gen_cnx_page_1.ConnexionPage(props).render());</span>
+<span class="cstat-no" title="statement not covered" >            var docTypeHtml = "&lt;!DOCTYPE html&gt;";</span>
+<span class="cstat-no" title="statement not covered" >            res.setHeader("x-is-login-page", "true");</span>
+<span class="cstat-no" title="statement not covered" >            res.send(docTypeHtml + htmlApp);</span>
+        });
+<span class="cstat-no" title="statement not covered" >        app.get(logoutUrl, <span class="fstat-no" title="function not covered" >function (req, res, next) {</span></span>
+            // notifie passport
+<span class="cstat-no" title="statement not covered" >            req.logout();</span>
+            // notifie le session-manager et redirige une fois la session détruite
+<span class="cstat-no" title="statement not covered" >            req.getSession().invalidate(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                res.redirect(hornet_js_utils_1.Utils.buildContextPath(welcomePageUrl));</span>
+            });
+        });
+<span class="cstat-no" title="statement not covered" >        app.use(ensureAuthenticated);</span>
+    };
+<span class="cstat-no" title="statement not covered" >    AuthenticationMiddleware.logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.middleware.authentication");</span>
+<span class="cstat-no" title="statement not covered" >    return AuthenticationMiddleware;</span>
+}(middlewares_1.AbstractHornetMiddleware));
+<span class="cstat-no" title="statement not covered" >exports.AuthenticationMiddleware = AuthenticationMiddleware;</span>
+&nbsp;
+//# sourceMappingURL=authentication.js.map
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jun 20 2018 19:19:06 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

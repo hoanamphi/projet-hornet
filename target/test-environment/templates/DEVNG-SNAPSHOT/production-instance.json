@@ -1,0 +1,9 @@
+{
+  "server":{
+    "route": "js1",
+    "port": 8888,
+    "portMonitor": 9999,
+    "uploadAntivirus": true
+  }
+}
+

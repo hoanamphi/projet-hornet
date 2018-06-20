@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/dao/model-dao.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">src/dao/</a> model-dao.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">1.37% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>1/73</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/2</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">1.43% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>1/70</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// Classes métiers et Classes modèles des tables de la base de données
+<span class="cstat-no" title="statement not covered" >import { PrefectureAttributes, PrefectureModel } from "src/models/model-prefecture";</span>
+<span class="cstat-no" title="statement not covered" >import { ValiseAttributes, ValiseModel } from "src/models/model-valise";</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >import { PermisFVMAttributes, PermisFVMModel } from "src/models/fvm/model-permis";</span>
+<span class="cstat-no" title="statement not covered" >import { PersonneFVMAttributes, PersonneFVMModel } from "src/models/fvm/model-personne";</span>
+<span class="cstat-no" title="statement not covered" >import { DossierFVMAttributes, DossierFVMModel } from "src/models/fvm/model-dossier";</span>
+<span class="cstat-no" title="statement not covered" >import { DemandeAuthentificationFVMAttributes, DemandeAuthentificationFVMModel } from "src/models/fvm/model-demandeauthentification";</span>
+<span class="cstat-no" title="statement not covered" >import { ReleveFVMAttributes, ReleveFVMModel } from "src/models/fvm/model-releve";</span>
+<span class="cstat-no" title="statement not covered" >import { NoteVerbaleReleveFVMAttributes, NoteVerbaleReleveFVMModel } from "src/models/fvm/model-noteverbale-releve";</span>
+<span class="cstat-no" title="statement not covered" >import { NoteVerbaleFVMAttributes, NoteVerbaleFVMModel } from "src/models/fvm/model-noteverbale";</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >import { CopiePermisFVMAttributes, CopiePermisFVMModel } from "src/models/fvm/model-copiepermis";</span>
+<span class="cstat-no" title="statement not covered" >import { CopieNoteVerbaleMAECIFVMAttributes, CopieNoteVerbaleMAECIFVMModel } from "src/models/fvm/model-copienoteverbaleMAECI";</span>
+<span class="cstat-no" title="statement not covered" >import { CopieReleveFVMAttributes, CopieReleveFVMModel } from "src/models/fvm/model-copiereleve";</span>
+<span class="cstat-no" title="statement not covered" >import { CopieCourrierPrefectureFVMAttributes, CopieCourrierPrefectureFVMModel } from "src/models/fvm/model-copiecourrierprefecture";</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >import { PermisMVFAttributes, PermisMVFModel } from "src/models/mvf/model-permis";</span>
+<span class="cstat-no" title="statement not covered" >import { PersonneMVFAttributes, PersonneMVFModel } from "src/models/mvf/model-personne";</span>
+<span class="cstat-no" title="statement not covered" >import { DossierMVFAttributes, DossierMVFModel } from "src/models/mvf/model-dossier";</span>
+<span class="cstat-no" title="statement not covered" >import { NoteVerbalePermisMVFAttributes, NoteVerbalePermisMVFModel } from "src/models/mvf/model-noteverbale-permis";</span>
+<span class="cstat-no" title="statement not covered" >import { NoteVerbaleMVFAttributes, NoteVerbaleMVFModel } from "src/models/mvf/model-noteverbale";</span>
+<span class="cstat-no" title="statement not covered" >import { AttestationMVFAttributes, AttestationMVFModel } from "src/models/mvf/model-attestation";</span>
+<span class="cstat-no" title="statement not covered" >import { BordereauAttestationMVFAttributes, BordereauAttestationMVFModel } from "src/models/mvf/model-bordereau-attestation";</span>
+<span class="cstat-no" title="statement not covered" >import { BordereauMVFAttributes, BordereauMVFModel } from "src/models/mvf/model-bordereau";</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >import { CopiePermisMVFAttributes, CopiePermisMVFModel } from "src/models/mvf/model-copiepermis";</span>
+<span class="cstat-no" title="statement not covered" >import { CopieDemandePrefectureMVFAttributes, CopieDemandePrefectureMVFModel } from "src/models/mvf/model-copiedemandeprefecture";</span>
+<span class="cstat-no" title="statement not covered" >import { CopieAttestationMVFAttributes, CopieAttestationMVFModel } from "src/models/mvf/model-copieattestation";</span>
+<span class="cstat-no" title="statement not covered" >import { CopieNoteVerbaleMAECIMVFAttributes, CopieNoteVerbaleMAECIMVFModel } from "src/models/mvf/model-copienoteverbaleMAECI";</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >import { RoleAttributes, RoleModel } from "src/models/auth/model-role";</span>
+<span class="cstat-no" title="statement not covered" >import { UtilisateurAttributes, UtilisateurModel } from "src/models/auth/seq-user-mod";</span>
+<span class="cstat-no" title="statement not covered" >import { RoleUtilisateurAttributes, RoleUtilisateurModel } from "src/models/auth/model-role_utilisateur";</span>
+&nbsp;
+// Décorateur définissant une entité de la base de données
+<span class="cstat-no" title="statement not covered" >import { Entity } from "hornet-js-database/src/decorators/dec-seq-entity";</span>
+// Décorateur permettant la connexion à la base de données
+<span class="cstat-no" title="statement not covered" >import { injectable, Scope, Side } from "hornet-js-core/src/inject/injectable";</span>
+<span class="cstat-no" title="statement not covered" >import { inject } from "hornet-js-core/src/inject/inject";</span>
+// Classe parente des Classes définissant les entités de la DAO
+<span class="cstat-no" title="statement not covered" >import { HornetSequelizeModel } from "hornet-js-database/src/sequelize/hornet-sequelize-model";</span>
+// Classe des entités de la DAO
+import { HornetSequelizeInstanceModel } from "hornet-js-database/src/sequelize/hornet-sequelize-attributes";
+// Classe permettant d'initialiser des relations entre des tables de la base
+<span class="cstat-no" title="statement not covered" >import {SequelizeUtils} from "hornet-js-database/src/sequelize/sequelize-utils";</span>
+&nbsp;
+/**
+ * Classe définissant les entités (tables) de la DAO
+ * @extends {HornetSequelizeModel}
+ */
+@injectable(ModelDAO, Scope.SINGLETON, Side.SERVER)
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >export class <span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >ModelDAO </span>extends <span class="cstat-no" title="statement not covered" >HornetSequelizeModel </span>{</span></span></span>
+&nbsp;
+  /* Une entité de la DAO est basée sur les tables de la base de données :
+      @Entity( [nom de la table dans la base de données], [Modèle de la table] )
+      public [Entité] : HornetSequelizeInstanceModel&lt;[Attributs de la table]&gt;
+   */
+&nbsp;
+  @Entity("prefecture", PrefectureModel)
+<span class="cstat-no" title="statement not covered" >  public prefectureEntity: HornetSequelizeInstanceModel&lt;PrefectureAttributes&gt;;</span>
+&nbsp;
+  @Entity("valise", ValiseModel)
+<span class="cstat-no" title="statement not covered" >  public valiseEntity: HornetSequelizeInstanceModel&lt;ValiseAttributes&gt;;</span>
+&nbsp;
+  @Entity("permis_fvm", PermisFVMModel)
+<span class="cstat-no" title="statement not covered" >  public permisFVMEntity: HornetSequelizeInstanceModel&lt;PermisFVMAttributes&gt;;</span>
+&nbsp;
+  @Entity("permis_mvf", PermisMVFModel)
+<span class="cstat-no" title="statement not covered" >  public permisMVFEntity: HornetSequelizeInstanceModel&lt;PermisMVFAttributes&gt;;</span>
+&nbsp;
+  @Entity("personne_fvm", PersonneFVMModel)
+<span class="cstat-no" title="statement not covered" >  public personneFVMEntity: HornetSequelizeInstanceModel&lt;PersonneFVMAttributes&gt;;</span>
+&nbsp;
+  @Entity("personne_mvf", PersonneMVFModel)
+<span class="cstat-no" title="statement not covered" >  public personneMVFEntity: HornetSequelizeInstanceModel&lt;PersonneMVFAttributes&gt;;</span>
+&nbsp;
+  @Entity("dossier_fvm", DossierFVMModel)
+<span class="cstat-no" title="statement not covered" >  public dossierFVMEntity: HornetSequelizeInstanceModel&lt;DossierFVMAttributes&gt;;</span>
+&nbsp;
+  @Entity("dossier_mvf", DossierMVFModel)
+<span class="cstat-no" title="statement not covered" >  public dossierMVFEntity: HornetSequelizeInstanceModel&lt;DossierMVFAttributes&gt;;</span>
+&nbsp;
+  @Entity("demande_authentification_fvm", DemandeAuthentificationFVMModel)
+<span class="cstat-no" title="statement not covered" >  public demandeAuthenthificationFVMEntity: HornetSequelizeInstanceModel&lt;DemandeAuthentificationFVMAttributes&gt;;</span>
+&nbsp;
+  @Entity("releve_fvm", ReleveFVMModel)
+<span class="cstat-no" title="statement not covered" >  public releveFVMEntity: HornetSequelizeInstanceModel&lt;ReleveFVMAttributes&gt;;</span>
+&nbsp;
+  @Entity("note_verbale_releve_fvm", NoteVerbaleReleveFVMModel)
+<span class="cstat-no" title="statement not covered" >  public noteVerbaleReleveFVMEntity: HornetSequelizeInstanceModel&lt;NoteVerbaleReleveFVMAttributes&gt;;</span>
+&nbsp;
+  @Entity("note_verbale_fvm", NoteVerbaleFVMModel)
+<span class="cstat-no" title="statement not covered" >  public noteVerbaleFVMEntity: HornetSequelizeInstanceModel&lt;NoteVerbaleFVMAttributes&gt;;</span>
+&nbsp;
+  @Entity("note_verbale_permismvf", NoteVerbalePermisMVFModel)
+<span class="cstat-no" title="statement not covered" >  public noteVerbalePermisMVFEntity: HornetSequelizeInstanceModel&lt;NoteVerbalePermisMVFAttributes&gt;;</span>
+&nbsp;
+  @Entity("note_verbale_mvf", NoteVerbaleMVFModel)
+<span class="cstat-no" title="statement not covered" >  public noteVerbaleMVFEntity: HornetSequelizeInstanceModel&lt;NoteVerbaleMVFAttributes&gt;;</span>
+&nbsp;
+  @Entity("attestation_mvf", AttestationMVFModel)
+<span class="cstat-no" title="statement not covered" >  public attestationMVFEntity: HornetSequelizeInstanceModel&lt;AttestationMVFAttributes&gt;;</span>
+&nbsp;
+  @Entity("bordereau_attestation_mvf", BordereauAttestationMVFModel)
+<span class="cstat-no" title="statement not covered" >  public bordereauAttestationMVFEntity: HornetSequelizeInstanceModel&lt;BordereauAttestationMVFAttributes&gt;;</span>
+&nbsp;
+  @Entity("bordereau_mvf", BordereauMVFModel)
+<span class="cstat-no" title="statement not covered" >  public bordereauMVFEntity: HornetSequelizeInstanceModel&lt;BordereauMVFAttributes&gt;;</span>
+&nbsp;
+  @Entity("copie_permis_fvm", CopiePermisFVMModel)
+<span class="cstat-no" title="statement not covered" >  public copiePermisFVMEntity: HornetSequelizeInstanceModel&lt;CopiePermisFVMAttributes&gt;;</span>
+&nbsp;
+  @Entity("copie_note_verbale_maeci_fvm", CopieNoteVerbaleMAECIFVMModel)
+<span class="cstat-no" title="statement not covered" >  public copieNoteVerbaleMAECIFVMEntity: HornetSequelizeInstanceModel&lt;CopieNoteVerbaleMAECIFVMAttributes&gt;;</span>
+&nbsp;
+  @Entity("copie_releve_fvm", CopieReleveFVMModel)
+<span class="cstat-no" title="statement not covered" >  public copieReleveFVMEntity: HornetSequelizeInstanceModel&lt;CopieReleveFVMAttributes&gt;;</span>
+&nbsp;
+  @Entity("copie_courrier_prefecture_fvm", CopieCourrierPrefectureFVMModel)
+<span class="cstat-no" title="statement not covered" >  public copieCourrierPrefectureFVMEntity: HornetSequelizeInstanceModel&lt;CopieCourrierPrefectureFVMAttributes&gt;;</span>
+&nbsp;
+  @Entity("copie_permis_mvf", CopiePermisMVFModel)
+<span class="cstat-no" title="statement not covered" >  public copiePermisMVFEntity: HornetSequelizeInstanceModel&lt;CopiePermisMVFAttributes&gt;;</span>
+&nbsp;
+  @Entity("copie_attestation_mvf", CopieAttestationMVFModel)
+<span class="cstat-no" title="statement not covered" >  public copieAttestationMVFEntity: HornetSequelizeInstanceModel&lt;CopieAttestationMVFAttributes&gt;;</span>
+&nbsp;
+  @Entity("copie_note_verbale_maeci_mvf", CopieNoteVerbaleMAECIMVFModel)
+<span class="cstat-no" title="statement not covered" >  public copieNoteVerbaleMAECIMVFEntity: HornetSequelizeInstanceModel&lt;CopieNoteVerbaleMAECIMVFAttributes&gt;;</span>
+&nbsp;
+  @Entity("copie_demande_prefecture_mvf", CopieDemandePrefectureMVFModel)
+<span class="cstat-no" title="statement not covered" >  public copieDemandePrefectureMVFEntity: HornetSequelizeInstanceModel&lt;CopieDemandePrefectureMVFAttributes&gt;;</span>
+&nbsp;
+  @Entity("utilisateur", UtilisateurModel)
+<span class="cstat-no" title="statement not covered" >  public utilisateurEntity: HornetSequelizeInstanceModel&lt;UtilisateurAttributes&gt;;</span>
+&nbsp;
+  @Entity("role", RoleModel)
+<span class="cstat-no" title="statement not covered" >  public roleEntity: HornetSequelizeInstanceModel&lt;RoleAttributes&gt;;</span>
+&nbsp;
+  @Entity("role_utilisateur", RoleUtilisateurModel)
+<span class="cstat-no" title="statement not covered" >  public roleUtilisateurEntity: HornetSequelizeInstanceModel&lt;RoleUtilisateurAttributes&gt;;</span>
+&nbsp;
+  /**
+   * @constructor
+   * @param {string} conf - chaîne de caractères permettant la connexion à la base
+   */
+<span class="fstat-no" title="function not covered" >  constructor(@inject("databaseConfigName")conf?: string)</span> {
+    super(conf);
+&nbsp;
+    // Initialise les relations entre les tables role et utilisateur
+<span class="cstat-no" title="statement not covered" >    this.initUtilisateurEntity();</span>
+<span class="cstat-no" title="statement not covered" >    this.initRoleEntity();</span>
+  }
+&nbsp;
+  /**
+   * Méthode créant une relation One to Many entre la table utilisateur et la table role, au travers de la table role_utilisateur
+   */
+<span class="fstat-no" title="function not covered" >  private <span class="cstat-no" title="statement not covered" >initUtilisateurEntity(): void {</span></span>
+<span class="cstat-no" title="statement not covered" >    SequelizeUtils.initRelationBelongsToMany({ fromEntity: this.utilisateurEntity, toEntity: this.roleEntity, alias: "listeRole", foreignKey: "id_utilisateur", throughTable: "role_utilisateur" });</span>
+  }
+&nbsp;
+  /**
+   * Méthode créant une relation One to Many entre la table role et la table utilisateur, au travers de la table role_utilisateur
+   */
+<span class="fstat-no" title="function not covered" >  private <span class="cstat-no" title="statement not covered" >initRoleEntity(): void {</span></span>
+<span class="cstat-no" title="statement not covered" >    SequelizeUtils.initRelationBelongsToMany({ fromEntity: this.roleEntity, toEntity: this.utilisateurEntity, alias: "listeUser", foreignKey: "id_role", throughTable: "role_utilisateur" });</span>
+  }
+<span class="cstat-no" title="statement not covered" >}</span>
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jun 20 2018 19:19:21 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

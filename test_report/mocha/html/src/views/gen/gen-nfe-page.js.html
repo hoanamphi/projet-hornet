@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/views/gen/gen-nfe-page.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">src/views/gen/</a> gen-nfe-page.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">5% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>1/20</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/2</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">5% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>1/20</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+<span class="cstat-no" title="statement not covered" >Object.defineProperty(exports, "__esModule", { value: true });</span>
+<span class="cstat-no" title="statement not covered" >var tslib_1 = require("tslib");</span>
+<span class="cstat-no" title="statement not covered" >var React = require("react");</span>
+<span class="cstat-no" title="statement not covered" >var hornet_js_utils_1 = require("hornet-js-utils");</span>
+<span class="cstat-no" title="statement not covered" >var hornet_page_1 = require("hornet-js-react-components/src/widget/component/hornet-page");</span>
+<span class="cstat-no" title="statement not covered" >var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.gen-nfe-page");</span>
+<span class="cstat-no" title="statement not covered" >var NotFoundPage = /** @class */ (<span class="fstat-no" title="function not covered" >function (_super) {</span></span>
+<span class="cstat-no" title="statement not covered" >    tslib_1.__extends(NotFoundPage, _super);</span>
+<span class="fstat-no" title="function not covered" >    function NotFoundPage(props, context) {</span>
+<span class="cstat-no" title="statement not covered" >        return _super.call(this, props, context) || this;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    NotFoundPage.prototype.prepareClient = <span class="fstat-no" title="function not covered" >function () {</span></span>
+    };
+    /**
+     * @inheritDoc
+     */
+<span class="cstat-no" title="statement not covered" >    NotFoundPage.prototype.render = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >        logger.info("VIEW NotFoundPage render");</span>
+<span class="cstat-no" title="statement not covered" >        var error = hornet_js_utils_1.Utils.getCls("hornet.currentError");</span>
+<span class="cstat-no" title="statement not covered" >        var messIntl = this.i18n("nfePage");</span>
+<span class="cstat-no" title="statement not covered" >        var title = messIntl.title;</span>
+<span class="cstat-no" title="statement not covered" >        var link = messIntl.backToHome;</span>
+<span class="cstat-no" title="statement not covered" >        return (React.createElement("div", { id: "nfe-page" },</span>
+            React.createElement("div", { id: "nf-img" }),
+            React.createElement("h2", { className: "nfe-title" }, title),
+            React.createElement("a", { href: this.genUrl(hornet_js_utils_1.Utils.config.getOrDefault("welcomePage", "/")), title: "", className: "hornet-button nfe-button" }, link)));
+    };
+<span class="cstat-no" title="statement not covered" >    return NotFoundPage;</span>
+}(hornet_page_1.HornetPage));
+<span class="cstat-no" title="statement not covered" >exports.NotFoundPage = NotFoundPage;</span>
+&nbsp;
+//# sourceMappingURL=gen-nfe-page.js.map
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jun 20 2018 19:19:06 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>
