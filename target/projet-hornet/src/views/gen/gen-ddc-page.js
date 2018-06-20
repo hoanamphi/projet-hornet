@@ -157,5 +157,4 @@ var DeclarationconformitePage = /** @class */ (function (_super) {
     return DeclarationconformitePage;
 }(hornet_page_1.HornetPage));
 exports.DeclarationconformitePage = DeclarationconformitePage;
-
 //# sourceMappingURL=gen-ddc-page.js.map

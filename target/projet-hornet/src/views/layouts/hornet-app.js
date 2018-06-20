@@ -163,5 +163,4 @@ var HornetApp = /** @class */ (function (_super) {
     return HornetApp;
 }(hornet_page_1.HornetPage));
 exports.HornetApp = HornetApp;
-
 //# sourceMappingURL=hornet-app.js.map

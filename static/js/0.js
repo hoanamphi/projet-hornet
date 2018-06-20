@@ -88,13 +88,13 @@ var RecordListRoutesServer = /** @class */ (function (_super) {
         _this.addDataRoute("/detailsDossiers/demandeauthentification", function () { return new abstract_routes_1.DataRouteInfos(fvm_action_1.GetDemandeAuthentification, null, page_service_impl_data_1.PageServiceImpl); }, abstract_routes_1.PUBLIC_ROUTE, "post");
         /* TODO
         this.addDataRoute("/detailsDossiers/releve",
-          (id) => new DataRouteInfos(GetReleve, null, PageServiceImpl),
+          (id) => new DataRouteInfos(GetReleve, null, PageServiceImplData),
           PUBLIC_ROUTE,
           "post"
         );
     
         this.addDataRoute("/detailsDossiers/noteverbale",
-          (id) => new DataRouteInfos(GetNoteVerbale, null, PageServiceImpl),
+          (id) => new DataRouteInfos(GetNoteVerbale, null, PageServiceImplData),
           PUBLIC_ROUTE,
           "post"
         );
@@ -34191,7 +34191,7 @@ var PageServiceImpl = /** @class */ (function (_super) {
     ;
     return PageServiceImpl;
 }(service_page_1.ServicePage));
-exports.PageServiceImpl = PageServiceImpl;
+exports.PageServiceImplData = PageServiceImpl;
 
 
 

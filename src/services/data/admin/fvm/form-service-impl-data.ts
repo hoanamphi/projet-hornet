@@ -27,7 +27,7 @@ const logger: Logger = Utils.getLogger("projet-hornet.services.data.admin.fvm.fo
  * @extends {ServiceRequest}
  * @implements {FormService}
  */
-export class FormServiceImpl extends ServiceRequest implements FormService {
+export class FormServiceImplData extends ServiceRequest implements FormService {
 
   /**
    * Objet JSON contenant deux attributs : error : Classe de l'erreur retournée, reason : Motif de l'erreur
