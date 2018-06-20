@@ -29,21 +29,56 @@ const logger: Logger = Utils.getLogger("projet-hornet.services.data.admin.fvm.fo
  */
 export class FormServiceImpl extends ServiceRequest implements FormService {
 
-  // Objets contenant les erreurs retournées par une méthode
+  /**
+   * Objet JSON contenant deux attributs : error : Classe de l'erreur retournée, reason : Motif de l'erreur
+   * @type {{error: null, reason: null}}
+   */
   private Error = {"error": null, "reason": null};
 
+  /**
+   * Classe de DAO de la table personne_fvm
+   * @type {PersonneFVMDAO}
+   */
   private personneDAO = new PersonneFVMDAO();
+  /**
+   * Classe de DAO de la table dossier_fvm
+   * @type {DossierFVMDAO}
+   */
   private dossierDAO = new DossierFVMDAO();
+  /**
+   * Classe de DAO de la table permis_fvm
+   * @type {PermisFVMDAO}
+   */
   private permisDAO = new PermisFVMDAO();
+  /**
+   * Classe de DAO de la table copie_note_verbale_maeci_fvm
+   * @type {CopieNoteVerbaleMAECIFVMDao}
+   */
   private copieNoteVerbaleMAECIDAO = new CopieNoteVerbaleMAECIFVMDao();
+  /**
+   * Classe de DAO de la table copie_permis_fvm
+   * @type {CopiePermisFVMDao}
+   */
   private copiePermisDAO = new CopiePermisFVMDao();
-  private prefectureDAO = new PrefectureDAO();
-  private valiseDAO = new ValiseDAO();
+  /**
+   * Classe de DAO de la table demande_authentification_fvm
+   * @type {DemandeAuthentificationFVMDAO}
+   */
   private demandeAuthentificationDAO = new DemandeAuthentificationFVMDAO();
+  /**
+   * Classe de DAO de la table prefecture
+   * @type {PrefectureDAO}
+   */
+  private prefectureDAO = new PrefectureDAO();
+  /**
+   * Classe de DAO de la table valise
+   * @type {ValiseDAO}
+   */
+  private valiseDAO = new ValiseDAO();
 
   /**
    * Méthode effectuant l'insertion d'un dossier dans la base de données
-   * @param {{content: any, copie_permis: any, copie_note_verbale_maeci: any}} data données de formulaire
+   * @param {{content: any, copie_permis: any, copie_note_verbale_maeci: any}} data - données de formulaire
    * @returns {Promise<any>}
    */
   @Transactional({configDatabase: Injector.getRegistered("databaseConfigName")})
@@ -108,7 +143,7 @@ export class FormServiceImpl extends ServiceRequest implements FormService {
 
   /**
    * Méthode effectuant l'insertion d'une demande d'authentification dans la base de données
-   * @param {{num_valise: number, num_demande_authentification: string, id_permis: number}} data données de formulaire
+   * @param {{num_valise: number, num_demande_authentification: string, id_permis: number}} data - données de formulaire
    * @returns {Promise<any>}
    */
   insererDemandeAuthentification(data: {num_valise: number, num_demande_authentification: string, id_permis: number}): Promise<any> {
@@ -136,7 +171,7 @@ export class FormServiceImpl extends ServiceRequest implements FormService {
 
   /**
    * Méthode effectuant l'insertion d'une valise dans la base de données
-   * @param {{num_valise: number, date_valise: Date}} data données de formulaire
+   * @param {{num_valise: number, date_valise: Date}} data - données de formulaire
    * @returns {Promise<any>}
    */
   insererValise(data: {num_valise: number, date_valise: Date}): Promise<any> {

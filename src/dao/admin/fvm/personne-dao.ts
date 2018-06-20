@@ -23,14 +23,14 @@ export class PersonneFVMDAO extends EntityDAO {
 
   /**
    * Méthode insérant une nouvelle personne dans la base
-   * @param {number} idPersonne id du nouveau tuple
-   * @param {string} nom nom de la personne
-   * @param {string} prenom prenom de la personne
-   * @param {Date} dateDeNaissance date de naissance de la personne
-   * @param {number} idSexe id permettant de connaître le sexe de la personne
-   * @param {string} villeDeNaissance ville de naissance de la personne
-   * @param {string} paysDeNaissance pays de naissance de la personne
-   * @param {number} idPermis id du Permis appartenant à la personne
+   * @param {number} idPersonne - id du nouveau tuple
+   * @param {string} nom - nom de la personne
+   * @param {string} prenom - prenom de la personne
+   * @param {Date} dateDeNaissance - date de naissance de la personne
+   * @param {number} idSexe - id permettant de connaître le sexe de la personne
+   * @param {string} villeDeNaissance - ville de naissance de la personne
+   * @param {string} paysDeNaissance - pays de naissance de la personne
+   * @param {number} idPermis - id du Permis appartenant à la personne
    * @returns {Promise<number>} id du tuple créé
    */
   insererPersonne(idPersonne: number, nom: string, prenom: string, dateDeNaissance: Date, idSexe: number, villeDeNaissance: string, paysDeNaissance: string, idPermis: number): Promise<number> {
@@ -52,7 +52,7 @@ export class PersonneFVMDAO extends EntityDAO {
 
   /**
    * Méthode retournant le titre de civilité correspondant à un sexe
-   * @param {number} idSexe id correspondant à un sexe
+   * @param {number} idSexe - id correspondant à un sexe
    * @returns {string} le titre de civilité correspondant au sexe (M: Monsieur, F: Madame)
    */
   getTitre(idSexe: number): string {
@@ -90,7 +90,7 @@ export class PersonneFVMDAO extends EntityDAO {
 
   /**
    * Méthode retournant une personne
-   * @param {number} idPersonne id du tuple à retourner
+   * @param {number} idPersonne - id du tuple à retourner
    * @returns {Promise<PersonneFVMAttributes>} Personne
    */
   getPersonne(idPersonne: number): Promise<PersonneFVMAttributes> {
@@ -105,7 +105,7 @@ export class PersonneFVMDAO extends EntityDAO {
 
   /**
    * Méthode retournant une liste de personnes
-   * @param {Array<number>} idPersonne tableau contenant les ids des tuples à retourner
+   * @param {Array<number>} idPersonne - tableau contenant les ids des tuples à retourner
    * @returns {Promise<Array<PersonneFVMAttributes>>} Liste de personnes
    */
   getListePersonne(idPersonne: Array<number>): Promise<Array<PersonneFVMAttributes>> {
@@ -122,7 +122,7 @@ export class PersonneFVMDAO extends EntityDAO {
 
   /**
    * Méthode retournant l'id d'une personne correspondant à un Permis
-   * @param {number} idPermis id du Permis auquel appartient le tuple
+   * @param {number} idPermis - id du Permis auquel appartient le tuple
    * @returns {Promise<number>} id de la Personne concernée
    */
   getIdPersonneFromPermis(idPermis: number): Promise<number> {
@@ -140,7 +140,7 @@ export class PersonneFVMDAO extends EntityDAO {
 
   /**
    * Méthode supprimant une personne
-   * @param {number} idPersonne id du tuple à supprimer
+   * @param {number} idPersonne - id du tuple à supprimer
    * @returns {Promise<any>}
    */
   deletePersonne(idPersonne: number): Promise<any> {

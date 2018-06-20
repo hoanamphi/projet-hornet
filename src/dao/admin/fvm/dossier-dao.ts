@@ -23,9 +23,9 @@ export class DossierFVMDAO extends EntityDAO {
 
   /**
    * Méthode insérant un nouveau dossier dans la base
-   * @param {number} idDossier id du nouveau tuple
-   * @param {number} idCopieNoteVerbaleMAECI id de la copie de la note verbale du MAECI
-   * @param {number} idPermis id du Permis auquel appartient l'entrée
+   * @param {number} idDossier - id du nouveau tuple
+   * @param {number} idCopieNoteVerbaleMAECI - id de la copie de la note verbale du MAECI
+   * @param {number} idPermis - id du Permis auquel appartient l'entrée
    * @returns {Promise<number>} id du tuple créé
    */
   insererDossier(idDossier: number, idCopieNoteVerbaleMAECI: number, idPermis: number): Promise<number> {
@@ -65,7 +65,7 @@ export class DossierFVMDAO extends EntityDAO {
 
   /**
    * Méthode retournant un dossier
-   * @param {number} idDossier id du tuple à retourner
+   * @param {number} idDossier - id du tuple à retourner
    * @returns {Promise<DossierFVMAttributes>} Dossier
    */
   getDossier(idDossier: number): Promise<DossierFVMAttributes> {
@@ -80,7 +80,7 @@ export class DossierFVMDAO extends EntityDAO {
 
   /**
    * Méthode retournant une liste de dossier
-   * @param {Array<number>} idDossier tableau contenant les ids des tuples à retourner
+   * @param {Array<number>} idDossier - tableau contenant les ids des tuples à retourner
    * @returns {Promise<Array<DossierFVMAttributes>>} Liste de dossiers
    */
   getListeDossier(idDossier: Array<number>): Promise<Array<DossierFVMAttributes>> {
@@ -97,7 +97,7 @@ export class DossierFVMDAO extends EntityDAO {
 
   /**
    * Méthode retournant l'id du dossier correspondant à un Permis
-   * @param {number} idPermis id du Permis auquel appartient le tuple
+   * @param {number} idPermis - id du Permis auquel appartient le tuple
    * @returns {Promise<number>} id du Dossier concerné
    */
   getIdDossierFromPermis(idPermis: number): Promise<number> {
@@ -115,7 +115,7 @@ export class DossierFVMDAO extends EntityDAO {
 
   /**
    * Méthode supprimant un dossier
-   * @param {number} idDossier id du tuple à supprimer
+   * @param {number} idDossier - id du tuple à supprimer
    * @returns {Promise<any>}
    */
   deleteDossier(idDossier: number): Promise<any> {

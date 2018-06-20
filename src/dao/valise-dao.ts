@@ -23,8 +23,8 @@ export class ValiseDAO extends EntityDAO {
 
   /**
    * Méthode insérant une nouvelle valise diplomatique dans la base
-   * @param {number} numValise numéro de la valise diplomatique
-   * @param {Date} dateValise date de départ du Maroc de la valise diplomatique
+   * @param {number} numValise - numéro de la valise diplomatique
+   * @param {Date} dateValise - date de départ du Maroc de la valise diplomatique
    * @returns {Promise<number>} numéro de la valise créée
    */
   insererValise(numValise: number, dateValise: Date): Promise<number> {
@@ -67,7 +67,7 @@ export class ValiseDAO extends EntityDAO {
 
   /**
    * Méthode retournant une valise diplomatique
-   * @param {number} numValise numéro de la valise diplomatique à retourner
+   * @param {number} numValise - numéro de la valise diplomatique à retourner
    * @returns {Promise<ValiseAttributes>} Valise
    */
   getValise(numValise: number): Promise<ValiseAttributes> {

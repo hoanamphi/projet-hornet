@@ -22135,7 +22135,7 @@ var FormServiceImpl = /** @class */ (function (_super) {
     }
     /**
      * Méthode effectuant une requête HTTP permettant l'insertion d'un dossier dans la base de données
-     * @param data données de formulaire
+     * @param data - données de formulaire
      * @returns {Promise<any>}
      */
     FormServiceImpl.prototype.insererDossier = function (data) {
@@ -22153,7 +22153,7 @@ var FormServiceImpl = /** @class */ (function (_super) {
     };
     /**
      * Méthode effectuant une requête HTTP permettant l'insertion d'une demande d'authentification dans la base de données
-     * @param {{num_valise: number, num_demande_authentification: any, id_permis: number}} data données de formulaire
+     * @param {{num_valise: number, num_demande_authentification: any, id_permis: number}} data - données de formulaire
      * @returns {Promise<any>}
      */
     FormServiceImpl.prototype.insererDemandeAuthentification = function (data) {
@@ -22167,7 +22167,7 @@ var FormServiceImpl = /** @class */ (function (_super) {
     };
     /**
      * Méthode effectuant une requête HTTP permettant l'insertion d'une valise dans la base de données
-     * @param {{num_valise: number, date_valise: Date}} data données de formulaire
+     * @param {{num_valise: number, date_valise: Date}} data - données de formulaire
      * @returns {Promise<any>}
      */
     FormServiceImpl.prototype.insererValise = function (data) {
@@ -22256,11 +22256,23 @@ var icon_1 = __webpack_require__(103);
 var picto_1 = __webpack_require__(96);
 var radios_field_1 = __webpack_require__(489);
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.admin.fvm.fvm-formDossier-page");
+/* HornetPage :
+    Classe générique : <Interface de la Classe de service, Props de la page, Context>
+*/
+/**
+ * Page de formulaire permettant de créer un dossier
+ * @extends {HornetPage<FormService, HornetComponentProps, any>}
+ */
 var FormulaireDossierPage = /** @class */ (function (_super) {
     tslib_1.__extends(FormulaireDossierPage, _super);
+    /**
+     * @constructor
+     * @param {HornetComponentProps} props
+     * @param context
+     */
     function FormulaireDossierPage(props, context) {
         var _this = _super.call(this, props, context) || this;
-        _this.prefectures = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getListePrefecture), { "value": "idPrefecture", "label": "prefecture" });
+        _this.listePrefectureDataSource = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getListePrefecture), { "value": "idPrefecture", "label": "prefecture" });
         _this.errors = new notification_manager_1.Notifications();
         _this.SequelizeErrors = new notification_manager_1.NotificationType();
         _this.SequelizeErrors.id = "SequelizeError";
@@ -22272,19 +22284,29 @@ var FormulaireDossierPage = /** @class */ (function (_super) {
         _this.success.addNotification(_this.SequelizeSuccess);
         return _this;
     }
+    /**
+     * Méthode permettant d'effectuer les appels d'API. Elle est appelée au moment où la Page est montée.
+     */
     FormulaireDossierPage.prototype.prepareClient = function () {
-        this.prefectures.fetch(true);
+        this.listePrefectureDataSource.fetch(true);
     };
+    /**
+     * Méthode appelée à la soumission du formulaire d'insertion d'un nouveau dossier
+     * @param data - données de formulaire
+     */
     FormulaireDossierPage.prototype.onSubmit = function (data) {
         var _this = this;
         this.getService().insererDossier(data).then(function (result) {
+            // Si le résultat contient une erreur
             if (result.error != null) {
                 console.error(result.reason);
                 console.error(result.error);
+                // Afficher un message d'erreur
                 _this.SequelizeErrors.text = result.reason;
                 notification_manager_1.NotificationManager.notify("SequelizeError", "errors", _this.errors, null, null, null, null);
             }
             else {
+                // Afficher un message d'information
                 notification_manager_1.NotificationManager.notify("SequelizeSuccess", "notif", null, _this.success, null, null, null);
             }
         }).catch(function (error) {
@@ -22292,7 +22314,12 @@ var FormulaireDossierPage = /** @class */ (function (_super) {
             notification_manager_1.NotificationManager.notify("SequelizeError", "errors", _this.errors, null, null, null, null);
         });
     };
+    /**
+     * Méthode effectuant le rendu de la vue
+     * @returns {JSX.Element}
+     */
     FormulaireDossierPage.prototype.render = function () {
+        // Objet Json contenant le format des champs (label, title,etc..)
         var format = this.i18n("forms");
         var radioData = new datasource_1.DataSource([
             { "value": 0, "label": "M" },
@@ -22323,12 +22350,15 @@ var FormulaireDossierPage = /** @class */ (function (_super) {
                 React.createElement(row_1.Row, null,
                     React.createElement(calendar_field_1.CalendarField, { name: "date_de_delivrance", label: format.fields.date_de_delivrance.label, title: format.fields.date_de_delivrance.title, required: true })),
                 React.createElement(row_1.Row, null,
-                    React.createElement(select_field_1.SelectField, { dataSource: this.prefectures, label: format.fields.id_prefecture.label, name: "id_prefecture", required: true })),
+                    React.createElement(select_field_1.SelectField, { dataSource: this.listePrefectureDataSource, label: format.fields.id_prefecture.label, name: "id_prefecture", required: true })),
                 React.createElement(row_1.Row, null,
                     React.createElement(upload_file_field_1.UploadFileField, { name: "copie_note_verbale_maeci", label: format.fields.copie_note_verbale_maeci.label, buttonLabel: format.fields.copie_note_verbale_maeci.buttonLabel, fileSelectedLabel: format.fields.copie_note_verbale_maeci.fileSelectedLabel, required: true })),
                 React.createElement(buttons_area_1.ButtonsArea, null,
                     React.createElement(button_1.Button, { type: "submit", value: "Valider", className: "hornet-button", label: "valider", title: "valider" })))));
     };
+    /**
+     * Méthode permettant de naviguer jusqu'à la page de sélection d'un dossier
+     */
     FormulaireDossierPage.prototype.retourPage = function () {
         this.navigateTo("/fvmrecord", {}, function () { });
     };

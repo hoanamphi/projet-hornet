@@ -23,11 +23,11 @@ export class DemandeAuthentificationFVMDAO extends EntityDAO {
 
   /**
    * Méthode insérant une nouvelle demande d'authentification dans la base
-   * @param {number} idDemandeAuthentification id du nouveau tuple
-   * @param {string} numDemandeAuthentification numéro de la demande d'authentification
-   * @param {number} idPermis id du Permis auquel appartient l'entrée
-   * @param {number} numValise numéro de la valise diplomatique transportant la demande d'authentification
-   * @param {Date} dateValise date de départ du Maroc de la valise diplomatique transportant la demande d'authentification
+   * @param {number} idDemandeAuthentification - id du nouveau tuple
+   * @param {string} numDemandeAuthentification - numéro de la demande d'authentification
+   * @param {number} idPermis - id du Permis auquel appartient l'entrée
+   * @param {number} numValise - numéro de la valise diplomatique transportant la demande d'authentification
+   * @param {Date} dateValise - date de départ du Maroc de la valise diplomatique transportant la demande d'authentification
    * @returns {Promise<number>} id du tuple créé
    */
   insererDemandeAuthentification(idDemandeAuthentification: number, numDemandeAuthentification: string, idPermis: number, numValise: number, dateValise: Date): Promise<number> {
@@ -47,7 +47,7 @@ export class DemandeAuthentificationFVMDAO extends EntityDAO {
 
   /**
    * Méthode retournant la date du traitement de la demande d'authentification
-   * @param {Date} dateValise date de départ du Maroc de la valise diplomatique transportant la demande d'authentification
+   * @param {Date} dateValise - date de départ du Maroc de la valise diplomatique transportant la demande d'authentification
    * @returns {Date} date du traitement de l'entrée
    */
   getDateDuTraitement(dateValise: Date): Date {
@@ -83,7 +83,7 @@ export class DemandeAuthentificationFVMDAO extends EntityDAO {
 
   /**
    * Méthode retournant une demande d'authentification
-   * @param {number} idPermis id du Permis auquel appartient le tuple
+   * @param {number} idPermis - id du Permis auquel appartient le tuple
    * @returns {Promise<DemandeAuthentificationFVMAttributes>} Demande d'authentification
    */
   getDemandeAuthentificationFromPermis(idPermis: number): Promise<DemandeAuthentificationFVMAttributes> {
@@ -98,7 +98,7 @@ export class DemandeAuthentificationFVMDAO extends EntityDAO {
 
   /**
    * Méthode supprimant une demande d'authentification
-   * @param {number} idDemandeAuthentification id du tuple à supprimer
+   * @param {number} idDemandeAuthentification - id du tuple à supprimer
    * @returns {Promise<any>}
    */
   deleteDemandeAuthentification(idDemandeAuthentification: number): Promise<any> {

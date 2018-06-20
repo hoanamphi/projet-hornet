@@ -23,13 +23,13 @@ export class PermisFVMDAO extends EntityDAO {
 
   /**
    * Méthode insérant un nouveau permis dans la base
-   * @param {number} idPermis id du nouveau tuple
-   * @param {string} numPermis numéro du permis de conduire
-   * @param {number} idCopiePermis id de la copie du permis de conduire
-   * @param {Date} dateDeDelivrance date de délivrance du permis de conduire
-   * @param {number} idPersonne id de la personne auquel appartient le permis
-   * @param {number} idDossier id du dossier concerné par le permis
-   * @param {number} idPrefectureDelivrance id de la préfecture ayant délivré le permis
+   * @param {number} idPermis - id du nouveau tuple
+   * @param {string} numPermis - numéro du permis de conduire
+   * @param {number} idCopiePermis - id de la copie du permis de conduire
+   * @param {Date} dateDeDelivrance - date de délivrance du permis de conduire
+   * @param {number} idPersonne - id de la personne auquel appartient le permis
+   * @param {number} idDossier - id du dossier concerné par le permis
+   * @param {number} idPrefectureDelivrance - id de la préfecture ayant délivré le permis
    * @returns {Promise<number>} id du tuple créé
    */
   insererPermis(idPermis: number, numPermis: string, idCopiePermis: number, dateDeDelivrance: Date, idPersonne: number, idDossier: number, idPrefectureDelivrance: number): Promise<number> {
@@ -82,7 +82,7 @@ export class PermisFVMDAO extends EntityDAO {
 
   /**
    * Méthode retournant un permis de conduire
-   * @param {number} idPermis id du tuple à retourner
+   * @param {number} idPermis - id du tuple à retourner
    * @returns {Promise<PermisFVMAttributes>} Permis
    */
   getPermis(idPermis: number): Promise<PermisFVMAttributes> {
@@ -97,7 +97,7 @@ export class PermisFVMDAO extends EntityDAO {
 
   /**
    * Méthode supprimant un permis de conduire
-   * @param {number} idPermis id du tuple à supprimer
+   * @param {number} idPermis - id du tuple à supprimer
    * @returns {Promise<any>}
    */
   deletePermis(idPermis: number): Promise<any> {

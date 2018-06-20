@@ -30485,11 +30485,23 @@ var paginate_datasource_1 = __webpack_require__(340);
 var action_column_1 = __webpack_require__(479);
 var icon_1 = __webpack_require__(103);
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.admin.fvm.fvm-recordList-page");
+/* HornetPage :
+    Classe générique : <Interface de la Classe de service, Props de la page, Context>
+*/
+/**
+ * Page affichant la liste des dossiers stockés dans la base
+ * @extends {HornetPage<PageService, HornetComponentProps, any>}
+ */
 var RecordListPage = /** @class */ (function (_super) {
     tslib_1.__extends(RecordListPage, _super);
+    /**
+     * @constructor
+     * @param {HornetComponentProps} props
+     * @param context
+     */
     function RecordListPage(props, context) {
         var _this = _super.call(this, props, context) || this;
-        _this.entries = new paginate_datasource_1.PaginateDataSource([], { itemsPerPage: 10 }, {});
+        _this.listeDossierDataSource = new paginate_datasource_1.PaginateDataSource([], { itemsPerPage: 10 }, {});
         _this.errors = new notification_manager_1.Notifications();
         _this.SequelizeErrors = new notification_manager_1.NotificationType();
         _this.SequelizeErrors.id = "SequelizeError";
@@ -30501,12 +30513,19 @@ var RecordListPage = /** @class */ (function (_super) {
         _this.success.addNotification(_this.SequelizeSuccess);
         return _this;
     }
+    /**
+     * Méthode permettant d'effectuer les appels d'API. Elle est appelée au moment où la Page est montée.
+     */
     RecordListPage.prototype.prepareClient = function () {
         var _this = this;
         this.getService().getListeDossier().then(function (all) {
-            _this.entries.add(true, all);
+            _this.listeDossierDataSource.add(true, all);
         });
     };
+    /**
+     * Méthode appelée à la soumission du formulaire de recherche avec critères
+     * @param data - critères sélectionnés
+     */
     RecordListPage.prototype.onSubmit = function (data) {
         var criteria = { "numPermis": data.num_permis };
         if (data.nom != null) {
@@ -30518,10 +30537,14 @@ var RecordListPage = /** @class */ (function (_super) {
         if (data.date_de_naissance != null) {
             criteria["dateDeNaissance"] = Date.parse(data.date_de_naissance);
         }
-        var subList = this.entries.findAll(criteria);
-        this.entries.deleteAll();
-        this.entries.add(true, subList);
+        var subList = this.listeDossierDataSource.findAll(criteria);
+        this.listeDossierDataSource.deleteAll();
+        this.listeDossierDataSource.add(true, subList);
     };
+    /**
+     * Méthode effectuant le rendu de la vue
+     * @returns {JSX.Element}
+     */
     RecordListPage.prototype.render = function () {
         var format = this.i18n("forms");
         return (React.createElement("div", null,
@@ -30532,7 +30555,7 @@ var RecordListPage = /** @class */ (function (_super) {
                 React.createElement(header_1.Header, { title: "Dossiers entrés dans la base" },
                     React.createElement(menu_actions_1.MenuActions, null,
                         React.createElement(action_button_1.ActionButton, { title: "Ajout", srcImg: picto_1.Picto.white.ajouter, displayedWithoutResult: true, action: this.ajouterDossier, priority: true }))),
-                React.createElement(content_1.Content, { dataSource: this.entries },
+                React.createElement(content_1.Content, { dataSource: this.listeDossierDataSource },
                     React.createElement(columns_1.Columns, null,
                         React.createElement(column_1.Column, { keyColumn: "numPermis", title: format.fields.num_permis.label, sortable: false }),
                         React.createElement(column_1.Column, { keyColumn: "nom", title: format.fields.nom.label, sortable: true }),
@@ -30542,7 +30565,7 @@ var RecordListPage = /** @class */ (function (_super) {
                         React.createElement(action_column_1.ActionColumn, { keyColumn: "idPermis", srcImg: picto_1.Picto.black.consulter, action: this.consulterDossier }),
                         React.createElement(action_column_1.ActionColumn, { keyColumn: "idPermis", srcImg: picto_1.Picto.black.supprimer, messageAlert: "Êtes vous sûr de vouloir supprimer ce dossier ?", action: this.supprimerDossier }))),
                 React.createElement(footer_1.Footer, null,
-                    React.createElement(pager_1.Pager, { dataSource: this.entries, id: "table-paginate" }))),
+                    React.createElement(pager_1.Pager, { dataSource: this.listeDossierDataSource, id: "table-paginate" }))),
             React.createElement("h3", null, " Recherche d'un dossier "),
             React.createElement(form_1.Form, { id: "entrycriteriaform", schema: schema, onSubmit: this.onSubmit, formMessages: format },
                 React.createElement(row_1.Row, null,
@@ -30554,17 +30577,25 @@ var RecordListPage = /** @class */ (function (_super) {
                         React.createElement(button_1.Button, { type: "button", onClick: this.reloadData, label: "annuler" }),
                         React.createElement(button_1.Button, { type: "submit", value: "Valider", className: "hornet-button", label: "valider", title: "Effectuer une recherche selon ces crit\u00E8res" }))))));
     };
+    /**
+     * Méthode supprimant le dossier sélectionné
+     * @param lineSelected - ligne sélectionnée dans le tableau listant les dossiers
+     */
     RecordListPage.prototype.supprimerDossier = function (lineSelected) {
         var _this = this;
         this.getService().deleteDossier({ idPermis: lineSelected.idPermis }).then(function (result) {
+            // Si le résultat contient une erreur
             if (result.hasError != null) {
                 console.error(result.hasReason);
                 console.error(result.hasError);
+                // Afficher un message d'erreur
                 _this.SequelizeErrors.text = result.hasReason;
                 notification_manager_1.NotificationManager.notify("SequelizeError", "errors", _this.errors, null, null, null, null);
             }
             else {
+                // Recharger les données du tableau
                 _this.reloadData();
+                // Afficher un message d'information
                 notification_manager_1.NotificationManager.notify("SequelizeSuccess", "notif", null, _this.success, null, null, null);
             }
         }).catch(function (reason) {
@@ -30572,20 +30603,31 @@ var RecordListPage = /** @class */ (function (_super) {
             notification_manager_1.NotificationManager.notify("SequelizeError", "errors", _this.errors, null, null, null, null);
         });
     };
+    /**
+     * Méthode permettant de consulter les détails du dossier sélectionné
+     * @param lineSelected - ligne sélectionnée dans le tableau listant les dossier
+     */
     RecordListPage.prototype.consulterDossier = function (lineSelected) {
         this.navigateTo("/fvmrecord/" + lineSelected.idPermis, {}, function () { });
     };
+    /**
+     * Méthode permettant de naviguer jusqu'à la page d'accueil
+     */
     RecordListPage.prototype.retourPage = function () {
         this.navigateTo("/accueil", {}, function () { });
     };
+    /**
+     * Méthode permettant de naviguer jusqu'à la page du formulaire d'insertion d'un dossier
+     */
     RecordListPage.prototype.ajouterDossier = function () {
         this.navigateTo("/fvmform1", {}, function () { });
     };
+    // Recharge les données du tableau listant les dossier
     RecordListPage.prototype.reloadData = function () {
         var _this = this;
-        this.entries.deleteAll();
+        this.listeDossierDataSource.deleteAll();
         this.getService().getListeDossier().then(function (all) {
-            _this.entries.add(true, all);
+            _this.listeDossierDataSource.add(true, all);
         });
     };
     return RecordListPage;
@@ -30674,17 +30716,57 @@ var radios_field_1 = __webpack_require__(489);
 var select_field_1 = __webpack_require__(343);
 var alert_1 = __webpack_require__(523);
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.admin.fvm.fvm-recordDetails-page");
+/* HornetPage :
+    Classe générique : <Interface de la Classe de service, Props de la page, Context>
+*/
+/**
+ * Page affichant les détails d'un dossier
+ * @extends {HornetPage<PageService, HornetComponentProps, any>}
+ */
 var RecordDetailsPage = /** @class */ (function (_super) {
     tslib_1.__extends(RecordDetailsPage, _super);
+    /**
+     * @constructor
+     * @param {HornetComponentProps} props
+     * @param context
+     */
     function RecordDetailsPage(props, context) {
         var _this = _super.call(this, props, context) || this;
+        /**
+         * Onglets
+         * @type {Tabs<TabsProps>}
+         */
         _this.tabs = new tabs_1.Tabs();
-        _this.nom_responsable = new input_field_1.InputField();
-        _this.prenom_responsable = new input_field_1.InputField();
-        _this.intitule_prefecture = new input_field_1.InputField();
-        _this.intitule_service = new input_field_1.InputField();
-        _this.cedex = new select_field_1.SelectField({ "name": "cedex" });
-        _this.alert = new alert_1.Alert();
+        /**
+         * Champs de texte contenant le nom du responsable du service des permis de conduire
+         * @type {InputField}
+         */
+        _this.nomResponsableInput = new input_field_1.InputField();
+        /**
+         * Champs de texte contenant le prénom du responsable du service des permis de conduire
+         * @type {InputField}
+         */
+        _this.prenomResponsableInput = new input_field_1.InputField();
+        /**
+         * Champs de texte contenant l'intitulé de la préfecture ayant délivré le permis
+         * @type {InputField}
+         */
+        _this.intitulePrefectureInput = new input_field_1.InputField();
+        /**
+         * Champs de texte contenant l'intitulé du service des permis de conduire de la préfecture ayant délivré le permis
+         * @type {InputField}
+         */
+        _this.intituleServiceInput = new input_field_1.InputField();
+        /**
+         * Composant permettant de sélectionner si l'adresse de la préfecture est CEDEX ou non
+         * @type {SelectField}
+         */
+        _this.choixCedexSelect = new select_field_1.SelectField({ "name": "cedex" });
+        /**
+         * Composant ouvrant une popin validant la suppression d'une demande d'authentification
+         * @type {Alert}
+         */
+        _this.supprAlert = new alert_1.Alert();
         _this.dossierDatasource = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getDossier), {});
         _this.demandeauthentificationDatasource = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getDemandeAuthentification), {});
         _this.errors = new notification_manager_1.Notifications();
@@ -30698,22 +30780,35 @@ var RecordDetailsPage = /** @class */ (function (_super) {
         _this.success.addNotification(_this.SequelizeSuccess);
         return _this;
     }
+    /**
+     * Méthode permettant d'effectuer les appels d'API. Elle est appelée au moment où la Page est montée.
+     */
     RecordDetailsPage.prototype.prepareClient = function () {
         var _this = this;
         this.dossierDatasource.fetch(true, this.attributes);
-        this.dossierDatasource.on("fetch", function (Result) {
-            _this.dossier = Result[0];
+        this.dossierDatasource.on("fetch", function (result) {
+            // Lorsque les données du datasource ont été récupérées
+            _this.dossier = result[0];
+            // Rendre l'onglet contenant les détails du dossier
             _this.tabs.addElements(1, _this.renderDossierTab());
+            // Enlever l'onglet temporaire
             _this.tabs.removeElementsById("temp");
             _this.tabs.showPanel(1);
+            // Récupére la demande d'authentification
             _this.demandeauthentificationDatasource.fetch(true, _this.attributes);
         });
         this.demandeauthentificationDatasource.on("fetch", function (result) {
+            // Lorsque les données du datasource ont été récupérées
             _this.demandeAuthentification = result[0];
+            // Recharger l'onglet
             _this.tabs.removeElementsByIndex(2);
             _this.tabs.addElements(2, _this.renderDemandeAuthentificationTab());
         });
     };
+    /**
+     * Méthode effectuant le rendu de la vue
+     * @returns {JSX.Element}
+     */
     RecordDetailsPage.prototype.render = function () {
         var _this = this;
         return (React.createElement("div", null,
@@ -30723,6 +30818,10 @@ var RecordDetailsPage = /** @class */ (function (_super) {
                 }, id: "tabs", selectedTabIndex: 0 },
                 React.createElement(tab_1.Tab, { index: -1, id: "temp" }, " "))));
     };
+    /**
+     * Méthode effectuant le rendu de l'onglet contenant les détails du dossier
+     * @returns {JSX.Element}
+     */
     RecordDetailsPage.prototype.renderDossierTab = function () {
         var format = this.i18n("forms");
         return (React.createElement(tab_1.Tab, { id: "tabDossier", title: "Dossier" },
@@ -30765,6 +30864,10 @@ var RecordDetailsPage = /** @class */ (function (_super) {
                             React.createElement(upload_file_field_1.UploadFileField, { name: "copie_permis", readOnly: true, label: format.fields.copie_permis.label, renderPreviewFile: this.renderCopiePermis, buttonLabel: format.fields.copie_permis.buttonLabel, fileSelectedLabel: format.fields.copie_permis.fileSelectedLabel }),
                             React.createElement(upload_file_field_1.UploadFileField, { name: "copie_note_verbale_maeci", readOnly: true, label: format.fields.copie_note_verbale_maeci.label, renderPreviewFile: this.renderCopieNoteVerbaleMAECI, buttonLabel: format.fields.copie_note_verbale_maeci.buttonLabel, fileSelectedLabel: format.fields.copie_note_verbale_maeci.fileSelectedLabel })))))));
     };
+    /**
+     * Méthode rendant l'élément permettant de récupérer la copie du permis de conduire
+     * @returns {__React.ReactElement<any>}
+     */
     RecordDetailsPage.prototype.renderCopiePermis = function () {
         var fileTag;
         var urlfile = hornet_js_utils_1.Utils.buildContextPath("/services/fvmrecordserver/copiePermis/" + this.dossier.copie_permis.idCopiePermis);
@@ -30775,6 +30878,10 @@ var RecordDetailsPage = /** @class */ (function (_super) {
                     React.createElement("a", { href: urlfile, "data-pass-thru": "true", target: fileTarget }, this.dossier.copie_permis.nom)));
         return fileTag;
     };
+    /**
+     * Méthode rendant l'élément permettant de récupérer la copie de la note verbale du MAECI
+     * @returns {__React.ReactElement<any>}
+     */
     RecordDetailsPage.prototype.renderCopieNoteVerbaleMAECI = function () {
         var fileTag;
         var urlfile = hornet_js_utils_1.Utils.buildContextPath("/services/fvmrecordserver/copieNoteVerbaleMAECI/" + this.dossier.copie_note_verbale_maeci.idCopieNoteVerbaleMAECI);
@@ -30785,11 +30892,18 @@ var RecordDetailsPage = /** @class */ (function (_super) {
                     React.createElement("a", { href: urlfile, "data-pass-thru": "true", target: fileTarget }, this.dossier.copie_note_verbale_maeci.nom)));
         return fileTag;
     };
+    /**
+     * Méthode effectuant le rendu de l'onglet contenant la demande d'authentification
+     * @returns {JSX.Element}
+     */
     RecordDetailsPage.prototype.renderDemandeAuthentificationTab = function () {
         var _this = this;
+        // Objet Json contenant le format des champs (label, title,etc..)
         var format = this.i18n("forms");
+        // Si une demande d'authentification a été insérée
         if (this.demandeAuthentification != null) {
             var fileTag = void 0;
+            // Détails de la demande d'authentification
             var dataForm = this.demandeAuthentification;
             dataForm["nom_responsable"] = "Zitouni";
             dataForm["prenom_responsable"] = "Samah";
@@ -30797,6 +30911,7 @@ var RecordDetailsPage = /** @class */ (function (_super) {
             dataForm["prefecture"] = this.dossier.prefecture;
             dataForm["intitule_service"] = "Service des permis de conduire";
             var dataCedex = new datasource_1.DataSource([{ "id": "false", "libelle": "non" }, { "id": "true", "libelle": "oui" }], { "value": "id", "label": "libelle" });
+            // Paramètre par défaut pour générer le PDF de la demande d'authentification
             var defaultParams = encodeURI(dataForm.nom_responsable + "+" + dataForm.prenom_responsable + "+" + dataForm.intitule_prefecture + "+" + dataForm.intitule_service + "+false");
             var urlfile = hornet_js_utils_1.Utils.buildContextPath("/services/fvmrecordserver/pdfMake/demandeAuthentification/" + this.attributes.idPermis + "/" + defaultParams);
             var fileTarget = "newTabForDemandeAuthentification" + this.attributes.idPermis;
@@ -30804,7 +30919,7 @@ var RecordDetailsPage = /** @class */ (function (_super) {
                 React.createElement(tab_1.Tab, { id: "tabDemandeAuthentification", title: "Demande d'Authentification" },
                     React.createElement(tab_content_1.TabContent, { dataSource: this.demandeauthentificationDatasource },
                         React.createElement(notification_1.Notification, { id: "errors" }),
-                        React.createElement(alert_1.Alert, { message: "Êtes vous sûr de vouloir supprimer cette demande ?", ref: function (alert) { _this.alert = alert; }, onClickOk: this.supprimerDemande, onClickClose: this.closeAlert, validTitle: "Supprimer la demande", isVisible: false }),
+                        React.createElement(alert_1.Alert, { message: "Êtes vous sûr de vouloir supprimer cette demande ?", ref: function (alert) { _this.supprAlert = alert; }, onClickOk: this.supprimerDemande, onClickClose: this.closeAlert, validTitle: "Supprimer la demande", isVisible: false }),
                         React.createElement("h6", null, " Vous avez g\u00E9n\u00E9r\u00E9 une demande d'authentification pour ce dossier "),
                         React.createElement(icon_1.Icon, { src: picto_1.Picto.blue.supprimer, alt: "Supprimer la demande d'authentification", title: "Supprimer la demande d'authentification", action: this.openAlert }),
                         React.createElement(form_1.Form, { id: "demandeAuthentificationForm", defaultValues: dataForm },
@@ -30813,13 +30928,13 @@ var RecordDetailsPage = /** @class */ (function (_super) {
                             React.createElement(input_field_1.InputField, { name: "numValise", label: format.fields.num_valise.label, readOnly: true }),
                             React.createElement(calendar_field_1.CalendarField, { name: "dateDuTraitement", label: format.fields.date_du_traitement.label, readOnly: true }),
                             React.createElement(row_1.Row, null,
-                                React.createElement(input_field_1.InputField, { name: "nom_responsable", ref: function (input) { _this.nom_responsable = input; }, onChange: this.handleUrl, label: format.fields.nom_responsable.label, readOnly: false }),
-                                React.createElement(input_field_1.InputField, { name: "prenom_responsable", ref: function (input) { _this.prenom_responsable = input; }, onChange: this.handleUrl, label: format.fields.prenom_responsable.label, readOnly: false })),
+                                React.createElement(input_field_1.InputField, { name: "nom_responsable", ref: function (input) { _this.nomResponsableInput = input; }, onChange: this.handleUrl, label: format.fields.nom_responsable.label, readOnly: false }),
+                                React.createElement(input_field_1.InputField, { name: "prenom_responsable", ref: function (input) { _this.prenomResponsableInput = input; }, onChange: this.handleUrl, label: format.fields.prenom_responsable.label, readOnly: false })),
                             React.createElement(row_1.Row, null,
-                                React.createElement(input_field_1.InputField, { name: "intitule_prefecture", ref: function (input) { _this.intitule_prefecture = input; }, onChange: this.handleUrl, label: format.fields.intitule_prefecture.label, readOnly: false }),
+                                React.createElement(input_field_1.InputField, { name: "intitule_prefecture", ref: function (input) { _this.intitulePrefectureInput = input; }, onChange: this.handleUrl, label: format.fields.intitule_prefecture.label, readOnly: false }),
                                 React.createElement(input_field_1.InputField, { name: "prefecture", label: format.fields.prefecture.label, readOnly: true })),
-                            React.createElement(input_field_1.InputField, { name: "intitule_service", ref: function (input) { _this.intitule_service = input; }, onChange: this.handleUrl, label: format.fields.intitule_service.label, readOnly: false }),
-                            React.createElement(select_field_1.SelectField, { name: "cedex", ref: function (select) { _this.cedex = select; }, onClick: this.handleUrl, label: format.fields.cedex.label, dataSource: dataCedex, inline: radios_field_1.RadiosField.Inline.FIELD })),
+                            React.createElement(input_field_1.InputField, { name: "intitule_service", ref: function (input) { _this.intituleServiceInput = input; }, onChange: this.handleUrl, label: format.fields.intitule_prefecture.label, readOnly: false }),
+                            React.createElement(select_field_1.SelectField, { name: "cedex", ref: function (select) { _this.choixCedexSelect = select; }, onClick: this.handleUrl, label: format.fields.cedex.label, dataSource: dataCedex, inline: radios_field_1.RadiosField.Inline.FIELD })),
                         React.createElement("div", { className: "grid-form-field " },
                             React.createElement("div", { className: "demandeauthentification" },
                                 React.createElement("a", { href: urlfile, "data-pass-thru": "true", target: fileTarget }, "Demande d'authentification générée")))));
@@ -30833,23 +30948,36 @@ var RecordDetailsPage = /** @class */ (function (_super) {
                         React.createElement(button_1.Button, { type: "submit", onClick: this.genererDemande, value: "Valider", className: "hornet-button", label: "g\u00E9n\u00E9rer une demande d'authentification", title: "valider" })))));
         }
     };
+    /**
+     * Méthode ouvrant une popin permettant de valider la suppression d'une demande d'authentification
+     */
     RecordDetailsPage.prototype.openAlert = function () {
-        this.alert.open();
+        this.supprAlert.open();
     };
+    /**
+     * Méthode fermant la popin permettant de valider la suppression d'une demande d'authentification
+     */
     RecordDetailsPage.prototype.closeAlert = function () {
-        this.alert.close();
+        this.supprAlert.close();
     };
+    /**
+     * Méthode appelant le service de suppression de la demande d'authentification
+     */
     RecordDetailsPage.prototype.supprimerDemande = function () {
         var _this = this;
         this.getService().deleteDemandeAuthentification({ idDemandeAuthentification: this.demandeAuthentification.idDemandeAuthentification }).then(function (result) {
+            // Si le résultat contient une erreur
             if (result.hasError != null) {
                 console.error(result.hasReason);
                 console.error(result.hasError);
+                // Afficher un message d'erreur
                 _this.SequelizeErrors.text = result.hasReason;
                 notification_manager_1.NotificationManager.notify("SequelizeError", "errors", _this.errors, null, null, null, null);
             }
             else {
+                // Recharger l'onglet
                 _this.demandeauthentificationDatasource.fetch(true);
+                // Afficher un message d'information
                 notification_manager_1.NotificationManager.notify("SequelizeSuccess", "notif", null, _this.success, null, null, null);
             }
         }).catch(function (reason) {
@@ -30857,15 +30985,24 @@ var RecordDetailsPage = /** @class */ (function (_super) {
             notification_manager_1.NotificationManager.notify("SequelizeError", "errors", _this.errors, null, null, null, null);
         });
     };
+    /**
+     * Méthode mofifiant l'URL permettant d'accéder au PDF de la demande d'authentification
+     */
     RecordDetailsPage.prototype.handleUrl = function () {
-        var params = encodeURI(this.nom_responsable.getCurrentValue() + "+" + this.prenom_responsable.getCurrentValue() + "+" + this.intitule_prefecture.getCurrentValue() + "+" + this.intitule_service.getCurrentValue() + "+" + this.cedex.getCurrentValue());
+        var params = encodeURI(this.nomResponsableInput.getCurrentValue() + "+" + this.prenomResponsableInput.getCurrentValue() + "+" + this.intitulePrefectureInput.getCurrentValue() + "+" + this.intituleServiceInput.getCurrentValue() + "+" + this.choixCedexSelect.getCurrentValue());
         var a;
         a = document.querySelector(".demandeauthentification a");
         a.href = hornet_js_utils_1.Utils.buildContextPath("/services/fvmrecordserver/pdfMake/demandeAuthentification/" + this.attributes.idPermis + "/" + params);
     };
+    /**
+     * Méthode permettant de naviguer jusqu'à la page de sélection d'un dossier
+     */
     RecordDetailsPage.prototype.retourPage = function () {
         this.navigateTo("/fvmrecord", {}, function () { });
     };
+    /**
+     * Méthode permettant de naviguer jusqu'à la page du formulaire d'insertion d'une demande d'authentification
+     */
     RecordDetailsPage.prototype.genererDemande = function () {
         this.navigateTo("/fvmform2/" + this.attributes.idPermis, {}, function () { });
     };
@@ -32392,7 +32529,7 @@ var PageServiceImpl = /** @class */ (function (_super) {
     }
     /**
      * Méthode effectuant une requête HTTP permettant la supression d'une demande d'authentification de la base de données
-     * @param {{idDemandeAuthentification: number}} data id de la demande d'authentification à supprimer
+     * @param {{idDemandeAuthentification: number}} data - id de la demande d'authentification à supprimer
      * @returns {Promise<any>}
      */
     PageServiceImpl.prototype.deleteDemandeAuthentification = function (data) {
@@ -32406,7 +32543,7 @@ var PageServiceImpl = /** @class */ (function (_super) {
     };
     /**
      * Méthode effectuant une requête HTTP permettant la supression d'un dossier de la base de données
-     * @param {{idPermis: number}} data id du Permis concerné par le dossier à supprimer
+     * @param {{idPermis: number}} data - id du Permis concerné par le dossier à supprimer
      * @returns {Promise<any>}
      */
     PageServiceImpl.prototype.deleteDossier = function (data) {
@@ -32432,7 +32569,7 @@ var PageServiceImpl = /** @class */ (function (_super) {
     };
     /**
      * Méthode effectuant une requête HTTP retournant un dossier
-     * @param {{idPermis: number}} data id du Permis relatif au dossier
+     * @param {{idPermis: number}} data - id du Permis relatif au dossier
      * @returns {Promise<Array<any>>} Informations du dossier (Stockées dans un tableau pour une utilisation dans un dataSource)
      */
     PageServiceImpl.prototype.getDossier = function (data) {
@@ -32446,7 +32583,7 @@ var PageServiceImpl = /** @class */ (function (_super) {
     };
     /**
      * Méthode effectuant une requête HTTP retournant une demande d'authentification
-     * @param {{idPermis: number}} data id du Permis concerné par la demande d'authentification
+     * @param {{idPermis: number}} data - id du Permis concerné par la demande d'authentification
      * @returns {Promise<DemandeAuthentificationFVMAttributes>} Demande d'authentification
      */
     PageServiceImpl.prototype.getDemandeAuthentification = function (data) {
@@ -32460,7 +32597,7 @@ var PageServiceImpl = /** @class */ (function (_super) {
     };
     /**
      * Méthode effectuant une requête HTTP retournant une copie d'un permis de conduire
-     * @param {number} idCopiePermis id de la copie d'un permis de conduire
+     * @param {number} idCopiePermis - id de la copie d'un permis de conduire
      * @returns {Promise<any>} service uniquement disponible côté serveur
      */
     PageServiceImpl.prototype.getCopiePermis = function (idCopiePermis) {
@@ -32470,7 +32607,7 @@ var PageServiceImpl = /** @class */ (function (_super) {
     ;
     /**
      * Méthode effectuant une requête HTTP retournant une copie d'une note verbale du MAECI
-     * @param {number} idCopieNoteVerbaleMAECI id de la copie d'une note verbale du MAECI
+     * @param {number} idCopieNoteVerbaleMAECI - id de la copie d'une note verbale du MAECI
      * @returns {Promise<any>} service uniquement disponible côté serveur
      */
     PageServiceImpl.prototype.getCopieNoteVerbaleMAECI = function (idCopieNoteVerbaleMAECI) {
@@ -32480,7 +32617,7 @@ var PageServiceImpl = /** @class */ (function (_super) {
     ;
     /**
      * Méthode effectuant une requête HTTP retournant les informations nécessaires à la génération d'une demande d'authentification en PDF
-     * @param {number} idPermis id du Permis concerné par la demande d'authentification
+     * @param {number} idPermis - id du Permis concerné par la demande d'authentification
      * @returns {Promise<any>} service uniquement disponible côté serveur
      */
     PageServiceImpl.prototype.getPDFDemandeAuthentification = function (idPermis) {

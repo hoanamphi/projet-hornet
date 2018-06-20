@@ -23,12 +23,12 @@ export class CopieNoteVerbaleMAECIFVMDao extends EntityDAO {
 
   /**
    * Methode insérant une nouvelle copie d'une note verbale du MAECI dans la base
-   * @param {number} idCopieNoteVerbaleMAECI id du nouveau tuple
-   * @param {string} mimetype format du fichier
-   * @param {string} encoding encodage du fichier
-   * @param {number} size taille du fichier
-   * @param {Buffer} data contenu du fichier
-   * @param {number} idDossier id du Dossier auquel appartient cette entrée
+   * @param {number} idCopieNoteVerbaleMAECI - id du nouveau tuple
+   * @param {string} mimetype - format du fichier
+   * @param {string} encoding - encodage du fichier
+   * @param {number} size - taille du fichier
+   * @param {Buffer} data - contenu du fichier
+   * @param {number} idDossier - id du Dossier auquel appartient cette entrée
    * @returns {Promise<number>} id du tuple créé
    */
   insererCopieNoteVerbaleMAECI(idCopieNoteVerbaleMAECI: number, mimetype: string, encoding: string, size: number, data: Buffer, idDossier: number): Promise<number> {
@@ -49,7 +49,7 @@ export class CopieNoteVerbaleMAECIFVMDao extends EntityDAO {
 
   /**
    * Méthode retournant un nom unique pour chaque nouveau tuple
-   * @param {number} idCopieNoteVerbaleMAECI id du nouveau tuple
+   * @param {number} idCopieNoteVerbaleMAECI - id du nouveau tuple
    * @returns {string} nom de l'entrée
    */
   getNewNom(idCopieNoteVerbaleMAECI: number): string {
@@ -83,7 +83,7 @@ export class CopieNoteVerbaleMAECIFVMDao extends EntityDAO {
 
   /**
    * Méthode retournant une copie d'une note verbale du MAECI
-   * @param {number} idCopieNoteVerbaleMAECI id du tuple à retourner
+   * @param {number} idCopieNoteVerbaleMAECI - id du tuple à retourner
    * @returns {Promise<CopieNoteVerbaleMAECIFVMAttributes>} Copie d'une note verbale du MAECI
    */
   getCopieNoteVerbaleMAECI(idCopieNoteVerbaleMAECI: number): Promise<CopieNoteVerbaleMAECIFVMAttributes> {
@@ -98,7 +98,7 @@ export class CopieNoteVerbaleMAECIFVMDao extends EntityDAO {
 
   /**
    * Méthode supprimant une copie d'une note verbale du MAECI
-   * @param {number} idDossier id du Dossier auquel appartient le tuple
+   * @param {number} idDossier - id du Dossier auquel appartient le tuple
    * @returns {Promise<any>}
    */
   deleteCopieNoteVerbaleMAECIFromDossier(idDossier: number): Promise<any> {

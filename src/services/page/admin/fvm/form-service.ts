@@ -8,21 +8,21 @@ export interface FormService {
 
   /**
    * Méthode insérant un dossier dans la base de données
-   * @param data données de formulaire
+   * @param data - données de formulaire
    * @returns {Promise<any>}
    */
   insererDossier(data: any) :Promise<any>;
 
   /**
    * Méthode insérant une demande d'authentification dans la base de données
-   * @param {{num_valise: number, num_demande_authentification: string, id_permis: number}} data données de formulaire
+   * @param {{num_valise: number, num_demande_authentification: string, id_permis: number}} data - données de formulaire
    * @returns {Promise<any>}
    */
   insererDemandeAuthentification(data: {num_valise: number, num_demande_authentification: string, id_permis: number}): Promise<any>;
 
   /**
    * Méthode insérant une valise dans la base de données
-   * @param {{num_valise: number, date_valise: Date}} data données de formulaire
+   * @param {{num_valise: number, date_valise: Date}} data - données de formulaire
    * @returns {Promise<any>}
    */
   insererValise(data: {num_valise: number, date_valise: Date}): Promise<any>;

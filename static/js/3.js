@@ -27908,7 +27908,7 @@ var FormServiceImpl = /** @class */ (function (_super) {
     }
     /**
      * Méthode effectuant une requête HTTP permettant l'insertion d'un dossier dans la base de données
-     * @param data données de formulaire
+     * @param data - données de formulaire
      * @returns {Promise<any>}
      */
     FormServiceImpl.prototype.insererDossier = function (data) {
@@ -27926,7 +27926,7 @@ var FormServiceImpl = /** @class */ (function (_super) {
     };
     /**
      * Méthode effectuant une requête HTTP permettant l'insertion d'une demande d'authentification dans la base de données
-     * @param {{num_valise: number, num_demande_authentification: any, id_permis: number}} data données de formulaire
+     * @param {{num_valise: number, num_demande_authentification: any, id_permis: number}} data - données de formulaire
      * @returns {Promise<any>}
      */
     FormServiceImpl.prototype.insererDemandeAuthentification = function (data) {
@@ -27940,7 +27940,7 @@ var FormServiceImpl = /** @class */ (function (_super) {
     };
     /**
      * Méthode effectuant une requête HTTP permettant l'insertion d'une valise dans la base de données
-     * @param {{num_valise: number, date_valise: Date}} data données de formulaire
+     * @param {{num_valise: number, date_valise: Date}} data - données de formulaire
      * @returns {Promise<any>}
      */
     FormServiceImpl.prototype.insererValise = function (data) {
@@ -30169,20 +30169,26 @@ var action_button_1 = __webpack_require__(476);
 var modal_1 = __webpack_require__(99);
 var action_column_1 = __webpack_require__(479);
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.admin.fvm.fvm-formDemande-page");
+/* HornetPage :
+    Classe générique : <Interface de la Classe de service, Props de la page, Context>
+*/
 /**
  * Page de formulaire permettant de créer une demande d'authentification
- * @extends {HornetPage<FormService, HornetComponentProps, any>} Classe générique : <Interface de la Classe de service, Props de la page, Context>
+ * @extends {HornetPage<FormService, HornetComponentProps, any>}
  */
 var FormulaireDemandeAuthentificationPage = /** @class */ (function (_super) {
     tslib_1.__extends(FormulaireDemandeAuthentificationPage, _super);
     /**
      * @constructor
-     * @param {module:hornet-js-components/src/component/ihornet-component.HornetComponentProps} props
+     * @param {HornetComponentProps} props
      * @param context
      */
     function FormulaireDemandeAuthentificationPage(props, context) {
         var _this = _super.call(this, props, context) || this;
-        // InputField contenant le numéro de la valise de la demande d'authentification
+        /**
+         * Champs de texte contenant le numéro de la valise de la demande d'authentification à insérer
+         * @type {InputField}
+         */
         _this.numValiseInput = new input_field_1.InputField();
         _this.listeValiseDataSource = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getListeValise), {});
         _this.errors = new notification_manager_1.Notifications();
@@ -30203,20 +30209,23 @@ var FormulaireDemandeAuthentificationPage = /** @class */ (function (_super) {
         this.listeValiseDataSource.fetch(true);
     };
     /**
-     * Méthode appelée à la soumission du formulaire d'insertion d'une
-     * @param data données de formulaire
+     * Méthode appelée à la soumission du formulaire d'insertion d'une nouvelle demande d'authentification
+     * @param data - données de formulaire
      */
     FormulaireDemandeAuthentificationPage.prototype.onSubmit = function (data) {
         var _this = this;
         data["id_permis"] = this.attributes.idPermis;
         this.getService().insererDemandeAuthentification(data).then(function (result) {
+            // Si le résultat contient une erreur
             if (result.error != null) {
                 console.error(result.reason);
                 console.error(result.error);
+                // Afficher un message d'erreur
                 _this.SequelizeErrors.text = result.reason;
                 notification_manager_1.NotificationManager.notify("SequelizeError", "errors", _this.errors, null, null, null, null);
             }
             else {
+                // Afficher un message d'information
                 notification_manager_1.NotificationManager.notify("SequelizeSuccess", "notif", null, _this.success, null, null, null);
             }
         }).catch(function (reason) {
@@ -30224,8 +30233,13 @@ var FormulaireDemandeAuthentificationPage = /** @class */ (function (_super) {
             notification_manager_1.NotificationManager.notify("SequelizeError", "errors", _this.errors, null, null, null, null);
         });
     };
+    /**
+     * Méthode effectuant le rendu de la vue
+     * @returns {JSX.Element}
+     */
     FormulaireDemandeAuthentificationPage.prototype.render = function () {
         var _this = this;
+        // Objet Json contenant le format des champs (label, title,etc..)
         var format = this.i18n("forms");
         return (React.createElement("div", null,
             React.createElement(icon_1.Icon, { src: picto_1.Picto.blue.previous, alt: "Retourner \u00E0 la consultation", title: "Retourner \u00E0 la consultation", action: this.retourPage }),
@@ -30260,12 +30274,23 @@ var FormulaireDemandeAuthentificationPage = /** @class */ (function (_super) {
                 React.createElement(buttons_area_1.ButtonsArea, null,
                     React.createElement(button_1.Button, { type: "submit", value: "Valider", className: "hornet-button", label: "valider", title: "valider" })))));
     };
+    /**
+     * Méthode ouvrant la popin permettant d'insérer une nouvelle valise
+     */
     FormulaireDemandeAuthentificationPage.prototype.ajouterValise = function () {
         this.formValiseModal.open();
     };
+    /**
+     * Méthode remplissant le champs "numéro de la valise" à la sélection d'une valise
+     * @param lineSelected - ligne sélectionnée dans le tableau listant les valises
+     */
     FormulaireDemandeAuthentificationPage.prototype.remplirForm = function (lineSelected) {
         this.numValiseInput.setCurrentValue(lineSelected.numValise);
     };
+    /**
+     * Méthode appelée à la soumission du formulaire d'insertion d'une  nouvelle valise
+     * @param data - données de formulaire
+     */
     FormulaireDemandeAuthentificationPage.prototype.submitValise = function (data) {
         var _this = this;
         this.getService().insererValise(data).then(function (result) {
@@ -30283,6 +30308,9 @@ var FormulaireDemandeAuthentificationPage = /** @class */ (function (_super) {
             notification_manager_1.NotificationManager.notify("SequelizeError", "errors", _this.errors, null, null, null, null);
         });
     };
+    /**
+     * Méthode permettant de naviguer jusqu'à la page de consultation d'un dossier
+     */
     FormulaireDemandeAuthentificationPage.prototype.retourPage = function () {
         this.navigateTo("/fvmrecord/" + this.attributes.idPermis, {}, function () { });
     };

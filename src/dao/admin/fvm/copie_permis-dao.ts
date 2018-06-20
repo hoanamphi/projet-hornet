@@ -23,12 +23,12 @@ export class CopiePermisFVMDao extends EntityDAO {
 
   /**
    * Méthode insérant une nouvelle copie d'un permis de conduire dans la base
-   * @param {number} idCopiePermis id du nouveau tuple
-   * @param {string} mimetype format du fichier
-   * @param {string} encoding encodage du fichier
-   * @param {number} size taille du fichier
-   * @param {Buffer} data contenu du fichier
-   * @param {number} idPermis id du Permis auquel appartient l'entrée
+   * @param {number} idCopiePermis - id du nouveau tuple
+   * @param {string} mimetype - format du fichier
+   * @param {string} encoding - encodage du fichier
+   * @param {number} size - taille du fichier
+   * @param {Buffer} data - contenu du fichier
+   * @param {number} idPermis - id du Permis auquel appartient l'entrée
    * @returns {Promise<number>} id du tuple créé
    */
   insererCopiePermis(idCopiePermis: number, mimetype: string, encoding: string, size: number, data: Buffer, idPermis: number): Promise<number> {
@@ -49,7 +49,7 @@ export class CopiePermisFVMDao extends EntityDAO {
 
   /**
    * Méthode retournant un nom unique pour chaque nouveau tuple
-   * @param {number} idCopiePermis id du nouveau tuple
+   * @param {number} idCopiePermis - id du nouveau tuple
    * @returns {string} nom de l'entrée
    */
   getNewNom(idCopiePermis: number): string {
@@ -83,7 +83,7 @@ export class CopiePermisFVMDao extends EntityDAO {
 
   /**
    * Méthode retournant une copie d'un permis de conduire
-   * @param {number} idCopiePermis id du tuple à retourner
+   * @param {number} idCopiePermis - id du tuple à retourner
    * @returns {Promise<CopiePermisFVMAttributes>} Copie d'un permis de conduire
    */
   getCopiePermis(idCopiePermis: number): Promise<CopiePermisFVMAttributes> {
@@ -98,7 +98,7 @@ export class CopiePermisFVMDao extends EntityDAO {
 
   /**
    * Méthode supprimant une copie d'un permis de conduire
-   * @param {number} idPermis id du Permis auquel appartient le tuple
+   * @param {number} idPermis - id du Permis auquel appartient le tuple
    * @returns {Promise<any>}
    */
   deleteCopiePermisFromPermis(idPermis: number): Promise<any> {

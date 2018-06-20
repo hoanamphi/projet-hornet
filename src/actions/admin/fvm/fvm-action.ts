@@ -20,16 +20,20 @@ import {ValiseAttributes} from "src/models/model-valise";
 
 const logger: Logger = Utils.getLogger("projet-hornet.actions.admin.fvm.fvm_action");
 
+/* RouteActionService :
+    Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+*/
+
 /**
  * Classe d'action gérant l'insertion d'un nouveau dossier dans la base
- * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>}
  */
 export class InserDossier extends RouteActionService<any, FormService> {
 
-  /* Objet JSON contenant deux attributs :
-      error : Classe de l'erreur retournée
-      reason : Motif de l'erreur
-  */
+  /**
+   * Objet JSON contenant deux attributs : error : Classe de l'erreur retournée, reason : Motif de l'erreur
+   * @type {{error: null, reason: null}}
+   */
   private Error = {"error": null, "reason": null};
 
   /**
@@ -85,7 +89,7 @@ export class InserDossier extends RouteActionService<any, FormService> {
 
 /**
  * Classe d'action gérant l'insertion d'une nouvelle demande d'authentification dans la base
- * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>}
  */
 export class InserDemandeAuthentification extends RouteActionService<any, FormService> {
 
@@ -109,7 +113,7 @@ export class InserDemandeAuthentification extends RouteActionService<any, FormSe
 
 /**
  * Classe d'action gérant l'insertion d'une nouvelle valise dans la base
- * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>}
  */
 export class InserValise extends RouteActionService<any, FormService> {
 
@@ -133,7 +137,7 @@ export class InserValise extends RouteActionService<any, FormService> {
 
 /**
  * Classe d'action gérant la suppression d'un dossier dans la base
- * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>}
  */
 export class DeleteDossier extends RouteActionService<any, PageService> {
 
@@ -157,7 +161,7 @@ export class DeleteDossier extends RouteActionService<any, PageService> {
 
 /**
  * Classe d'action gérant la suppression d'une demande d'authentification dans la base
- * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>}
  */
 export class DeleteDemandeAuthentification extends RouteActionService<any, PageService> {
 
@@ -181,7 +185,7 @@ export class DeleteDemandeAuthentification extends RouteActionService<any, PageS
 
 /**
  * Classe d'action gérant le listage des préfectures stockées dans la base de données
- * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>}
  */
 export class ListPrefecture extends RouteActionService<any, FormService> {
 
@@ -198,7 +202,7 @@ export class ListPrefecture extends RouteActionService<any, FormService> {
 
 /**
  * Classe d'action gérant le listage des valises stockées dans la base
- * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>}
  */
 export class ListValise extends RouteActionService<any, FormService> {
 
@@ -215,7 +219,7 @@ export class ListValise extends RouteActionService<any, FormService> {
 
 /**
  * Classe d'action gérant le listage des dossiers stockés dans la base
- * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>}
  */
 export class ListDossier extends RouteActionService<any, PageService> {
 
@@ -232,7 +236,7 @@ export class ListDossier extends RouteActionService<any, PageService> {
 
 /**
  * Classe d'action gérant le retour du dossier correspondant aux attributs donnés en entrée
- * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>}
  */
 export class GetDossier extends RouteActionService<any, PageService> {
 
@@ -256,7 +260,7 @@ export class GetDossier extends RouteActionService<any, PageService> {
 
 /**
  * Classe d'action gérant le retour de la demande d'authentification correspondant aux attributs donnés en entrée
- * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>}
  */
 export class GetDemandeAuthentification extends RouteActionService<any, PageService> {
 
@@ -302,7 +306,7 @@ export class GetNoteVerbale extends RouteActionService<any, PageService> {
 
 /**
  * Classe d'action gérant le retour de la copie d'un permis de conduire
- * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>}
  */
 export class GetCopiePermis extends RouteActionService<{"idCopiePermis": number}, PageService> {
 
@@ -333,7 +337,7 @@ export class GetCopiePermis extends RouteActionService<{"idCopiePermis": number}
 
 /**
  * Classe d'action gérant le retour de la copie d'une note verbale du MAECI
- * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>}
  */
 export class GetCopieNoteVerbaleMAECI extends RouteActionService<{"idCopieNoteVerbaleMAECI": number}, PageService> {
 
@@ -364,7 +368,7 @@ export class GetCopieNoteVerbaleMAECI extends RouteActionService<{"idCopieNoteVe
 
 /**
  * Classe d'action gérant la génération d'un document de demande d'authentification
- * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>}
  */
 export class GetPDFDemandeAuthentification extends RouteActionService<{"idPermis": number, "data": string}, PageService> {
 
@@ -486,7 +490,7 @@ export class GetPDFDemandeAuthentification extends RouteActionService<{"idPermis
 
   /**
    * Méthode mettant la première lettre d'un mot en majuscule
-   * @param {string} entry Chaîne de caractères à mettre sous le format : [A-Z]{1}[a-z]*
+   * @param {string} entry - Chaîne de caractères à mettre sous le format : [A-Z]{1}[a-z]*
    * @returns {string} Chaîne de caractères mise sous le format : [A-Z]{1}[a-z]*
    */
   capitalize(entry: string): string {

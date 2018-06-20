@@ -1,0 +1,1293 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>projet-hornet</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">projet-hornet</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1> projet-hornet</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<h1 id="projet-hornet-1-0-0">projet hornet 1.0.0</h1>
+				<h1 id="pr-requis">Prérequis</h1>
+				<ul>
+					<li>NodeJS 6.X</li>
+					<li>hornet-js-builder installé en global:</li>
+				</ul>
+				<pre><code><span class="hljs-meta">$</span><span class="bash"> npm install -g hornet-js-builder</span>
+</code></pre><ul>
+					<li>checkout du projet <code>projet-hornet</code></li>
+				</ul>
+				<h1 id="initialisation">Initialisation</h1>
+				<p>Se positionner dans le répertoire du projet <code>projet-hornet</code> et lancer la commande:</p>
+				<pre><code><span class="hljs-meta">$</span><span class="bash"> hb install</span>
+</code></pre><h1 id="d-marrage-de-l-application-en-mode-d-veloppement">Démarrage de l&#39;application en mode développement</h1>
+				<h2 id="commande-par-d-faut">Commande par défaut</h2>
+				<p>la commande à exécuter en mode développement est la suivante:</p>
+				<pre><code><span class="hljs-meta">$</span><span class="bash"> hb w</span>
+</code></pre><p>Elle permet de lancer l&#39;application en mode <code>watcher</code> afin que les modifications soient prises en compte (ce qui
+				entrainera un redémarrage du serveur node dans le cas d&#39;une détection de modification).</p>
+				<h2 id="options">Options</h2>
+				<p>Il est également possible d&#39;ajouter à cette commande l&#39;option:</p>
+				<pre><code><span class="hljs-meta">$</span><span class="bash"> hb w -i</span>
+</code></pre><p>Cette commande indique au builder de ne pas transpiler les fichiers typescript en javascript.
+					Elle est à utiliser dans le cas où l&#39;IDE a été configuré de telle sorte que la transpilation ts-&gt;js
+				se fasse via ce dernier.</p>
+				<h1 id="v-rification">Vérification</h1>
+				<p>Vous pouvez accéder à l&#39;application depuis l&#39;url <a href="http://localhost:8888/projet-hornet">http://localhost:8888/projet-hornet/</a></p>
+				<h1 id="fichier-de-configuration-de-l-application-default-json">Fichier de configuration de l&#39;application : default.json</h1>
+				<p>L&#39;ensemble de la configuration applicative du serveur NodeJS se situe dans le fichier default.json contenu dans les sources de l&#39;application.</p>
+				<p>Ce fichier ne doit pas être modifié, excepté pour le log console. Les modifications sont à apporter dans les fichiers d&#39;infrastructure.</p>
+				<h2 id="partie-applicative">Partie applicative</h2>
+				<table>
+					<thead>
+						<tr>
+							<th>Paramètre</th>
+							<th>Description</th>
+							<th>Valeur</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>contextPath</td>
+							<td>Contexte de l&#39;application déployée</td>
+							<td>Par défaut vide</td>
+						</tr>
+						<tr>
+							<td>welcomePage</td>
+							<td>Page de démarrage de l&#39;application</td>
+							<td>Passé en paramètre du ServerConfiguration</td>
+						</tr>
+						<tr>
+							<td>themeUrl</td>
+							<td>Url du thème CSS</td>
+							<td>[Protocol]://[host]:[port]/hornet/themeName</td>
+						</tr>
+					</tbody>
+				</table>
+				<pre><code class="lang-javascript">{
+  <span class="hljs-string">"contextPath"</span>: <span class="hljs-string">"projet-hornet"</span>,
+  <span class="hljs-string">"welcomePage"</span>: <span class="hljs-string">"/accueil"</span>,
+  ...&lt;
+}
+
+</code></pre>
+				<h2 id="partie-serveur">Partie serveur</h2>
+				<table>
+					<thead>
+						<tr>
+							<th>Paramètre</th>
+							<th>Description</th>
+							<th>Valeur</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>route</td>
+							<td>Route identifiée pour l&#39;affinité de session nodejs</td>
+							<td>js1</td>
+						</tr>
+						<tr>
+							<td>port</td>
+							<td>Port de démarrage du serveur</td>
+							<td>8888</td>
+						</tr>
+						<tr>
+							<td>keepAlive</td>
+							<td>Activation du mode HTTP KeepAlive</td>
+							<td>true</td>
+						</tr>
+						<tr>
+							<td>maxConnections</td>
+							<td>Nombre maximal de connexions à l&#39;instance nodejs</td>
+							<td>100</td>
+						</tr>
+						<tr>
+							<td>timeout</td>
+							<td>Timeout des réponses HTTP</td>
+							<td>300000</td>
+						</tr>
+						<tr>
+							<td>uploadFileSize</td>
+							<td>Taille maximale d&#39;upload de fichier</td>
+							<td>1000000</td>
+						</tr>
+						<tr>
+							<td>sessionTimeout</td>
+							<td>Timeout des sessions utilisateur</td>
+							<td>1800000</td>
+						</tr>
+					</tbody>
+				</table>
+				<pre><code class="lang-javascript">  <span class="hljs-string">"server"</span>: {
+    <span class="hljs-string">"route"</span>: <span class="hljs-string">"js1"</span>,
+    <span class="hljs-string">"port"</span>: <span class="hljs-number">8888</span>,
+    <span class="hljs-string">"keepAlive"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">"maxConnections"</span>: <span class="hljs-number">100</span>,
+    <span class="hljs-string">"timeout"</span>: <span class="hljs-number">300000</span>,
+    <span class="hljs-string">"uploadFileSize"</span>: <span class="hljs-number">1000000</span>,
+    <span class="hljs-string">"sessionTimeout"</span>: <span class="hljs-number">1800000</span>
+  }
+</code></pre>
+				<h2 id="partie-cookie">Partie Cookie</h2>
+				<p>Cette partie contient l&#39;ensemble du paramétrage spécifique aux exécutions réalisées coté serveur, ainsi que ses spécificités de démarrage.</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Paramètre</th>
+							<th>Description</th>
+							<th>Valeur</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>domain</td>
+							<td>Domaine du cookie</td>
+							<td>null</td>
+						</tr>
+						<tr>
+							<td>path</td>
+							<td>Path du cookie</td>
+							<td>null</td>
+						</tr>
+						<tr>
+							<td>httpOnly</td>
+							<td>Activation du mode HTTP KeepAlive</td>
+							<td>true</td>
+						</tr>
+						<tr>
+							<td>secure</td>
+							<td>Sécurisation du cookie</td>
+							<td>true</td>
+						</tr>
+						<tr>
+							<td>alwaysSetCookie</td>
+							<td>Ajout du cookie dans le Header</td>
+							<td>false</td>
+						</tr>
+					</tbody>
+				</table>
+				<pre><code class="lang-javascript">  <span class="hljs-string">"cookie"</span>: {
+    <span class="hljs-comment">//"domain": null,</span>
+    <span class="hljs-comment">//"path": null,</span>
+    <span class="hljs-string">"httpOnly"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">"secure"</span>: <span class="hljs-literal">false</span>
+    <span class="hljs-comment">//"alwaysSetCookie": false</span>
+  }
+</code></pre>
+				<h2 id="configuration-de-la-s-curit-">Configuration de la sécurité</h2>
+				<p>Ce bloc contient l&#39;ensemble des paramètres destinés à la configuration de helmet.</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Paramètre</th>
+							<th>Description</th>
+							<th>Valeur</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>enabled</td>
+							<td>Activation de la sécurité</td>
+							<td>true</td>
+						</tr>
+						<tr>
+							<td>hpp</td>
+							<td>HTTP Parameter Pollution attacks</td>
+							<td>true</td>
+						</tr>
+						<tr>
+							<td>ienoopen</td>
+							<td>Middleware for IE security. Set X-Download-Options to noopen</td>
+							<td>true</td>
+						</tr>
+						<tr>
+							<td>noSniff</td>
+							<td>Keep clients from sniffing the MIME type</td>
+							<td>true</td>
+						</tr>
+						<tr>
+							<td>csp.enabled</td>
+							<td>Activation de CSP (Content Security Policy)</td>
+							<td>true</td>
+						</tr>
+						<tr>
+							<td>csp.defaultSrc</td>
+							<td>Nom de domaine par défaut des différentes ressources du site</td>
+							<td>[&quot;&#39;self&#39;&quot;, {hostname}]</td>
+						</tr>
+						<tr>
+							<td>csp.scriptSrc</td>
+							<td>Nom de domaine des différentes ressources de scripts du site</td>
+							<td>[&quot;&#39;self&#39;&quot;, &quot;&#39;unsafe-inline&#39;&quot;, &quot;&#39;unsafe-eval&#39;&quot;]</td>
+						</tr>
+						<tr>
+							<td>csp.styleSrc</td>
+							<td>Nom de domaine des différentes ressources de css du site</td>
+							<td>[&quot;&#39;self&#39;&quot;, {hostname}]</td>
+						</tr>
+						<tr>
+							<td>csp.fontSrc</td>
+							<td>Nom de domaine des différentes ressources de fonts du site</td>
+							<td>[&quot;&#39;self&#39;&quot;, {hostname}]</td>
+						</tr>
+						<tr>
+							<td>csp.imgSrc</td>
+							<td>Nom de domaine des différentes ressources images du site</td>
+							<td>[&quot;&#39;self&#39;&quot;, {hostname}]</td>
+						</tr>
+						<tr>
+							<td>csp.reportOnly</td>
+							<td>Si valorisé à true, génération d&#39;un rapport d&#39;erreur uniquement</td>
+							<td>false</td>
+						</tr>
+						<tr>
+							<td>csp.setAllHeaders</td>
+							<td>Valorisé à true si tous les headers doivent être remplis</td>
+							<td>false</td>
+						</tr>
+						<tr>
+							<td>csp.disableAndroid</td>
+							<td>Permet de désactiver la navigation via Android</td>
+							<td>false</td>
+						</tr>
+						<tr>
+							<td>csp.safari5</td>
+							<td>Permet de désactiver la navigation via safari5</td>
+							<td>false</td>
+						</tr>
+						<tr>
+							<td>xss.enabled</td>
+							<td>Activation de la protection contre les failles XSS</td>
+							<td>true</td>
+						</tr>
+						<tr>
+							<td>xss.setOnOldIE</td>
+							<td>Force le header X-XSS-Protection sur les anciens IE</td>
+							<td>true</td>
+						</tr>
+						<tr>
+							<td>hpkp.enabled</td>
+							<td>Activation du Public Key Pinning: HPKP, HTTPS certificates can be forged, allowing man-in-the middle attacks</td>
+							<td>bool</td>
+							<td>true</td>
+						</tr>
+						<tr>
+							<td>hpkp.maxAge</td>
+							<td>Durée de validité</td>
+							<td>7776000000</td>
+						</tr>
+						<tr>
+							<td>hpkp.sha256s</td>
+							<td>Liste des sha au format 256</td>
+							<td>[&quot;AbCdEf123=&quot;,&quot;ZyXwVu456=&quot;]</td>
+						</tr>
+						<tr>
+							<td>hpkp.includeSubdomains</td>
+							<td>Inclusion des sous domaines</td>
+							<td>true</td>
+						</tr>
+						<tr>
+							<td>hpkp.reportUri</td>
+							<td>URL de rapport</td>
+							<td>vide</td>
+						</tr>
+						<tr>
+							<td>hsts.enabled</td>
+							<td>Activation du HTTP Strict Transport Security: hsts</td>
+							<td>false</td>
+						</tr>
+						<tr>
+							<td>hsts.maxAge</td>
+							<td>Durée de validité</td>
+							<td>7776000000</td>
+						</tr>
+						<tr>
+							<td>hsts.includeSubdomains</td>
+							<td>Inclusion des sous domaines</td>
+							<td>true</td>
+						</tr>
+						<tr>
+							<td>hsts.preload</td>
+							<td>Activation du preload dans le header HSTS</td>
+							<td>false</td>
+						</tr>
+						<tr>
+							<td>csrf.enabled</td>
+							<td>Activation du mode CSRF : Cross-Site Request Forgery</td>
+							<td>true</td>
+						</tr>
+						<tr>
+							<td>csr.&gt;maxTokensPerSession</td>
+							<td>Nombre de tokens par session</td>
+							<td>10</td>
+						</tr>
+					</tbody>
+				</table>
+				<pre><code class="lang-javascript"><span class="hljs-string">"security"</span>: {
+    <span class="hljs-string">"enabled"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">"hpp"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">"ienoopen"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">"noSniff"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">"csp"</span>: {
+      <span class="hljs-string">"enabled"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-string">"defaultSrc"</span>: [
+        <span class="hljs-string">"'self'"</span>,
+        <span class="hljs-string">"'unsafe-inline'"</span>,
+        <span class="hljs-string">"'unsafe-eval'"</span>
+      ],
+      <span class="hljs-string">"scriptSrc"</span>: [
+        <span class="hljs-string">"'self'"</span>,
+        <span class="hljs-string">"'unsafe-inline'"</span>,
+        <span class="hljs-string">"'unsafe-eval'"</span>
+      ],
+      <span class="hljs-string">"styleSrc"</span>:[
+        <span class="hljs-string">"'self'"</span>,
+        <span class="hljs-string">"[Protocol]://[host]:[port]"</span>,
+        <span class="hljs-string">"'unsafe-inline'"</span>
+      ],
+      <span class="hljs-string">"fontSrc"</span>:[
+        <span class="hljs-string">"'self'"</span>,
+        <span class="hljs-string">"[Protocol]://[host]:[port]"</span>
+      ],
+      <span class="hljs-string">"imgSrc"</span>:[
+        <span class="hljs-string">"'self'"</span>,
+        <span class="hljs-string">"[Protocol]://[host]:[port]"</span>
+      ],
+      <span class="hljs-string">"reportOnly"</span>: <span class="hljs-literal">false</span>,
+      <span class="hljs-string">"setAllHeaders"</span>: <span class="hljs-literal">false</span>,
+      <span class="hljs-string">"disableAndroid"</span>: <span class="hljs-literal">false</span>,
+      <span class="hljs-string">"safari5"</span>: <span class="hljs-literal">false</span>
+    },
+    <span class="hljs-string">"frameguard"</span>: {
+      <span class="hljs-string">"enabled"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-string">"mode"</span>: <span class="hljs-string">"deny"</span>,
+      <span class="hljs-string">"allowFromPattern"</span>: <span class="hljs-string">""</span>
+    },
+    <span class="hljs-string">"xss"</span>: {
+      <span class="hljs-string">"enabled"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-string">"setOnOldIE"</span>: <span class="hljs-literal">true</span>
+    },
+    <span class="hljs-string">"hpkp"</span>: {
+      <span class="hljs-string">"enabled"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-string">"maxAge"</span>: <span class="hljs-number">7776000000</span>,
+      <span class="hljs-string">"sha256s"</span>: [
+        <span class="hljs-string">"AbCdEf123="</span>,
+        <span class="hljs-string">"ZyXwVu456="</span>
+      ],
+      <span class="hljs-string">"includeSubdomains"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-string">"reportUri"</span>: <span class="hljs-literal">null</span>
+    },
+    <span class="hljs-string">"hsts"</span>: {
+      <span class="hljs-string">"enabled"</span>: <span class="hljs-literal">false</span>,
+      <span class="hljs-string">"maxAge"</span>: <span class="hljs-number">10886400000</span>,
+      <span class="hljs-string">"includeSubdomains"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-string">"preload"</span>: <span class="hljs-literal">false</span>
+    },
+    <span class="hljs-string">"csrf"</span>: {
+      <span class="hljs-string">"enabled"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-string">"maxTokensPerSession"</span>: <span class="hljs-number">10</span>
+    }
+  }
+</code></pre>
+				<h2 id="configuration-des-logs-log4js-json">Configuration des logs : log4js.json</h2>
+				<h3 id="appender-console">Appender console</h3>
+				<table>
+					<thead>
+						<tr>
+							<th>Paramètre</th>
+							<th>Description</th>
+							<th>Valeur</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>type</td>
+							<td>Type d&#39;appender</td>
+							<td><em>console</em> Affiche des logs dans la console</td>
+							<td>console</td>
+						</tr>
+						<tr>
+							<td>layout.type</td>
+							<td>Type d&#39;affichage des messages</td>
+							<td>pattern</td>
+						</tr>
+						<tr>
+							<td>layout.pattern</td>
+							<td>Schéma d&#39;affichage des messages,  %[...] permet d&#39;afficher les couleurs dans la console.</td>
+							<td>&quot;%[%d{ISO8601}</td>
+							<td>%x{tid}</td>
+							<td>%x{user}</td>
+							<td>%p</td>
+							<td>%c</td>
+							<td>%x{fn}</td>
+							<td>%m%]&quot;</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>Ex: type console</p>
+				<pre><code class="lang-json">{
+   <span class="hljs-attr">"appenders"</span>: {
+      <span class="hljs-attr">"console"</span>: {
+        <span class="hljs-attr">"type"</span>: <span class="hljs-string">"console"</span>,
+        <span class="hljs-attr">"layout"</span>: {
+          <span class="hljs-attr">"type"</span>: <span class="hljs-string">"pattern"</span>,
+          <span class="hljs-attr">"pattern"</span>: <span class="hljs-string">"%[%d{ISO8601}|%x{tid}|%x{user}|%p|%c|%x{fn}|%m%]"</span>
+        }
+      }
+  }
+}
+</code></pre>
+				<h3 id="appender-datefile">Appender dateFile</h3>
+				<table>
+					<thead>
+						<tr>
+							<th>Paramètre</th>
+							<th>Description</th>
+							<th>Valeur</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>type</td>
+							<td>Type d&#39;appender</td>
+							<td><em>dateFile</em> permet d&#39;avoir un rolling avec un fichier contenant la date</td>
+							<td>dateFile</td>
+						</tr>
+						<tr>
+							<td>pattern</td>
+							<td>Présent pour les types <em>dateFile</em> <br />Permet de donner un pattern de date qui sera ajouté au nom du fichier.</td>
+							<td>-yyyy-MM-dd</td>
+						</tr>
+						<tr>
+							<td>filename</td>
+							<td>Chemin absolu ou relatif au lancement du fichier de log</td>
+							<td>/var/log/nodejs/#{INSTANCE_NAME}/#{INSTANCE_NAME}.log</td>
+						</tr>
+						<tr>
+							<td>layout.type</td>
+							<td>Type d&#39;affichage des messages</td>
+							<td>pattern</td>
+						</tr>
+						<tr>
+							<td>layout.pattern</td>
+							<td>Schéma d&#39;affichage des messages</td>
+							<td>&quot;%d{ISO8601}</td>
+							<td>%x{tid}</td>
+							<td>%x{user}</td>
+							<td>%p</td>
+							<td>%c</td>
+							<td>%x{fn}</td>
+							<td>%m&quot;</td>
+						</tr>
+						<tr>
+							<td>compress</td>
+							<td>Compression gzip lors du rotate</td>
+							<td>true</td>
+						</tr>
+						<tr>
+							<td>keepFileExt</td>
+							<td>Permet de garder le pattern de log d&#39;origine, monappli-20171212.log.gz</td>
+							<td>true</td>
+						</tr>
+					</tbody>
+				</table>
+				<pre><code class="lang-json">{
+   <span class="hljs-attr">"appenders"</span>: {
+      <span class="hljs-attr">"dateFile"</span>: {
+         <span class="hljs-attr">"type"</span>: <span class="hljs-string">"dateFile"</span>,
+         <span class="hljs-attr">"pattern"</span>: <span class="hljs-string">".yyyy-MM-dd"</span>,
+         <span class="hljs-attr">"filename"</span>:<span class="hljs-string">"/var/log/nodejs/#{INSTANCE_NAME}/#{INSTANCE_NAME}.log"</span>,
+         <span class="hljs-attr">"layout"</span>: {
+            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"pattern"</span>,
+            <span class="hljs-attr">"pattern"</span>: <span class="hljs-string">"%d{ISO8601}|%x{tid}|%x{user}|%p|%c|%x{fn}|%m"</span>
+         },
+         <span class="hljs-attr">"compress"</span>: <span class="hljs-literal">true</span>,
+         <span class="hljs-attr">"keepFileExt"</span>: <span class="hljs-literal">true</span>
+      }
+   }
+}
+</code></pre>
+				<h3 id="categories">Categories</h3>
+				<table>
+					<thead>
+						<tr>
+							<th>Paramètre</th>
+							<th>Description</th>
+							<th>Valeur</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>default</td>
+							<td>Nom d&#39;une categorie d&#39;appender</td>
+							<td>default</td>
+						</tr>
+						<tr>
+							<td>appenders</td>
+							<td>Liste des appenders utilisés</td>
+							<td>&quot;dateFile&quot;, &quot;console&quot;</td>
+						</tr>
+						<tr>
+							<td>level</td>
+							<td>Level des appenders</td>
+							<td>INFO</td>
+						</tr>
+					</tbody>
+				</table>
+				<pre><code class="lang-json">{
+   <span class="hljs-attr">"categories"</span>: {
+      <span class="hljs-attr">"default"</span>: { <span class="hljs-attr">"appenders"</span>: [<span class="hljs-string">"dateFile"</span>, <span class="hljs-string">"console"</span>], <span class="hljs-attr">"level"</span>: <span class="hljs-string">"INFO"</span> }
+   }
+}
+</code></pre>
+				<h2 id="configuration-des-logs-client">Configuration des logs client</h2>
+				<table>
+					<thead>
+						<tr>
+							<th>Paramètre</th>
+							<th>Description</th>
+							<th>Valeur</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>remote</td>
+							<td>Activation des remotes log</td>
+							<td>false</td>
+						</tr>
+						<tr>
+							<td>level</td>
+							<td>Niveau de log</td>
+							<td>INFO</td>
+						</tr>
+					</tbody>
+				</table>
+				<pre><code class="lang-javascript">  <span class="hljs-string">"logClient"</span>: {
+    <span class="hljs-string">"remote"</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-string">"level"</span>: <span class="hljs-string">"TRACE"</span>,
+    ...
+</code></pre>
+				<h2 id="d-claration-des-appenders">Déclaration des appenders</h2>
+				<p>Type BrowserConsole :</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Paramètre</th>
+							<th>Description</th>
+							<th>Valeur</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>type</td>
+							<td>Type d&#39;appender</td>
+							<td>BrowserConsole</td>
+						</tr>
+						<tr>
+							<td>layout.type</td>
+							<td>Type d&#39;affichage des messages</td>
+							<td>THIN/BASIC/pattern/...</td>
+						</tr>
+						<tr>
+							<td>layout.pattern</td>
+							<td>Schéma d&#39;affichage des messages</td>
+							<td>&quot;%p</td>
+							<td>%c</td>
+							<td>%m%&quot;</td>
+						</tr>
+					</tbody>
+				</table>
+				<pre><code class="lang-json">&quot;appenders&quot;: {
+    &quot;BrowserConsole&quot; : {
+        &quot;type&quot;: &quot;BrowserConsole&quot;,
+        &quot;layout&quot;: {
+          &quot;type&quot;: &quot;THIN&quot;
+        }
+    }
+}
+</code></pre>
+				<p>Type Ajax :</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Paramètre</th>
+							<th>Description</th>
+							<th>Valeur</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>type</td>
+							<td>Type d&#39;appender</td>
+							<td>Ajax</td>
+						</tr>
+						<tr>
+							<td>layout.type</td>
+							<td>Type d&#39;affichage des messages</td>
+							<td>THIN/BASIC/pattern/...</td>
+						</tr>
+						<tr>
+							<td>layout.pattern</td>
+							<td>Schéma d&#39;affichage des messages</td>
+							<td>&quot;%p</td>
+							<td>%c</td>
+							<td>%m%&quot;</td>
+						</tr>
+						<tr>
+							<td>threshold</td>
+							<td>Seuil d&#39;envoi des messages de log</td>
+							<td>100</td>
+						</tr>
+						<tr>
+							<td>timeout</td>
+							<td>Timeout d&#39;envoie des messages</td>
+							<td>3000</td>
+						</tr>
+						<tr>
+							<td>url</td>
+							<td>URL d&#39;envoi des logs</td>
+							<td>/logs</td>
+						</tr>
+					</tbody>
+				</table>
+				<pre><code class="lang-json">&quot;appenders&quot;: {
+    &quot;Ajax&quot;: {
+        &quot;type&quot;: &quot;Ajax&quot;,
+        &quot;layout&quot;: {
+          &quot;type&quot;: &quot;BASIC&quot;
+        },
+        &quot;threshold&quot;: 100,
+        &quot;timeout&quot;: 3000,
+        &quot;url&quot;: &quot;/log&quot;
+    }
+}
+</code></pre>
+				<h2 id="configuration-des-services">Configuration des services</h2>
+				<table>
+					<thead>
+						<tr>
+							<th>Paramètre</th>
+							<th>Description</th>
+							<th>Valeur</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>services.host</td>
+							<td>URL de déploiement du module projet-hornet-service</td>
+							<td>[Protocol]://[host]:[port]</td>
+						</tr>
+						<tr>
+							<td>services.name</td>
+							<td>Nom de déploiement des services</td>
+							<td>projet-hornet</td>
+						</tr>
+					</tbody>
+				</table>
+				<pre><code class="lang-javascript"><span class="hljs-string">"mock"</span>: {
+    <span class="hljs-string">"enabled"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">"host"</span>: <span class="hljs-string">"127.0.0.1"</span>, <span class="hljs-comment">//default localhost</span>
+    <span class="hljs-string">"routes"</span>: <span class="hljs-string">"/mock/routes"</span>
+  }
+</code></pre>
+				<h2 id="mode-mock">Mode mock</h2>
+				<table>
+					<thead>
+						<tr>
+							<th>Paramètre</th>
+							<th>Description</th>
+							<th>Valeur</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>enabled</td>
+							<td>Activation du mode mock(bouchon) de l&#39;application</td>
+							<td>false</td>
+						</tr>
+						<tr>
+							<td>host</td>
+							<td>Hôte local du mock</td>
+							<td>localhost</td>
+						</tr>
+						<tr>
+							<td>routes</td>
+							<td>Chemin vers le fichier de routes mocké sans le /src</td>
+							<td>/mock/routes</td>
+						</tr>
+					</tbody>
+				</table>
+				<pre><code class="lang-javascript">  <span class="hljs-string">"mock"</span>: {
+    <span class="hljs-string">"enabled"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">"host"</span>: <span class="hljs-string">"127.0.0.1"</span>, <span class="hljs-comment">//default localhost</span>
+    <span class="hljs-string">"routes"</span>: <span class="hljs-string">"/mock/routes"</span>
+  }
+</code></pre>
+				<h2 id="mode-fullspa">Mode fullSPA</h2>
+				<p>NOTE : Le mode fullSPA n&#39;est pas encore complètement supporté par hornet, la configuration est présente à titre d&#39;information</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Paramètre</th>
+							<th>Description</th>
+							<th>Valeur</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>enabled</td>
+							<td>Activation du mode fullSPA</td>
+							<td>false</td>
+						</tr>
+						<tr>
+							<td>host</td>
+							<td>Host du mode fullSPA</td>
+							<td>&quot;&quot;</td>
+						</tr>
+						<tr>
+							<td>name</td>
+							<td>Nom du service pour le mode fullSPA</td>
+							<td>/services</td>
+						</tr>
+					</tbody>
+				</table>
+				<pre><code class="lang-javascript"><span class="hljs-string">"fullSpa"</span>: {
+    <span class="hljs-string">"enabled"</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-string">"host"</span>: <span class="hljs-string">""</span>,
+    <span class="hljs-string">"name"</span>: <span class="hljs-string">"/services"</span>
+  }
+</code></pre>
+				<h2 id="configuration-de-l-authentification">Configuration de l&#39;authentification</h2>
+				<p>Note : Il ne s&#39;agit pas d&#39;une configuration à proprement parler de Hornet mais uniquement viable dans l&#39;application projet hornet</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Paramètre</th>
+							<th>Description</th>
+							<th>Valeur</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>loginUrl</td>
+							<td>Url de connexion à l&#39;application</td>
+							<td>/login</td>
+						</tr>
+						<tr>
+							<td>logoutUrl</td>
+							<td>Url de déconnexion de l&#39;application</td>
+							<td>/logout</td>
+						</tr>
+					</tbody>
+				</table>
+				<pre><code class="lang-javascript">  <span class="hljs-string">"authentication"</span>: {
+    <span class="hljs-string">"loginUrl"</span>: <span class="hljs-string">"/login"</span>,
+    <span class="hljs-string">"logoutUrl"</span>: <span class="hljs-string">"/logout"</span>
+  }
+</code></pre>
+				<h2 id="configuration-du-cache">Configuration du Cache</h2>
+				<table>
+					<thead>
+						<tr>
+							<th>Paramètre</th>
+							<th>Description</th>
+							<th>Valeur</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>enabled</td>
+							<td>Activation du cache sur les requêtes de services</td>
+							<td>true</td>
+						</tr>
+						<tr>
+							<td>timetolive</td>
+							<td>Durée de rétention du cache</td>
+							<td>60</td>
+						</tr>
+					</tbody>
+				</table>
+				<pre><code class="lang-javascript"><span class="hljs-string">"cache"</span>: {
+    <span class="hljs-string">"enabled"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">"timetolive"</span>: <span class="hljs-number">60</span>
+  }
+</code></pre>
+				<h2 id="configuration-de-la-database">Configuration de la database</h2>
+				<table>
+					<thead>
+						<tr>
+							<th>Paramètre</th>
+							<th>Description</th>
+							<th>Valeur</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>config</td>
+							<td>Nom de la base de données avec sa configuration</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>uri</td>
+							<td>Chaine de connexion à une bdd [sgbd]://[user]@[host]:[ports]/[name]</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>options</td>
+							<td>options nécessaires ou facultatives pour le sgbd</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>omitNull</td>
+							<td>indique si ont doit prendre ou non les valeurs null lors d&#39;une modification</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>timestamps</td>
+							<td>indique si les colonnes createAt et updateAt doivent être présentes</td>
+						</tr>
+					</tbody>
+				</table>
+				<pre><code class="lang-javascript"> <span class="hljs-string">"database"</span>: {
+        <span class="hljs-string">"config"</span>: {
+          <span class="hljs-string">"uri"</span>: <span class="hljs-string">"postgres://hornetJS@localhost:5433/appli"</span>,
+          <span class="hljs-string">"options"</span> : {
+            <span class="hljs-string">"pool"</span> : {
+              <span class="hljs-string">"max"</span> : <span class="hljs-number">5</span>,
+              <span class="hljs-string">"min"</span> : <span class="hljs-number">0</span>,
+              <span class="hljs-string">"idle"</span> : <span class="hljs-number">1000</span>
+            },
+            <span class="hljs-string">"define"</span>: {
+              <span class="hljs-string">"timestamps"</span> : <span class="hljs-literal">false</span>
+            },
+            <span class="hljs-string">"omitNull"</span> : <span class="hljs-literal">false</span>
+          }
+        }
+      }
+
+</code></pre>
+				<h2 id="configuration-des-mails">Configuration des mails</h2>
+				<table>
+					<thead>
+						<tr>
+							<th>Paramètre</th>
+							<th>Description</th>
+							<th>Valeur</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>config</td>
+							<td>Object de configuration pour nodeMailer</td>
+							<td><a href="https://nodemailer.com/smtp/">https://nodemailer.com/smtp/</a></td>
+						</tr>
+						<tr>
+							<td>mailRecever</td>
+							<td>Mail servant de destinataire à l&#39;envoi de mail</td>
+						</tr>
+					</tbody>
+				</table>
+				<pre><code class="lang-javascript"><span class="hljs-string">"mail"</span>: {
+    <span class="hljs-string">"config"</span>: {
+      <span class="hljs-string">"host"</span>: <span class="hljs-string">"127.0.0.1"</span>,
+      <span class="hljs-string">"port"</span>: <span class="hljs-number">25</span>,
+      <span class="hljs-string">"secure"</span>: <span class="hljs-literal">false</span>,
+      <span class="hljs-string">"connectionTimeout"</span>: <span class="hljs-number">20000</span>,
+      <span class="hljs-string">"tls"</span>: {
+        <span class="hljs-string">"rejectUnauthorized"</span>: <span class="hljs-literal">false</span>
+      },
+      <span class="hljs-string">"auth"</span>: {
+        <span class="hljs-string">"user"</span>: <span class="hljs-string">"user"</span>,
+        <span class="hljs-string">"pass"</span>: <span class="hljs-string">"pass"</span>
+      }
+    }
+
+  }
+</code></pre>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_actions_admin_fvm_fvm_action_.html">"actions/admin/fvm/fvm-<wbr>action"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_client_.html">"client"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_dao_admin_fvm_copie_note_verbale_maeci_dao_.html">"dao/admin/fvm/copie_<wbr>note_<wbr>verbale_<wbr>MAECI-<wbr>dao"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_dao_admin_fvm_copie_permis_dao_.html">"dao/admin/fvm/copie_<wbr>permis-<wbr>dao"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_dao_admin_fvm_demande_authentification_dao_.html">"dao/admin/fvm/demande_<wbr>authentification-<wbr>dao"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_dao_admin_fvm_dossier_dao_.html">"dao/admin/fvm/dossier-<wbr>dao"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_dao_admin_fvm_permis_dao_.html">"dao/admin/fvm/permis-<wbr>dao"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_dao_admin_fvm_personne_dao_.html">"dao/admin/fvm/personne-<wbr>dao"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_dao_auth_utilisateurs_dao_.html">"dao/auth/utilisateurs-<wbr>dao"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_dao_entity_dao_.html">"dao/entity-<wbr>dao"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_dao_model_dao_.html">"dao/model-<wbr>dao"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_dao_prefecture_dao_.html">"dao/prefecture-<wbr>dao"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_dao_valise_dao_.html">"dao/valise-<wbr>dao"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_i18n_app_i18n_loader_.html">"i18n/app-<wbr>i18n-<wbr>loader"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_injector_context_services_data_.html">"injector-<wbr>context-<wbr>services-<wbr>data"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_injector_context_services_page_.html">"injector-<wbr>context-<wbr>services-<wbr>page"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_middleware_authentication_.html">"middleware/authentication"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_middleware_authentication_api_.html">"middleware/authentication-<wbr>api"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_mock_routes_.html">"mock/routes"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_mock_services_data_auth_auth_service_impl_mock_.html">"mock/services/data/auth/auth-<wbr>service-<wbr>impl-<wbr>mock"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_models_auth_model_role_.html">"models/auth/model-<wbr>role"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_models_auth_model_role_utilisateur_.html">"models/auth/model-<wbr>role_<wbr>utilisateur"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_models_auth_model_utilisateur_.html">"models/auth/model-<wbr>utilisateur"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_models_auth_seq_user_mod_.html">"models/auth/seq-<wbr>user-<wbr>mod"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_models_auth_user_mod_.html">"models/auth/user-<wbr>mod"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_models_common_mod_.html">"models/common-<wbr>mod"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_models_fvm_fvm_mod_.html">"models/fvm/fvm-<wbr>mod"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_models_fvm_model_copiecourrierprefecture_.html">"models/fvm/model-<wbr>copiecourrierprefecture"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_models_fvm_model_copienoteverbalemaeci_.html">"models/fvm/model-<wbr>copienoteverbaleMAECI"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_models_fvm_model_copiepermis_.html">"models/fvm/model-<wbr>copiepermis"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_models_fvm_model_copiereleve_.html">"models/fvm/model-<wbr>copiereleve"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_models_fvm_model_demandeauthentification_.html">"models/fvm/model-<wbr>demandeauthentification"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_models_fvm_model_dossier_.html">"models/fvm/model-<wbr>dossier"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_models_fvm_model_noteverbale_.html">"models/fvm/model-<wbr>noteverbale"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_models_fvm_model_noteverbale_releve_.html">"models/fvm/model-<wbr>noteverbale-<wbr>releve"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_models_fvm_model_permis_.html">"models/fvm/model-<wbr>permis"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_models_fvm_model_personne_.html">"models/fvm/model-<wbr>personne"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_models_fvm_model_releve_.html">"models/fvm/model-<wbr>releve"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_models_model_prefecture_.html">"models/model-<wbr>prefecture"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_models_model_valise_.html">"models/model-<wbr>valise"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_models_mvf_model_attestation_.html">"models/mvf/model-<wbr>attestation"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_models_mvf_model_bordereau_.html">"models/mvf/model-<wbr>bordereau"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_models_mvf_model_bordereau_attestation_.html">"models/mvf/model-<wbr>bordereau-<wbr>attestation"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_models_mvf_model_copieattestation_.html">"models/mvf/model-<wbr>copieattestation"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_models_mvf_model_copiedemandeprefecture_.html">"models/mvf/model-<wbr>copiedemandeprefecture"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_models_mvf_model_copienoteverbalemaeci_.html">"models/mvf/model-<wbr>copienoteverbaleMAECI"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_models_mvf_model_copiepermis_.html">"models/mvf/model-<wbr>copiepermis"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_models_mvf_model_dossier_.html">"models/mvf/model-<wbr>dossier"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_models_mvf_model_noteverbale_.html">"models/mvf/model-<wbr>noteverbale"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_models_mvf_model_noteverbale_permis_.html">"models/mvf/model-<wbr>noteverbale-<wbr>permis"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_models_mvf_model_permis_.html">"models/mvf/model-<wbr>permis"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_models_mvf_model_personne_.html">"models/mvf/model-<wbr>personne"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_models_mvf_mvf_mod_.html">"models/mvf/mvf-<wbr>mod"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_routes_admin_fvm_form1_client_routes_.html">"routes/admin/fvm/form1-<wbr>client-<wbr>routes"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_routes_admin_fvm_form1_server_routes_.html">"routes/admin/fvm/form1-<wbr>server-<wbr>routes"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_routes_admin_fvm_form2_client_routes_.html">"routes/admin/fvm/form2-<wbr>client-<wbr>routes"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_routes_admin_fvm_form2_server_routes_.html">"routes/admin/fvm/form2-<wbr>server-<wbr>routes"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_routes_admin_fvm_record_client_routes_.html">"routes/admin/fvm/record-<wbr>client-<wbr>routes"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_routes_admin_fvm_record_server_routes_.html">"routes/admin/fvm/record-<wbr>server-<wbr>routes"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_routes_routes_.html">"routes/routes"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_server_.html">"server"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_services_data_admin_fvm_form_service_impl_data_.html">"services/data/admin/fvm/form-<wbr>service-<wbr>impl-<wbr>data"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_services_data_admin_fvm_page_service_impl_data_.html">"services/data/admin/fvm/page-<wbr>service-<wbr>impl-<wbr>data"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_services_data_auth_auth_service_.html">"services/data/auth/auth-<wbr>service"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_services_data_auth_auth_service_impl_.html">"services/data/auth/auth-<wbr>service-<wbr>impl"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_services_page_admin_fvm_form_service_.html">"services/page/admin/fvm/form-<wbr>service"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_services_page_admin_fvm_form_service_impl_.html">"services/page/admin/fvm/form-<wbr>service-<wbr>impl"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_services_page_admin_fvm_page_service_.html">"services/page/admin/fvm/page-<wbr>service"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_services_page_admin_fvm_page_service_impl_.html">"services/page/admin/fvm/page-<wbr>service-<wbr>impl"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_utils_roles_.html">"utils/roles"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_utils_urls_.html">"utils/urls"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_views_admin_fvm_fvm_formdemande_page_.html">"views/admin/fvm/fvm-<wbr>form<wbr>Demande-<wbr>page"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_views_admin_fvm_fvm_formdossier_page_.html">"views/admin/fvm/fvm-<wbr>form<wbr>Dossier-<wbr>page"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_views_admin_fvm_fvm_recorddetails_page_.html">"views/admin/fvm/fvm-<wbr>record<wbr>Details-<wbr>page"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_views_admin_fvm_fvm_recordlist_page_.html">"views/admin/fvm/fvm-<wbr>record<wbr>List-<wbr>page"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_views_gen_gen_acs_cmp_.html">"views/gen/gen-<wbr>acs-<wbr>cmp"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_views_gen_gen_cnx_page_.html">"views/gen/gen-<wbr>cnx-<wbr>page"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_views_gen_gen_hom_page_.html">"views/gen/gen-<wbr>hom-<wbr>page"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_views_gen_gen_nfe_page_.html">"views/gen/gen-<wbr>nfe-<wbr>page"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_views_layouts_hornet_app_.html">"views/layouts/hornet-<wbr>app"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_views_layouts_hornet_layout_.html">"views/layouts/hornet-<wbr>layout"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_views_nav_nav_pap_page_.html">"views/nav/nav-<wbr>pap-<wbr>page"</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

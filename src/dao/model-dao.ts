@@ -143,7 +143,7 @@ export class ModelDAO extends HornetSequelizeModel {
 
   /**
    * @constructor
-   * @param {string} conf chaîne de caractères permettant la connexion à la base
+   * @param {string} conf - chaîne de caractères permettant la connexion à la base
    */
   constructor(@inject("databaseConfigName")conf?: string) {
     super(conf);

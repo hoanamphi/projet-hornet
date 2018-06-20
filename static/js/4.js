@@ -22295,7 +22295,7 @@ var FormServiceImpl = /** @class */ (function (_super) {
     }
     /**
      * Méthode effectuant une requête HTTP permettant l'insertion d'un dossier dans la base de données
-     * @param data données de formulaire
+     * @param data - données de formulaire
      * @returns {Promise<any>}
      */
     FormServiceImpl.prototype.insererDossier = function (data) {
@@ -22313,7 +22313,7 @@ var FormServiceImpl = /** @class */ (function (_super) {
     };
     /**
      * Méthode effectuant une requête HTTP permettant l'insertion d'une demande d'authentification dans la base de données
-     * @param {{num_valise: number, num_demande_authentification: any, id_permis: number}} data données de formulaire
+     * @param {{num_valise: number, num_demande_authentification: any, id_permis: number}} data - données de formulaire
      * @returns {Promise<any>}
      */
     FormServiceImpl.prototype.insererDemandeAuthentification = function (data) {
@@ -22327,7 +22327,7 @@ var FormServiceImpl = /** @class */ (function (_super) {
     };
     /**
      * Méthode effectuant une requête HTTP permettant l'insertion d'une valise dans la base de données
-     * @param {{num_valise: number, date_valise: Date}} data données de formulaire
+     * @param {{num_valise: number, date_valise: Date}} data - données de formulaire
      * @returns {Promise<any>}
      */
     FormServiceImpl.prototype.insererValise = function (data) {
@@ -22400,18 +22400,21 @@ var result_pdf_1 = __webpack_require__(507);
 var media_type_1 = __webpack_require__(51);
 var disposition_type_1 = __webpack_require__(106);
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.actions.admin.fvm.fvm_action");
+/* RouteActionService :
+    Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+*/
 /**
  * Classe d'action gérant l'insertion d'un nouveau dossier dans la base
- * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>}
  */
 var InserDossier = /** @class */ (function (_super) {
     tslib_1.__extends(InserDossier, _super);
     function InserDossier() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        /* Objet JSON contenant deux attributs :
-            error : Classe de l'erreur retournée
-            reason : Motif de l'erreur
-        */
+        /**
+         * Objet JSON contenant deux attributs : error : Classe de l'erreur retournée, reason : Motif de l'erreur
+         * @type {{error: null, reason: null}}
+         */
         _this.Error = { "error": null, "reason": null };
         return _this;
     }
@@ -22465,7 +22468,7 @@ var InserDossier = /** @class */ (function (_super) {
 exports.InserDossier = InserDossier;
 /**
  * Classe d'action gérant l'insertion d'une nouvelle demande d'authentification dans la base
- * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>}
  */
 var InserDemandeAuthentification = /** @class */ (function (_super) {
     tslib_1.__extends(InserDemandeAuthentification, _super);
@@ -22490,7 +22493,7 @@ var InserDemandeAuthentification = /** @class */ (function (_super) {
 exports.InserDemandeAuthentification = InserDemandeAuthentification;
 /**
  * Classe d'action gérant l'insertion d'une nouvelle valise dans la base
- * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>}
  */
 var InserValise = /** @class */ (function (_super) {
     tslib_1.__extends(InserValise, _super);
@@ -22515,7 +22518,7 @@ var InserValise = /** @class */ (function (_super) {
 exports.InserValise = InserValise;
 /**
  * Classe d'action gérant la suppression d'un dossier dans la base
- * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>}
  */
 var DeleteDossier = /** @class */ (function (_super) {
     tslib_1.__extends(DeleteDossier, _super);
@@ -22540,7 +22543,7 @@ var DeleteDossier = /** @class */ (function (_super) {
 exports.DeleteDossier = DeleteDossier;
 /**
  * Classe d'action gérant la suppression d'une demande d'authentification dans la base
- * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>}
  */
 var DeleteDemandeAuthentification = /** @class */ (function (_super) {
     tslib_1.__extends(DeleteDemandeAuthentification, _super);
@@ -22565,7 +22568,7 @@ var DeleteDemandeAuthentification = /** @class */ (function (_super) {
 exports.DeleteDemandeAuthentification = DeleteDemandeAuthentification;
 /**
  * Classe d'action gérant le listage des préfectures stockées dans la base de données
- * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>}
  */
 var ListPrefecture = /** @class */ (function (_super) {
     tslib_1.__extends(ListPrefecture, _super);
@@ -22585,7 +22588,7 @@ var ListPrefecture = /** @class */ (function (_super) {
 exports.ListPrefecture = ListPrefecture;
 /**
  * Classe d'action gérant le listage des valises stockées dans la base
- * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>}
  */
 var ListValise = /** @class */ (function (_super) {
     tslib_1.__extends(ListValise, _super);
@@ -22605,7 +22608,7 @@ var ListValise = /** @class */ (function (_super) {
 exports.ListValise = ListValise;
 /**
  * Classe d'action gérant le listage des dossiers stockés dans la base
- * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>}
  */
 var ListDossier = /** @class */ (function (_super) {
     tslib_1.__extends(ListDossier, _super);
@@ -22625,7 +22628,7 @@ var ListDossier = /** @class */ (function (_super) {
 exports.ListDossier = ListDossier;
 /**
  * Classe d'action gérant le retour du dossier correspondant aux attributs donnés en entrée
- * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>}
  */
 var GetDossier = /** @class */ (function (_super) {
     tslib_1.__extends(GetDossier, _super);
@@ -22650,7 +22653,7 @@ var GetDossier = /** @class */ (function (_super) {
 exports.GetDossier = GetDossier;
 /**
  * Classe d'action gérant le retour de la demande d'authentification correspondant aux attributs donnés en entrée
- * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>}
  */
 var GetDemandeAuthentification = /** @class */ (function (_super) {
     tslib_1.__extends(GetDemandeAuthentification, _super);
@@ -22696,7 +22699,7 @@ export class GetNoteVerbale extends RouteActionService<any, PageService> {
 */
 /**
  * Classe d'action gérant le retour de la copie d'un permis de conduire
- * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>}
  */
 var GetCopiePermis = /** @class */ (function (_super) {
     tslib_1.__extends(GetCopiePermis, _super);
@@ -22727,7 +22730,7 @@ var GetCopiePermis = /** @class */ (function (_super) {
 exports.GetCopiePermis = GetCopiePermis;
 /**
  * Classe d'action gérant le retour de la copie d'une note verbale du MAECI
- * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>}
  */
 var GetCopieNoteVerbaleMAECI = /** @class */ (function (_super) {
     tslib_1.__extends(GetCopieNoteVerbaleMAECI, _super);
@@ -22758,7 +22761,7 @@ var GetCopieNoteVerbaleMAECI = /** @class */ (function (_super) {
 exports.GetCopieNoteVerbaleMAECI = GetCopieNoteVerbaleMAECI;
 /**
  * Classe d'action gérant la génération d'un document de demande d'authentification
- * @extends {RouteActionService<any, FormService>} Classe générique : <Type des attributs de l'action, Interface de la Classe de service>
+ * @extends {RouteActionService<any, FormService>}
  */
 var GetPDFDemandeAuthentification = /** @class */ (function (_super) {
     tslib_1.__extends(GetPDFDemandeAuthentification, _super);
@@ -22870,7 +22873,7 @@ var GetPDFDemandeAuthentification = /** @class */ (function (_super) {
     };
     /**
      * Méthode mettant la première lettre d'un mot en majuscule
-     * @param {string} entry Chaîne de caractères à mettre sous le format : [A-Z]{1}[a-z]*
+     * @param {string} entry - Chaîne de caractères à mettre sous le format : [A-Z]{1}[a-z]*
      * @returns {string} Chaîne de caractères mise sous le format : [A-Z]{1}[a-z]*
      */
     GetPDFDemandeAuthentification.prototype.capitalize = function (entry) {
@@ -23759,11 +23762,23 @@ var icon_1 = __webpack_require__(103);
 var picto_1 = __webpack_require__(96);
 var radios_field_1 = __webpack_require__(489);
 var logger = hornet_js_utils_1.Utils.getLogger("projet-hornet.views.admin.fvm.fvm-formDossier-page");
+/* HornetPage :
+    Classe générique : <Interface de la Classe de service, Props de la page, Context>
+*/
+/**
+ * Page de formulaire permettant de créer un dossier
+ * @extends {HornetPage<FormService, HornetComponentProps, any>}
+ */
 var FormulaireDossierPage = /** @class */ (function (_super) {
     tslib_1.__extends(FormulaireDossierPage, _super);
+    /**
+     * @constructor
+     * @param {HornetComponentProps} props
+     * @param context
+     */
     function FormulaireDossierPage(props, context) {
         var _this = _super.call(this, props, context) || this;
-        _this.prefectures = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getListePrefecture), { "value": "idPrefecture", "label": "prefecture" });
+        _this.listePrefectureDataSource = new datasource_1.DataSource(new datasource_config_page_1.DataSourceConfigPage(_this, _this.getService().getListePrefecture), { "value": "idPrefecture", "label": "prefecture" });
         _this.errors = new notification_manager_1.Notifications();
         _this.SequelizeErrors = new notification_manager_1.NotificationType();
         _this.SequelizeErrors.id = "SequelizeError";
@@ -23775,19 +23790,29 @@ var FormulaireDossierPage = /** @class */ (function (_super) {
         _this.success.addNotification(_this.SequelizeSuccess);
         return _this;
     }
+    /**
+     * Méthode permettant d'effectuer les appels d'API. Elle est appelée au moment où la Page est montée.
+     */
     FormulaireDossierPage.prototype.prepareClient = function () {
-        this.prefectures.fetch(true);
+        this.listePrefectureDataSource.fetch(true);
     };
+    /**
+     * Méthode appelée à la soumission du formulaire d'insertion d'un nouveau dossier
+     * @param data - données de formulaire
+     */
     FormulaireDossierPage.prototype.onSubmit = function (data) {
         var _this = this;
         this.getService().insererDossier(data).then(function (result) {
+            // Si le résultat contient une erreur
             if (result.error != null) {
                 console.error(result.reason);
                 console.error(result.error);
+                // Afficher un message d'erreur
                 _this.SequelizeErrors.text = result.reason;
                 notification_manager_1.NotificationManager.notify("SequelizeError", "errors", _this.errors, null, null, null, null);
             }
             else {
+                // Afficher un message d'information
                 notification_manager_1.NotificationManager.notify("SequelizeSuccess", "notif", null, _this.success, null, null, null);
             }
         }).catch(function (error) {
@@ -23795,7 +23820,12 @@ var FormulaireDossierPage = /** @class */ (function (_super) {
             notification_manager_1.NotificationManager.notify("SequelizeError", "errors", _this.errors, null, null, null, null);
         });
     };
+    /**
+     * Méthode effectuant le rendu de la vue
+     * @returns {JSX.Element}
+     */
     FormulaireDossierPage.prototype.render = function () {
+        // Objet Json contenant le format des champs (label, title,etc..)
         var format = this.i18n("forms");
         var radioData = new datasource_1.DataSource([
             { "value": 0, "label": "M" },
@@ -23826,12 +23856,15 @@ var FormulaireDossierPage = /** @class */ (function (_super) {
                 React.createElement(row_1.Row, null,
                     React.createElement(calendar_field_1.CalendarField, { name: "date_de_delivrance", label: format.fields.date_de_delivrance.label, title: format.fields.date_de_delivrance.title, required: true })),
                 React.createElement(row_1.Row, null,
-                    React.createElement(select_field_1.SelectField, { dataSource: this.prefectures, label: format.fields.id_prefecture.label, name: "id_prefecture", required: true })),
+                    React.createElement(select_field_1.SelectField, { dataSource: this.listePrefectureDataSource, label: format.fields.id_prefecture.label, name: "id_prefecture", required: true })),
                 React.createElement(row_1.Row, null,
                     React.createElement(upload_file_field_1.UploadFileField, { name: "copie_note_verbale_maeci", label: format.fields.copie_note_verbale_maeci.label, buttonLabel: format.fields.copie_note_verbale_maeci.buttonLabel, fileSelectedLabel: format.fields.copie_note_verbale_maeci.fileSelectedLabel, required: true })),
                 React.createElement(buttons_area_1.ButtonsArea, null,
                     React.createElement(button_1.Button, { type: "submit", value: "Valider", className: "hornet-button", label: "valider", title: "valider" })))));
     };
+    /**
+     * Méthode permettant de naviguer jusqu'à la page de sélection d'un dossier
+     */
     FormulaireDossierPage.prototype.retourPage = function () {
         this.navigateTo("/fvmrecord", {}, function () { });
     };

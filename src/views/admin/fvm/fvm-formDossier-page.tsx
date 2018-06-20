@@ -28,18 +28,54 @@ import {RadiosField} from "hornet-js-react-components/src/widget/form/radios-fie
 
 const logger: Logger = Utils.getLogger("projet-hornet.views.admin.fvm.fvm-formDossier-page");
 
+/* HornetPage :
+    Classe générique : <Interface de la Classe de service, Props de la page, Context>
+*/
+
+/**
+ * Page de formulaire permettant de créer un dossier
+ * @extends {HornetPage<FormService, HornetComponentProps, any>}
+ */
 export class FormulaireDossierPage extends HornetPage<FormService, HornetComponentProps, any> {
 
-  private prefectures;
-  private errors;
-  private SequelizeErrors;
-  private success;
-  private SequelizeSuccess;
+  /**
+   * DataSource contenant la liste des préfectures stockées dans la base
+   * @type {DataSource<any>}
+   */
+  private listePrefectureDataSource: DataSource<any>;
 
+  /**
+   * Objet permettant l'affichage de messages d'erreur
+   * @type {Notifications}
+   */
+  private errors: Notifications;
+  /**
+   * Objet contenant un message d'erreur
+   * @type {NotificationType}
+   */
+  private SequelizeErrors: NotificationType;
+
+  /**
+   * Objet permettant l'affichage de messages d'information
+   * @type {Notifications}
+   */
+  private success: Notifications;
+  /**
+   * Objet contenant un message d'information
+   * @type {NotificationType}
+   */
+  private SequelizeSuccess: NotificationType;
+
+  /**
+   * @constructor
+   * @param {HornetComponentProps} props
+   * @param context
+   */
   constructor(props?: HornetComponentProps, context?: any) {
     super(props, context);
 
-    this.prefectures = new DataSource<any> (new DataSourceConfigPage(this, this.getService().getListePrefecture), {"value": "idPrefecture", "label": "prefecture"}, );
+    this.listePrefectureDataSource = new DataSource<any> (new DataSourceConfigPage(this, this.getService().getListePrefecture), {"value": "idPrefecture", "label": "prefecture"}, );
+
     this.errors =  new Notifications();
     this.SequelizeErrors = new NotificationType();
     this.SequelizeErrors.id = "SequelizeError";
@@ -52,19 +88,30 @@ export class FormulaireDossierPage extends HornetPage<FormService, HornetCompone
     this.success.addNotification(this.SequelizeSuccess);
   }
 
+  /**
+   * Méthode permettant d'effectuer les appels d'API. Elle est appelée au moment où la Page est montée.
+   */
   prepareClient(): void {
-    this.prefectures.fetch(true);
+    this.listePrefectureDataSource.fetch(true);
   }
 
+  /**
+   * Méthode appelée à la soumission du formulaire d'insertion d'un nouveau dossier
+   * @param data - données de formulaire
+   */
   onSubmit(data: any) {
     this.getService().insererDossier(data).then(result=> {
+
+      // Si le résultat contient une erreur
       if(result.error != null){
         console.error(result.reason);
         console.error(result.error);
 
+        // Afficher un message d'erreur
         this.SequelizeErrors.text = result.reason;
         NotificationManager.notify("SequelizeError","errors", this.errors, null, null, null, null);
       } else {
+        // Afficher un message d'information
         NotificationManager.notify("SequelizeSuccess","notif", null, this.success, null, null, null);
       }
     }).catch(error=>{
@@ -73,8 +120,13 @@ export class FormulaireDossierPage extends HornetPage<FormService, HornetCompone
     });
   }
 
+  /**
+   * Méthode effectuant le rendu de la vue
+   * @returns {JSX.Element}
+   */
   render(): JSX.Element {
 
+    // Objet Json contenant le format des champs (label, title,etc..)
     let format = this.i18n("forms");
 
     let radioData = new DataSource<any> ([
@@ -84,10 +136,15 @@ export class FormulaireDossierPage extends HornetPage<FormService, HornetCompone
 
     return (
       <div>
+        {/* Icône permettant de retourner à la page de sélection d'un dossier */}
         <Icon src={Picto.blue.previous} alt="Retourner à la page de sélection" title="Retourner à la page de sélection" action={this.retourPage}/>
+
         <h2>Formulaire d'entrée d'un dossier</h2>
+        {/* Composants permettant d'afficher les messages */}
         <Notification id="errors"/>
         <Notification id="notif"/>
+
+        {/* Formulaire d'insertion d'un nouveau dossier */}
         <Form
           id="form1"
           schema={schema}
@@ -146,7 +203,7 @@ export class FormulaireDossierPage extends HornetPage<FormService, HornetCompone
                            required={true}/>
           </Row>
           <Row>
-            <SelectField dataSource={this.prefectures}
+            <SelectField dataSource={this.listePrefectureDataSource}
                                label={format.fields.id_prefecture.label}
                         name="id_prefecture"
                         required={true}/>
@@ -169,6 +226,9 @@ export class FormulaireDossierPage extends HornetPage<FormService, HornetCompone
     );
   }
 
+  /**
+   * Méthode permettant de naviguer jusqu'à la page de sélection d'un dossier
+   */
   retourPage(){
     this.navigateTo("/fvmrecord", {}, ()=>{});
   }

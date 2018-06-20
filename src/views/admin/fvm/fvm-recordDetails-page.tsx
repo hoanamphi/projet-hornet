@@ -33,29 +33,102 @@ import {Icon} from "hornet-js-react-components/src/widget/icon/icon";
 import {RadiosField} from "hornet-js-react-components/src/widget/form/radios-field";
 import {SelectField} from "hornet-js-react-components/src/widget/form/select-field";
 import {Alert} from "hornet-js-react-components/src/widget/dialog/alert";
+import {PageService} from "src/services/page/admin/fvm/page-service";
 
 const logger: Logger = Utils.getLogger("projet-hornet.views.admin.fvm.fvm-recordDetails-page");
 
-export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any> {
+/* HornetPage :
+    Classe générique : <Interface de la Classe de service, Props de la page, Context>
+*/
 
-  private dossierDatasource;
+/**
+ * Page affichant les détails d'un dossier
+ * @extends {HornetPage<PageService, HornetComponentProps, any>}
+ */
+export class RecordDetailsPage extends HornetPage<PageService, HornetComponentProps, any> {
+
+  /**
+   * Objet Json contenant le détails du dossier sélectionné
+   */
   private dossier;
-  private demandeauthentificationDatasource;
+  /**
+   * DataSource contenant les détails du dossier sélectionné
+   * @type {DataSource<any>}
+   */
+  private dossierDatasource: DataSource<any>;
+  /**
+   * Objet Json contenant les détails de la demande d'authentification du dossier
+   */
   private demandeAuthentification;
+  /**
+   * DataSource contenant les détails de la demande d'authentification du dossier
+   * @type {DataSource<any>}
+   */
+  private demandeauthentificationDatasource: DataSource<any>;
 
-  private errors;
-  private SequelizeErrors;
-  private success;
-  private SequelizeSuccess;
+  /**
+   * Objet permettant l'affichage de messages d'erreur
+   * @type {Notifications}
+   */
+  private errors: Notifications;
+  /**
+   * Objet contenant un message d'erreur
+   * @type {NotificationType}
+   */
+  private SequelizeErrors: NotificationType;
 
+  /**
+   * Objet permettant l'affichage de messages d'information
+   * @type {Notifications}
+   */
+  private success: Notifications;
+  /**
+   * Objet contenant un message d'information
+   * @type {NotificationType}
+   */
+  private SequelizeSuccess: NotificationType;
+
+  /**
+   * Onglets
+   * @type {Tabs<TabsProps>}
+   */
   private tabs = new Tabs<TabsProps>();
-  private nom_responsable = new InputField();
-  private prenom_responsable = new InputField();
-  private intitule_prefecture = new InputField();
-  private intitule_service = new InputField();
-  private cedex = new SelectField({"name": "cedex"});
-  private alert = new Alert();
+  /**
+   * Champs de texte contenant le nom du responsable du service des permis de conduire
+   * @type {InputField}
+   */
+  private nomResponsableInput = new InputField();
+  /**
+   * Champs de texte contenant le prénom du responsable du service des permis de conduire
+   * @type {InputField}
+   */
+  private prenomResponsableInput = new InputField();
+  /**
+   * Champs de texte contenant l'intitulé de la préfecture ayant délivré le permis
+   * @type {InputField}
+   */
+  private intitulePrefectureInput = new InputField();
+  /**
+   * Champs de texte contenant l'intitulé du service des permis de conduire de la préfecture ayant délivré le permis
+   * @type {InputField}
+   */
+  private intituleServiceInput = new InputField();
+  /**
+   * Composant permettant de sélectionner si l'adresse de la préfecture est CEDEX ou non
+   * @type {SelectField}
+   */
+  private choixCedexSelect = new SelectField({"name": "cedex"});
+  /**
+   * Composant ouvrant une popin validant la suppression d'une demande d'authentification
+   * @type {Alert}
+   */
+  private supprAlert = new Alert();
 
+  /**
+   * @constructor
+   * @param {HornetComponentProps} props
+   * @param context
+   */
   constructor(props?: HornetComponentProps, context?: any) {
     super(props, context);
 
@@ -74,37 +147,61 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
     this.success.addNotification(this.SequelizeSuccess);
   }
 
+  /**
+   * Méthode permettant d'effectuer les appels d'API. Elle est appelée au moment où la Page est montée.
+   */
   prepareClient(): void {
     this.dossierDatasource.fetch(true, this.attributes);
-    this.dossierDatasource.on("fetch", (Result)=>{
-      this.dossier = Result[0];
+    this.dossierDatasource.on("fetch", result=>{
+      // Lorsque les données du datasource ont été récupérées
+      this.dossier = result[0];
+
+      // Rendre l'onglet contenant les détails du dossier
       this.tabs.addElements(1, this.renderDossierTab());
+      // Enlever l'onglet temporaire
       this.tabs.removeElementsById("temp");
       this.tabs.showPanel(1);
+
+      // Récupére la demande d'authentification
       this.demandeauthentificationDatasource.fetch(true, this.attributes);
     });
     this.demandeauthentificationDatasource.on("fetch", result=>{
+      // Lorsque les données du datasource ont été récupérées
+
       this.demandeAuthentification = result[0];
+      // Recharger l'onglet
       this.tabs.removeElementsByIndex(2);
       this.tabs.addElements(2, this.renderDemandeAuthentificationTab());
     });
   }
 
+  /**
+   * Méthode effectuant le rendu de la vue
+   * @returns {JSX.Element}
+   */
   render(): JSX.Element {
 
     return (
       <div>
+        {/* Icône permettant de retourner à la page de sélection d'un dossier */}
         <Icon src={Picto.blue.previous} alt="Retourner à la page de sélection" title="Retourner à la page de sélection" action={this.retourPage}/>
+
+        {/* Composant supérieur contenant les onglets */}
         <Tabs ref={(tabs)=>{
           this.tabs = tabs;
         }} id="tabs" selectedTabIndex={0}
         >
+          {/* Onglet temporaire */}
           <Tab index={-1} id="temp"> </Tab>
         </Tabs>
       </div>
     );
   }
 
+  /**
+   * Méthode effectuant le rendu de l'onglet contenant les détails du dossier
+   * @returns {JSX.Element}
+   */
   renderDossierTab(): JSX.Element {
     let format = this.i18n("forms");
 
@@ -208,6 +305,10 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
     );
   }
 
+  /**
+   * Méthode rendant l'élément permettant de récupérer la copie du permis de conduire
+   * @returns {__React.ReactElement<any>}
+   */
   renderCopiePermis(): React.ReactElement<any> {
     let fileTag: React.ReactElement<any>;
     let urlfile: string = Utils.buildContextPath("/services/fvmrecordserver/copiePermis/"+this.dossier.copie_permis.idCopiePermis);
@@ -225,6 +326,10 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
     return fileTag;
   }
 
+  /**
+   * Méthode rendant l'élément permettant de récupérer la copie de la note verbale du MAECI
+   * @returns {__React.ReactElement<any>}
+   */
   renderCopieNoteVerbaleMAECI(): React.ReactElement<any> {
     let fileTag: React.ReactElement<any>;
 
@@ -243,12 +348,21 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
     return fileTag;
   }
 
+  /**
+   * Méthode effectuant le rendu de l'onglet contenant la demande d'authentification
+   * @returns {JSX.Element}
+   */
   renderDemandeAuthentificationTab(): JSX.Element {
+
+    // Objet Json contenant le format des champs (label, title,etc..)
     let format = this.i18n("forms");
 
+    // Si une demande d'authentification a été insérée
     if(this.demandeAuthentification != null) {
+
       let fileTag: React.ReactElement<any>;
 
+      // Détails de la demande d'authentification
       let dataForm = this.demandeAuthentification;
       dataForm["nom_responsable"] = "Zitouni";
       dataForm["prenom_responsable"] = "Samah";
@@ -258,6 +372,7 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
 
       let dataCedex = new DataSource<any>([{"id": "false", "libelle": "non"}, {"id": "true", "libelle": "oui"}], {"value": "id", "label": "libelle"});
 
+      // Paramètre par défaut pour générer le PDF de la demande d'authentification
       let defaultParams = encodeURI(dataForm.nom_responsable+"+"+dataForm.prenom_responsable+"+"+dataForm.intitule_prefecture+"+"+dataForm.intitule_service+"+false");
 
       let urlfile: string = Utils.buildContextPath("/services/fvmrecordserver/pdfMake/demandeAuthentification/"+this.attributes.idPermis+"/"+defaultParams);
@@ -270,7 +385,7 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
             <Notification id="errors"/>
 
             <Alert message={"Êtes vous sûr de vouloir supprimer cette demande ?"}
-                   ref={(alert)=>{this.alert = alert;}}
+                   ref={(alert)=>{this.supprAlert = alert;}}
                    onClickOk={this.supprimerDemande}
                    onClickClose={this.closeAlert}
                    validTitle={"Supprimer la demande"}
@@ -279,6 +394,8 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
             <h6> Vous avez généré une demande d'authentification pour ce dossier </h6>
             <Icon src={Picto.blue.supprimer} alt="Supprimer la demande d'authentification" title="Supprimer la demande d'authentification" action={this.openAlert}/>
             <Form id="demandeAuthentificationForm" defaultValues={dataForm}>
+
+              {/* Champs préremplis */}
               <InputField name="numDemandeAuthentification"
                           label={format.fields.num_demande_authentification.label}
                           readOnly={true}/>
@@ -291,26 +408,28 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
               <CalendarField name="dateDuTraitement"
                              label={format.fields.date_du_traitement.label}
                              readOnly={true}/>
+
+              {/* Champs modifiables */}
               <Row>
-                <InputField name="nom_responsable" ref={(input)=>{this.nom_responsable = input;}} onChange={this.handleUrl}
+                <InputField name="nom_responsable" ref={(input)=>{this.nomResponsableInput = input;}} onChange={this.handleUrl}
                             label={format.fields.nom_responsable.label}
                             readOnly={false}/>
-                <InputField name="prenom_responsable" ref={(input)=>{this.prenom_responsable = input;}} onChange={this.handleUrl}
+                <InputField name="prenom_responsable" ref={(input)=>{this.prenomResponsableInput = input;}} onChange={this.handleUrl}
                             label={format.fields.prenom_responsable.label}
                             readOnly={false}/>
               </Row>
               <Row>
-                <InputField name="intitule_prefecture" ref={(input)=>{this.intitule_prefecture = input;}} onChange={this.handleUrl}
+                <InputField name="intitule_prefecture" ref={(input)=>{this.intitulePrefectureInput = input;}} onChange={this.handleUrl}
                             label={format.fields.intitule_prefecture.label}
                             readOnly={false}/>
                 <InputField name="prefecture"
                             label={format.fields.prefecture.label}
                             readOnly={true}/>
               </Row>
-              <InputField name="intitule_service" ref={(input)=>{this.intitule_service = input;}} onChange={this.handleUrl}
-                          label={format.fields.intitule_service.label}
+              <InputField name="intitule_service" ref={(input)=>{this.intituleServiceInput = input;}} onChange={this.handleUrl}
+                          label={format.fields.intitule_prefecture.label}
                           readOnly={false}/>
-              <SelectField name="cedex" ref={(select)=>{this.cedex = select;}} onClick={this.handleUrl}
+              <SelectField name="cedex" ref={(select)=>{this.choixCedexSelect = select;}} onClick={this.handleUrl}
                           label={format.fields.cedex.label}
                            dataSource={dataCedex}
                           inline={RadiosField.Inline.FIELD}/>
@@ -326,10 +445,13 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
 
       return fileTag;
     } else {
+
       return (
         <Tab id="tabDemandeAuthentification" title="Demande d'Authentification">
           <TabContent>
             <h6> Vous n'avez pas encore généré de demande d'authentification pour ce dossier </h6>
+
+            {/* Bouton menant à la page de formulaire d'insertion d'une nouvelle demande d'authentification */}
             <ButtonsArea>
               <Button type="submit" onClick={this.genererDemande}
                       value="Valider" className="hornet-button" label="générer une demande d'authentification"
@@ -341,24 +463,38 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
     }
   }
 
+  /**
+   * Méthode ouvrant une popin permettant de valider la suppression d'une demande d'authentification
+   */
   openAlert() {
-    this.alert.open();
+    this.supprAlert.open();
   }
 
+  /**
+   * Méthode fermant la popin permettant de valider la suppression d'une demande d'authentification
+   */
   closeAlert() {
-    this.alert.close();
+    this.supprAlert.close();
   }
 
+  /**
+   * Méthode appelant le service de suppression de la demande d'authentification
+   */
   supprimerDemande() {
     this.getService().deleteDemandeAuthentification({idDemandeAuthentification: this.demandeAuthentification.idDemandeAuthentification}).then(result=> {
+
+      // Si le résultat contient une erreur
       if(result.hasError != null){
         console.error(result.hasReason);
         console.error(result.hasError);
 
+        // Afficher un message d'erreur
         this.SequelizeErrors.text = result.hasReason;
         NotificationManager.notify("SequelizeError","errors", this.errors, null, null, null, null);
       } else {
+        // Recharger l'onglet
         this.demandeauthentificationDatasource.fetch(true);
+        // Afficher un message d'information
         NotificationManager.notify("SequelizeSuccess","notif", null, this.success, null, null, null);
       }
     }).catch(reason=>{
@@ -367,17 +503,26 @@ export class RecordDetailsPage extends HornetPage<any, HornetComponentProps, any
     });
   }
 
+  /**
+   * Méthode mofifiant l'URL permettant d'accéder au PDF de la demande d'authentification
+   */
   handleUrl() {
-    let params = encodeURI(this.nom_responsable.getCurrentValue()+"+"+this.prenom_responsable.getCurrentValue()+"+"+this.intitule_prefecture.getCurrentValue()+"+"+this.intitule_service.getCurrentValue()+"+"+this.cedex.getCurrentValue());
+    let params = encodeURI(this.nomResponsableInput.getCurrentValue()+"+"+this.prenomResponsableInput.getCurrentValue()+"+"+this.intitulePrefectureInput.getCurrentValue()+"+"+this.intituleServiceInput.getCurrentValue()+"+"+this.choixCedexSelect.getCurrentValue());
     let a : HTMLAnchorElement;
     a = document.querySelector(".demandeauthentification a");
     a.href = Utils.buildContextPath("/services/fvmrecordserver/pdfMake/demandeAuthentification/"+this.attributes.idPermis+"/"+params);
   }
 
+  /**
+   * Méthode permettant de naviguer jusqu'à la page de sélection d'un dossier
+   */
   retourPage(){
     this.navigateTo("/fvmrecord", {}, ()=>{});
   }
 
+  /**
+   * Méthode permettant de naviguer jusqu'à la page du formulaire d'insertion d'une demande d'authentification
+   */
   genererDemande() {
     this.navigateTo("/fvmform2/"+this.attributes.idPermis, {}, ()=>{});
   }

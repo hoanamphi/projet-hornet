@@ -6,16 +6,20 @@ import { HornetSequelizeEntity } from "hornet-js-database/src/sequelize/hornet-s
 // Classe définissant les entités de la DAO
 import { ModelDAO } from "src/dao/model-dao";
 
+/* HornetSequelizeEntity
+     Classe générique : <Classe définissant les entités de la DAO>
+*/
+
 /**
  * Classe permettant la connexion à la base de données
- * @extends {HornetSequelizeEntity<ModelDAO>} Classe générique : <Classe définissant les entités de la DAO>
+ * @extends {HornetSequelizeEntity<ModelDAO>}
  */
 @injectable()
 export class EntityDAO extends HornetSequelizeEntity<ModelDAO> {
 
   /**
    * @constructor
-   * @param {ModelDAO} modelDAO Sert d'interface avec la base de donnée et permet d'effectuer des requêtes Sequelize sur celle-ci
+   * @param {ModelDAO} modelDAO - Sert d'interface avec la base de donnée et permet d'effectuer des requêtes Sequelize sur celle-ci
    */
   constructor(@inject(ModelDAO) modelDAO?: ModelDAO) {
         super(modelDAO);

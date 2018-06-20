@@ -30,22 +30,54 @@ const logger: Logger = Utils.getLogger("projet-hornet.services.data.admin.fvm.pa
  */
 export class PageServiceImpl extends ServiceRequest implements PageService {
 
-  // Objets contenant les erreurs retournées par une méthode
+  /**
+   * Objet JSON contenant deux attributs : error : Classe de l'erreur retournée, reason : Motif de l'erreur
+   * @type {{error: null, reason: null}}
+   */
   private Error = {"error": null, "reason": null};
 
+  /**
+   * Classe de DAO de la table personne_fvm
+   * @type {PersonneFVMDAO}
+   */
   private personneDAO = new PersonneFVMDAO();
+  /**
+   * Classe de DAO de la table dossier_fvm
+   * @type {DossierFVMDAO}
+   */
   private dossierDAO = new DossierFVMDAO();
+  /**
+   * Classe de DAO de la table permis_fvm
+   * @type {PermisFVMDAO}
+   */
   private permisDAO = new PermisFVMDAO();
+  /**
+   * Classe de DAO de la table copie_note_verbale_maeci_fvm
+   * @type {CopieNoteVerbaleMAECIFVMDao}
+   */
   private copieNoteVerbaleMAECIDAO = new CopieNoteVerbaleMAECIFVMDao();
+  /**
+   * Classe de DAO de la table copie_permis_fvm
+   * @type {CopiePermisFVMDao}
+   */
   private copiePermisDAO = new CopiePermisFVMDao();
-  private prefectureDAO = new PrefectureDAO();
+  /**
+   * Classe de DAO de la table demande_authentification_fvm
+   * @type {DemandeAuthentificationFVMDAO}
+   */
   private demandeAuthentificationDAO = new DemandeAuthentificationFVMDAO();
+  /**
+   * Classe de DAO de la table prefecture
+   * @type {PrefectureDAO}
+   */
+  private prefectureDAO = new PrefectureDAO();
 
   /**
    * Méthode supprimant une demande d'authentification de la base de données
-   * @param {{idDemandeAuthentification: number}} data id de la demande d'authentification à supprimer
+   * @param {{idDemandeAuthentification: number}} data - id de la demande d'authentification à supprimer
    * @returns {Promise<any>}
    */
+  @Transactional({configDatabase: Injector.getRegistered("databaseConfigName")})
   deleteDemandeAuthentification(data: {"idDemandeAuthentification": number}): Promise<any> {
     logger.trace("SERVICE DATA delete - PageService.DeleteDemandeAuthentification");
 
@@ -64,7 +96,7 @@ export class PageServiceImpl extends ServiceRequest implements PageService {
 
   /**
    * Méthode supprimant un dossier de la base de données
-   * @param {{idPermis: number}} data id du Permis concerné par la suppression
+   * @param {{idPermis: number}} data - id du Permis concerné par la suppression
    * @returns {Promise<any>}
    */
   @Transactional({configDatabase: Injector.getRegistered("databaseConfigName")})
@@ -179,7 +211,7 @@ export class PageServiceImpl extends ServiceRequest implements PageService {
 
   /**
    * Méthode retournant un dossier
-   * @param {{idPermis: number}} data id du Permis relatif au dossier
+   * @param {{idPermis: number}} data - id du Permis relatif au dossier
    * @returns {Promise<Array<any>>} Informations du dossier (Stockées dans un tableau pour une utilisation dans un dataSource)
    */
   getDossier(data: {"idPermis": number}): Promise<Array<any>> {
@@ -246,7 +278,7 @@ export class PageServiceImpl extends ServiceRequest implements PageService {
 
   /**
    * Méthode retournant une demande d'authentification
-   * @param {{idPermis: number}} data id du Permis concerné par la demande d'authentification
+   * @param {{idPermis: number}} data - id du Permis concerné par la demande d'authentification
    * @returns {Promise<DemandeAuthentificationFVMAttributes>} Demande d'authentification
    */
   getDemandeAuthentification(data: {"idPermis": number}): Promise<DemandeAuthentificationFVMAttributes> {
@@ -272,7 +304,7 @@ export class PageServiceImpl extends ServiceRequest implements PageService {
 
   /**
    * Méthode retournant la copie d'un permis de conduire
-   * @param {number} idCopiePermis id de la copie du permis de conduire
+   * @param {number} idCopiePermis - id de la copie du permis de conduire
    * @returns {Promise<CopiePermisFVMAttributes>} Copie d'un permis de conduire
    */
   getCopiePermis(idCopiePermis: number): Promise<CopiePermisFVMAttributes> {
@@ -283,7 +315,7 @@ export class PageServiceImpl extends ServiceRequest implements PageService {
 
   /**
    * Méthode retournant la copie d'une note verbale du MAECI
-   * @param {number} idCopieNoteVerbaleMAECI id de la copie de la note verbale du MAECI
+   * @param {number} idCopieNoteVerbaleMAECI - id de la copie de la note verbale du MAECI
    * @returns {Promise<CopieNoteVerbaleMAECIFVMAttributes>} Copie d'une note verbale du MAECI
    */
   getCopieNoteVerbaleMAECI(idCopieNoteVerbaleMAECI: number): Promise<CopieNoteVerbaleMAECIFVMAttributes> {
@@ -294,7 +326,7 @@ export class PageServiceImpl extends ServiceRequest implements PageService {
 
   /**
    * Méthode retournant les informations nécessaires à la génération d'une demande d'authentification en PDF
-   * @param {number} idPermis id du Permis concerné par la demande d'authentification
+   * @param {number} idPermis - id du Permis concerné par la demande d'authentification
    * @returns {Promise<{dossier: any, demande_authentification: DemandeAuthentificationFVMAttributes}>} Informations de la demande d'authentification
    */
   getPDFDemandeAuthentification(idPermis: number): Promise<{dossier: any, demandeAuthentification: DemandeAuthentificationFVMAttributes}> {

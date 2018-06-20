@@ -35,7 +35,7 @@ export class PrefectureDAO extends EntityDAO {
 
   /**
    * Méthode retournant une préfecture
-   * @param {number} idPrefecture id du tuple à retourner
+   * @param {number} idPrefecture - id du tuple à retourner
    * @returns {Promise<PrefectureAttributes>} Préfecture
    */
   getPrefecture(idPrefecture: number): Promise<PrefectureAttributes> {

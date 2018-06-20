@@ -10,7 +10,6 @@ import { CalendarField } from "hornet-js-react-components/src/widget/form/calend
 import { Button } from "hornet-js-react-components/src/widget/button/button";
 import { ButtonsArea } from "hornet-js-react-components/src/widget/form/buttons-area";
 import {Notification} from "hornet-js-react-components/src/widget/notification/notification";
-
 import * as schema from "src/resources/admin/fvm/validation-recordList.json";
 import {
   NotificationManager,
@@ -31,22 +30,53 @@ import {Pager} from "hornet-js-react-components/src/widget/pager/pager";
 import {PaginateDataSource} from "hornet-js-core/src/component/datasource/paginate-datasource";
 import {ActionColumn} from "hornet-js-react-components/src/widget/table/column/action-column";
 import {Icon} from "hornet-js-react-components/src/widget/icon/icon";
+import {PageService} from "src/services/page/admin/fvm/page-service";
 
 const logger: Logger = Utils.getLogger("projet-hornet.views.admin.fvm.fvm-recordList-page");
 
-export class RecordListPage extends HornetPage<any, HornetComponentProps, any> {
+/* HornetPage :
+    Classe générique : <Interface de la Classe de service, Props de la page, Context>
+*/
 
-  private entries;
+/**
+ * Page affichant la liste des dossiers stockés dans la base
+ * @extends {HornetPage<PageService, HornetComponentProps, any>}
+ */
+export class RecordListPage extends HornetPage<PageService, HornetComponentProps, any> {
 
-  private errors;
-  private SequelizeErrors;
-  private success;
-  private SequelizeSuccess;
+  private listeDossierDataSource: PaginateDataSource<any>;
 
+  /**
+   * Objet permettant l'affichage de messages d'erreur
+   * @type {Notifications}
+   */
+  private errors: Notifications;
+  /**
+   * Objet contenant un message d'erreur
+   * @type {NotificationType}
+   */
+  private SequelizeErrors: NotificationType;
+
+  /**
+   * Objet permettant l'affichage de messages d'information
+   * @type {Notifications}
+   */
+  private success: Notifications;
+  /**
+   * Objet contenant un message d'information
+   * @type {NotificationType}
+   */
+  private SequelizeSuccess: NotificationType;
+
+  /**
+   * @constructor
+   * @param {HornetComponentProps} props
+   * @param context
+   */
   constructor(props?: HornetComponentProps, context?: any) {
     super(props, context);
 
-    this.entries = new PaginateDataSource<any> ([], {itemsPerPage: 10}, {});
+    this.listeDossierDataSource = new PaginateDataSource<any> ([], {itemsPerPage: 10}, {});
 
     this.errors =  new Notifications();
     this.SequelizeErrors = new NotificationType();
@@ -60,12 +90,19 @@ export class RecordListPage extends HornetPage<any, HornetComponentProps, any> {
     this.success.addNotification(this.SequelizeSuccess);
   }
 
+  /**
+   * Méthode permettant d'effectuer les appels d'API. Elle est appelée au moment où la Page est montée.
+   */
   prepareClient(): void {
     this.getService().getListeDossier().then((all)=>{
-      this.entries.add(true, all);
+      this.listeDossierDataSource.add(true, all);
     });
   }
 
+  /**
+   * Méthode appelée à la soumission du formulaire de recherche avec critères
+   * @param data - critères sélectionnés
+   */
   onSubmit(data: any) {
     let criteria = {"numPermis": data.num_permis};
     if(data.nom != null) {
@@ -77,11 +114,15 @@ export class RecordListPage extends HornetPage<any, HornetComponentProps, any> {
     if(data.date_de_naissance != null) {
       criteria["dateDeNaissance"] = Date.parse(data.date_de_naissance);
     }
-    let subList = this.entries.findAll(criteria);
-    this.entries.deleteAll();
-    this.entries.add(true, subList);
+    let subList = this.listeDossierDataSource.findAll(criteria);
+    this.listeDossierDataSource.deleteAll();
+    this.listeDossierDataSource.add(true, subList);
   }
 
+  /**
+   * Méthode effectuant le rendu de la vue
+   * @returns {JSX.Element}
+   */
   render(): JSX.Element {
     let format = this.i18n("forms");
 
@@ -101,7 +142,7 @@ export class RecordListPage extends HornetPage<any, HornetComponentProps, any> {
             </MenuActions>
           </Header>
 
-          <Content dataSource={this.entries}>
+          <Content dataSource={this.listeDossierDataSource}>
             <Columns>
               <Column keyColumn="numPermis"
                       title={format.fields.num_permis.label}
@@ -128,7 +169,7 @@ export class RecordListPage extends HornetPage<any, HornetComponentProps, any> {
             </Columns>
           </Content>
           <Footer>
-            <Pager dataSource={this.entries} id="table-paginate"/>
+            <Pager dataSource={this.listeDossierDataSource} id="table-paginate"/>
           </Footer>
         </Table>
 
@@ -164,16 +205,25 @@ export class RecordListPage extends HornetPage<any, HornetComponentProps, any> {
     );
   }
 
+  /**
+   * Méthode supprimant le dossier sélectionné
+   * @param lineSelected - ligne sélectionnée dans le tableau listant les dossiers
+   */
   supprimerDossier(lineSelected) {
     this.getService().deleteDossier({idPermis: lineSelected.idPermis}).then(result=> {
+
+      // Si le résultat contient une erreur
       if(result.hasError != null){
         console.error(result.hasReason);
         console.error(result.hasError);
 
+        // Afficher un message d'erreur
         this.SequelizeErrors.text = result.hasReason;
         NotificationManager.notify("SequelizeError","errors", this.errors, null, null, null, null);
       } else {
+        // Recharger les données du tableau
         this.reloadData();
+        // Afficher un message d'information
         NotificationManager.notify("SequelizeSuccess","notif", null, this.success, null, null, null);
       }
     }).catch(reason=>{
@@ -182,23 +232,33 @@ export class RecordListPage extends HornetPage<any, HornetComponentProps, any> {
     });
   }
 
+  /**
+   * Méthode permettant de consulter les détails du dossier sélectionné
+   * @param lineSelected - ligne sélectionnée dans le tableau listant les dossier
+   */
   consulterDossier(lineSelected) {
     this.navigateTo("/fvmrecord/"+lineSelected.idPermis, {}, ()=>{});
   }
 
-
+  /**
+   * Méthode permettant de naviguer jusqu'à la page d'accueil
+   */
   retourPage() {
     this.navigateTo("/accueil", {}, ()=>{});
   }
 
+  /**
+   * Méthode permettant de naviguer jusqu'à la page du formulaire d'insertion d'un dossier
+   */
   ajouterDossier() {
     this.navigateTo("/fvmform1", {}, ()=>{});
   }
 
+  // Recharge les données du tableau listant les dossier
   reloadData() {
-    this.entries.deleteAll();
+    this.listeDossierDataSource.deleteAll();
     this.getService().getListeDossier().then((all)=>{
-      this.entries.add(true, all);
+      this.listeDossierDataSource.add(true, all);
     });
   }
 }
