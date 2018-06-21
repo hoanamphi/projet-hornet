@@ -387,8 +387,11 @@ var GetPDFDemandeAuthentification = /** @class */ (function (_super) {
         logger.trace("ACTION file - RecordDetailsFVMAction.GetPDFDemandeAuthentification");
         // Variable : Tableau de chaînes de caractères : paramètres variables entrés par l'utilisateur
         var dataString = this.attributes.data.split("+");
-        if (dataString[4] == null) {
+        if (dataString[4] == "false") {
             dataString[4] = "";
+        }
+        else {
+            dataString[4] = "CEDEX";
         }
         return this.getService().getPDFDemandeAuthentification(this.attributes.idPermis).then(function (result) {
             // Variables : Objets JSON : paramètres variables dans le modèle de la demande d'authentification

@@ -381,8 +381,10 @@ export class GetPDFDemandeAuthentification extends RouteActionService<{"idPermis
 
     // Variable : Tableau de chaînes de caractères : paramètres variables entrés par l'utilisateur
     let dataString = this.attributes.data.split("+");
-    if(dataString[4] == null) {
+    if(dataString[4] == "false") {
       dataString[4] = "";
+    } else {
+      dataString[4] = "CEDEX";
     }
 
     return this.getService().getPDFDemandeAuthentification(this.attributes.idPermis).then(result=>{
