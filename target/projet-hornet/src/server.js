@@ -116,11 +116,18 @@ var Server = /** @class */ (function () {
                 !hornet_js_utils_1.Utils.config.getOrDefault("mock.serviceData.enabled", false)) {
                 var files = void 0;
                 var databaseConfName = injector_1.Injector.getRegistered("databaseConfigName");
+                // if (databaseConfName === "config") {
+                //     files = [ "database/01_createTablesSqlite.sql", "database/02_initDataSqlite.sql" ];
+                // } else if (databaseConfName === "configPostgres") {
+                //     files = [ "database/01_createTablesPostgres.sql", "database/02_initDataPostgres.sql" ];
+                // }
                 if (databaseConfName === "config") {
-                    files = ["database/01_createTablesSqlite.sql", "database/02_initDataSqlite.sql"];
-                }
-                else if (databaseConfName === "configPostgres") {
-                    files = ["database/01_createTablesPostgres.sql", "database/02_initDataPostgres.sql"];
+                    files = ["database/01_createCommonTables.sql",
+                        "database/02_01_createTablesFranceToMaroc.sql",
+                        "database/02_02_createTablesMarocToFrance.sql",
+                        "database/03_01_constraintsFranceToMaroc.sql",
+                        "database/03_02_constraintsMarocToFrance.sql"
+                    ];
                 }
                 database_1.Database.runScripts([{
                         configName: databaseConfName,
